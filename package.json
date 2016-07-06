@@ -1,5 +1,5 @@
 {
-  "name": "zhironghao",
+  "name": "zrh_manager",
   "version": "0.0.1",
   "description": "\"上线前\"",
   "main": "",
@@ -14,7 +14,7 @@
     "grunt-css":"^0.5.4"
   },
   "keywords": [
-    "zhironghao"
+    "zrh_manager"
   ],
   "author": "By",
   "license": "ISC"

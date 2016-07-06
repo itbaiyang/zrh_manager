@@ -33,10 +33,7 @@ articleCtrl.controller('CreateCtrl', function ($http, $scope, $rootScope, $locat
             }
         }
     };
-    var m_params = {
-        "userId":"ffc41f5e8b96471aba063370826b1a87",
-        "token":"9794e4063b94a357be401fa2faed59683a4d79af"
-    };
+    var m_params = {"userId":"ffc41f5e8b96471aba063370826b1a87","token":"45d2a5274cf357c829414a67acf0df287375414f"}
     $scope.init = function(){
         //$scope.feature_list = [];
         $http({
@@ -129,20 +126,16 @@ articleCtrl.controller('CreateCtrl', function ($http, $scope, $rootScope, $locat
         $scope.feature_list_new = [];
         $scope.condition_list_new = [];
         for (var key in $scope.feature_list) {
-           /* if ($scope.feature_list[key] == feature) {
-            }*/
             console.log($scope.feature_list[key].feature)
             $scope.feature_list_new.push($scope.feature_list[key].feature)
         }
         for (var key in $scope.condition_list) {
-            /* if ($scope.feature_list[key] == feature) {
-             }*/
             console.log($scope.condition_list[key].condition)
             $scope.condition_list_new.push($scope.condition_list[key].condition)
         }
         var m_params = {
             "userId":"ffc41f5e8b96471aba063370826b1a87",
-            "token":"9794e4063b94a357be401fa2faed59683a4d79af",
+            "token":"45d2a5274cf357c829414a67acf0df287375414f",
             "name": $scope.product.name,
             "summary": $scope.product.summary,
             "ratecap": $scope.product.ratecap,
@@ -150,7 +143,7 @@ articleCtrl.controller('CreateCtrl', function ($http, $scope, $rootScope, $locat
             "loanvalue": $scope.product.loanvalue,
             "loanlife": $scope.product.loanlife,
             "bankname": $scope.product.bankname,
-            "features": $scope.feature_list_new,
+            "feature": $scope.feature_list_new,
             "conditions": $scope.condition_list_new,
             "icon": $scope.bankPic,
         };
@@ -183,7 +176,7 @@ articleCtrl.controller('ReleaseCtrl', function ($http, $scope, $rootScope, $loca
     $scope.list = function (pageNo, pageSize) {
         var m_params = {
             "userId":"ffc41f5e8b96471aba063370826b1a87",
-            "token":"9794e4063b94a357be401fa2faed59683a4d79af",
+            "token":"45d2a5274cf357c829414a67acf0df287375414f",
             pageNo: pageNo,
             pageSize: pageSize
         };
@@ -262,7 +255,7 @@ articleCtrl.controller('ReleaseCtrl', function ($http, $scope, $rootScope, $loca
     $scope.submit = function () {
         var m_params = {
             "userId":"ffc41f5e8b96471aba063370826b1a87",
-            "token":"9794e4063b94a357be401fa2faed59683a4d79af",
+            "token":"45d2a5274cf357c829414a67acf0df287375414f",
             ids: $scope.ids
         };
         console.log($scope.ids);
@@ -289,7 +282,7 @@ articleCtrl.controller('ReleaseCtrl', function ($http, $scope, $rootScope, $loca
     $scope.cancel = function () {
         var m_params = {
             "userId":"ffc41f5e8b96471aba063370826b1a87",
-            "token":"9794e4063b94a357be401fa2faed59683a4d79af",
+            "token":"45d2a5274cf357c829414a67acf0df287375414f",
             'ids': $scope.ids
         };
         console.log($scope.ids);
@@ -321,7 +314,7 @@ articleCtrl.controller('LoanApplicationCtrl', function ($http, $scope, $rootScop
     $scope.list = function (pageNo, pageSize) {
         var m_params = {
             "userId":"ffc41f5e8b96471aba063370826b1a87",
-            "token":"9794e4063b94a357be401fa2faed59683a4d79af",
+            "token":"45d2a5274cf357c829414a67acf0df287375414f",
             pageNo: pageNo,
             pageSize: pageSize,
         };
@@ -372,7 +365,7 @@ articleCtrl.controller('LoanApplicationCtrl', function ($http, $scope, $rootScop
             status++;
             var m_params = {
                 "userId":"ffc41f5e8b96471aba063370826b1a87",
-                "token":"9794e4063b94a357be401fa2faed59683a4d79af",
+                "token":"45d2a5274cf357c829414a67acf0df287375414f",
                 status:status
             };
             //console.log(m_params);
@@ -440,7 +433,7 @@ articleCtrl.controller('LoanApplicationCtrl', function ($http, $scope, $rootScop
     $scope.submit = function () {
         var m_params = {
             "userId":"ffc41f5e8b96471aba063370826b1a87",
-            "token":"9794e4063b94a357be401fa2faed59683a4d79af",
+            "token":"45d2a5274cf357c829414a67acf0df287375414f",
             ids: []
         };
         console.log($scope.ids);
