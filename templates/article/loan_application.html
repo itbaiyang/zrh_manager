@@ -1,0 +1,27 @@
+<ul class="list-group">
+    <li class="list-group-item" style="height: 40px" >
+        <span class="col-sm-1"></span>
+        <span class="col-sm-3">企业名称</span>
+        <span class="col-sm-2">申请产品</span>
+        <span class="col-sm-2">申请时间</span>
+        <span class="col-sm-1">申请状态</span>
+        <span class="col-sm-1">操作</span>
+        <!--<span class="col-sm-2">全部</span>-->
+    </li>
+    <li class="list-group-item" style="height: 40px" ng-repeat="resultObj in result_list">
+        <input type="checkbox" class="col-sm-1" id="{{resultObj.id}}" ng-checked="isSelected(resultObj.id)"
+               ng-click="updateSelection($event,resultObj.id)">
+        <span class="col-sm-3" style="overflow: hidden">{{resultObj.companyName}}</span>
+        <span class="col-sm-2">{{resultObj.productName}}</span>
+        <span class="col-sm-2">申请时间</span>
+        <span class="col-sm-1">{{resultObj.progressText}}</span>
+        <button class="col-sm-1" ng-click="nextStatus(resultObj.id,resultObj.status)">{{resultObj.progressBtn ||'下一步'}}</button>
+        <!--<span class="col-sm-2">我要处理</span>-->
+    </li>
+</ul>
+
+<div style="text-align: center;margin-bottom: 20px">
+    <tm-pagination conf="paginationConf"></tm-pagination>
+    <!--<button class="contentClass" ng-click="submit()">发布产品</button>-->
+    <!--<button class="contentClass" ng-click="submit()">取消发布</button>-->
+</div>

@@ -1,0 +1,75 @@
+<form class="form-horizontal">
+    <h3>基本内容<span class="label label-default"></span></h3>
+    <div class="form-group">
+        <label for="productName" class="col-sm-2 control-label">银行图片</label>
+        <div class="col-sm-10" id="upload_container">
+            <img class="userSetContent" id="pickfiles" ng-src="{{bankPic || 'img/recommendl.png'}}">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="productName" class="col-sm-2 control-label">产品名称</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="productName" placeholder="产品名称" ng-model="product.name">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="bankname" class="col-sm-2 control-label">银行名称</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="bankname" placeholder="银行名称" ng-model="product.bankname">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="ratecap" class="col-sm-2 control-label">利率下限</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="ratecap" placeholder="利率下限" ng-model="product.ratecap">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="ratefloor" class="col-sm-2 control-label">利率上限</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="ratefloor" placeholder="利率上限" ng-model="product.ratefloor">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="loanvalue" class="col-sm-2 control-label">贷款额度</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="loanvalue" placeholder="贷款额度" ng-model="product.loanvalue">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="loanlife" class="col-sm-2 control-label">贷款期限</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="loanlife" placeholder="贷款期限" ng-model="product.loanlife">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="summary" class="col-sm-2 control-label">产品概述</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="summary" placeholder="产品概述" ng-model="product.summary">
+        </div>
+    </div>
+    <h3>产品特色<span class="contentClass" ng-click="add_feature()">添加特色</span></h3>
+        <!--<input type="button" style="margin-top: 20px" class="contentClassRight" value="添加联系人" />-->
+    <div class="form-group" ng-repeat="features in feature_list track by $index">
+        <label for="feature" class="col-sm-2 control-label">产品特色</label>
+        <div class="col-sm-10 fr">
+            <input type="text" class="form-control" placeholder="产品特色" id="feature" ng-model="features.feature">
+            <button class="col-sm-2" ng-click="remove_feature(features)">删除</button>
+        </div>
+    </div>
+    <h3>准入条件<span class="contentClass" ng-click="add_condition()">添加条件</span></h3>
+    <div class="form-group" ng-repeat="conditions in condition_list">
+        <label for="conditions" class="col-sm-2 control-label">准入条件</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="conditions" placeholder="准入条件" ng-model="conditions.condition">
+            <button class="col-sm-2" ng-click="remove_condition(conditions)">删除</button>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" ng-click="submit()" class="btn btn-default">创建产品</button>
+        </div>
+    </div>
+</form>
