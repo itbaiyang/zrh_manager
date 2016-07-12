@@ -1,0 +1,79 @@
+<div class="content">
+    <p class="contentTitle"><span>企业信息列表</span></p>
+    <div class="row" style="min-width: 950px">
+        <div class="col-sm-10 col-lg-10" style="min-width: 300px">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search for...">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="button">搜索</button>
+                </span>
+                <span class="input-group-btn fr">
+                    <button class="btn btn-default" type="submit">刷新</button>
+                <button class="btn btn-default col-sm-offset-1" ui-sref="super.addUser" type="submit">添加新职员</button>
+                </span>
+
+            </div>
+        </div>
+        <div class="col-sm-offset-3 col-sm-3" style="min-width: 300px">
+
+        </div>
+        <ul class="list-group" style="margin-top: 50px;min-width: 950px">
+            <li class="list-group-item" style="height: 40px;width: 100%" >
+                <span class="col-sm-2 col-lg-2">用户名</span>
+                <span class="col-sm-2 col-lg-2">工号</span>
+                <span class="col-sm-2 col-lg-2">登录邮箱</span>
+                <span class="col-sm-2 col-lg-2">联系电话</span>
+                <span class="col-sm-2 col-lg-2">注册时间</span>
+                <span class="col-sm-2 col-lg-2">操作</span>
+                <!--<span class="col-sm-2">全部</span>-->
+            </li>
+            <li class="list-group-item" style="height: 40px;width: 100%" ng-repeat="resultObj in result_list">
+
+                <span class="col-sm-2 col-lg-2" style="overflow: hidden">
+                    <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}" ng-checked="isSelected(resultObj.id)"
+                           ng-click="updateSelection($event,resultObj.id)">
+                    {{resultObj.companyName}}</span>
+                <span class="col-sm-2 col-lg-2">{{resultObj.name}}</span>
+                <span class="col-sm-2 col-lg-2">{{resultObj.updateTime}}</span>
+                <span class="col-sm-2 col-lg-2">{{resultObj.progressText}}</span>
+                <span class="col-sm-2 col-lg-2">{{resultObj.progressText}}</span>
+                <button class="col-sm-2 col-lg-2" ng-click="">修改信息</button>
+            </li>
+            <li class="list-group-item">
+                <button class="contentClass" ng-click="submit()">删除产品</button>
+                <span>共有{{page.totalCount}}家企业申请，每页显示{{page.pageSize}}条</span>
+                <ul class="pagination fr" style="margin: 0">
+                    <li>
+                        <a href="#" aria-label="Previous" ng-click="changePage(1)">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" aria-label="Previous" ng-click="changePage(page.upPage)">
+                            <span aria-hidden="true">&lsaquo;</span>
+                        </a>
+                    </li>
+                    <li><a href="#" ng-click="changePage(page.pageNo)">{{page.pageNo}}</a></li>
+                    <li>
+                        <a href="#" aria-label="Next" ng-click="changePage(page.nextPage)">
+                            <span aria-hidden="true">&rsaquo;</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" aria-label="Next" ng-click="changePage(page.totalPage)">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <div style="text-align: center;margin-bottom: 20px">
+            <!--<tm-pagination conf="paginationConf"></tm-pagination>-->
+
+            <!--<button class="contentClass" ng-click="submit()">取消发布</button>-->
+        </div>
+    </div>
+    <div class="row">
+
+    </div>
+</div>

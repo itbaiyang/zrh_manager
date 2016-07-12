@@ -1,0 +1,29 @@
+<!--<div>welcome login</div>
+<button class="btn btn-default" ng-click="login()"></button>-->
+<div class="login">
+    <div class="loginNav">
+        <span class="loginNavLogo">注册账号</span>
+    </div>
+    <div class="row">
+        <div class="loginLeft col-sm-offset-2 col-sm-5 col-lg-offset-2 col-lg-5">
+            <h1>直融号</h1>
+            <h3>打造企业融资最低成本</h3>
+        </div>
+        <div class="loginRight col-sm-4 col-lg-4">
+            <div class="loginWindow">
+                <p class="loginTitle">直融号企业管理平台</p>
+                <form>
+                    <div class="form-group">
+                        <label for="username">登录名：</label>
+                        <input type="text" class="form-control" ng-model="loginUser.account" id="username" placeholder="邮箱或8位工号">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">登录密码：</label> <span class="fr" ng-click="reset()">忘记密码？</span>
+                        <input type="password" ng-model="loginUser.password" class="form-control" id="exampleInputPassword1" placeholder="登录密码">
+                    </div>
+                    <button type="submit" class="loginBtn btn btn-default" ng-click="login()">登录</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

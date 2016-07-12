@@ -1,0 +1,96 @@
+html, body, p, ul, li {
+    padding: 0px;
+    margin: 0px;
+    font-family: OneNikeCurrency, 'TradeGothicW01-BoldCn20 675334', Helvetica, Arial, 'Heiti SC', 'ST Heiti', 华文黑体, 'Microsoft YaHei', 雅黑体, SimHei, 黑体, sans-serif;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    background: #f8f8f8;
+}
+
+ul, li {
+    list-style-type: none;
+}
+
+a, input {
+    outline: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+canvas {
+    width: 100%;
+    border: 1px solid #000000;
+}
+
+.clear {
+    zoom: 1;
+}
+
+.clear:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+/*login*/
+.login{
+    width: 100%;
+    height:-moz-calc(100% - 160px);
+    height:-webkit-calc(100% - 160px);
+    height: calc(100% - 160px);
+    /*position: relative;*/
+    background: url("../img/background.png")no-repeat;
+}
+.loginNav{
+    width: 100%;
+    height: 74px;
+    background: #ffffff;
+    opacity:0.9;
+}
+.loginNavLogo{
+    display: inline-block;
+    background: url("../img/logo.png");
+    width: 172px;
+    height: 70px;
+    line-height: 70px;
+    text-indent: 100px;
+    font-size: 18px;
+}
+.loginLeft{
+    margin-top: 150px;
+    color: #ffffff;
+    text-shadow: 5px 5px 5px #000000;
+ }
+.loginRight{
+}
+.loginWindow{
+    margin-top: 80px;
+    width: 290px;
+    height: 300px;
+    background: #ffffff;
+    padding: 20px;
+}
+.loginTitle{
+    height: 26px;
+    line-height: 26px;
+    border-bottom: 1px solid #d4d4d4;
+    color: #b7b7b7;
+    font-size: 12px;
+    margin-bottom: 16px;
+}
+.loginBtn{
+    width: 100%;
+    background: #6b7acb;
+    color: #ffffff;
+}
+
