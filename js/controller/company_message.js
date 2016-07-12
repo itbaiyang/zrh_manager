@@ -6,8 +6,8 @@ loanApplicationCtrl.controller('LoanApplicationCtrl', function ($http, $scope, $
 
     var result_list = [];
 
+    var login_user = $rootScope.getObject("login_user");
     $scope.list = function (pageNo, pageSize) {
-        var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId":login_user.userId,
             "token":login_user.token,
@@ -77,12 +77,12 @@ loanApplicationCtrl.controller('LoanApplicationCtrl', function ($http, $scope, $
                 //$location.path("/error");
             })
     };
-    $scope.list(1,4);
+    $scope.list(1,8);
     $scope.changePage = function(page){
         $scope.pageNo1 = page;
         console.log($scope.pageNo1);
         $scope.$watch($scope.pageNo1, function () {
-            $scope.list($scope.pageNo1, 4);
+            $scope.list($scope.pageNo1, 8);
         });
     };
     $scope.selected = [];

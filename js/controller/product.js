@@ -427,10 +427,11 @@ productCtrl.controller('ProductUpdateCtrl', function ($http, $scope, $rootScope,
             }
         }
     };
+    var login_user = $rootScope.getObject("login_user");
     var m_params = {
-        "userId":$rootScope.userId,
-        "token":$rootScope.token
-    }
+        "userId":login_user.userId,
+        "token":login_user.token,
+    };
     $scope.init = function(){
         //$scope.feature_list = [];
         $http({

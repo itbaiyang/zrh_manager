@@ -46,23 +46,23 @@
                 <span>共有{{page.totalCount}}家企业申请，每页显示{{page.pageSize}}条</span>
                 <ul class="pagination fr" style="margin: 0">
                     <li>
-                        <a href="#" aria-label="Previous" ng-click="changePage(1)">
+                        <a aria-label="Previous" ng-click="changePage(1)">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#" aria-label="Previous" ng-click="changePage(page.upPage)">
+                        <a aria-label="Previous" ng-click="changePage(page.upPage)">
                             <span aria-hidden="true">&lsaquo;</span>
                         </a>
                     </li>
-                    <li><a href="#" ng-click="changePage(page.pageNo)">{{page.pageNo}}</a></li>
+                    <li><a>{{page.pageNo}}</a></li>
                     <li>
-                        <a href="#" aria-label="Next" ng-click="changePage(page.nextPage)">
+                        <a  aria-label="Next" ng-click="changePage(page.nextPage)">
                             <span aria-hidden="true">&rsaquo;</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#" aria-label="Next" ng-click="changePage(page.totalPage)">
+                        <a aria-label="Next" ng-click="changePage(page.totalPage)">
                             <span aria-hidden="true">&raquo;</span>
                         </a>
                     </li>
