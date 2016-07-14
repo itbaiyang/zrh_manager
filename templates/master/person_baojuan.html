@@ -35,11 +35,11 @@
                     {{resultObj.companyName}}</span>
                 <span class="col-sm-2 col-lg-2">{{resultObj.productName}}</span>
                 <span class="col-sm-2 col-lg-2">{{resultObj.applyTime | date:'yyyy-MM-dd'}}</span>
-                <span class="col-sm-1 col-lg-1">{{resultObj.status}}</span>
+                <span class="col-sm-1 col-lg-1">{{resultObj.progressText}}</span>
                 <span class="col-sm-1 col-lg-1">{{resultObj.opUsername}}</span>
-                <button class=" " ng-click="editApply()">编辑产品</button>
+                <button class=" " ng-click="editApply(resultObj.id)">完善信息</button>
                 <button class=" " ng-click="nextStatus(resultObj.id,resultObj.status)">{{resultObj.progressBtn ||'下一步'}}</button>
-                <button class=" " ng-click="cancel(resultObj.id)">取消申请</button>
+                <button class=" " ng-click="cancel(resultObj.id)">放弃任务</button>
             </li>
             <li class="list-group-item">
                 <button class="contentClass" ng-click="delete()">删除产品</button>

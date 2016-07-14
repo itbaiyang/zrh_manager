@@ -1,8 +1,6 @@
-
-
-//api_uri = "http://123.206.84.74/api/";
+api_uri = "http://test.zhironghao.com/api/";
 //api_uri = "http://api.supeiyunjing.com/";
-api_uri = "http://172.17.2.13:8080/api/";
+//api_uri = "http://172.17.2.13:8080/api/";
 var templates_root = 'templates/';
 deskey = "abc123.*abc123.*abc123.*abc123.*";
 var app = angular.module('app', [
@@ -68,9 +66,6 @@ app.run(function ($location, $rootScope, $http) {
     $rootScope.qiniu_bucket_domain = "o793l6o3p.bkt.clouddn.com";
  /*   $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
         var present_route = $location.$$path; //获取当前路由
-        $(".alertBox").css("height", $(document).height());
-        $(".alertBa").css("height", $(window).height());
-        $(".autoMargin2").css("margin-top", $(document).scrollTop() - "192");
     });
     // 页面跳转前
     $rootScope.$on('$routeChangeStart', function (event, next, current) {
@@ -111,19 +106,6 @@ app.run(function ($location, $rootScope, $http) {
         return str.join("&").toString();
     };
     /*********************************** 全局变量区 ***************************************/
-    //{"userId":"ffc41f5e8b96471aba063370826b1a87","token":"9794e4063b94a357be401fa2faed59683a4d79af"}
-    /*正式服务器*/
-    //$rootScope.userId = 'ffc41f5e8b96471aba063370826b1a87';
-    //$rootScope.token = '45d2a5274cf357c829414a67acf0df287375414f';
-    /*本地服务器*/
-    //$rootScope.userId = 'ffc41f5e8b96471aba063370826b1a87';
-    //$rootScope.token = '9794e4063b94a357be401fa2faed59683a4d79af';
-    /*测试服务器*/
-    //$rootScope.userId = '51ff64fed0fe48d4969692465c8503f0';
-    //$rootScope.token = '0ad89585b7b9fb8b4281ebbf207fe7752b788b87';
-    /*测试服务器*/
-    //$rootScope.userId = '8ca9a4a13e5e45108728395accdc2df3';
-    //$rootScope.token = 'd111139017fac0614769a43787fc5a6268f7dd8a';
 
     $rootScope.putObject = function (key, value) {
         localStorage.setItem(key, angular.toJson(value));
@@ -145,4 +127,44 @@ app.run(function ($location, $rootScope, $http) {
         angular.fromJson(sessionStorage.removeItem(key));
     };
 
-})
+    $rootScope.getAccountInfo = function () {
+        if ($rootScope.account_info == {}) {
+            $rootScope.account_info = $rootScope.putSessionObject('account_info');
+        }
+        if (!$rootScope.account_info) {
+            $rootScope.account_info = {};
+        }
+        return $rootScope.account_info;
+    };
+
+    $rootScope.setAccountInfo = function (account_info) {
+        $rootScope.account_info = account_info;
+        $rootScope.putSessionObject('account_info', $rootScope.account_info);
+    };
+
+    $rootScope.updateAccountInfo = function (dict) {
+        $rootScope.account_info = $rootScope.getAccountInfo();
+        for (var key in dict) {
+            $rootScope.account_info[key] = dict[key];
+        }
+        $rootScope.putSessionObject('account_info', $rootScope.account_info);
+    };
+
+    $rootScope.setAccountInfoKeyValue = function (key, value) {
+        $rootScope.account_info = $rootScope.getAccountInfo();
+        $rootScope.account_info[key] = value;
+        $rootScope.putSessionObject('account_info', $rootScope.account_info);
+    };
+
+    $rootScope.getAccountInfoKeyValue = function (key) {
+        if ($rootScope.account_info != {}) {
+            $rootScope.account_info = $rootScope.putSessionObject('account_info');
+        }
+        if ($rootScope.account_info) {
+            return $rootScope.account_info[key];
+        } else {
+            return null;
+        }
+    };
+
+});

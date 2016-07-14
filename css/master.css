@@ -57,7 +57,14 @@
     font-size: 12px;
     cursor: pointer;
 }
-.sideBarP2:hover,.sideBarP2:focus,.sideBarP2:active{
+
+.sideBarP2:hover {
+    background: #373C50;
+    color: #fff;
+    text-decoration: none;
+}
+
+.sideBarP2:focus, .sideBarP2:active {
     background: #6b7acb;
     color: #fff;
     text-decoration: none;
@@ -214,6 +221,15 @@
     width: 260px;
     height: 100%;
     background: #eaedf1;
+}
+
+.sideModel div {
+    height: 100px;
+    border: 1px solid red;
+    line-height: 100px;
+    font-size: 18px;
+    text-align: center;
+    cursor: pointer;
 }
 .addRight{
     width: calc(100% - 260px);

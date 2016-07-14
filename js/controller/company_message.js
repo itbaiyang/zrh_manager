@@ -77,12 +77,12 @@ loanApplicationCtrl.controller('LoanApplicationCtrl', function ($http, $scope, $
                 //$location.path("/error");
             })
     };
-    $scope.list(1,8);
+    $scope.list(1, 20);
     $scope.changePage = function(page){
         $scope.pageNo1 = page;
         console.log($scope.pageNo1);
         $scope.$watch($scope.pageNo1, function () {
-            $scope.list($scope.pageNo1, 8);
+            $scope.list($scope.pageNo1, 20);
         });
     };
     $scope.selected = [];
@@ -110,10 +110,10 @@ loanApplicationCtrl.controller('LoanApplicationCtrl', function ($http, $scope, $
     }
 
 
-    $scope.submit = function () {
+    $scope.delete = function () {
         var m_params = {
-            "userId":$rootScope.userId,
-            "token":$rootScope.token,
+            "userId": login_user.userId,
+            "token": login_user.token,
             ids: $scope.ids
         };
         console.log($scope.ids);

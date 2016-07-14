@@ -87,7 +87,16 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             views: {
                 'contains@master': {
                     templateUrl:templates_root + 'master/add_company.html',
-                    //controller:'AddCompanyCtrl'
+                    controller: 'AddCompanyCtrl'
+                }
+            }
+        })
+        .state('master.person_baojuan.edit_apply', {
+            url: '/edit_apply/:id',
+            views: {
+                'contains@master': {
+                    templateUrl: templates_root + 'master/edit_apply.html',
+                    controller: 'EditApplyCtrl'
                 }
             }
         })

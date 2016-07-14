@@ -41,12 +41,12 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
         })
     };
 
-    $scope.list(1,4);
+    $scope.list(1, 20);
     $scope.changePage = function(page){
         $scope.pageNo1 = page;
         console.log($scope.pageNo1);
         $scope.$watch($scope.pageNo1, function () {
-            $scope.list($scope.pageNo1, 4);
+            $scope.list($scope.pageNo1, 20);
         });
     };
 
@@ -71,18 +71,19 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
         var action = (checkbox.checked ? 'add' : 'remove');
         updateSelected(action, id);
     }
-    $scope.search = function () {
-        // console.log("search");
-
-        $scope.wd = $scope.search_text;
-
-        get_company_list_page(1, 20);
-    };
+    //$scope.search = function () {
+    //    // console.log("search");
+    //
+    //    $scope.wd = $scope.search_text;
+    //
+    //    get_company_list_page(1, 20);
+    //};
 
     $scope.submit = function () {
+        var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId":$rootScope.userId,
-            "token":$rootScope.token,
+            "userId": login_user.userId,
+            "token": login_user.token,
             ids: $scope.ids
         };
         console.log($scope.ids);
@@ -108,10 +109,11 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
     };
 
     $scope.cancel = function () {
+        var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId":$rootScope.userId,
-            "token":$rootScope.token,
-            'ids': $scope.ids
+            "userId": login_user.userId,
+            "token": login_user.token,
+            ids: $scope.ids
         };
         console.log($scope.ids);
         console.log("baiyang", m_params);
@@ -135,10 +137,11 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
     };
 
     $scope.delete = function () {
+        var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId":$rootScope.userId,
-            "token":$rootScope.token,
-            'ids': $scope.ids
+            "userId": login_user.userId,
+            "token": login_user.token,
+            ids: $scope.ids
         };
         console.log($scope.ids);
         console.log("baiyang", m_params);
@@ -163,15 +166,16 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
 
     $scope.update = function(id){
         //$location.state('master.product.update');
-        $location.path('/master/product/update/'+id)
+        $location.path('/master/product/update/' + id);
         console.log(id);
     }
 
     $scope.release = function (id) {
+        var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId":$rootScope.userId,
-            "token":$rootScope.token,
-            ids: id
+            "userId": login_user.userId,
+            "token": login_user.token,
+            ids: $scope.ids
         };
         console.log($scope.ids);
         console.log("baiyang", m_params);
@@ -196,10 +200,11 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
     };
 
     $scope.unrelease = function (id) {
+        var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId":$rootScope.userId,
-            "token":$rootScope.token,
-            'ids': id
+            "userId": login_user.userId,
+            "token": login_user.token,
+            ids: $scope.ids
         };
         console.log($scope.ids);
         console.log("baiyang", m_params);
@@ -347,7 +352,6 @@ productCtrl.controller('ProductCreateCtrl', function ($http, $scope, $rootScope,
     $scope.init();
 
     $scope.submit = function () {
-        var login_user = $rootScope.getObject("login_user");
         $scope.feature_list_new = [];
         $scope.condition_list_new = [];
         for (var key in $scope.feature_list) {
@@ -358,6 +362,7 @@ productCtrl.controller('ProductCreateCtrl', function ($http, $scope, $rootScope,
             console.log($scope.condition_list[key].condition)
             $scope.condition_list_new.push($scope.condition_list[key].condition)
         }
+        var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId":login_user.userId,
             "token":login_user.token,
@@ -382,7 +387,7 @@ productCtrl.controller('ProductCreateCtrl', function ($http, $scope, $rootScope,
                 console.log(data);
                 if (data.returnCode == 0) {
                     console.log("创建成功了");
-                    $location.path('/product')
+                    $location.path('/product');
                     $scope.$apply();
 
                 }
@@ -396,7 +401,7 @@ productCtrl.controller('ProductCreateCtrl', function ($http, $scope, $rootScope,
     };
 });
 
-productCtrl.controller('ProductUpdateCtrl', function ($http, $scope, $rootScope, $location,$stateParams, $timeout, $routeParams) {
+productCtrl.controller('ProductUpdateCtrl', function ($http, $scope, $state, $rootScope, $location, $stateParams, $timeout, $routeParams) {
     $scope.feature_list = [];
     $scope.add_feature = function () {
         $scope.feature_list.push({
@@ -516,9 +521,10 @@ productCtrl.controller('ProductUpdateCtrl', function ($http, $scope, $rootScope,
     }
     $scope.init();
     $scope.get = function(){
+        var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId":$rootScope.userId,
-            "token":$rootScope.token,
+            "userId": login_user.userId,
+            "token": login_user.token,
         };
         $http({
             url: api_uri + "financialProductManage/detail/"+$stateParams.id,
@@ -529,10 +535,10 @@ productCtrl.controller('ProductUpdateCtrl', function ($http, $scope, $rootScope,
             console.log(d.result.conditions,'123');
             $scope.product = d.result;
             for (var key in d.result.feature) {
-                $scope.feature_list.push({"feature":d.result.feature});
+                $scope.feature_list.push({"feature": d.result.feature[key]});
             }
             for (var key in d.result.conditions) {
-                $scope.condition_list.push({"condition":d.result.conditions});
+                $scope.condition_list.push({"condition": d.result.conditions[key]});
             }
         }).error(function (d) {
             console.log("login error");
@@ -551,10 +557,11 @@ productCtrl.controller('ProductUpdateCtrl', function ($http, $scope, $rootScope,
             console.log($scope.condition_list[key].condition)
             $scope.condition_list_new.push($scope.condition_list[key].condition)
         }
+        var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "id":$stateParams.id,
-            "userId":$rootScope.userId,
-            "token":$rootScope.token,
+            "userId": login_user.userId,
+            "token": login_user.token,
             "name": $scope.product.name,
             "summary": $scope.product.summary,
             "ratecap": $scope.product.ratecap,
@@ -576,8 +583,12 @@ productCtrl.controller('ProductUpdateCtrl', function ($http, $scope, $rootScope,
                 console.log(data);
                 if (data.returnCode == 0) {
                     console.log("创建成功了");
-                    $location.path('../../product')
+                    //$location.path("/" + $rootScope.getAccountInfoKeyValue('account') + "/product");
+                    //$location.path('../../product');
+                    //$location.state('master.product','/product');
+                    $state.go('master.product');
                     $scope.$apply();
+
 
                 }
                 else {

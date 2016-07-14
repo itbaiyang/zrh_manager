@@ -71,7 +71,7 @@ personBjCtrl.controller('PersonBjCtrl', function ($http, $scope, $rootScope, $lo
             }).success(function (d) {
                 console.log(d);
                 if (d.returnCode == 0) {
-                    $scope.list($scope.pageNo1, 4);
+                    $scope.list($scope.pageNo1, 20);
                 }
                 else {
                 }
@@ -86,12 +86,12 @@ personBjCtrl.controller('PersonBjCtrl', function ($http, $scope, $rootScope, $lo
 
     };
 
-    $scope.list(1,4);
+    $scope.list(1, 20);
     $scope.changePage = function(page){
         $scope.pageNo1 = page;
         console.log($scope.pageNo1);
         $scope.$watch($scope.pageNo1, function () {
-            $scope.list($scope.pageNo1, 4);
+            $scope.list($scope.pageNo1, 20);
         });
     };
     $scope.selected = [];
@@ -116,14 +116,19 @@ personBjCtrl.controller('PersonBjCtrl', function ($http, $scope, $rootScope, $lo
         var checkbox = $event.target;
         var action = (checkbox.checked ? 'add' : 'remove');
         updateSelected(action, id);
-    }
+    };
 
+    $scope.editApply = function (id) {
+        $location.path('/master/person_baojuan/edit_apply/' + id);
+        console.log(id);
+    };
 
     $scope.delete = function () {
+        var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId":$rootScope.userId,
-            "token":$rootScope.token,
-            ids: $scope.ids
+            ids: $scope.ids,
+            "userId": login_user.userId,
+            "token": login_user.token,
         };
         console.log($scope.ids);
         $.ajax({
@@ -167,4 +172,190 @@ personBjCtrl.controller('PersonBjCtrl', function ($http, $scope, $rootScope, $lo
         }).error(function (d) {
         })
     };
+});
+
+personBjCtrl.controller('AddCompanyCtrl', function ($http, $scope, $rootScope, $location, $timeout, $routeParams) {
+    /*添加删除模板*/
+    $scope.model_list = [];
+    var id_model = 0;
+    $scope.addModel = function (model) {
+        $scope.model_list.push({
+            "id": id_model,
+            "model": model
+        });
+        id_model++;
+        console.log($scope.model_list);
+    };
+    $scope.delete = function (id) {
+        for (var i = 0; i < $scope.model_list.length; i++) {
+            if ($scope.model_list[i].id == id) {
+                $scope.model_list.splice(i, 1);
+                console.log("删除id" + id);
+            }
+        }
+        console.log($scope.model_list);
+    };
+
+    /*保存基本信息*/
+    $scope.submit = function () {
+        var login_user = $rootScope.getObject("login_user");
+
+        var m_params = {
+            "applyId": "",
+            "userId": login_user.userId,
+            "token": login_user.token,
+            "company_name": $scope.company_name,
+            "legal_representative": $scope.legal_representative,
+            "register_date": $scope.register_date,
+            "registered_capital": $scope.registered_capital,
+            "business_address": $scope.business_address,
+            "item_category": $scope.item_category,
+            "business_type": $scope.business_type,
+            "business_scope": $scope.business_scope,
+            "phone": $scope.phone,
+        };
+        console.log(m_params);
+        $.ajax({
+            type: 'POST',
+            url: api_uri + "inforTemplate/saveBase",
+            data: m_params,
+            traditional: true,
+            success: function (data, textStatus, jqXHR) {
+                console.log(data);
+                if (data.returnCode == 0) {
+                    console.log("创建成功了");
+                    $location.path('/product');
+                    $scope.$apply();
+
+                }
+                else {
+                    console.log(data);
+                }
+            },
+            dataType: 'json',
+        });
+
+    };
+});
+
+personBjCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $location, $state, $timeout, $stateParams, $routeParams) {
+    /*添加删除模板*/
+    console.log($stateParams.id);
+    $scope.model = {
+        title: "",
+        content: "",
+        name: "",
+        imgList: []
+    }
+    $scope.model_list = [];
+    var id_model = 0;
+    $scope.addModel = function (templateType) {
+        $scope.model_list.push({
+            "id_model": id_model,
+            "templateType": templateType,
+            "title": $scope.model.title,
+            "content": $scope.model.content,
+            "name": "",
+            "imgList": []
+        });
+        id_model++;
+        console.log($scope.model_list);
+    };
+    $scope.delete = function (id) {
+        for (var i = 0; i < $scope.model_list.length; i++) {
+            if ($scope.model_list[i].id == id) {
+                $scope.model_list.splice(i, 1);
+                console.log("删除id" + id);
+            }
+        }
+        console.log($scope.model_list);
+    };
+
+    /*保存基本信息*/
+    $scope.basic = function () {
+        var login_user = $rootScope.getObject("login_user");
+        var m_params = {
+            "applyId": $stateParams.id,
+            "userId": login_user.userId,
+            "token": login_user.token,
+            "company_name": $scope.company_name,
+            "legal_representative": $scope.legal_representative,
+            "register_date": $scope.register_date,
+            "registered_capital": $scope.registered_capital,
+            "business_address": $scope.business_address,
+            "item_category": $scope.item_category,
+            "business_type": $scope.business_type,
+            "business_scope": $scope.business_scope,
+            "phone": $scope.phone,
+        };
+        console.log(m_params);
+        $.ajax({
+            type: 'POST',
+            url: api_uri + "inforTemplate/saveBase",
+            data: m_params,
+            traditional: true,
+            success: function (data, textStatus, jqXHR) {
+                console.log(data);
+                if (data.returnCode == 0) {
+                    console.log("basic success");
+                    $scope.id_basic = data.result;
+                    $scope.other();
+                    //$scope.$apply();
+                }
+                else {
+                    console.log(data);
+                }
+            },
+            dataType: 'json',
+        });
+
+    };
+
+    /*保存其他信息*/
+    $scope.other = function () {
+        console.log($scope.id_basic);
+        var list = [];
+        for (var i = 0; i < $scope.model_list.length; i++) {
+            list.push({
+                "title": $scope.model_list[i].title,
+                "name": $scope.model_list[i].name,
+                "templateType": $scope.model_list[i].templateType,
+                "content": $scope.model_list[i].content,
+                "imgList": $scope.model_list[i].imgList
+            })
+        }
+        var login_user = $rootScope.getObject("login_user");
+        var m_params1 = {
+            "userId": login_user.userId,
+            "token": login_user.token,
+            "comId": $scope.id_basic,
+            "list": list
+        };
+        console.log(m_params1);
+        $.ajax({
+            type: 'POST',
+            url: api_uri + "inforTemplate/saveList",
+            data: m_params1,
+            traditional: true,
+            success: function (data, textStatus, jqXHR) {
+                console.log(data);
+                if (data.returnCode == 0) {
+                    console.log("list success");
+
+                    //$scope.$apply();
+
+                }
+                else {
+                    console.log(data);
+                }
+            },
+            dataType: 'json',
+        });
+
+    };
+
+    $scope.submit = function () {
+        $scope.basic();
+        //$state.go('master.person_baojuan');
+    }
 });

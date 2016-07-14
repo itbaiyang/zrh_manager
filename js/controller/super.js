@@ -75,33 +75,6 @@ superCtrl.controller('UserListCtrl', function ($http, $scope, $rootScope, $locat
         var action = (checkbox.checked ? 'add' : 'remove');
         updateSelected(action, id);
     }
-
-
-   /* $scope.submit = function () {
-        var m_params = {
-            "userId":$rootScope.userId,
-            "token":$rootScope.token,
-            ids: $scope.ids
-        };
-        console.log($scope.ids);
-        $.ajax({
-            type: 'POST',
-            url: api_uri + "loanApplicationManage/delete",
-            data: m_params,
-            traditional: true,
-            success: function (data, textStatus, jqXHR) {
-                // console.log(data);
-                if (data.returnCode == 0) {
-                    console.log('baiyang');
-                    console.log(data);
-                }
-                else {
-                    console.log(data);
-                }
-            },
-            dataType: 'json',
-        });
-    };*/
 });
 superCtrl.controller('CreateUserCtrl', function ($http, $scope, $rootScope, $location, $timeout, $routeParams){
     var timesTamp = new Date().getTime();
