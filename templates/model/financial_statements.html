@@ -16,7 +16,8 @@
         </div>
     </div>
 
-    <div id="{{}}" class="img-list">
-        <img id="img_model" src="img/upload1.png" class="loadAdd fl">
+    <div id="imgList_model_{{model.id_model}}" class="img-list">
+        <img id="img_model_{{model.id_model}}" ng-click="chuan(model.id_model)" src="img/upload1.png" class="loadAdd fl">
+        <a id="img_{{model.id_model}}" class="loadAdd">确认</a>
     </div>
 </div>
