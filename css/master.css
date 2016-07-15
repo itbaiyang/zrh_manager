@@ -257,3 +257,20 @@
     border-radius: 1px;
     background: #ffffff;
 }
+.img-list {
+    position: relative;
+    display: inline-block;
+    margin-top: 8px;
+    z-index: 2;
+    margin-right: 15px;
+
+}
+
+.img-list img {
+    border: 0;
+    z-index: 3;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+}

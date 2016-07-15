@@ -237,6 +237,7 @@ productCtrl.controller('ProductCreateCtrl', function ($http, $scope, $rootScope,
         });
         console.log($scope.feature_list);
     };
+
     $scope.remove_feature = function (feature) {
         for (var key in $scope.feature_list) {
             if ($scope.feature_list[key] == feature) {
@@ -245,13 +246,15 @@ productCtrl.controller('ProductCreateCtrl', function ($http, $scope, $rootScope,
             }
         }
     };
+
     $scope.condition_list = [{"condition":""}];
+
     $scope.add_condition = function () {
         $scope.condition_list.push({
             "condition":""
         });
     };
-    console.log($scope.condition_list);
+
     $scope.remove_condition = function (condition) {
         for (var key in $scope.condition_list) {
             if ($scope.condition_list[key] == condition) {

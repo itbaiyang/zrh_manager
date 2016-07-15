@@ -246,7 +246,7 @@ personBjCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $l
         content: "",
         name: "",
         imgList: []
-    }
+    };
     $scope.model_list = [];
     var id_model = 0;
     $scope.addModel = function (templateType) {
@@ -256,13 +256,15 @@ personBjCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $l
             "title": $scope.model.title,
             "content": $scope.model.content,
             "name": "",
-            "imgList": []
+            "imgList":$scope.model.imgList
         });
         id_model++;
         console.log($scope.model_list);
         $scope.picSave();
     };
-
+$scope.shish = function(){
+    console.log($scope.model_list);
+};
     $scope.delete = function (id) {
         for (var i = 0; i < $scope.model_list.length; i++) {
             if ($scope.model_list[i].id_model == id) {
@@ -272,7 +274,25 @@ personBjCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $l
         }
         console.log($scope.model_list);
     };
-
+    $scope.get = function() {
+        var login_user = $rootScope.getObject("login_user");
+        var m_params = {
+            "userId": login_user.userId,
+            "token": login_user.token,
+        };
+        $http({
+            url: api_uri + "loanApplicationManage/detail/" + $stateParams.id,
+            method: "GET",
+            params: m_params
+        }).success(function (d) {
+            console.log(d);
+            $scope.company_name = d.result.companyName;
+        }).error(function (d) {
+            console.log("login error");
+            $location.path("/error");
+        })
+    };
+    $scope.get();
     /*保存基本信息*/
     $scope.basic = function () {
         var login_user = $rootScope.getObject("login_user");
@@ -327,15 +347,14 @@ personBjCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $l
                 "imgList": $scope.model_list[i].imgList
             })
         };
-        var list_string = JSON.stringify(list);
-
-        console.log(list_string);
+    //var list_string = JSON.stringify(list);
+        console.log(list);
         var login_user = $rootScope.getObject("login_user");
         var m_params1 = {
             "userId": login_user.userId,
             "token": login_user.token,
             "comId": $scope.id_basic,
-            "list": encodeURI(list_string)
+            "list": JSON.stringify(list)
         };
         console.log(m_params1);
         $.ajax({
@@ -347,8 +366,8 @@ personBjCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $l
                 console.log(data);
                 if (data.returnCode == 0) {
                     console.log("list success");
-
-                    //$scope.$apply();
+                    $state.go("master.person_baojuan");
+                    $scope.$apply();
 
                 }
                 else {
@@ -365,7 +384,7 @@ personBjCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $l
         //$state.go('master.person_baojuan');
     };
 
-    $scope.picSave = function () {
+    $scope.picSave = function (id) {
         var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId": login_user.userId,
@@ -416,9 +435,10 @@ personBjCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $l
                         'FileUploaded': function (up, file, info) {
                             var res = $.parseJSON(info);
 
-                            var file_url = "http://" + $rootScope.qiniu_bucket_domain + "/" + res.key;
-                            //$scope.model_list.imgList.push(file.name);
-                            $scope.model_list.imgList.push(file_url);
+                            var file_url = "http://"+$rootScope.qiniu_bucket_domain+"/"+ res.key;
+                            $scope.imgList1.push(file_url);
+                            $scope.model_list[id].imgList.push(file.name);
+                            console.log( $scope.model_list[id].imgList.push(file.name));
                             $scope.$apply();
                         },
                         'Error': function (up, err, errTip) {
@@ -443,68 +463,7 @@ personBjCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $l
             console.log(d);
         });
 
-
     };
-/*
-    $scope.imgListSave = function(){
-        var bucketName = "imglist";
-        var cos = new CosCloud("10052005");
-
-        var successCallBack = function(result){
-            $("#result").val(result);
-        };
-        var errorCallBack = function(result){
-            $("#result").val(result.responseText);
-        };
-        $scope.getFileName = function(path){
-            var pos1 = path.lastIndexOf('/');
-            var pos2 = path.lastIndexOf('\\');
-            var pos  = Math.max(pos1, pos2)
-            if( pos<0 )
-                return path;
-            else
-                return path.substring(pos+1);
-        };
-
-        $scope.uploadFile = function(){
-            console.log("baiyang");
-            $("#result").val('');
-            var selectFunc = function(){
-                var files = document.getElementById("file").files;
-                var value = document.getElementById("file").value;
-                var value_test = $scope.getFileName(value);
-                console.log(value_test);
-                if(files && files.length == 1){
-                    cos.uploadFile(successCallBack, errorCallBack, bucketName, "/img/"+value_test, files[0]);
-                }
-                else{
-                    alert("请选择一个文件");
-                }
-            };
-            if (/msie/.test(navigator.userAgent.toLowerCase())) {
-                $('#file').click(function(event) {
-                    setTimeout(function() {
-                        if($('#file').val().length > 0) {
-                            selectFunc();
-                        }
-                    }, 0);
-                });
-            }
-            else {
-                $('#file').change(selectFunc);
-            }
-            $("#file").trigger("click");
-        };
-
-        $scope.getFolderList = function(){
-            console.log("baiyang");
-            $("#result").val('');
-            cos.getFolderList(successCallBack, errorCallBack, bucketName, "/img/", 1, "", 0);
-        };
-        //var getImg = $scope.getFolderList();
-        //console.log(getImg);
-    };
-    $scope.imgListSave();*/
 
     $scope.removeImgList = function (index) {
         $scope.model_list.imgList.splice(index, 1);
