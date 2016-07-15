@@ -1,9 +1,22 @@
 <div class="form-group">
-    <label for="financial_statements" class="col-sm-2 control-label">财务报表</label>
-    <div class="col-sm-5">
-        <textarea type="text" class="form-control" id="financial_statements" placeholder="财务报表"
-                  ng-model="product.summary"></textarea>
-        <button class=" btn btn-default">删除</button>
+    <div class="col-sm-2">
+        <input type="text" class="form-control" placeholder="模板名称"
+               ng-model="model.title">
+    </div>
+    <div class="col-sm-4">
+        <img src="" alt="">
+    </div>
+    <button ng-click="delete(model.id_model)" class="col-sm-1 btn btn-default">删除</button>
+</div>
+<div class="form-group">
+    <div class="img-list fl" ng-repeat="pledgeImg in model.imgList" ng-click="removeImgList($index)">
+        <img ng-src="{{pledgeImg}}" alt="" style="border: 0">
+        <div class="redPoint">
+            <div class="redPointInner"></div>
+        </div>
     </div>
 
+    <div id="upload_pledgeImg">
+        <img id="img_model" src="img/upload1.png" class="loadAdd fl">
+    </div>
 </div>

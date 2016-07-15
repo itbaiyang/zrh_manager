@@ -168,7 +168,7 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
         //$location.state('master.product.update');
         $location.path('/master/product/update/' + id);
         console.log(id);
-    }
+    };
 
     $scope.release = function (id) {
         var login_user = $rootScope.getObject("login_user");

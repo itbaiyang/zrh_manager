@@ -237,3 +237,23 @@
     height: 100%;
     padding-left: 15px;
 }
+.redPoint {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    padding-top: 8px;
+    z-index: 2;
+    width: 18px;
+    height: 18px;
+    border-radius: 100%;
+    border: none;
+    background: #f97383;
+}
+
+.redPointInner {
+    margin: 0px auto 0px;
+    width: 10px;
+    height: 2px;
+    border-radius: 1px;
+    background: #ffffff;
+}

@@ -1,9 +1,11 @@
 <div class="form-group">
-    <label for="summary" class="col-sm-2 control-label">公司简介</label>
-    <div class="col-sm-5">
-        <textarea type="text" class="form-control" id="summary" placeholder="公司简介"
-                  ng-model="product.summary"></textarea>
-        <button class="col-sm-1 btn btn-default">删除</button>
+    <div class="col-sm-2">
+        <input type="text" class="form-control" placeholder="模板名称"
+               ng-model="model.title">
     </div>
-
+    <div class="col-sm-4">
+        <textarea type="text" class="form-control" placeholder="model.title"
+                  ng-model="model.content"></textarea>
+    </div>
+    <button ng-click="delete(model.id_model)" class="col-sm-1 btn btn-default">删除</button>
 </div>

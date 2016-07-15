@@ -78,16 +78,14 @@
             <p class="createTitle">其他类型</p>
             <div ng-switch="model.templateType" ng-repeat="model in model_list">
                 <div ng-switch-when="1">
-                    <div ng-include="'../../../zrh-master/templates/model/accounts_receivable.html'"></div>
+                    <div ng-include="'templates/model/accounts_receivable.html'"></div>
                 </div>
                 <div ng-switch-when="2">
-                    <div ng-include="'../../../zrh-master/templates/model/company_detail.html'"></div>
+                    <div ng-include="'templates/model/company_detail.html'"></div>
                 </div>
                 <div ng-switch-when="3">
-                    <div ng-include="'../../../zrh-master/templates/model/financial_statements.html'"></div>
+                    <div ng-include="'templates/model/financial_statements.html'"></div>
                 </div>
-
-
             </div>
         </form>
     </div>

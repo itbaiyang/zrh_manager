@@ -260,10 +260,12 @@ personBjCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $l
         });
         id_model++;
         console.log($scope.model_list);
+        $scope.picSave();
     };
+
     $scope.delete = function (id) {
         for (var i = 0; i < $scope.model_list.length; i++) {
-            if ($scope.model_list[i].id == id) {
+            if ($scope.model_list[i].id_model == id) {
                 $scope.model_list.splice(i, 1);
                 console.log("删除id" + id);
             }
@@ -315,6 +317,7 @@ personBjCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $l
     $scope.other = function () {
         console.log($scope.id_basic);
         var list = [];
+        //var list_string = [];
         for (var i = 0; i < $scope.model_list.length; i++) {
             list.push({
                 "title": $scope.model_list[i].title,
@@ -323,13 +326,16 @@ personBjCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $l
                 "content": $scope.model_list[i].content,
                 "imgList": $scope.model_list[i].imgList
             })
-        }
+        };
+        var list_string = JSON.stringify(list);
+
+        console.log(list_string);
         var login_user = $rootScope.getObject("login_user");
         var m_params1 = {
             "userId": login_user.userId,
             "token": login_user.token,
             "comId": $scope.id_basic,
-            "list": list
+            "list": encodeURI(list_string)
         };
         console.log(m_params1);
         $.ajax({
@@ -357,5 +363,151 @@ personBjCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $l
     $scope.submit = function () {
         $scope.basic();
         //$state.go('master.person_baojuan');
-    }
+    };
+
+    $scope.picSave = function () {
+        var login_user = $rootScope.getObject("login_user");
+        var m_params = {
+            "userId": login_user.userId,
+            "token": login_user.token,
+        };
+        if(!$scope.model_list.imgList){
+            $scope.model_list.imgList = [];
+            //$scope.article.advantagesImgNames = [];
+        }
+        console.log(m_params,"baiyang");
+        $http({
+            url: api_uri + "qiniu/getUpToken",
+            method: "GET",
+            params: m_params
+        }).success(function (d) {
+            console.log(d);
+            if (d.returnCode == 0) {
+                $scope.qiniu_token = d.result.uptoken;
+                var uploaderPledgeImg = Qiniu.uploader({
+                    runtimes: 'html5,flash,html4',    //上传模式,依次退化
+                    browse_button: 'img_model',       //上传选择的点选按钮，**必需**
+                    //	        uptoken_url: api_uri+"api/qiniu/getUpToken",
+                    uptoken: $scope.qiniu_token,
+                    //	        get_new_uptoken: true,
+                    //save_key: true,
+                    domain: $rootScope.qiniu_bucket_domain, //bucket 域名，下载资源时用到，**必需**
+                    container: 'imgList_model',           //上传区域DOM ID，默认是browser_button的父元素，
+                    max_file_size: '10mb',           //最大文件体积限制
+                    flash_swf_url: '../../framework/plupload/Moxie.swf',  //引入flash,相对路径
+                    max_retries: 3,                   //上传失败最大重试次数
+                    dragdrop: false,                   //开启可拖曳上传
+                    drop_element: '',        //拖曳上传区域元素的ID，拖曳文件或文件夹后可触发上传
+                    chunk_size: '4mb',                //分块上传时，每片的体积
+                    auto_start: true,                 //选择文件后自动上传，若关闭需要自己绑定事件触发上传
+                    init: {
+                        'FilesAdded': function (up, files) {
+                            //                    plupload.each(files, function(file) {
+                            //                        // 文件添加进队列后,处理相关的事情
+                            //                    });
+                        },
+                        'BeforeUpload': function (up, file) {
+
+                        },
+                        'UploadProgress': function (up, file) {
+                            // 每个文件上传时,处理相关的事情
+
+                        },
+                        'FileUploaded': function (up, file, info) {
+                            var res = $.parseJSON(info);
+
+                            var file_url = "http://" + $rootScope.qiniu_bucket_domain + "/" + res.key;
+                            //$scope.model_list.imgList.push(file.name);
+                            $scope.model_list.imgList.push(file_url);
+                            $scope.$apply();
+                        },
+                        'Error': function (up, err, errTip) {
+                            console.log(err);
+                            $rootScope.alert("抵押物图片上传失败！");
+                        },
+                        'UploadComplete': function () {
+                            //队列文件处理完毕后,处理相关的事情
+                        },
+                        'Key': function (up, file) {
+                            var time = new Date().getTime();
+                            var k = 'inforTemplate/saveList/' +login_user.userId + '/' + time;
+                            return k;
+                        }
+                    }
+                });
+            } else {
+                console.log(d);
+            }
+
+        }).error(function (d) {
+            console.log(d);
+        });
+
+
+    };
+/*
+    $scope.imgListSave = function(){
+        var bucketName = "imglist";
+        var cos = new CosCloud("10052005");
+
+        var successCallBack = function(result){
+            $("#result").val(result);
+        };
+        var errorCallBack = function(result){
+            $("#result").val(result.responseText);
+        };
+        $scope.getFileName = function(path){
+            var pos1 = path.lastIndexOf('/');
+            var pos2 = path.lastIndexOf('\\');
+            var pos  = Math.max(pos1, pos2)
+            if( pos<0 )
+                return path;
+            else
+                return path.substring(pos+1);
+        };
+
+        $scope.uploadFile = function(){
+            console.log("baiyang");
+            $("#result").val('');
+            var selectFunc = function(){
+                var files = document.getElementById("file").files;
+                var value = document.getElementById("file").value;
+                var value_test = $scope.getFileName(value);
+                console.log(value_test);
+                if(files && files.length == 1){
+                    cos.uploadFile(successCallBack, errorCallBack, bucketName, "/img/"+value_test, files[0]);
+                }
+                else{
+                    alert("请选择一个文件");
+                }
+            };
+            if (/msie/.test(navigator.userAgent.toLowerCase())) {
+                $('#file').click(function(event) {
+                    setTimeout(function() {
+                        if($('#file').val().length > 0) {
+                            selectFunc();
+                        }
+                    }, 0);
+                });
+            }
+            else {
+                $('#file').change(selectFunc);
+            }
+            $("#file").trigger("click");
+        };
+
+        $scope.getFolderList = function(){
+            console.log("baiyang");
+            $("#result").val('');
+            cos.getFolderList(successCallBack, errorCallBack, bucketName, "/img/", 1, "", 0);
+        };
+        //var getImg = $scope.getFolderList();
+        //console.log(getImg);
+    };
+    $scope.imgListSave();*/
+
+    $scope.removeImgList = function (index) {
+        $scope.model_list.imgList.splice(index, 1);
+        //$scope.article.pledgeImgs.splice(index, 1);
+    };
 });

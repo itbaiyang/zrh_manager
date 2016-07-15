@@ -1,8 +1,11 @@
-<div></div>
 <div class="form-group">
-    <label for="accounts_receivable" class="col-sm-2 control-label">应收账款</label>
-    <div class="col-sm-5">
-        <input type="text" class="form-control" id="accounts_receivable" placeholder="应收账款" ng-model="product.loanlife">
+    <div class="col-sm-2">
+        <input type="text" class="form-control" placeholder="模板名称"
+               ng-model="model.title">
     </div>
-    <button ng-click="delete(model.id)" class="col-sm-1 btn btn-default">删除</button>
+    <div class="col-sm-4">
+        <input type="text" class="form-control" placeholder="model.title"
+                  ng-model="model.content">
+    </div>
+    <button ng-click="delete(model.id_model)" class="col-sm-1 btn btn-default">删除</button>
 </div>
