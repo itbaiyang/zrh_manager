@@ -1,1 +1,67 @@
-<div>sign up</div>
+<div class="content row">
+    <p class="contentTitle"><span>注册用户</span></p>
+    <div class="row" style="min-width: 950px">
+        <div class="col-sm-10 col-lg-10" style="min-width: 300px">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search for...">
+                <span class="input-group-btn">
+                <button class="btn btn-primary" ng-click="search()" type="button">搜索</button>
+                </span>
+                <span class="input-group-btn fr">
+                <button class="btn btn-default" type="submit">刷新</button>
+                <button class="btn btn-default col-sm-offset-1" ui-sref="master.product.create">添加金融产品</button>
+                </span>
+            </div>
+        </div>
+        <ul class="list-group"  style="margin-top: 50px;min-width: 950px">
+            <li class="list-group-item" style="height: 50px;min-width: 950px">
+                <span class="col-sm-2 col-lg-2">用户名</span>
+                <span class="col-sm-2">所属公司</span>
+                <span class="col-sm-2">公司职位</span>
+                <span class="col-sm-2">注册电话</span>
+            </li>
+            <li class="list-group-item" style="height: 50px" ng-repeat="resultObj in result_list">
+
+                <!--<span class="col-sm-2">{{resultObj.companyName}}</span>-->
+                <span class="col-sm-2 col-lg-2">
+                    <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}" ng-checked="isSelected(resultObj.id)"
+                           ng-click="updateSelection($event,resultObj.id)">{{resultObj.name}}</span>
+                <span class="col-sm-2 col-lg-2"></span>
+                <span class="col-sm-2 col-lg-2">{{resultObj.bankname}}</span>
+                <span class="col-sm-1 col-lg-1">{{resultObj.mobile}}</span>
+                <!--<button class="btn"  ng-click="update(resultObj.id)">编辑产品</button>-->
+                <!--<button class="btn" ng-click="release(resultObj.id)">发布产品</button>-->
+                <!--<button class="btn" ng-click="unrelease(resultObj.id)">取消发布</button>-->
+            </li>
+            <li class="list-group-item">
+                <button class="contentClass" ng-click="submit()">发布产品</button>
+                <button class="contentClass" ng-click="cancel()">取消发布</button>
+                <button class="contentClass" ng-click="delete()">删除产品</button>
+                <span>共有{{page.totalCount}}款金融产品，每页显示{{page.pageSize}}条</span>
+                <ul class="pagination fr" style="margin: 0">
+                    <li>
+                        <a aria-label="Previous" ng-click="changePage(1)">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a aria-label="Previous" ng-click="changePage(page.upPage)">
+                            <span aria-hidden="true">&lsaquo;</span>
+                        </a>
+                    </li>
+                    <li><a>{{page.pageNo}}</a></li>
+                    <li>
+                        <a aria-label="Next" ng-click="changePage(page.nextPage)">
+                            <span aria-hidden="true">&rsaquo;</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a aria-label="Next" ng-click="changePage(page.totalPage)">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>

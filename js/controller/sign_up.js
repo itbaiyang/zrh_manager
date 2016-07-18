@@ -3,49 +3,63 @@
  */
 var signUpCtrl = angular.module('signUpCtrl', []);
 signUpCtrl.controller('SignUpCtrl', function ($http, $scope, $rootScope, $location, $timeout, $routeParams) {
-    //$scope.$root.title = "登陆";
-    $scope.loginUser = {
-        "username": "",
-        "password": ""
-    };
 
-    var check_params = function (params) {
-        if (params.username == "" || params.password == "") {
-            return false;
-        }
-        return true;
-    };
-    $scope.login = function () {
-        var m_params = $scope.loginUser;
-        if (!check_params(m_params)) return;
+    $scope.list = function (pageNo, pageSize) {
+        var login_user = $rootScope.getObject("login_user");
+        var m_params = {
+            "userId": login_user.userId,
+            "token": login_user.token,
+            pageNo: pageNo,
+            pageSize: pageSize
+        };
         $http({
-            url: api_uri+"auth/web",
-            method: "POST",
+            url: api_uri + "p/user/listUsers",
+            method: "GET",
             params: m_params
         }).success(function (d) {
+            console.log(d);
             if (d.returnCode == 0) {
                 console.log(d);
-                $rootScope.login_user = {
-                    "userId":d.result.split("_")[0],
-                    "token":d.result.split("_")[1]
-                }
-                $rootScope.putObject("login_user", $rootScope.login_user);
-                $location.path("/master");
-            }else {
-                /*var msg = $scope.error_code_msg[d.returnCode];
-                 if(!msg){
-                 msg = "登录失败";
-                 }
-                 $scope.error_msg = msg;
-                 //$scope.changeErrorMsg(msg);*/
+                $scope.page = d.result;
+                $scope.result_list = d.result.datas;
+            }
+            else {
+                console.log(d);
             }
 
         }).error(function (d) {
-            $scope.changeErrorMsg("网络故障请稍后再试......");
-            $location.path("/login");
+            console.log(d+"baiyang");
         })
     };
-    $scope.reset = function(){
-        //$location.path("/");
+    $scope.list(1, 4);
+    $scope.changePage = function (page) {
+        $scope.pageNo1 = page;
+        console.log($scope.pageNo1);
+        $scope.$watch($scope.pageNo1, function () {
+            $scope.list($scope.pageNo1, 4);
+        });
     };
+    $scope.selected = [];
+    $scope.ids = [];
+
+    $scope.isSelected = function (id) {
+        return $scope.selected.indexOf(id) >= 0;
+    };
+    var updateSelected = function (action, id) {
+        if (action == 'add') {
+            $scope.ids.push(id);
+            console.log("添加id" + $scope.ids);
+        }
+        if (action == 'remove') {
+            var idx = $scope.ids.indexOf(id);
+            $scope.ids.splice(idx, 1);
+            console.log("删除id" + id);
+        }
+    };
+    $scope.updateSelection = function ($event, id) {
+        console.log("点击一下")
+        var checkbox = $event.target;
+        var action = (checkbox.checked ? 'add' : 'remove');
+        updateSelected(action, id);
+    }
 });
