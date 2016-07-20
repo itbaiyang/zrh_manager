@@ -29,7 +29,7 @@
             </li>
             <li class="list-group-item" style="height: 40px;width:1065px" ng-repeat="resultObj in result_list">
 
-                <span class="col-sm-3 col-lg-3" style="overflow: hidden">
+                <span class="col-sm-3 col-lg-3" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
                     <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}" ng-checked="isSelected(resultObj.id)"
                            ng-click="updateSelection($event,resultObj.id)">
                     {{resultObj.companyName}}</span>
@@ -39,8 +39,17 @@
                 <span class="col-sm-1 col-lg-1">{{resultObj.opUsername}}</span>
                 <div ng-if="resultObj.status == 0">
                     <button class=" " ng-click="editApply(resultObj.id)">补充资料</button>
-                    <button class=" " ng-click="nextStatus(resultObj.id,resultObj.status)">帮助申请</button>
-                    <button class=" " ng-click="cancel(resultObj.id)">联系企业</button>
+                    <!--<button class=" " ng-click="nextStatus(resultObj.id,resultObj.status)">帮助申请</button>-->
+                    <div class="btn-group">
+                        <button type="button" class="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            联系企业
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>{{resultObj.mobile}}</li>
+                            <textarea placeholder="备注" ng-model="resultObj.remark"></textarea>
+                            <button ng-click="linkCompany(resultObj.id ,resultObj.remark)">确定</button>
+                        </ul>
+                    </div>
                 </div>
                 <div ng-if="resultObj.status != 0">
                     <button class=" " ng-click="editApply(resultObj.id)">完善信息</button>

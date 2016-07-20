@@ -176,6 +176,30 @@ personBjCtrl.controller('PersonBjCtrl', function ($http, $scope, $rootScope, $lo
         }).error(function (d) {
         })
     };
+
+    $scope.linkCompany = function(id ,remark){
+        var login_user = $rootScope.getObject("login_user");
+        var m_params = {
+            "userId":login_user.userId,
+            "token":login_user.token,
+            "applyId":id,
+            "remark":remark
+        };
+        console.log(m_params);
+        $http({
+            url: api_uri + "applyDeal/update",
+            method: "Post",
+            params: m_params
+        }).success(function (d) {
+            console.log(d);
+            if (d.returnCode == 0) {
+            }
+            else {
+            }
+
+        }).error(function (d) {
+        })
+    }
 });
 
 personBjCtrl.controller('AddCompanyCtrl', function ($http, $scope, $rootScope, $location, $timeout, $routeParams) {
@@ -285,12 +309,15 @@ personBjCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $l
             "token": login_user.token,
         };
         $http({
-            url: api_uri + "loanApplicationManage/detail/" + $stateParams.id,
+            url: api_uri + "inforTemplate/detail/" + $stateParams.id,
             method: "GET",
             params: m_params
         }).success(function (d) {
             console.log(d);
-            $scope.company_name = d.result.companyName;
+            //$scope.company_name = d.result.companyName;
+            $scope.basic = d.result.baseInfo;
+            $scope.model_list = d.result.templateList;
+            console.log($scope.model_list)
         }).error(function (d) {
             console.log("login error");
             $location.path("/error");
@@ -304,14 +331,14 @@ personBjCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $l
             "applyId": $stateParams.id,
             "userId": login_user.userId,
             "token": login_user.token,
-            "company_name": $scope.company_name,
-            "legal_representative": $scope.legal_representative,
-            "register_date": $scope.register_date,
-            "registered_capital": $scope.registered_capital,
-            "business_address": $scope.business_address,
-            "item_category": $scope.item_category,
-            "business_type": $scope.business_type,
-            "business_scope": $scope.business_scope,
+            "company_name": $scope.basic.company_name,
+            "legal_representative": $scope.basic.legal_representative,
+            "register_date": $scope.basic.register_date,
+            "registered_capital": $scope.basic.registered_capital,
+            "business_address": $scope.basic.business_address,
+            "item_category": $scope.basic.item_category,
+            "business_type": $scope.basic.business_type,
+            "business_scope": $scope.basic.business_scope,
             "phone": $scope.phone,
         };
         console.log(m_params);
@@ -351,7 +378,7 @@ personBjCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $l
                 "imgList": $scope.model_list[i].imgList
             })
         };
-    //var list_string = JSON.stringify(list);
+         //var list_string = JSON.stringify(list);
         console.log(list);
         var login_user = $rootScope.getObject("login_user");
         var m_params1 = {
