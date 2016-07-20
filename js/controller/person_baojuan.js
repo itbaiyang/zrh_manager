@@ -329,7 +329,7 @@ personBjCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $l
     };
     $scope.get();
     /*保存基本信息*/
-    $scope.basic = function () {
+    $scope.basicMessage = function () {
         var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "applyId": $stateParams.id,
@@ -343,8 +343,9 @@ personBjCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $l
             "item_category": $scope.basic.item_category,
             "business_type": $scope.basic.business_type,
             "business_scope": $scope.basic.business_scope,
+            //"registerMobile":$scope.basic.registerMobile,
             "phone": $scope.basic.phone,
-            "phone": $scope.basic.registerMobile,
+            //"registerMobile": $scope.basic.registerMobile
         };
         console.log(m_params);
         $.ajax({
@@ -415,9 +416,9 @@ personBjCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $l
 
     };
 
-    $scope.submit = function () {
-        $scope.basic();
-        $state.go('master.person_baojuan');
+    $scope.submitMessage = function () {
+        $scope.basicMessage();
+        //$state.go('master.person_baojuan');
     };
     $scope.saveImg = "";
     $scope.picSave = function () {

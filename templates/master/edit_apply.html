@@ -23,7 +23,7 @@
         <div class="contentTitle">
             <span>添加金融产品</span>
             <div class="fr" style="margin: 10px">
-                <button style="margin-left:10px" class="btn btn-default fr" type="submit" ng-click="submit()">保存
+                <button style="margin-left:10px" class="btn btn-default fr" type="submit" ng-click="submitMessage()">保存
                 </button>
                 <button class="btn btn-default fr" ui-sref="master.person_baojuan">返回</button>
             </div>
@@ -85,12 +85,18 @@
             </div>
             <div class="form-group">
                 <label for="phoneNum" class="col-sm-2 control-label">注册电话</label>
+                <div class="col-sm-2">
+                    <input type="text" readonly="readonly" class="form-control" id="phoneMan" placeholder="注册人" ng-model="basic.registerLinkman">
+                </div>
                 <div class="col-sm-4">
                     <input type="text" readonly="readonly" class="form-control" id="phone" placeholder="注册电话" ng-model="basic.registerMobile">
                 </div>
             </div>
             <div class="form-group">
                 <label for="phoneNum" class="col-sm-2 control-label">联系电话</label>
+                <!--<div class="col-sm-2">-->
+                    <!--<input type="text" class="form-control" id="phoneNumMan" ng-model="basic.phone">-->
+                <!--</div>-->
                 <div class="col-sm-4">
                     <input type="text" class="form-control" id="phoneNum" placeholder="联系电话" ng-model="basic.phone">
                 </div>
