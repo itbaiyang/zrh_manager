@@ -76,7 +76,7 @@ loginCtrl.controller('LoginCtrl', function ($http, $scope, $rootScope, $location
                 $rootScope.login_user = {
                     "userId":d.result.split("_")[0],
                     "token":d.result.split("_")[1],
-                }
+                };
                 $rootScope.putObject("login_user", $rootScope.login_user);
                 $scope.choiceUser();
                 //$location.path("/super");

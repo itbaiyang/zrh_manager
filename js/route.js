@@ -29,7 +29,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 },
                 'side_bar@master': {
                     templateUrl: templates_root + 'master/side_bar.html',
-                    //controller: 'TopBarCtrl'
+                    controller: 'SideBarCtrl'
                 },
                 'contains@master': {
                     templateUrl: templates_root + 'master/contains.html',

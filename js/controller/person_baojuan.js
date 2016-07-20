@@ -118,6 +118,10 @@ personBjCtrl.controller('PersonBjCtrl', function ($http, $scope, $rootScope, $lo
         updateSelected(action, id);
     };
 
+    $scope.refresh = function(){
+        $scope.list($scope.pageNo1, 10);
+    };
+
     $scope.editApply = function (id) {
         $location.path('/master/person_baojuan/edit_apply/' + id);
         console.log(id);
@@ -262,9 +266,9 @@ personBjCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $l
         console.log($scope.model_list);
         $scope.picSave();
     };
-$scope.shish = function(){
-    console.log($scope.model_list);
-};
+//$scope.shish = function(){
+//    console.log($scope.model_list);
+//};
     $scope.delete = function (id) {
         for (var i = 0; i < $scope.model_list.length; i++) {
             if ($scope.model_list[i].id_model == id) {
@@ -469,8 +473,7 @@ $scope.shish = function(){
     };
 
 
-    $scope.removeImgList = function (index) {
-        $scope.model_list.imgList.splice(index, 1);
-        //$scope.article.pledgeImgs.splice(index, 1);
+    $scope.removeImgList = function (id,index) {
+        $scope.model_list[id].imgList.splice(index, 1);
     };
 });

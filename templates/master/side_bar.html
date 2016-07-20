@@ -2,8 +2,11 @@
     <p class="sideBarP">|||</p>
     <p class="sideBarP1" >产品与服务</p>
     <ul>
-        <a class="sideBarP2" ui-sref="master.company_message">企业信息</a>
-        <a class="sideBarP2" ui-sref="master.product">金融产品</a>
+        <a class="sideBarP2" ng-class="{active: $state.includes('company_message')}" ui-sref="master.company_message">企业信息</a>
+        <li ng-class="{active: $state.includes('master')}">
+            <a class="sideBarP2" ui-sref="master.product">金融产品</a>
+        </li>
+
         <a class="sideBarP2" ui-sref="master.signUp">注册用户</a>
         <a class="sideBarP2" ui-sref="master.person_baojuan">我的报卷</a>
     </ul>

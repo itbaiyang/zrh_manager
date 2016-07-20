@@ -107,7 +107,10 @@ loanApplicationCtrl.controller('LoanApplicationCtrl', function ($http, $scope, $
         var checkbox = $event.target;
         var action = (checkbox.checked ? 'add' : 'remove');
         updateSelected(action, id);
-    }
+    };
+    $scope.refresh = function(){
+        $scope.list($scope.pageNo1, 10);
+    };
 
 
     $scope.delete = function () {

@@ -31,12 +31,12 @@ signUpCtrl.controller('SignUpCtrl', function ($http, $scope, $rootScope, $locati
             console.log(d+"baiyang");
         })
     };
-    $scope.list(1, 4);
+    $scope.list(1, 10);
     $scope.changePage = function (page) {
         $scope.pageNo1 = page;
         console.log($scope.pageNo1);
         $scope.$watch($scope.pageNo1, function () {
-            $scope.list($scope.pageNo1, 4);
+            $scope.list($scope.pageNo1, 10);
         });
     };
     $scope.selected = [];
@@ -56,8 +56,11 @@ signUpCtrl.controller('SignUpCtrl', function ($http, $scope, $rootScope, $locati
             console.log("删除id" + id);
         }
     };
+    $scope.refresh_user = function(){
+        $scope.list($scope.pageNo1, 10);
+    };
     $scope.updateSelection = function ($event, id) {
-        console.log("点击一下")
+        console.log("点击一下");
         var checkbox = $event.target;
         var action = (checkbox.checked ? 'add' : 'remove');
         updateSelected(action, id);

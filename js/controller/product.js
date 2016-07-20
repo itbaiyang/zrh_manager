@@ -78,6 +78,9 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
     //
     //    get_company_list_page(1, 20);
     //};
+    $scope.refresh = function(){
+        $scope.list($scope.pageNo1, 10);
+    };
 
     $scope.submit = function () {
         var login_user = $rootScope.getObject("login_user");

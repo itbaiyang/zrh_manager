@@ -1,6 +1,6 @@
 <div class="content">
     <p class="contentTitle"><span>我的报卷</span></p>
-    <div class="row" style="min-width: 950px">
+    <div class="row" style="min-width: 980px">
         <div class="col-sm-10 col-lg-10" style="min-width: 300px">
             <div class="input-group">
                 <input type="text" class="form-control" placeholder="Search for...">
@@ -8,8 +8,8 @@
                     <button class="btn btn-primary" type="button">搜索</button>
                 </span>
                 <span class="input-group-btn fr">
-                    <button class="btn btn-default" type="submit">刷新</button>
-                <button class="btn btn-default col-sm-offset-1" ui-sref="master.person_baojuan.add_company">添加企业信息</button>
+                    <button class="btn btn-default" ng-click="refresh()" type="submit">刷新</button>
+                <!--<button class="btn btn-default col-sm-offset-1" ui-sref="master.person_baojuan.add_company">添加企业信息</button>-->
                 </span>
 
             </div>
@@ -17,8 +17,8 @@
         <div class="col-sm-offset-3 col-sm-3" style="min-width: 300px">
 
         </div>
-        <ul class="list-group" style="margin-top: 50px;min-width: 950px">
-            <li class="list-group-item" style="height: 40px;width: 100%" >
+        <ul class="list-group" style="margin-top: 50px;min-width: 1065px">
+            <li class="list-group-item" style="height: 40px;width:1065px" >
                 <span class="col-sm-3 col-lg-3">企业名称</span>
                 <span class="col-sm-2 col-lg-2">申请产品</span>
                 <span class="col-sm-2 col-lg-2">申请时间</span>
@@ -27,7 +27,7 @@
                 <span class="col-sm-1 col-lg-1">操作</span>
                 <!--<span class="col-sm-2">全部</span>-->
             </li>
-            <li class="list-group-item" style="height: 40px;width: 100%" ng-repeat="resultObj in result_list">
+            <li class="list-group-item" style="height: 40px;width:1065px" ng-repeat="resultObj in result_list">
 
                 <span class="col-sm-3 col-lg-3" style="overflow: hidden">
                     <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}" ng-checked="isSelected(resultObj.id)"
@@ -37,9 +37,17 @@
                 <span class="col-sm-2 col-lg-2">{{resultObj.applyTime | date:'yyyy-MM-dd'}}</span>
                 <span class="col-sm-1 col-lg-1">{{resultObj.progressText}}</span>
                 <span class="col-sm-1 col-lg-1">{{resultObj.opUsername}}</span>
-                <button class=" " ng-click="editApply(resultObj.id)">完善信息</button>
-                <button class=" " ng-click="nextStatus(resultObj.id,resultObj.status)">{{resultObj.progressBtn ||'下一步'}}</button>
-                <button class=" " ng-click="cancel(resultObj.id)">放弃任务</button>
+                <div ng-if="resultObj.status == 0">
+                    <button class=" " ng-click="editApply(resultObj.id)">补充资料</button>
+                    <button class=" " ng-click="nextStatus(resultObj.id,resultObj.status)">帮助申请</button>
+                    <button class=" " ng-click="cancel(resultObj.id)">联系企业</button>
+                </div>
+                <div ng-if="resultObj.status != 0">
+                    <button class=" " ng-click="editApply(resultObj.id)">完善信息</button>
+                    <button class=" " ng-click="nextStatus(resultObj.id,resultObj.status)">{{resultObj.progressBtn ||'下一步'}}</button>
+                    <button class=" " ng-click="cancel(resultObj.id)">放弃任务</button>
+                </div>
+
             </li>
             <li class="list-group-item">
                 <button class="contentClass" ng-click="delete()">删除产品</button>
@@ -70,9 +78,6 @@
             </li>
         </ul>
         <div style="text-align: center;margin-bottom: 20px">
-            <!--<tm-pagination conf="paginationConf"></tm-pagination>-->
-
-            <!--<button class="contentClass" ng-click="submit()">取消发布</button>-->
         </div>
     </div>
     <div class="row">
