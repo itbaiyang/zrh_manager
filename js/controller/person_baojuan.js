@@ -177,29 +177,33 @@ personBjCtrl.controller('PersonBjCtrl', function ($http, $scope, $rootScope, $lo
         })
     };
 
-    $scope.linkCompany = function(id ,remark){
+    $scope.linkCompany = function(id ,remark) {
         var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId":login_user.userId,
-            "token":login_user.token,
-            "applyId":id,
-            "remark":remark
+            "userId": login_user.userId,
+            "token": login_user.token,
+            "id": id,
+            "remark": remark
         };
-        console.log(m_params);
-        $http({
-            url: api_uri + "applyDeal/update",
-            method: "Post",
-            params: m_params
-        }).success(function (d) {
-            console.log(d);
-            if (d.returnCode == 0) {
-            }
-            else {
-            }
-
-        }).error(function (d) {
-        })
+        console.log($scope.ids);
+        $.ajax({
+            type: 'POST',
+            url: api_uri + "loanApplicationManage/update",
+            data: m_params,
+            traditional: true,
+            success: function (data, textStatus, jqXHR) {
+                // console.log(data);
+                if (data.returnCode == 0) {
+                    console.log(data);
+                }
+                else {
+                    console.log(data);
+                }
+            },
+            dataType: 'json',
+        });
     }
+
 });
 
 personBjCtrl.controller('AddCompanyCtrl', function ($http, $scope, $rootScope, $location, $timeout, $routeParams) {
@@ -339,7 +343,8 @@ personBjCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $l
             "item_category": $scope.basic.item_category,
             "business_type": $scope.basic.business_type,
             "business_scope": $scope.basic.business_scope,
-            "phone": $scope.phone,
+            "phone": $scope.basic.phone,
+            "phone": $scope.basic.registerMobile,
         };
         console.log(m_params);
         $.ajax({
@@ -412,7 +417,7 @@ personBjCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $l
 
     $scope.submit = function () {
         $scope.basic();
-        //$state.go('master.person_baojuan');
+        $state.go('master.person_baojuan');
     };
     $scope.saveImg = "";
     $scope.picSave = function () {
