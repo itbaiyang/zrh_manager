@@ -13,6 +13,7 @@ topBarCtrl.controller('TopBarCtrl', function ($http, $scope, $rootScope, $locati
         $location.path('/person_baojuan');
     };*/
 });
+
 topBarCtrl.controller('SideBarCtrl', function ($http, $scope,$state, $rootScope, $location, $timeout, $routeParams) {
     $scope.$state = $state;
 });

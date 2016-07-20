@@ -76,6 +76,7 @@ superCtrl.controller('UserListCtrl', function ($http, $scope, $rootScope, $locat
         updateSelected(action, id);
     }
 });
+
 superCtrl.controller('CreateUserCtrl', function ($http, $scope, $rootScope, $location, $timeout, $routeParams){
     var timesTamp = new Date().getTime();
     var timesTamp1 = String(timesTamp).substring(0,10);

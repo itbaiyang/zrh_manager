@@ -232,7 +232,7 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
 
 });
 
-productCtrl.controller('ProductCreateCtrl', function ($http, $scope, $rootScope, $location, $timeout, $routeParams) {
+productCtrl.controller('ProductCreateCtrl', function ($http, $scope, $rootScope,$state, $location, $timeout, $routeParams) {
     $scope.feature_list = [{"feature":""}];
     $scope.add_feature = function () {
         $scope.feature_list.push({
@@ -393,7 +393,7 @@ productCtrl.controller('ProductCreateCtrl', function ($http, $scope, $rootScope,
                 console.log(data);
                 if (data.returnCode == 0) {
                     console.log("创建成功了");
-                    $location.path('/product');
+                    $state.go("master.product");
                     $scope.$apply();
 
                 }
