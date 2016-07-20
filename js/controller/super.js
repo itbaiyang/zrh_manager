@@ -44,12 +44,12 @@ superCtrl.controller('UserListCtrl', function ($http, $scope, $rootScope, $locat
             //$location.path("/error");
         })
     };
-    $scope.list(1,4);
+    $scope.list(1,8);
     $scope.changePage = function(page){
         $scope.pageNo1 = page;
         console.log($scope.pageNo1);
         $scope.$watch($scope.pageNo1, function () {
-            $scope.list($scope.pageNo1, 4);
+            $scope.list($scope.pageNo1, 8);
         });
     };
     $scope.selected = [];
@@ -70,7 +70,7 @@ superCtrl.controller('UserListCtrl', function ($http, $scope, $rootScope, $locat
         }
     };
     $scope.updateSelection = function ($event, id) {
-        console.log("点击一下")
+        console.log("点击一下");
         var checkbox = $event.target;
         var action = (checkbox.checked ? 'add' : 'remove');
         updateSelected(action, id);
@@ -81,7 +81,10 @@ superCtrl.controller('CreateUserCtrl', function ($http, $scope, $rootScope, $loc
     var timesTamp1 = String(timesTamp).substring(0,10);
     $scope.timestamp = parseInt(timesTamp1);
     $scope.submit = function () {
+        var login_user = $rootScope.getObject("login_user");
         var m_params = {
+            "userId":login_user.userId,
+            "token":login_user.token,
             "timestamp": $scope.timestamp,
             "email":$scope.email,
             "name":$scope.name,
