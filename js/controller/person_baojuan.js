@@ -141,10 +141,9 @@ personBjCtrl.controller('PersonBjCtrl', function ($http, $scope, $rootScope, $lo
             data: m_params,
             traditional: true,
             success: function (data, textStatus, jqXHR) {
-                // console.log(data);
+                console.log(data);
                 if (data.returnCode == 0) {
-                    console.log('baiyang');
-                    console.log(data);
+                    $scope.list($scope.pageNo1, 10);
                 }
                 else {
                     console.log(data);
@@ -169,6 +168,7 @@ personBjCtrl.controller('PersonBjCtrl', function ($http, $scope, $rootScope, $lo
         }).success(function (d) {
             console.log(d);
             if (d.returnCode == 0) {
+                $scope.list($scope.pageNo1, 10);
             }
             else {
             }

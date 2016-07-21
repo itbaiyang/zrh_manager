@@ -128,8 +128,8 @@ loanApplicationCtrl.controller('LoanApplicationCtrl', function ($http, $scope, $
             success: function (data, textStatus, jqXHR) {
                 // console.log(data);
                 if (data.returnCode == 0) {
-                    console.log('baiyang');
                     console.log(data);
+                    $scope.list($scope.pageNo1, 10);
                 }
                 else {
                     console.log(data);

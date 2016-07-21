@@ -99,8 +99,8 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
             success: function (data, textStatus, jqXHR) {
                 // console.log(data);
                 if (data.returnCode == 0) {
-                    console.log('baiyang');
                     console.log(data);
+                    $scope.list($scope.pageNo1, 10);
                 }
                 else {
                     console.log(data);
@@ -128,8 +128,7 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
             success: function (data, textStatus, jqXHR) {
                 // console.log(data);
                 if (data.returnCode == 0) {
-                    console.log('baiyang');
-                    console.log(data);
+                    $scope.list($scope.pageNo1, 10);
                 }
                 else {
                     console.log(data);
@@ -156,8 +155,7 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
             success: function (data, textStatus, jqXHR) {
                 // console.log(data);
                 if (data.returnCode == 0) {
-                    console.log('baiyang');
-                    console.log(data);
+                    $scope.list($scope.pageNo1, 10);
                 }
                 else {
                     console.log(data);
@@ -178,9 +176,8 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
         var m_params = {
             "userId": login_user.userId,
             "token": login_user.token,
-            ids: $scope.ids
+            ids: id
         };
-        console.log($scope.ids);
         console.log("baiyang", m_params);
         $.ajax({
             type: 'POST',
@@ -190,8 +187,7 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
             success: function (data, textStatus, jqXHR) {
                 // console.log(data);
                 if (data.returnCode == 0) {
-                    console.log('baiyang');
-                    console.log(data);
+                    $scope.list($scope.pageNo1, 10);
                 }
                 else {
                     console.log(data);
@@ -207,9 +203,8 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
         var m_params = {
             "userId": login_user.userId,
             "token": login_user.token,
-            ids: $scope.ids
+            ids: id
         };
-        console.log($scope.ids);
         console.log("baiyang", m_params);
         $.ajax({
             type: 'POST',
@@ -219,8 +214,7 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
             success: function (data, textStatus, jqXHR) {
                 // console.log(data);
                 if (data.returnCode == 0) {
-                    console.log('baiyang');
-                    console.log(data);
+                    $scope.list($scope.pageNo1, 10);
                 }
                 else {
                     console.log(data);
