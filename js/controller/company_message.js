@@ -65,8 +65,8 @@ loanApplicationCtrl.controller('LoanApplicationCtrl', function ($http, $scope, $
             }).success(function (d) {
                 //console.log(d);
                 if (d.returnCode == 0) {
-                    console.log('申请成功了');
                     console.log(d);
+                    $scope.list($scope.pageNo1, 20);
                 }
                 else {
                     console.log(d);
