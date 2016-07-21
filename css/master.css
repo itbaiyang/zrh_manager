@@ -319,13 +319,13 @@
 
 .list_common {
     height: 80px;
-    width: 1065px;
+    min-width: 1065px;
     padding: 30px 0;
 }
 
 .list_title {
     height: 40px;
-    width: 1065px;
+    min-width: 1065px;
     padding: 10px 0;
     background: #f5f6fa;
 }

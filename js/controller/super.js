@@ -85,12 +85,6 @@ superCtrl.controller('CreateUserCtrl', function ($http, $scope, $rootScope, $loc
         }).success(function (d) {
             if (d.returnCode == 0) {
                 console.log(d);
-               /* $rootScope.login_user = {
-                    "userId":d.result.split("_")[0],
-                    "token":d.result.split("_")[1]
-                }*/
-               /* $rootScope.putObject("login_user", $rootScope.login_user);
-                $location.path("/master");*/
                 $state.go('/super');
             }else {
                 console.log(d);

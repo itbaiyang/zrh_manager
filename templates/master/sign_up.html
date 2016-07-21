@@ -27,7 +27,7 @@
                 <span class="col-sm-2 col-lg-2">{{resultObj.mobile}}</span>
                 <span class="col-sm-2 col-lg-2">{{resultObj.createTime +"000" | date:'yyyy-MM-dd'}}</span>
             </li>
-            <li class="list-group-item">
+            <li class="list-group-item list_common">
                 <button class="contentClass btn btn-default disabled" ng-click="submit()">标记</button>
                 <button class="contentClass btn btn-default disabled" ng-click="cancel()">删除</button>
                 <span>共有{{page.totalCount}}款金融产品，每页显示{{page.pageSize}}条</span>
