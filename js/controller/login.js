@@ -1,5 +1,5 @@
 var loginCtrl = angular.module('loginCtrl', []);
-loginCtrl.controller('LoginCtrl', function ($http, $scope, $rootScope, $location, $timeout, $routeParams) {
+loginCtrl.controller('LoginCtrl', function ($http, $scope, $rootScope, $location, $state, $timeout, $routeParams) {
     var getTimestampTemp=new Date().getTime();
     var timestamp=String(getTimestampTemp).substring(0,10);
     var getTimestamp=parseInt(timestamp);
@@ -22,45 +22,7 @@ loginCtrl.controller('LoginCtrl', function ($http, $scope, $rootScope, $location
         }
         return true;
     };
-   /* $scope.changeErrorMsg = function(msg){
-        $scope.error_msg = msg;
-        $timeout(function() {
-            //$scope.changeErrorMsg("");
-            $scope.error_msg = "";
-        }, 5000);
-    };*/
-    /*$scope.textChange =function(e){
-        $scope.error_msg = ""
-    }
-    $scope.loginUser = {
-        "mobile":"",
-        "code":""
-    };*/
-    /*$scope.ngBlur = function(){
-        if($rootScope.isNullOrEmpty($scope.loginUser.mobile)){
-            $scope.changeErrorMsg("手机号码不能为空");
-            //$scope.error_msg = "手机号码不能为空"
-            $("#mobile").focus();
-        }else{
-            $http({
-                url: api_uri+"reg/validateMobile",
-                method: "GET",
-                params: {"mobile":$scope.loginUser.mobile}
-            }).success(function (d) {
-                if (d.returnCode == 1001) {
-                    $scope.enableMobile = true;
-                    //$scope.success_msg = "手机号输入正确";
-                }
-                else {
-                    $scope.enableMobile =false;
-                    $scope.changeErrorMsg("手机号未注册");
-                }
 
-            }).error(function (d) {
-                console.log("login error");
-            })
-        }
-    };*/
     $scope.login = function () {
         $scope.loginUser.signature = $rootScope.encryptByDES($scope.loginUser.password+$scope.loginUser.timestamp);
         var m_params = $scope.loginUser;
@@ -118,7 +80,7 @@ loginCtrl.controller('LoginCtrl', function ($http, $scope, $rootScope, $location
             }
 
         }).error(function (d) {
-            $scope.changeErrorMsg("网络故障请稍后再试......");
+            //$scope.changeErrorMsg("网络故障请稍后再试......");
             //$location.path("/login");
         })
         };

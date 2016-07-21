@@ -8,10 +8,11 @@ topBarCtrl.controller('TopBarCtrl', function ($http, $scope, $rootScope, $locati
     };
     $scope.to_product = function(){
         $location.path('/product');
-    };
-    $scope.to_person_baojuan = function(){
-        $location.path('/person_baojuan');
     };*/
+    $scope.exit = function () {
+        $rootScope.removeObject("login_user");
+        $location.path('/login');
+    };
 });
 
 topBarCtrl.controller('SideBarCtrl', function ($http, $scope,$state, $rootScope, $location, $timeout, $routeParams) {

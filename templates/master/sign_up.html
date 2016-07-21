@@ -12,14 +12,14 @@
                 </span>
             </div>
         </div>
-        <ul class="list-group"  style="margin-top: 50px;min-width: 950px">
-            <li class="list-group-item" style="height: 50px;min-width: 950px">
+        <ul class="list-group list_ul">
+            <li class="list-group-item list_title">
                 <span class="col-sm-2 col-lg-2">用户名</span>
                 <span class="col-sm-2">公司职位</span>
                 <span class="col-sm-2">注册电话</span>
                 <span class="col-sm-2">注册时间</span>
             </li>
-            <li class="list-group-item" style="height: 50px" ng-repeat="resultObj in result_list">
+            <li class="list-group-item " style="height: 50px" ng-repeat="resultObj in result_list">
                 <span class="col-sm-2 col-lg-2">
                     <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}" ng-checked="isSelected(resultObj.id)"
                            ng-click="updateSelection($event,resultObj.id)">{{resultObj.name}}</span>

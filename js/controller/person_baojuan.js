@@ -321,7 +321,8 @@ personBjCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $l
             //$scope.company_name = d.result.companyName;
             $scope.basic = d.result.baseInfo;
             $scope.model_list = d.result.templateList;
-            console.log($scope.model_list)
+            console.log($scope.basic);
+            console.log($scope.model_list);
         }).error(function (d) {
             console.log("login error");
             $location.path("/error");

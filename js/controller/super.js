@@ -17,23 +17,6 @@ superCtrl.controller('UserListCtrl', function ($http, $scope, $rootScope, $locat
             if (d.returnCode == 0) {
                 $scope.page = d.result;
                 $scope.result_list = d.result.datas;
-                /*angular.forEach($scope.result_list, function (data) {
-                    $scope.status = d.result.status;
-                    if (data.status == 0) {
-                        data.progressText = "未申请";
-                    } else if (data.status == 1) {
-                        data.progressText = "审核中";
-                    } else if (data.status == 2) {
-                        data.progressText = "约见中";
-                    } else if (data.status == 3) {
-                        data.progressText = "跟进中";
-                    } else if (data.status == 4) {
-                        data.progressText = "成功融资";
-                        data.progressBtn = "已结束";
-                    } else if (data.status == -1) {
-                        data.progressText = "申请取消";
-                    }
-                });*/
             }
             else {
                 console.log(d.result);
@@ -108,6 +91,7 @@ superCtrl.controller('CreateUserCtrl', function ($http, $scope, $rootScope, $loc
                 }*/
                /* $rootScope.putObject("login_user", $rootScope.login_user);
                 $location.path("/master");*/
+                $state.go('/super');
             }else {
                 console.log(d);
             }

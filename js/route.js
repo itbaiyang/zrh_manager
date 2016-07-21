@@ -33,7 +33,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 },
                 'contains@master': {
                     templateUrl: templates_root + 'master/contains.html',
-                    controller: 'ContainsCtrl'
+                    //controller: 'ContainsCtrl'
                 }
             }
         })
