@@ -1,11 +1,13 @@
-<div class="form-group">
-    <div class="col-sm-2">
-        <input type="text" class="form-control" placeholder="模板名称"
+<div class="form-group" style="margin: 0">
+    <div class="col-sm-6 noPadding">
+        <input type="text" class="form-control" style="border-radius: 0" placeholder="模板名称"
                ng-model="model.title">
     </div>
-    <div class="col-sm-4">
-        <textarea type="text" class="form-control" placeholder="model.title"
+    <button ng-click="delete(model.id_model)" class=" btn btnDelete">-</button>
+</div>
+<div class="form-group">
+    <div class="col-sm-6" style="padding-right: 0">
+        <textarea type="text" class="form-control" style="border-radius: 0" placeholder="model.title"
                   ng-model="model.content"></textarea>
     </div>
-    <button ng-click="delete(model.id_model)" class="col-sm-1 btn btn-default">删除</button>
 </div>

@@ -1,0 +1,60 @@
+.btnGrew {
+    height: 31px;
+    line-height: 20px;
+    padding: 6px 10px 5px;
+    background: #f7f7f7;
+    border: 1px solid #cccccc;
+    color: #4c4c4c;
+    font-size: 14px;
+}
+
+.btnGrewImg {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #cccccc;
+    background: #c7c7c7;
+    vertical-align: top;
+    margin-right: 10px;
+}
+
+.btnBlue {
+    height: 31px;
+    line-height: 20px;
+    padding: 6px 19px 5px;
+    background: #6b7acb;
+    border: 1px solid #cccccc;
+    color: #ffffff;
+    font-size: 14px;
+}
+
+.btnDelete {
+    height: 15px;
+    line-height: 5px;
+    padding: 5px;
+    border-radius: 10px;
+    background: #f97383;
+    color: #ffffff;
+    font-size: 5px;
+    margin-left: 10px;
+}
+
+.btnBlueImg {
+    width: 18px;
+    height: 18px;
+    border: 1px solid #8188b1;
+    background: #a2a9d2;
+    vertical-align: top;
+    margin-right: 10px;
+}
+
+.noPadding {
+    padding: 0;
+}
+
+.list_select {
+    padding-left: 10px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+}

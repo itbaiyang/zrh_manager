@@ -1,76 +1,82 @@
-<div class="content">
-    <p class="contentTitle"><span>企业信息列表</span></p>
-    <div class="row" style="min-width: 950px">
-        <div class="col-sm-10 col-lg-10" style="min-width: 300px">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search for...">
-                <span class="input-group-btn">
-                    <button class="btn btn-primary" type="button">搜索</button>
-                </span>
-                <span class="input-group-btn fr">
-                    <button class="btn btn-default" ng-click="refresh()" type="submit">刷新</button>
-                <!--<button class="btn btn-default col-sm-offset-1" type="submit">添加企业信息</button>-->
-                </span>
-
-            </div>
+<div class="content row">
+    <div class="contentTitle col-sm-10 col-lg-10"><span>企业信息列表</span></div>
+    <div class="noPadding col-sm-10 col-lg-10">
+        <div class="noPadding col-sm-4 col-lg-4">
+            <input type="text" class="form-control" placeholder="搜索企业名称" ng-model="search_text">
         </div>
-        <div class="col-sm-offset-3 col-sm-3" style="min-width: 300px">
-
+        <div class="col-sm-1 col-lg-1">
+            <button class="btn btnBlue" ng-click="search()" type="button">搜索</button>
         </div>
-        <ul class="list-group list_ul">
-            <li class="list-group-item list_title">
-                <span class="col-sm-3 col-lg-3">企业名称</span>
-                <span class="col-sm-2 col-lg-2">申请产品</span>
-                <span class="col-sm-2 col-lg-2">申请时间</span>
-                <span class="col-sm-2 col-lg-2">申请状态</span>
-                <span class="col-sm-1 col-lg-1">处理人</span>
-                <span class="col-sm-2 col-lg-2">操作</span>
-            </li>
-            <li class="list-group-item list_common" ng-repeat="resultObj in result_list">
-                <span class="col-sm-3 col-lg-3">
-                    <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}" ng-checked="isSelected(resultObj.id)"
-                           ng-click="updateSelection($event,resultObj.id)">
-                    {{resultObj.companyName}}</span>
-                <span class="col-sm-2 col-lg-2">{{resultObj.productName}}</span>
-                <span class="col-sm-2 col-lg-2">{{resultObj.updateTime | date:'yyyy-MM-dd'}}</span>
-                <span class="col-sm-2 col-lg-2">{{resultObj.progressText}}</span>
-                <span class="col-sm-1 col-lg-1">{{resultObj.opUsername ||"无"}}</span>
-                <button ng-hide="resultObj.op" ng-click="apply(resultObj.id)">我要处理</button>
-            </li>
-            <li class="list-group-item list_common">
-                <button class="contentClass" ng-click="delete()">删除</button>
-                <span>共有{{page.totalCount}}家企业申请，每页显示{{page.pageSize}}条</span>
-                <ul class="pagination fr" style="margin: 0">
-                    <li>
-                        <a  aria-label="Previous" ng-click="changePage(1)">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a  aria-label="Previous" ng-click="changePage(page.upPage)">
-                            <span aria-hidden="true">&lsaquo;</span>
-                        </a>
-                    </li>
-                    <li><a  ng-click="changePage(page.pageNo)">{{page.pageNo}}</a></li>
-                    <li>
-                        <a  aria-label="Next" ng-click="changePage(page.nextPage)">
-                            <span aria-hidden="true">&rsaquo;</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a  aria-label="Next" ng-click="changePage(page.totalPage)">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
+        <button class="btn fr btnBlue" type="submit"><img class="btnBlueImg">添加企业信息</button>
+        <button class="btn fr btnGrew" ng-click="refresh()" type="submit"><img class="btnGrewImg"> 刷新</button>
+
+    </div>
+    <ul class="list-group list_ul col-sm-10 col-lg-10">
+        <li class="list-group-item list_title">
+            <span class="col-sm-3 col-lg-3">企业名称</span>
+            <span class="col-sm-2 col-lg-2">申请产品</span>
+            <span class="col-sm-2 col-lg-2">申请时间</span>
+            <div class="btn-group col-sm-2 col-lg-2 noPadding">
+                <div style="cursor: pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    状态({{status_text}}) <span class="caret"></span>
+                </div>
+                <ul class="dropdown-menu" style="width: 100px">
+                    <li ng-click="choice(0)" class="list_select">未申请</li>
+                    <li ng-click="choice(1)" class="list_select">审核中</li>
+                    <li ng-click="choice(2)" class="list_select">约见中</li>
+                    <li ng-click="choice(3)" class="list_select">跟进中</li>
+                    <li ng-click="choice(4)" class="list_select">成功融资</li>
+                    <li ng-click="choice()" class="list_select">全部</li>
                 </ul>
-            </li>
-        </ul>
+            </div>
+            <span class="col-sm-2 col-lg-2">处理人</span>
+            <span class="col-sm-1 col-lg-1">操作</span>
+        </li>
+        <li class="list-group-item list_common" ng-repeat="resultObj in result_list">
+            <span class="col-sm-3 col-lg-3">
+                <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}"
+                       ng-checked="isSelected(resultObj.id)"
+                       ng-click="updateSelection($event,resultObj.id)">
+                {{resultObj.companyName}}</span>
+            <span class="col-sm-2 col-lg-2">{{resultObj.productName}}</span>
+            <span class="col-sm-2 col-lg-2">{{resultObj.updateTime | date:'yyyy-MM-dd'}}</span>
+            <span class="col-sm-2 col-lg-2">{{resultObj.progressText}}</span>
+            <span class="col-sm-2 col-lg-2">{{resultObj.opUsername ||"无"}}</span>
+            <button ng-hide="resultObj.op" class="btnGrew" ng-click="apply(resultObj.id)">我要处理</button>
+        </li>
+        <li class="list-group-item list_common">
+            <button class="contentClass" ng-click="delete()">删除</button>
+            <span>共有{{page.totalCount}}家企业申请，每页显示{{page.pageSize}}条</span>
+            <ul class="pagination fr" style="margin: 0">
+                <li>
+                    <a aria-label="Previous" ng-click="changePage(1)">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li>
+                    <a aria-label="Previous" ng-click="changePage(page.upPage)">
+                        <span aria-hidden="true">&lsaquo;</span>
+                    </a>
+                </li>
+                <li><a ng-click="changePage(page.pageNo)">{{page.pageNo}}</a></li>
+                <li>
+                    <a aria-label="Next" ng-click="changePage(page.nextPage)">
+                        <span aria-hidden="true">&rsaquo;</span>
+                    </a>
+                </li>
+                <li>
+                    <a aria-label="Next" ng-click="changePage(page.totalPage)">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
         <div style="text-align: center;margin-bottom: 20px">
             <!--<tm-pagination conf="paginationConf"></tm-pagination>-->
 
             <!--<button class="contentClass" ng-click="submit()">取消发布</button>-->
         </div>
-    </div>
     <div class="row">
 
     </div>

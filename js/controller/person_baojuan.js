@@ -16,6 +16,8 @@ personBjCtrl.controller('PersonBjCtrl', function ($http, $scope, $rootScope, $lo
             "token":login_user.token,
             "pageNo": pageNo,
             "pageSize": pageSize,
+            "wd": $scope.wd,
+            "status": $scope.status
         };
         console.log(m_params);
         $http({
@@ -100,6 +102,7 @@ personBjCtrl.controller('PersonBjCtrl', function ($http, $scope, $rootScope, $lo
     $scope.isSelected = function (id) {
         return $scope.selected.indexOf(id) >= 0;
     };
+
     var updateSelected = function (action, id) {
         if (action == 'add') {
             $scope.ids.push(id);
@@ -111,6 +114,7 @@ personBjCtrl.controller('PersonBjCtrl', function ($http, $scope, $rootScope, $lo
             console.log("删除id"+id);
         }
     };
+
     $scope.updateSelection = function ($event, id) {
         console.log("点击一下")
         var checkbox = $event.target;
@@ -202,7 +206,32 @@ personBjCtrl.controller('PersonBjCtrl', function ($http, $scope, $rootScope, $lo
             },
             dataType: 'json',
         });
-    }
+    };
+
+    $scope.search_text = null;
+    $scope.search = function () {
+        $scope.wd = $scope.search_text;
+        $scope.list(1, 20);
+    };
+
+    $scope.status_text = "全部";
+    $scope.choice = function (status) {
+        $scope.status = status;
+        if ($scope.status == 0) {
+            $scope.status_text = "未申请";
+        } else if ($scope.status == 1) {
+            $scope.status_text = "审核中";
+        } else if ($scope.status == 2) {
+            $scope.status_text = "约见中";
+        } else if ($scope.status == 3) {
+            $scope.status_text = "跟进中";
+        } else if ($scope.status == 4) {
+            $scope.status_text = "成功融资";
+        } else if ($scope.status == null) {
+            $scope.status_text = "全部";
+        }
+        $scope.list(1, 20);
+    };
 
 });
 

@@ -1,0 +1,46 @@
+<div class="content row">
+    <p class="contentTitle">
+        <span>添加新银行职员</span>
+        <button style="margin-left:10px" class="btn btn-default fr" type="submit" ng-click="add_bank_man()">确定</button>
+    </p>
+    <div class="row" style="min-width: 950px">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label for="username" class="col-sm-2 control-label">用户名</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="username" placeholder="用户名" ng-model="bank_man.name">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="belongToBank" class="col-sm-2 control-label">所属银行</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" readonly="readonly" id="belongToBank" placeholder="所属银行"
+                           ng-model="bankName">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="position" class="col-sm-2 control-label">银行职位</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="position" placeholder="银行职位"
+                           ng-model="bank_man.position">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="phone" class="col-sm-2 control-label">联系电话</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="phone" placeholder="联系电话" ng-model="bank_man.mobile">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email" class="col-sm-2 control-label">收件邮箱</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="email" placeholder="收件邮箱" ng-model="bank_man.email">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

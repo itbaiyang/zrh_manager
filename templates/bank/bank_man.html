@@ -1,0 +1,56 @@
+<div class="content row">
+    <div class="contentTitle col-sm-10 col-lg-10"><span>{{bankName}}</span></div>
+    <div class="noPadding col-sm-10 col-lg-10">
+        <button class="btn btnBlue fr" ng-click="add_user(id,bankName)" type="submit">添加银行职员</button>
+        <button class="btn btnGrew fr" ui-sref="master.bank" type="submit">返回</button>
+    </div>
+    <ul class="list-group list_ul col-sm-10 col-lg-10">
+        <li class="list-group-item list_title">
+            <span class="col-sm-2 col-lg-2">用户名</span>
+            <span class="col-sm-2 col-lg-2">所属银行</span>
+            <span class="col-sm-2 col-lg-2">银行职位</span>
+            <span class="col-sm-2 col-lg-2">联系电话</span>
+            <span class="col-sm-2 col-lg-2">收件邮箱</span>
+            <span class="col-sm-1 col-lg-1">递交记录</span>
+        </li>
+        <li class="list-group-item " style="height: 50px" ng-repeat="bank_man in bank_man_list">
+                <span class="col-sm-2 col-lg-2 noPadding">
+                    <input type="checkbox" style="margin-right: 10px" id="{{bank_man.id}}"
+                           ng-checked="isSelected(bank_man.id)"
+                           ng-click="updateSelection($event,bank_man.id)">{{bank_man.name}}</span>
+            <span class="noPadding col-sm-2 col-lg-2">{{bankName}}</span>
+            <span class="noPadding col-sm-2 col-lg-2">{{bank_man.position}}</span>
+            <span class="noPadding col-sm-2 col-lg-2">{{bank_man.mobile}}</span>
+            <span class="noPadding col-sm-2 col-lg-2">{{bank_man.email}}</span>
+        </li>
+        <li class="list-group-item list_common">
+            <button class="btn btnGrew disabled" ng-click="submit()">标记</button>
+            <button class="btn btnGrew" ng-click="delete()">删除</button>
+            <span>共有{{page.totalCount}}款金融产品，每页显示{{page.pageSize}}条</span>
+            <ul class="pagination fr" style="margin: 0">
+                <li>
+                    <a aria-label="Previous" ng-click="changePage(1)">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li>
+                    <a aria-label="Previous" ng-click="changePage(page.upPage)">
+                        <span aria-hidden="true">&lsaquo;</span>
+                    </a>
+                </li>
+                <li><a>{{page.pageNo}}</a></li>
+                <li>
+                    <a aria-label="Next" ng-click="changePage(page.nextPage)">
+                        <span aria-hidden="true">&rsaquo;</span>
+                    </a>
+                </li>
+                <li>
+                    <a aria-label="Next" ng-click="changePage(page.totalPage)">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
+</div>

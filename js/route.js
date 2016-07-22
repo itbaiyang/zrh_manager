@@ -16,6 +16,38 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 },
             }
         })
+
+        .state("super", {
+            url: '/super',
+            views: {
+                '': {
+                    templateUrl: templates_root + 'super/index.html',
+                    //controller: 'UserIndexController'
+                },
+                'top_bar@super': {
+                    templateUrl: templates_root + 'super/top_bar.html',
+                    //controller: 'TopBarCtrl'
+                },
+                'side_bar@super': {
+                    templateUrl: templates_root + 'super/side_bar.html',
+                    //controller: 'TopBarCtrl'
+                },
+                'sign_up@super': {
+                    templateUrl: templates_root + 'super/user_list.html',
+                    controller: 'UserListCtrl'
+                }
+            }
+        })
+        .state("super.addUser", {
+            url: '/add_user',
+            views: {
+                'sign_up@super': {
+                    templateUrl: templates_root + 'super/add_user.html',
+                    controller: 'CreateUserCtrl'
+                }
+            }
+        })
+
         .state("master", {
             url: '/master',
             views: {
@@ -55,6 +87,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
+
         .state('master.product', {
             url: '/product',
             views: {
@@ -82,6 +115,26 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
+
+        .state('master.signUp', {
+            url: '/signUp',
+            views: {
+                'contains@master': {
+                    templateUrl: templates_root + 'master/sign_up.html',
+                    controller: 'SignUpCtrl'
+                }
+            }
+        })
+
+        .state('master.person_baojuan', {
+            url: '/person_baojuan',
+            views: {
+                'contains@master': {
+                    templateUrl: templates_root + 'master/person_baojuan.html',
+                    controller: 'PersonBjCtrl'
+                }
+            }
+        })
         .state('master.person_baojuan.add_company', {
             url: '/add_company',
             views: {
@@ -100,51 +153,57 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
-        .state('master.person_baojuan', {
-            url: '/person_baojuan',
+
+        .state('master.bank', {
+            url: '/bank',
             views: {
                 'contains@master': {
-                    templateUrl:templates_root + 'master/person_baojuan.html',
-                    controller:'PersonBjCtrl'
+                    templateUrl: templates_root + 'bank/bank.html',
+                    controller: 'BankCtrl'
                 }
             }
         })
-        .state('master.signUp', {
-            url: '/signUp',
+        .state('master.bank.bank_man', {
+            params: {
+                "id": null,
+                "name": null
+            },
+            url: '/bank_man/:id/:name',
             views: {
                 'contains@master': {
-                    templateUrl:templates_root + 'master/sign_up.html',
-                    controller:'SignUpCtrl'
+                    templateUrl: templates_root + 'bank/bank_man.html',
+                    controller: 'BankManCtrl'
                 }
             }
         })
-        .state("super", {
-            url: '/super',
+        .state('master.bank.add_bank', {
+            params: {
+                "id": null,
+                "name": null
+            },
+            url: '/add_bank/:id/:name',
             views: {
-                '': {
-                    templateUrl: templates_root + 'super/index.html',
-                    //controller: 'UserIndexController'
-                },
-                'top_bar@super': {
-                    templateUrl: templates_root + 'super/top_bar.html',
-                    //controller: 'TopBarCtrl'
-                },
-                'side_bar@super': {
-                    templateUrl: templates_root + 'super/side_bar.html',
-                    //controller: 'TopBarCtrl'
-                },
-                'sign_up@super': {
-                    templateUrl: templates_root + 'super/user_list.html',
-                    controller: 'UserListCtrl'
+                'contains@master': {
+                    templateUrl: templates_root + 'bank/add_bank.html',
+                    controller: 'AddBankCtrl'
                 }
             }
         })
-        .state("super.addUser", {
-            url: '/add_user',
+        .state('master.bank.add_bank_man', {
+            url: '/add_bank_man/:id/:name',
             views: {
-                'sign_up@super': {
-                    templateUrl: templates_root + 'super/add_user.html',
-                    controller: 'CreateUserCtrl'
+                'contains@master': {
+                    templateUrl: templates_root + 'bank/add_bank_man.html',
+                    controller: 'AddBankManCtrl'
+                }
+            }
+        })
+        .state('master.bank.update', {
+            url: '/update/:id',
+            views: {
+                'contains@master': {
+                    templateUrl: templates_root + 'bank/update.html',
+                    controller: 'UpdateBankCtrl'
                 }
             }
         })

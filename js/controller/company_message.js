@@ -13,6 +13,8 @@ loanApplicationCtrl.controller('LoanApplicationCtrl', function ($http, $scope, $
             "token":login_user.token,
             "pageNo": pageNo,
             "pageSize": pageSize,
+            "wd": $scope.wd,
+            "status": $scope.status
         };
         $http({
             url: api_uri + "loanApplicationManage/list",
@@ -91,6 +93,7 @@ loanApplicationCtrl.controller('LoanApplicationCtrl', function ($http, $scope, $
     $scope.isSelected = function (id) {
         return $scope.selected.indexOf(id) >= 0;
     };
+
     var updateSelected = function (action, id) {
         if (action == 'add') {
             $scope.ids.push(id);
@@ -102,16 +105,17 @@ loanApplicationCtrl.controller('LoanApplicationCtrl', function ($http, $scope, $
             console.log("删除id"+id);
         }
     };
+
     $scope.updateSelection = function ($event, id) {
         console.log("点击一下")
         var checkbox = $event.target;
         var action = (checkbox.checked ? 'add' : 'remove');
         updateSelected(action, id);
     };
+
     $scope.refresh = function(){
         $scope.list($scope.pageNo1, 10);
     };
-
 
     $scope.delete = function () {
         var m_params = {
@@ -130,6 +134,7 @@ loanApplicationCtrl.controller('LoanApplicationCtrl', function ($http, $scope, $
                 if (data.returnCode == 0) {
                     console.log(data);
                     $scope.list($scope.pageNo1, 10);
+                    //$apply();
                 }
                 else {
                     console.log(data);
@@ -137,5 +142,30 @@ loanApplicationCtrl.controller('LoanApplicationCtrl', function ($http, $scope, $
             },
             dataType: 'json',
         });
+    };
+
+    $scope.search_text = null;
+    $scope.search = function () {
+        $scope.wd = $scope.search_text;
+        $scope.list(1, 20);
+    };
+
+    $scope.status_text = "全部";
+    $scope.choice = function (status) {
+        $scope.status = status;
+        if ($scope.status == 0) {
+            $scope.status_text = "未申请";
+        } else if ($scope.status == 1) {
+            $scope.status_text = "审核中";
+        } else if ($scope.status == 2) {
+            $scope.status_text = "约见中";
+        } else if ($scope.status == 3) {
+            $scope.status_text = "跟进中";
+        } else if ($scope.status == 4) {
+            $scope.status_text = "成功融资";
+        } else if ($scope.status == null) {
+            $scope.status_text = "全部";
+        }
+        $scope.list(1, 20);
     };
 });

@@ -10,7 +10,8 @@ signUpCtrl.controller('SignUpCtrl', function ($http, $scope, $rootScope, $locati
             "userId": login_user.userId,
             "token": login_user.token,
             pageNo: pageNo,
-            pageSize: pageSize
+            pageSize: pageSize,
+            "wd": $scope.wd
         };
         $http({
             url: api_uri + "p/user/listUsers",
@@ -28,10 +29,12 @@ signUpCtrl.controller('SignUpCtrl', function ($http, $scope, $rootScope, $locati
             }
 
         }).error(function (d) {
-            console.log(d+"baiyang");
+            console.log(d);
         })
     };
+
     $scope.list(1, 10);
+
     $scope.changePage = function (page) {
         $scope.pageNo1 = page;
         console.log($scope.pageNo1);
@@ -39,12 +42,14 @@ signUpCtrl.controller('SignUpCtrl', function ($http, $scope, $rootScope, $locati
             $scope.list($scope.pageNo1, 10);
         });
     };
+
     $scope.selected = [];
     $scope.ids = [];
 
     $scope.isSelected = function (id) {
         return $scope.selected.indexOf(id) >= 0;
     };
+
     var updateSelected = function (action, id) {
         if (action == 'add') {
             $scope.ids.push(id);
@@ -56,13 +61,21 @@ signUpCtrl.controller('SignUpCtrl', function ($http, $scope, $rootScope, $locati
             console.log("删除id" + id);
         }
     };
+
     $scope.refresh_user = function(){
         $scope.list($scope.pageNo1, 10);
     };
+
     $scope.updateSelection = function ($event, id) {
         console.log("点击一下");
         var checkbox = $event.target;
         var action = (checkbox.checked ? 'add' : 'remove');
         updateSelected(action, id);
-    }
+    };
+
+    $scope.search_text = null;
+    $scope.search = function () {
+        $scope.wd = $scope.search_text;
+        $scope.list(1, 20);
+    };
 });
