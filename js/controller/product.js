@@ -278,7 +278,53 @@ productCtrl.controller('ProductCreateCtrl', function ($http, $scope, $rootScope,
         }
     };
 
+    $scope.list = function (pageNo, pageSize) {
+        var login_user = $rootScope.getObject("login_user");
+        var m_params = {
+            "userId": login_user.userId,
+            "token": login_user.token,
+            "pageNo": pageNo,
+            "pageSize": pageSize,
+        };
+        $http({
+            url: api_uri + "manage/bank/list",
+            method: "GET",
+            params: m_params
+        }).success(function (d) {
+            console.log(d);
+            if (d.returnCode == 0) {
+                $scope.page = d.result;
+                $scope.bank_list = d.result.datas;
+            }
+            else {
+                console.log(d.result);
+            }
+
+        }).error(function (d) {
+            console.log("login error");
+            $location.path("/error");
+        })
+    };
+
+    $scope.list(1, 100);
+
+    $scope.choiceBank = function (id, name) {
+        $scope.bankId = id;
+        $scope.bankName = name;
+    };
+
+    $scope.tags = "";
+    var tags = [];
+
     $scope.submit = function () {
+        var text = $scope.tags;
+        var array = text.split("#");
+        for (var i = 0; i < array.length; i++) {
+            if (array[i] != "" && array[i] != " ") {
+                tags.push(array[i]);
+            }
+        }
+        console.log(tags);
         $scope.feature_list_new = [];
         $scope.condition_list_new = [];
         for (var key in $scope.feature_list) {
@@ -294,15 +340,14 @@ productCtrl.controller('ProductCreateCtrl', function ($http, $scope, $rootScope,
             "userId":login_user.userId,
             "token":login_user.token,
             "name": $scope.product.name,
-            "summary": $scope.product.summary,
-            "ratecap": $scope.product.ratecap,
-            "ratefloor": $scope.product.ratefloor,
+            "tags": tags,
+            "bankId": $scope.bankId,
+            "rate": $scope.product.rate,
             "loanvalue": $scope.product.loanvalue,
             "loanlife": $scope.product.loanlife,
-            "bankname": $scope.product.bankname,
+            "summary": $scope.product.summary,
             "feature": $scope.feature_list_new,
             "conditions": $scope.condition_list_new,
-            "icon": $scope.bankPic,
         };
         console.log(m_params);
         $.ajax({
@@ -330,6 +375,7 @@ productCtrl.controller('ProductCreateCtrl', function ($http, $scope, $rootScope,
 
 productCtrl.controller('ProductUpdateCtrl', function ($http, $scope, $state, $rootScope, $location, $stateParams, $timeout, $routeParams) {
     $scope.feature_list = [];
+    $scope.tags = "";
     $scope.add_feature = function () {
         $scope.feature_list.push({
             "feature":""
@@ -359,94 +405,37 @@ productCtrl.controller('ProductUpdateCtrl', function ($http, $scope, $state, $ro
             }
         }
     };
-    var login_user = $rootScope.getObject("login_user");
-    var m_params = {
-        "userId":login_user.userId,
-        "token":login_user.token,
-    };
-    $scope.init = function(){
-        //$scope.feature_list = [];
+
+    $scope.list = function (pageNo, pageSize) {
+        var login_user = $rootScope.getObject("login_user");
+        var m_params = {
+            "userId": login_user.userId,
+            "token": login_user.token,
+            "pageNo": pageNo,
+            "pageSize": pageSize,
+        };
         $http({
-            url: api_uri + "qiniu/getUpToken",
+            url: api_uri + "manage/bank/list",
             method: "GET",
             params: m_params
         }).success(function (d) {
             console.log(d);
             if (d.returnCode == 0) {
-                $scope.qiniu_token = d.result.uptoken;
-                var uploader = Qiniu.uploader({
-                    runtimes: 'html5,flash,html4',    //上传模式,依次退化
-                    browse_button: 'pickfiles',       //上传选择的点选按钮，**必需**
-                    //	        uptoken_url: api_uri+"api/qiniu/getUpToken",
-                    uptoken: $scope.qiniu_token,
-                    //	        get_new_uptoken: true,
-                    //save_key: true,
-                    domain: $rootScope.qiniu_bucket_domain, //bucket 域名，下载资源时用到，**必需**
-                    container: 'upload_container',           //上传区域DOM ID，默认是browser_button的父元素，
-                    max_file_size: '10mb',           //最大文件体积限制
-                    flash_swf_url: '../../framework/plupload/Moxie.swf',  //引入flash,相对路径
-                    max_retries: 3,                   //上传失败最大重试次数
-                    dragdrop: false,                   //开启可拖曳上传
-                    drop_element: '',        //拖曳上传区域元素的ID，拖曳文件或文件夹后可触发上传
-                    chunk_size: '4mb',                //分块上传时，每片的体积
-                    auto_start: true,                 //选择文件后自动上传，若关闭需要自己绑定事件触发上传
-                    init: {
-                        'FilesAdded': function (up, files) {
-                            //                    plupload.each(files, function(file) {
-                            //                        // 文件添加进队列后,处理相关的事情
-                            //                    });
-                        },
-                        'BeforeUpload': function (up, file) {
-                            $rootScope.uploading = true;
-                            $scope.upload_percent = file.percent;
-                            $rootScope.$apply();
-                        },
-                        'UploadProgress': function (up, file) {
-                            // 每个文件上传时,处理相关的事情
-                            $scope.upload_percent = file.percent;
-                            $scope.$apply();
-                        },
-                        'FileUploaded': function (up, file, info) {
-                            var res = $.parseJSON(info);
-                            var file_url = "http://" + $rootScope.qiniu_bucket_domain + "/" + res.key;
-                            console.log(file_url);
-                            $scope.product.icon = file_url;
-                            $scope.$apply();
-                            m_params.key = "bankPic";
-                            m_params.icon = $scope.product.icon;
-                            $.post(api_uri + "financialProductManage/update", m_params,
-                                function (data) {
-                                    if (data.returnCode == 0) {
-                                        console.log('wodetian')
-                                    } else {
-                                        console.log(data);
-                                    }
-                                },
-                                "json");
-                        },
-                        'Error': function (up, err, errTip) {
-                            console.log(err);
-                            $rootScope.alert("营业执照上传失败！");
-                        },
-                        'UploadComplete': function () {
-                            //队列文件处理完毕后,处理相关的事情
-                        },
-                        'Key': function (up, file) {
-                            var time = new Date().getTime();
-                            var k = 'financialProductManage/update/' + m_params.userId + '/' + time;
-                            return k;
-                        }
-                    }
-                });
-            } else {
-                console.log(d);
+                $scope.page = d.result;
+                $scope.bank_list = d.result.datas;
+            }
+            else {
+                console.log(d.result);
             }
 
         }).error(function (d) {
-            console.log(d);
-        });
-    }
-    $scope.init();
+            console.log("login error");
+            $location.path("/error");
+        })
+    };
+
+    $scope.list(1, 100);
+
     $scope.get = function(){
         var login_user = $rootScope.getObject("login_user");
         var m_params = {
@@ -459,8 +448,20 @@ productCtrl.controller('ProductUpdateCtrl', function ($http, $scope, $state, $ro
             params: m_params
         }).success(function (d) {
             console.log(d);
+
             console.log(d.result.conditions,'123');
             $scope.product = d.result;
+            $scope.bankName = $scope.product.bankname;
+            $scope.bankId = $scope.product.bankId;
+            $scope.tags_arr = $scope.product.tags;
+            for (var i = 0; i < $scope.tags_arr.length; i++) {
+                $scope.tags += "#";
+                $scope.tags += $scope.tags_arr[i];
+                $scope.tags += "# ";
+            }
+            ;
+            console.log($scope.tags);
+            console.log($scope.bankName);
             for (var key in d.result.feature) {
                 $scope.feature_list.push({"feature": d.result.feature[key]});
             }
@@ -473,7 +474,24 @@ productCtrl.controller('ProductUpdateCtrl', function ($http, $scope, $state, $ro
         })
     };
     $scope.get();
+
+    $scope.choiceBank = function (id, name) {
+        $scope.bankId = id;
+        $scope.bankName = name;
+    };
+
+    var tags = [];
+
     $scope.submit = function () {
+        var text = $scope.tags;
+        text.replace(/\s/g, "");
+        var array = text.split("#");
+        for (var i = 0; i < array.length; i++) {
+            if (array[i] != "" && array[i] != " ") {
+                tags.push(array[i]);
+            }
+        }
+        console.log(tags);
         $scope.feature_list_new = [];
         $scope.condition_list_new = [];
         for (var key in $scope.feature_list) {
@@ -490,15 +508,14 @@ productCtrl.controller('ProductUpdateCtrl', function ($http, $scope, $state, $ro
             "userId": login_user.userId,
             "token": login_user.token,
             "name": $scope.product.name,
-            "summary": $scope.product.summary,
-            "ratecap": $scope.product.ratecap,
-            "ratefloor": $scope.product.ratefloor,
+            "tags": tags,
+            "bankId": $scope.bankId,
+            "rate": $scope.product.rate,
             "loanvalue": $scope.product.loanvalue,
             "loanlife": $scope.product.loanlife,
-            "bankname": $scope.product.bankname,
+            "summary": $scope.product.summary,
             "feature": $scope.feature_list_new,
             "conditions": $scope.condition_list_new,
-            "icon": $scope.product.icon,
         };
         console.log(m_params);
         $.ajax({

@@ -15,7 +15,7 @@ var app = angular.module('app', [
     'topBarCtrl',
     'loanApplicationCtrl',
     'productCtrl',
-    'personBjCtrl',
+    'myProjectCtrl',
     'superCtrl',
     'signUpCtrl',
     'bankCtrl',

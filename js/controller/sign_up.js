@@ -33,13 +33,13 @@ signUpCtrl.controller('SignUpCtrl', function ($http, $scope, $rootScope, $locati
         })
     };
 
-    $scope.list(1, 10);
+    $scope.list(1, 20);
 
     $scope.changePage = function (page) {
         $scope.pageNo1 = page;
         console.log($scope.pageNo1);
         $scope.$watch($scope.pageNo1, function () {
-            $scope.list($scope.pageNo1, 10);
+            $scope.list($scope.pageNo1, 20);
         });
     };
 
@@ -63,7 +63,7 @@ signUpCtrl.controller('SignUpCtrl', function ($http, $scope, $rootScope, $locati
     };
 
     $scope.refresh_user = function(){
-        $scope.list($scope.pageNo1, 10);
+        $scope.list($scope.pageNo1, 20);
     };
 
     $scope.updateSelection = function ($event, id) {

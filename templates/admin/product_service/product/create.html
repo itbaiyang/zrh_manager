@@ -1,4 +1,4 @@
-<div style="padding-left:15px;position: absolute;overflow-x:hidden; z-index: 100;width: 100%; background: #ffffff">
+<div style="padding-left:15px;position: absolute;overflow-x:hidden; z-index: 100;width: 100%;height: calc(100% - 50px); background: #ffffff">
     <div class="contentTitle">
         <span>添加金融产品</span>
         <div class="fr" style="margin: 10px">
@@ -9,34 +9,39 @@
     <form class="form-horizontal">
         <p class="createTitle">基本内容</p>
         <div class="form-group">
-            <label for="productName" class="col-sm-2 control-label">银行图片</label>
-            <div class="col-sm-4" id="upload_container">
-                <img class="userSetContent" id="pickfiles" ng-src="{{product.icon|| 'img/recommendl.png'}}">
+            <label for="productName" class="col-sm-2 control-label">标题</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="productName" placeholder="标题" ng-model="product.name">
             </div>
         </div>
-
         <div class="form-group">
-            <label for="productName" class="col-sm-2 control-label">产品名称</label>
+            <label for="tags" class="col-sm-2 control-label">添加标签</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" id="productName" placeholder="产品名称" ng-model="product.name">
+                <input type="text" class="form-control" id="tags" placeholder="添加标签" ng-model="tags">
             </div>
         </div>
         <div class="form-group">
             <label for="bankname" class="col-sm-2 control-label">银行名称</label>
-            <div class="col-sm-4">
-                <input type="text" class="form-control" id="bankname" placeholder="银行名称" ng-model="product.bankname">
+            <div class="btn-group col-sm-4 col-lg-4">
+                <button type="button" class="btnInput col-sm-12 col-lg-12" id="bankname" data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false">
+                    {{bankName ||"选择银行"}}
+                </button>
+                <ul class="dropdown-menu btnDrop col-sm-4 col-lg-4">
+                    <li class="btnDropDetail" ng-click="choiceBank(bank.id,bank.name)" ng-repeat="bank in bank_list">
+                        {{bank.name}}
+                    </li>
+                    <!--<li>平安银行</li>-->
+                    <!--<li>平安银行</li>-->
+                    <!--<li>平安银行</li>-->
+                </ul>
             </div>
         </div>
         <div class="form-group">
             <label for="ratecap" class="col-sm-2 control-label">利率</label>
-            <div class="col-sm-1">
-                <input type="text" class="form-control" id="ratecap" placeholder="下限" ng-model="product.ratecap">
-            </div>
-            <div class="col-sm-1" style="text-align: center">
-              __
-            </div>
-            <div class="col-sm-1">
-                <input type="text" class="form-control" placeholder="上限" ng-model="product.ratefloor">
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="ratecap" placeholder="利率" ng-model="product.rate">
             </div>
         </div>
         <div class="form-group">
@@ -58,6 +63,9 @@
                           ng-model="product.summary"></textarea>
             </div>
         </div>
+        <p class="col-sm-offset-2">
+            最多可输入150个字符，超过部分将不显示
+        </p>
         <p class="createTitle">产品特色
             <button class="btn" ng-click="add_feature()">添加特色</button>
         </p>

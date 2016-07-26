@@ -1,0 +1,34 @@
+<div class="content row" style="width: 90%">
+    <p class="contentTitle"><span>合作银行</span></p>
+    <!--<div class="row" style="min-width: 950px">-->
+    <div class="col-sm-offset-8 col-lg-offset-8">
+        <div class="input-group">
+                <span class="input-group-btn">
+                <button class="btn btnGrew" ng-click="changeModule(false,false)" type="submit">取消</button>
+                <button class="btn btnGrew" ng-click="changeModule(true,false)" style="margin-left: 15px" type="submit">
+                    编辑银行
+                </button>
+                <button class="btn btnGrew" ng-click="changeModule(false,true)" style="margin: 0 15px" type="submit">
+                    删除银行
+                </button>
+                <button class="btn btnBlue" ui-sref="master.bank.add_bank">添加新银行</button>
+                </span>
+        </div>
+    </div>
+    <div class="bankBox" ng-repeat="bank in bank_list">
+        <div class="bankContentDelete" ng-show="deleteModule" ng-click="delete(bank.id)">
+            <div class="whiteLine"></div>
+        </div>
+        <div class="bankContentEdit" ng-click="edit_bank(bank.id)" ng-show="editModule">点击可编辑</div>
+        <div class="bankImg fl">
+            <img ng-src="{{bank.icon || 'img/recommendl.png'}}" alt="">
+        </div>
+        <div class="bankContent fl">
+            <p class="bankContentP1">{{bank.name}}</p>
+            <p class="bankContentP2">共有16位客户经理</p>
+            <button class="btn btnBlue1" ng-click="find_detail(bank.id,bank.name)">查看详情</button>
+            <!--<button class="btn" >删除</button>-->
+        </div>
+    </div>
+    <!--</div>-->
+</div>

@@ -73,6 +73,11 @@ bankCtrl.controller('BankCtrl', function ($http, $scope, $state, $rootScope, $lo
         });
     };
 
+    $scope.changeModule = function (a, b) {
+        $scope.editModule = a;
+        $scope.deleteModule = b;
+    }
+
 });
 
 bankCtrl.controller('BankManCtrl', function ($http, $scope, $rootScope, $location, $stateParams, $state, $routeParams, $timeout) {

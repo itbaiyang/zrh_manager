@@ -1,0 +1,31 @@
+.account {
+    height: 160px;
+    background: #f9fafc;
+    margin-bottom: 10px;
+    padding-right: 0;
+}
+
+.account_img {
+    padding: 18px 20px 0 60px;
+    width: 180px;
+    text-align: center;
+}
+
+.account_img img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.account_p {
+    margin-top: 36px;
+    width: 180px;
+}
+
+.account_p p {
+    height: 25px;
+    line-height: 25px;
+    font-size: 14px;
+}

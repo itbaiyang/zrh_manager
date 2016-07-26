@@ -28,6 +28,37 @@
     font-size: 14px;
 }
 
+.btnInput {
+    display: inline-block;
+    text-align: left;
+    padding-left: 10px;
+    height: 30px;
+}
+
+.btnDrop {
+    margin: 8px 13px 0;
+    padding: 5px 10px;
+    height: 240px;
+    overflow: auto;
+}
+
+.btnDropDetail {
+    height: 30px;
+    line-height: 30px;
+    cursor: pointer;
+}
+
+.btnBlue1 {
+    height: 40px;
+    line-height: 20px;
+    padding: 10px 28px;
+    background: #6b7acb;
+    border: 1px solid #cccccc;
+    color: #ffffff;
+    font-size: 14px;
+    margin-top: 6px;
+}
+
 .btnDelete {
     height: 15px;
     line-height: 5px;
@@ -37,6 +68,7 @@
     color: #ffffff;
     font-size: 5px;
     margin-left: 10px;
+    font-weight: 800;
 }
 
 .btnBlueImg {
@@ -57,4 +89,14 @@
     height: 30px;
     line-height: 30px;
     font-size: 14px;
+    cursor: pointer;
+}
+
+.addBtn {
+    width: 48%;
+    height: 140px;
+    background: #ffffff;
+    padding: 0;
+    cursor: pointer;
+    /*border: 1px solid red;*/
 }

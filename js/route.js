@@ -52,29 +52,20 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             url: '/master',
             views: {
                 '': {
-                    templateUrl: templates_root + 'master/index.html',
+                    templateUrl: templates_root + 'admin/index.html',
                     //controller: 'UserIndexController'
                 },
                 'top_bar@master': {
-                    templateUrl: templates_root + 'master/top_bar.html',
+                    templateUrl: templates_root + 'admin/top_bar.html',
                     controller: 'TopBarCtrl'
                 },
                 'side_bar@master': {
-                    templateUrl: templates_root + 'master/side_bar.html',
+                    templateUrl: templates_root + 'admin/side_bar.html',
                     controller: 'SideBarCtrl'
                 },
                 'contains@master': {
-                    templateUrl: templates_root + 'master/contains.html',
-                    //controller: 'ContainsCtrl'
-                }
-            }
-        })
-        .state("master.contains", {
-            url: '/contains',
-            views: {
-                '': {
-                    templateUrl: templates_root + 'master/contains.html',
-                    //controller: 'UserIndexController'
+                    templateUrl: templates_root + 'admin/contains.html',
+                    controller: 'ContainsCtrl'
                 }
             }
         })
@@ -82,8 +73,17 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             url: '/company_message',
             views: {
                 'contains@master': {
-                    templateUrl: templates_root + 'master/company_message.html',
+                    templateUrl: templates_root + 'admin/product_service/company_message/company_message.html',
                     controller: 'LoanApplicationCtrl'
+                }
+            }
+        })
+        .state('master.company_message.add_company', {
+            url: '/add_company',
+            views: {
+                'contains@master': {
+                    templateUrl: templates_root + 'admin/product_service/company_message/add_company.html',
+                    controller: 'AddCompanyCtrl'
                 }
             }
         })
@@ -92,7 +92,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             url: '/product',
             views: {
                 'contains@master': {
-                    templateUrl:templates_root + 'master/product.html',
+                    templateUrl: templates_root + 'admin/product_service/product/product.html',
                     controller:'ProductCtrl'
                 }
             }
@@ -101,7 +101,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             url: '/create',
             views: {
                 'contains@master': {
-                    templateUrl:templates_root + 'master/create.html',
+                    templateUrl: templates_root + 'admin/product_service/product/create.html',
                     controller:'ProductCreateCtrl'
                 }
             }
@@ -110,7 +110,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             url: '/update/:id',
             views: {
                 'contains@master': {
-                    templateUrl:templates_root + 'master/update.html',
+                    templateUrl: templates_root + 'admin/product_service/product/update.html',
                     controller:'ProductUpdateCtrl'
                 }
             }
@@ -120,35 +120,26 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             url: '/signUp',
             views: {
                 'contains@master': {
-                    templateUrl: templates_root + 'master/sign_up.html',
+                    templateUrl: templates_root + 'admin/product_service/sign_up.html',
                     controller: 'SignUpCtrl'
                 }
             }
         })
 
-        .state('master.person_baojuan', {
-            url: '/person_baojuan',
+        .state('master.my_project', {
+            url: '/my_project',
             views: {
                 'contains@master': {
-                    templateUrl: templates_root + 'master/person_baojuan.html',
-                    controller: 'PersonBjCtrl'
+                    templateUrl: templates_root + 'admin/product_service/my_project/my_project.html',
+                    controller: 'MyProjectCtrl'
                 }
             }
         })
-        .state('master.person_baojuan.add_company', {
-            url: '/add_company',
-            views: {
-                'contains@master': {
-                    templateUrl:templates_root + 'master/add_company.html',
-                    controller: 'AddCompanyCtrl'
-                }
-            }
-        })
-        .state('master.person_baojuan.edit_apply', {
+        .state('master.my_project.edit_apply', {
             url: '/edit_apply/:id',
             views: {
                 'contains@master': {
-                    templateUrl: templates_root + 'master/edit_apply.html',
+                    templateUrl: templates_root + 'admin/product_service/my_project/edit_apply.html',
                     controller: 'EditApplyCtrl'
                 }
             }
@@ -158,7 +149,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             url: '/bank',
             views: {
                 'contains@master': {
-                    templateUrl: templates_root + 'bank/bank.html',
+                    templateUrl: templates_root + 'admin/product_service/bank/bank.html',
                     controller: 'BankCtrl'
                 }
             }
@@ -171,7 +162,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             url: '/bank_man/:id/:name',
             views: {
                 'contains@master': {
-                    templateUrl: templates_root + 'bank/bank_man.html',
+                    templateUrl: templates_root + 'admin/product_service/bank/bank_man.html',
                     controller: 'BankManCtrl'
                 }
             }
@@ -184,7 +175,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             url: '/add_bank/:id/:name',
             views: {
                 'contains@master': {
-                    templateUrl: templates_root + 'bank/add_bank.html',
+                    templateUrl: templates_root + 'admin/product_service/bank/add_bank.html',
                     controller: 'AddBankCtrl'
                 }
             }
@@ -193,7 +184,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             url: '/add_bank_man/:id/:name',
             views: {
                 'contains@master': {
-                    templateUrl: templates_root + 'bank/add_bank_man.html',
+                    templateUrl: templates_root + 'admin/product_service/bank/add_bank_man.html',
                     controller: 'AddBankManCtrl'
                 }
             }
@@ -202,8 +193,28 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             url: '/update/:id',
             views: {
                 'contains@master': {
-                    templateUrl: templates_root + 'bank/update.html',
+                    templateUrl: templates_root + 'admin/product_service/bank/update.html',
                     controller: 'UpdateBankCtrl'
+                }
+            }
+        })
+
+        .state('master.account', {
+            url: '/account',
+            views: {
+                'contains@master': {
+                    templateUrl: templates_root + 'admin/user_center/account/account.html',
+                    //controller:'AccountCtrl'
+                }
+            }
+        })
+
+        .state('master.message', {
+            url: '/message',
+            views: {
+                'contains@master': {
+                    templateUrl: templates_root + 'admin/user_center/message/message.html',
+                    //controller:'MessageCtrl'
                 }
             }
         })

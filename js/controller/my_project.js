@@ -1,11 +1,5 @@
-/**
- * Created by baiyang on 2016/7/7.
- */
-/**
- * Created by baiyang on 2016/7/7.
- */
-var personBjCtrl = angular.module('personBjCtrl', []);
-personBjCtrl.controller('PersonBjCtrl', function ($http, $scope, $rootScope, $location, $timeout, $routeParams) {
+var myProjectCtrl = angular.module('myProjectCtrl', []);
+myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $location, $timeout, $routeParams) {
 
     var result_list = [];
 
@@ -127,7 +121,7 @@ personBjCtrl.controller('PersonBjCtrl', function ($http, $scope, $rootScope, $lo
     };
 
     $scope.editApply = function (id) {
-        $location.path('/master/person_baojuan/edit_apply/' + id);
+        $location.path('/master/my_project/edit_apply/' + id);
         console.log(id);
     };
 
@@ -235,71 +229,7 @@ personBjCtrl.controller('PersonBjCtrl', function ($http, $scope, $rootScope, $lo
 
 });
 
-personBjCtrl.controller('AddCompanyCtrl', function ($http, $scope, $rootScope, $location, $timeout, $routeParams) {
-    /*添加删除模板*/
-    $scope.model_list = [];
-    var id_model = 0;
-    $scope.addModel = function (model) {
-        $scope.model_list.push({
-            "id": id_model,
-            "model": model
-        });
-        id_model++;
-        console.log($scope.model_list);
-    };
-    $scope.delete = function (id) {
-        for (var i = 0; i < $scope.model_list.length; i++) {
-            if ($scope.model_list[i].id == id) {
-                $scope.model_list.splice(i, 1);
-                console.log("删除id" + id);
-            }
-        }
-        console.log($scope.model_list);
-    };
-
-    /*保存基本信息*/
-    $scope.submit = function () {
-        var login_user = $rootScope.getObject("login_user");
-
-        var m_params = {
-            "applyId": "",
-            "userId": login_user.userId,
-            "token": login_user.token,
-            "company_name": $scope.company_name,
-            "legal_representative": $scope.legal_representative,
-            "register_date": $scope.register_date,
-            "registered_capital": $scope.registered_capital,
-            "business_address": $scope.business_address,
-            "item_category": $scope.item_category,
-            "business_type": $scope.business_type,
-            "business_scope": $scope.business_scope,
-            "phone": $scope.phone,
-        };
-        console.log(m_params);
-        $.ajax({
-            type: 'POST',
-            url: api_uri + "inforTemplate/saveBase",
-            data: m_params,
-            traditional: true,
-            success: function (data, textStatus, jqXHR) {
-                console.log(data);
-                if (data.returnCode == 0) {
-                    console.log("创建成功了");
-                    $location.path('/product');
-                    $scope.$apply();
-
-                }
-                else {
-                    console.log(data);
-                }
-            },
-            dataType: 'json',
-        });
-
-    };
-});
-
-personBjCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $location, $state, $timeout, $stateParams, $routeParams) {
+myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $location, $state, $timeout, $stateParams, $routeParams) {
     /*添加删除模板*/
     //$scope.imgList1 = [];
     console.log($stateParams.id);
