@@ -19,6 +19,7 @@ var app = angular.module('app', [
     'superCtrl',
     'signUpCtrl',
     'bankCtrl',
+    'messageCtrl',
 
 ], function ($httpProvider) {
     // Use x-www-form-urlencoded Content-Type

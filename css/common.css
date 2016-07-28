@@ -40,6 +40,32 @@
     padding: 5px 10px;
     height: 240px;
     overflow: auto;
+    position: absolute;
+    top: 30px;
+    background: #ffffff;
+    z-index: 100;
+}
+
+.btnDrop2 {
+    margin: 8px 13px 0;
+    padding: 5px 10px;
+    height: 160px;
+    overflow: auto;
+    position: absolute;
+    top: 30px;
+    background: #ffffff;
+    z-index: 100;
+}
+
+.btnDrop1 {
+    margin: 8px 13px 0;
+    padding: 5px 10px;
+    height: 102px;
+    overflow: auto;
+    position: absolute;
+    top: 30px;
+    background: #ffffff;
+    z-index: 100;
 }
 
 .btnDropDetail {

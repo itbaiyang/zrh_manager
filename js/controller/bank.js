@@ -46,7 +46,7 @@ bankCtrl.controller('BankCtrl', function ($http, $scope, $state, $rootScope, $lo
 
     $scope.find_detail = function (id, name) {
         $state.go("master.bank.bank_man", {id: id, name: name});
-    }
+    };
 
     $scope.delete = function (id) {
         var login_user = $rootScope.getObject("login_user");
@@ -94,7 +94,6 @@ bankCtrl.controller('BankManCtrl', function ($http, $scope, $rootScope, $locatio
             "pageNo": pageNo,
             "pageSize": pageSize,
             "bankId": $stateParams.id,
-            //"wd":$scope.wd
         };
         $http({
             url: api_uri + "manage/bank/user/list",
@@ -169,7 +168,7 @@ bankCtrl.controller('BankManCtrl', function ($http, $scope, $rootScope, $locatio
             success: function (data, textStatus, jqXHR) {
                 console.log(data);
                 if (data.returnCode == 0) {
-                    $scope.list($scope.pageNo1, 10);
+                    $scope.list($scope.pageNo1, 20);
                 }
                 else {
                     console.log(data);
@@ -182,11 +181,40 @@ bankCtrl.controller('BankManCtrl', function ($http, $scope, $rootScope, $locatio
         });
     };
 
-    //$scope.search_text = null;
-    //$scope.search = function () {
-    //    $scope.wd = $scope.search_text;
-    //    $scope.list(1, 20);
-    //};
+    $scope.delete_one = function (id) {
+        var login_user = $rootScope.getObject("login_user");
+        var m_params = {
+            "userId": login_user.userId,
+            "token": login_user.token,
+            "ids": id,
+            "bankId": $scope.id
+        };
+        console.log($scope.ids);
+        console.log("baiyang", m_params);
+        $.ajax({
+            type: 'POST',
+            url: api_uri + "manage/bank/user/delete",
+            data: m_params,
+            traditional: true,
+            success: function (data, textStatus, jqXHR) {
+                console.log(data);
+                if (data.returnCode == 0) {
+                    $scope.list($scope.pageNo1, 20);
+                }
+                else {
+                    console.log(data);
+                }
+            },
+            error: function (data, textStatus, jqXHR) {
+                console.log(data)
+            },
+            dataType: 'json',
+        });
+    };
+
+    $scope.edit_bank_man = function (id) {
+        $location.path('/master/bank/update_bank_man/' + id);
+    };
 });
 
 bankCtrl.controller('AddBankCtrl', function ($http, $scope, $rootScope, $state, $location, $timeout, $routeParams) {
@@ -472,21 +500,87 @@ bankCtrl.controller('UpdateBankCtrl', function ($http, $scope, $rootScope, $stat
 
 bankCtrl.controller('AddBankManCtrl', function ($http, $scope, $rootScope, $state, $stateParams, $location, $timeout) {
 
-    $scope.bankName = $stateParams.name;
+    $scope.selected = [];
+    $scope.ids = [];
+    $scope.names = [];
+    $scope.list = function (pageNo, pageSize) {
+        var login_user = $rootScope.getObject("login_user");
+        var m_params = {
+            "userId": login_user.userId,
+            "token": login_user.token,
+            "bankId": $stateParams.id,
+            "pageNo": pageNo,
+            "pageSize": pageSize,
+            "release": true
+        };
+        $http({
+            url: api_uri + "financialProductManage/list",
+            method: "GET",
+            params: m_params
+        }).success(function (d) {
+            console.log(d);
+            if (d.returnCode == 0) {
+                $scope.page = d.result;
+                $scope.product_list = d.result.datas;
+            }
+            else {
+                console.log(d.result);
+            }
+
+        }).error(function (d) {
+        })
+    };
+
+    $scope.list(1, 20);
+
+    $scope.changePage = function (page) {
+        $scope.pageNo1 = page;
+        console.log($scope.pageNo1);
+        $scope.$watch($scope.pageNo1, function () {
+            $scope.list($scope.pageNo1, 20);
+        });
+    };
+
+    $scope.isSelected = function (id) {
+        return $scope.selected.indexOf(id) >= 0;
+    };
+
+    var updateSelected = function (action, id, name) {
+        if (action == 'add') {
+            $scope.ids.push(id);
+            $scope.names.push(name);
+            console.log($scope.ids);
+            console.log($scope.names);
+        }
+        if (action == 'remove') {
+            var idx = $scope.ids.indexOf(id);
+            var name_x = $scope.names.indexOf(name);
+            $scope.ids.splice(idx, 1);
+            $scope.names.splice(name_x, 1);
+        }
+    };
+
+    $scope.updateSelection = function ($event, id, name) {
+        console.log("点击一下")
+        var checkbox = $event.target;
+        var action = (checkbox.checked ? 'add' : 'remove');
+        updateSelected(action, id, name);
+    };
+
 
     $scope.add_bank_man = function () {
         var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId": login_user.userId,
             "token": login_user.token,
-            "bankId": $stateParams.id,
             "name": $scope.bank_man.name,
-            //"bankName": $stateParams.bankName,
-            //"sex": $scope.bank_man.sex,
-            //"headImg": $scope.bank_man.headImg,
+            "bankId": $stateParams.id,
+            "branchBankName": $scope.bank_man.branchBank,
+            "address": $scope.bank_man.address,
+            "position": $scope.bank_man.position,
+            "productIds": $scope.ids,
             "mobile": $scope.bank_man.mobile,
             "email": $scope.bank_man.email,
-            "position": $scope.bank_man.position,
         };
 
         console.log(m_params);
@@ -511,4 +605,185 @@ bankCtrl.controller('AddBankManCtrl', function ($http, $scope, $rootScope, $stat
             dataType: 'json',
         });
     };
+
+
+    $scope.show_product = function () {
+        $scope.productDiv = true;
+    };
+
+
+    $scope.hide_product = function () {
+        $scope.products = "";
+        for (var i = 0; i < $scope.names.length; i++) {
+            $scope.products += $scope.names[i];
+            $scope.products += " ";
+        }
+        ;
+        console.log($scope.products);
+        $scope.productDiv = false;
+    }
+
+});
+
+bankCtrl.controller('UpdateBankManCtrl', function ($http, $scope, $rootScope, $state, $stateParams, $location, $timeout, $routeParams) {
+    console.log($stateParams.id);
+    $scope.detail = function () {
+        var login_user = $rootScope.getObject("login_user");
+        var m_params = {
+            "userId": login_user.userId,
+            "token": login_user.token,
+        };
+        $http({
+            url: api_uri + "manage/bank/user/detail/" + $stateParams.id,
+            method: "GET",
+            params: m_params
+        }).success(function (d) {
+            console.log(d);
+            if (d.returnCode == 0) {
+                $scope.bank_man = d.result;
+                console.log($scope.bank_man);
+                $scope.products = "";
+                $scope.list(1, 20);
+            }
+            else {
+                console.log(d.result);
+            }
+
+        }).error(function (d) {
+        })
+    };
+    $scope.detail();
+    $scope.selected = [];
+    $scope.ids = [];
+    $scope.names = [];
+    $scope.list = function (pageNo, pageSize) {
+        var login_user = $rootScope.getObject("login_user");
+        var m_params = {
+            "userId": login_user.userId,
+            "token": login_user.token,
+            //"bankId": $scope.bank_man.bankId,
+            "pageNo": pageNo,
+            "pageSize": pageSize,
+            "release": true,
+        };
+        $http({
+            url: api_uri + "financialProductManage/list",
+            method: "GET",
+            params: m_params
+        }).success(function (d) {
+            console.log(d);
+            if (d.returnCode == 0) {
+                $scope.page = d.result;
+                $scope.product_list = d.result.datas;
+                for (var i = 0; i < $scope.bank_man.productIds.length; i++) {
+                    for (var j = 0; j < $scope.product_list.length; j++) {
+                        if ($scope.bank_man.productIds[i] == $scope.product_list[j].id) {
+                            $scope.names.push($scope.product_list[j].name);
+                            $scope.ids.push($scope.product_list[j].id);
+                        }
+                    }
+                }
+                $scope.products = ""
+                for (var i = 0; i < $scope.names.length; i++) {
+                    $scope.products += $scope.names[i];
+                    $scope.products += " ";
+                }
+                ;
+
+            }
+            else {
+                console.log(d.result);
+            }
+
+        }).error(function (d) {
+        })
+    };
+
+    $scope.changePage = function (page) {
+        $scope.pageNo1 = page;
+        console.log($scope.pageNo1);
+        $scope.$watch($scope.pageNo1, function () {
+            $scope.list($scope.pageNo1, 20);
+        });
+    };
+
+    $scope.isSelected = function (id) {
+        return $scope.bank_man.productIds.indexOf(id) >= 0;
+    };
+
+    var updateSelected = function (action, id, name) {
+        if (action == 'add') {
+            $scope.ids.push(id);
+            $scope.names.push(name);
+            console.log($scope.ids);
+            console.log($scope.names);
+        }
+        if (action == 'remove') {
+            var idx = $scope.ids.indexOf(id);
+            var name_x = $scope.names.indexOf(name);
+            $scope.ids.splice(idx, 1);
+            $scope.names.splice(name_x, 1);
+        }
+    };
+
+    $scope.updateSelection = function ($event, id, name) {
+        console.log("点击一下");
+        var checkbox = $event.target;
+        var action = (checkbox.checked ? 'add' : 'remove');
+        updateSelected(action, id, name);
+    };
+
+
+    $scope.update = function () {
+        var login_user = $rootScope.getObject("login_user");
+        var m_params = {
+            "userId": login_user.userId,
+            "token": login_user.token,
+            "name": $scope.bank_man.name,
+            "bankId": $scope.bank_man.bankId,
+            "branchBankName": $scope.bank_man.branchBankName,
+            "address": $scope.bank_man.address,
+            "position": $scope.bank_man.position,
+            "productIds": $scope.ids,
+            "mobile": $scope.bank_man.mobile,
+            "email": $scope.bank_man.email,
+        };
+        console.log(m_params);
+        $.ajax({
+            type: 'POST',
+            url: api_uri + "manage/bank/user/update/" + $stateParams.id,
+            data: m_params,
+            traditional: true,
+            success: function (data, textStatus, jqXHR) {
+                console.log(data);
+                if (data.returnCode == 0) {
+                    console.log("添加成功");
+                    $state.go("master.bank.bank_man", {id: m_params.bankId});
+                    $scope.$apply();
+
+                }
+                else {
+                    console.log(data);
+                }
+            },
+            dataType: 'json',
+        });
+    };
+
+
+    $scope.show_product = function () {
+        $scope.productDiv = true;
+    };
+
+
+    $scope.hide_product = function () {
+        $scope.products = "";
+        for (var i = 0; i < $scope.names.length; i++) {
+            $scope.products += $scope.names[i];
+            $scope.products += " ";
+        }
+        ;
+        console.log($scope.products);
+        $scope.productDiv = false;
+    }
 });

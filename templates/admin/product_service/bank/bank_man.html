@@ -10,18 +10,20 @@
             <span class="col-sm-2 col-lg-2">所属银行</span>
             <span class="col-sm-2 col-lg-2">银行职位</span>
             <span class="col-sm-2 col-lg-2">联系电话</span>
-            <span class="col-sm-2 col-lg-2">收件邮箱</span>
-            <span class="col-sm-1 col-lg-1">递交记录</span>
+            <span class="col-sm-2 col-lg-2">匹配项目数</span>
+            <span class="col-sm-2 col-lg-2">操作</span>
         </li>
         <li class="list-group-item " style="height: 50px" ng-repeat="bank_man in bank_man_list">
                 <span class="col-sm-2 col-lg-2 noPadding">
                     <input type="checkbox" style="margin-right: 10px" id="{{bank_man.id}}"
                            ng-checked="isSelected(bank_man.id)"
                            ng-click="updateSelection($event,bank_man.id)">{{bank_man.name}}</span>
-            <span class="noPadding col-sm-2 col-lg-2">{{bankName}}</span>
+            <span class="noPadding col-sm-2 col-lg-2">{{bank_man.branchBankName}}</span>
             <span class="noPadding col-sm-2 col-lg-2">{{bank_man.position}}</span>
             <span class="noPadding col-sm-2 col-lg-2">{{bank_man.mobile}}</span>
-            <span class="noPadding col-sm-2 col-lg-2">{{bank_man.email}}</span>
+            <span class="noPadding col-sm-2 col-lg-2">{{bank_man.receiveCount}}</span>
+            <button class="btn btnGrew" ng-click="edit_bank_man(bank_man.id)">查看详情</button>
+            <button class="btn btnGrew" ng-click="delete_one(bank_man.id)">删除</button>
         </li>
         <li class="list-group-item list_common">
             <button class="btn btnGrew disabled" ng-click="submit()">标记</button>

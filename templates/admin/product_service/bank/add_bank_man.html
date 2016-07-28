@@ -15,16 +15,39 @@
             <div class="form-group">
                 <label for="belongToBank" class="col-sm-2 control-label">所属银行</label>
                 <div class="col-sm-4">
-                    <input type="text" class="form-control" readonly="readonly" id="belongToBank" placeholder="所属银行"
-                           ng-model="bankName">
+                    <input type="text" class="form-control" id="belongToBank" placeholder="所属银行"
+                           ng-model="bank_man.branchBank">
                 </div>
             </div>
-
+            <div class="form-group">
+                <label for="address" class="col-sm-2 control-label">详细地址</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="address" placeholder="详细地址"
+                           ng-model="bank_man.address">
+                </div>
+            </div>
             <div class="form-group">
                 <label for="position" class="col-sm-2 control-label">银行职位</label>
                 <div class="col-sm-4">
                     <input type="text" class="form-control" id="position" placeholder="银行职位"
                            ng-model="bank_man.position">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="products" class="col-sm-2 control-label">负责产品</label>
+                <div class="btn-group col-sm-4 col-lg-4" style="position: relative">
+                    <button type="button" ng-click="show_product()" class="btnInput col-sm-12 col-lg-12" id="products">
+                        {{products ||"可多选"}}
+                    </button>
+                    <ul class="btnDrop col-sm-6 col-lg-6" ng-show="productDiv">
+                        <li ng-repeat="product in product_list">
+                            <input type="checkbox" style="margin-right: 10px" id="{{product.id}}"
+                                   ng-checked="isSelected(product.id)"
+                                   ng-click="updateSelection($event,product.id,product.name)">{{product.name}}
+                        </li>
+                        <button ng-click="hide_product(product.name)">选择产品</button>
+                    </ul>
                 </div>
             </div>
 

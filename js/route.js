@@ -135,6 +135,15 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
+        .state('master.my_project.detail', {
+            url: '/detail/:id',
+            views: {
+                'contains@master': {
+                    templateUrl: templates_root + 'admin/product_service/my_project/detail.html',
+                    controller: 'DetailCtrl'
+                }
+            }
+        })
         .state('master.my_project.edit_apply', {
             url: '/edit_apply/:id',
             views: {
@@ -198,6 +207,15 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
+        .state('master.bank.update_bank_man', {
+            url: '/update_bank_man/:id',
+            views: {
+                'contains@master': {
+                    templateUrl: templates_root + 'admin/product_service/bank/update_bank_man.html',
+                    controller: 'UpdateBankManCtrl'
+                }
+            }
+        })
 
         .state('master.account', {
             url: '/account',
@@ -215,6 +233,42 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 'contains@master': {
                     templateUrl: templates_root + 'admin/user_center/message/message.html',
                     //controller:'MessageCtrl'
+                }
+            }
+        })
+        .state('master.message.company', {
+            url: '/company',
+            views: {
+                'contains@master': {
+                    templateUrl: templates_root + 'admin/user_center/message/company.html',
+                    //controller:'MessageCompanyCtrl'
+                }
+            }
+        })
+        .state('master.message.bank', {
+            url: '/bank',
+            views: {
+                'contains@master': {
+                    templateUrl: templates_root + 'admin/user_center/message/bank.html',
+                    controller: 'MessageBankCtrl'
+                }
+            }
+        })
+        .state('master.message.apply', {
+            url: '/apply',
+            views: {
+                'contains@master': {
+                    templateUrl: templates_root + 'admin/user_center/message/apply.html',
+                    //controller:'MessageApplyCtrl'
+                }
+            }
+        })
+        .state('master.message.system', {
+            url: '/system',
+            views: {
+                'contains@master': {
+                    templateUrl: templates_root + 'admin/user_center/message/system.html',
+                    //controller:'MessageSystemCtrl'
                 }
             }
         })

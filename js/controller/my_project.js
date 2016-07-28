@@ -120,8 +120,8 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
         $scope.list($scope.pageNo1, 10);
     };
 
-    $scope.editApply = function (id) {
-        $location.path('/master/my_project/edit_apply/' + id);
+    $scope.showDetail = function (id) {
+        $location.path('/master/my_project/detail/' + id);
         console.log(id);
     };
 
@@ -229,6 +229,90 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
 
 });
 
+myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $location, $state, $timeout, $stateParams) {
+    /*添加删除模板*/
+    $scope.id = $stateParams.id;
+
+    $scope.list = function (pageNo, pageSize) {
+        var login_user = $rootScope.getObject("login_user");
+        var m_params = {
+            "userId": login_user.userId,
+            "token": login_user.token,
+            "pageNo": pageNo,
+            "pageSize": pageSize,
+            "bankId": $scope.bankId,
+        };
+        $http({
+            url: api_uri + "manage/bank/user/list",
+            method: "GET",
+            params: m_params
+        }).success(function (d) {
+            console.log(d);
+            if (d.returnCode == 0) {
+                $scope.bank_man_list = d.result.datas;
+            }
+            else {
+                console.log(d.result);
+            }
+
+        }).error(function (d) {
+        })
+    };
+
+    $scope.get = function () {
+        var login_user = $rootScope.getObject("login_user");
+        var m_params = {
+            "userId": login_user.userId,
+            "token": login_user.token,
+        };
+        $http({
+            url: api_uri + "inforTemplate/detail/" + $stateParams.id,
+            method: "GET",
+            params: m_params
+        }).success(function (d) {
+            console.log(d);
+            $scope.isAllot = d.result.isAllot;
+            $scope.bankId = d.result.bankId;
+            $scope.basic = d.result.baseInfo;
+            $scope.model_list = d.result.templateList;
+            $scope.list(1, 20);
+        }).error(function (d) {
+
+        })
+    };
+    $scope.get();
+
+    $scope.editApply = function (id) {
+        $location.path('/master/my_project/edit_apply/' + id);
+        console.log(id);
+    };
+
+    $scope.choiceUser = function (id) {
+        var login_user = $rootScope.getObject("login_user");
+        var m_params = {
+            "userId": login_user.userId,
+            "token": login_user.token,
+            "id": $scope.id,
+            "bankUserId": id
+        };
+        console.log(m_params);
+        $http({
+            url: api_uri + "loanApplicationManage/allot/",
+            method: "GET",
+            params: m_params
+        }).success(function (d) {
+            console.log(d);
+            if (d.returnCode == 0) {
+                alert("递交成功");
+            }
+            else {
+                console.log(d.result);
+            }
+        }).error(function (d) {
+        })
+    };
+});
+
 myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $location, $state, $timeout, $stateParams, $routeParams) {
     /*添加删除模板*/
     //$scope.imgList1 = [];
@@ -283,8 +367,8 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
             console.log($scope.basic);
             console.log($scope.model_list);
         }).error(function (d) {
-            console.log("login error");
-            $location.path("/error");
+            //console.log("login error");
+            //$location.path("/error");
         })
     };
     $scope.get();
