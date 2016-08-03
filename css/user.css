@@ -29,3 +29,30 @@
     line-height: 25px;
     font-size: 14px;
 }
+
+.messageBox {
+    position: relative;
+    width: calc(100% - 50px);
+    margin: 0 25px 20px;
+    padding: 0 20px;
+    /*height: 140px;*/
+    border: 1px solid #cccccc;
+}
+
+.messageImg {
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+    border: 2px solid #e6e6e6;
+    margin-top: 13px;
+}
+
+.messageImg img {
+    width: 60%;
+    height: 60%;
+    margin: 20%;
+}
+
+.messageDate {
+    margin-top: 55px;
+}

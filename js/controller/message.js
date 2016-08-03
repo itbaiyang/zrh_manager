@@ -11,8 +11,32 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
             method: "GET",
             params: m_params
         }).success(function (d) {
-            $scope.message_list = d.result.datas;
             console.log(d);
+            $scope.message_list = d.result.datas;
+            angular.forEach($scope.message_list, function (data) {
+                //$scope.status = d.result.status;
+                if (data.status == 0) {
+                    data.progressText = "未申请";
+                } else if (data.status == 1) {
+                    data.progressText = "约见中";
+                    data.jindu = 20;
+                    data.jindu_next = 30;
+                } else if (data.status == 2) {
+                    data.progressText = "审核中";
+                    data.jindu = 50;
+                    data.jindu_next = 25;
+                } else if (data.status == 3) {
+                    data.progressText = "跟进中";
+                    data.jindu = 75;
+                    data.jindu_next = 25;
+                } else if (data.status == 4) {
+                    data.progressText = "成功融资";
+                    data.progressBtn = "已结束";
+                    data.jindu = 100;
+                } else if (data.status == -1) {
+                    data.progressText = "申请取消";
+                }
+            });
 
         }).error(function (d) {
             console.log(d);
@@ -71,7 +95,7 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
             "userId": login_user.userId,
             "token": login_user.token,
             "id": id,
-            "reason": "不行",
+            "reason": $scope.reason,
         };
         console.log(m_params);
         $http({

@@ -304,6 +304,7 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
             console.log(d);
             if (d.returnCode == 0) {
                 alert("递交成功");
+                $state.go("master.my_project");
             }
             else {
                 console.log(d.result);
@@ -447,7 +448,7 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
                 console.log(data);
                 if (data.returnCode == 0) {
                     console.log("list success");
-                    $state.go("master.person_baojuan");
+                    $state.go("master.my_project");
                     $scope.$apply();
 
                 }

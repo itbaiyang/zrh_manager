@@ -1,7 +1,7 @@
-//api_uri = "http://test.zhironghao.com/api/";
+api_uri = "http://test.zhironghao.com/api/";
 //api_uri = "http://api.supeiyunjing.com/";
 //api_uri = "http://172.17.2.13:8080/api/";
-api_uri = "http://172.16.97.95:8080/api/";
+//api_uri = "http://172.16.97.95:8080/api/";
 var templates_root = 'templates/';
 deskey = "abc123.*abc123.*abc123.*abc123.*";
 var app = angular.module('app', [

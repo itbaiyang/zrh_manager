@@ -285,9 +285,18 @@
     width: calc(100% - 260px);
     min-width: 890px;
     height: 100%;
-    padding-left: 15px;
+    margin-left: 15px;
     overflow-x: hidden;
     overflow-y: scroll;
+}
+
+.addRight1 {
+    width: calc(100% - 210px);
+    min-width: 890px;
+    height: 100%;
+    padding: 0 15px;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 .redPoint {
     position: absolute;

@@ -47,6 +47,15 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
+        .state("super.update", {
+            url: '/update/:id',
+            views: {
+                'sign_up@super': {
+                    templateUrl: templates_root + 'super/user_update.html',
+                    controller: 'UserUpdateCtrl'
+                }
+            }
+        })
 
         .state("master", {
             url: '/master',
