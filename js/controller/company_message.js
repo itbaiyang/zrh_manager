@@ -292,7 +292,6 @@ loanApplicationCtrl.controller('AddCompanyCtrl', function ($http, $scope, $rootS
 
     $scope.submitMessage = function () {
         $scope.basicMessage();
-        //$state.go('master.person_baojuan');
     };
     $scope.saveImg = "";
     $scope.picSave = function () {

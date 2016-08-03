@@ -1,7 +1,7 @@
-api_uri = "http://test.zhironghao.com/api/";
+//api_uri = "http://test.zhironghao.com/api/";
 //api_uri = "http://api.supeiyunjing.com/";
 //api_uri = "http://172.17.2.13:8080/api/";
-//api_uri = "http://172.16.97.95:8080/api/";
+api_uri = "http://172.16.97.95:8080/api/";
 var templates_root = 'templates/';
 deskey = "abc123.*abc123.*abc123.*abc123.*";
 var app = angular.module('app', [
@@ -68,14 +68,22 @@ app.run(function ($location, $rootScope, $http) {
     /*********************************** 回调区 ***************************************/
         // 页面跳转后
     $rootScope.qiniu_bucket_domain = "o793l6o3p.bkt.clouddn.com";
- /*   $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
-        var present_route = $location.$$path; //获取当前路由
-    });
-    // 页面跳转前
-    $rootScope.$on('$routeChangeStart', function (event, next, current) {
 
-    });
-*/
+    $rootScope.$on('$routeChangeSuccess',
+        function (event, toState, toParams, fromState, fromParams) {
+            var present_route = $location.$$path; //获取当前路由
+        });
+    // 页面跳转前
+    $rootScope.$on('$stateChangeStart',
+        function (event, toState, toParams, fromState, fromParams) {
+            console.log("check user ");
+            $rootScope.check_user();
+            if (!$rootScope.login_user) {
+                $location.path("/login");
+            } else {
+                console.log("dd");
+            }
+        });
     /*********************************** 公用方法区 ***************************************/
 
         //加密 3des
@@ -169,6 +177,31 @@ app.run(function ($location, $rootScope, $http) {
         } else {
             return null;
         }
+    };
+
+    $rootScope.check_user = function () {
+        $rootScope.login_user = $rootScope.getObject("login_user");
+        console.log($rootScope.login_user);
+        if ($rootScope.login_user) {
+            $http({
+                url: api_uri + "p/user/validateAuth",
+                method: "POST",
+                params: $rootScope.login_user
+            }).success(function (d) {
+                if (d.returnCode == 0) {
+                    console.log("login success");
+                    return true;
+                } else {
+                    $rootScope.login_user = {};
+                    $rootScope.removeObject("login_user");
+                    return false;
+                }
+
+            }).error(function (d) {
+                return false;
+            });
+        }
+
     };
 
 });

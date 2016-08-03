@@ -102,6 +102,7 @@ bankCtrl.controller('BankManCtrl', function ($http, $scope, $rootScope, $locatio
         }).success(function (d) {
             console.log(d);
             if (d.returnCode == 0) {
+                $scope.page = d.result;
                 $scope.bank_man_list = d.result.datas;
             }
             else {
@@ -582,7 +583,6 @@ bankCtrl.controller('AddBankManCtrl', function ($http, $scope, $rootScope, $stat
             "mobile": $scope.bank_man.mobile,
             "email": $scope.bank_man.email,
         };
-
         console.log(m_params);
         $.ajax({
             type: 'POST',
@@ -592,11 +592,8 @@ bankCtrl.controller('AddBankManCtrl', function ($http, $scope, $rootScope, $stat
             success: function (data, textStatus, jqXHR) {
                 console.log(data);
                 if (data.returnCode == 0) {
-                    console.log("添加成功");
                     $state.go("master.bank.bank_man", {id: m_params.bankId});
-                    //$location.path("master/bank/bank_man"+$stateParams.id);
                     $scope.$apply();
-
                 }
                 else {
                     console.log(data);
