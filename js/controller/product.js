@@ -458,12 +458,14 @@ productCtrl.controller('ProductUpdateCtrl', function ($http, $scope, $state, $ro
             $scope.bankName = $scope.product.bankname;
             $scope.bankId = $scope.product.bankId;
             $scope.tags_arr = $scope.product.tags;
-            for (var i = 0; i < $scope.tags_arr.length; i++) {
-                $scope.tags += "#";
-                $scope.tags += $scope.tags_arr[i];
-                $scope.tags += "# ";
+            if ($scope.tags_arr) {
+                for (var i = 0; i < $scope.tags_arr.length; i++) {
+                    $scope.tags += "#";
+                    $scope.tags += $scope.tags_arr[i];
+                    $scope.tags += "# ";
+                }
+                ;
             }
-            ;
             console.log($scope.tags);
             console.log($scope.bankName);
             for (var key in d.result.feature) {
