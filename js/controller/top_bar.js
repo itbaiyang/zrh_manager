@@ -17,6 +17,13 @@ topBarCtrl.controller('TopBarCtrl', function ($http, $scope, $rootScope, $locati
 
 topBarCtrl.controller('SideBarCtrl', function ($http, $scope,$state, $rootScope, $location, $timeout, $routeParams) {
     $scope.$state = $state;
+    $scope.changeColor = function (d) {
+        $scope.side = [];
+        for (var i = 0; i <= 8; i++) {
+            $scope.side[i] = false;
+        }
+        $scope.side[d] = true;
+    }
 });
 
 

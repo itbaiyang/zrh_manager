@@ -64,7 +64,7 @@
     text-decoration: none;
 }
 
-.sideBarP2:focus, .sideBarP2:active {
+.sideBarP2C, .sideBarP2:focus {
     background: #6b7acb;
     color: #fff;
     text-decoration: none;

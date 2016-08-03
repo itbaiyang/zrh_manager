@@ -314,10 +314,13 @@ productCtrl.controller('ProductCreateCtrl', function ($http, $scope, $rootScope,
     };
 
     $scope.tags = "";
-    var tags = [];
+
 
     $scope.submit = function () {
+        var tags = [];
         var text = $scope.tags;
+        var reg = new RegExp('＃', 'g');
+        text = text.replace(reg, '#');
         var array = text.split("#");
         for (var i = 0; i < array.length; i++) {
             if (array[i] != "" && array[i] != " ") {
