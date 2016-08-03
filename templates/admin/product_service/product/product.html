@@ -35,7 +35,7 @@
                     <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}"
                            ng-checked="isSelected(resultObj.id)"
                            ng-click="updateSelection($event,resultObj.id)">{{resultObj.name}}</span>
-            <span class="col-sm-2 col-lg-2">个数</span>
+            <span class="col-sm-2 col-lg-2">{{resultObj.count}}</span>
             <span class="col-sm-2 col-lg-2">{{resultObj.bankname}}</span>
             <span class="col-sm-2 col-lg-2">{{resultObj.progressText}}</span>
             <button class="btn btnGrew" ng-click="update(resultObj.id)">编辑产品</button>
