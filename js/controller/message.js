@@ -90,24 +90,27 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
             console.log(d);
         });
     };
-    $scope.refuse = function (id) {
-        var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
-            "id": id,
-            "reason": $scope.reason,
-        };
-        console.log(m_params);
-        $http({
-            url: api_uri + "applyBankDeal/manage/refuse",
-            method: "GET",
-            params: m_params
-        }).success(function (d) {
-            console.log(d);
 
-        }).error(function (d) {
-            console.log(d);
-        });
+    $scope.refuse = function (id) {
+        $scope.reason_refuse = $("#reason_refuse").val();
+        console.log($scope.reason_refuse);
+        //var m_params = {
+        //    "userId": login_user.userId,
+        //    "token": login_user.token,
+        //    "id": id,
+        //    "reason": $scope.reason_refuse,
+        //};
+        //console.log(m_params);
+        //$http({
+        //    url: api_uri + "applyBankDeal/manage/refuse",
+        //    method: "GET",
+        //    params: m_params
+        //}).success(function (d) {
+        //    console.log(d);
+        //
+        //}).error(function (d) {
+        //    console.log(d);
+        //});
     }
 });
 

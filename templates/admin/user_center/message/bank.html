@@ -86,8 +86,11 @@
                     <ul class="dropdown-menu">
                         <li>驳回原因</li>
                         <br/>
-                        <textarea placeholder="驳回原因" style="z-index: 100" ng-model="reason"></textarea>
-                        <button ng-click="refuse(message.id)">确定</button>
+                        <input type="text" class="form-control" placeholder="驳回原因123"
+                               ng-model="reason_refuse" id="reason_refuse">
+                        <p ng-click="change($event)">
+                            <button ng-click="refuse(message.id)">确定</button>
+                        </p>
                     </ul>
                 </div>
             </div>
