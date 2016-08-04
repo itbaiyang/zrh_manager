@@ -240,8 +240,8 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             url: '/message',
             views: {
                 'contains@master': {
-                    templateUrl: templates_root + 'admin/user_center/message/bank.html',
-                    controller: 'MessageBankCtrl'
+                    templateUrl: templates_root + 'admin/user_center/message/message.html',
+                    //controller: 'MessageCtrl'
                 }
             }
         })

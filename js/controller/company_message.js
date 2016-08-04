@@ -205,7 +205,6 @@ loanApplicationCtrl.controller('AddCompanyCtrl', function ($http, $scope, $rootS
     $scope.basicMessage = function () {
         var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            //"applyId": '',
             "userId": login_user.userId,
             "token": login_user.token,
             "company_name": $scope.basic.company_name,
