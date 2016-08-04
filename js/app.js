@@ -178,6 +178,10 @@ app.run(function ($location, $rootScope, $http) {
             return null;
         }
     };
+    //$rootScope.messageSide = false;
+    //$rootScope.changeMessageColor = function(){
+    //    $rootScope.messageSide = true;
+    //};
 
     $rootScope.check_user = function () {
         $rootScope.login_user = $rootScope.getObject("login_user");

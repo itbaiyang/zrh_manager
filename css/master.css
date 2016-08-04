@@ -53,20 +53,39 @@
     height: 40px;
     line-height: 40px;
     text-align: center;
-    color: #ffffff;
     font-size: 12px;
     cursor: pointer;
+    color: #fff;
 }
 
+.sideBarP3 {
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 14px;
+    color: #4c4c4c;
+    cursor: pointer;
+}
 .sideBarP2:hover {
     background: #373C50;
     color: #fff;
     text-decoration: none;
 }
 
+.sideBarP3:hover {
+    background: #ffffff;
+    text-decoration: none;
+}
+
 .sideBarP2C, .sideBarP2:focus {
     background: #6b7acb;
     color: #fff;
+    text-decoration: none;
+}
+
+.sideBarP3C, .sideBarP3:focus {
+    background: #FFFFFF;
     text-decoration: none;
 }
 /*company_message*/
@@ -256,7 +275,7 @@
     padding-left: 10px;
     line-height: 80px;
     font-size: 14px;
-    background: #d9dee4;
+    background: #eaedf1;
     font-weight: 400;
 }
 .sideModel>div {
