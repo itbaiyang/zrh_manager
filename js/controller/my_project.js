@@ -272,6 +272,7 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
         }).success(function (d) {
             console.log(d);
             $scope.isAllot = d.result.isAllot;
+            $scope.isReg = d.result.isReg;
             $scope.bankId = d.result.bankId;
             $scope.basic = d.result.baseInfo;
             $scope.model_list = d.result.templateList;
@@ -364,6 +365,7 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
             console.log(d);
             //$scope.company_name = d.result.companyName;
             $scope.basic = d.result.baseInfo;
+            $scope.isReg = d.result.isReg;
             $scope.model_list = d.result.templateList;
             console.log($scope.basic);
             console.log($scope.model_list);
@@ -374,8 +376,15 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
     };
     $scope.get();
     /*保存基本信息*/
+    //$scope.x_linkman ={
+    //    name:"",
+    //    mobile:""
+    //};
+
     $scope.basicMessage = function () {
         var login_user = $rootScope.getObject("login_user");
+        //$scope.linkman_list = [];
+        //$scope.linkman_list.push($scope.basic.x_linkman);
         var m_params = {
             "applyId": $stateParams.id,
             "userId": login_user.userId,
@@ -388,9 +397,7 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
             "item_category": $scope.basic.item_category,
             "business_type": $scope.basic.business_type,
             "business_scope": $scope.basic.business_scope,
-            //"registerMobile":$scope.basic.registerMobile,
-            "phone": $scope.basic.phone,
-            //"registerMobile": $scope.basic.registerMobile
+            "linkman": JSON.stringify($scope.basic.x_linkman),
         };
         console.log(m_params);
         $.ajax({

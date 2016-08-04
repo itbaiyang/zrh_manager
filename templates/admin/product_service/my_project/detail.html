@@ -79,7 +79,7 @@
                        ng-model="basic.business_scope">
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" ng-show="isReg">
             <label for="phoneNum" class="col-sm-2 control-label">注册电话</label>
             <div class="col-sm-2">
                 <input type="text" readonly="readonly" class="form-control" id="phoneMan" placeholder="注册人"
@@ -87,14 +87,18 @@
             </div>
             <div class="col-sm-2">
                 <input type="text" readonly="readonly" class="form-control" id="phone" placeholder="注册电话"
-                       ng-model="basic.registerMobile">
+                       ng-model="basic.phone">
             </div>
         </div>
         <div class="form-group">
             <label for="phoneNum" class="col-sm-2 control-label">联系电话</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" placeholder="联系人" readonly="readonly" id="phoneNumMan"
+                       ng-model="basic.x_linkman[0].name">
+            </div>
             <div class="col-sm-4">
                 <input type="text" class="form-control" readonly="readonly" id="phoneNum" placeholder="联系电话"
-                       ng-model="basic.phone">
+                       ng-model="basic.x_linkman[0].mobile">
             </div>
         </div>
         <p class="createTitle">其他类型</p>
