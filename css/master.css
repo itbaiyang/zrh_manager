@@ -57,6 +57,7 @@
     cursor: pointer;
     color: #fff;
     overflow: hidden;
+    padding: 0 12px;
 }
 .sideBarP3 {
     display: block;

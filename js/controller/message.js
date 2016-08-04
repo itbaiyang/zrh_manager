@@ -110,3 +110,24 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
         });
     }
 });
+
+messageCtrl.controller('MessageSystemCtrl', function ($http, $scope, $rootScope, $location, $timeout, $routeParams) {
+    var login_user = $rootScope.getObject("login_user");
+    $scope.init = function () {
+        var m_params = {
+            "userId": login_user.userId,
+            "token": login_user.token,
+        };
+        $http({
+            url: api_uri + "zrh/message/lists",
+            method: "GET",
+            params: m_params
+        }).success(function (d) {
+            console.log(d);
+            $scope.message_list = d.result.datas;
+        }).error(function (d) {
+            console.log(d);
+        });
+    };
+    $scope.init();
+});

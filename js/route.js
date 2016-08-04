@@ -277,7 +277,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             views: {
                 'contains@master': {
                     templateUrl: templates_root + 'admin/user_center/message/system.html',
-                    //controller:'MessageSystemCtrl'
+                    controller: 'MessageSystemCtrl'
                 }
             }
         })
