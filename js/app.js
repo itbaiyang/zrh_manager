@@ -80,10 +80,10 @@ app.run(function ($location, $rootScope, $http) {
                 console.log(array[1], 'baiyang');
                 $rootScope.sideTwo = true;
                 $rootScope.choiceColorTwo = array[2];
-                $(".sideBarP2").css("text-align", "left", "padding-left", "5px");
+                $(".sideBarP2").css("text-align", "left");
             } else {
                 $rootScope.sideTwo = false;
-                $(".sideBar").css("width", "180px", "overflow", "auto");
+                $(".sideBarP2").css("text-align", "center");
             }
         });
     // 页面跳转前

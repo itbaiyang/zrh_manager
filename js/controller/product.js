@@ -315,7 +315,9 @@ productCtrl.controller('ProductCreateCtrl', function ($http, $scope, $rootScope,
 
     $scope.tags = "";
 
-
+    if (!$scope.type) {
+        $scope.type = 0;
+    }
     $scope.submit = function () {
         var tags = [];
         var text = $scope.tags;
@@ -339,6 +341,7 @@ productCtrl.controller('ProductCreateCtrl', function ($http, $scope, $rootScope,
             $scope.condition_list_new.push($scope.condition_list[key].condition)
         }
         var login_user = $rootScope.getObject("login_user");
+
         var m_params = {
             "userId":login_user.userId,
             "token":login_user.token,
@@ -352,6 +355,7 @@ productCtrl.controller('ProductCreateCtrl', function ($http, $scope, $rootScope,
             "summary": $scope.product.summary,
             "feature": $scope.feature_list_new,
             "conditions": $scope.condition_list_new,
+            "type": $scope.type
         };
         console.log(m_params);
         $.ajax({

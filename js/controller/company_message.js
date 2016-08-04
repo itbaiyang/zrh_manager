@@ -170,7 +170,7 @@ loanApplicationCtrl.controller('LoanApplicationCtrl', function ($http, $scope, $
     };
 });
 
-loanApplicationCtrl.controller('AddCompanyCtrl', function ($http, $scope, $rootScope, $location, $timeout, $routeParams) {
+loanApplicationCtrl.controller('AddCompanyCtrl', function ($http, $scope, $rootScope, $state, $location, $timeout, $routeParams) {
     /*添加删除模板*/
     //$scope.model = {
     //    title: "",
@@ -229,6 +229,8 @@ loanApplicationCtrl.controller('AddCompanyCtrl', function ($http, $scope, $rootS
                 console.log(data);
                 if (data.returnCode == 0) {
                     console.log("basic success");
+                    $state.go("master.company_message");
+                    $scope.$apply();
                 }
                 else {
                     console.log(data);
