@@ -56,8 +56,8 @@
     font-size: 12px;
     cursor: pointer;
     color: #fff;
+    overflow: hidden;
 }
-
 .sideBarP3 {
     display: block;
     height: 40px;
@@ -259,6 +259,14 @@
     height: 100%;
     background: #eaedf1;
 }
+
+.sideModel1 {
+    width: 210px;
+    height: 100%;
+    background: #eaedf1;
+    position: absolute;
+    left: 40px;
+}
 .modelTitle{
     width: 100%;
     height: 30px;
@@ -322,6 +330,14 @@
     overflow-y: scroll;
 }
 
+.addRight1 {
+    width: 100%;
+    min-width: 890px;
+    height: 100%;
+    margin-left: 15px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
 .addRight1 {
     width: calc(100% - 210px);
     min-width: 890px;

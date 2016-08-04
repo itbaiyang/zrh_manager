@@ -69,9 +69,22 @@ app.run(function ($location, $rootScope, $http) {
         // 页面跳转后
     $rootScope.qiniu_bucket_domain = "o793l6o3p.bkt.clouddn.com";
 
-    $rootScope.$on('$routeChangeSuccess',
+    $rootScope.$on('$stateChangeSuccess',
         function (event, toState, toParams, fromState, fromParams) {
-            var present_route = $location.$$path; //获取当前路由
+            var present_route = toState.name; //获取当前路由
+            console.log(present_route);
+            var array = present_route.split(".");
+            $rootScope.choiceColor = array[1];
+            console.log(array[1]);
+            if (array[1] == "message") {
+                console.log(array[1], 'baiyang');
+                $rootScope.sideTwo = true;
+                $rootScope.choiceColorTwo = array[2];
+                $(".sideBarP2").css("text-align", "left", "padding-left", "5px");
+            } else {
+                $rootScope.sideTwo = false;
+                $(".sideBar").css("width", "180px", "overflow", "auto");
+            }
         });
     // 页面跳转前
     $rootScope.$on('$stateChangeStart',

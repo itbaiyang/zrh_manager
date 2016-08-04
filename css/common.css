@@ -106,6 +106,15 @@
     margin-right: 10px;
 }
 
+.btnBlueImg1 {
+    width: 18px;
+    height: 18px;
+    border: 1px solid #8188b1;
+    background: #a2a9d2;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
 .noPadding {
     padding: 0;
 }

@@ -1,26 +1,26 @@
 <div style="position: absolute;overflow-x:hidden; z-index: 100;width: 100%; height: calc(100% - 50px); min-width: 1150px; background: #ffffff">
-    <div class="sideModel fl">
-        <p class="modelTitle">添加一个模板</p>
-        <div>
-            <div class="model_01" ng-click="addModel(1)"></div>
-            <p>(1)</p>
-        </div>
-        <div>
-            <div class="model_02" ng-click="addModel(2)"></div>
-            <p>(2)</p>
-        </div>
-        <div>
-            <div class="model_03" ng-click="addModel(3)"></div>
-            <p>(3)</p>
-        </div>
-    </div>
-    <div class="addRight fl">
+    <!--<div class="sideModel fl">-->
+    <!--<p class="modelTitle">添加一个模板</p>-->
+    <!--<div>-->
+    <!--<div class="model_01" ng-click="addModel(1)"></div>-->
+    <!--<p>(1)</p>-->
+    <!--</div>-->
+    <!--<div>-->
+    <!--<div class="model_02" ng-click="addModel(2)"></div>-->
+    <!--<p>(2)</p>-->
+    <!--</div>-->
+    <!--<div>-->
+    <!--<div class="model_03" ng-click="addModel(3)"></div>-->
+    <!--<p>(3)</p>-->
+    <!--</div>-->
+    <!--</div>-->
+    <div class="addRight1 fl">
         <div class="contentTitle">
             <span>添加企业信息</span>
             <div class="fr" style="margin: 10px">
                 <button style="margin-left:10px" class="btn btn-default fr" type="submit" ng-click="submitMessage()">保存
                 </button>
-                <button class="btn btn-default fr" ui-sref="master.person_baojuan">返回</button>
+                <button class="btn btn-default fr" ui-sref="master.company_message">返回</button>
             </div>
         </div>
         <form class="form-horizontal">
@@ -83,37 +83,27 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="phoneNum" class="col-sm-2 control-label">注册电话</label>
+                <label for="phoneNumMan" class="col-sm-2 control-label">联系电话</label>
                 <div class="col-sm-2">
-                    <input type="text" readonly="readonly" class="form-control" id="phoneMan" placeholder="注册人"
-                           ng-model="basic.registerLinkman">
+                    <input type="text" class="form-control" id="phoneNumMan" placeholder="联系人"
+                           ng-model="basic.linkman">
                 </div>
-                <div class="col-sm-2">
-                    <input type="text" readonly="readonly" class="form-control" id="phone" placeholder="注册电话"
-                           ng-model="basic.registerMobile">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="phoneNum" class="col-sm-2 control-label">联系电话</label>
-                <!--<div class="col-sm-2">-->
-                <!--<input type="text" class="form-control" id="phoneNumMan" ng-model="basic.phone">-->
-                <!--</div>-->
                 <div class="col-sm-4">
                     <input type="text" class="form-control" id="phoneNum" placeholder="联系电话" ng-model="basic.phone">
                 </div>
             </div>
-            <p class="createTitle">其他类型</p>
-            <div ng-switch="model.templateType" ng-repeat="model in model_list">
-                <div ng-switch-when="1">
-                    <div ng-include="'templates/model/accounts_receivable.html'"></div>
-                </div>
-                <div ng-switch-when="2">
-                    <div ng-include="'templates/model/company_detail.html'"></div>
-                </div>
-                <div ng-switch-when="3">
-                    <div ng-include="'templates/model/financial_statements.html'"></div>
-                </div>
-            </div>
+            <!--<p class="createTitle">其他类型</p>-->
+            <!--<div ng-switch="model.templateType" ng-repeat="model in model_list">-->
+            <!--<div ng-switch-when="1">-->
+            <!--<div ng-include="'templates/model/accounts_receivable.html'"></div>-->
+            <!--</div>-->
+            <!--<div ng-switch-when="2">-->
+            <!--<div ng-include="'templates/model/company_detail.html'"></div>-->
+            <!--</div>-->
+            <!--<div ng-switch-when="3">-->
+            <!--<div ng-include="'templates/model/financial_statements.html'"></div>-->
+            <!--</div>-->
+            <!--</div>-->
         </form>
     </div>
 </div>
