@@ -91,9 +91,12 @@
 
 .contentTags {
     background: #ffffff;
-    height: 50px;
+    height: 30px;
     margin-bottom: 20px;
-    padding: 0;
+    padding: 0 20px;
+    line-height: 30px;
+    font-size: 14px;
+    color: #F97383;
 }
 .contentTitle span{
     margin-top: 20px;
@@ -204,12 +207,12 @@
 
 .expect_border p {
     font-size: 20px;
-    color: #f87482;
+    color: #F97383;
     margin-top: -12px;
     line-height: 28px;
 }
 .expect_border p>span{
-    color: #f87482;
+    color: #F97383;
     font-size: 14px;
 }
 
@@ -242,6 +245,16 @@
     height: 30px;
     padding-left: 10px;
     line-height: 30px;
+    font-size: 14px;
+    background: #d9dee4;
+    font-weight: 400;
+}
+
+.modelTitle1 {
+    width: 100%;
+    height: 80px;
+    padding-left: 10px;
+    line-height: 80px;
     font-size: 14px;
     background: #d9dee4;
     font-weight: 400;

@@ -1,23 +1,25 @@
 <div class="content1 row" style="background: #eaedf1">
-    <div class="contentTags col-sm-10 col-lg-10"></div>
+    <div class="contentTags col-sm-10 col-lg-10">
+        系统通知功能未开通
+    </div>
     <div class="account col-sm-10 col-lg-10">
-        <div class="col-sm-2 col-lg-2">
+        <div class="accountDetail col-sm-2 col-lg-2">
             <img ng-src="img/upload.png">
-            <p>hi,孟帅</p>
+            <p>hi, <span style="color: #009dd0;">孟帅</span></p>
             <button>账户管理</button>
         </div>
         <div class="col-sm-10 col-lg-10" style="background: #ffffff;height: 160px">
-            <div class="col-sm-4" style="border: 1px solid red">
+            <div class="dateCount col-sm-4">
                 <p>企业数据</p>
                 <p>{{count.c1}}家</p>
                 <p>申请融资{{count.c2}}|完成融资{{count.c3}}</p>
             </div>
-            <div class="col-sm-4">
+            <div class="dateCount col-sm-4">
                 <p>金融产品</p>
                 <p>{{count.p1}}款</p>
                 <p>已发布{{count.p2}}|未发布{{count.p3}}</p>
             </div>
-            <div class="col-sm-4">
+            <div class="dateCount col-sm-4">
                 <p>注册用户</p>
                 <p>{{count.u1}}人</p>
                 <p>企业人员{{count.u2}}|银行人员{{count.u3}}</p>
@@ -25,7 +27,13 @@
         </div>
     </div>
     <div class="col-sm-10 col-lg-10" style="padding: 0">
-        <div class="addBtn fl" ui-sref="master.company_message.add_company" style=" margin-right: 4%;">123</div>
-        <div class="addBtn fl" ui-sref="master.product.create">123</div>
+        <div class="addBtn fl" ui-sref="master.company_message.add_company" style=" margin-right: 4%;">
+            <div style="font-size: 40px;text-align: center">+</div>
+            <p style="font-size: 16px;text-align: center">添加企业信息</p>
+        </div>
+        <div class="addBtn fl" ui-sref="master.product.create">
+            <div style="font-size: 40px;text-align: center">+</div>
+            <p style="font-size: 16px;text-align: center">添加金融产品</p>
+        </div>
     </div>
 </div>
