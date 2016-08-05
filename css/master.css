@@ -323,8 +323,8 @@
     margin: 40px auto 10px;
 }
 .addRight{
-    width: calc(100% - 260px);
-    min-width: 890px;
+    width: calc(100% - 225px);
+    /*min-width: 890px;*/
     height: 100%;
     margin-left: 15px;
     overflow-x: hidden;
