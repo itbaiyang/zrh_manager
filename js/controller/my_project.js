@@ -309,6 +309,7 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
             }
             else {
                 console.log(d.result);
+                alert("递交失败");
             }
         }).error(function (d) {
         })

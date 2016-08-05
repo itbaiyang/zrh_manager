@@ -18,21 +18,22 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
                 if (data.status == 0) {
                     data.progressText = "未申请";
                 } else if (data.status == 1) {
-                    data.progressText = "约见中";
+                    data.progressText = "审核中";
                     data.jindu = 20;
                     data.jindu_next = 30;
                 } else if (data.status == 2) {
-                    data.progressText = "审核中";
-                    data.jindu = 50;
-                    data.jindu_next = 25;
+                    data.progressText = "约见中";
+                    data.jindu = 20;
+                    data.jindu_next = 30;
                 } else if (data.status == 3) {
                     data.progressText = "跟进中";
-                    data.jindu = 75;
+                    data.jindu = 50;
                     data.jindu_next = 25;
                 } else if (data.status == 4) {
                     data.progressText = "成功融资";
                     data.progressBtn = "已结束";
-                    data.jindu = 100;
+                    data.jindu = 75;
+                    data.jindu_next = 25;
                 } else if (data.status == -1) {
                     data.progressText = "申请取消";
                 }
@@ -49,7 +50,7 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
         $scope.status = status;
         console.log($scope.status);
         if (status == 2) {
-            $scope.statusText = "审核中";
+            $scope.statusText = "约见中";
         } else if (status == 3) {
             $scope.statusText = "跟进中";
         } else if (status == 4) {
@@ -59,7 +60,7 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
     $scope.choiceStatus = function (status) {
         $scope.status = status;
         if (status == 2) {
-            $scope.statusText = "审核中";
+            $scope.statusText = "约见中";
         } else if (status == 3) {
             $scope.statusText = "跟进中";
         } else if (status == 4) {

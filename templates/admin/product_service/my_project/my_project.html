@@ -1,5 +1,5 @@
 <div class="content row">
-    <div class="contentTitle col-sm-10 col-lg-10"><span>我的报卷</span></div>
+    <div class="contentTitle col-sm-10 col-lg-10"><span>我的项目</span></div>
     <div class="noPadding col-sm-10 col-lg-10">
         <div class="noPadding col-sm-4 col-lg-4">
             <input type="text" class="form-control" placeholder="搜索企业名称" ng-model="search_text">
@@ -57,7 +57,7 @@
                 </div>
             </div>
             <div ng-if="resultObj.status != 0">
-                <button class="btnGrew" ng-click="showDetail(resultObj.id)">完善信息</button>
+                <button class="btnGrew" ng-click="showDetail(resultObj.id)">企业信息</button>
                 <button class="btnGrew" ng-click="nextStatus(resultObj.id,resultObj.status)">{{resultObj.progressBtn
                     ||'下一步'}}
                 </button>

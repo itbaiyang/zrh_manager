@@ -459,9 +459,11 @@ productCtrl.controller('ProductUpdateCtrl', function ($http, $scope, $state, $ro
 
             console.log(d.result.conditions,'123');
             $scope.product = d.result;
+            $scope.type = d.result.type;
             $scope.bankName = $scope.product.bankname;
             $scope.bankId = $scope.product.bankId;
             $scope.tags_arr = $scope.product.tags;
+            console.log($scope.type);
             if ($scope.tags_arr) {
                 for (var i = 0; i < $scope.tags_arr.length; i++) {
                     $scope.tags += "#";
@@ -501,6 +503,7 @@ productCtrl.controller('ProductUpdateCtrl', function ($http, $scope, $state, $ro
                 tags.push(array[i]);
             }
         }
+        console.log($scope.type);
         console.log(tags);
         $scope.feature_list_new = [];
         $scope.condition_list_new = [];
@@ -519,6 +522,7 @@ productCtrl.controller('ProductUpdateCtrl', function ($http, $scope, $state, $ro
             "token": login_user.token,
             "name": $scope.product.name,
             "tags": tags,
+            "type": $scope.type,
             "bankId": $scope.bankId,
             "rate": $scope.product.rate,
             "rateRemark": $scope.product.rateRemark,

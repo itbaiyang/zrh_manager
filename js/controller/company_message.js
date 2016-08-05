@@ -215,7 +215,7 @@ loanApplicationCtrl.controller('AddCompanyCtrl', function ($http, $scope, $rootS
             "item_category": $scope.basic.item_category,
             "business_type": $scope.basic.business_type,
             "business_scope": $scope.basic.business_scope,
-            "linkman": $scope.basic.linkman,
+            "linkman": JSON.stringify($scope.basic.x_linkman),
             "phone": $scope.basic.phone,
         };
         console.log(m_params);
