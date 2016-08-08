@@ -9,13 +9,13 @@
             <button ng-show="isAllot" style="margin:0 10px" class="btn btnGrew fr">已经递交</button>
             <div ng-hide="isAllot" class="btn-group noPadding fr">
                 <button style="margin:0 10px" class="btn btnBlue" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false" type="submit" ng-click="submitMessage(id)">递交资料
+                        aria-expanded="false" type="submit" ng-click="distribute(id)">递交资料
                 </button>
-                <ul class="dropdown-menu">
-                    <li ng-repeat="bank_user in bank_man_list" class="list_select" ng-click="choiceUser(bank_user.id)">
-                        {{bank_user.name}}
-                    </li>
-                </ul>
+                <!--<ul class="dropdown-menu">-->
+                <!--<li ng-repeat="bank_user in bank_man_list" class="list_select" ng-click="choiceUser(bank_user.id)">-->
+                <!--{{bank_user.name}}-->
+                <!--</li>-->
+                <!--</ul>-->
             </div>
             <button class="btn btnGrew fr" ui-sref="master.my_project">返回</button>
         </div>
@@ -79,26 +79,26 @@
                        ng-model="basic.business_scope">
             </div>
         </div>
-        <div class="form-group" ng-show="isReg">
+        <div class="form-group" ng-show="registerLinkmanMobile">
             <label for="phoneNum" class="col-sm-2 control-label">注册电话</label>
             <div class="col-sm-2">
                 <input type="text" readonly="readonly" class="form-control" id="phoneMan" placeholder="注册人"
-                       ng-model="basic.registerLinkman">
+                       ng-model="registerLinkmanName">
             </div>
             <div class="col-sm-2">
                 <input type="text" readonly="readonly" class="form-control" id="phone" placeholder="注册电话"
-                       ng-model="basic.phone">
+                       ng-model="registerLinkmanMobile">
             </div>
         </div>
         <div class="form-group">
             <label for="phoneNum" class="col-sm-2 control-label">联系电话</label>
             <div class="col-sm-2">
                 <input type="text" class="form-control" placeholder="联系人" readonly="readonly" id="phoneNumMan"
-                       ng-model="basic.x_linkman[0].name">
+                       ng-model="basic.linkmanName">
             </div>
             <div class="col-sm-4">
                 <input type="text" class="form-control" readonly="readonly" id="phoneNum" placeholder="联系电话"
-                       ng-model="basic.x_linkman[0].mobile">
+                       ng-model="basic.linkmanMobile">
             </div>
         </div>
         <p class="createTitle">其他类型</p>

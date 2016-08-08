@@ -428,3 +428,12 @@
     text-overflow: ellipsis;
     padding: 0;
 }
+
+.applyHelp {
+    width: 600px;
+    height: 400px;
+    position: absolute;
+    z-index: 50;
+    background-color: #ffffff;
+    border: 1px solid red;
+}

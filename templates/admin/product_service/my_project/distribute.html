@@ -1,0 +1,29 @@
+<div style="position: absolute;overflow-x:hidden; z-index: 100;width: 100%; height: calc(100% - 50px); min-width: 1150px; background: #ffffff">
+    <div class="contentTitle">
+        <span>递交资料</span>
+        <div class="fr" style="margin: 10px">
+            <button style="margin:0 10px" class="btn btnBlue fr">确定</button>
+            <button class="btn btnGrew fr" ui-sref="master.my_project">返回</button>
+        </div>
+    </div>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label for="bankname" class="col-sm-2 control-label">银行名称</label>
+            <div class="btn-group col-sm-4 col-lg-4">
+                <button type="button" class="btnInput col-sm-12 col-lg-12" id="bankname" data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false">
+                    {{bankName ||"选择银行"}}
+                </button>
+                <ul class="dropdown-menu btnDrop col-sm-4 col-lg-4">
+                    <li class="btnDropDetail" ng-click="choiceBank(bank.id,bank.name)" ng-repeat="bank in bank_list">
+                        {{bank.name}}
+                    </li>
+                    <!--<li>平安银行</li>-->
+                    <!--<li>平安银行</li>-->
+                    <!--<li>平安银行</li>-->
+                </ul>
+            </div>
+        </div>
+    </form>
+</div>

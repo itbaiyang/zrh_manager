@@ -29,10 +29,13 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
                         data.progressText = "未申请";
                     } else if (data.status == 1) {
                         data.progressText = "审核中";
+                        data.progressBtn = "开始约见";
                     } else if (data.status == 2) {
                         data.progressText = "约见中";
+                        data.progressBtn = "继续跟进";
                     } else if (data.status == 3) {
                         data.progressText = "跟进中";
+                        data.progressBtn = "完成贷款";
                     } else if (data.status == 4) {
                         data.progressText = "成功融资";
                         data.progressBtn = "已结束";
@@ -50,6 +53,7 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
             $location.path("/error");
         })
     };
+
     $scope.nextStatus = function (id,status) {
         var login_user = $rootScope.getObject("login_user");
         if(status <4){
@@ -110,7 +114,7 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
     };
 
     $scope.updateSelection = function ($event, id) {
-        console.log("点击一下")
+        console.log("点击一下");
         var checkbox = $event.target;
         var action = (checkbox.checked ? 'add' : 'remove');
         updateSelected(action, id);
@@ -161,6 +165,30 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
         console.log(m_params);
         $http({
             url: api_uri + "applyDeal/cancel",
+            method: "GET",
+            params: m_params
+        }).success(function (d) {
+            console.log(d);
+            if (d.returnCode == 0) {
+                $scope.list($scope.pageNo1, 10);
+            }
+            else {
+            }
+
+        }).error(function (d) {
+        })
+    };
+
+    $scope.giveUp = function (id) {
+        var login_user = $rootScope.getObject("login_user");
+        var m_params = {
+            "userId": login_user.userId,
+            "token": login_user.token,
+            //"applyId":id,
+        };
+        console.log(m_params);
+        $http({
+            url: api_uri + "loanApplicationManage/giveUp/" + id,
             method: "GET",
             params: m_params
         }).success(function (d) {
@@ -272,7 +300,8 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
         }).success(function (d) {
             console.log(d);
             $scope.isAllot = d.result.isAllot;
-            $scope.isReg = d.result.isReg;
+            $scope.registerLinkmanName = d.result.registerLinkmanName;
+            $scope.registerLinkmanMobile = d.result.registerLinkmanMobile;
             $scope.bankId = d.result.bankId;
             $scope.basic = d.result.baseInfo;
             $scope.model_list = d.result.templateList;
@@ -288,6 +317,10 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
         console.log(id);
     };
 
+    $scope.distribute = function (id) {
+        $location.path('/master/my_project/distribute/' + id);
+        console.log(id);
+    };
     $scope.choiceUser = function (id) {
         var login_user = $rootScope.getObject("login_user");
         var m_params = {
@@ -364,9 +397,9 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
             params: m_params
         }).success(function (d) {
             console.log(d);
-            //$scope.company_name = d.result.companyName;
             $scope.basic = d.result.baseInfo;
-            $scope.isReg = d.result.isReg;
+            $scope.registerLinkmanName = d.result.registerLinkmanName;
+            $scope.registerLinkmanMobile = d.result.registerLinkmanMobile;
             $scope.model_list = d.result.templateList;
             console.log($scope.basic);
             console.log($scope.model_list);
@@ -377,17 +410,12 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
     };
     $scope.get();
     /*保存基本信息*/
-    //$scope.x_linkman ={
-    //    name:"",
-    //    mobile:""
-    //};
 
     $scope.basicMessage = function () {
         var login_user = $rootScope.getObject("login_user");
-        //$scope.linkman_list = [];
-        //$scope.linkman_list.push($scope.basic.x_linkman);
         var m_params = {
             "applyId": $stateParams.id,
+            "id": $scope.basic.id,
             "userId": login_user.userId,
             "token": login_user.token,
             "company_name": $scope.basic.company_name,
@@ -398,7 +426,8 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
             "item_category": $scope.basic.item_category,
             "business_type": $scope.basic.business_type,
             "business_scope": $scope.basic.business_scope,
-            "linkman": JSON.stringify($scope.basic.x_linkman),
+            "linkmanName": $scope.basic.linkmanName,
+            "linkmanMobile": $scope.basic.linkmanMobile,
         };
         console.log(m_params);
         $.ajax({
@@ -560,5 +589,98 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
 
     $scope.removeImgList = function (id,index) {
         $scope.model_list[id].imgList.splice(index, 1);
+    };
+});
+
+$scope.choiceBank = function (id, name) {
+    $scope.bankId = id;
+    $scope.bankName = name;
+};
+
+myProjectCtrl.controller('DistributeCtrl', function ($http, $scope, $rootScope, $location, $state, $timeout, $stateParams) {
+    /*添加删除模板*/
+    $scope.id = $stateParams.id;
+
+    $scope.list = function (pageNo, pageSize) {
+        var login_user = $rootScope.getObject("login_user");
+        var m_params = {
+            "userId": login_user.userId,
+            "token": login_user.token,
+            "pageNo": pageNo,
+            "pageSize": pageSize,
+            "bankId": $scope.bankId,
+        };
+        $http({
+            url: api_uri + "manage/bank/user/list",
+            method: "GET",
+            params: m_params
+        }).success(function (d) {
+            console.log(d);
+            if (d.returnCode == 0) {
+                $scope.bank_man_list = d.result.datas;
+            }
+            else {
+                console.log(d.result);
+            }
+
+        }).error(function (d) {
+        })
+    };
+
+    $scope.get = function () {
+        var login_user = $rootScope.getObject("login_user");
+        var m_params = {
+            "userId": login_user.userId,
+            "token": login_user.token,
+        };
+        $http({
+            url: api_uri + "inforTemplate/detail/" + $stateParams.id,
+            method: "GET",
+            params: m_params
+        }).success(function (d) {
+            console.log(d);
+            $scope.isAllot = d.result.isAllot;
+            $scope.registerLinkmanName = d.result.registerLinkmanName;
+            $scope.registerLinkmanMobile = d.result.registerLinkmanMobile;
+            $scope.bankId = d.result.bankId;
+            $scope.basic = d.result.baseInfo;
+            $scope.model_list = d.result.templateList;
+            $scope.list(1, 20);
+        }).error(function (d) {
+
+        })
+    };
+    $scope.get();
+
+    $scope.editApply = function (id) {
+        $location.path('/master/my_project/edit_apply/' + id);
+        console.log(id);
+    };
+
+    $scope.choiceUser = function (id) {
+        var login_user = $rootScope.getObject("login_user");
+        var m_params = {
+            "userId": login_user.userId,
+            "token": login_user.token,
+            "id": $scope.id,
+            "bankUserId": id
+        };
+        console.log(m_params);
+        $http({
+            url: api_uri + "loanApplicationManage/allot/",
+            method: "GET",
+            params: m_params
+        }).success(function (d) {
+            console.log(d);
+            if (d.returnCode == 0) {
+                alert("递交成功");
+                $state.go("master.my_project");
+            }
+            else {
+                console.log(d.result);
+                alert("递交失败");
+            }
+        }).error(function (d) {
+        })
     };
 });

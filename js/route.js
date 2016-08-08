@@ -162,6 +162,15 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
+        .state('master.my_project.distribute', {
+            url: '/distribute/:id',
+            views: {
+                'contains@master': {
+                    templateUrl: templates_root + 'admin/product_service/my_project/distribute.html',
+                    controller: 'DistributeCtrl'
+                }
+            }
+        })
 
         .state('master.bank', {
             url: '/bank',
