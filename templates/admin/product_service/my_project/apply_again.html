@@ -29,13 +29,22 @@
                 <button type="button" class="btnInput col-sm-12 col-lg-12" id="bankMan" data-toggle="dropdown"
                         aria-haspopup="true"
                         aria-expanded="false">
-                    {{bankMan ||"选择银行职员"}}
+                    {{productName ||"选择银行职员"}}
                 </button>
                 <ul class="dropdown-menu btnDrop col-sm-4 col-lg-4">
-                    <li class="btnDropDetail" ng-click="choiceBankMan(bankMan.id)" ng-repeat="bankMan in bank_man_list">
-                        {{bankMan.name}}
+                    <li class="btnDropDetail" ng-click="choiceProduct(product.id,product.name)"
+                        ng-repeat="product in product_list">
+                        {{product.name}}
                     </li>
                 </ul>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="phone" class="col-sm-2 control-label">企业账号</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" readonly="readonly" id="phone" placeholder="企业账号"
+                       ng-model="applyMobile">
             </div>
         </div>
     </form>

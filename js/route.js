@@ -171,6 +171,24 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
+        .state('master.my_project.apply_help', {
+            url: '/apply_help/:id',
+            views: {
+                'contains@master': {
+                    templateUrl: templates_root + 'admin/product_service/my_project/apply_help.html',
+                    controller: 'ApplyHelpCtrl'
+                }
+            }
+        })
+        .state('master.my_project.apply_again', {
+            url: '/apply_again/:id/:mobile',
+            views: {
+                'contains@master': {
+                    templateUrl: templates_root + 'admin/product_service/my_project/apply_again.html',
+                    controller: 'ApplyHelpCtrl'
+                }
+            }
+        })
 
         .state('master.bank', {
             url: '/bank',

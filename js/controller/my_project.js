@@ -160,11 +160,11 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
         var m_params = {
             "userId":login_user.userId,
             "token":login_user.token,
-            "applyId":id,
+            "id": id,
         };
         console.log(m_params);
         $http({
-            url: api_uri + "applyDeal/cancel",
+            url: api_uri + "loanApplicationManage/cancel",
             method: "GET",
             params: m_params
         }).success(function (d) {
@@ -184,11 +184,11 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
         var m_params = {
             "userId": login_user.userId,
             "token": login_user.token,
-            //"applyId":id,
+            "id": id,
         };
         console.log(m_params);
         $http({
-            url: api_uri + "loanApplicationManage/giveUp/" + id,
+            url: api_uri + "loanApplicationManage/giveUp",
             method: "GET",
             params: m_params
         }).success(function (d) {
@@ -201,6 +201,16 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
 
         }).error(function (d) {
         })
+    };
+
+    $scope.apply_help = function (id) {
+        $location.path('/master/my_project/apply_help/' + id);
+        console.log(id);
+    };
+
+    $scope.apply_again = function (id, mobile) {
+        $location.path('/master/my_project/apply_again/' + id + '/' + mobile);
+        console.log(id);
     };
 
     $scope.linkCompany = function(id ,remark) {
@@ -260,33 +270,6 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
 myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $location, $state, $timeout, $stateParams) {
     /*添加删除模板*/
     $scope.id = $stateParams.id;
-
-    $scope.list = function (pageNo, pageSize) {
-        var login_user = $rootScope.getObject("login_user");
-        var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
-            "pageNo": pageNo,
-            "pageSize": pageSize,
-            "bankId": $scope.bankId,
-        };
-        $http({
-            url: api_uri + "manage/bank/user/list",
-            method: "GET",
-            params: m_params
-        }).success(function (d) {
-            console.log(d);
-            if (d.returnCode == 0) {
-                $scope.bank_man_list = d.result.datas;
-            }
-            else {
-                console.log(d.result);
-            }
-
-        }).error(function (d) {
-        })
-    };
-
     $scope.get = function () {
         var login_user = $rootScope.getObject("login_user");
         var m_params = {
@@ -305,7 +288,6 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
             $scope.bankId = d.result.bankId;
             $scope.basic = d.result.baseInfo;
             $scope.model_list = d.result.templateList;
-            $scope.list(1, 20);
         }).error(function (d) {
 
         })
@@ -320,32 +302,6 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
     $scope.distribute = function (id) {
         $location.path('/master/my_project/distribute/' + id);
         console.log(id);
-    };
-    $scope.choiceUser = function (id) {
-        var login_user = $rootScope.getObject("login_user");
-        var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
-            "id": $scope.id,
-            "bankUserId": id
-        };
-        console.log(m_params);
-        $http({
-            url: api_uri + "loanApplicationManage/allot/",
-            method: "GET",
-            params: m_params
-        }).success(function (d) {
-            console.log(d);
-            if (d.returnCode == 0) {
-                alert("递交成功");
-                $state.go("master.my_project");
-            }
-            else {
-                console.log(d.result);
-                alert("递交失败");
-            }
-        }).error(function (d) {
-        })
     };
 });
 
@@ -592,10 +548,7 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
     };
 });
 
-$scope.choiceBank = function (id, name) {
-    $scope.bankId = id;
-    $scope.bankName = name;
-};
+
 
 myProjectCtrl.controller('DistributeCtrl', function ($http, $scope, $rootScope, $location, $state, $timeout, $stateParams) {
     /*添加删除模板*/
@@ -608,7 +561,37 @@ myProjectCtrl.controller('DistributeCtrl', function ($http, $scope, $rootScope, 
             "token": login_user.token,
             "pageNo": pageNo,
             "pageSize": pageSize,
-            "bankId": $scope.bankId,
+        };
+        $http({
+            url: api_uri + "manage/bank/list",
+            method: "GET",
+            params: m_params
+        }).success(function (d) {
+            console.log(d);
+            if (d.returnCode == 0) {
+                $scope.page = d.result;
+                $scope.bank_list = d.result.datas;
+            }
+            else {
+                console.log(d.result);
+            }
+
+        }).error(function (d) {
+            console.log("login error");
+            $location.path("/error");
+        })
+    };
+
+    $scope.list(1, 100);
+
+    $scope.bank_man_list = function (id, pageNo, pageSize) {
+        var login_user = $rootScope.getObject("login_user");
+        var m_params = {
+            "userId": login_user.userId,
+            "token": login_user.token,
+            "pageNo": pageNo,
+            "pageSize": pageSize,
+            "bankId": id
         };
         $http({
             url: api_uri + "manage/bank/user/list",
@@ -627,37 +610,12 @@ myProjectCtrl.controller('DistributeCtrl', function ($http, $scope, $rootScope, 
         })
     };
 
-    $scope.get = function () {
-        var login_user = $rootScope.getObject("login_user");
-        var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
-        };
-        $http({
-            url: api_uri + "inforTemplate/detail/" + $stateParams.id,
-            method: "GET",
-            params: m_params
-        }).success(function (d) {
-            console.log(d);
-            $scope.isAllot = d.result.isAllot;
-            $scope.registerLinkmanName = d.result.registerLinkmanName;
-            $scope.registerLinkmanMobile = d.result.registerLinkmanMobile;
-            $scope.bankId = d.result.bankId;
-            $scope.basic = d.result.baseInfo;
-            $scope.model_list = d.result.templateList;
-            $scope.list(1, 20);
-        }).error(function (d) {
-
-        })
-    };
-    $scope.get();
-
     $scope.editApply = function (id) {
         $location.path('/master/my_project/edit_apply/' + id);
         console.log(id);
     };
 
-    $scope.choiceUser = function (id) {
+    $scope.choiceBankMan = function (id) {
         var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId": login_user.userId,
@@ -667,7 +625,7 @@ myProjectCtrl.controller('DistributeCtrl', function ($http, $scope, $rootScope, 
         };
         console.log(m_params);
         $http({
-            url: api_uri + "loanApplicationManage/allot/",
+            url: api_uri + "loanApplicationManage/allot",
             method: "GET",
             params: m_params
         }).success(function (d) {
@@ -682,5 +640,123 @@ myProjectCtrl.controller('DistributeCtrl', function ($http, $scope, $rootScope, 
             }
         }).error(function (d) {
         })
+    };
+
+    $scope.choiceBank = function (id, name) {
+        $scope.bankId = id;
+        $scope.bankName = name;
+        $scope.bank_man_list($scope.bankId, 1, 400)
+    };
+});
+
+myProjectCtrl.controller('ApplyHelpCtrl', function ($http, $scope, $rootScope, $location, $state, $timeout, $stateParams) {
+    /*添加删除模板*/
+    $scope.id = $stateParams.id;
+    if ($stateParams.mobile) {
+        $scope.applyMobile = $stateParams.mobile;
+    }
+
+    $scope.list = function (pageNo, pageSize) {
+        var login_user = $rootScope.getObject("login_user");
+        var m_params = {
+            "userId": login_user.userId,
+            "token": login_user.token,
+            "pageNo": pageNo,
+            "pageSize": pageSize,
+        };
+        $http({
+            url: api_uri + "manage/bank/list",
+            method: "GET",
+            params: m_params
+        }).success(function (d) {
+            console.log(d);
+            if (d.returnCode == 0) {
+                $scope.page = d.result;
+                $scope.bank_list = d.result.datas;
+            }
+            else {
+                console.log(d.result);
+            }
+
+        }).error(function (d) {
+            console.log("login error");
+            $location.path("/error");
+        })
+    };
+
+    $scope.list(1, 100);
+
+    $scope.editApply = function (id) {
+        $location.path('/master/my_project/edit_apply/' + id);
+        console.log(id);
+    };
+
+    $scope.choiceProduct = function (id, name) {
+        $scope.productId = id;
+        $scope.productName = name;
+    };
+
+    $scope.choiceBank = function (id, name) {
+        $scope.bankId = id;
+        $scope.bankName = name;
+        $scope.product_list($scope.bankId, 1, 400)
+    };
+    $scope.product_list = function (id, pageNo, pageSize) {
+        var login_user = $rootScope.getObject("login_user");
+        var m_params = {
+            "userId": login_user.userId,
+            "token": login_user.token,
+            "bankId": id,
+            "pageNo": pageNo,
+            "pageSize": pageSize,
+            "release": true
+        };
+        $http({
+            url: api_uri + "financialProductManage/list",
+            method: "GET",
+            params: m_params
+        }).success(function (d) {
+            console.log(d);
+            if (d.returnCode == 0) {
+                $scope.page = d.result;
+                $scope.product_list = d.result.datas;
+            }
+            else {
+                console.log(d.result);
+            }
+
+        }).error(function (d) {
+        })
+    };
+
+    $scope.submit_help = function () {
+        var login_user = $rootScope.getObject("login_user");
+        var m_params = {
+            "userId": login_user.userId,
+            "token": login_user.token,
+            "applyId": $stateParams.id,
+            "productId": $scope.productId,
+            "mobile": $scope.applyMobile,
+        };
+        console.log(m_params);
+        $.ajax({
+            type: 'POST',
+            url: api_uri + "loanApplicationManage/helpApply",
+            data: m_params,
+            traditional: true,
+            success: function (data, textStatus, jqXHR) {
+                console.log(data);
+                if (data.returnCode == 0) {
+                    console.log("apply success");
+                    $state.go("master.my_project");
+                    //$scope.$apply();
+                }
+                else {
+                    console.log(data);
+                }
+            },
+            dataType: 'json',
+        });
+
     };
 });
