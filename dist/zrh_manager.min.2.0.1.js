@@ -14,15 +14,15 @@ loginCtrl.controller("LoginCtrl", function ($http, $scope, $rootScope, $location
     $scope.login = function () {
         $scope.loginUser.signature = $rootScope.encryptByDES($scope.loginUser.password + $scope.loginUser.timestamp);
         var m_params = $scope.loginUser;
-        console.log($scope.loginUser), check_params(m_params) && $http({
+        check_params(m_params) && $http({
             url: api_uri + "p/user/login",
             method: "POST",
             params: m_params
         }).success(function (d) {
-            0 == d.returnCode ? (console.log(d), $rootScope.login_user = {
+            0 == d.returnCode && ($rootScope.login_user = {
                 userId: d.result.split("_")[0],
                 token: d.result.split("_")[1]
-            }, $rootScope.putObject("login_user", $rootScope.login_user), $scope.choiceUser()) : console.log(d)
+            }, $rootScope.putObject("login_user", $rootScope.login_user), $scope.choiceUser())
         }).error(function (d) {
             $scope.changeErrorMsg("网络故障请稍后再试......"), $location.path("/login")
         })
@@ -36,8 +36,7 @@ loginCtrl.controller("LoginCtrl", function ($http, $scope, $rootScope, $location
             method: "GET",
             params: m_params
         }).success(function (d) {
-            if (0 == d.returnCode)console.log(d), "super" == d.result.role ? $location.path("/super") : $location.path("/master"); else {
-                console.log(d);
+            if (0 == d.returnCode)"super" == d.result.role ? $location.path("/super") : $location.path("/master"); else {
                 var msg = $scope.error_code_msg[d.returnCode];
                 msg || (msg = "登录失败"), $scope.error_msg = msg
             }
@@ -349,11 +348,11 @@ loanApplicationCtrl.controller("LoanApplicationCtrl", function ($http, $scope, $
             status: $scope.status
         };
         $http({url: api_uri + "loanApplicationManage/list", method: "GET", params: m_params}).success(function (d) {
-            console.log(d), 0 == d.returnCode ? ($scope.page = d.result, $scope.result_list = d.result.datas, angular.forEach($scope.result_list, function (data) {
+            0 == d.returnCode && ($scope.page = d.result, $scope.result_list = d.result.datas, angular.forEach($scope.result_list, function (data) {
                 $scope.status = d.result.status, 0 == data.status ? data.progressText = "未申请" : 1 == data.status ? data.progressText = "审核中" : 2 == data.status ? data.progressText = "约见中" : 3 == data.status ? data.progressText = "跟进中" : 4 == data.status ? (data.progressText = "成功融资", data.progressBtn = "已结束") : data.status == -1 && (data.progressText = "申请取消")
-            })) : console.log(d.result)
+            }))
         }).error(function (d) {
-            console.log("login error"), $location.path("/error")
+            $location.path("/error")
         })
     }, $scope.apply = function (id) {
         var login_user = $rootScope.getObject("login_user"), m_params = {
@@ -361,42 +360,37 @@ loanApplicationCtrl.controller("LoanApplicationCtrl", function ($http, $scope, $
             token: login_user.token,
             applyId: id
         };
-        console.log(m_params), $http({
-            url: api_uri + "applyDeal/apply",
-            method: "GET",
-            params: m_params
-        }).success(function (d) {
-            0 == d.returnCode ? (console.log(d), $scope.list($scope.pageNo1, 20)) : console.log(d)
+        $http({url: api_uri + "applyDeal/apply", method: "GET", params: m_params}).success(function (d) {
+            0 == d.returnCode && $scope.list($scope.pageNo1, 20)
         }).error(function (d) {
         })
     }, $scope.list(1, 20), $scope.changePage = function (page) {
-        $scope.pageNo1 = page, console.log($scope.pageNo1), $scope.$watch($scope.pageNo1, function () {
+        $scope.pageNo1 = page, $scope.$watch($scope.pageNo1, function () {
             $scope.list($scope.pageNo1, 20)
         })
     }, $scope.selected = [], $scope.ids = [], $scope.isSelected = function (id) {
         return $scope.selected.indexOf(id) >= 0
     };
     var updateSelected = function (action, id) {
-        if ("add" == action && ($scope.ids.push(id), console.log("添加id" + $scope.ids)), "remove" == action) {
+        if ("add" == action && $scope.ids.push(id), "remove" == action) {
             var idx = $scope.ids.indexOf(id);
-            $scope.ids.splice(idx, 1), console.log("删除id" + id)
+            $scope.ids.splice(idx, 1)
         }
     };
     $scope.updateSelection = function ($event, id) {
-        console.log("点击一下");
         var checkbox = $event.target, action = checkbox.checked ? "add" : "remove";
         updateSelected(action, id)
     }, $scope.refresh = function () {
         $scope.list($scope.pageNo1, 10)
     }, $scope["delete"] = function () {
         var m_params = {userId: login_user.userId, token: login_user.token, ids: $scope.ids};
-        console.log($scope.ids), $.ajax({
+        $.ajax({
             type: "POST",
             url: api_uri + "loanApplicationManage/delete",
             data: m_params,
             traditional: !0,
             success: function (data, textStatus, jqXHR) {
-                0 == data.returnCode ? (console.log(data), $scope.list($scope.pageNo1, 10)) : console.log(data)
+                0 == data.returnCode && $scope.list($scope.pageNo1, 10)
             },
             dataType: "json"
         })
@@ -421,13 +415,13 @@ loanApplicationCtrl.controller("LoanApplicationCtrl", function ($http, $scope, $
             linkmanName: $scope.basic.linkmanName,
             linkmanMobile: $scope.basic.linkmanMobile
         };
-        console.log(m_params), $.ajax({
+        $.ajax({
             type: "POST",
             url: api_uri + "inforTemplate/create",
             data: m_params,
             traditional: !0,
             success: function (data, textStatus, jqXHR) {
-                console.log(data), 0 == data.returnCode ? (console.log("basic success"), $state.go("master.company_message"), $scope.$apply()) : console.log(data)
+                0 == data.returnCode && ($state.go("master.company_message"), $scope.$apply())
             },
             dataType: "json"
         })
@@ -884,7 +878,8 @@ superCtrl.controller("UserListCtrl", function ($http, $scope, $rootScope, $locat
             method: "POST",
             params: m_params
         }).success(function (d) {
-            0 == d.returnCode ? (console.log(d), $state.go("super")) : console.log(d)
+            0 == d.returnCode ? (console.log(d),
+                $state.go("super")) : console.log(d)
         }).error(function (d) {
             $scope.changeErrorMsg("网络故障请稍后再试......"), $location.path("/login")
         })
@@ -972,12 +967,12 @@ bankCtrl.controller("BankCtrl", function ($http, $scope, $state, $rootScope, $lo
             pageSize: pageSize
         };
         $http({url: api_uri + "manage/bank/list", method: "GET", params: m_params}).success(function (d) {
-            console.log(d), 0 == d.returnCode ? ($scope.page = d.result, $scope.bank_list = d.result.datas) : console.log(d.result)
+            0 == d.returnCode && ($scope.page = d.result, $scope.bank_list = d.result.datas)
         }).error(function (d) {
-            console.log("login error"), $location.path("/error")
+            $location.path("/error")
         })
     }, $scope.list(1, 20), $scope.changePage = function (page) {
-        $scope.pageNo1 = page, console.log($scope.pageNo1), $scope.$watch($scope.pageNo1, function () {
+        $scope.pageNo1 = page, $scope.$watch($scope.pageNo1, function () {
             $scope.list($scope.pageNo1, 20)
         })
     }, $scope.edit_bank = function (id) {
@@ -990,12 +985,8 @@ bankCtrl.controller("BankCtrl", function ($http, $scope, $state, $rootScope, $lo
             token: login_user.token,
             id: id
         };
-        console.log(m_params), $http({
-            url: api_uri + "manage/bank/delete",
-            method: "GET",
-            params: m_params
-        }).success(function (d) {
-            console.log(d), 0 == d.returnCode ? $scope.list(1, 20) : console.log(d.result)
+        $http({url: api_uri + "manage/bank/delete", method: "GET", params: m_params}).success(function (d) {
+            0 == d.returnCode && $scope.list(1, 20)
         }).error(function (d) {
         })
     }, $scope.changeModule = function (a, b) {
@@ -1011,28 +1002,27 @@ bankCtrl.controller("BankCtrl", function ($http, $scope, $state, $rootScope, $lo
             bankId: $stateParams.id
         };
         $http({url: api_uri + "manage/bank/user/list", method: "GET", params: m_params}).success(function (d) {
-            console.log(d), 0 == d.returnCode ? ($scope.page = d.result, $scope.bank_man_list = d.result.datas) : console.log(d.result)
+            0 == d.returnCode && ($scope.page = d.result, $scope.bank_man_list = d.result.datas)
         }).error(function (d) {
         })
     }, $scope.list(1, 20), $scope.changePage = function (page) {
-        $scope.pageNo1 = page, console.log($scope.pageNo1), $scope.$watch($scope.pageNo1, function () {
+        $scope.pageNo1 = page, $scope.$watch($scope.pageNo1, function () {
             $scope.list($scope.pageNo1, 20)
         })
     }, $scope.isSelected = function (id) {
         return $scope.selected.indexOf(id) >= 0
     };
     var updateSelected = function (action, id) {
-        if ("add" == action && ($scope.ids.push(id), console.log($scope.ids)), "remove" == action) {
+        if ("add" == action && $scope.ids.push(id), "remove" == action) {
             var idx = $scope.ids.indexOf(id);
             $scope.ids.splice(idx, 1)
         }
     };
     $scope.updateSelection = function ($event, id) {
-        console.log("点击一下");
         var checkbox = $event.target, action = checkbox.checked ? "add" : "remove";
         updateSelected(action, id)
     }, $scope.add_user = function (id, name) {
-        console.log(id), console.log(name), $state.go("master.bank.add_bank_man", {id: id, name: name})
+        $state.go("master.bank.add_bank_man", {id: id, name: name})
     }, $scope["delete"] = function () {
         var login_user = $rootScope.getObject("login_user"), m_params = {
             userId: login_user.userId,
@@ -1040,16 +1030,15 @@ bankCtrl.controller("BankCtrl", function ($http, $scope, $state, $rootScope, $lo
             ids: $scope.ids,
             bankId: $scope.id
         };
-        console.log($scope.ids), console.log("baiyang", m_params), $.ajax({
+        $.ajax({
             type: "POST",
             url: api_uri + "manage/bank/user/delete",
             data: m_params,
             traditional: !0,
             success: function (data, textStatus, jqXHR) {
-                console.log(data), 0 == data.returnCode ? $scope.list($scope.pageNo1, 20) : console.log(data)
+                0 == data.returnCode && $scope.list($scope.pageNo1, 20)
             },
             error: function (data, textStatus, jqXHR) {
-                console.log(data)
             },
             dataType: "json"
         })
@@ -1060,16 +1049,15 @@ bankCtrl.controller("BankCtrl", function ($http, $scope, $state, $rootScope, $lo
             ids: id,
             bankId: $scope.id
         };
-        console.log($scope.ids), console.log("baiyang", m_params), $.ajax({
+        $.ajax({
             type: "POST",
             url: api_uri + "manage/bank/user/delete",
             data: m_params,
             traditional: !0,
             success: function (data, textStatus, jqXHR) {
-                console.log(data), 0 == data.returnCode ? $scope.list($scope.pageNo1, 20) : console.log(data)
+                0 == data.returnCode && $scope.list($scope.pageNo1, 20)
             },
             error: function (data, textStatus, jqXHR) {
-                console.log(data)
             },
             dataType: "json"
         })
@@ -1083,7 +1071,7 @@ bankCtrl.controller("BankCtrl", function ($http, $scope, $state, $rootScope, $lo
             token: login_user.token
         };
         $http({url: api_uri + "qiniu/getUpToken", method: "GET", params: m_params}).success(function (d) {
-            if (console.log(m_params), console.log(d), 0 == d.returnCode) {
+            if (0 == d.returnCode) {
                 $scope.qiniu_token = d.result.uptoken;
                 Qiniu.uploader({
                     runtimes: "html5,flash,html4",
@@ -1106,9 +1094,9 @@ bankCtrl.controller("BankCtrl", function ($http, $scope, $state, $rootScope, $lo
                             $scope.upload_percent = file.percent, $scope.$apply()
                         }, FileUploaded: function (up, file, info) {
                             var res = $.parseJSON(info), file_url = "http://" + $rootScope.qiniu_bucket_domain + "/" + res.key;
-                            console.log(file_url), $scope.bankPic = file_url, $scope.$apply(), m_params.key = "bankPic", m_params.value = $scope.bankPic
+                            $scope.bankPic = file_url, $scope.$apply(), m_params.key = "bankPic", m_params.value = $scope.bankPic
                         }, Error: function (up, err, errTip) {
-                            console.log(err), $rootScope.alert("营业执照上传失败！")
+                            $rootScope.alert("营业执照上传失败！")
                         }, UploadComplete: function () {
                         }, Key: function (up, file) {
                             var time = (new Date).getTime(), k = "financialProductManage/create/" + m_params.userId + "/" + time;
@@ -1116,33 +1104,32 @@ bankCtrl.controller("BankCtrl", function ($http, $scope, $state, $rootScope, $lo
                         }
                     }
                 })
-            } else console.log(d)
+            }
         }).error(function (d) {
-            console.log(d)
         })
     }, $scope.init(), $scope.submitAdd = function () {
         $scope.feature_list_new = [], $scope.condition_list_new = [];
-        for (var key in $scope.feature_list)console.log($scope.feature_list[key].feature), $scope.feature_list_new.push($scope.feature_list[key].feature);
-        for (var key in $scope.condition_list)console.log($scope.condition_list[key].condition), $scope.condition_list_new.push($scope.condition_list[key].condition);
+        for (var key in $scope.feature_list)$scope.feature_list_new.push($scope.feature_list[key].feature);
+        for (var key in $scope.condition_list)$scope.condition_list_new.push($scope.condition_list[key].condition);
         var login_user = $rootScope.getObject("login_user"), m_params = {
             userId: login_user.userId,
             token: login_user.token,
             name: $scope.name,
             icon: $scope.bankPic
         };
-        console.log(m_params), $.ajax({
+        $.ajax({
             type: "POST",
             url: api_uri + "manage/bank/add",
             data: m_params,
             traditional: !0,
             success: function (data, textStatus, jqXHR) {
-                console.log(data), 0 == data.returnCode ? (console.log("创建成功了"), $state.go("master.bank"), $scope.$apply()) : console.log(data)
+                0 == data.returnCode && ($state.go("master.bank"), $scope.$apply())
             },
             dataType: "json"
         })
     }
 }), bankCtrl.controller("UpdateBankCtrl", function ($http, $scope, $rootScope, $state, $stateParams, $location, $timeout, $routeParams) {
-    console.log($stateParams.id), $scope.detail = function () {
+    $scope.detail = function () {
         var login_user = $rootScope.getObject("login_user"), m_params = {
             userId: login_user.userId,
             token: login_user.token
@@ -1152,7 +1139,7 @@ bankCtrl.controller("BankCtrl", function ($http, $scope, $state, $rootScope, $lo
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d), 0 == d.returnCode ? ($scope.bank = d.result, $scope.name = d.result.name, $scope.bankPic = d.result.icon) : console.log(d.result)
+            0 == d.returnCode && ($scope.bank = d.result, $scope.name = d.result.name, $scope.bankPic = d.result.icon)
         }).error(function (d) {
         })
     }, $scope.detail(), $scope.init = function () {
@@ -1161,7 +1148,7 @@ bankCtrl.controller("BankCtrl", function ($http, $scope, $state, $rootScope, $lo
             token: login_user.token
         };
         $http({url: api_uri + "qiniu/getUpToken", method: "GET", params: m_params}).success(function (d) {
-            if (console.log(m_params), console.log(d), 0 == d.returnCode) {
+            if (0 == d.returnCode) {
                 $scope.qiniu_token = d.result.uptoken;
                 Qiniu.uploader({
                     runtimes: "html5,flash,html4",
@@ -1184,9 +1171,9 @@ bankCtrl.controller("BankCtrl", function ($http, $scope, $state, $rootScope, $lo
                             $scope.upload_percent = file.percent, $scope.$apply()
                         }, FileUploaded: function (up, file, info) {
                             var res = $.parseJSON(info), file_url = "http://" + $rootScope.qiniu_bucket_domain + "/" + res.key;
-                            console.log(file_url), $scope.bankPic = file_url, $scope.$apply(), m_params.key = "bankPic", m_params.value = $scope.bankPic
+                            $scope.bankPic = file_url, $scope.$apply(), m_params.key = "bankPic", m_params.value = $scope.bankPic
                         }, Error: function (up, err, errTip) {
-                            console.log(err), $rootScope.alert("营业执照上传失败！")
+                            $rootScope.alert("营业执照上传失败！")
                         }, UploadComplete: function () {
                         }, Key: function (up, file) {
                             var time = (new Date).getTime(), k = "financialProductManage/create/" + m_params.userId + "/" + time;
@@ -1194,9 +1181,8 @@ bankCtrl.controller("BankCtrl", function ($http, $scope, $state, $rootScope, $lo
                         }
                     }
                 })
-            } else console.log(d)
+            }
         }).error(function (d) {
-            console.log(d)
         })
     }, $scope.init(), $scope.update = function (id) {
         var login_user = $rootScope.getObject("login_user"), m_params = {
@@ -1206,13 +1192,13 @@ bankCtrl.controller("BankCtrl", function ($http, $scope, $state, $rootScope, $lo
             icon: $scope.bankPic,
             id: id
         };
-        console.log(m_params), $.ajax({
+        $.ajax({
             type: "POST",
             url: api_uri + "manage/bank/update/" + $stateParams.id,
             data: m_params,
             traditional: !0,
             success: function (data, textStatus, jqXHR) {
-                console.log(data), 0 == data.returnCode ? (console.log("编辑成功"), $state.go("master.bank"), $scope.$apply()) : console.log(data)
+                0 == data.returnCode && ($state.go("master.bank"), $scope.$apply())
             },
             dataType: "json"
         })
@@ -1228,24 +1214,23 @@ bankCtrl.controller("BankCtrl", function ($http, $scope, $state, $rootScope, $lo
             release: !0
         };
         $http({url: api_uri + "financialProductManage/list", method: "GET", params: m_params}).success(function (d) {
-            console.log(d), 0 == d.returnCode ? ($scope.page = d.result, $scope.product_list = d.result.datas) : console.log(d.result)
+            0 == d.returnCode && ($scope.page = d.result, $scope.product_list = d.result.datas)
         }).error(function (d) {
         })
     }, $scope.list(1, 20), $scope.changePage = function (page) {
-        $scope.pageNo1 = page, console.log($scope.pageNo1), $scope.$watch($scope.pageNo1, function () {
+        $scope.pageNo1 = page, $scope.$watch($scope.pageNo1, function () {
             $scope.list($scope.pageNo1, 20)
         })
     }, $scope.isSelected = function (id) {
         return $scope.selected.indexOf(id) >= 0
     };
     var updateSelected = function (action, id, name) {
-        if ("add" == action && ($scope.ids.push(id), $scope.names.push(name), console.log($scope.ids), console.log($scope.names)), "remove" == action) {
+        if ("add" == action && ($scope.ids.push(id), $scope.names.push(name)), "remove" == action) {
             var idx = $scope.ids.indexOf(id), name_x = $scope.names.indexOf(name);
             $scope.ids.splice(idx, 1), $scope.names.splice(name_x, 1)
         }
     };
     $scope.updateSelection = function ($event, id, name) {
-        console.log("点击一下");
         var checkbox = $event.target, action = checkbox.checked ? "add" : "remove";
         updateSelected(action, id, name)
     }, $scope.add_bank_man = function () {
@@ -1261,13 +1246,13 @@ bankCtrl.controller("BankCtrl", function ($http, $scope, $state, $rootScope, $lo
             mobile: $scope.bank_man.mobile,
             email: $scope.bank_man.email
         };
-        console.log(m_params), $.ajax({
+        $.ajax({
             type: "POST",
             url: api_uri + "manage/bank/user/add",
             data: m_params,
             traditional: !0,
             success: function (data, textStatus, jqXHR) {
-                console.log(data), 0 == data.returnCode ? ($state.go("master.bank.bank_man", {id: m_params.bankId}), $scope.$apply()) : console.log(data)
+                0 == data.returnCode && ($state.go("master.bank.bank_man", {id: m_params.bankId}), $scope.$apply())
             },
             dataType: "json"
         })
@@ -1276,10 +1261,10 @@ bankCtrl.controller("BankCtrl", function ($http, $scope, $state, $rootScope, $lo
     }, $scope.hide_product = function () {
         $scope.products = "";
         for (var i = 0; i < $scope.names.length; i++)$scope.products += $scope.names[i], $scope.products += " ";
-        console.log($scope.products), $scope.productDiv = !1
+        $scope.productDiv = !1
     }
 }), bankCtrl.controller("UpdateBankManCtrl", function ($http, $scope, $rootScope, $state, $stateParams, $location, $timeout, $routeParams) {
-    console.log($stateParams.id), $scope.detail = function () {
+    $scope.detail = function () {
         var login_user = $rootScope.getObject("login_user"), m_params = {
             userId: login_user.userId,
             token: login_user.token
@@ -1289,7 +1274,7 @@ bankCtrl.controller("BankCtrl", function ($http, $scope, $state, $rootScope, $lo
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d), 0 == d.returnCode ? ($scope.bank_man = d.result, console.log($scope.bank_man), $scope.products = "", $scope.list(1, 20)) : console.log(d.result)
+            0 == d.returnCode && ($scope.bank_man = d.result, $scope.products = "", $scope.list(1, 20))
         }).error(function (d) {
         })
     }, $scope.detail(), $scope.selected = [], $scope.ids = [], $scope.names = [], $scope.list = function (pageNo, pageSize) {
@@ -1301,29 +1286,28 @@ bankCtrl.controller("BankCtrl", function ($http, $scope, $state, $rootScope, $lo
             release: !0
         };
         $http({url: api_uri + "financialProductManage/list", method: "GET", params: m_params}).success(function (d) {
-            if (console.log(d), 0 == d.returnCode) {
+            if (0 == d.returnCode) {
                 $scope.page = d.result, $scope.product_list = d.result.datas;
                 for (var i = 0; i < $scope.bank_man.productIds.length; i++)for (var j = 0; j < $scope.product_list.length; j++)$scope.bank_man.productIds[i] == $scope.product_list[j].id && ($scope.names.push($scope.product_list[j].name), $scope.ids.push($scope.product_list[j].id));
                 $scope.products = "";
                 for (var i = 0; i < $scope.names.length; i++)$scope.products += $scope.names[i], $scope.products += " "
-            } else console.log(d.result)
+            }
         }).error(function (d) {
         })
     }, $scope.changePage = function (page) {
-        $scope.pageNo1 = page, console.log($scope.pageNo1), $scope.$watch($scope.pageNo1, function () {
+        $scope.pageNo1 = page, $scope.$watch($scope.pageNo1, function () {
             $scope.list($scope.pageNo1, 20)
         })
     }, $scope.isSelected = function (id) {
         return $scope.bank_man.productIds.indexOf(id) >= 0
     };
     var updateSelected = function (action, id, name) {
-        if ("add" == action && ($scope.ids.push(id), $scope.names.push(name), console.log($scope.ids), console.log($scope.names)), "remove" == action) {
+        if ("add" == action && ($scope.ids.push(id), $scope.names.push(name)), "remove" == action) {
             var idx = $scope.ids.indexOf(id), name_x = $scope.names.indexOf(name);
             $scope.ids.splice(idx, 1), $scope.names.splice(name_x, 1)
         }
     };
     $scope.updateSelection = function ($event, id, name) {
-        console.log("点击一下");
         var checkbox = $event.target, action = checkbox.checked ? "add" : "remove";
         updateSelected(action, id, name)
     }, $scope.update = function () {
@@ -1339,13 +1323,13 @@ bankCtrl.controller("BankCtrl", function ($http, $scope, $state, $rootScope, $lo
             mobile: $scope.bank_man.mobile,
             email: $scope.bank_man.email
         };
-        console.log(m_params), $.ajax({
+        $.ajax({
             type: "POST",
             url: api_uri + "manage/bank/user/update/" + $stateParams.id,
             data: m_params,
             traditional: !0,
             success: function (data, textStatus, jqXHR) {
-                console.log(data), 0 == data.returnCode ? (console.log("添加成功"), $state.go("master.bank.bank_man", {id: m_params.bankId}), $scope.$apply()) : console.log(data)
+                0 == data.returnCode && ($state.go("master.bank.bank_man", {id: m_params.bankId}), $scope.$apply())
             },
             dataType: "json"
         })
@@ -1354,7 +1338,7 @@ bankCtrl.controller("BankCtrl", function ($http, $scope, $state, $rootScope, $lo
     }, $scope.hide_product = function () {
         $scope.products = "";
         for (var i = 0; i < $scope.names.length; i++)$scope.products += $scope.names[i], $scope.products += " ";
-        console.log($scope.products), $scope.productDiv = !1
+        $scope.productDiv = !1
     }
 });
 var messageCtrl = angular.module("messageCtrl", []);
@@ -1415,7 +1399,7 @@ messageCtrl.controller("MessageBankCtrl", function ($http, $scope, $rootScope, $
             console.log(d)
         })
     }, $scope.init()
-}), api_uri = "http://test.zhironghao.com/api/";
+}), api_uri = "http://api.supeiyunjing.com/";
 var templates_root = "templates/";
 deskey = "abc123.*abc123.*abc123.*abc123.*";
 var app = angular.module("app", ["ng", "ngRoute", "ngAnimate", "ui.router", "tm.pagination", "loginCtrl", "topBarCtrl", "loanApplicationCtrl", "productCtrl", "myProjectCtrl", "superCtrl", "signUpCtrl", "bankCtrl", "messageCtrl"], function ($httpProvider) {
