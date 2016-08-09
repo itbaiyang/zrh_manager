@@ -26,7 +26,7 @@ loginCtrl.controller('LoginCtrl', function ($http, $scope, $rootScope, $location
     $scope.login = function () {
         $scope.loginUser.signature = $rootScope.encryptByDES($scope.loginUser.password+$scope.loginUser.timestamp);
         var m_params = $scope.loginUser;
-        console.log($scope.loginUser);
+        //console.log($scope.loginUser);
         if (!check_params(m_params)) return;
         $http({
             url: api_uri+"p/user/login",
@@ -34,7 +34,7 @@ loginCtrl.controller('LoginCtrl', function ($http, $scope, $rootScope, $location
             params: m_params
         }).success(function (d) {
             if (d.returnCode == 0) {
-                console.log(d);
+                //console.log(d);
                 $rootScope.login_user = {
                     "userId":d.result.split("_")[0],
                     "token":d.result.split("_")[1],
@@ -43,7 +43,7 @@ loginCtrl.controller('LoginCtrl', function ($http, $scope, $rootScope, $location
                 $scope.choiceUser();
                 //$location.path("/super");
             }else {
-                console.log(d);
+                //console.log(d);
             }
 
         }).error(function (d) {
@@ -63,14 +63,14 @@ loginCtrl.controller('LoginCtrl', function ($http, $scope, $rootScope, $location
             params: m_params
         }).success(function (d) {
             if (d.returnCode == 0) {
-                console.log(d);
+                //console.log(d);
                 if(d.result.role == 'super'){
                     $location.path("/super");
                 }else{
                     $location.path("/master");
                 }
             }else {
-                console.log(d);
+                //console.log(d);
                 var msg = $scope.error_code_msg[d.returnCode];
                  if(!msg){
                  msg = "登录失败";

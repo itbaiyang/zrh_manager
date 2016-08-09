@@ -21,7 +21,7 @@ loanApplicationCtrl.controller('LoanApplicationCtrl', function ($http, $scope, $
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
+            //console.log(d);
             if (d.returnCode == 0) {
                 $scope.page = d.result;
                 $scope.result_list = d.result.datas;
@@ -44,11 +44,11 @@ loanApplicationCtrl.controller('LoanApplicationCtrl', function ($http, $scope, $
                 });
             }
             else {
-                console.log(d.result);
+                //console.log(d.result);
             }
 
         }).error(function (d) {
-            console.log("login error");
+            //console.log("login error");
             $location.path("/error");
         })
     };
@@ -59,30 +59,30 @@ loanApplicationCtrl.controller('LoanApplicationCtrl', function ($http, $scope, $
             "token":login_user.token,
             "applyId":id,
         };
-        console.log(m_params);
+        //console.log(m_params);
             $http({
                 url: api_uri + "applyDeal/apply",
                 method: "GET",
                 params: m_params
             }).success(function (d) {
-                //console.log(d);
+                ////console.log(d);
                 if (d.returnCode == 0) {
-                    console.log(d);
+                    //console.log(d);
                     $scope.list($scope.pageNo1, 20);
                 }
                 else {
-                    console.log(d);
+                    //console.log(d);
                 }
 
             }).error(function (d) {
-                //console.log("login error");
+                ////console.log("login error");
                 //$location.path("/error");
             })
     };
     $scope.list(1, 20);
     $scope.changePage = function(page){
         $scope.pageNo1 = page;
-        console.log($scope.pageNo1);
+        //console.log($scope.pageNo1);
         $scope.$watch($scope.pageNo1, function () {
             $scope.list($scope.pageNo1, 20);
         });
@@ -97,17 +97,17 @@ loanApplicationCtrl.controller('LoanApplicationCtrl', function ($http, $scope, $
     var updateSelected = function (action, id) {
         if (action == 'add') {
             $scope.ids.push(id);
-            console.log("添加id"+$scope.ids);
+            //console.log("添加id"+$scope.ids);
         }
         if (action == 'remove') {
             var idx = $scope.ids.indexOf(id);
             $scope.ids.splice(idx, 1);
-            console.log("删除id"+id);
+            //console.log("删除id"+id);
         }
     };
 
     $scope.updateSelection = function ($event, id) {
-        console.log("点击一下")
+        //console.log("点击一下")
         var checkbox = $event.target;
         var action = (checkbox.checked ? 'add' : 'remove');
         updateSelected(action, id);
@@ -123,21 +123,21 @@ loanApplicationCtrl.controller('LoanApplicationCtrl', function ($http, $scope, $
             "token": login_user.token,
             ids: $scope.ids
         };
-        console.log($scope.ids);
+        //console.log($scope.ids);
         $.ajax({
             type: 'POST',
             url: api_uri + "loanApplicationManage/delete",
             data: m_params,
             traditional: true,
             success: function (data, textStatus, jqXHR) {
-                // console.log(data);
+                // //console.log(data);
                 if (data.returnCode == 0) {
-                    console.log(data);
+                    //console.log(data);
                     $scope.list($scope.pageNo1, 10);
                     //$apply();
                 }
                 else {
-                    console.log(data);
+                    //console.log(data);
                 }
             },
             dataType: 'json',
@@ -189,21 +189,21 @@ loanApplicationCtrl.controller('AddCompanyCtrl', function ($http, $scope, $rootS
             "linkmanMobile": $scope.basic.linkmanMobile,
             //"phone": $scope.basic.phone,
         };
-        console.log(m_params);
+        //console.log(m_params);
         $.ajax({
             type: 'POST',
             url: api_uri + "inforTemplate/create",
             data: m_params,
             traditional: true,
             success: function (data, textStatus, jqXHR) {
-                console.log(data);
+                //console.log(data);
                 if (data.returnCode == 0) {
-                    console.log("basic success");
+                    //console.log("basic success");
                     $state.go("master.company_message");
                     $scope.$apply();
                 }
                 else {
-                    console.log(data);
+                    //console.log(data);
                 }
             },
             dataType: 'json',

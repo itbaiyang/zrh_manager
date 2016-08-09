@@ -1,0 +1,21 @@
+{
+  "name": "zrh_manager",
+  "version": "2.0.1",
+  "description": "\"上线\"",
+  "main": "",
+  "dependencies": {
+    "bower": "^1.7.9",
+    "grunt": "^1.0.1"
+  },
+  "devDependencies": {
+    "grunt": "^1.1.0",
+    "grunt-contrib-uglify": "^1.0.1",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-css": "^0.5.4"
+  },
+  "keywords": [
+    "zhironghao"
+  ],
+  "author": "By",
+  "license": "ISC"
+}

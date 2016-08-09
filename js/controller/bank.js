@@ -15,17 +15,17 @@ bankCtrl.controller('BankCtrl', function ($http, $scope, $state, $rootScope, $lo
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
+            //console.log(d);
             if (d.returnCode == 0) {
                 $scope.page = d.result;
                 $scope.bank_list = d.result.datas;
             }
             else {
-                console.log(d.result);
+                //console.log(d.result);
             }
 
         }).error(function (d) {
-            console.log("login error");
+            //console.log("login error");
             $location.path("/error");
         })
     };
@@ -34,7 +34,7 @@ bankCtrl.controller('BankCtrl', function ($http, $scope, $state, $rootScope, $lo
 
     $scope.changePage = function (page) {
         $scope.pageNo1 = page;
-        console.log($scope.pageNo1);
+        //console.log($scope.pageNo1);
         $scope.$watch($scope.pageNo1, function () {
             $scope.list($scope.pageNo1, 20);
         });
@@ -55,18 +55,18 @@ bankCtrl.controller('BankCtrl', function ($http, $scope, $state, $rootScope, $lo
             "token": login_user.token,
             id: id
         };
-        console.log(m_params);
+        //console.log(m_params);
         $http({
             url: api_uri + "manage/bank/delete",
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
+            //console.log(d);
             if (d.returnCode == 0) {
                 $scope.list(1, 20);
             }
             else {
-                console.log(d.result);
+                //console.log(d.result);
             }
 
         }).error(function (d) {
@@ -100,13 +100,13 @@ bankCtrl.controller('BankManCtrl', function ($http, $scope, $rootScope, $locatio
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
+            //console.log(d);
             if (d.returnCode == 0) {
                 $scope.page = d.result;
                 $scope.bank_man_list = d.result.datas;
             }
             else {
-                console.log(d.result);
+                //console.log(d.result);
             }
 
         }).error(function (d) {
@@ -117,7 +117,7 @@ bankCtrl.controller('BankManCtrl', function ($http, $scope, $rootScope, $locatio
 
     $scope.changePage = function (page) {
         $scope.pageNo1 = page;
-        console.log($scope.pageNo1);
+        //console.log($scope.pageNo1);
         $scope.$watch($scope.pageNo1, function () {
             $scope.list($scope.pageNo1, 20);
         });
@@ -130,7 +130,7 @@ bankCtrl.controller('BankManCtrl', function ($http, $scope, $rootScope, $locatio
     var updateSelected = function (action, id) {
         if (action == 'add') {
             $scope.ids.push(id);
-            console.log($scope.ids);
+            //console.log($scope.ids);
         }
         if (action == 'remove') {
             var idx = $scope.ids.indexOf(id);
@@ -139,15 +139,15 @@ bankCtrl.controller('BankManCtrl', function ($http, $scope, $rootScope, $locatio
     };
 
     $scope.updateSelection = function ($event, id) {
-        console.log("点击一下")
+        //console.log("点击一下")
         var checkbox = $event.target;
         var action = (checkbox.checked ? 'add' : 'remove');
         updateSelected(action, id);
     };
 
     $scope.add_user = function (id, name) {
-        console.log(id);
-        console.log(name);
+        //console.log(id);
+        //console.log(name);
         $state.go("master.bank.add_bank_man", {id: id, name: name});
     };
 
@@ -159,24 +159,24 @@ bankCtrl.controller('BankManCtrl', function ($http, $scope, $rootScope, $locatio
             ids: $scope.ids,
             "bankId": $scope.id
         };
-        console.log($scope.ids);
-        console.log("baiyang", m_params);
+        //console.log($scope.ids);
+        //console.log("baiyang", m_params);
         $.ajax({
             type: 'POST',
             url: api_uri + "manage/bank/user/delete",
             data: m_params,
             traditional: true,
             success: function (data, textStatus, jqXHR) {
-                console.log(data);
+                //console.log(data);
                 if (data.returnCode == 0) {
                     $scope.list($scope.pageNo1, 20);
                 }
                 else {
-                    console.log(data);
+                    //console.log(data);
                 }
             },
             error: function (data, textStatus, jqXHR) {
-                console.log(data)
+                //console.log(data)
             },
             dataType: 'json',
         });
@@ -190,24 +190,24 @@ bankCtrl.controller('BankManCtrl', function ($http, $scope, $rootScope, $locatio
             "ids": id,
             "bankId": $scope.id
         };
-        console.log($scope.ids);
-        console.log("baiyang", m_params);
+        //console.log($scope.ids);
+        //console.log("baiyang", m_params);
         $.ajax({
             type: 'POST',
             url: api_uri + "manage/bank/user/delete",
             data: m_params,
             traditional: true,
             success: function (data, textStatus, jqXHR) {
-                console.log(data);
+                //console.log(data);
                 if (data.returnCode == 0) {
                     $scope.list($scope.pageNo1, 20);
                 }
                 else {
-                    console.log(data);
+                    //console.log(data);
                 }
             },
             error: function (data, textStatus, jqXHR) {
-                console.log(data)
+                //console.log(data)
             },
             dataType: 'json',
         });
@@ -231,8 +231,8 @@ bankCtrl.controller('AddBankCtrl', function ($http, $scope, $rootScope, $state, 
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(m_params);
-            console.log(d);
+            //console.log(m_params);
+            //console.log(d);
             if (d.returnCode == 0) {
                 $scope.qiniu_token = d.result.uptoken;
                 var uploader = Qiniu.uploader({
@@ -270,7 +270,7 @@ bankCtrl.controller('AddBankCtrl', function ($http, $scope, $rootScope, $state, 
                         'FileUploaded': function (up, file, info) {
                             var res = $.parseJSON(info);
                             var file_url = "http://" + $rootScope.qiniu_bucket_domain + "/" + res.key;
-                            console.log(file_url);
+                            //console.log(file_url);
                             $scope.bankPic = file_url;
                             $scope.$apply();
                             m_params.key = "bankPic";
@@ -286,7 +286,7 @@ bankCtrl.controller('AddBankCtrl', function ($http, $scope, $rootScope, $state, 
                             //    "json");
                         },
                         'Error': function (up, err, errTip) {
-                            console.log(err);
+                            //console.log(err);
                             $rootScope.alert("营业执照上传失败！");
                         },
                         'UploadComplete': function () {
@@ -300,11 +300,11 @@ bankCtrl.controller('AddBankCtrl', function ($http, $scope, $rootScope, $state, 
                     }
                 });
             } else {
-                console.log(d);
+                //console.log(d);
             }
 
         }).error(function (d) {
-            console.log(d);
+            //console.log(d);
         });
     }
     $scope.init();
@@ -313,11 +313,11 @@ bankCtrl.controller('AddBankCtrl', function ($http, $scope, $rootScope, $state, 
         $scope.feature_list_new = [];
         $scope.condition_list_new = [];
         for (var key in $scope.feature_list) {
-            console.log($scope.feature_list[key].feature)
+            //console.log($scope.feature_list[key].feature)
             $scope.feature_list_new.push($scope.feature_list[key].feature)
         }
         for (var key in $scope.condition_list) {
-            console.log($scope.condition_list[key].condition)
+            //console.log($scope.condition_list[key].condition)
             $scope.condition_list_new.push($scope.condition_list[key].condition)
         }
         var login_user = $rootScope.getObject("login_user");
@@ -327,22 +327,22 @@ bankCtrl.controller('AddBankCtrl', function ($http, $scope, $rootScope, $state, 
             "name": $scope.name,
             "icon": $scope.bankPic,
         };
-        console.log(m_params);
+        //console.log(m_params);
         $.ajax({
             type: 'POST',
             url: api_uri + "manage/bank/add",
             data: m_params,
             traditional: true,
             success: function (data, textStatus, jqXHR) {
-                console.log(data);
+                //console.log(data);
                 if (data.returnCode == 0) {
-                    console.log("创建成功了");
+                    //console.log("创建成功了");
                     $state.go("master.bank");
                     $scope.$apply();
 
                 }
                 else {
-                    console.log(data);
+                    //console.log(data);
                 }
             },
             dataType: 'json',
@@ -351,7 +351,7 @@ bankCtrl.controller('AddBankCtrl', function ($http, $scope, $rootScope, $state, 
 });
 
 bankCtrl.controller('UpdateBankCtrl', function ($http, $scope, $rootScope, $state, $stateParams, $location, $timeout, $routeParams) {
-    console.log($stateParams.id);
+    //console.log($stateParams.id);
     $scope.detail = function () {
         var login_user = $rootScope.getObject("login_user");
         var m_params = {
@@ -363,14 +363,14 @@ bankCtrl.controller('UpdateBankCtrl', function ($http, $scope, $rootScope, $stat
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
+            //console.log(d);
             if (d.returnCode == 0) {
                 $scope.bank = d.result;
                 $scope.name = d.result.name;
                 $scope.bankPic = d.result.icon;
             }
             else {
-                console.log(d.result);
+                //console.log(d.result);
             }
 
         }).error(function (d) {
@@ -389,8 +389,8 @@ bankCtrl.controller('UpdateBankCtrl', function ($http, $scope, $rootScope, $stat
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(m_params);
-            console.log(d);
+            //console.log(m_params);
+            //console.log(d);
             if (d.returnCode == 0) {
                 $scope.qiniu_token = d.result.uptoken;
                 var uploader = Qiniu.uploader({
@@ -428,7 +428,7 @@ bankCtrl.controller('UpdateBankCtrl', function ($http, $scope, $rootScope, $stat
                         'FileUploaded': function (up, file, info) {
                             var res = $.parseJSON(info);
                             var file_url = "http://" + $rootScope.qiniu_bucket_domain + "/" + res.key;
-                            console.log(file_url);
+                            //console.log(file_url);
                             $scope.bankPic = file_url;
                             $scope.$apply();
                             m_params.key = "bankPic";
@@ -444,7 +444,7 @@ bankCtrl.controller('UpdateBankCtrl', function ($http, $scope, $rootScope, $stat
                             //    "json");
                         },
                         'Error': function (up, err, errTip) {
-                            console.log(err);
+                            //console.log(err);
                             $rootScope.alert("营业执照上传失败！");
                         },
                         'UploadComplete': function () {
@@ -458,11 +458,11 @@ bankCtrl.controller('UpdateBankCtrl', function ($http, $scope, $rootScope, $stat
                     }
                 });
             } else {
-                console.log(d);
+                //console.log(d);
             }
 
         }).error(function (d) {
-            console.log(d);
+            //console.log(d);
         });
     }
     $scope.init();
@@ -476,22 +476,22 @@ bankCtrl.controller('UpdateBankCtrl', function ($http, $scope, $rootScope, $stat
             "icon": $scope.bankPic,
             "id": id
         };
-        console.log(m_params);
+        //console.log(m_params);
         $.ajax({
             type: 'POST',
             url: api_uri + "manage/bank/update/" + $stateParams.id,
             data: m_params,
             traditional: true,
             success: function (data, textStatus, jqXHR) {
-                console.log(data);
+                //console.log(data);
                 if (data.returnCode == 0) {
-                    console.log("编辑成功");
+                    //console.log("编辑成功");
                     $state.go("master.bank");
                     $scope.$apply();
 
                 }
                 else {
-                    console.log(data);
+                    //console.log(data);
                 }
             },
             dataType: 'json'
@@ -519,13 +519,13 @@ bankCtrl.controller('AddBankManCtrl', function ($http, $scope, $rootScope, $stat
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
+            //console.log(d);
             if (d.returnCode == 0) {
                 $scope.page = d.result;
                 $scope.product_list = d.result.datas;
             }
             else {
-                console.log(d.result);
+                //console.log(d.result);
             }
 
         }).error(function (d) {
@@ -536,7 +536,7 @@ bankCtrl.controller('AddBankManCtrl', function ($http, $scope, $rootScope, $stat
 
     $scope.changePage = function (page) {
         $scope.pageNo1 = page;
-        console.log($scope.pageNo1);
+        //console.log($scope.pageNo1);
         $scope.$watch($scope.pageNo1, function () {
             $scope.list($scope.pageNo1, 20);
         });
@@ -550,8 +550,8 @@ bankCtrl.controller('AddBankManCtrl', function ($http, $scope, $rootScope, $stat
         if (action == 'add') {
             $scope.ids.push(id);
             $scope.names.push(name);
-            console.log($scope.ids);
-            console.log($scope.names);
+            //console.log($scope.ids);
+            //console.log($scope.names);
         }
         if (action == 'remove') {
             var idx = $scope.ids.indexOf(id);
@@ -562,7 +562,7 @@ bankCtrl.controller('AddBankManCtrl', function ($http, $scope, $rootScope, $stat
     };
 
     $scope.updateSelection = function ($event, id, name) {
-        console.log("点击一下")
+        //console.log("点击一下")
         var checkbox = $event.target;
         var action = (checkbox.checked ? 'add' : 'remove');
         updateSelected(action, id, name);
@@ -583,20 +583,20 @@ bankCtrl.controller('AddBankManCtrl', function ($http, $scope, $rootScope, $stat
             "mobile": $scope.bank_man.mobile,
             "email": $scope.bank_man.email,
         };
-        console.log(m_params);
+        //console.log(m_params);
         $.ajax({
             type: 'POST',
             url: api_uri + "manage/bank/user/add",
             data: m_params,
             traditional: true,
             success: function (data, textStatus, jqXHR) {
-                console.log(data);
+                //console.log(data);
                 if (data.returnCode == 0) {
                     $state.go("master.bank.bank_man", {id: m_params.bankId});
                     $scope.$apply();
                 }
                 else {
-                    console.log(data);
+                    //console.log(data);
                 }
             },
             dataType: 'json',
@@ -616,14 +616,14 @@ bankCtrl.controller('AddBankManCtrl', function ($http, $scope, $rootScope, $stat
             $scope.products += " ";
         }
         ;
-        console.log($scope.products);
+        //console.log($scope.products);
         $scope.productDiv = false;
     }
 
 });
 
 bankCtrl.controller('UpdateBankManCtrl', function ($http, $scope, $rootScope, $state, $stateParams, $location, $timeout, $routeParams) {
-    console.log($stateParams.id);
+    //console.log($stateParams.id);
     $scope.detail = function () {
         var login_user = $rootScope.getObject("login_user");
         var m_params = {
@@ -635,15 +635,15 @@ bankCtrl.controller('UpdateBankManCtrl', function ($http, $scope, $rootScope, $s
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
+            //console.log(d);
             if (d.returnCode == 0) {
                 $scope.bank_man = d.result;
-                console.log($scope.bank_man);
+                //console.log($scope.bank_man);
                 $scope.products = "";
                 $scope.list(1, 20);
             }
             else {
-                console.log(d.result);
+                //console.log(d.result);
             }
 
         }).error(function (d) {
@@ -668,7 +668,7 @@ bankCtrl.controller('UpdateBankManCtrl', function ($http, $scope, $rootScope, $s
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
+            //console.log(d);
             if (d.returnCode == 0) {
                 $scope.page = d.result;
                 $scope.product_list = d.result.datas;
@@ -689,7 +689,7 @@ bankCtrl.controller('UpdateBankManCtrl', function ($http, $scope, $rootScope, $s
 
             }
             else {
-                console.log(d.result);
+                //console.log(d.result);
             }
 
         }).error(function (d) {
@@ -698,7 +698,7 @@ bankCtrl.controller('UpdateBankManCtrl', function ($http, $scope, $rootScope, $s
 
     $scope.changePage = function (page) {
         $scope.pageNo1 = page;
-        console.log($scope.pageNo1);
+        //console.log($scope.pageNo1);
         $scope.$watch($scope.pageNo1, function () {
             $scope.list($scope.pageNo1, 20);
         });
@@ -712,8 +712,8 @@ bankCtrl.controller('UpdateBankManCtrl', function ($http, $scope, $rootScope, $s
         if (action == 'add') {
             $scope.ids.push(id);
             $scope.names.push(name);
-            console.log($scope.ids);
-            console.log($scope.names);
+            //console.log($scope.ids);
+            //console.log($scope.names);
         }
         if (action == 'remove') {
             var idx = $scope.ids.indexOf(id);
@@ -724,7 +724,7 @@ bankCtrl.controller('UpdateBankManCtrl', function ($http, $scope, $rootScope, $s
     };
 
     $scope.updateSelection = function ($event, id, name) {
-        console.log("点击一下");
+        //console.log("点击一下");
         var checkbox = $event.target;
         var action = (checkbox.checked ? 'add' : 'remove');
         updateSelected(action, id, name);
@@ -745,22 +745,22 @@ bankCtrl.controller('UpdateBankManCtrl', function ($http, $scope, $rootScope, $s
             "mobile": $scope.bank_man.mobile,
             "email": $scope.bank_man.email,
         };
-        console.log(m_params);
+        //console.log(m_params);
         $.ajax({
             type: 'POST',
             url: api_uri + "manage/bank/user/update/" + $stateParams.id,
             data: m_params,
             traditional: true,
             success: function (data, textStatus, jqXHR) {
-                console.log(data);
+                //console.log(data);
                 if (data.returnCode == 0) {
-                    console.log("添加成功");
+                    //console.log("添加成功");
                     $state.go("master.bank.bank_man", {id: m_params.bankId});
                     $scope.$apply();
 
                 }
                 else {
-                    console.log(data);
+                    //console.log(data);
                 }
             },
             dataType: 'json',
@@ -780,7 +780,7 @@ bankCtrl.controller('UpdateBankManCtrl', function ($http, $scope, $rootScope, $s
             $scope.products += " ";
         }
         ;
-        console.log($scope.products);
+        //console.log($scope.products);
         $scope.productDiv = false;
     }
 });
