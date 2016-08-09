@@ -2,7 +2,7 @@
     <div class="contentTitle">
         <span>递交资料</span>
         <div class="fr" style="margin: 10px">
-            <button style="margin:0 10px" class="btn btnBlue fr">确定</button>
+            <button style="margin:0 10px" class="btn btnBlue fr" ng-click="sumbit_user()">确定</button>
             <button class="btn btnGrew fr" ui-sref="master.my_project">返回</button>
         </div>
     </div>
@@ -29,10 +29,11 @@
                 <button type="button" class="btnInput col-sm-12 col-lg-12" id="bankMan" data-toggle="dropdown"
                         aria-haspopup="true"
                         aria-expanded="false">
-                    {{bankMan ||"选择银行职员"}}
+                    {{bankManName ||"选择银行职员"}}
                 </button>
                 <ul class="dropdown-menu btnDrop col-sm-4 col-lg-4">
-                    <li class="btnDropDetail" ng-click="choiceBankMan(bankMan.id)" ng-repeat="bankMan in bank_man_list">
+                    <li class="btnDropDetail" ng-click="choiceBankMan(bankMan.id,bankMan.name)"
+                        ng-repeat="bankMan in bank_man_list">
                         {{bankMan.name}}
                     </li>
                 </ul>

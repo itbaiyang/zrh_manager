@@ -614,18 +614,21 @@ myProjectCtrl.controller('DistributeCtrl', function ($http, $scope, $rootScope, 
         $location.path('/master/my_project/edit_apply/' + id);
         console.log(id);
     };
-
-    $scope.choiceBankMan = function (id) {
+    $scope.choiceBankMan = function (id, name) {
+        $scope.bankManId = id;
+        $scope.bankManName = name;
+    }
+    $scope.sumbit_user = function () {
         var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId": login_user.userId,
             "token": login_user.token,
             "id": $scope.id,
-            "bankUserId": id
+            "bankUserId": $scope.bankManId
         };
         console.log(m_params);
         $http({
-            url: api_uri + "loanApplicationManage/allot",
+            url: api_uri + "loanApplicationManage/allot/",
             method: "GET",
             params: m_params
         }).success(function (d) {

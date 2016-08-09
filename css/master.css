@@ -437,3 +437,35 @@
     background-color: #ffffff;
     border: 1px solid red;
 }
+
+.detailStyle {
+    padding-left: 70px;
+}
+
+.detailStyle > p {
+    vertical-align: top;
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+}
+
+.detailStyle > div {
+    display: inline-block;
+    height: 40px;
+    width: 600px;
+    line-height: 40px;
+    font-size: 14px;
+}
+
+.detailStyleP1 {
+    display: inline-block;
+    width: 90px;
+}
+
+.detailStyle > div > p {
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    padding-left: 90px;
+}

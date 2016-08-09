@@ -41,7 +41,7 @@
                        ng-click="updateSelection($event,resultObj.id)">
                 {{resultObj.companyName}}</span>
             <span class="col-sm-2 col-lg-2">{{resultObj.productName}}</span>
-            <span class="col-sm-2 col-lg-2">{{resultObj.updateTime | date:'yyyy-MM-dd'}}</span>
+            <span class="col-sm-2 col-lg-2">{{resultObj.applyTime | date:'yyyy-MM-dd'}}</span>
             <span class="col-sm-2 col-lg-2">{{resultObj.progressText}}</span>
             <span class="col-sm-2 col-lg-2">{{resultObj.opUsername ||"无"}}</span>
             <button ng-hide="resultObj.op" class="btnGrew" ng-click="apply(resultObj.id)">我要处理</button>
