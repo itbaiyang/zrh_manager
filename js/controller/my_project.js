@@ -617,7 +617,7 @@ myProjectCtrl.controller('DistributeCtrl', function ($http, $scope, $rootScope, 
     };
 
     $scope.editApply = function (id) {
-        $location.path('/master/my_project/edit_apply/' + id);
+        $location.path('/master/my_project/detail/' + $stateParams.id);
         console.log(id);
     };
     $scope.choiceBankMan = function (id, name) {
@@ -642,6 +642,7 @@ myProjectCtrl.controller('DistributeCtrl', function ($http, $scope, $rootScope, 
             if (d.returnCode == 0) {
                 alert("递交成功");
                 $state.go("master.my_project");
+                $location.path('/master/my_project/detail/' + id);
             }
             else {
                 console.log(d.result);
