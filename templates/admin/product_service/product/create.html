@@ -27,7 +27,7 @@
         <div class="form-group">
             <label for="tags" class="col-sm-2 control-label">添加标签</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" id="tags" placeholder="添加标签" ng-model="tags">
+                <input type="text" class="form-control" id="tags" placeholder="＃标签＃＃标签2＃" ng-model="tags">
             </div>
         </div>
         <div class="form-group">
@@ -51,25 +51,28 @@
         <div class="form-group">
             <label for="rate" class="col-sm-2 control-label">利率</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" id="rate" placeholder="利率" ng-model="product.rate">
+                <input type="text" class="form-control" id="rate" placeholder="写出利率值即可，请勿加“%”" ng-model="product.rate">
             </div>
         </div>
         <div class="form-group">
             <label for="rateRemark" class="col-sm-2 control-label">利率描述</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" id="rateRemark" placeholder="备注" ng-model="product.rateRemark">
+                <input type="text" class="form-control" id="rateRemark" placeholder="最多不得超过6个字"
+                       ng-model="product.rateRemark">
             </div>
         </div>
         <div class="form-group">
             <label for="loanvalue" class="col-sm-2 control-label">贷款额度</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" id="loanvalue" placeholder="贷款额度" ng-model="product.loanvalue">
+                <input type="text" class="form-control" id="loanvalue" placeholder="最多不得超过6个字"
+                       ng-model="product.loanvalue">
             </div>
         </div>
         <div class="form-group">
             <label for="loanlife" class="col-sm-2 control-label">贷款期限</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" id="loanlife" placeholder="贷款期限" ng-model="product.loanlife">
+                <input type="text" class="form-control" id="loanlife" placeholder="最多不得超过6个字"
+                       ng-model="product.loanlife">
             </div>
         </div>
         <div class="form-group">

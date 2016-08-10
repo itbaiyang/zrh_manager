@@ -286,6 +286,12 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
             $scope.registerLinkmanName = d.result.registerLinkmanName;
             $scope.registerLinkmanMobile = d.result.registerLinkmanMobile;
             $scope.bankId = d.result.bankId;
+            $scope.bankName = d.result.bankName;
+            $scope.productName = d.result.productName;
+            if (d.result.remark) {
+                $scope.remark = d.result.remark;
+            }
+            $scope.applyTime = d.result.applyTime;
             $scope.basic = d.result.baseInfo;
             $scope.model_list = d.result.templateList;
         }).error(function (d) {

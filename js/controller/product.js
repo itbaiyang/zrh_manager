@@ -168,6 +168,32 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
             dataType: 'json',
         });
     };
+    $scope.sort_up = function () {
+        var login_user = $rootScope.getObject("login_user");
+        var m_params = {
+            "userId": login_user.userId,
+            "token": login_user.token,
+            ids: $scope.ids
+        };
+        console.log($scope.ids);
+        console.log("baiyang", m_params);
+        $.ajax({
+            type: 'POST',
+            url: api_uri + "financialProductManage/up",
+            data: m_params,
+            traditional: true,
+            success: function (data, textStatus, jqXHR) {
+                // console.log(data);
+                if (data.returnCode == 0) {
+                    $scope.list($scope.pageNo1, 10);
+                }
+                else {
+                    console.log(data);
+                }
+            },
+            dataType: 'json',
+        });
+    };
 
     $scope.update = function(id){
         //$location.state('master.product.update');

@@ -469,3 +469,9 @@
     font-size: 14px;
     padding-left: 90px;
 }
+
+.applyDetailImg {
+    width: 40px;
+    height: 40px;
+    margin: 10px 5px;
+}

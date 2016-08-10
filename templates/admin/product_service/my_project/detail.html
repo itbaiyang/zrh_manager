@@ -15,6 +15,29 @@
         </div>
     </div>
     <div class="">
+        <!--<p class="createTitle">基本内容</p>-->
+        <div class="detailStyle" ng-show="bankName">
+            <p class="detailStyleP1 noPadding">申请的产品：</p>
+            <div>{{bankName}}-{{productName}}</div>
+        </div>
+        <div class="detailStyle" ng-show="applyTime">
+            <p class="detailStyleP1 noPadding">申请时间：</p>
+            <div>{{applyTime | date:'yyyy-MM-dd HH:mm:ss'}}</div>
+        </div>
+        <div class="detailStyle" ng-show="basic.linkmanMobile">
+            <p class="detailStyleP1 noPadding">申请人：</p>
+            <div>{{basic.linkmanName}}</div>
+            <div style="padding-left: 90px;margin-top: -10px">{{basic.linkmanMobile}}</div>
+        </div>
+        <div class="detailStyle" ng-show="registerLinkmanMobile">
+            <p class="detailStyleP1 noPadding">注册人：</p>
+            <div>{{registerLinkmanName}}</div>
+            <div style="padding-left: 90px;margin-top: -10px">{{registerLinkmanMobile}}</div>
+        </div>
+        <div class="detailStyle" ng-show="remark">
+            <p class="detailStyleP1 noPadding">备注：</p>
+            <div>{{remark}}</div>
+        </div>
         <p class="createTitle">基本内容</p>
         <div class="detailStyle" ng-show="basic.company_name">
             <p class="detailStyleP1 noPadding">企业全称：</p>
@@ -54,7 +77,7 @@
             <div style="padding-left: 90px;margin-top: -10px">{{basic.registerLinkmanMobile}}</div>
         </div>
         <div class="detailStyle" ng-show="basic.linkmanMobile">
-            <p class="detailStyleP1 noPadding">注册电话：</p>
+            <p class="detailStyleP1 noPadding">联系电话：</p>
             <div>{{basic.linkmanName}}</div>
             <div style="padding-left: 90px;margin-top: -10px">{{basic.linkmanMobile}}</div>
         </div>
