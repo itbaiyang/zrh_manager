@@ -725,8 +725,8 @@ myProjectCtrl.controller("MyProjectCtrl", function ($http, $scope, $rootScope, $
     }, $scope.removeImgList = function (id, index) {
         $scope.model_list[id].imgList.splice(index, 1)
     }
-}), myProjectCtrl.controller("DistributeCtrl", function ($http, $scope, $rootScope, $location, $state, $timeout, $stateParams) {
-    $scope.id = $stateParams.id, $scope.list = function (pageNo, pageSize) {
+}), myProjectCtrl.controller("DistributeCtrl", function ($http, $scope, $rootScope, $location, $state, $timeout, $routeParams, $stateParams) {
+    $scope.id = $stateParams.id, console.log($scope.id), $scope.list = function (pageNo, pageSize) {
         var login_user = $rootScope.getObject("login_user"), m_params = {
             userId: login_user.userId,
             token: login_user.token,
@@ -750,8 +750,6 @@ myProjectCtrl.controller("MyProjectCtrl", function ($http, $scope, $rootScope, $
             console.log(d), 0 == d.returnCode ? $scope.bank_man_list = d.result.datas : console.log(d.result)
         }).error(function (d) {
         })
-    }, $scope.editApply = function (id) {
-        $location.path("/master/my_project/edit_apply/" + id), console.log(id)
     }, $scope.choiceBankMan = function (id, name) {
         $scope.bankManId = id, $scope.bankManName = name
     }, $scope.sumbit_user = function () {
@@ -766,7 +764,7 @@ myProjectCtrl.controller("MyProjectCtrl", function ($http, $scope, $rootScope, $
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d), 0 == d.returnCode ? (alert("递交成功"), $state.go("master.my_project"), $location.path("/master/my_project/detail/" + $stateParams.id)) : (console.log(d.result), alert("递交失败"))
+            console.log(d), 0 == d.returnCode ? (alert("递交成功"), $location.path("/master/my_project/detail/" + $scope.id)) : (console.log(d.result), alert("递交失败"))
         }).error(function (d) {
         })
     }, $scope.choiceBank = function (id, name) {
@@ -874,4 +872,816 @@ superCtrl.controller("UserListCtrl", function ($http, $scope, $rootScope, $locat
         })
     }
 }), superCtrl.controller("CreateUserCtrl", function ($http, $scope, $rootScope, $location, $state, $timeout, $routeParams) {
-var timesTamp=(new Date).getTime(),timesTamp1=String(timesTamp).substring(0,10);$scope.timestamp=parseInt(timesTamp1),$scope.submit=function(){var login_user=$rootScope.getObject("login_user"),m_params={userId:login_user.userId,token:login_user.token,timestamp:$scope.timestamp,email:$scope.email,name:$scope.name,mobile:$scope.mobile,empNo:$scope.empNo,password:$scope.password,signature:$rootScope.encryptByDES($scope.email+$scope.password+$scope.timestamp)};console.log(m_params),$http({url:api_uri+"p/user/create",method:"POST",params:m_params}).success(function(d){0==d.returnCode?(console.log(d),$state.go("super")):console.log(d)}).error(function(d){$scope.changeErrorMsg("网络故障请稍后再试......"),$location.path("/login")})}}),superCtrl.controller("UserUpdateCtrl",function($http,$scope,$rootScope,$location,$state,$timeout,$stateParams){var timesTamp=(new Date).getTime(),timesTamp1=String(timesTamp).substring(0,10);$scope.timestamp=parseInt(timesTamp1),$scope.get=function(){var login_user=$rootScope.getObject("login_user"),m_params={userId:login_user.userId,token:login_user.token};$http({url:api_uri+"p/user/detail/"+$stateParams.id,method:"GET",params:m_params}).success(function(d){console.log(d),0==d.returnCode?$scope.user=d.result:console.log(d.result)}).error(function(d){})},$scope.get(),$scope.submit=function(){var login_user=$rootScope.getObject("login_user"),m_params={userId:login_user.userId,token:login_user.token,timestamp:$scope.timestamp,name:$scope.user.name,mobile:$scope.user.mobile,password:$scope.user.password,signature:$rootScope.encryptByDES($scope.email+$scope.password+$scope.timestamp)};console.log(m_params),$http({url:api_uri+"p/user/update/"+$stateParams.id,method:"POST",params:m_params}).success(function(d){0==d.returnCode?(console.log(d),$state.go("super")):console.log(d)}).error(function(d){})}});var signUpCtrl=angular.module("signUpCtrl",[]);signUpCtrl.controller("SignUpCtrl",function($http,$scope,$rootScope,$location,$timeout,$routeParams){$scope.list=function(pageNo,pageSize){var login_user=$rootScope.getObject("login_user"),m_params={userId:login_user.userId,token:login_user.token,pageNo:pageNo,pageSize:pageSize,wd:$scope.wd};$http({url:api_uri+"p/user/listUsers",method:"GET",params:m_params}).success(function(d){console.log(d),0==d.returnCode?(console.log(d),$scope.page=d.result,$scope.result_list=d.result.datas):console.log(d)}).error(function(d){console.log(d)})},$scope.list(1,20),$scope.changePage=function(page){$scope.pageNo1=page,console.log($scope.pageNo1),$scope.$watch($scope.pageNo1,function(){$scope.list($scope.pageNo1,20)})},$scope.selected=[],$scope.ids=[],$scope.isSelected=function(id){return $scope.selected.indexOf(id)>=0};var updateSelected=function(action,id){if("add"==action&&($scope.ids.push(id),console.log("添加id"+$scope.ids)),"remove"==action){var idx=$scope.ids.indexOf(id);$scope.ids.splice(idx,1),console.log("删除id"+id)}};$scope.refresh_user=function(){$scope.list($scope.pageNo1,20)},$scope.updateSelection=function($event,id){console.log("点击一下");var checkbox=$event.target,action=checkbox.checked?"add":"remove";updateSelected(action,id)},$scope.search_text=null,$scope.search=function(){$scope.wd=$scope.search_text,$scope.list(1,20)}});var bankCtrl=angular.module("bankCtrl",[]);bankCtrl.controller("BankCtrl",function($http,$scope,$state,$rootScope,$location,$timeout,$routeParams){$scope.selected=[],$scope.ids=[],$scope.list=function(pageNo,pageSize){var login_user=$rootScope.getObject("login_user"),m_params={userId:login_user.userId,token:login_user.token,pageNo:pageNo,pageSize:pageSize};$http({url:api_uri+"manage/bank/list",method:"GET",params:m_params}).success(function(d){0==d.returnCode&&($scope.page=d.result,$scope.bank_list=d.result.datas)}).error(function(d){$location.path("/error")})},$scope.list(1,20),$scope.changePage=function(page){$scope.pageNo1=page,$scope.$watch($scope.pageNo1,function(){$scope.list($scope.pageNo1,20)})},$scope.edit_bank=function(id){$location.path("/master/bank/update/"+id)},$scope.find_detail=function(id,name){$state.go("master.bank.bank_man",{id:id,name:name})},$scope["delete"]=function(id){var login_user=$rootScope.getObject("login_user"),m_params={userId:login_user.userId,token:login_user.token,id:id};$http({url:api_uri+"manage/bank/delete",method:"GET",params:m_params}).success(function(d){0==d.returnCode&&$scope.list(1,20)}).error(function(d){})},$scope.changeModule=function(a,b){$scope.editModule=a,$scope.deleteModule=b}}),bankCtrl.controller("BankManCtrl",function($http,$scope,$rootScope,$location,$stateParams,$state,$routeParams,$timeout){$scope.selected=[],$scope.ids=[],$scope.id=$stateParams.id,$scope.bankName=$stateParams.name,$scope.list=function(pageNo,pageSize){var login_user=$rootScope.getObject("login_user"),m_params={userId:login_user.userId,token:login_user.token,pageNo:pageNo,pageSize:pageSize,bankId:$stateParams.id};$http({url:api_uri+"manage/bank/user/list",method:"GET",params:m_params}).success(function(d){0==d.returnCode&&($scope.page=d.result,$scope.bank_man_list=d.result.datas)}).error(function(d){})},$scope.list(1,20),$scope.changePage=function(page){$scope.pageNo1=page,$scope.$watch($scope.pageNo1,function(){$scope.list($scope.pageNo1,20)})},$scope.isSelected=function(id){return $scope.selected.indexOf(id)>=0};var updateSelected=function(action,id){if("add"==action&&$scope.ids.push(id),"remove"==action){var idx=$scope.ids.indexOf(id);$scope.ids.splice(idx,1)}};$scope.updateSelection=function($event,id){var checkbox=$event.target,action=checkbox.checked?"add":"remove";updateSelected(action,id)},$scope.add_user=function(id,name){$state.go("master.bank.add_bank_man",{id:id,name:name})},$scope["delete"]=function(){var login_user=$rootScope.getObject("login_user"),m_params={userId:login_user.userId,token:login_user.token,ids:$scope.ids,bankId:$scope.id};$.ajax({type:"POST",url:api_uri+"manage/bank/user/delete",data:m_params,traditional:!0,success:function(data,textStatus,jqXHR){0==data.returnCode&&$scope.list($scope.pageNo1,20)},error:function(data,textStatus,jqXHR){},dataType:"json"})},$scope.delete_one=function(id){var login_user=$rootScope.getObject("login_user"),m_params={userId:login_user.userId,token:login_user.token,ids:id,bankId:$scope.id};$.ajax({type:"POST",url:api_uri+"manage/bank/user/delete",data:m_params,traditional:!0,success:function(data,textStatus,jqXHR){0==data.returnCode&&$scope.list($scope.pageNo1,20)},error:function(data,textStatus,jqXHR){},dataType:"json"})},$scope.edit_bank_man=function(id){$location.path("/master/bank/update_bank_man/"+id)}}),bankCtrl.controller("AddBankCtrl",function($http,$scope,$rootScope,$state,$location,$timeout,$routeParams){$scope.init=function(){var login_user=$rootScope.getObject("login_user"),m_params={userId:login_user.userId,token:login_user.token};$http({url:api_uri+"qiniu/getUpToken",method:"GET",params:m_params}).success(function(d){if(0==d.returnCode){$scope.qiniu_token=d.result.uptoken;Qiniu.uploader({runtimes:"html5,flash,html4",browse_button:"pickfiles",uptoken:$scope.qiniu_token,domain:$rootScope.qiniu_bucket_domain,container:"upload_container",max_file_size:"10mb",flash_swf_url:"../../framework/plupload/Moxie.swf",max_retries:3,dragdrop:!1,drop_element:"",chunk_size:"4mb",auto_start:!0,init:{FilesAdded:function(up,files){},BeforeUpload:function(up,file){$rootScope.uploading=!0,$scope.upload_percent=file.percent,$rootScope.$apply()},UploadProgress:function(up,file){$scope.upload_percent=file.percent,$scope.$apply()},FileUploaded:function(up,file,info){var res=$.parseJSON(info),file_url="http://"+$rootScope.qiniu_bucket_domain+"/"+res.key;$scope.bankPic=file_url,$scope.$apply(),m_params.key="bankPic",m_params.value=$scope.bankPic},Error:function(up,err,errTip){$rootScope.alert("营业执照上传失败！")},UploadComplete:function(){},Key:function(up,file){var time=(new Date).getTime(),k="financialProductManage/create/"+m_params.userId+"/"+time;return k}}})}}).error(function(d){})},$scope.init(),$scope.submitAdd=function(){$scope.feature_list_new=[],$scope.condition_list_new=[];for(var key in $scope.feature_list)$scope.feature_list_new.push($scope.feature_list[key].feature);for(var key in $scope.condition_list)$scope.condition_list_new.push($scope.condition_list[key].condition);var login_user=$rootScope.getObject("login_user"),m_params={userId:login_user.userId,token:login_user.token,name:$scope.name,icon:$scope.bankPic};$.ajax({type:"POST",url:api_uri+"manage/bank/add",data:m_params,traditional:!0,success:function(data,textStatus,jqXHR){0==data.returnCode&&($state.go("master.bank"),$scope.$apply())},dataType:"json"})}}),bankCtrl.controller("UpdateBankCtrl",function($http,$scope,$rootScope,$state,$stateParams,$location,$timeout,$routeParams){$scope.detail=function(){var login_user=$rootScope.getObject("login_user"),m_params={userId:login_user.userId,token:login_user.token};$http({url:api_uri+"manage/bank/detail/"+$stateParams.id,method:"GET",params:m_params}).success(function(d){0==d.returnCode&&($scope.bank=d.result,$scope.name=d.result.name,$scope.bankPic=d.result.icon)}).error(function(d){})},$scope.detail(),$scope.init=function(){var login_user=$rootScope.getObject("login_user"),m_params={userId:login_user.userId,token:login_user.token};$http({url:api_uri+"qiniu/getUpToken",method:"GET",params:m_params}).success(function(d){if(0==d.returnCode){$scope.qiniu_token=d.result.uptoken;Qiniu.uploader({runtimes:"html5,flash,html4",browse_button:"pickfiles",uptoken:$scope.qiniu_token,domain:$rootScope.qiniu_bucket_domain,container:"upload_container",max_file_size:"10mb",flash_swf_url:"../../framework/plupload/Moxie.swf",max_retries:3,dragdrop:!1,drop_element:"",chunk_size:"4mb",auto_start:!0,init:{FilesAdded:function(up,files){},BeforeUpload:function(up,file){$rootScope.uploading=!0,$scope.upload_percent=file.percent,$rootScope.$apply()},UploadProgress:function(up,file){$scope.upload_percent=file.percent,$scope.$apply()},FileUploaded:function(up,file,info){var res=$.parseJSON(info),file_url="http://"+$rootScope.qiniu_bucket_domain+"/"+res.key;$scope.bankPic=file_url,$scope.$apply(),m_params.key="bankPic",m_params.value=$scope.bankPic},Error:function(up,err,errTip){$rootScope.alert("营业执照上传失败！")},UploadComplete:function(){},Key:function(up,file){var time=(new Date).getTime(),k="financialProductManage/create/"+m_params.userId+"/"+time;return k}}})}}).error(function(d){})},$scope.init(),$scope.update=function(id){var login_user=$rootScope.getObject("login_user"),m_params={userId:login_user.userId,token:login_user.token,name:$scope.name,icon:$scope.bankPic,id:id};$.ajax({type:"POST",url:api_uri+"manage/bank/update/"+$stateParams.id,data:m_params,traditional:!0,success:function(data,textStatus,jqXHR){0==data.returnCode&&($state.go("master.bank"),$scope.$apply())},dataType:"json"})}}),bankCtrl.controller("AddBankManCtrl",function($http,$scope,$rootScope,$state,$stateParams,$location,$timeout){$scope.selected=[],$scope.ids=[],$scope.names=[],$scope.list=function(pageNo,pageSize){var login_user=$rootScope.getObject("login_user"),m_params={userId:login_user.userId,token:login_user.token,bankId:$stateParams.id,pageNo:pageNo,pageSize:pageSize,release:!0};$http({url:api_uri+"financialProductManage/list",method:"GET",params:m_params}).success(function(d){0==d.returnCode&&($scope.page=d.result,$scope.product_list=d.result.datas)}).error(function(d){})},$scope.list(1,20),$scope.changePage=function(page){$scope.pageNo1=page,$scope.$watch($scope.pageNo1,function(){$scope.list($scope.pageNo1,20)})},$scope.isSelected=function(id){return $scope.selected.indexOf(id)>=0};var updateSelected=function(action,id,name){if("add"==action&&($scope.ids.push(id),$scope.names.push(name)),"remove"==action){var idx=$scope.ids.indexOf(id),name_x=$scope.names.indexOf(name);$scope.ids.splice(idx,1),$scope.names.splice(name_x,1)}};$scope.updateSelection=function($event,id,name){var checkbox=$event.target,action=checkbox.checked?"add":"remove";updateSelected(action,id,name)},$scope.add_bank_man=function(){var login_user=$rootScope.getObject("login_user"),m_params={userId:login_user.userId,token:login_user.token,name:$scope.bank_man.name,bankId:$stateParams.id,branchBankName:$scope.bank_man.branchBank,address:$scope.bank_man.address,position:$scope.bank_man.position,productIds:$scope.ids,mobile:$scope.bank_man.mobile,email:$scope.bank_man.email};$.ajax({type:"POST",url:api_uri+"manage/bank/user/add",data:m_params,traditional:!0,success:function(data,textStatus,jqXHR){0==data.returnCode&&($state.go("master.bank.bank_man",{id:m_params.bankId}),$scope.$apply())},dataType:"json"})},$scope.show_product=function(){$scope.productDiv=!0},$scope.hide_product=function(){$scope.products="";for(var i=0;i<$scope.names.length;i++)$scope.products+=$scope.names[i],$scope.products+=" ";$scope.productDiv=!1}}),bankCtrl.controller("UpdateBankManCtrl",function($http,$scope,$rootScope,$state,$stateParams,$location,$timeout,$routeParams){$scope.detail=function(){var login_user=$rootScope.getObject("login_user"),m_params={userId:login_user.userId,token:login_user.token};$http({url:api_uri+"manage/bank/user/detail/"+$stateParams.id,method:"GET",params:m_params}).success(function(d){0==d.returnCode&&($scope.bank_man=d.result,$scope.products="",$scope.list(1,20))}).error(function(d){})},$scope.detail(),$scope.selected=[],$scope.ids=[],$scope.names=[],$scope.list=function(pageNo,pageSize){var login_user=$rootScope.getObject("login_user"),m_params={userId:login_user.userId,token:login_user.token,pageNo:pageNo,pageSize:pageSize,release:!0};$http({url:api_uri+"financialProductManage/list",method:"GET",params:m_params}).success(function(d){if(0==d.returnCode){$scope.page=d.result,$scope.product_list=d.result.datas;for(var i=0;i<$scope.bank_man.productIds.length;i++)for(var j=0;j<$scope.product_list.length;j++)$scope.bank_man.productIds[i]==$scope.product_list[j].id&&($scope.names.push($scope.product_list[j].name),$scope.ids.push($scope.product_list[j].id));$scope.products="";for(var i=0;i<$scope.names.length;i++)$scope.products+=$scope.names[i],$scope.products+=" "}}).error(function(d){})},$scope.changePage=function(page){$scope.pageNo1=page,$scope.$watch($scope.pageNo1,function(){$scope.list($scope.pageNo1,20)})},$scope.isSelected=function(id){return $scope.bank_man.productIds.indexOf(id)>=0};var updateSelected=function(action,id,name){if("add"==action&&($scope.ids.push(id),$scope.names.push(name)),"remove"==action){var idx=$scope.ids.indexOf(id),name_x=$scope.names.indexOf(name);$scope.ids.splice(idx,1),$scope.names.splice(name_x,1)}};$scope.updateSelection=function($event,id,name){var checkbox=$event.target,action=checkbox.checked?"add":"remove";updateSelected(action,id,name)},$scope.update=function(){var login_user=$rootScope.getObject("login_user"),m_params={userId:login_user.userId,token:login_user.token,name:$scope.bank_man.name,bankId:$scope.bank_man.bankId,branchBankName:$scope.bank_man.branchBankName,address:$scope.bank_man.address,position:$scope.bank_man.position,productIds:$scope.ids,mobile:$scope.bank_man.mobile,email:$scope.bank_man.email};$.ajax({type:"POST",url:api_uri+"manage/bank/user/update/"+$stateParams.id,data:m_params,traditional:!0,success:function(data,textStatus,jqXHR){0==data.returnCode&&($state.go("master.bank.bank_man",{id:m_params.bankId}),$scope.$apply())},dataType:"json"})},$scope.show_product=function(){$scope.productDiv=!0},$scope.hide_product=function(){$scope.products="";for(var i=0;i<$scope.names.length;i++)$scope.products+=$scope.names[i],$scope.products+=" ";$scope.productDiv=!1}});var messageCtrl=angular.module("messageCtrl",[]);messageCtrl.controller("MessageBankCtrl",function($http,$scope,$rootScope,$location,$timeout,$routeParams){var login_user=$rootScope.getObject("login_user");$scope.init=function(){var m_params={userId:login_user.userId,token:login_user.token};$http({url:api_uri+"applyBankDeal/manage/list",method:"GET",params:m_params}).success(function(d){console.log(d),$scope.message_list=d.result.datas,angular.forEach($scope.message_list,function(data){0==data.status?data.progressText="未申请":1==data.status?(data.progressText="审核中",data.jindu=20,data.jindu_next=30):2==data.status?(data.progressText="约见中",data.jindu=20,data.jindu_next=30):3==data.status?(data.progressText="跟进中",data.jindu=50,data.jindu_next=25):4==data.status?(data.progressText="成功融资",data.progressBtn="已结束",data.jindu=75,data.jindu_next=25):data.status==-1&&(data.progressText="申请取消")})}).error(function(d){console.log(d)})},$scope.init(),$scope.showAllow=[],$scope.show_allow=function(status,id){$scope.showAllow[id]=!0,$scope.status=status,console.log($scope.status),2==status?$scope.statusText="约见中":3==status?$scope.statusText="跟进中":4==status&&($scope.statusText="成功融资")},$scope.choiceStatus=function(status){$scope.status=status,2==status?$scope.statusText="约见中":3==status?$scope.statusText="跟进中":4==status&&($scope.statusText="成功融资")},$scope.cancel=function(id){$scope.showAllow[id]=!1},$scope.allow=function(days,id,index){var m_params={userId:login_user.userId,token:login_user.token,status:$scope.status,dayNum:days,id:id};console.log(m_params),$http({url:api_uri+"applyBankDeal/manage/allow",method:"GET",params:m_params}).success(function(d){console.log(d),$scope.showAllow[index]=!1}).error(function(d){console.log(d)})},$scope.refuse=function(id){$scope.reason_refuse=$("#reason_refuse").val(),console.log($scope.reason_refuse);var m_params={userId:login_user.userId,token:login_user.token,id:id,reason:$scope.reason_refuse};console.log(m_params),$http({url:api_uri+"applyBankDeal/manage/refuse",method:"GET",params:m_params}).success(function(d){console.log(d)}).error(function(d){console.log(d)})}}),messageCtrl.controller("MessageSystemCtrl",function($http,$scope,$rootScope,$location,$timeout,$routeParams){var login_user=$rootScope.getObject("login_user");$scope.init=function(){var m_params={userId:login_user.userId,token:login_user.token};$http({url:api_uri+"zrh/message/lists",method:"GET",params:m_params}).success(function(d){console.log(d),$scope.message_list=d.result.datas}).error(function(d){console.log(d)})},$scope.init()}),api_uri="http://test.zhironghao.com/api/";var templates_root="templates/";deskey="abc123.*abc123.*abc123.*abc123.*";var app=angular.module("app",["ng","ngRoute","ngAnimate","ui.router","tm.pagination","loginCtrl","topBarCtrl","loanApplicationCtrl","productCtrl","myProjectCtrl","superCtrl","signUpCtrl","bankCtrl","messageCtrl"],function($httpProvider){$httpProvider.defaults.headers.post["Content-Type"]="application/x-www-form-urlencoded;charset=utf-8",$httpProvider.defaults.headers.put["Content-Type"]="application/x-www-form-urlencoded;charset=utf-8";var param=function(obj){var name,value,fullSubName,subName,subValue,innerObj,i,query="";for(name in obj)if(value=obj[name],value instanceof Array)for(i=0;i<value.length;++i)subValue=value[i],fullSubName=name+"["+i+"]",innerObj={},innerObj[fullSubName]=subValue,query+=param(innerObj)+"&";else if(value instanceof Object)for(subName in value)subValue=value[subName],fullSubName=name+"["+subName+"]",innerObj={},innerObj[fullSubName]=subValue,query+=param(innerObj)+"&";else void 0!==value&&null!==value&&(query+=encodeURIComponent(name)+"="+encodeURIComponent(value)+"&");return query.length?query.substr(0,query.length-1):query};$httpProvider.defaults.transformRequest=[function(data){return angular.isObject(data)&&"[object File]"!==String(data)?param(data):data}]});app.run(function($location,$rootScope,$http){$rootScope.qiniu_bucket_domain="o793l6o3p.bkt.clouddn.com",$rootScope.$on("$stateChangeSuccess",function(event,toState,toParams,fromState,fromParams){var present_route=toState.name;console.log(present_route);var array=present_route.split(".");$rootScope.choiceColor=array[1],console.log(array[1]),"message"==array[1]?(console.log(array[1],"baiyang"),$rootScope.sideTwo=!0,$rootScope.choiceColorTwo=array[2],$(".sideBarP2").css("text-align","left")):($rootScope.sideTwo=!1,$(".sideBarP2").css("text-align","center"))}),$rootScope.$on("$stateChangeStart",function(event,toState,toParams,fromState,fromParams){console.log("check user "),$rootScope.check_user(),$rootScope.login_user?console.log("dd"):$location.path("/login")}),$rootScope.encryptByDES=function(message){var keyHex=CryptoJS.enc.Utf8.parse(deskey),encrypted=CryptoJS.DES.encrypt(message,keyHex,{mode:CryptoJS.mode.ECB,padding:CryptoJS.pad.Pkcs7});return encrypted.toString()},$rootScope.decryptByDES=function(ciphertext){var keyHex=CryptoJS.enc.Utf8.parse(deskey),decrypted=CryptoJS.DES.decrypt({ciphertext:CryptoJS.enc.Base64.parse(ciphertext)},keyHex,{mode:CryptoJS.mode.ECB,padding:CryptoJS.pad.Pkcs7});return decrypted.toString(CryptoJS.enc.Utf8)},$rootScope.transFn=function(obj){var str=[];for(var p in obj)str.push(encodeURIComponent(p)+"="+encodeURIComponent(obj[p]));return str.join("&").toString()},$rootScope.putObject=function(key,value){localStorage.setItem(key,angular.toJson(value))},$rootScope.getObject=function(key){return angular.fromJson(localStorage.getItem(key))},$rootScope.removeObject=function(key){localStorage.removeItem(key)},$rootScope.putSessionObject=function(key,value){sessionStorage.setItem(key,angular.toJson(value))},$rootScope.getSessionObject=function(key){return angular.fromJson(sessionStorage.getItem(key))},$rootScope.removeSessionObject=function(key){angular.fromJson(sessionStorage.removeItem(key))},$rootScope.getAccountInfo=function(){return $rootScope.account_info=={}&&($rootScope.account_info=$rootScope.putSessionObject("account_info")),$rootScope.account_info||($rootScope.account_info={}),$rootScope.account_info},$rootScope.setAccountInfo=function(account_info){$rootScope.account_info=account_info,$rootScope.putSessionObject("account_info",$rootScope.account_info)},$rootScope.updateAccountInfo=function(dict){$rootScope.account_info=$rootScope.getAccountInfo();for(var key in dict)$rootScope.account_info[key]=dict[key];$rootScope.putSessionObject("account_info",$rootScope.account_info)},$rootScope.setAccountInfoKeyValue=function(key,value){$rootScope.account_info=$rootScope.getAccountInfo(),$rootScope.account_info[key]=value,$rootScope.putSessionObject("account_info",$rootScope.account_info)},$rootScope.getAccountInfoKeyValue=function(key){return $rootScope.account_info!={}&&($rootScope.account_info=$rootScope.putSessionObject("account_info")),$rootScope.account_info?$rootScope.account_info[key]:null},$rootScope.check_user=function(){$rootScope.login_user=$rootScope.getObject("login_user"),console.log($rootScope.login_user),$rootScope.login_user&&$http({url:api_uri+"p/user/validateAuth",method:"POST",params:$rootScope.login_user}).success(function(d){return 0==d.returnCode?(console.log("login success"),!0):($rootScope.login_user={},$rootScope.removeObject("login_user"),!1)}).error(function(d){return!1})}}),app.config(function($stateProvider,$urlRouterProvider){$urlRouterProvider.otherwise("/login"),$stateProvider.state("login",{url:"/login",views:{"":{templateUrl:templates_root+"login/index.html",controller:"LoginCtrl"}}}).state("super",{url:"/super",views:{"":{templateUrl:templates_root+"super/index.html"},"top_bar@super":{templateUrl:templates_root+"super/top_bar.html"},"side_bar@super":{templateUrl:templates_root+"super/side_bar.html"},"sign_up@super":{templateUrl:templates_root+"super/user_list.html",controller:"UserListCtrl"}}}).state("super.addUser",{url:"/add_user",views:{"sign_up@super":{templateUrl:templates_root+"super/add_user.html",controller:"CreateUserCtrl"}}}).state("super.update",{url:"/update/:id",views:{"sign_up@super":{templateUrl:templates_root+"super/user_update.html",controller:"UserUpdateCtrl"}}}).state("master",{url:"/master",views:{"":{templateUrl:templates_root+"admin/index.html"},"top_bar@master":{templateUrl:templates_root+"admin/top_bar.html",controller:"TopBarCtrl"},"side_bar@master":{templateUrl:templates_root+"admin/side_bar.html",controller:"SideBarCtrl"},"contains@master":{templateUrl:templates_root+"admin/contains.html",controller:"ContainsCtrl"}}}).state("master.company_message",{url:"/company_message",views:{"contains@master":{templateUrl:templates_root+"admin/product_service/company_message/company_message.html",controller:"LoanApplicationCtrl"}}}).state("master.company_message.add_company",{url:"/add_company",views:{"contains@master":{templateUrl:templates_root+"admin/product_service/company_message/add_company.html",controller:"AddCompanyCtrl"}}}).state("master.product",{url:"/product",views:{"contains@master":{templateUrl:templates_root+"admin/product_service/product/product.html",controller:"ProductCtrl"}}}).state("master.product.create",{url:"/create",views:{"contains@master":{templateUrl:templates_root+"admin/product_service/product/create.html",controller:"ProductCreateCtrl"}}}).state("master.product.update",{url:"/update/:id",views:{"contains@master":{templateUrl:templates_root+"admin/product_service/product/update.html",controller:"ProductUpdateCtrl"}}}).state("master.signUp",{url:"/signUp",views:{"contains@master":{templateUrl:templates_root+"admin/product_service/sign_up.html",controller:"SignUpCtrl"}}}).state("master.my_project",{url:"/my_project",views:{"contains@master":{templateUrl:templates_root+"admin/product_service/my_project/my_project.html",controller:"MyProjectCtrl"}}}).state("master.my_project.detail",{url:"/detail/:id",views:{"contains@master":{templateUrl:templates_root+"admin/product_service/my_project/detail.html",controller:"DetailCtrl"}}}).state("master.my_project.edit_apply",{url:"/edit_apply/:id",views:{"contains@master":{templateUrl:templates_root+"admin/product_service/my_project/edit_apply.html",controller:"EditApplyCtrl"}}}).state("master.my_project.distribute",{url:"/distribute/:id",views:{"contains@master":{templateUrl:templates_root+"admin/product_service/my_project/distribute.html",controller:"DistributeCtrl"}}}).state("master.my_project.apply_help",{url:"/apply_help/:id",views:{"contains@master":{templateUrl:templates_root+"admin/product_service/my_project/apply_help.html",controller:"ApplyHelpCtrl"}}}).state("master.my_project.apply_again",{url:"/apply_again/:id/:mobile",views:{"contains@master":{templateUrl:templates_root+"admin/product_service/my_project/apply_again.html",controller:"ApplyHelpCtrl"}}}).state("master.bank",{url:"/bank",views:{"contains@master":{templateUrl:templates_root+"admin/product_service/bank/bank.html",controller:"BankCtrl"}}}).state("master.bank.bank_man",{params:{id:null,name:null},url:"/bank_man/:id/:name",views:{"contains@master":{templateUrl:templates_root+"admin/product_service/bank/bank_man.html",controller:"BankManCtrl"}}}).state("master.bank.add_bank",{params:{id:null,name:null},url:"/add_bank/:id/:name",views:{"contains@master":{templateUrl:templates_root+"admin/product_service/bank/add_bank.html",controller:"AddBankCtrl"}}}).state("master.bank.add_bank_man",{url:"/add_bank_man/:id/:name",views:{"contains@master":{templateUrl:templates_root+"admin/product_service/bank/add_bank_man.html",controller:"AddBankManCtrl"}}}).state("master.bank.update",{url:"/update/:id",views:{"contains@master":{templateUrl:templates_root+"admin/product_service/bank/update.html",controller:"UpdateBankCtrl"}}}).state("master.bank.update_bank_man",{url:"/update_bank_man/:id",views:{"contains@master":{templateUrl:templates_root+"admin/product_service/bank/update_bank_man.html",controller:"UpdateBankManCtrl"}}}).state("master.account",{url:"/account",views:{"contains@master":{templateUrl:templates_root+"admin/user_center/account/account.html"}}}).state("master.message",{url:"/message",views:{"contains@master":{templateUrl:templates_root+"admin/user_center/message/message.html"}}}).state("master.message.company",{url:"/company",views:{"contains@master":{templateUrl:templates_root+"admin/user_center/message/company.html"}}}).state("master.message.bank",{url:"/bank",views:{"contains@master":{templateUrl:templates_root+"admin/user_center/message/bank.html",controller:"MessageBankCtrl"}}}).state("master.message.apply",{url:"/apply",views:{"contains@master":{templateUrl:templates_root+"admin/user_center/message/apply.html"}}}).state("master.message.system",{url:"/system",views:{"contains@master":{templateUrl:templates_root+"admin/user_center/message/system.html",controller:"MessageSystemCtrl"}}})});
+    var timesTamp = (new Date).getTime(), timesTamp1 = String(timesTamp).substring(0, 10);
+    $scope.timestamp = parseInt(timesTamp1), $scope.submit = function () {
+        var login_user = $rootScope.getObject("login_user"), m_params = {
+            userId: login_user.userId,
+            token: login_user.token,
+            timestamp: $scope.timestamp,
+            email: $scope.email,
+            name: $scope.name,
+            mobile: $scope.mobile,
+            empNo: $scope.empNo,
+            password: $scope.password,
+            signature: $rootScope.encryptByDES($scope.email + $scope.password + $scope.timestamp)
+        };
+        console.log(m_params), $http({
+            url: api_uri + "p/user/create",
+            method: "POST",
+            params: m_params
+        }).success(function (d) {
+            0 == d.returnCode ? (console.log(d), $state.go("super")) : console.log(d)
+        }).error(function (d) {
+            $scope.changeErrorMsg("网络故障请稍后再试......"), $location.path("/login")
+        })
+    }
+}), superCtrl.controller("UserUpdateCtrl", function ($http, $scope, $rootScope, $location, $state, $timeout, $stateParams) {
+    var timesTamp = (new Date).getTime(), timesTamp1 = String(timesTamp).substring(0, 10);
+    $scope.timestamp = parseInt(timesTamp1), $scope.get = function () {
+        var login_user = $rootScope.getObject("login_user"), m_params = {
+            userId: login_user.userId,
+            token: login_user.token
+        };
+        $http({
+            url: api_uri + "p/user/detail/" + $stateParams.id,
+            method: "GET",
+            params: m_params
+        }).success(function (d) {
+            console.log(d), 0 == d.returnCode ? $scope.user = d.result : console.log(d.result)
+        }).error(function (d) {
+        })
+    }, $scope.get(), $scope.submit = function () {
+        var login_user = $rootScope.getObject("login_user"), m_params = {
+            userId: login_user.userId,
+            token: login_user.token,
+            timestamp: $scope.timestamp,
+            name: $scope.user.name,
+            mobile: $scope.user.mobile,
+            password: $scope.user.password,
+            signature: $rootScope.encryptByDES($scope.email + $scope.password + $scope.timestamp)
+        };
+        console.log(m_params), $http({
+            url: api_uri + "p/user/update/" + $stateParams.id,
+            method: "POST",
+            params: m_params
+        }).success(function (d) {
+            0 == d.returnCode ? (console.log(d), $state.go("super")) : console.log(d)
+        }).error(function (d) {
+        })
+    }
+});
+var signUpCtrl = angular.module("signUpCtrl", []);
+signUpCtrl.controller("SignUpCtrl", function ($http, $scope, $rootScope, $location, $timeout, $routeParams) {
+    $scope.list = function (pageNo, pageSize) {
+        var login_user = $rootScope.getObject("login_user"), m_params = {
+            userId: login_user.userId,
+            token: login_user.token,
+            pageNo: pageNo,
+            pageSize: pageSize,
+            wd: $scope.wd
+        };
+        $http({url: api_uri + "p/user/listUsers", method: "GET", params: m_params}).success(function (d) {
+            console.log(d), 0 == d.returnCode ? (console.log(d), $scope.page = d.result, $scope.result_list = d.result.datas) : console.log(d)
+        }).error(function (d) {
+            console.log(d)
+        })
+    }, $scope.list(1, 20), $scope.changePage = function (page) {
+        $scope.pageNo1 = page, console.log($scope.pageNo1), $scope.$watch($scope.pageNo1, function () {
+            $scope.list($scope.pageNo1, 20)
+        })
+    }, $scope.selected = [], $scope.ids = [], $scope.isSelected = function (id) {
+        return $scope.selected.indexOf(id) >= 0
+    };
+    var updateSelected = function (action, id) {
+        if ("add" == action && ($scope.ids.push(id), console.log("添加id" + $scope.ids)), "remove" == action) {
+            var idx = $scope.ids.indexOf(id);
+            $scope.ids.splice(idx, 1), console.log("删除id" + id)
+        }
+    };
+    $scope.refresh_user = function () {
+        $scope.list($scope.pageNo1, 20)
+    }, $scope.updateSelection = function ($event, id) {
+        console.log("点击一下");
+        var checkbox = $event.target, action = checkbox.checked ? "add" : "remove";
+        updateSelected(action, id)
+    }, $scope.search_text = null, $scope.search = function () {
+        $scope.wd = $scope.search_text, $scope.list(1, 20)
+    }
+});
+var bankCtrl = angular.module("bankCtrl", []);
+bankCtrl.controller("BankCtrl", function ($http, $scope, $state, $rootScope, $location, $timeout, $routeParams) {
+    $scope.selected = [], $scope.ids = [], $scope.list = function (pageNo, pageSize) {
+        var login_user = $rootScope.getObject("login_user"), m_params = {
+            userId: login_user.userId,
+            token: login_user.token,
+            pageNo: pageNo,
+            pageSize: pageSize
+        };
+        $http({url: api_uri + "manage/bank/list", method: "GET", params: m_params}).success(function (d) {
+            0 == d.returnCode && ($scope.page = d.result, $scope.bank_list = d.result.datas)
+        }).error(function (d) {
+            $location.path("/error")
+        })
+    }, $scope.list(1, 20), $scope.changePage = function (page) {
+        $scope.pageNo1 = page, $scope.$watch($scope.pageNo1, function () {
+            $scope.list($scope.pageNo1, 20)
+        })
+    }, $scope.edit_bank = function (id) {
+        $location.path("/master/bank/update/" + id)
+    }, $scope.find_detail = function (id, name) {
+        $state.go("master.bank.bank_man", {id: id, name: name})
+    }, $scope["delete"] = function (id) {
+        var login_user = $rootScope.getObject("login_user"), m_params = {
+            userId: login_user.userId,
+            token: login_user.token,
+            id: id
+        };
+        $http({url: api_uri + "manage/bank/delete", method: "GET", params: m_params}).success(function (d) {
+            0 == d.returnCode && $scope.list(1, 20)
+        }).error(function (d) {
+        })
+    }, $scope.changeModule = function (a, b) {
+        $scope.editModule = a, $scope.deleteModule = b
+    }
+}), bankCtrl.controller("BankManCtrl", function ($http, $scope, $rootScope, $location, $stateParams, $state, $routeParams, $timeout) {
+    $scope.selected = [], $scope.ids = [], $scope.id = $stateParams.id, $scope.bankName = $stateParams.name, $scope.list = function (pageNo, pageSize) {
+        var login_user = $rootScope.getObject("login_user"), m_params = {
+            userId: login_user.userId,
+            token: login_user.token,
+            pageNo: pageNo,
+            pageSize: pageSize,
+            bankId: $stateParams.id
+        };
+        $http({url: api_uri + "manage/bank/user/list", method: "GET", params: m_params}).success(function (d) {
+            0 == d.returnCode && ($scope.page = d.result, $scope.bank_man_list = d.result.datas)
+        }).error(function (d) {
+        })
+    }, $scope.list(1, 20), $scope.changePage = function (page) {
+        $scope.pageNo1 = page, $scope.$watch($scope.pageNo1, function () {
+            $scope.list($scope.pageNo1, 20)
+        })
+    }, $scope.isSelected = function (id) {
+        return $scope.selected.indexOf(id) >= 0
+    };
+    var updateSelected = function (action, id) {
+        if ("add" == action && $scope.ids.push(id), "remove" == action) {
+            var idx = $scope.ids.indexOf(id);
+            $scope.ids.splice(idx, 1)
+        }
+    };
+    $scope.updateSelection = function ($event, id) {
+        var checkbox = $event.target, action = checkbox.checked ? "add" : "remove";
+        updateSelected(action, id)
+    }, $scope.add_user = function (id, name) {
+        $state.go("master.bank.add_bank_man", {id: id, name: name})
+    }, $scope["delete"] = function () {
+        var login_user = $rootScope.getObject("login_user"), m_params = {
+            userId: login_user.userId,
+            token: login_user.token,
+            ids: $scope.ids,
+            bankId: $scope.id
+        };
+        $.ajax({
+            type: "POST",
+            url: api_uri + "manage/bank/user/delete",
+            data: m_params,
+            traditional: !0,
+            success: function (data, textStatus, jqXHR) {
+                0 == data.returnCode && $scope.list($scope.pageNo1, 20)
+            },
+            error: function (data, textStatus, jqXHR) {
+            },
+            dataType: "json"
+        })
+    }, $scope.delete_one = function (id) {
+        var login_user = $rootScope.getObject("login_user"), m_params = {
+            userId: login_user.userId,
+            token: login_user.token,
+            ids: id,
+            bankId: $scope.id
+        };
+        $.ajax({
+            type: "POST",
+            url: api_uri + "manage/bank/user/delete",
+            data: m_params,
+            traditional: !0,
+            success: function (data, textStatus, jqXHR) {
+                0 == data.returnCode && $scope.list($scope.pageNo1, 20)
+            },
+            error: function (data, textStatus, jqXHR) {
+            },
+            dataType: "json"
+        })
+    }, $scope.edit_bank_man = function (id) {
+        $location.path("/master/bank/update_bank_man/" + id)
+    }
+}), bankCtrl.controller("AddBankCtrl", function ($http, $scope, $rootScope, $state, $location, $timeout, $routeParams) {
+    $scope.init = function () {
+        var login_user = $rootScope.getObject("login_user"), m_params = {
+            userId: login_user.userId,
+            token: login_user.token
+        };
+        $http({url: api_uri + "qiniu/getUpToken", method: "GET", params: m_params}).success(function (d) {
+            if (0 == d.returnCode) {
+                $scope.qiniu_token = d.result.uptoken;
+                Qiniu.uploader({
+                    runtimes: "html5,flash,html4",
+                    browse_button: "pickfiles",
+                    uptoken: $scope.qiniu_token,
+                    domain: $rootScope.qiniu_bucket_domain,
+                    container: "upload_container",
+                    max_file_size: "10mb",
+                    flash_swf_url: "../../framework/plupload/Moxie.swf",
+                    max_retries: 3,
+                    dragdrop: !1,
+                    drop_element: "",
+                    chunk_size: "4mb",
+                    auto_start: !0,
+                    init: {
+                        FilesAdded: function (up, files) {
+                        }, BeforeUpload: function (up, file) {
+                            $rootScope.uploading = !0, $scope.upload_percent = file.percent, $rootScope.$apply()
+                        }, UploadProgress: function (up, file) {
+                            $scope.upload_percent = file.percent, $scope.$apply()
+                        }, FileUploaded: function (up, file, info) {
+                            var res = $.parseJSON(info), file_url = "http://" + $rootScope.qiniu_bucket_domain + "/" + res.key;
+                            $scope.bankPic = file_url, $scope.$apply(), m_params.key = "bankPic", m_params.value = $scope.bankPic
+                        }, Error: function (up, err, errTip) {
+                            $rootScope.alert("营业执照上传失败！")
+                        }, UploadComplete: function () {
+                        }, Key: function (up, file) {
+                            var time = (new Date).getTime(), k = "financialProductManage/create/" + m_params.userId + "/" + time;
+                            return k
+                        }
+                    }
+                })
+            }
+        }).error(function (d) {
+        })
+    }, $scope.init(), $scope.submitAdd = function () {
+        $scope.feature_list_new = [], $scope.condition_list_new = [];
+        for (var key in $scope.feature_list)$scope.feature_list_new.push($scope.feature_list[key].feature);
+        for (var key in $scope.condition_list)$scope.condition_list_new.push($scope.condition_list[key].condition);
+        var login_user = $rootScope.getObject("login_user"), m_params = {
+            userId: login_user.userId,
+            token: login_user.token,
+            name: $scope.name,
+            icon: $scope.bankPic
+        };
+        $.ajax({
+            type: "POST",
+            url: api_uri + "manage/bank/add",
+            data: m_params,
+            traditional: !0,
+            success: function (data, textStatus, jqXHR) {
+                0 == data.returnCode && ($state.go("master.bank"), $scope.$apply())
+            },
+            dataType: "json"
+        })
+    }
+}), bankCtrl.controller("UpdateBankCtrl", function ($http, $scope, $rootScope, $state, $stateParams, $location, $timeout, $routeParams) {
+    $scope.detail = function () {
+        var login_user = $rootScope.getObject("login_user"), m_params = {
+            userId: login_user.userId,
+            token: login_user.token
+        };
+        $http({
+            url: api_uri + "manage/bank/detail/" + $stateParams.id,
+            method: "GET",
+            params: m_params
+        }).success(function (d) {
+            0 == d.returnCode && ($scope.bank = d.result, $scope.name = d.result.name, $scope.bankPic = d.result.icon)
+        }).error(function (d) {
+        })
+    }, $scope.detail(), $scope.init = function () {
+        var login_user = $rootScope.getObject("login_user"), m_params = {
+            userId: login_user.userId,
+            token: login_user.token
+        };
+        $http({url: api_uri + "qiniu/getUpToken", method: "GET", params: m_params}).success(function (d) {
+            if (0 == d.returnCode) {
+                $scope.qiniu_token = d.result.uptoken;
+                Qiniu.uploader({
+                    runtimes: "html5,flash,html4",
+                    browse_button: "pickfiles",
+                    uptoken: $scope.qiniu_token,
+                    domain: $rootScope.qiniu_bucket_domain,
+                    container: "upload_container",
+                    max_file_size: "10mb",
+                    flash_swf_url: "../../framework/plupload/Moxie.swf",
+                    max_retries: 3,
+                    dragdrop: !1,
+                    drop_element: "",
+                    chunk_size: "4mb",
+                    auto_start: !0,
+                    init: {
+                        FilesAdded: function (up, files) {
+                        }, BeforeUpload: function (up, file) {
+                            $rootScope.uploading = !0, $scope.upload_percent = file.percent, $rootScope.$apply()
+                        }, UploadProgress: function (up, file) {
+                            $scope.upload_percent = file.percent, $scope.$apply()
+                        }, FileUploaded: function (up, file, info) {
+                            var res = $.parseJSON(info), file_url = "http://" + $rootScope.qiniu_bucket_domain + "/" + res.key;
+                            $scope.bankPic = file_url, $scope.$apply(), m_params.key = "bankPic", m_params.value = $scope.bankPic
+                        }, Error: function (up, err, errTip) {
+                            $rootScope.alert("营业执照上传失败！")
+                        }, UploadComplete: function () {
+                        }, Key: function (up, file) {
+                            var time = (new Date).getTime(), k = "financialProductManage/create/" + m_params.userId + "/" + time;
+                            return k
+                        }
+                    }
+                })
+            }
+        }).error(function (d) {
+        })
+    }, $scope.init(), $scope.update = function (id) {
+        var login_user = $rootScope.getObject("login_user"), m_params = {
+            userId: login_user.userId,
+            token: login_user.token,
+            name: $scope.name,
+            icon: $scope.bankPic,
+            id: id
+        };
+        $.ajax({
+            type: "POST",
+            url: api_uri + "manage/bank/update/" + $stateParams.id,
+            data: m_params,
+            traditional: !0,
+            success: function (data, textStatus, jqXHR) {
+                0 == data.returnCode && ($state.go("master.bank"), $scope.$apply())
+            },
+            dataType: "json"
+        })
+    }
+}), bankCtrl.controller("AddBankManCtrl", function ($http, $scope, $rootScope, $state, $stateParams, $location, $timeout) {
+    $scope.selected = [], $scope.ids = [], $scope.names = [], $scope.list = function (pageNo, pageSize) {
+        var login_user = $rootScope.getObject("login_user"), m_params = {
+            userId: login_user.userId,
+            token: login_user.token,
+            bankId: $stateParams.id,
+            pageNo: pageNo,
+            pageSize: pageSize,
+            release: !0
+        };
+        $http({url: api_uri + "financialProductManage/list", method: "GET", params: m_params}).success(function (d) {
+            0 == d.returnCode && ($scope.page = d.result, $scope.product_list = d.result.datas)
+        }).error(function (d) {
+        })
+    }, $scope.list(1, 20), $scope.changePage = function (page) {
+        $scope.pageNo1 = page, $scope.$watch($scope.pageNo1, function () {
+            $scope.list($scope.pageNo1, 20)
+        })
+    }, $scope.isSelected = function (id) {
+        return $scope.selected.indexOf(id) >= 0
+    };
+    var updateSelected = function (action, id, name) {
+        if ("add" == action && ($scope.ids.push(id), $scope.names.push(name)), "remove" == action) {
+            var idx = $scope.ids.indexOf(id), name_x = $scope.names.indexOf(name);
+            $scope.ids.splice(idx, 1), $scope.names.splice(name_x, 1)
+        }
+    };
+    $scope.updateSelection = function ($event, id, name) {
+        var checkbox = $event.target, action = checkbox.checked ? "add" : "remove";
+        updateSelected(action, id, name)
+    }, $scope.add_bank_man = function () {
+        var login_user = $rootScope.getObject("login_user"), m_params = {
+            userId: login_user.userId,
+            token: login_user.token,
+            name: $scope.bank_man.name,
+            bankId: $stateParams.id,
+            branchBankName: $scope.bank_man.branchBank,
+            address: $scope.bank_man.address,
+            position: $scope.bank_man.position,
+            productIds: $scope.ids,
+            mobile: $scope.bank_man.mobile,
+            email: $scope.bank_man.email
+        };
+        $.ajax({
+            type: "POST",
+            url: api_uri + "manage/bank/user/add",
+            data: m_params,
+            traditional: !0,
+            success: function (data, textStatus, jqXHR) {
+                0 == data.returnCode && ($state.go("master.bank.bank_man", {id: m_params.bankId}), $scope.$apply())
+            },
+            dataType: "json"
+        })
+    }, $scope.show_product = function () {
+        $scope.productDiv = !0
+    }, $scope.hide_product = function () {
+        $scope.products = "";
+        for (var i = 0; i < $scope.names.length; i++)$scope.products += $scope.names[i], $scope.products += " ";
+        $scope.productDiv = !1
+    }
+}), bankCtrl.controller("UpdateBankManCtrl", function ($http, $scope, $rootScope, $state, $stateParams, $location, $timeout, $routeParams) {
+    $scope.detail = function () {
+        var login_user = $rootScope.getObject("login_user"), m_params = {
+            userId: login_user.userId,
+            token: login_user.token
+        };
+        $http({
+            url: api_uri + "manage/bank/user/detail/" + $stateParams.id,
+            method: "GET",
+            params: m_params
+        }).success(function (d) {
+            0 == d.returnCode && ($scope.bank_man = d.result, $scope.products = "", $scope.list(1, 20))
+        }).error(function (d) {
+        })
+    }, $scope.detail(), $scope.selected = [], $scope.ids = [], $scope.names = [], $scope.list = function (pageNo, pageSize) {
+        var login_user = $rootScope.getObject("login_user"), m_params = {
+            userId: login_user.userId,
+            token: login_user.token,
+            pageNo: pageNo,
+            pageSize: pageSize,
+            release: !0
+        };
+        $http({url: api_uri + "financialProductManage/list", method: "GET", params: m_params}).success(function (d) {
+            if (0 == d.returnCode) {
+                $scope.page = d.result, $scope.product_list = d.result.datas;
+                for (var i = 0; i < $scope.bank_man.productIds.length; i++)for (var j = 0; j < $scope.product_list.length; j++)$scope.bank_man.productIds[i] == $scope.product_list[j].id && ($scope.names.push($scope.product_list[j].name), $scope.ids.push($scope.product_list[j].id));
+                $scope.products = "";
+                for (var i = 0; i < $scope.names.length; i++)$scope.products += $scope.names[i], $scope.products += " "
+            }
+        }).error(function (d) {
+        })
+    }, $scope.changePage = function (page) {
+        $scope.pageNo1 = page, $scope.$watch($scope.pageNo1, function () {
+            $scope.list($scope.pageNo1, 20)
+        })
+    }, $scope.isSelected = function (id) {
+        return $scope.bank_man.productIds.indexOf(id) >= 0
+    };
+    var updateSelected = function (action, id, name) {
+        if ("add" == action && ($scope.ids.push(id), $scope.names.push(name)), "remove" == action) {
+            var idx = $scope.ids.indexOf(id), name_x = $scope.names.indexOf(name);
+            $scope.ids.splice(idx, 1), $scope.names.splice(name_x, 1)
+        }
+    };
+    $scope.updateSelection = function ($event, id, name) {
+        var checkbox = $event.target, action = checkbox.checked ? "add" : "remove";
+        updateSelected(action, id, name)
+    }, $scope.update = function () {
+        var login_user = $rootScope.getObject("login_user"), m_params = {
+            userId: login_user.userId,
+            token: login_user.token,
+            name: $scope.bank_man.name,
+            bankId: $scope.bank_man.bankId,
+            branchBankName: $scope.bank_man.branchBankName,
+            address: $scope.bank_man.address,
+            position: $scope.bank_man.position,
+            productIds: $scope.ids,
+            mobile: $scope.bank_man.mobile,
+            email: $scope.bank_man.email
+        };
+        $.ajax({
+            type: "POST",
+            url: api_uri + "manage/bank/user/update/" + $stateParams.id,
+            data: m_params,
+            traditional: !0,
+            success: function (data, textStatus, jqXHR) {
+                0 == data.returnCode && ($state.go("master.bank.bank_man", {id: m_params.bankId}), $scope.$apply())
+            },
+            dataType: "json"
+        })
+    }, $scope.show_product = function () {
+        $scope.productDiv = !0
+    }, $scope.hide_product = function () {
+        $scope.products = "";
+        for (var i = 0; i < $scope.names.length; i++)$scope.products += $scope.names[i], $scope.products += " ";
+        $scope.productDiv = !1
+    }
+});
+var messageCtrl = angular.module("messageCtrl", []);
+messageCtrl.controller("MessageBankCtrl", function ($http, $scope, $rootScope, $location, $timeout, $routeParams) {
+    var login_user = $rootScope.getObject("login_user");
+    $scope.init = function () {
+        var m_params = {userId: login_user.userId, token: login_user.token};
+        $http({url: api_uri + "applyBankDeal/manage/list", method: "GET", params: m_params}).success(function (d) {
+            console.log(d), $scope.message_list = d.result.datas, angular.forEach($scope.message_list, function (data) {
+                0 == data.status ? data.progressText = "未申请" : 1 == data.status ? (data.progressText = "审核中", data.jindu = 20, data.jindu_next = 30) : 2 == data.status ? (data.progressText = "约见中", data.jindu = 20, data.jindu_next = 30) : 3 == data.status ? (data.progressText = "跟进中", data.jindu = 50, data.jindu_next = 25) : 4 == data.status ? (data.progressText = "成功融资", data.progressBtn = "已结束", data.jindu = 75, data.jindu_next = 25) : data.status == -1 && (data.progressText = "申请取消")
+            })
+        }).error(function (d) {
+            console.log(d)
+        })
+    }, $scope.init(), $scope.showAllow = [], $scope.show_allow = function (status, id) {
+        $scope.showAllow[id] = !0, $scope.status = status, console.log($scope.status), 2 == status ? $scope.statusText = "约见中" : 3 == status ? $scope.statusText = "跟进中" : 4 == status && ($scope.statusText = "成功融资")
+    }, $scope.choiceStatus = function (status) {
+        $scope.status = status, 2 == status ? $scope.statusText = "约见中" : 3 == status ? $scope.statusText = "跟进中" : 4 == status && ($scope.statusText = "成功融资")
+    }, $scope.cancel = function (id) {
+        $scope.showAllow[id] = !1
+    }, $scope.allow = function (days, id, index) {
+        var m_params = {
+            userId: login_user.userId,
+            token: login_user.token,
+            status: $scope.status,
+            dayNum: days,
+            id: id
+        };
+        console.log(m_params), $http({
+            url: api_uri + "applyBankDeal/manage/allow",
+            method: "GET",
+            params: m_params
+        }).success(function (d) {
+            console.log(d), $scope.showAllow[index] = !1
+        }).error(function (d) {
+            console.log(d)
+        })
+    }, $scope.refuse = function (id) {
+        $scope.reason_refuse = $("#reason_refuse").val(), console.log($scope.reason_refuse);
+        var m_params = {userId: login_user.userId, token: login_user.token, id: id, reason: $scope.reason_refuse};
+        console.log(m_params), $http({
+            url: api_uri + "applyBankDeal/manage/refuse",
+            method: "GET",
+            params: m_params
+        }).success(function (d) {
+            console.log(d)
+        }).error(function (d) {
+            console.log(d)
+        })
+    }
+}), messageCtrl.controller("MessageSystemCtrl", function ($http, $scope, $rootScope, $location, $timeout, $routeParams) {
+    var login_user = $rootScope.getObject("login_user");
+    $scope.init = function () {
+        var m_params = {userId: login_user.userId, token: login_user.token};
+        $http({url: api_uri + "zrh/message/lists", method: "GET", params: m_params}).success(function (d) {
+            console.log(d), $scope.message_list = d.result.datas
+        }).error(function (d) {
+            console.log(d)
+        })
+    }, $scope.init()
+}), api_uri = "http://test.zhironghao.com/api/";
+var templates_root = "templates/";
+deskey = "abc123.*abc123.*abc123.*abc123.*";
+var app = angular.module("app", ["ng", "ngRoute", "ngAnimate", "ui.router", "tm.pagination", "loginCtrl", "topBarCtrl", "loanApplicationCtrl", "productCtrl", "myProjectCtrl", "superCtrl", "signUpCtrl", "bankCtrl", "messageCtrl"], function ($httpProvider) {
+    $httpProvider.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded;charset=utf-8", $httpProvider.defaults.headers.put["Content-Type"] = "application/x-www-form-urlencoded;charset=utf-8";
+    var param = function (obj) {
+        var name, value, fullSubName, subName, subValue, innerObj, i, query = "";
+        for (name in obj)if (value = obj[name], value instanceof Array)for (i = 0; i < value.length; ++i)subValue = value[i], fullSubName = name + "[" + i + "]", innerObj = {}, innerObj[fullSubName] = subValue, query += param(innerObj) + "&"; else if (value instanceof Object)for (subName in value)subValue = value[subName], fullSubName = name + "[" + subName + "]", innerObj = {}, innerObj[fullSubName] = subValue, query += param(innerObj) + "&"; else void 0 !== value && null !== value && (query += encodeURIComponent(name) + "=" + encodeURIComponent(value) + "&");
+        return query.length ? query.substr(0, query.length - 1) : query
+    };
+    $httpProvider.defaults.transformRequest = [function (data) {
+        return angular.isObject(data) && "[object File]" !== String(data) ? param(data) : data
+    }]
+});
+app.run(function ($location, $rootScope, $http) {
+    $rootScope.qiniu_bucket_domain = "o793l6o3p.bkt.clouddn.com", $rootScope.$on("$stateChangeSuccess", function (event, toState, toParams, fromState, fromParams) {
+        var present_route = toState.name;
+        console.log(present_route);
+        var array = present_route.split(".");
+        $rootScope.choiceColor = array[1], console.log(array[1]), "message" == array[1] ? (console.log(array[1], "baiyang"), $rootScope.sideTwo = !0, $rootScope.choiceColorTwo = array[2], $(".sideBarP2").css("text-align", "left")) : ($rootScope.sideTwo = !1, $(".sideBarP2").css("text-align", "center"))
+    }), $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
+        console.log("check user "), $rootScope.check_user(), $rootScope.login_user ? console.log("dd") : $location.path("/login")
+    }), $rootScope.encryptByDES = function (message) {
+        var keyHex = CryptoJS.enc.Utf8.parse(deskey), encrypted = CryptoJS.DES.encrypt(message, keyHex, {
+            mode: CryptoJS.mode.ECB,
+            padding: CryptoJS.pad.Pkcs7
+        });
+        return encrypted.toString()
+    }, $rootScope.decryptByDES = function (ciphertext) {
+        var keyHex = CryptoJS.enc.Utf8.parse(deskey), decrypted = CryptoJS.DES.decrypt({ciphertext: CryptoJS.enc.Base64.parse(ciphertext)}, keyHex, {
+            mode: CryptoJS.mode.ECB,
+            padding: CryptoJS.pad.Pkcs7
+        });
+        return decrypted.toString(CryptoJS.enc.Utf8)
+    }, $rootScope.transFn = function (obj) {
+        var str = [];
+        for (var p in obj)str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+        return str.join("&").toString()
+    }, $rootScope.putObject = function (key, value) {
+        localStorage.setItem(key, angular.toJson(value))
+    }, $rootScope.getObject = function (key) {
+        return angular.fromJson(localStorage.getItem(key))
+    }, $rootScope.removeObject = function (key) {
+        localStorage.removeItem(key)
+    }, $rootScope.putSessionObject = function (key, value) {
+        sessionStorage.setItem(key, angular.toJson(value))
+    }, $rootScope.getSessionObject = function (key) {
+        return angular.fromJson(sessionStorage.getItem(key))
+    }, $rootScope.removeSessionObject = function (key) {
+        angular.fromJson(sessionStorage.removeItem(key))
+    }, $rootScope.getAccountInfo = function () {
+        return $rootScope.account_info == {} && ($rootScope.account_info = $rootScope.putSessionObject("account_info")), $rootScope.account_info || ($rootScope.account_info = {}), $rootScope.account_info
+    }, $rootScope.setAccountInfo = function (account_info) {
+        $rootScope.account_info = account_info, $rootScope.putSessionObject("account_info", $rootScope.account_info)
+    }, $rootScope.updateAccountInfo = function (dict) {
+        $rootScope.account_info = $rootScope.getAccountInfo();
+        for (var key in dict)$rootScope.account_info[key] = dict[key];
+        $rootScope.putSessionObject("account_info", $rootScope.account_info)
+    }, $rootScope.setAccountInfoKeyValue = function (key, value) {
+        $rootScope.account_info = $rootScope.getAccountInfo(), $rootScope.account_info[key] = value, $rootScope.putSessionObject("account_info", $rootScope.account_info)
+    }, $rootScope.getAccountInfoKeyValue = function (key) {
+        return $rootScope.account_info != {} && ($rootScope.account_info = $rootScope.putSessionObject("account_info")), $rootScope.account_info ? $rootScope.account_info[key] : null
+    }, $rootScope.check_user = function () {
+        $rootScope.login_user = $rootScope.getObject("login_user"), console.log($rootScope.login_user), $rootScope.login_user && $http({
+            url: api_uri + "p/user/validateAuth",
+            method: "POST",
+            params: $rootScope.login_user
+        }).success(function (d) {
+            return 0 == d.returnCode ? (console.log("login success"), !0) : ($rootScope.login_user = {}, $rootScope.removeObject("login_user"), !1)
+        }).error(function (d) {
+            return !1
+        })
+    }
+}), app.config(function ($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.otherwise("/login"), $stateProvider.state("login", {
+        url: "/login",
+        views: {"": {templateUrl: templates_root + "login/index.html", controller: "LoginCtrl"}}
+    }).state("super", {
+        url: "/super",
+        views: {
+            "": {templateUrl: templates_root + "super/index.html"},
+            "top_bar@super": {templateUrl: templates_root + "super/top_bar.html"},
+            "side_bar@super": {templateUrl: templates_root + "super/side_bar.html"},
+            "sign_up@super": {templateUrl: templates_root + "super/user_list.html", controller: "UserListCtrl"}
+        }
+    }).state("super.addUser", {
+        url: "/add_user",
+        views: {"sign_up@super": {templateUrl: templates_root + "super/add_user.html", controller: "CreateUserCtrl"}}
+    }).state("super.update", {
+        url: "/update/:id",
+        views: {"sign_up@super": {templateUrl: templates_root + "super/user_update.html", controller: "UserUpdateCtrl"}}
+    }).state("master", {
+        url: "/master",
+        views: {
+            "": {templateUrl: templates_root + "admin/index.html"},
+            "top_bar@master": {templateUrl: templates_root + "admin/top_bar.html", controller: "TopBarCtrl"},
+            "side_bar@master": {templateUrl: templates_root + "admin/side_bar.html", controller: "SideBarCtrl"},
+            "contains@master": {templateUrl: templates_root + "admin/contains.html", controller: "ContainsCtrl"}
+        }
+    }).state("master.company_message", {
+        url: "/company_message",
+        views: {
+            "contains@master": {
+                templateUrl: templates_root + "admin/product_service/company_message/company_message.html",
+                controller: "LoanApplicationCtrl"
+            }
+        }
+    }).state("master.company_message.add_company", {
+        url: "/add_company",
+        views: {
+            "contains@master": {
+                templateUrl: templates_root + "admin/product_service/company_message/add_company.html",
+                controller: "AddCompanyCtrl"
+            }
+        }
+    }).state("master.product", {
+        url: "/product",
+        views: {
+            "contains@master": {
+                templateUrl: templates_root + "admin/product_service/product/product.html",
+                controller: "ProductCtrl"
+            }
+        }
+    }).state("master.product.create", {
+        url: "/create",
+        views: {
+            "contains@master": {
+                templateUrl: templates_root + "admin/product_service/product/create.html",
+                controller: "ProductCreateCtrl"
+            }
+        }
+    }).state("master.product.update", {
+        url: "/update/:id",
+        views: {
+            "contains@master": {
+                templateUrl: templates_root + "admin/product_service/product/update.html",
+                controller: "ProductUpdateCtrl"
+            }
+        }
+    }).state("master.signUp", {
+        url: "/signUp",
+        views: {
+            "contains@master": {
+                templateUrl: templates_root + "admin/product_service/sign_up.html",
+                controller: "SignUpCtrl"
+            }
+        }
+    }).state("master.my_project", {
+        url: "/my_project",
+        views: {
+            "contains@master": {
+                templateUrl: templates_root + "admin/product_service/my_project/my_project.html",
+                controller: "MyProjectCtrl"
+            }
+        }
+    }).state("master.my_project.detail", {
+        url: "/detail/:id",
+        views: {
+            "contains@master": {
+                templateUrl: templates_root + "admin/product_service/my_project/detail.html",
+                controller: "DetailCtrl"
+            }
+        }
+    }).state("master.my_project.edit_apply", {
+        url: "/edit_apply/:id",
+        views: {
+            "contains@master": {
+                templateUrl: templates_root + "admin/product_service/my_project/edit_apply.html",
+                controller: "EditApplyCtrl"
+            }
+        }
+    }).state("master.my_project.distribute", {
+        url: "/distribute/:id",
+        views: {
+            "contains@master": {
+                templateUrl: templates_root + "admin/product_service/my_project/distribute.html",
+                controller: "DistributeCtrl"
+            }
+        }
+    }).state("master.my_project.apply_help", {
+        url: "/apply_help/:id",
+        views: {
+            "contains@master": {
+                templateUrl: templates_root + "admin/product_service/my_project/apply_help.html",
+                controller: "ApplyHelpCtrl"
+            }
+        }
+    }).state("master.my_project.apply_again", {
+        url: "/apply_again/:id/:mobile",
+        views: {
+            "contains@master": {
+                templateUrl: templates_root + "admin/product_service/my_project/apply_again.html",
+                controller: "ApplyHelpCtrl"
+            }
+        }
+    }).state("master.bank", {
+        url: "/bank",
+        views: {
+            "contains@master": {
+                templateUrl: templates_root + "admin/product_service/bank/bank.html",
+                controller: "BankCtrl"
+            }
+        }
+    }).state("master.bank.bank_man", {
+        params: {id: null, name: null},
+        url: "/bank_man/:id/:name",
+        views: {
+            "contains@master": {
+                templateUrl: templates_root + "admin/product_service/bank/bank_man.html",
+                controller: "BankManCtrl"
+            }
+        }
+    }).state("master.bank.add_bank", {
+        params: {id: null, name: null},
+        url: "/add_bank/:id/:name",
+        views: {
+            "contains@master": {
+                templateUrl: templates_root + "admin/product_service/bank/add_bank.html",
+                controller: "AddBankCtrl"
+            }
+        }
+    }).state("master.bank.add_bank_man", {
+        url: "/add_bank_man/:id/:name",
+        views: {
+            "contains@master": {
+                templateUrl: templates_root + "admin/product_service/bank/add_bank_man.html",
+                controller: "AddBankManCtrl"
+            }
+        }
+    }).state("master.bank.update", {
+        url: "/update/:id",
+        views: {
+            "contains@master": {
+                templateUrl: templates_root + "admin/product_service/bank/update.html",
+                controller: "UpdateBankCtrl"
+            }
+        }
+    }).state("master.bank.update_bank_man", {
+        url: "/update_bank_man/:id",
+        views: {
+            "contains@master": {
+                templateUrl: templates_root + "admin/product_service/bank/update_bank_man.html",
+                controller: "UpdateBankManCtrl"
+            }
+        }
+    }).state("master.account", {
+        url: "/account",
+        views: {"contains@master": {templateUrl: templates_root + "admin/user_center/account/account.html"}}
+    }).state("master.message", {
+        url: "/message",
+        views: {"contains@master": {templateUrl: templates_root + "admin/user_center/message/message.html"}}
+    }).state("master.message.company", {
+        url: "/company",
+        views: {"contains@master": {templateUrl: templates_root + "admin/user_center/message/company.html"}}
+    }).state("master.message.bank", {
+        url: "/bank",
+        views: {
+            "contains@master": {
+                templateUrl: templates_root + "admin/user_center/message/bank.html",
+                controller: "MessageBankCtrl"
+            }
+        }
+    }).state("master.message.apply", {
+        url: "/apply",
+        views: {"contains@master": {templateUrl: templates_root + "admin/user_center/message/apply.html"}}
+    }).state("master.message.system", {
+        url: "/system",
+        views: {
+            "contains@master": {
+                templateUrl: templates_root + "admin/user_center/message/system.html",
+                controller: "MessageSystemCtrl"
+            }
+        }
+    })
+});
