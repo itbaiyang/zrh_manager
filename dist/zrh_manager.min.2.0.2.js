@@ -1,4 +1,4 @@
-/*! zrh_manager 09-08-2016 */
+/*! zrh_manager 10-08-2016 */
 var loginCtrl = angular.module("loginCtrl", []);
 loginCtrl.controller("LoginCtrl", function ($http, $scope, $rootScope, $location, $state, $timeout, $routeParams) {
     var getTimestampTemp = (new Date).getTime(), timestamp = String(getTimestampTemp).substring(0, 10), getTimestamp = parseInt(timestamp);
@@ -298,11 +298,9 @@ productCtrl.controller("ProductCtrl", function ($http, $scope, $rootScope, $loca
         })
     }, $scope.get(), $scope.choiceBank = function (id, name) {
         $scope.bankId = id, $scope.bankName = name
-    };
-    var tags = [];
-    $scope.submit = function () {
-        var text = $scope.tags;
-        text.replace(/\s/g, "");
+    }, $scope.submit = function () {
+        var tags = [], text = $scope.tags, reg = new RegExp("＃", "g");
+        text = text.replace(reg, "#");
         for (var array = text.split("#"), i = 0; i < array.length; i++)"" != array[i] && " " != array[i] && tags.push(array[i]);
         console.log($scope.type), console.log(tags), $scope.feature_list_new = [], $scope.condition_list_new = [];
         for (var key in $scope.feature_list)console.log($scope.feature_list[key].feature), $scope.feature_list_new.push($scope.feature_list[key].feature);

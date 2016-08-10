@@ -492,11 +492,13 @@ productCtrl.controller('ProductUpdateCtrl', function ($http, $scope, $state, $ro
         $scope.bankName = name;
     };
 
-    var tags = [];
+    //var tags = [];
 
     $scope.submit = function () {
+        var tags = [];
         var text = $scope.tags;
-        text.replace(/\s/g, "");
+        var reg = new RegExp('＃', 'g');
+        text = text.replace(reg, '#');
         var array = text.split("#");
         for (var i = 0; i < array.length; i++) {
             if (array[i] != "" && array[i] != " ") {
