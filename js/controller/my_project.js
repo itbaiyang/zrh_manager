@@ -555,10 +555,10 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
 });
 
 
-
-myProjectCtrl.controller('DistributeCtrl', function ($http, $scope, $rootScope, $location, $state, $timeout, $stateParams) {
+myProjectCtrl.controller('DistributeCtrl', function ($http, $scope, $rootScope, $location, $state, $timeout, $routeParams, $stateParams) {
     /*添加删除模板*/
     $scope.id = $stateParams.id;
+    console.log($scope.id);
 
     $scope.list = function (pageNo, pageSize) {
         var login_user = $rootScope.getObject("login_user");
@@ -616,10 +616,6 @@ myProjectCtrl.controller('DistributeCtrl', function ($http, $scope, $rootScope, 
         })
     };
 
-    $scope.editApply = function (id) {
-        $location.path('/master/my_project/detail/' + $stateParams.id);
-        console.log(id);
-    };
     $scope.choiceBankMan = function (id, name) {
         $scope.bankManId = id;
         $scope.bankManName = name;
@@ -641,8 +637,8 @@ myProjectCtrl.controller('DistributeCtrl', function ($http, $scope, $rootScope, 
             console.log(d);
             if (d.returnCode == 0) {
                 alert("递交成功");
-                $state.go("master.my_project");
-                $location.path('/master/my_project/detail/' + id);
+                //$state.go("master.my_project");
+                $location.path('/master/my_project/detail/' + $scope.id);
             }
             else {
                 console.log(d.result);

@@ -751,7 +751,7 @@ myProjectCtrl.controller("MyProjectCtrl", function ($http, $scope, $rootScope, $
         }).error(function (d) {
         })
     }, $scope.editApply = function (id) {
-        $location.path("/master/my_project/detail/" + $stateParams.id), console.log(id)
+        $location.path("/master/my_project/edit_apply/" + id), console.log(id)
     }, $scope.choiceBankMan = function (id, name) {
         $scope.bankManId = id, $scope.bankManName = name
     }, $scope.sumbit_user = function () {
@@ -766,7 +766,7 @@ myProjectCtrl.controller("MyProjectCtrl", function ($http, $scope, $rootScope, $
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d), 0 == d.returnCode ? (alert("递交成功"), $state.go("master.my_project"), $location.path("/master/my_project/detail/" + id)) : (console.log(d.result), alert("递交失败"))
+            console.log(d), 0 == d.returnCode ? (alert("递交成功"), $state.go("master.my_project"), $location.path("/master/my_project/detail/" + $stateParams.id)) : (console.log(d.result), alert("递交失败"))
         }).error(function (d) {
         })
     }, $scope.choiceBank = function (id, name) {
