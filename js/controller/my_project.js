@@ -329,6 +329,10 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
             $scope.registerLinkmanName = d.result.registerLinkmanName;
             $scope.registerLinkmanMobile = d.result.registerLinkmanMobile;
             $scope.model_list = d.result.templateList;
+            for(var i = 0; i<$scope.model_list.length;i++)
+            {
+                $scope.model_list[i].id_model = i;
+            }
             $scope.picSave();
         }).error(function (d) {
             //console.log("login error");
@@ -433,40 +437,25 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
         });
 
     };
-
     $scope.addModel = function (templateType) {
         if($scope.model_list){
             var id_model = $scope.model_list.length;
-            $scope.model_list.push({
-                "id_model": id_model,
-                "templateType": templateType,
-                "title": $scope.model.title,
-                "content": $scope.model.content,
-                "name": "",
-                "imgList":[]
-            });
-
         }else{
             $scope.model_list = [];
             var id_model = 0;
-            $scope.model_list.push({
-                "id_model": id_model,
-                "templateType": templateType,
-                "title": $scope.model.title,
-                "content": $scope.model.content,
-                "name": "",
-                "imgList":[]
-            });
         }
-
+        $scope.model_list.push({
+            "id_model": id_model,
+            "templateType": templateType,
+            "title": $scope.model.title,
+            "content": $scope.model.content,
+            "name": "",
+            "imgList":[]
+        });
         id_model++;
         console.log($scope.model_list);
     };
     $scope.delete = function (id) {
-        // for (var i = 0; i < $scope.model_list.length; i++) {
-        //     // if ($scope.model_list[i].id_model == id) {
-        //     //
-        //     // }
             $scope.model_list.splice(id, 1);
             console.log("删除id" + id);
         // }
@@ -550,7 +539,6 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
                     console.log("list success");
                     $state.go("master.my_project");
                     $scope.$apply();
-
                 }
                 else {
                     console.log(data);
