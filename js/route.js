@@ -124,6 +124,15 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
+        .state('master.product.sort', {
+            url: '/sort',
+            views: {
+                'contains@master': {
+                    templateUrl: templates_root + 'admin/product_service/product/sort.html',
+                    controller:'SortCtrl'
+                }
+            }
+        })
 
         .state('master.signUp', {
             url: '/signUp',

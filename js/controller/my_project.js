@@ -313,40 +313,6 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
 
 myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $location, $state, $timeout, $stateParams, $routeParams) {
     /*添加删除模板*/
-    //$scope.imgList1 = [];
-    console.log($stateParams.id);
-    $scope.model = {
-        title: "",
-        content: "",
-        name: "",
-    };
-    $scope.model_list = [];
-    var id_model = 0;
-    $scope.addModel = function (templateType) {
-        $scope.model_list.push({
-            "id_model": id_model,
-            "templateType": templateType,
-            "title": $scope.model.title,
-            "content": $scope.model.content,
-            "name": "",
-            "imgList":[]
-        });
-        id_model++;
-        console.log($scope.model_list);
-        $scope.picSave();
-    };
-//$scope.shish = function(){
-//    console.log($scope.model_list);
-//};
-    $scope.delete = function (id) {
-        for (var i = 0; i < $scope.model_list.length; i++) {
-            if ($scope.model_list[i].id_model == id) {
-                $scope.model_list.splice(i, 1);
-                console.log("删除id" + id);
-            }
-        }
-        console.log($scope.model_list);
-    };
     $scope.get = function() {
         var login_user = $rootScope.getObject("login_user");
         var m_params = {
@@ -363,14 +329,136 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
             $scope.registerLinkmanName = d.result.registerLinkmanName;
             $scope.registerLinkmanMobile = d.result.registerLinkmanMobile;
             $scope.model_list = d.result.templateList;
-            console.log($scope.basic);
-            console.log($scope.model_list);
+            // console.log($scope.basic);
+            // console.log($scope.model_list);
+            $scope.picSave();
         }).error(function (d) {
             //console.log("login error");
             //$location.path("/error");
         })
     };
     $scope.get();
+    console.log($stateParams.id);
+    $scope.model = {
+        title: "",
+        content: "",
+        name: "",
+    };
+    $scope.model_list = [];
+    var id_model = $scope.model_list.length;
+    $scope.picSave = function () {
+        var login_user = $rootScope.getObject("login_user");
+        var m_params = {
+            "userId": login_user.userId,
+            "token": login_user.token,
+        };
+        console.log(m_params, "baiyang");
+        $http({
+            url: api_uri + "qiniu/getUpToken",
+            method: "GET",
+            params: m_params
+        }).success(function (d) {
+            console.log(d);
+            if (d.returnCode == 0) {
+                $scope.qiniu_token = d.result.uptoken;
+                $scope.get_ids = [];
+                for(var i = 0;i<$scope.model_list;i++){
+                    $scope.get_ids.push(i);
+                }
+                $scope.get_id = function (d) {
+                    $scope.saveImg = d;
+                    if(($scope.get_ids.length >0 &&$scope.get_ids.indexOf($scope.saveImg) <= -1)||$scope.get_ids.length == 0){
+                        $scope.get_ids.push(d);
+                        console.log($scope.saveImg);
+                        var uploader = Qiniu.uploader({
+                            runtimes: 'html5,flash,html4',    //上传模式,依次退化
+                            browse_button: 'img_model_' + $scope.saveImg,       //上传选择的点选按钮，**必需**
+                            //	        uptoken_url: api_uri+"api/qiniu/getUpToken",
+                            uptoken: $scope.qiniu_token,
+                            //	        get_new_uptoken: true,
+                            //save_key: true,
+                            domain: $rootScope.qiniu_bucket_domain, //bucket 域名，下载资源时用到，**必需**
+                            container: 'imgList_model_' + $scope.saveImg,           //上传区域DOM ID，默认是browser_button的父元素，
+                            max_file_size: '10mb',           //最大文件体积限制
+                            flash_swf_url: '../../framework/plupload/Moxie.swf',  //引入flash,相对路径
+                            max_retries: 3,                   //上传失败最大重试次数
+                            dragdrop: false,                   //开启可拖曳上传
+                            drop_element: '',        //拖曳上传区域元素的ID，拖曳文件或文件夹后可触发上传
+                            chunk_size: '4mb',                //分块上传时，每片的体积
+                            auto_start: true,                 //选择文件后自动上传，若关闭需要自己绑定事件触发上传
+                            init: {
+                                'FilesAdded': function (up, files) {
+                                    //                    plupload.each(files, function(file) {
+                                    //                        // 文件添加进队列后,处理相关的事情
+                                    //                    });
+                                },
+                                'BeforeUpload': function (up, file) {
+
+                                },
+                                'UploadProgress': function (up, file) {
+                                    // 每个文件上传时,处理相关的事情
+
+                                },
+                                'FileUploaded': function (up, file, info) {
+                                    var res = $.parseJSON(info);
+
+                                    var file_url = "http://" + $rootScope.qiniu_bucket_domain + "/" + res.key;
+                                    console.log($scope.model_list);
+                                    $scope.model_list[$scope.saveImg].imgList.push(file_url);
+                                    console.log($scope.model_list);
+                                    //$scope.$apply();
+                                },
+                                'Error': function (up, err, errTip) {
+                                    console.log(err);
+                                    $rootScope.alert("图片上传失败！");
+                                },
+                                'UploadComplete': function () {
+                                    //队列文件处理完毕后,处理相关的事情
+                                },
+                                'Key': function (up, file) {
+                                    var time = new Date().getTime();
+                                    var k = 'inforTemplate/saveList/' + login_user.userId + '/' + time;
+                                    return k;
+                                }
+                            }
+
+                        });
+                    } else{
+                        console.log("不用");
+                    }
+                };
+            } else {
+                console.log(d);
+            }
+
+        }).error(function (d) {
+            console.log(d);
+        });
+
+    };
+
+    $scope.addModel = function (templateType) {
+        $scope.model_list.push({
+            "id_model": id_model,
+            "templateType": templateType,
+            "title": $scope.model.title,
+            "content": $scope.model.content,
+            "name": "",
+            "imgList":[]
+        });
+        id_model++;
+        console.log($scope.model_list);
+    };
+    $scope.delete = function (id) {
+        // for (var i = 0; i < $scope.model_list.length; i++) {
+        //     // if ($scope.model_list[i].id_model == id) {
+        //     //
+        //     // }
+            $scope.model_list.splice(id, 1);
+            console.log("删除id" + id);
+        // }
+        console.log($scope.model_list);
+    };
     /*保存基本信息*/
 
     $scope.basicMessage = function () {
@@ -459,98 +547,17 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
         });
 
     };
-
     $scope.submitMessage = function () {
         $scope.basicMessage();
     };
     $scope.saveImg = "";
-    $scope.picSave = function () {
-        var login_user = $rootScope.getObject("login_user");
-        var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
-        };
 
-        console.log(m_params, "baiyang");
-        $http({
-            url: api_uri + "qiniu/getUpToken",
-            method: "GET",
-            params: m_params
-        }).success(function (d) {
-            console.log(d);
-            if (d.returnCode == 0) {
-                $scope.qiniu_token = d.result.uptoken;
-                $scope.chuan = function (d) {
-                    $scope.saveImg = d;
-                };
-                for (var i = 0; i < 10; i++) {
-                    var uploader = Qiniu.uploader({
-                        runtimes: 'html5,flash,html4',    //上传模式,依次退化
-                        browse_button: 'img_model_' + i,       //上传选择的点选按钮，**必需**
-                        //	        uptoken_url: api_uri+"api/qiniu/getUpToken",
-                        uptoken: $scope.qiniu_token,
-                        //	        get_new_uptoken: true,
-                        //save_key: true,
-                        domain: $rootScope.qiniu_bucket_domain, //bucket 域名，下载资源时用到，**必需**
-                        container: 'imgList_model_' + i,           //上传区域DOM ID，默认是browser_button的父元素，
-                        max_file_size: '10mb',           //最大文件体积限制
-                        flash_swf_url: '../../framework/plupload/Moxie.swf',  //引入flash,相对路径
-                        max_retries: 3,                   //上传失败最大重试次数
-                        dragdrop: false,                   //开启可拖曳上传
-                        drop_element: '',        //拖曳上传区域元素的ID，拖曳文件或文件夹后可触发上传
-                        chunk_size: '4mb',                //分块上传时，每片的体积
-                        auto_start: true,                 //选择文件后自动上传，若关闭需要自己绑定事件触发上传
-                        init: {
-                            'FilesAdded': function (up, files) {
-                                //                    plupload.each(files, function(file) {
-                                //                        // 文件添加进队列后,处理相关的事情
-                                //                    });
-                            },
-                            'BeforeUpload': function (up, file) {
-
-                            },
-                            'UploadProgress': function (up, file) {
-                                // 每个文件上传时,处理相关的事情
-
-                            },
-                            'FileUploaded': function (up, file, info) {
-                                var res = $.parseJSON(info);
-
-                                var file_url = "http://" + $rootScope.qiniu_bucket_domain + "/" + res.key;
-                                console.log($scope.model_list);
-                                $scope.model_list[$scope.saveImg].imgList.push(file_url);
-                                console.log($scope.model_list);
-                                //$scope.$apply();
-                            },
-                            'Error': function (up, err, errTip) {
-                                console.log(err);
-                                $rootScope.alert("抵押物图片上传失败！");
-                            },
-                            'UploadComplete': function () {
-                                //队列文件处理完毕后,处理相关的事情
-                            },
-                            'Key': function (up, file) {
-                                var time = new Date().getTime();
-                                var k = 'inforTemplate/saveList/' + login_user.userId + '/' + time;
-                                return k;
-                            }
-                        }
-
-                    });
-                }
-            } else {
-                console.log(d);
-            }
-
-        }).error(function (d) {
-            console.log(d);
-        });
-
-    };
-
-
+    // $scope.get_id = function (d) {
+    //     $scope.saveImg = d;
+    //     console.log($scope.saveImg);
+    // };
     $scope.removeImgList = function (id,index) {
-        $scope.model_list[id].imgList.splice(index, 1);
+        id.splice(index, 1);
     };
 });
 

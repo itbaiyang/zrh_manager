@@ -101,7 +101,7 @@
                 </div>
             </div>
             <p class="createTitle">其他类型</p>
-            <div ng-switch="model.templateType" ng-repeat="model in model_list">
+            <div ng-switch="model.templateType" style="position: relative;left:20px" ng-repeat="model in model_list track by $index">
                 <div ng-switch-when="1">
                     <div ng-include="'templates/model/accounts_receivable.html'"></div>
                 </div>
@@ -110,6 +110,9 @@
                 </div>
                 <div ng-switch-when="3">
                     <div ng-include="'templates/model/financial_statements.html'"></div>
+                </div>
+                <div class="redPoint2" ng-click="delete($index)">
+                    <div class="redPointInner"></div>
                 </div>
             </div>
         </form>

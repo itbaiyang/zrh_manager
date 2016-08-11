@@ -10,11 +10,11 @@
         </div>
         <div class="messageBox clear" ng-repeat="message in message_list">
             <div class="coverGrew" ng-show="message.op == 2">
-                已经驳回
+                已经驳回&nbsp;
             </div>
-            <!--<div class="coverGrew" ng-show = "message.op == 1">-->
-            <!--已通过-->
-            <!--</div>-->
+            <div class="coverGrew" ng-show = "message.op == 1">
+                已同意&nbsp;
+            </div>
             <div class="messageImg fl">
                 <img ng-src="{{message.icon}}" alt="">
             </div>
