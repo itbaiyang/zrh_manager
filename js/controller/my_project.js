@@ -329,8 +329,6 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
             $scope.registerLinkmanName = d.result.registerLinkmanName;
             $scope.registerLinkmanMobile = d.result.registerLinkmanMobile;
             $scope.model_list = d.result.templateList;
-            // console.log($scope.basic);
-            // console.log($scope.model_list);
             $scope.picSave();
         }).error(function (d) {
             //console.log("login error");
@@ -344,8 +342,7 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
         content: "",
         name: "",
     };
-    $scope.model_list = [];
-    var id_model = $scope.model_list.length;
+    // var id_model = $scope.model_list.length;
     $scope.picSave = function () {
         var login_user = $rootScope.getObject("login_user");
         var m_params = {
@@ -438,14 +435,30 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
     };
 
     $scope.addModel = function (templateType) {
-        $scope.model_list.push({
-            "id_model": id_model,
-            "templateType": templateType,
-            "title": $scope.model.title,
-            "content": $scope.model.content,
-            "name": "",
-            "imgList":[]
-        });
+        if($scope.model_list){
+            var id_model = $scope.model_list.length;
+            $scope.model_list.push({
+                "id_model": id_model,
+                "templateType": templateType,
+                "title": $scope.model.title,
+                "content": $scope.model.content,
+                "name": "",
+                "imgList":[]
+            });
+
+        }else{
+            $scope.model_list = [];
+            var id_model = 0;
+            $scope.model_list.push({
+                "id_model": id_model,
+                "templateType": templateType,
+                "title": $scope.model.title,
+                "content": $scope.model.content,
+                "name": "",
+                "imgList":[]
+            });
+        }
+
         id_model++;
         console.log($scope.model_list);
     };
@@ -551,11 +564,6 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
         $scope.basicMessage();
     };
     $scope.saveImg = "";
-
-    // $scope.get_id = function (d) {
-    //     $scope.saveImg = d;
-    //     console.log($scope.saveImg);
-    // };
     $scope.removeImgList = function (id,index) {
         id.splice(index, 1);
     };
