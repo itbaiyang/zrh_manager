@@ -262,11 +262,39 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             }
         })
 
-        .state('master.account', {
-            url: '/account',
+        .state('master.statistics', {
+            url: '/statistics',
             views: {
                 'contains@master': {
-                    templateUrl: templates_root + 'admin/user_center/account/account.html',
+                    templateUrl: templates_root + 'admin/statistics/share/statistics.html',
+                    controller:'StatisticsCtrl'
+                }
+            }
+        })
+        .state('master.statistics.person', {
+            url: '/person',
+            views: {
+                'contains@master': {
+                    templateUrl: templates_root + 'admin/statistics/share/person.html',
+                    controller:'PersonCtrl'
+                }
+            }
+        })
+        .state('master.statistics.channel', {
+            url: '/channel',
+            views: {
+                'contains@master': {
+                    templateUrl: templates_root + 'admin/statistics/share/channel.html',
+                    controller:'ChannelCtrl'
+                }
+            }
+        })
+
+        .state('master.account', {
+            url: '/statistics',
+            views: {
+                'contains@master': {
+                    templateUrl: templates_root + 'admin/user_center/statistics/statistics.html',
                     //controller:'AccountCtrl'
                 }
             }

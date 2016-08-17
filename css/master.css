@@ -340,8 +340,8 @@
     overflow-y: scroll;
 }
 .addRight1 {
-    width: calc(100% - 210px);
-    min-width: 890px;
+    /*width: calc(100% - 210px);*/
+    /*min-width: 890px;*/
     height: 100%;
     padding: 0 15px;
     overflow-x: hidden;
@@ -402,17 +402,38 @@
     min-width: 1065px;
     padding: 0;
 }
-
+.list_ul1 {
+    margin-top: 20px;
+    /*min-width: 1065px;*/
+    padding: 0;
+}
 .list_common {
     height: 108px;
     line-height: 36px;
     min-width: 1065px;
     padding: 36px 15px;
 }
+.list_common {
+    height: 108px;
+    line-height: 36px;
+    min-width: 1065px;
+    padding: 36px 15px;
+}
+.list_common1 {
+    height: 108px;
+    line-height: 36px;
+    /*min-width: 1065px;*/
+    padding: 36px 15px;
+}
 
 .list_user {
     height: 60px;
     min-width: 1065px;
+    padding: 20px 15px;
+}
+.list_user1 {
+    height: 60px;
+    /*min-width: 1065px;*/
     padding: 20px 15px;
 }
 
@@ -422,12 +443,18 @@
     padding: 15px 15px;
     background: #f5f6fa;
 }
+.list_title1 {
+    height: 50px;
+    /*min-width: 1065px;*/
+    padding: 15px 15px;
+    background: #f5f6fa;
+}
 
 .list_title span {
     padding: 0;
 }
 
-.list_common span {
+.list_common span,.list_common1 span {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

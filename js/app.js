@@ -1,5 +1,5 @@
-// api_uri = "http://test.zhironghao.com/api/";
-api_uri = "http://api.supeiyunjing.com/";
+api_uri = "http://test.zhironghao.com/api/";
+// api_uri = "http://api.supeiyunjing.com/";
 //api_uri = "http://172.17.2.13:8080/api/";
 //api_uri = "http://172.16.97.95:8080/api/";
 var templates_root = 'templates/';
@@ -19,6 +19,7 @@ var app = angular.module('app', [
     'superCtrl',
     'signUpCtrl',
     'bankCtrl',
+    'statisticsCtrl',
     'messageCtrl',
 
 ], function ($httpProvider) {
@@ -76,7 +77,7 @@ app.run(function ($location, $rootScope, $http) {
             var array = present_route.split(".");
             $rootScope.choiceColor = array[1];
             console.log(array[1]);
-            if (array[1] == "message") {
+            if (array[1] == "message"||array[1] == "statistics") {
                 console.log(array[1], 'baiyang');
                 $rootScope.sideTwo = true;
                 $rootScope.choiceColorTwo = array[2];

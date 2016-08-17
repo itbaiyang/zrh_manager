@@ -313,6 +313,9 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
 
 myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $location, $state, $timeout, $stateParams, $routeParams) {
     /*添加删除模板*/
+    $scope.reBackDetail = function () {
+        $location.path("master/my_project/detail/"+$stateParams.id);
+    };
     $scope.get = function() {
         var login_user = $rootScope.getObject("login_user");
         var m_params = {
@@ -537,7 +540,8 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
                 console.log(data);
                 if (data.returnCode == 0) {
                     console.log("list success");
-                    $state.go("master.my_project");
+                    // $state.go("master.my_project.detail");
+                    $location.path("master/my_project/detail/"+$stateParams.id);
                     $scope.$apply();
                 }
                 else {

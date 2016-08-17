@@ -570,7 +570,7 @@ productCtrl.controller('ProductUpdateCtrl', function ($http, $scope, $state, $ro
                 console.log(data);
                 if (data.returnCode == 0) {
                     console.log("创建成功了");
-                    //$location.path("/" + $rootScope.getAccountInfoKeyValue('account') + "/product");
+                    //$location.path("/" + $rootScope.getAccountInfoKeyValue('statistics') + "/product");
                     //$location.path('../../product');
                     //$location.state('master.product','/product');
                     $state.go('master.product');
