@@ -31,7 +31,7 @@
     top: -12px;
     left: -12px;
     background: #f97383;
-    z-index: 100;
+    z-index: 50;
     width: 30px;
     height: 30px;
     border-radius: 15px;
@@ -49,7 +49,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 99;
+    z-index: 50;
     width: 225px;
     height: 100px;
     line-height: 100px;

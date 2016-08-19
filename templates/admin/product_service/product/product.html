@@ -1,22 +1,22 @@
-<div class="content row">
-    <div class="contentTitle col-sm-10 col-lg-10"><span>金融产品</span></div>
-    <div class="noPadding col-sm-10 col-lg-10">
-        <div class="noPadding col-sm-4 col-lg-4">
+<div class="content">
+    <div class="contentTitle"><span>金融产品</span></div>
+    <div class="noPadding width100">
+        <div class="noPadding width30">
             <input type="text" class="form-control" placeholder="搜索企业名称" ng-model="search_text">
         </div>
-        <div class="col-sm-1 col-lg-1">
+        <div class="width10">
             <button class="btn btnBlue" ng-click="search()" type="button">搜索</button>
         </div>
-        <button class="btn btnBlue fr" ui-sref="master.product.create">添加金融产品</button>
+        <button class="btn btnBlue fr" ui-sref="master.product.create" style="margin-right: 50px">添加金融产品</button>
         <button class="btn fr btnGrew" ng-click="refresh()" type="submit"><img class="btnGrewImg"> 刷新</button>
 
     </div>
-    <ul class="list-group list_ul col-sm-10 col-lg-10">
+    <ul class="list-group list_ul">
         <li class="list-group-item list_title">
-            <span class="col-sm-3 col-lg-3">金融产品</span>
-            <span class="col-sm-2 col-lg-2">企业申请数</span>
-            <span class="col-sm-2 col-lg-2">所属银行</span>
-            <div class="btn-group col-sm-2 col-lg-2 noPadding">
+            <span class="width25">金融产品</span>
+            <span class="width15">企业申请数</span>
+            <span class="width15">所属银行</span>
+            <div class="btn-group width15 noPadding">
                 <div style="cursor: pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     状态({{release_text}}) <span class="caret"></span>
                 </div>
@@ -26,18 +26,18 @@
                     <li ng-click="choice()" class="list_select">全部</li>
                 </ul>
             </div>
-            <span class="col-sm-3 col-lg-3">操作</span>
+            <span class="width15">操作</span>
         </li>
         <li class="list-group-item list_common" ng-repeat="resultObj in result_list">
 
             <!--<span class="col-sm-2">{{resultObj.companyName}}</span>-->
-                <span class="col-sm-3 col-lg-3">
+                <span class="width25">
                     <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}"
                            ng-checked="isSelected(resultObj.id)"
                            ng-click="updateSelection($event,resultObj.id)">{{resultObj.name}}</span>
-            <span class="col-sm-2 col-lg-2">{{resultObj.count}}</span>
-            <span class="col-sm-2 col-lg-2">{{resultObj.bankname}}</span>
-            <span class="col-sm-2 col-lg-2">{{resultObj.progressText}}</span>
+            <span class="width15">{{resultObj.count}}</span>
+            <span class="width15">{{resultObj.bankname}}</span>
+            <span class="width15">{{resultObj.progressText}}</span>
             <button class="btn btnGrew" ng-click="update(resultObj.id)">编辑产品</button>
             <button class="btn btnGrew" ng-click="release(resultObj.id)">发布产品</button>
             <button class="btn btnGrew" ng-click="unrelease(resultObj.id)">取消发布</button>

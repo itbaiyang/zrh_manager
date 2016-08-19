@@ -1,9 +1,8 @@
-<div class="content row" style="width: 90%">
+<div class="content" style="width: 90%">
     <p class="contentTitle"><span>合作银行</span></p>
-    <!--<div class="row" style="min-width: 950px">-->
-    <div class="col-sm-offset-8 col-lg-offset-8">
-        <div class="input-group">
-                <span class="input-group-btn">
+    <div >
+        <div class="input-group fr">
+                <span class="" style="margin-right: 15px">
                 <button class="btn btnGrew" ng-click="changeModule(false,false)" type="submit">取消</button>
                 <button class="btn btnGrew" ng-click="changeModule(true,false)" style="margin-left: 15px" type="submit">
                     编辑银行
@@ -27,7 +26,6 @@
             <p class="bankContentP1">{{bank.name}}</p>
             <p class="bankContentP2">共有{{bank.count}}位客户经理</p>
             <button class="btn btnBlue1" ng-click="find_detail(bank.id,bank.name)">查看详情</button>
-            <!--<button class="btn" >删除</button>-->
         </div>
     </div>
     <!--</div>-->

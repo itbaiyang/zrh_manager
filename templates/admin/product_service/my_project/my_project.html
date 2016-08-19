@@ -1,21 +1,21 @@
-<div class="content row">
-    <div class="contentTitle col-sm-10 col-lg-10"><span>我的项目</span></div>
-    <div class="noPadding col-sm-10 col-lg-10">
-        <div class="noPadding col-sm-4 col-lg-4">
+<div class="content">
+    <div class="contentTitle"><span>我的项目</span></div>
+    <div class="noPadding width100">
+        <div class="noPadding width30">
             <input type="text" class="form-control" placeholder="搜索企业名称" ng-model="search_text">
         </div>
-        <div class="col-sm-1 col-lg-1">
+        <div class="width10">
             <button class="btn btnBlue" ng-click="search()" type="button">搜索</button>
         </div>
         <!--<button class="btn fr btnBlue" type="submit"><img class="btnBlueImg">添加企业信息</button>-->
         <button class="btn fr btnGrew" ng-click="refresh()" type="submit"><img class="btnGrewImg"> 刷新</button>
     </div>
-    <ul class="list-group list_ul col-sm-10 col-lg-10">
+    <ul class="list-group list_ul">
         <li class="list-group-item list_title">
-            <span class="col-sm-3 col-lg-3">企业名称</span>
-            <span class="col-sm-2 col-lg-2">申请产品</span>
-            <span class="col-sm-1 col-lg-1">申请时间</span>
-            <div class="btn-group noPadding col-sm-2 col-lg-2">
+            <span class="width25">企业名称</span>
+            <span class="width10">申请产品</span>
+            <span class="width10">申请时间</span>
+            <div class="btn-group noPadding width10">
                 <div style="cursor: pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     状态({{status_text}}) <span class="caret"></span>
                 </div>
@@ -28,20 +28,20 @@
                     <li ng-click="choice()" class="list_select">全部</li>
                 </ul>
             </div>
-            <span class="col-sm-1 col-lg-1">申请人</span>
-            <span class="col-sm-3 col-lg-3">操作</span>
+            <span class="width10">申请人</span>
+            <span class="width10">操作</span>
         </li>
         <li class="list-group-item list_common" ng-repeat="resultObj in result_list">
-            <span class="col-sm-3 col-lg-3">
+            <span class="width25">
                 <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}"
                        ng-checked="isSelected(resultObj.id)"
                        ng-click="updateSelection($event,resultObj.id)">
                 {{resultObj.companyName}}</span>
-            <span class="col-sm-2 col-lg-2">{{resultObj.productName}}</span>
-            <span class="col-sm-1 col-lg-1">{{resultObj.applyTime | date:'yyyy-MM-dd'}}</span>
-            <span class="col-sm-2 col-lg-2">{{resultObj.progressText}}</span>
-            <span class="col-sm-1 col-lg-1">{{resultObj.linkman}}</span>
-            <div ng-if="resultObj.status == 0">
+            <span class="width10">{{resultObj.productName}}</span>
+            <span class="width10">{{resultObj.applyTime | date:'yyyy-MM-dd'}}</span>
+            <span class="width10">{{resultObj.progressText}}</span>
+            <span class="width10">{{resultObj.linkman}}</span>
+            <div ng-if="resultObj.status == 0" class="width35">
                 <button class="btnGrew" ng-click="showDetail(resultObj.id)">补充资料</button>
                 <button class="btnGrew" ng-show="resultObj.firstApply == false"
                         ng-click="apply_again(resultObj.id,resultObj.applyMobile)">重新申请
@@ -61,7 +61,7 @@
                     </ul>
                 </div>
             </div>
-            <div ng-if="resultObj.status != 0">
+            <div ng-if="resultObj.status != 0" class="width35">
                 <button class="btnGrew" ng-click="showDetail(resultObj.id)">企业信息</button>
                 <!--<button class="btnGrew" ng-click="nextStatus(resultObj.id,resultObj.status)">{{resultObj.progressBtn-->
                 <!--||'下一步'}}-->

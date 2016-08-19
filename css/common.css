@@ -148,3 +148,37 @@
     text-align: right;
     color: #4c4c4c;
 }
+.width100{
+    width:100%;
+    /*width: calc(100% - 15px);*/
+    min-width: 1000px;
+    display: inline-block;
+}
+.width10{
+    width:10%;
+    display: inline-block;
+}
+.width15{
+    width:15%;
+    display: inline-block;
+}
+.width20{
+    width:20%;
+    display: inline-block;
+}
+.width25{
+    width:calc(25% - 30px);
+    display: inline-block;
+}
+.width30{
+     width:30%;
+     display: inline-block;;
+ }
+.width35{
+    display: inline-block;
+    width:35%;
+    vertical-align: top;
+}
+.textEnd{
+    text-align: end;
+}

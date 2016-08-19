@@ -8,14 +8,14 @@
     </div>
     <form class="form-horizontal">
         <div class="form-group">
-            <label for="bankname" class="col-sm-2 control-label">银行名称</label>
-            <div class="btn-group col-sm-4 col-lg-4">
-                <button type="button" class="btnInput col-sm-12 col-lg-12" id="bankname" data-toggle="dropdown"
+            <label for="bankname" class="width20 textEnd">银行名称：</label>
+            <div class="btn-group width35">
+                <button type="button" class="btnInput" style="width: 100%" id="bankname" data-toggle="dropdown"
                         aria-haspopup="true"
                         aria-expanded="false">
                     {{bankName ||"选择银行"}}
                 </button>
-                <ul class="dropdown-menu btnDrop col-sm-4 col-lg-4">
+                <ul class="dropdown-menu btnDrop" style="width: 35%">
                     <li class="btnDropDetail" ng-click="choiceBank(bank.id,bank.name)" ng-repeat="bank in bank_list">
                         {{bank.name}}
                     </li>
@@ -24,14 +24,14 @@
         </div>
 
         <div class="form-group">
-            <label for="bankMan" class="col-sm-2 control-label">银行职员</label>
-            <div class="btn-group col-sm-4 col-lg-4">
-                <button type="button" class="btnInput col-sm-12 col-lg-12" id="bankMan" data-toggle="dropdown"
+            <label for="bankMan" class="width20 textEnd">银行职员：</label>
+            <div class="btn-group width35">
+                <button type="button" class="btnInput" style="width: 100%" id="bankMan" data-toggle="dropdown"
                         aria-haspopup="true"
                         aria-expanded="false">
                     {{bankManName ||"选择银行职员"}}
                 </button>
-                <ul class="dropdown-menu btnDrop col-sm-4 col-lg-4">
+                <ul class="dropdown-menu btnDrop" style="width: 35%">
                     <li class="btnDropDetail" ng-click="choiceBankMan(bankMan.id,bankMan.name)"
                         ng-repeat="bankMan in bank_man_list">
                         {{bankMan.name}}
