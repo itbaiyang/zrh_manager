@@ -4,19 +4,16 @@ statisticsCtrl.controller('StatisticsCtrl', function ($http, $scope,$state, $roo
 });
 
 statisticsCtrl.controller('PersonCtrl', function ($http, $scope,$state, $rootScope, $location, $timeout, $routeParams) {
-    $scope.log = function (date) {
-        // var s =$scope.start_date;
-        // var s1 =$scope.start_date;
+    var log = function (date) {
         s = new Date(date);
-        // s1 = new Date(s1);
         var y = s.getFullYear();
         var m = s.getMonth()+1;
         var d = s.getDate();
         var format_date = y+'-'+m+'-'+d;
-        // console.log($scope.date_start);
         return format_date;
         $scope.list(1,10);
     };
+    
     $scope.list = function (pageNo, pageSize) {
         var login_user = $rootScope.getObject("login_user");
         var m_params = {
@@ -25,8 +22,10 @@ statisticsCtrl.controller('PersonCtrl', function ($http, $scope,$state, $rootSco
             "pageNo": pageNo,
             "pageSize": pageSize,
             "startTime": $scope.date_start,
+            "endTime": $scope.date_end,
             // "shareId": shareId,
         };
+        console.log(m_params);
         $http({
             url: api_uri + "wxShare/manager/urlList",
             method: "GET",
@@ -88,6 +87,7 @@ statisticsCtrl.controller('PersonCtrl', function ($http, $scope,$state, $rootSco
     // };
     //
     // $scope.list_product(1, 1000);
+    
 
     $scope.changePage = function(page){
         $scope.pageNo1 = page;
@@ -115,7 +115,7 @@ statisticsCtrl.controller('PersonCtrl', function ($http, $scope,$state, $rootSco
     };
 
     $scope.updateSelection = function ($event, id) {
-        console.log("点击一下")
+        console.log("点击一下");
         var checkbox = $event.target;
         var action = (checkbox.checked ? 'add' : 'remove');
         updateSelected(action, id);
@@ -123,7 +123,12 @@ statisticsCtrl.controller('PersonCtrl', function ($http, $scope,$state, $rootSco
 
     $scope.search_text = null;
     $scope.search = function () {
-        $scope.wd = $scope.search_text;
+        if($scope.start_date){
+            $scope.date_start = log($scope.start_date);
+        }
+        if($scope.end_date){
+            $scope.date_end = log($scope.end_date);
+        }
         $scope.list(1, 20);
     };
 

@@ -21,12 +21,11 @@
             <label for="date_start">开始时间</label>
             <div class="width20">
                 <input type="date" class="form-control" id="date_start" ng-model="start_date">
-                <button ng-click="log()"></button>
             </div>
             <div class="width20">
-                <input type="date" class="form-control" id="over_date" ng-model="over_date">
-                <button ng-click="log()"></button>
+                <input type="date" class="form-control" id="date_end" ng-model="end_date">
             </div>
+            <button class="btn btnGrew" ng-click="search()"></button>
         </div>
         <ul class="list-group list_ul">
             <li class="list-group-item list_title">
