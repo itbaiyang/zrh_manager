@@ -438,6 +438,7 @@
     margin-top: 20px;
     /*min-width: 1065px;*/
     padding: 0;
+    width: calc(100% - 15px);
 }
 
 .list_common {
@@ -480,7 +481,12 @@
     padding: 15px 15px;
     background: #f5f6fa;
 }
-
+.channel_best{
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+}
 .list_title span {
     padding: 0;
 }

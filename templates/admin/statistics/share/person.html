@@ -2,11 +2,6 @@
     <div class="addRight1 fl">
         <div class="contentTitle">
             <span>个人统计</span>
-            <!--<div class="fr" style="margin: 10px">-->
-                <!--<button style="margin-left:10px" class="btn btn-default fr" type="submit" ng-click="submitMessage()">保存-->
-                <!--</button>-->
-                <!--&lt;!&ndash;<button class="btn btn-default fr" ui-sref="master.statistics">返回</button>&ndash;&gt;-->
-            <!--</div>-->
         </div>
         <div class="messageBox clear">
             <div class="fl">
@@ -23,52 +18,56 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="companyName" class="col-sm-2 control-label">企业全称</label>
-            <div class="col-sm-4">
-                <input type="date" class="form-control" id="companyName" placeholder="企业全称"
-                       ng-model="datetime">
+            <label for="date_start">开始时间</label>
+            <div class="width20">
+                <input type="date" class="form-control" id="date_start" ng-model="start_date">
+                <button ng-click="log()"></button>
+            </div>
+            <div class="width20">
+                <input type="date" class="form-control" id="over_date" ng-model="over_date">
+                <button ng-click="log()"></button>
             </div>
         </div>
-        <ul class="list-group list_ul1 col-sm-12 col-lg-12">
-        <li class="list-group-item list_title1">
-            <span class="col-sm-3 col-lg-3">分享页面</span>
-            <span class="col-sm-2 col-lg-2">分享时间</span>
-            <span class="col-sm-2 col-lg-2">处理人</span>
-        </li>
-        <li class="list-group-item list_common1" ng-repeat="resultObj in share_list">
-            <span class="col-sm-3 col-lg-3">
+        <ul class="list-group list_ul">
+            <li class="list-group-item list_title">
+                <span class="width25">分享页面</span>
+                <span class="width15">分享时间</span>
+                <span class="width15">处理人</span>
+            </li>
+            <li class="list-group-item list_common1" ng-repeat="resultObj in share_list">
+            <span class="width25">
             <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}"
                    ng-checked="isSelected(resultObj.id)"
                    ng-click="updateSelection($event,resultObj.id)">{{resultObj.url}}</span>
-            <span class="col-sm-2 col-lg-2">{{resultObj.updateTime}}</span>
-            <span class="col-sm-2 col-lg-2">{{resultObj.count}}</span>
-        </li>
-        <li class="list-group-item list_common1">
-            <span class="fl">共有{{page.totalCount}}款金融产品，每页显示{{page.pageSize}}条</span>
-            <ul class="pagination fl" style="margin-left: 30px;margin-top: -5px">
-                <li>
-                    <a aria-label="Previous" ng-click="changePage(1)">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-                <li>
-                    <a aria-label="Previous" ng-click="changePage(page.upPage)">
-                        <span aria-hidden="true">&lsaquo;</span>
-                    </a>
-                </li>
-                <li><a>{{page.pageNo}}</a></li>
-                <li>
-                    <a aria-label="Next" ng-click="changePage(page.nextPage)">
-                        <span aria-hidden="true">&rsaquo;</span>
-                    </a>
-                </li>
-                <li>
-                    <a aria-label="Next" ng-click="changePage(page.totalPage)">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-            </ul>
-        </li>
-    </ul>
+                <span class="width15">{{resultObj.createTime |date:'yyyy-MM-dd'}}</span>
+                <span class="width15">{{resultObj.count}}</span>
+            </li>
+            <li class="list-group-item list_common1">
+                <span class="fl">共有{{page.totalCount}}款金融产品，每页显示{{page.pageSize}}条</span>
+                <ul class="pagination fl" style="margin-left: 30px;margin-top: -5px">
+                    <li>
+                        <a aria-label="Previous" ng-click="changePage(1)">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a aria-label="Previous" ng-click="changePage(page.upPage)">
+                            <span aria-hidden="true">&lsaquo;</span>
+                        </a>
+                    </li>
+                    <li><a>{{page.pageNo}}</a></li>
+                    <li>
+                        <a aria-label="Next" ng-click="changePage(page.nextPage)">
+                            <span aria-hidden="true">&rsaquo;</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a aria-label="Next" ng-click="changePage(page.totalPage)">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
     </div>
 </div>

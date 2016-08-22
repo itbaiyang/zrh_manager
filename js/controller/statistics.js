@@ -4,6 +4,19 @@ statisticsCtrl.controller('StatisticsCtrl', function ($http, $scope,$state, $roo
 });
 
 statisticsCtrl.controller('PersonCtrl', function ($http, $scope,$state, $rootScope, $location, $timeout, $routeParams) {
+    $scope.log = function (date) {
+        // var s =$scope.start_date;
+        // var s1 =$scope.start_date;
+        s = new Date(date);
+        // s1 = new Date(s1);
+        var y = s.getFullYear();
+        var m = s.getMonth()+1;
+        var d = s.getDate();
+        var format_date = y+'-'+m+'-'+d;
+        // console.log($scope.date_start);
+        return format_date;
+        $scope.list(1,10);
+    };
     $scope.list = function (pageNo, pageSize) {
         var login_user = $rootScope.getObject("login_user");
         var m_params = {
@@ -11,7 +24,7 @@ statisticsCtrl.controller('PersonCtrl', function ($http, $scope,$state, $rootSco
             "token": login_user.token,
             "pageNo": pageNo,
             "pageSize": pageSize,
-            // "wd": wd,
+            "startTime": $scope.date_start,
             // "shareId": shareId,
         };
         $http({
@@ -191,5 +204,65 @@ statisticsCtrl.controller('ChannelCtrl', function ($http, $scope,$state, $rootSc
 
     $scope.refresh = function(){
         $scope.list($scope.pageNo1, 10);
+    };
+
+    $scope.remark = function () {
+        var login_user = $rootScope.getObject("login_user");
+        var m_params = {
+            "userId": login_user.userId,
+            "token": login_user.token,
+            ids: $scope.ids
+        };
+        console.log($scope.ids);
+        console.log("baiyang", m_params);
+        $.ajax({
+            type: 'POST',
+            url: api_uri + "p/user/toCustomer",
+            data: m_params,
+            traditional: true,
+            success: function (data, textStatus, jqXHR) {
+                // console.log(data);
+                if (data.returnCode == 0) {
+                    console.log(data);
+                    $scope.list($scope.pageNo1, 10);
+                    $scope.ids=[];
+                }
+                else {
+                    console.log(data);
+                }
+            },
+            dataType: 'json',
+        });
+
+    };
+
+    $scope.cancel = function () {
+        var login_user = $rootScope.getObject("login_user");
+        var m_params = {
+            "userId": login_user.userId,
+            "token": login_user.token,
+            ids: $scope.ids
+        };
+        console.log($scope.ids);
+        console.log("baiyang", m_params);
+        $.ajax({
+            type: 'POST',
+            url: api_uri + "p/user/cancelCustomer",
+            data: m_params,
+            traditional: true,
+            success: function (data, textStatus, jqXHR) {
+                // console.log(data);
+                if (data.returnCode == 0) {
+                    console.log(data);
+                    $scope.ids=[];
+                    $scope.list($scope.pageNo1, 10);
+                }
+                else {
+                    console.log(data);
+                }
+            },
+            dataType: 'json',
+        });
+
     };
 });

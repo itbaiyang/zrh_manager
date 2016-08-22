@@ -5,24 +5,30 @@
             <div class="fr" style="margin: 10px">
             </div>
         </div>
-        <ul class="list-group list_ul1 col-sm-10 col-lg-10">
+        <ul class="list-group list_ul1">
             <li class="list-group-item list_title1">
-                <span class="col-sm-2 col-lg-2">用户名</span>
-                <span class="col-sm-2">注册电话</span>
-                <span class="col-sm-2">注册时间</span>
-                <span class="col-sm-2">渠道申请</span>
+                <span class="width25">用户名</span>
+                <span class="width15">注册电话</span>
+                <span class="width15">注册时间</span>
+                <span class="width15">渠道申请</span>
             </li>
             <li class="list-group-item list_user1" ng-repeat="resultObj in user_list">
-                <span class="col-sm-2 col-lg-2">
-                    <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}"
-                           ng-checked="isSelected(resultObj.id)"
-                           ng-click="updateSelection($event,resultObj.id)">{{resultObj.name}}</span>
-                <span class="col-sm-2 col-lg-2">{{resultObj.position}}</span>
-                <span class="col-sm-2 col-lg-2">{{resultObj.mobile}}</span>
-                <span class="col-sm-2 col-lg-2">{{resultObj.createTime +"000" | date:'yyyy-MM-dd'}}</span>
+                <div class="width25">
+                    <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}" ng-checked="isSelected(resultObj.id)"
+                           ng-click="updateSelection($event,resultObj.id)">
+                    {{resultObj.name}}
+                    <img ng-src="img/channel_best.png" class="channel_best" ng-show="resultObj.role =='customer'">
+                </div>
+                <span class="width15">{{resultObj.mobile}}</span>
+                <div class="width15">
+                    <p>{{resultObj.registerTime +'000' |date:'yyyy-MM-dd'}}</p>
+                    <!--<p>{{resultObj.registerTime +'000' |date:'HH:mm'}}</p>-->
+                </div>
+                <span class="width15" style="text-align: center">{{resultObj.count}}</span>
             </li>
             <li class="list-group-item list_common1">
-                <button class="contentClass btn btnGrew disabled" ng-click="cancel()">删除</button>
+                <button class="contentClass btn btnGrew" ng-click="remark()">标记优质</button>
+                <button class="contentClass btn btnGrew" ng-click="cancel()">取消标记</button>
                 <span>共有{{page.totalCount}}位注册用户，每页显示{{page.pageSize}}条</span>
                 <ul class="pagination fr" style="margin: 0">
                     <li>
