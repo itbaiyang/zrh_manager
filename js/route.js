@@ -289,6 +289,15 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
+        .state('master.statistics.share', {
+            url: '/share',
+            views: {
+                'contains@master': {
+                    templateUrl: templates_root + 'admin/statistics/share/share.html',
+                    controller:'ShareCtrl'
+                }
+            }
+        })    
 
         // .state('master.account', {
         //     url: '/statistics',
