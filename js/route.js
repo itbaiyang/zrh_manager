@@ -290,15 +290,15 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             }
         })
 
-        .state('master.account', {
-            url: '/statistics',
-            views: {
-                'contains@master': {
-                    templateUrl: templates_root + 'admin/user_center/statistics/statistics.html',
-                    //controller:'AccountCtrl'
-                }
-            }
-        })
+        // .state('master.account', {
+        //     url: '/statistics',
+        //     views: {
+        //         'contains@master': {
+        //             templateUrl: templates_root + 'admin/user_center/statistics/share/statistics1.html',
+        //             //controller:'AccountCtrl'
+        //         }
+        //     }
+        // })
 
         .state('master.message', {
             url: '/message',
