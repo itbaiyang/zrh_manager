@@ -19,8 +19,8 @@
                 <span class="width15">
                     <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}"
                            ng-checked="isSelected(resultObj.id)"
-                           ng-click="updateSelection($event,resultObj.id)">{{resultObj.name}}</span>
-            <span class="width15">{{resultObj.position}}</span>
+                           ng-click="updateSelection($event,resultObj.id)">{{resultObj.name ||'未填写'}}</span>
+            <span class="width15">{{resultObj.position ||'未填写'}}</span>
             <span class="width15">{{resultObj.mobile}}</span>
             <span class="width15">{{resultObj.createTime +"000" | date:'yyyy-MM-dd'}}</span>
         </li>
