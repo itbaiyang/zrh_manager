@@ -6,15 +6,15 @@
         <div class="messageBox clear">
             <div class="fl">
                 <p>个人申请数：</p>
-                <p>{{page.totalCount}}</p>
+                <p>{{count.n1}}</p>
             </div>
             <div class="fl">
-                <p>个人申请数：</p>
-                <p>{{page.totalCount}}</p>
+                <p>邀请人数：</p>
+                <p>{{count.n2}}</p>
             </div>
             <div class="fl">
-                <p>个人申请数：</p>
-                <p>{{page.totalCount}}</p>
+                <p>分享总数：</p>
+                <p>{{count.n3}}</p>
             </div>
         </div>
         <div class="form-group">
@@ -37,9 +37,9 @@
             <span class="width25">
             <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}"
                    ng-checked="isSelected(resultObj.id)"
-                   ng-click="updateSelection($event,resultObj.id)">{{resultObj.url}}</span>
-                <span class="width15">{{resultObj.createTime |date:'yyyy-MM-dd'}}</span>
-                <span class="width15">{{resultObj.count}}</span>
+                   ng-click="updateSelection($event,resultObj.id)">{{resultObj.name}}</span>
+                <span class="width15">{{resultObj.time |date:'yyyy-MM-dd'}}</span>
+                <span class="width15">{{resultObj.opUser}}</span>
             </li>
             <li class="list-group-item list_common1">
                 <span class="fl">共有{{page.totalCount}}款金融产品，每页显示{{page.pageSize}}条</span>

@@ -12,32 +12,42 @@
             <div class="width10">
                 <button class="btn btnBlue" ng-click="search()" type="button">搜索</button>
             </div>
-            <button class="btn btnBlue fr" ui-sref="master.statistics.channel.create" style="margin-right: 100px">添加渠道人员</button>
+            <button class="btn btnBlue fr" ng-click="addApply()" style="margin-right: 100px">绑定企业申请</button>
             <!--<button class="btn fr btnGrew" ng-click="refresh()" type="submit"><img class="btnGrewImg"> 刷新</button>-->
 
         </div>
         <ul class="list-group list_ul1">
             <li class="list-group-item list_title1">
-                <span class="width25">用户名</span>
-                <span class="width15">注册电话</span>
-                <span class="width15">注册时间</span>
-                <span class="width15">渠道申请</span>
-            </li>
-            <li class="list-group-item list_user1" ng-repeat="resultObj in user_list">
-                <div class="width25">
-                    <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}" ng-checked="isSelected(resultObj.id)"
-                           ng-click="updateSelection($event,resultObj.id)">
-                    {{resultObj.name}}
-                    <img ng-src="img/channel_best.png" class="channel_best">
+                <span class="width25">企业名称</span>
+                <span class="width25">申请产品</span>
+                <span class="width15">申请时间</span>
+                <div class="btn-group noPadding width15">
+                    <div style="cursor: pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        状态({{status_text}}) <span class="caret"></span>
+                    </div>
+                    <ul class="dropdown-menu" style="width: 100px">
+                        <!--<li ng-click="choice(0)" class="list_select">未申请</li>-->
+                        <li ng-click="choice(1)" class="list_select">审核中</li>
+                        <li ng-click="choice(2)" class="list_select">约见中</li>
+                        <li ng-click="choice(3)" class="list_select">跟进中</li>
+                        <li ng-click="choice(4)" class="list_select">成功融资</li>
+                        <li ng-click="choice()" class="list_select">全部</li>
+                    </ul>
                 </div>
-                <span class="width15">{{resultObj.mobile}}</span>
-                <div class="width15">
-                    <p>{{resultObj.registerTime +'000' |date:'yyyy-MM-dd'}}</p>
-                    <!--<p>{{resultObj.registerTime +'000' |date:'HH:mm'}}</p>-->
-                </div>
-                <span class="width15" style="text-align: center">{{resultObj.count}}</span>
-                <a class="width15" ng-click="showDetail(resultObj.id)" style="text-align: center">查看详情</a>
+                <span class="width15">处理人</span>
             </li>
+            <li class="list-group-item list_common1" ng-repeat="resultObj in result_list">
+            <span class="width25">
+                <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}"
+                       ng-checked="isSelected(resultObj.id)"
+                       ng-click="updateSelection($event,resultObj.id)">
+                {{resultObj.companyName}}</span>
+                <span class="width25">{{resultObj.bankName}}-{{resultObj.productName}}</span>
+                <span class="width15">{{resultObj.time | date:'yyyy-MM-dd'}}</span>
+                <span class="width15">{{resultObj.progressText}}</span>
+                <span class="width15">{{resultObj.opUser}}</span>
+            </li>
+
             <li class="list-group-item list_common1" style="width: 100%;">
                 <button class="contentClass btn btnGrew" ng-click="cancel()">删除</button>
                 <span>共有{{page.totalCount}}位注册用户，每页显示{{page.pageSize}}条</span>

@@ -105,6 +105,12 @@
     margin-left: 195px;
     width: calc(100% - 195px);
 }
+.content2{
+    /*margin-left: 195px;*/
+    width: 100%;
+    background: #ffffff;
+    height: 100%;
+}
 
 .content1 {
     margin-left: 180px;
@@ -452,7 +458,7 @@
 .list_common1 {
     height: 108px;
     line-height: 36px;
-    min-width: 1065px;
+    /*min-width: 1065px;*/
     padding: 36px 15px;
 }
 

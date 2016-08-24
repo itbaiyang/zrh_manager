@@ -289,6 +289,34 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
+        .state('master.statistics.channel.create', {
+            url: '/create',
+            views: {
+                'contains@master': {
+                    templateUrl: templates_root + 'admin/statistics/share/create.html',
+                    controller:'CreateCtrl'
+                }
+            }
+        })
+        .state('master.statistics.channel.detail', {
+            url: '/detail/:id',
+            views: {
+                'contains@master': {
+                    templateUrl: templates_root + 'admin/statistics/share/detail.html',
+                    controller:'DetailCtrl'
+                }
+            }
+        })
+        .state('master.statistics.channel.add_apply', {
+            url: '/add_apply/:id',
+            views: {
+                'contains@master': {
+                    templateUrl: templates_root + 'admin/statistics/share/add_apply.html',
+                    controller:'AddApplyCtrl'
+                }
+            }
+        })
+        
         .state('master.statistics.share', {
             url: '/share',
             views: {
