@@ -426,7 +426,7 @@ statisticsCtrl.controller('DetailCtrl', function ($http, $scope,$state, $rootSco
     };
 });
 
-statisticsCtrl.controller('AddApplyCtrl', function ($http, $scope,$state, $rootScope, $location, $routeParams) {
+statisticsCtrl.controller('AddApplyCtrl', function ($http, $scope,$state, $rootScope, $location, $stateParams) {
     $scope.getApply = function () {
         var login_user = $rootScope.getObject("login_user");
         var m_params = {
@@ -465,14 +465,13 @@ statisticsCtrl.controller('AddApplyCtrl', function ($http, $scope,$state, $rootS
         console.log(m_params);
         $.ajax({
             type: 'POST',
-            url: api_uri + "loanApplicationManage/addReferee",
+            url: api_uri + "loanApplicationManage/addChannel",
             data: m_params,
             traditional: true,
             success: function (data, textStatus, jqXHR) {
                 console.log(data);
                 if (data.returnCode == 0) {
-                    console.log("创建成功了");
-                    $state.go("master.statistics.channel");
+                    $location.path('/master/statistics/channel/detail/' + $stateParams.id);
                     $scope.$apply();
 
                 }
