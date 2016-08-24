@@ -28,8 +28,9 @@
             <button class="btn btnGrew" ng-click="search()"></button>
         </div>
         <ul class="list-group list_ul">
-            <li class="list-group-item list_title">
-                <span class="width25">分享页面</span>
+            <li class="list-group-item list_title1">
+                <span class="width25">公司名称</span>
+                <span class="width25">金融产品</span>
                 <span class="width15">分享时间</span>
                 <span class="width15">处理人</span>
             </li>
@@ -37,7 +38,8 @@
             <span class="width25">
             <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}"
                    ng-checked="isSelected(resultObj.id)"
-                   ng-click="updateSelection($event,resultObj.id)">{{resultObj.name}}</span>
+                   ng-click="updateSelection($event,resultObj.id)">{{resultObj.companyName}}</span>
+                <span class="width25">{{resultObj.bankName}}-{{resultObj.productName}}</span>
                 <span class="width15">{{resultObj.time |date:'yyyy-MM-dd'}}</span>
                 <span class="width15">{{resultObj.opUser}}</span>
             </li>
