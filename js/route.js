@@ -25,8 +25,8 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                     //controller: 'UserIndexController'
                 },
                 'top_bar@super': {
-                    templateUrl: templates_root + 'super/top_bar.html',
-                    //controller: 'TopBarCtrl'
+                    templateUrl: templates_root + 'admin/top_bar.html',
+                    controller: 'TopBarCtrl'
                 },
                 'side_bar@super': {
                     templateUrl: templates_root + 'super/side_bar.html',

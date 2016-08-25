@@ -289,6 +289,10 @@ statisticsCtrl.controller('CreateCtrl', function ($http, $scope,$state, $rootSco
                     $state.go("master.statistics.channel");
                     $scope.$apply();
 
+                }else if (data.returnCode == 1003) {
+                    alert("该手机号不是直融号用户");
+                }else if (data.returnCode == 1004) {
+                    alert("该用户已经被分配");
                 }
                 else {
                     console.log(data);
