@@ -739,7 +739,6 @@ bankCtrl.controller('UpdateBankManCtrl', function ($http, $scope, $rootScope, $s
         $scope.productDiv = true;
     };
 
-
     $scope.hide_product = function () {
         $scope.products = "";
         for (var i = 0; i < $scope.names.length; i++) {

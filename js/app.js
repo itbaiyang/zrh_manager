@@ -10,7 +10,6 @@ var app = angular.module('app', [
     'ngAnimate',
     'ui.router',
 
-    'tm.pagination',
     'loginCtrl',
     'topBarCtrl',
     'loanApplicationCtrl',
@@ -108,7 +107,7 @@ app.run(function ($location, $rootScope, $http) {
             padding: CryptoJS.pad.Pkcs7
         });
         return encrypted.toString();
-    }
+    };
     //解密
     $rootScope.decryptByDES = function (ciphertext) {
         var keyHex = CryptoJS.enc.Utf8.parse(deskey);
