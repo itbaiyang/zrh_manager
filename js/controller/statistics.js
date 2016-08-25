@@ -465,6 +465,7 @@ statisticsCtrl.controller('AddApplyCtrl', function ($http, $scope,$state, $rootS
             "userId":login_user.userId,
             "token":login_user.token,
             "applyId": id,
+            "uid":$stateParams.id
         };
         console.log(m_params);
         $.ajax({
