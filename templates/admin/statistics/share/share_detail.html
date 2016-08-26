@@ -1,0 +1,79 @@
+<div style="position: absolute;overflow-x:hidden; margin-left: 250px;width: calc(100% - 250px); height: calc(100% - 50px);  background: #ffffff">
+    <div class="addRight1 fl">
+        <div class="contentTitle">
+            <span>渠道统计</span>
+            <div class="fr" style="margin: 10px">
+            </div>
+        </div>
+        <div class="noPadding width100">
+            <div class="noPadding width30">
+                <input type="text" class="form-control" placeholder="搜索企业名称" ng-model="search_text">
+            </div>
+            <div class="width10">
+                <button class="btn btnBlue" ng-click="search()" type="button">搜索</button>
+            </div>
+            <!--<button class="btn btnBlue fr" ng-click="addApply()" style="margin-right: 100px">绑定企业申请</button>-->
+            <!--<button class="btn fr btnGrew" ng-click="refresh()" type="submit"><img class="btnGrewImg"> 刷新</button>-->
+
+        </div>
+        <ul class="list-group list_ul1">
+            <li class="list-group-item list_title1">
+                <span class="width25">企业名称</span>
+                <span class="width25">申请产品</span>
+                <span class="width15">申请时间</span>
+                <div class="btn-group noPadding width15">
+                    <div style="cursor: pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        状态({{status_text}}) <span class="caret"></span>
+                    </div>
+                    <ul class="dropdown-menu" style="width: 100px">
+                        <!--<li ng-click="choice(0)" class="list_select">未申请</li>-->
+                        <li ng-click="choice(1)" class="list_select">审核中</li>
+                        <li ng-click="choice(2)" class="list_select">约见中</li>
+                        <li ng-click="choice(3)" class="list_select">跟进中</li>
+                        <li ng-click="choice(4)" class="list_select">成功融资</li>
+                        <li ng-click="choice()" class="list_select">全部</li>
+                    </ul>
+                </div>
+                <span class="width15">处理人</span>
+            </li>
+            <li class="list-group-item list_common1" ng-repeat="resultObj in result_list">
+            <span class="width25">
+                <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}"
+                       ng-checked="isSelected(resultObj.id)"
+                       ng-click="updateSelection($event,resultObj.id)">
+                {{resultObj.companyName}}</span>
+                <span class="width25">{{resultObj.bankName}}-{{resultObj.productName}}</span>
+                <span class="width15">{{resultObj.time | date:'yyyy-MM-dd'}}</span>
+                <span class="width15">{{resultObj.progressText}}</span>
+                <span class="width15">{{resultObj.opUser}}</span>
+            </li>
+
+            <li class="list-group-item list_common1" style="width: 100%;">
+                <button class="contentClass btn btnGrew" ng-click="cancel()">删除</button>
+                <span>共有{{page.totalCount}}位注册用户，每页显示{{page.pageSize}}条</span>
+                <ul class="pagination fr" style="margin: 0">
+                    <li>
+                        <a aria-label="Previous" ng-click="changePage(1)">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    <li>
+                        <a aria-label="Previous" ng-click="changePage(page.upPage)">
+                            <span aria-hidden="true">&lsaquo;</span>
+                        </a>
+                    </li>
+                    <li><a>{{page.pageNo}}</a></li>
+                    <li>
+                        <a aria-label="Next" ng-click="changePage(page.nextPage)">
+                            <span aria-hidden="true">&rsaquo;</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a aria-label="Next" ng-click="changePage(page.totalPage)">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>

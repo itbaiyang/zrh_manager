@@ -104,7 +104,7 @@
 /*company_message*/
 .content{
     margin-left: 195px;
-    width: calc(100% - 195px);
+    width: calc(100% - 240px);
 }
 .content2{
     /*margin-left: 195px;*/
@@ -121,7 +121,7 @@
 }
 
 .contentTitle {
-     width: calc(100% - 70px);
+     width: 100%;
      height: 63px;
      border-bottom: 1px solid #cccccc;
      margin-bottom: 20px;
@@ -160,7 +160,6 @@
     font-size: 14px;
     background: #f1f2f6;
     margin-bottom: 20px;
-    margin-right: 15px;
 }
 
 .createTitle button {
@@ -374,8 +373,6 @@
 }
 
 .addRight1 {
-    /*width: calc(100% - 210px);*/
-    /*min-width: 890px;*/
     height: 100%;
     padding: 0 15px;
     overflow-x: hidden;
@@ -438,7 +435,7 @@
     margin-top: 20px;
     margin-right: 15px;
     /*min-width: 1065px;*/
-    width: calc(100% - 15px);
+    width: 100%;
 }
 
 .list_ul1 {

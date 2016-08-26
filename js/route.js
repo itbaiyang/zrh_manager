@@ -303,7 +303,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             views: {
                 'contains@master': {
                     templateUrl: templates_root + 'admin/statistics/share/detail.html',
-                    controller:'DetailCtrl'
+                    controller:'ChannelDetailCtrl'
                 }
             }
         })
@@ -325,7 +325,16 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                     controller:'ShareCtrl'
                 }
             }
-        })    
+        })
+        .state('master.statistics.share.share_detail', {
+            url: '/share_detail/:id',
+            views: {
+                'contains@master': {
+                    templateUrl: templates_root + 'admin/statistics/share/share_detail.html',
+                    controller:'ShareDetailCtrl'
+                }
+            }
+        })
 
         // .state('master.account', {
         //     url: '/statistics',

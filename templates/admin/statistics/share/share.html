@@ -23,12 +23,13 @@
                     <p>{{resultObj.registerTime +'000' |date:'yyyy-MM-dd'}}</p>
                     <!--<p>{{resultObj.registerTime +'000' |date:'HH:mm'}}</p>-->
                 </div>
-                <span class="width15" style="text-align: center">{{resultObj.count}}</span>
+                <span class="width15">{{resultObj.count}}</span>
+                <a class="width15" ng-click="showDetail(resultObj.id)">查看详情</a>
             </li>
-            <li class="list-group-item list_common1">
+            <li class="list-group-item list_common1" >
                 <button class="contentClass btn btnGrew" ng-click="remark()">标记渠道</button>
-                <span>共有{{page.totalCount}}位注册用户，每页显示{{page.pageSize}}条</span>
-                <ul class="pagination fr" style="margin: 0">
+                <span>共有{{page.totalCount ||'0'}}位注册用户，每页显示{{page.pageSize}}条</span>
+                <ul class="pagination fr" ng-show="page.totalCount" style="margin: 0">
                     <li>
                         <a aria-label="Previous" ng-click="changePage(1)">
                             <span aria-hidden="true">&laquo;</span>
