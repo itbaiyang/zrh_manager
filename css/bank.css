@@ -1,7 +1,6 @@
 .bankBox {
     display: inline-block;
     margin: 35px;
-    /*border: 1px solid red;*/
     height: 100px;
     width: 225px;
     cursor: pointer;

@@ -53,8 +53,8 @@
 
 .messageBox {
     position: relative;
-    width: calc(100% - 50px);
-    margin: 0 25px 20px;
+    width: calc(100% - 70px);
+    margin: 0 0 20px;
     padding: 0 20px;
     /*height: 140px;*/
     border: 1px solid #cccccc;
