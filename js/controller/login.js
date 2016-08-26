@@ -52,13 +52,13 @@ loginCtrl.controller('LoginCtrl', function ($http, $scope, $rootScope, $location
         })
     };
     $scope.choiceUser = function(){
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId":login_user.userId,
-            "token":login_user.token,
+            "userId":$rootScope.login_user.userId,
+            "token":$rootScope.login_user.token,
         };
         $http({
-            url: api_uri+"p/user/detail/"+login_user.userId,
+            url: api_uri+"p/user/detail/"+$rootScope.login_user.userId,
             method: "GET",
             params: m_params
         }).success(function (d) {

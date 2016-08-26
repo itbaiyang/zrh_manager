@@ -99,6 +99,28 @@
                            ng-model="basic.linkmanMobile">
                 </div>
             </div>
+
+            <div class="form-group">
+                <label for="fee" class="width20 textEnd">服务费：</label>
+                <div class="width35">
+                    <input type="text" class="form-control" id="fee" placeholder="服务费"
+                           ng-model="basic.business_scope">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="rongzie" class="width20 textEnd">融资额：</label>
+                <div class="width35">
+                    <input type="text" class="form-control" id="rongzie" placeholder="融资额"
+                           ng-model="basic.business_scope">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="year" class="width20 textEnd">年销售额：</label>
+                <div class="width35">
+                    <input type="text" class="form-control" id="year" placeholder="年销售额"
+                           ng-model="basic.business_scope">
+                </div>
+            </div>
             <p class="createTitle">其他类型</p>
             <div ng-switch="model.templateType" style="position: relative;left:20px" ng-repeat="model in model_list track by $index">
                 <div ng-switch-when="1">

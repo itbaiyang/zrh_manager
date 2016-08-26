@@ -5,10 +5,10 @@ var signUpCtrl = angular.module('signUpCtrl', []);
 signUpCtrl.controller('SignUpCtrl', function ($http, $scope, $rootScope, $location, $timeout, $routeParams) {
 
     $scope.list = function (pageNo, pageSize) {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
             pageNo: pageNo,
             pageSize: pageSize,
             "wd": $scope.wd

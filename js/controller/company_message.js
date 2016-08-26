@@ -6,11 +6,11 @@ loanApplicationCtrl.controller('LoanApplicationCtrl', function ($http, $scope, $
 
     var result_list = [];
 
-    var login_user = $rootScope.getObject("login_user");
+    // var login_user = $rootScope.getObject("login_user");
     $scope.list = function (pageNo, pageSize) {
         var m_params = {
-            "userId":login_user.userId,
-            "token":login_user.token,
+            "userId":$rootScope.login_user.userId,
+            "token":$rootScope.login_user.token,
             "pageNo": pageNo,
             "pageSize": pageSize,
             "wd": $scope.wd,
@@ -53,10 +53,10 @@ loanApplicationCtrl.controller('LoanApplicationCtrl', function ($http, $scope, $
         })
     };
     $scope.apply = function (id) {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId":login_user.userId,
-            "token":login_user.token,
+            "userId":$rootScope.login_user.userId,
+            "token":$rootScope.login_user.token,
             "applyId":id,
         };
         //console.log(m_params);
@@ -119,8 +119,8 @@ loanApplicationCtrl.controller('LoanApplicationCtrl', function ($http, $scope, $
 
     $scope.delete = function () {
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
             ids: $scope.ids
         };
         //console.log($scope.ids);
@@ -173,10 +173,10 @@ loanApplicationCtrl.controller('LoanApplicationCtrl', function ($http, $scope, $
 loanApplicationCtrl.controller('AddCompanyCtrl', function ($http, $scope, $rootScope, $state, $location, $timeout, $routeParams) {
     /*保存基本信息*/
     $scope.basicMessage = function () {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
             "company_name": $scope.basic.company_name,
             "legal_representative": $scope.basic.legal_representative,
             "register_date": $scope.basic.register_date,

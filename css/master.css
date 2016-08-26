@@ -522,7 +522,7 @@
     padding-left: 70px;
 }
 
-.detailStyle > p {
+.detailStyle > span {
     vertical-align: top;
     display: inline-block;
     height: 40px;
@@ -543,7 +543,7 @@
     width: 90px;
 }
 
-.detailStyle > div > p {
+.detailStyle > div >span {
     height: 40px;
     line-height: 40px;
     font-size: 14px;
@@ -554,4 +554,15 @@
     width: 40px;
     height: 40px;
     margin: 10px 5px;
+}
+
+.add-tips{
+    display: none;
+    position: absolute;
+    top: 180px;
+    right: 15px;
+    width: 300px;
+    background: #ffffff;
+    padding: 15px;
+    border: 1px solid #cccccc;
 }

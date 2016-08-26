@@ -1,10 +1,10 @@
 var messageCtrl = angular.module('messageCtrl', []);
 messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $location, $timeout, $routeParams) {
-    var login_user = $rootScope.getObject("login_user");
+    // var login_user = $rootScope.getObject("login_user");
     $scope.init = function () {
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
         };
         $http({
             url: api_uri + "applyBankDeal/manage/list",
@@ -72,8 +72,8 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
     };
     $scope.allow = function (days, id, index) {
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
             "status": $scope.status,
             "dayNum": days,
             "id": id,
@@ -96,8 +96,8 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
         $scope.reason_refuse = $("#reason_refuse").val();
         console.log($scope.reason_refuse);
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
             "id": id,
             "reason": $scope.reason_refuse,
         };
@@ -116,11 +116,11 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
 });
 
 messageCtrl.controller('MessageSystemCtrl', function ($http, $scope, $rootScope, $location, $timeout, $routeParams) {
-    var login_user = $rootScope.getObject("login_user");
+    // var login_user = $rootScope.getObject("login_user");
     $scope.init = function () {
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
         };
         $http({
             url: api_uri + "zrh/message/lists",

@@ -6,10 +6,10 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
 
     var result_list = [];
     $scope.list = function (pageNo, pageSize) {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId":login_user.userId,
-            "token":login_user.token,
+            "userId":$rootScope.login_user.userId,
+            "token":$rootScope.login_user.token,
             "pageNo": pageNo,
             "pageSize": pageSize,
             "wd": $scope.wd,
@@ -87,10 +87,10 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
     };
 
     $scope.submit = function () {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
             ids: $scope.ids
         };
         console.log($scope.ids);
@@ -116,10 +116,10 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
     };
 
     $scope.cancel = function () {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
             ids: $scope.ids
         };
         console.log($scope.ids);
@@ -143,10 +143,10 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
     };
 
     $scope.delete = function () {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
             ids: $scope.ids
         };
         console.log($scope.ids);
@@ -169,10 +169,10 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
         });
     };
     $scope.sort_up = function () {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
             ids: $scope.ids
         };
         console.log($scope.ids);
@@ -202,10 +202,10 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
     };
 
     $scope.release = function (id) {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
             ids: id
         };
         console.log("baiyang", m_params);
@@ -229,10 +229,10 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
     };
 
     $scope.unrelease = function (id) {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
             ids: id
         };
         console.log("baiyang", m_params);
@@ -305,10 +305,10 @@ productCtrl.controller('ProductCreateCtrl', function ($http, $scope, $rootScope,
     };
 
     $scope.list = function (pageNo, pageSize) {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
             "pageNo": pageNo,
             "pageSize": pageSize,
         };
@@ -366,11 +366,11 @@ productCtrl.controller('ProductCreateCtrl', function ($http, $scope, $rootScope,
             console.log($scope.condition_list[key].condition)
             $scope.condition_list_new.push($scope.condition_list[key].condition)
         }
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
 
         var m_params = {
-            "userId":login_user.userId,
-            "token":login_user.token,
+            "userId":$rootScope.login_user.userId,
+            "token":$rootScope.login_user.token,
             "name": $scope.product.name,
             "tags": tags,
             "bankId": $scope.bankId,
@@ -441,10 +441,10 @@ productCtrl.controller('ProductUpdateCtrl', function ($http, $scope, $state, $ro
     };
 
     $scope.list = function (pageNo, pageSize) {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
             "pageNo": pageNo,
             "pageSize": pageSize,
         };
@@ -471,10 +471,10 @@ productCtrl.controller('ProductUpdateCtrl', function ($http, $scope, $state, $ro
     $scope.list(1, 100);
 
     $scope.get = function(){
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
         };
         $http({
             url: api_uri + "financialProductManage/detail/"+$stateParams.id,
@@ -543,11 +543,11 @@ productCtrl.controller('ProductUpdateCtrl', function ($http, $scope, $state, $ro
             console.log($scope.condition_list[key].condition)
             $scope.condition_list_new.push($scope.condition_list[key].condition)
         }
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "id":$stateParams.id,
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
             "name": $scope.product.name,
             "tags": tags,
             "type": $scope.type,

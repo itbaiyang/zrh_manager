@@ -1,10 +1,10 @@
 var superCtrl = angular.module('superCtrl', []);
 superCtrl.controller('UserListCtrl', function ($http, $scope, $rootScope, $location, $timeout, $routeParams) {
     $scope.list = function (pageNo, pageSize) {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId":login_user.userId,
-            "token":login_user.token,
+            "userId":$rootScope.login_user.userId,
+            "token":$rootScope.login_user.token,
             pageNo: pageNo,
             pageSize: pageSize
         };
@@ -64,10 +64,10 @@ superCtrl.controller('UserListCtrl', function ($http, $scope, $rootScope, $locat
     };
 
     $scope.delete = function () {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
             ids: $scope.ids
         };
         console.log($scope.ids);
@@ -96,10 +96,10 @@ superCtrl.controller('CreateUserCtrl', function ($http, $scope, $rootScope, $loc
     var timesTamp1 = String(timesTamp).substring(0,10);
     $scope.timestamp = parseInt(timesTamp1);
     $scope.submit = function () {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId":login_user.userId,
-            "token":login_user.token,
+            "userId":$rootScope.login_user.userId,
+            "token":$rootScope.login_user.token,
             "timestamp": $scope.timestamp,
             "email":$scope.email,
             "name":$scope.name,
@@ -134,10 +134,10 @@ superCtrl.controller('UserUpdateCtrl', function ($http, $scope, $rootScope, $loc
     $scope.timestamp = parseInt(timesTamp1);
 
     $scope.get = function () {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
         };
         $http({
             url: api_uri + "p/user/detail/" + $stateParams.id,
@@ -158,10 +158,10 @@ superCtrl.controller('UserUpdateCtrl', function ($http, $scope, $rootScope, $loc
     $scope.get();
 
     $scope.submit = function () {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
             "timestamp": $scope.timestamp,
             "name": $scope.user.name,
             "mobile": $scope.user.mobile,

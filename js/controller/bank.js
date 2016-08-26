@@ -3,10 +3,9 @@ bankCtrl.controller('BankCtrl', function ($http, $scope, $state, $rootScope, $lo
     $scope.selected = [];
     $scope.ids = [];
     $scope.list = function (pageNo, pageSize) {
-        var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
             "pageNo": pageNo,
             "pageSize": pageSize,
         };
@@ -15,17 +14,13 @@ bankCtrl.controller('BankCtrl', function ($http, $scope, $state, $rootScope, $lo
             method: "GET",
             params: m_params
         }).success(function (d) {
-            //console.log(d);
             if (d.returnCode == 0) {
                 $scope.page = d.result;
                 $scope.bank_list = d.result.datas;
             }
             else {
-                //console.log(d.result);
             }
-
         }).error(function (d) {
-            //console.log("login error");
             $location.path("/error");
         })
     };
@@ -48,10 +43,9 @@ bankCtrl.controller('BankCtrl', function ($http, $scope, $state, $rootScope, $lo
     };
 
     $scope.delete = function (id) {
-        var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
             id: id
         };
         $http({
@@ -81,10 +75,9 @@ bankCtrl.controller('BankManCtrl', function ($http, $scope, $rootScope, $locatio
     $scope.id = $stateParams.id;
     $scope.bankName = $stateParams.name;
     $scope.list = function (pageNo, pageSize) {
-        var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
             "pageNo": pageNo,
             "pageSize": pageSize,
             "bankId": $stateParams.id,
@@ -137,21 +130,16 @@ bankCtrl.controller('BankManCtrl', function ($http, $scope, $rootScope, $locatio
     };
 
     $scope.add_user = function (id, name) {
-        //console.log(id);
-        //console.log(name);
         $state.go("master.bank.add_bank_man", {id: id, name: name});
     };
 
     $scope.delete = function () {
-        var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
             ids: $scope.ids,
             "bankId": $scope.id
         };
-        //console.log($scope.ids);
-        //console.log("baiyang", m_params);
         $.ajax({
             type: 'POST',
             url: api_uri + "manage/bank/user/delete",
@@ -174,31 +162,25 @@ bankCtrl.controller('BankManCtrl', function ($http, $scope, $rootScope, $locatio
     };
 
     $scope.delete_one = function (id) {
-        var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
             "ids": id,
             "bankId": $scope.id
         };
-        //console.log($scope.ids);
-        //console.log("baiyang", m_params);
         $.ajax({
             type: 'POST',
             url: api_uri + "manage/bank/user/delete",
             data: m_params,
             traditional: true,
             success: function (data, textStatus, jqXHR) {
-                //console.log(data);
                 if (data.returnCode == 0) {
                     $scope.list($scope.pageNo1, 20);
                 }
                 else {
-                    //console.log(data);
                 }
             },
             error: function (data, textStatus, jqXHR) {
-                //console.log(data)
             },
             dataType: 'json',
         });
@@ -211,10 +193,9 @@ bankCtrl.controller('BankManCtrl', function ($http, $scope, $rootScope, $locatio
 
 bankCtrl.controller('AddBankCtrl', function ($http, $scope, $rootScope, $state, $location, $timeout, $routeParams) {
     $scope.init = function () {
-        var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
         };
         $http({
             url: api_uri + "qiniu/getUpToken",
@@ -303,10 +284,10 @@ bankCtrl.controller('AddBankCtrl', function ($http, $scope, $rootScope, $state, 
         for (var key in $scope.condition_list) {
             $scope.condition_list_new.push($scope.condition_list[key].condition)
         }
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
             "name": $scope.name,
             "icon": $scope.bankPic,
         };
@@ -332,10 +313,10 @@ bankCtrl.controller('AddBankCtrl', function ($http, $scope, $rootScope, $state, 
 
 bankCtrl.controller('UpdateBankCtrl', function ($http, $scope, $rootScope, $state, $stateParams) {
     $scope.detail = function () {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
         };
         $http({
             url: api_uri + "manage/bank/detail/" + $stateParams.id,
@@ -354,10 +335,10 @@ bankCtrl.controller('UpdateBankCtrl', function ($http, $scope, $rootScope, $stat
     };
     $scope.detail();
     $scope.init = function () {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
         };
         $http({
             url: api_uri + "qiniu/getUpToken",
@@ -440,10 +421,10 @@ bankCtrl.controller('UpdateBankCtrl', function ($http, $scope, $rootScope, $stat
     $scope.init();
 
     $scope.update = function (id) {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
             "name": $scope.name,
             "icon": $scope.bankPic,
             "id": id
@@ -454,7 +435,8 @@ bankCtrl.controller('UpdateBankCtrl', function ($http, $scope, $rootScope, $stat
             data: m_params,
             traditional: true,
             success: function (data, textStatus, jqXHR) {
-                if (data.returnCode == 0) {;
+                if (data.returnCode == 0) {
+                    ;
                     $state.go("master.bank");
                     $scope.$apply();
                 }
@@ -472,10 +454,10 @@ bankCtrl.controller('AddBankManCtrl', function ($http, $scope, $rootScope, $stat
     $scope.ids = [];
     $scope.names = [];
     $scope.list = function (pageNo, pageSize) {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
             "bankId": $stateParams.id,
             "pageNo": pageNo,
             "pageSize": pageSize,
@@ -537,10 +519,10 @@ bankCtrl.controller('AddBankManCtrl', function ($http, $scope, $rootScope, $stat
 
 
     $scope.add_bank_man = function () {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
             "name": $scope.bank_man.name,
             "bankId": $stateParams.id,
             "branchBankName": $scope.bank_man.branchBank,
@@ -592,10 +574,10 @@ bankCtrl.controller('AddBankManCtrl', function ($http, $scope, $rootScope, $stat
 bankCtrl.controller('UpdateBankManCtrl', function ($http, $scope, $rootScope, $state, $stateParams, $location, $timeout, $routeParams) {
     //console.log($stateParams.id);
     $scope.detail = function () {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
         };
         $http({
             url: api_uri + "manage/bank/user/detail/" + $stateParams.id,
@@ -621,10 +603,10 @@ bankCtrl.controller('UpdateBankManCtrl', function ($http, $scope, $rootScope, $s
     $scope.ids = [];
     $scope.names = [];
     $scope.list = function (pageNo, pageSize) {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
             //"bankId": $scope.bank_man.bankId,
             "pageNo": pageNo,
             "pageSize": pageSize,
@@ -699,10 +681,10 @@ bankCtrl.controller('UpdateBankManCtrl', function ($http, $scope, $rootScope, $s
 
 
     $scope.update = function () {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
             "name": $scope.bank_man.name,
             "bankId": $scope.bank_man.bankId,
             "branchBankName": $scope.bank_man.branchBankName,

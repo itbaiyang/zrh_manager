@@ -14,10 +14,10 @@ statisticsCtrl.controller('PersonCtrl', function ($http, $scope,$state, $rootSco
         $scope.list(1,10);
     };
     $scope.count = function () {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
         };
         console.log(m_params);
         $http({
@@ -39,10 +39,10 @@ statisticsCtrl.controller('PersonCtrl', function ($http, $scope,$state, $rootSco
         })
     };
     $scope.list = function (pageNo, pageSize) {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
             "pageNo": pageNo,
             "pageSize": pageSize,
             "startTime": $scope.date_start,
@@ -163,10 +163,10 @@ statisticsCtrl.controller('PersonCtrl', function ($http, $scope,$state, $rootSco
 
 statisticsCtrl.controller('ChannelCtrl', function ($http, $scope,$state, $rootScope, $location, $routeParams) {
     $scope.list = function (pageNo, pageSize) {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
             "pageNo": pageNo,
             "pageSize": pageSize,
             // "wd": wd,
@@ -232,10 +232,10 @@ statisticsCtrl.controller('ChannelCtrl', function ($http, $scope,$state, $rootSc
     };
 
     $scope.cancel = function () {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
             ids: $scope.ids
         };
         console.log($scope.ids);
@@ -269,10 +269,10 @@ statisticsCtrl.controller('ChannelCtrl', function ($http, $scope,$state, $rootSc
 
 statisticsCtrl.controller('CreateCtrl', function ($http, $scope,$state, $rootScope, $location, $routeParams) {
     $scope.submit = function () {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId":login_user.userId,
-            "token":login_user.token,
+            "userId":$rootScope.login_user.userId,
+            "token":$rootScope.login_user.token,
             "name": $scope.username,
             "mobile": $scope.phone,
         };
@@ -306,10 +306,10 @@ statisticsCtrl.controller('CreateCtrl', function ($http, $scope,$state, $rootSco
 
 statisticsCtrl.controller('ChannelDetailCtrl', function ($http, $scope,$state, $rootScope,$stateParams, $location, $routeParams) {
     $scope.list = function (pageNo, pageSize) {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
             "pageNo": pageNo,
             "pageSize": pageSize,
             "uid":$stateParams.id
@@ -395,10 +395,10 @@ statisticsCtrl.controller('ChannelDetailCtrl', function ($http, $scope,$state, $
     };
 
     $scope.cancel = function () {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
             ids: $scope.ids
         };
         console.log($scope.ids);
@@ -432,10 +432,10 @@ statisticsCtrl.controller('ChannelDetailCtrl', function ($http, $scope,$state, $
 
 statisticsCtrl.controller('AddApplyCtrl', function ($http, $scope,$state, $rootScope, $location, $stateParams) {
     $scope.getApply = function () {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
             "companyName":$scope.companyName
         };
         console.log(m_params);
@@ -460,10 +460,10 @@ statisticsCtrl.controller('AddApplyCtrl', function ($http, $scope,$state, $rootS
     };
 
     $scope.submit = function (id,name) {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId":login_user.userId,
-            "token":login_user.token,
+            "userId":$rootScope.login_user.userId,
+            "token":$rootScope.login_user.token,
             "applyId": id,
             "uid":$stateParams.id
         };
@@ -497,10 +497,10 @@ statisticsCtrl.controller('AddApplyCtrl', function ($http, $scope,$state, $rootS
 
 statisticsCtrl.controller('ShareCtrl', function ($http, $scope,$state, $rootScope, $location, $routeParams) {
     $scope.list = function (pageNo, pageSize) {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
             "pageNo": pageNo,
             "pageSize": pageSize,
             // "wd": wd,
@@ -564,10 +564,10 @@ statisticsCtrl.controller('ShareCtrl', function ($http, $scope,$state, $rootScop
         $scope.list(1, 20);
     };
     $scope.remark = function () {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
             ids: $scope.ids
         };
         console.log($scope.ids);
@@ -600,10 +600,10 @@ statisticsCtrl.controller('ShareCtrl', function ($http, $scope,$state, $rootScop
 
 statisticsCtrl.controller('ShareDetailCtrl', function ($http, $scope,$state, $rootScope,$stateParams, $location, $routeParams) {
     $scope.list = function (pageNo, pageSize) {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
             "pageNo": pageNo,
             "pageSize": pageSize,
             "uid":$stateParams.id
@@ -689,10 +689,10 @@ statisticsCtrl.controller('ShareDetailCtrl', function ($http, $scope,$state, $ro
     };
 
     $scope.cancel = function () {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
             ids: $scope.ids
         };
         console.log($scope.ids);

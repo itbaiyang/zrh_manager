@@ -4,10 +4,10 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
     var result_list = [];
 
     $scope.list = function (pageNo, pageSize) {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId":login_user.userId,
-            "token":login_user.token,
+            "userId":$rootScope.login_user.userId,
+            "token":$rootScope.login_user.token,
             "pageNo": pageNo,
             "pageSize": pageSize,
             "wd": $scope.wd,
@@ -55,12 +55,12 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
     };
 
     $scope.nextStatus = function (id,status) {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         if(status <4){
             status++;
             var m_params = {
-                "userId":login_user.userId,
-                "token":login_user.token,
+                "userId":$rootScope.login_user.userId,
+                "token":$rootScope.login_user.token,
                 status:status
             };
             //console.log(m_params);
@@ -130,11 +130,11 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
     };
 
     $scope.delete = function () {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             ids: $scope.ids,
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
         };
         console.log($scope.ids);
         $.ajax({
@@ -156,10 +156,10 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
     };
 
     $scope.cancel = function (id) {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId":login_user.userId,
-            "token":login_user.token,
+            "userId":$rootScope.login_user.userId,
+            "token":$rootScope.login_user.token,
             "id": id,
         };
         console.log(m_params);
@@ -180,10 +180,10 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
     };
 
     $scope.giveUp = function (id) {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
             "id": id,
         };
         console.log(m_params);
@@ -214,10 +214,10 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
     };
 
     $scope.linkCompany = function(id ,remark) {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
             "id": id,
             "remark": remark
         };
@@ -271,10 +271,10 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
     /*添加删除模板*/
     $scope.id = $stateParams.id;
     $scope.get = function () {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
         };
         $http({
             url: api_uri + "inforTemplate/detail/" + $stateParams.id,
@@ -309,6 +309,13 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
         $location.path('/master/my_project/distribute/' + id);
         console.log(id);
     };
+
+    $scope.addTips = function () {
+        $(".add-tips").css("display","block");
+    }
+    $scope.submitAddTips = function () {
+        $(".add-tips").css("display","none");
+    }
 });
 
 myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $location, $state, $timeout, $stateParams, $routeParams) {
@@ -317,10 +324,10 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
         $location.path("master/my_project/detail/"+$stateParams.id);
     };
     $scope.get = function() {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
         };
         $http({
             url: api_uri + "inforTemplate/detail/" + $stateParams.id,
@@ -351,10 +358,10 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
     };
     // var id_model = $scope.model_list.length;
     $scope.picSave = function () {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
         };
         console.log(m_params, "baiyang");
         $http({
@@ -421,7 +428,7 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
                                 },
                                 'Key': function (up, file) {
                                     var time = new Date().getTime();
-                                    var k = 'inforTemplate/saveList/' + login_user.userId + '/' + time;
+                                    var k = 'inforTemplate/saveList/' + login_user.login_user.userId + '/' + time;
                                     return k;
                                 }
                             }
@@ -467,12 +474,12 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
     /*保存基本信息*/
 
     $scope.basicMessage = function () {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "applyId": $stateParams.id,
             "id": $scope.basic.id,
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
             "company_name": $scope.basic.company_name,
             "legal_representative": $scope.basic.legal_representative,
             "register_date": $scope.basic.register_date,
@@ -523,10 +530,10 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
         };
          //var list_string = JSON.stringify(list);
         console.log(list);
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params1 = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
             "comId": $scope.id_basic,
             "list": JSON.stringify(list)
         };
@@ -568,10 +575,10 @@ myProjectCtrl.controller('DistributeCtrl', function ($http, $scope, $rootScope, 
     console.log($scope.id);
 
     $scope.list = function (pageNo, pageSize) {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
             "pageNo": pageNo,
             "pageSize": pageSize,
         };
@@ -598,10 +605,10 @@ myProjectCtrl.controller('DistributeCtrl', function ($http, $scope, $rootScope, 
     $scope.list(1, 100);
 
     $scope.bank_man_list = function (id, pageNo, pageSize) {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
             "pageNo": pageNo,
             "pageSize": pageSize,
             "bankId": id
@@ -628,10 +635,10 @@ myProjectCtrl.controller('DistributeCtrl', function ($http, $scope, $rootScope, 
         $scope.bankManName = name;
     }
     $scope.sumbit_user = function () {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
             "id": $scope.id,
             "bankUserId": $scope.bankManId
         };
@@ -670,10 +677,10 @@ myProjectCtrl.controller('ApplyHelpCtrl', function ($http, $scope, $rootScope, $
     }
 
     $scope.list = function (pageNo, pageSize) {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
             "pageNo": pageNo,
             "pageSize": pageSize,
         };
@@ -715,10 +722,10 @@ myProjectCtrl.controller('ApplyHelpCtrl', function ($http, $scope, $rootScope, $
         $scope.product_list($scope.bankId, 1, 400)
     };
     $scope.product_list = function (id, pageNo, pageSize) {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
             "bankId": id,
             "pageNo": pageNo,
             "pageSize": pageSize,
@@ -743,10 +750,10 @@ myProjectCtrl.controller('ApplyHelpCtrl', function ($http, $scope, $rootScope, $
     };
 
     $scope.submit_help = function () {
-        var login_user = $rootScope.getObject("login_user");
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
-            "userId": login_user.userId,
-            "token": login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
             "applyId": $stateParams.id,
             "productId": $scope.productId,
             "mobile": $scope.applyMobile,
