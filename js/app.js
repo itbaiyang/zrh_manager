@@ -93,13 +93,15 @@ app.run(function ($location, $rootScope, $http) {
             $rootScope.choiceColor = array[1];
             console.log(array[1]);
             if (array[1] == "message"||array[1] == "statistics") {
+                $(".sideBarP2").css("text-align", "left");
+                // $(".sideBar").css("width", "60px");
                 console.log(array[1], 'baiyang');
                 $rootScope.sideTwo = true;
                 $rootScope.choiceColorTwo = array[2];
-                $(".sideBarP2").css("text-align", "left");
             } else {
                 $rootScope.sideTwo = false;
                 $(".sideBarP2").css("text-align", "center");
+                // $(".sideBar").css("width", "60px");
             }
         });
     // 页面跳转前

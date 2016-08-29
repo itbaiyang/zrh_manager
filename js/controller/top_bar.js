@@ -13,12 +13,13 @@ topBarCtrl.controller('TopBarCtrl', function ($http, $scope, $rootScope, $locati
             "token": $rootScope.login_user.token,
         };
         $http({
-            url: api_uri + "zrh/message/counts",
+            url: api_uri + "zrh/index/message",
+            // url: api_uri + "applyBankDeal/manage/count",
             method: "GET",
             params: m_params
         }).success(function (d) {
             if (d.returnCode == 0) {
-                $scope.count = d.result;
+                $rootScope.count = d.result;
                 console.log(d.result);
             }
             else {
@@ -32,7 +33,50 @@ topBarCtrl.controller('TopBarCtrl', function ($http, $scope, $rootScope, $locati
 });
 
 topBarCtrl.controller('SideBarCtrl', function ($http, $scope,$state, $rootScope, $location, $timeout, $routeParams) {
+    $scope.message = function () {
+        var m_params = {
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
+        };
+        $http({
+            url: api_uri + "zrh/message/counts",
+            method: "GET",
+            params: m_params
+        }).success(function (d) {
+            if (d.returnCode == 0) {
+                $scope.system_message = d.result;
+                console.log(d.result);
+            }
+            else {
+                console.log(d.result);
+            }
 
+        }).error(function (d) {
+        })
+    };
+    $scope.message();
+    $scope.bank_message = function () {
+        var m_params = {
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
+        };
+        $http({
+            url: api_uri + "applyBankDeal/manage/count",
+            method: "GET",
+            params: m_params
+        }).success(function (d) {
+            if (d.returnCode == 0) {
+                $scope.bank_message = d.result;
+                console.log(d.result);
+            }
+            else {
+                console.log(d.result);
+            }
+
+        }).error(function (d) {
+        })
+    };
+    $scope.bank_message();
 });
 
 

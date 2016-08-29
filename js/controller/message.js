@@ -115,11 +115,12 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
 });
 
 messageCtrl.controller('MessageSystemCtrl', function ($http, $scope, $rootScope, $location, $timeout, $routeParams) {
-    // var login_user = $rootScope.getObject("login_user");
-    $scope.init = function () {
+    $scope.list = function (pageNo,pageSize) {
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
+            "pageNo": pageNo,
+            "pageSize": pageSize,
         };
         $http({
             url: api_uri + "zrh/message/lists",
@@ -127,10 +128,36 @@ messageCtrl.controller('MessageSystemCtrl', function ($http, $scope, $rootScope,
             params: m_params
         }).success(function (d) {
             console.log(d);
-            $scope.message_list = d.result.datas;
+            $scope.page = d.result;
+            $scope.result_list = d.result.datas;
         }).error(function (d) {
             console.log(d);
         });
     };
-    $scope.init();
+    $scope.list(1,20);
+    $scope.changePage = function(page){
+        $scope.pageNo1 = page;
+        console.log($scope.pageNo1);
+        $scope.$watch($scope.pageNo1, function () {
+            $scope.list($scope.pageNo1, 20);
+        });
+    };
+
+    $scope.to_company_message = function (id) {
+        var m_params = {
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
+            "id": id,
+        };
+        $http({
+            url: api_uri + "zrh/message/details",
+            method: "GET",
+            params: m_params
+        }).success(function (d) {
+            console.log(d);
+            $location.path('/master/company_message');
+        }).error(function (d) {
+            console.log(d);
+        });
+    };
 });

@@ -31,7 +31,10 @@
         <!--<img class="btnBlueImg1">账号管理</a>-->
         <a class="sideBarP2" ng-class="{sideBarP2C:choiceColor =='message'}"
            ui-sref="master.message.bank">
-            <img class="btnBlueImg1">消息中心</a>
+            <div style="display: inline-block;width: 30px;height: 40px;position: relative">
+                <img class="btnBlueImg1">
+                <span class="navList2" ng-show="count">{{count}}</span>
+            </div>消息中心</a>
     </ul>
 </div>
 <div class="sideModel1 fl" ng-show="sideTwo">
@@ -39,14 +42,22 @@
     <p class="modelTitle1" ng-show="choiceColor =='statistics'">分享统计</p>
     <ul style="text-align: center" ng-show="choiceColor =='message'">
         <!--<li><a ui-sref="master.message.company">企业消息</a></li>-->
-        <li style="text-align: center"><a class="sideBarP3 " ng-class="{sideBarP3C:choiceColorTwo =='bank'}"
-                                          ui-sref="master.message.bank">
-            <img class="btnBlueImg1">银行消息</a>
+        <li style="text-align: center;">
+            <a class="sideBarP3" ng-class="{sideBarP3C:choiceColorTwo =='bank'}"
+               ui-sref="master.message.bank">
+            <div style="display: inline-block;width: 30px;height: 40px;position: relative">
+                <img class="btnBlueImg1">
+                <span class="navList2" ng-show="bank_message">{{bank_message}}</span>
+            </div>银行消息
+        </a>
         </li>
         <!--<li><a ui-sref="master.message.apply">转交申请通知</a></li>-->
         <li style="text-align: center"><a class="sideBarP3" ng-class="{sideBarP3C:choiceColorTwo =='system'}"
                                           ui-sref="master.message.system">
-            <img class="btnBlueImg1">系统消息</a>
+            <div style="display: inline-block;width: 30px;height: 40px;position: relative">
+                <img class="btnBlueImg1">
+                <span class="navList2" ng-show="system_message">{{system_message}}</span>
+            </div>系统消息</a>
         </li>
 
     </ul>
