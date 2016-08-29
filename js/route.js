@@ -280,6 +280,15 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
+        .state('master.statistics.person.edit_apply', {
+            url: '/edit_apply/:id',
+            views: {
+                'contains@master': {
+                    templateUrl: templates_root + 'admin/statistics/share/edit_apply.html',
+                    controller: 'EditApplyCtrl'
+                }
+            }
+        })
         .state('master.statistics.channel', {
             url: '/channel',
             views: {

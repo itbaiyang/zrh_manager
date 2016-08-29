@@ -44,7 +44,6 @@
                             状态({{status_text}}) <span class="caret"></span>
                         </div>
                         <ul class="dropdown-menu" style="width: 100px">
-                            <!--<li ng-click="choice(0)" class="list_select">未申请</li>-->
                             <li ng-click="choice(1)" class="list_select">审核中</li>
                             <li ng-click="choice(2)" class="list_select">约见中</li>
                             <li ng-click="choice(3)" class="list_select">跟进中</li>
@@ -65,7 +64,11 @@
                 <span class="width15">
             <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}"
                    ng-checked="isSelected(resultObj.id)"
-                   ng-click="updateSelection($event,resultObj.id)">{{resultObj.companyName}}</span>
+                   ng-click="updateSelection($event,resultObj.id)">
+                    <a ng-click="updateApply(resultObj.id)" style="cursor: pointer">
+                        {{resultObj.companyName}}
+                    </a>
+                </span>
                         <span class="width15">{{resultObj.bankName}}-{{resultObj.productName}}</span>
                         <span class="width8">{{resultObj.progressText}}</span>
                         <span class="width8">{{resultObj.opUser}}</span>

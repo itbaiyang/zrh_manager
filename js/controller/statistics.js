@@ -118,6 +118,10 @@ statisticsCtrl.controller('PersonCtrl', function ($http, $scope,$state, $rootSco
     $scope.refresh = function(){
         $scope.list($scope.pageNo1, 10);
     };
+
+    $scope.updateApply = function (id) {
+        $location.path('/master/statistics/person/edit_apply/'+id);
+    };
 });
 
 statisticsCtrl.controller('ChannelCtrl', function ($http, $scope,$state, $rootScope, $location, $routeParams) {

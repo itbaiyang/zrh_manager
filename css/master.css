@@ -497,9 +497,10 @@
  }
 .list_title2 {
     height: 50px;
-    padding: 15px 15px;
+    padding: 15px 35px 15px 15px;
     background: #f5f6fa;
-    width: 1520px
+    width: 1520px;
+    /*padding-right: 20px;*/
 }
 .channel_best{
     display: inline-block;

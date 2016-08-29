@@ -376,6 +376,9 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
     $scope.reBackDetail = function () {
         $location.path("master/my_project/detail/"+$stateParams.id);
     };
+    $scope.reBack = function () {
+        $location.path('/master/statistics/person');
+    };
     $scope.get = function() {
         // var login_user = $rootScope.getObject("login_user");
         var m_params = {
