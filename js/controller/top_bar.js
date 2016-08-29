@@ -3,16 +3,32 @@
  */
 var topBarCtrl = angular.module('topBarCtrl', []);
 topBarCtrl.controller('TopBarCtrl', function ($http, $scope, $rootScope, $location, $timeout, $routeParams) {
-   /* $scope.to_company_message = function(){
-        $location.path('/company_message');
-    };
-    $scope.to_product = function(){
-        $location.path('/product');
-    };*/
     $scope.exit = function () {
         $rootScope.removeObject("login_user");
         $location.path('/login');
     };
+    $scope.message = function () {
+        var m_params = {
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
+        };
+        $http({
+            url: api_uri + "zrh/message/counts",
+            method: "GET",
+            params: m_params
+        }).success(function (d) {
+            if (d.returnCode == 0) {
+                $scope.count = d.result;
+                console.log(d.result);
+            }
+            else {
+                console.log(d.result);
+            }
+
+        }).error(function (d) {
+        })
+    };
+    $scope.message();
 });
 
 topBarCtrl.controller('SideBarCtrl', function ($http, $scope,$state, $rootScope, $location, $timeout, $routeParams) {

@@ -1,6 +1,5 @@
 var messageCtrl = angular.module('messageCtrl', []);
 messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $location, $timeout, $routeParams) {
-    // var login_user = $rootScope.getObject("login_user");
     $scope.init = function () {
         var m_params = {
             "userId": $rootScope.login_user.userId,
