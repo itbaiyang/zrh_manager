@@ -285,6 +285,9 @@
     width: 210px;
     height: 100%;
     background: #eaedf1;
+    position: fixed;
+    top: 50px;
+    left: 0;
 }
 
 .sideModel1 {
@@ -434,10 +437,12 @@
 .list_ul {
     margin-top: 20px;
     margin-right: 15px;
-    /*min-width: 1065px;*/
     width: 100%;
 }
-
+.list_ul2 {
+    margin-right: 15px;
+    width: 100%;
+}
 .list_ul1 {
     margin-top: 20px;
     /*min-width: 1065px;*/
@@ -456,7 +461,12 @@
 .list_common1 {
     height: 108px;
     line-height: 36px;
-    /*min-width: 1065px;*/
+    padding: 36px 15px;
+}
+.list_common2 {
+    height: 108px;
+    line-height: 36px;
+    width: 1500px;
     padding: 36px 15px;
 }
 
@@ -481,9 +491,15 @@
 }
 
 .list_title1 {
+     height: 50px;
+     padding: 15px 15px;
+     background: #f5f6fa;
+ }
+.list_title2 {
     height: 50px;
     padding: 15px 15px;
     background: #f5f6fa;
+    width: 1500px
 }
 .channel_best{
     display: inline-block;
@@ -565,4 +581,19 @@
     background: #ffffff;
     padding: 15px;
     border: 1px solid #cccccc;
+}
+
+.row-roll{
+    margin-top: 30px;
+    height: calc(100% - 209px);
+    width: 100%;
+    /*border: 1px solid red;*/
+    overflow-x: scroll;
+}
+.line-roll{
+    max-height: 429px;
+    width: 1520px;
+    /*border: 1px solid red;*/
+    /*overflow-x: hidden;*/
+    overflow-y: scroll;
 }

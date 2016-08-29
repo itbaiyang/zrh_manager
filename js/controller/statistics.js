@@ -47,7 +47,7 @@ statisticsCtrl.controller('PersonCtrl', function ($http, $scope,$state, $rootSco
             "pageSize": pageSize,
             "startTime": $scope.date_start,
             "endTime": $scope.date_end,
-            // "shareId": shareId,
+             "wd": $scope.search_text,
         };
         console.log(m_params);
         $http({
@@ -71,47 +71,6 @@ statisticsCtrl.controller('PersonCtrl', function ($http, $scope,$state, $rootSco
     };
     $scope.count();
     $scope.list(1, 20);
-
-    // $scope.list_product = function (pageNo, pageSize) {
-    //     var login_user = $rootScope.getObject("login_user");
-    //     var m_params = {
-    //         "userId":login_user.userId,
-    //         "token":login_user.token,
-    //         "pageNo": pageNo,
-    //         "pageSize": pageSize,
-    //         "wd": $scope.wd,
-    //         "release": $scope.release_status
-    //     };
-    //     $http({
-    //         url: api_uri + "financialProductManage/list",
-    //         method: "GET",
-    //         params: m_params
-    //     }).success(function (d) {
-    //         console.log(d);
-    //         if (d.returnCode == 0) {
-    //             $scope.page = d.result;
-    //             $scope.result_list = d.result.datas;
-    //             angular.forEach($scope.result_list, function (data) {
-    //                 if (!data.release) {
-    //                     data.progressText = "未发布";
-    //
-    //                 } else {
-    //                     data.progressText = "已发布";
-    //                 }
-    //             });
-    //         }
-    //         else {
-    //             console.log(d.result);
-    //         }
-    //
-    //     }).error(function (d) {
-    //         console.log("login error");
-    //         $location.path("/error");
-    //     })
-    // };
-    //
-    // $scope.list_product(1, 1000);
-    
 
     $scope.changePage = function(page){
         $scope.pageNo1 = page;

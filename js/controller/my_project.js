@@ -288,12 +288,37 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
             $scope.bankId = d.result.bankId;
             $scope.bankName = d.result.bankName;
             $scope.productName = d.result.productName;
+            $scope.dealRemark = d.result.dealRemark;
+            $scope.days = d.result.days;
             if (d.result.remark) {
                 $scope.remark = d.result.remark;
             }
             $scope.applyTime = d.result.applyTime;
             $scope.basic = d.result.baseInfo;
             $scope.model_list = d.result.templateList;
+            $scope.status = d.result.status;
+            if ($scope.status == 0) {
+                $scope.progressText = "未申请";
+                $scope.jindu = 20;
+            } else if ($scope.status == 1) {
+                $scope.progressText = "审核中";
+                $scope.progressBtn = "开始约见";
+                $scope.jindu = 20;
+            } else if ($scope.status == 2) {
+                $scope.progressText = "约见中";
+                $scope.progressBtn = "继续跟进";
+                $scope.jindu = 50;
+            } else if ($scope.status == 3) {
+                $scope.progressText = "跟进中";
+                $scope.progressBtn = "完成贷款";
+                $scope.jindu = 70;
+            } else if ($scope.status == 4) {
+                $scope.progressText = "成功融资";
+                $scope.progressBtn = "已结束";
+                $scope.jindu = 100;
+            } else if ($scope.status == -1) {
+                $scope.progressText = "申请取消";
+            }
         }).error(function (d) {
 
         })
@@ -315,7 +340,35 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
     }
     $scope.submitAddTips = function () {
         $(".add-tips").css("display","none");
-    }
+    };
+
+    $scope.updateRemark = function () {
+        var m_params = {
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
+            "applyId": $stateParams.id,
+            "dealRemark": $scope.dealRemark,
+        };
+        console.log(m_params);
+        $.ajax({
+            type: 'POST',
+            url: api_uri + "inforTemplate/updateRemark",
+            data: m_params,
+            traditional: true,
+            success: function (data, textStatus, jqXHR) {
+                console.log(data);
+                if (data.returnCode == 0) {
+                    console.log("remark success");
+                    $(".add-tips").css("display","none");
+                }
+                else {
+                    console.log(data);
+                }
+            },
+            dataType: 'json',
+        });
+
+    };
 });
 
 myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $location, $state, $timeout, $stateParams, $routeParams) {
@@ -490,6 +543,9 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
             "business_scope": $scope.basic.business_scope,
             "linkmanName": $scope.basic.linkmanName,
             "linkmanMobile": $scope.basic.linkmanMobile,
+            "fee": $scope.basic.fee,
+            "loanValue": $scope.basic.loanValue,
+            "continual": $scope.basic.continual,
         };
         console.log(m_params);
         $.ajax({

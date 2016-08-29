@@ -1,4 +1,4 @@
-<div style="position: absolute;overflow-x:hidden; margin-left: 250px;width: calc(100% - 250px); height: calc(100% - 50px); background: #ffffff">
+<div style="position: absolute;overflow-x:hidden; margin-left: 250px;width: calc(100% - 250px); height: 100%; background: #ffffff">
     <div class="addRight1 fl">
         <div class="contentTitle">
             <span>个人统计</span>
@@ -26,23 +26,58 @@
                 <input type="date" class="form-control" id="date_end" ng-model="end_date">
             </div>
             <button class="btn btnGrew" ng-click="search()">确定</button>
+            <div class="noPadding width30">
+                <input type="text" class="form-control" placeholder="搜索企业名称" ng-model="search_text">
+            </div>
+            <div class="width10">
+                <button class="btn btnBlue" ng-click="search()" type="button">搜索</button>
+            </div>
         </div>
-        <ul class="list-group list_ul">
-            <li class="list-group-item list_title1">
-                <span class="width25">公司名称</span>
-                <span class="width25">金融产品</span>
-                <span class="width15">分享时间</span>
-                <span class="width15">处理人</span>
-            </li>
-            <li class="list-group-item list_common1" ng-repeat="resultObj in share_list">
-            <span class="width25">
+
+        <ul class="list-group list_ul2">
+            <div class="row-roll">
+                <li class=" list_title2">
+                    <span class="width15">企业名称或个人</span>
+                    <span class="width15">申请产品</span>
+                    <div class="btn-group noPadding width8">
+                        <div style="cursor: pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            状态({{status_text}}) <span class="caret"></span>
+                        </div>
+                        <ul class="dropdown-menu" style="width: 100px">
+                            <!--<li ng-click="choice(0)" class="list_select">未申请</li>-->
+                            <li ng-click="choice(1)" class="list_select">审核中</li>
+                            <li ng-click="choice(2)" class="list_select">约见中</li>
+                            <li ng-click="choice(3)" class="list_select">跟进中</li>
+                            <li ng-click="choice(4)" class="list_select">成功融资</li>
+                            <li ng-click="choice()" class="list_select">全部</li>
+                        </ul>
+                    </div>
+                    <span class="width8">报卷人</span>
+                    <span class="width8">预计完成时间</span>
+                    <span class="width8">服务费（%）</span>
+                    <span class="width8">融资额（万）</span>
+                    <span class="width8">年销售额（万）</span>
+                    <span class="width8">项目来源</span>
+                    <span class="width8">备注</span>
+                </li>
+                <div class="line-roll">
+                    <li class="list-group-item list_common2" ng-repeat="resultObj in share_list">
+                <span class="width15">
             <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}"
                    ng-checked="isSelected(resultObj.id)"
                    ng-click="updateSelection($event,resultObj.id)">{{resultObj.companyName}}</span>
-                <span class="width25">{{resultObj.bankName}}-{{resultObj.productName}}</span>
-                <span class="width15">{{resultObj.time |date:'yyyy-MM-dd'}}</span>
-                <span class="width15">{{resultObj.opUser}}</span>
-            </li>
+                        <span class="width15">{{resultObj.bankName}}-{{resultObj.productName}}</span>
+                        <span class="width8">{{resultObj.progressText}}</span>
+                        <span class="width8">{{resultObj.opUser}}</span>
+                        <span class="width8">{{resultObj.days}}</span>
+                        <span class="width8">{{resultObj.fee}}</span>
+                        <span class="width8">{{resultObj.loanValue}}</span>
+                        <span class="width8">{{resultObj.continual}}</span>
+                        <span class="width8">{{resultObj.continual}}</span>
+                        <span class="width8">{{resultObj.dealRemark}}</span>
+                    </li>
+                </div>
+            </div>
             <li class="list-group-item list_common1">
                 <span class="fl">共有{{page.totalCount}}款金融产品，每页显示{{page.pageSize}}条</span>
                 <ul class="pagination fl" style="margin-left: 30px;margin-top: -5px">
@@ -70,5 +105,7 @@
                 </ul>
             </li>
         </ul>
+
+
     </div>
 </div>

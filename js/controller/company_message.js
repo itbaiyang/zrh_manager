@@ -188,6 +188,9 @@ loanApplicationCtrl.controller('AddCompanyCtrl', function ($http, $scope, $rootS
             "linkmanName": $scope.basic.linkmanName,
             "linkmanMobile": $scope.basic.linkmanMobile,
             //"phone": $scope.basic.phone,
+            "fee": $scope.basic.fee,
+            "loanValue": $scope.basic.loanValue,
+            "continual": $scope.basic.continual,
         };
         //console.log(m_params);
         $.ajax({

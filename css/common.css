@@ -160,6 +160,10 @@
     width:10%;
     display: inline-block;
 }
+.width8{
+    width:8%;
+    display: inline-block;
+}
 .width15{
     width:15%;
     display: inline-block;
