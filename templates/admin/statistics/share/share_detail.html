@@ -48,7 +48,11 @@
                 <span class="width15">
             <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}"
                    ng-checked="isSelected(resultObj.id)"
-                   ng-click="updateSelection($event,resultObj.id)">{{resultObj.companyName}}</span>
+                   ng-click="updateSelection($event,resultObj.id)">
+                    <a ng-click="updateApply(resultObj.id)" style="cursor: pointer">
+                        {{resultObj.companyName}}
+                    </a>
+                </span>
                         <span class="width15">{{resultObj.bankName}}-{{resultObj.productName}}</span>
                         <span class="width8">{{resultObj.progressText}}</span>
                         <span class="width8">{{resultObj.opUser}}</span>

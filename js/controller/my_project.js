@@ -369,6 +369,21 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
         });
 
     };
+
+    $scope.reBackDetails = function () {
+        var from_route = $rootScope.getSessionObject("from_route");
+        console.log(from_route);
+        var from_route2 = $rootScope.getSessionObject("from_route2");
+        console.log(from_route2);
+        var from_params = $rootScope.getSessionObject("from_params");
+        console.log(from_params);
+        if(from_route2 ==null){
+            $state.go(from_route);
+
+        }else{
+            $location.path(from_route2+from_params);
+        }
+    };
 });
 
 myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $location, $state, $timeout, $stateParams, $routeParams) {

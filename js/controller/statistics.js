@@ -120,7 +120,7 @@ statisticsCtrl.controller('PersonCtrl', function ($http, $scope,$state, $rootSco
     };
 
     $scope.updateApply = function (id) {
-        $location.path('/master/statistics/person/edit_apply/'+id);
+        $location.path('/master/my_project/detail/'+id);
     };
 });
 
@@ -390,6 +390,10 @@ statisticsCtrl.controller('ChannelDetailCtrl', function ($http, $scope,$state, $
     $scope.addApply = function () {
         $location.path('/master/statistics/channel/add_apply/' + $stateParams.id);
         console.log($stateParams.id);
+    };
+
+    $scope.updateApply = function (id) {
+        $location.path('/master/my_project/detail/'+id);
     };
 });
 
@@ -679,5 +683,9 @@ statisticsCtrl.controller('ShareDetailCtrl', function ($http, $scope,$state, $ro
             dataType: 'json',
         });
 
+    };
+
+    $scope.updateApply = function (id) {
+        $location.path('/master/my_project/detail/'+id);
     };
 });

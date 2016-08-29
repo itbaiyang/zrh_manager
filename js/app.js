@@ -73,6 +73,22 @@ app.run(function ($location, $rootScope, $http) {
         function (event, toState, toParams, fromState, fromParams) {
             var present_route = toState.name; //获取当前路由
             console.log(present_route);
+            if(present_route.indexOf('master.my_project.detail')>-1 ){
+                var from_route = fromState.name;
+                console.log(fromState.name);
+                console.log(fromState);
+                if(from_route!=""){
+                    $rootScope.putSessionObject('from_route',from_route);
+                    if(fromParams.id){
+                        var arrayParams = from_route.split(".");
+                        var from_route2 = "/"+arrayParams[0]+"/"+arrayParams[1]+"/"+arrayParams[2]+"/"+arrayParams[3]+"/";
+                        $rootScope.putSessionObject('from_route2',from_route2);
+                        var from_params= fromParams.id;
+                        console.log(from_params);
+                        $rootScope.putSessionObject('from_params',from_params);
+                    }
+                }
+            }
             var array = present_route.split(".");
             $rootScope.choiceColor = array[1];
             console.log(array[1]);
