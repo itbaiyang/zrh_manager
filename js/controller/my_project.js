@@ -390,14 +390,10 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
     $scope.reBackDetail = function () {
         $location.path("master/my_project/detail/"+$stateParams.id);
     };
-    $scope.reBack = function () {
-        $location.path('/master/statistics/person');
-    };
     $scope.get = function() {
-        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId": $rootScope.login_user.userId,
-            "token": $rootScope.login_user.token,
+            "token": $rootScope.login_user.token
         };
         $http({
             url: api_uri + "inforTemplate/detail/" + $stateParams.id,
@@ -415,8 +411,6 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
             }
             $scope.picSave();
         }).error(function (d) {
-            //console.log("login error");
-            //$location.path("/error");
         })
     };
     $scope.get();
@@ -424,14 +418,12 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
     $scope.model = {
         title: "",
         content: "",
-        name: "",
+        name: ""
     };
-    // var id_model = $scope.model_list.length;
     $scope.picSave = function () {
-        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId": $rootScope.login_user.userId,
-            "token": $rootScope.login_user.token,
+            "token": $rootScope.login_user.token
         };
         console.log(m_params, "baiyang");
         $http({
@@ -498,7 +490,7 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
                                 },
                                 'Key': function (up, file) {
                                     var time = new Date().getTime();
-                                    var k = 'inforTemplate/saveList/' + login_user.login_user.userId + '/' + time;
+                                    var k = 'inforTemplate/saveList/' + $rootScope.login_user.userId + '/' + time;
                                     return k;
                                 }
                             }
@@ -603,7 +595,6 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
         };
          //var list_string = JSON.stringify(list);
         console.log(list);
-        // var login_user = $rootScope.getObject("login_user");
         var m_params1 = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -620,7 +611,6 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
                 console.log(data);
                 if (data.returnCode == 0) {
                     console.log("list success");
-                    // $state.go("master.my_project.detail");
                     $location.path("master/my_project/detail/"+$stateParams.id);
                     $scope.$apply();
                 }
@@ -648,7 +638,6 @@ myProjectCtrl.controller('DistributeCtrl', function ($http, $scope, $rootScope, 
     console.log($scope.id);
 
     $scope.list = function (pageNo, pageSize) {
-        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -678,7 +667,6 @@ myProjectCtrl.controller('DistributeCtrl', function ($http, $scope, $rootScope, 
     $scope.list(1, 100);
 
     $scope.bank_man_list = function (id, pageNo, pageSize) {
-        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -708,7 +696,6 @@ myProjectCtrl.controller('DistributeCtrl', function ($http, $scope, $rootScope, 
         $scope.bankManName = name;
     }
     $scope.sumbit_user = function () {
-        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -750,7 +737,6 @@ myProjectCtrl.controller('ApplyHelpCtrl', function ($http, $scope, $rootScope, $
     }
 
     $scope.list = function (pageNo, pageSize) {
-        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -795,7 +781,6 @@ myProjectCtrl.controller('ApplyHelpCtrl', function ($http, $scope, $rootScope, $
         $scope.product_list($scope.bankId, 1, 400)
     };
     $scope.product_list = function (id, pageNo, pageSize) {
-        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -823,7 +808,6 @@ myProjectCtrl.controller('ApplyHelpCtrl', function ($http, $scope, $rootScope, $
     };
 
     $scope.submit_help = function () {
-        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
