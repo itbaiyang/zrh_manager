@@ -1,7 +1,6 @@
 var bankCtrl = angular.module('bankCtrl', []);
 bankCtrl.controller('BankCtrl', function ($http, $scope, $state, $rootScope, $location) {
-    $scope.selected = [];
-    $scope.ids = [];
+   
     $scope.list = function (pageNo, pageSize) {
         var m_params = {
             "userId": $rootScope.login_user.userId,
@@ -38,10 +37,6 @@ bankCtrl.controller('BankCtrl', function ($http, $scope, $state, $rootScope, $lo
         $location.path('/master/bank/update/' + id);
     };
 
-    $scope.find_detail = function (id, name) {
-        $state.go("master.bank.bank_man", {id: id, name: name});
-    };
-
     $scope.delete = function (id) {
         var m_params = {
             "userId": $rootScope.login_user.userId,
@@ -62,6 +57,10 @@ bankCtrl.controller('BankCtrl', function ($http, $scope, $state, $rootScope, $lo
         });
     };
 
+    $scope.find_detail = function (id, name) {
+        $state.go("master.bank.bank_man", {id: id, name: name});
+    };
+
     $scope.changeModule = function (a, b) {
         $scope.editModule = a;
         $scope.deleteModule = b;
@@ -71,9 +70,13 @@ bankCtrl.controller('BankCtrl', function ($http, $scope, $state, $rootScope, $lo
 
 bankCtrl.controller('BankManCtrl', function ($http, $scope, $rootScope, $location, $stateParams, $state) {
     $scope.selected = [];
+    
     $scope.ids = [];
+    
     $scope.id = $stateParams.id;
+    
     $scope.bankName = $stateParams.name;
+    
     $scope.list = function (pageNo, pageSize) {
         var m_params = {
             "userId": $rootScope.login_user.userId,
@@ -101,7 +104,6 @@ bankCtrl.controller('BankManCtrl', function ($http, $scope, $rootScope, $locatio
 
     $scope.changePage = function (page) {
         $scope.pageNo1 = page;
-        //console.log($scope.pageNo1);
         $scope.$watch($scope.pageNo1, function () {
             $scope.list($scope.pageNo1, 20);
         });
@@ -114,7 +116,6 @@ bankCtrl.controller('BankManCtrl', function ($http, $scope, $rootScope, $locatio
     var updateSelected = function (action, id) {
         if (action == 'add') {
             $scope.ids.push(id);
-            //console.log($scope.ids);
         }
         if (action == 'remove') {
             var idx = $scope.ids.indexOf(id);
@@ -123,7 +124,6 @@ bankCtrl.controller('BankManCtrl', function ($http, $scope, $rootScope, $locatio
     };
 
     $scope.updateSelection = function ($event, id) {
-        //console.log("点击一下")
         var checkbox = $event.target;
         var action = (checkbox.checked ? 'add' : 'remove');
         updateSelected(action, id);
@@ -189,13 +189,14 @@ bankCtrl.controller('BankManCtrl', function ($http, $scope, $rootScope, $locatio
     $scope.edit_bank_man = function (id) {
         $location.path('/master/bank/update_bank_man/' + id);
     };
+    
 });
 
-bankCtrl.controller('AddBankCtrl', function ($http, $scope, $rootScope, $state, $location, $timeout, $routeParams) {
+bankCtrl.controller('AddBankCtrl', function ($http, $scope, $rootScope, $state) {
     $scope.init = function () {
         var m_params = {
             "userId": $rootScope.login_user.userId,
-            "token": $rootScope.login_user.token,
+            "token": $rootScope.login_user.token
         };
         $http({
             url: api_uri + "qiniu/getUpToken",
@@ -244,15 +245,6 @@ bankCtrl.controller('AddBankCtrl', function ($http, $scope, $rootScope, $state, 
                             $scope.$apply();
                             m_params.key = "bankPic";
                             m_params.value = $scope.bankPic;
-                            //$.post(api_uri + "manage/bank/add", m_params,
-                            //    function (data) {
-                            //        if (data.returnCode == 0) {
-                            //            console.log('wodetian')
-                            //        } else {
-                            //            console.log(data);
-                            //        }
-                            //    },
-                            //    "json");
                         },
                         'Error': function (up, err, errTip) {
                             //console.log(err);

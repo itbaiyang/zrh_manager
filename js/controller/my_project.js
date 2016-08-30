@@ -271,7 +271,6 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
     /*添加删除模板*/
     $scope.id = $stateParams.id;
     $scope.get = function () {
-        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
