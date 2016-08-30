@@ -72,26 +72,29 @@ app.run(function ($location, $rootScope, $http) {
     $rootScope.$on('$stateChangeSuccess',
         function (event, toState, toParams, fromState, fromParams) {
             var present_route = toState.name; //获取当前路由
-            console.log(present_route);
-            if(present_route.indexOf('master.my_project.detail')>-1 ){
+            // console.log(present_route);
+            if(present_route.indexOf('master.my_project.detail')>-1){
                 var from_route = fromState.name;
                 console.log(fromState.name);
                 console.log(fromState);
-                if(from_route!=""){
+                if(from_route!=""&&from_route.indexOf('master.my_project.edit_apply')<=-1){
                     $rootScope.putSessionObject('from_route',from_route);
                     if(fromParams.id){
                         var arrayParams = from_route.split(".");
                         var from_route2 = "/"+arrayParams[0]+"/"+arrayParams[1]+"/"+arrayParams[2]+"/"+arrayParams[3]+"/";
+                        if(arrayParams[2] != 'edit_apply'){
                         $rootScope.putSessionObject('from_route2',from_route2);
+                        }
                         var from_params= fromParams.id;
                         console.log(from_params);
                         $rootScope.putSessionObject('from_params',from_params);
+
                     }
                 }
             }
             var array = present_route.split(".");
             $rootScope.choiceColor = array[1];
-            console.log(array[1]);
+            // console.log(array[1]);
             if (array[1] == "message"||array[1] == "statistics") {
                 $(".sideBarP2").css("text-align", "left");
                 // $(".sideBar").css("width", "60px");
@@ -107,12 +110,10 @@ app.run(function ($location, $rootScope, $http) {
     // 页面跳转前
     $rootScope.$on('$stateChangeStart',
         function (event, toState, toParams, fromState, fromParams) {
-            console.log("check user ");
             $rootScope.check_user();
             if (!$rootScope.login_user) {
                 $location.path("/login");
             } else {
-                console.log("dd");
             }
         });
     /*********************************** 公用方法区 ***************************************/
@@ -216,7 +217,6 @@ app.run(function ($location, $rootScope, $http) {
 
     $rootScope.check_user = function () {
         $rootScope.login_user = $rootScope.getObject("login_user");
-        console.log($rootScope.login_user);
         if ($rootScope.login_user) {
             $http({
                 url: api_uri + "p/user/validateAuth",
@@ -224,7 +224,6 @@ app.run(function ($location, $rootScope, $http) {
                 params: $rootScope.login_user
             }).success(function (d) {
                 if (d.returnCode == 0) {
-                    console.log("login success");
                     return true;
                 } else {
                     $rootScope.login_user = {};

@@ -1,10 +1,6 @@
 var myProjectCtrl = angular.module('myProjectCtrl', []);
-myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $location, $timeout, $routeParams) {
-
-    var result_list = [];
-
+myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $location) {
     $scope.list = function (pageNo, pageSize) {
-        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId":$rootScope.login_user.userId,
             "token":$rootScope.login_user.token,
@@ -13,13 +9,11 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
             "wd": $scope.wd,
             "status": $scope.status
         };
-        console.log(m_params);
         $http({
             url: api_uri + "applyDeal/list",
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
             if (d.returnCode == 0) {
                 $scope.page = d.result;
                 $scope.result_list = d.result.datas;
@@ -45,17 +39,13 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
                 });
             }
             else {
-                console.log(d.result);
             }
-
         }).error(function (d) {
-            console.log("login error");
             $location.path("/error");
         })
     };
 
     $scope.nextStatus = function (id,status) {
-        // var login_user = $rootScope.getObject("login_user");
         if(status <4){
             status++;
             var m_params = {
@@ -63,13 +53,11 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
                 "token":$rootScope.login_user.token,
                 status:status
             };
-            //console.log(m_params);
             $http({
                 url: api_uri + "loanApplicationManage/next/"+id,
                 method: "GET",
                 params: m_params
             }).success(function (d) {
-                console.log(d);
                 if (d.returnCode == 0) {
                     $scope.list($scope.pageNo1, 20);
                 }
@@ -77,11 +65,9 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
                 }
 
             }).error(function (d) {
-                console.log("login error");
                 $location.path("/error");
             })
         }else{
-            console.log("已经融资成功无法执行下一步")
         }
 
     };
@@ -89,7 +75,6 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
     $scope.list(1, 20);
     $scope.changePage = function(page){
         $scope.pageNo1 = page;
-        console.log($scope.pageNo1);
         $scope.$watch($scope.pageNo1, function () {
             $scope.list($scope.pageNo1, 20);
         });
@@ -104,17 +89,15 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
     var updateSelected = function (action, id) {
         if (action == 'add') {
             $scope.ids.push(id);
-            console.log("添加id"+$scope.ids);
         }
         if (action == 'remove') {
             var idx = $scope.ids.indexOf(id);
             $scope.ids.splice(idx, 1);
-            console.log("删除id"+id);
         }
     };
 
     $scope.updateSelection = function ($event, id) {
-        console.log("点击一下");
+
         var checkbox = $event.target;
         var action = (checkbox.checked ? 'add' : 'remove');
         updateSelected(action, id);
@@ -126,7 +109,7 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
 
     $scope.showDetail = function (id) {
         $location.path('/master/my_project/detail/' + id);
-        console.log(id);
+
     };
 
     $scope.delete = function () {
@@ -136,19 +119,18 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
         };
-        console.log($scope.ids);
+
         $.ajax({
             type: 'POST',
             url: api_uri + "loanApplicationManage/delete",
             data: m_params,
             traditional: true,
             success: function (data, textStatus, jqXHR) {
-                console.log(data);
+
                 if (data.returnCode == 0) {
                     $scope.list($scope.pageNo1, 10);
                 }
                 else {
-                    console.log(data);
                 }
             },
             dataType: 'json',
@@ -162,13 +144,11 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
             "token":$rootScope.login_user.token,
             "id": id,
         };
-        console.log(m_params);
         $http({
             url: api_uri + "loanApplicationManage/cancel",
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
             if (d.returnCode == 0) {
                 $scope.list($scope.pageNo1, 10);
             }
@@ -186,13 +166,11 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
             "token": $rootScope.login_user.token,
             "id": id,
         };
-        console.log(m_params);
         $http({
             url: api_uri + "loanApplicationManage/giveUp",
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
             if (d.returnCode == 0) {
                 $scope.list($scope.pageNo1, 10);
             }
@@ -205,12 +183,10 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
 
     $scope.apply_help = function (id) {
         $location.path('/master/my_project/apply_help/' + id);
-        console.log(id);
     };
 
     $scope.apply_again = function (id, mobile) {
         $location.path('/master/my_project/apply_again/' + id + '/' + mobile);
-        console.log(id);
     };
 
     $scope.linkCompany = function(id ,remark) {
@@ -221,19 +197,15 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
             "id": id,
             "remark": remark
         };
-        console.log($scope.ids);
         $.ajax({
             type: 'POST',
             url: api_uri + "loanApplicationManage/update",
             data: m_params,
             traditional: true,
             success: function (data, textStatus, jqXHR) {
-                // console.log(data);
                 if (data.returnCode == 0) {
-                    console.log(data);
                 }
                 else {
-                    console.log(data);
                 }
             },
             dataType: 'json',
@@ -280,7 +252,6 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
             $scope.isAllot = d.result.isAllot;
             $scope.registerLinkmanName = d.result.registerLinkmanName;
             $scope.registerLinkmanMobile = d.result.registerLinkmanMobile;
@@ -326,12 +297,10 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
 
     $scope.editApply = function (id) {
         $location.path('/master/my_project/edit_apply/' + id);
-        console.log(id);
     };
 
     $scope.distribute = function (id) {
         $location.path('/master/my_project/distribute/' + id);
-        console.log(id);
     };
 
     $scope.addTips = function () {
@@ -348,20 +317,16 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
             "applyId": $stateParams.id,
             "dealRemark": $scope.dealRemark,
         };
-        console.log(m_params);
         $.ajax({
             type: 'POST',
             url: api_uri + "inforTemplate/updateRemark",
             data: m_params,
             traditional: true,
             success: function (data, textStatus, jqXHR) {
-                console.log(data);
                 if (data.returnCode == 0) {
-                    console.log("remark success");
                     $(".add-tips").css("display","none");
                 }
                 else {
-                    console.log(data);
                 }
             },
             dataType: 'json',
@@ -371,14 +336,10 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
 
     $scope.reBackDetails = function () {
         var from_route = $rootScope.getSessionObject("from_route");
-        console.log(from_route);
         var from_route2 = $rootScope.getSessionObject("from_route2");
-        console.log(from_route2);
         var from_params = $rootScope.getSessionObject("from_params");
-        console.log(from_params);
         if(from_route2 ==null){
             $state.go(from_route);
-
         }else{
             $location.path(from_route2+from_params);
         }
@@ -400,7 +361,6 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
             $scope.basic = d.result.baseInfo;
             $scope.registerLinkmanName = d.result.registerLinkmanName;
             $scope.registerLinkmanMobile = d.result.registerLinkmanMobile;
@@ -414,7 +374,7 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
         })
     };
     $scope.get();
-    console.log($stateParams.id);
+
     $scope.model = {
         title: "",
         content: "",
@@ -425,13 +385,11 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token
         };
-        console.log(m_params, "baiyang");
         $http({
             url: api_uri + "qiniu/getUpToken",
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
             if (d.returnCode == 0) {
                 $scope.qiniu_token = d.result.uptoken;
                 $scope.get_ids = [];
@@ -442,7 +400,6 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
                     $scope.saveImg = d;
                     if(($scope.get_ids.length >0 &&$scope.get_ids.indexOf($scope.saveImg) <= -1)||$scope.get_ids.length == 0){
                         $scope.get_ids.push(d);
-                        console.log($scope.saveImg);
                         var uploader = Qiniu.uploader({
                             runtimes: 'html5,flash,html4',    //上传模式,依次退化
                             browse_button: 'img_model_' + $scope.saveImg,       //上传选择的点选按钮，**必需**
@@ -476,13 +433,10 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
                                     var res = $.parseJSON(info);
 
                                     var file_url = "http://" + $rootScope.qiniu_bucket_domain + "/" + res.key;
-                                    console.log($scope.model_list);
                                     $scope.model_list[$scope.saveImg].imgList.push(file_url);
-                                    console.log($scope.model_list);
                                     //$scope.$apply();
                                 },
                                 'Error': function (up, err, errTip) {
-                                    console.log(err);
                                     $rootScope.alert("图片上传失败！");
                                 },
                                 'UploadComplete': function () {
@@ -497,15 +451,12 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
 
                         });
                     } else{
-                        console.log("不用");
                     }
                 };
             } else {
-                console.log(d);
             }
 
         }).error(function (d) {
-            console.log(d);
         });
 
     };
@@ -525,13 +476,9 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
             "imgList":[]
         });
         id_model++;
-        console.log($scope.model_list);
     };
     $scope.delete = function (id) {
             $scope.model_list.splice(id, 1);
-            console.log("删除id" + id);
-        // }
-        console.log($scope.model_list);
     };
     /*保存基本信息*/
 
@@ -556,22 +503,18 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
             "loanValue": $scope.basic.loanValue,
             "continual": $scope.basic.continual,
         };
-        console.log(m_params);
         $.ajax({
             type: 'POST',
             url: api_uri + "inforTemplate/saveBase",
             data: m_params,
             traditional: true,
             success: function (data, textStatus, jqXHR) {
-                console.log(data);
                 if (data.returnCode == 0) {
-                    console.log("basic success");
                     $scope.id_basic = data.result;
                     $scope.other();
                     //$scope.$apply();
                 }
                 else {
-                    console.log(data);
                 }
             },
             dataType: 'json',
@@ -581,7 +524,6 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
 
     /*保存其他信息*/
     $scope.other = function () {
-        console.log($scope.id_basic);
         var list = [];
         //var list_string = [];
         for (var i = 0; i < $scope.model_list.length; i++) {
@@ -594,28 +536,23 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
             })
         };
          //var list_string = JSON.stringify(list);
-        console.log(list);
         var m_params1 = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
             "comId": $scope.id_basic,
             "list": JSON.stringify(list)
         };
-        console.log(m_params1);
         $.ajax({
             type: 'POST',
             url: api_uri + "inforTemplate/saveList",
             data: m_params1,
             traditional: true,
             success: function (data, textStatus, jqXHR) {
-                console.log(data);
                 if (data.returnCode == 0) {
-                    console.log("list success");
                     $location.path("master/my_project/detail/"+$stateParams.id);
                     $scope.$apply();
                 }
                 else {
-                    console.log(data);
                 }
             },
             dataType: 'json',
@@ -635,7 +572,6 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
 myProjectCtrl.controller('DistributeCtrl', function ($http, $scope, $rootScope, $location, $state, $timeout, $routeParams, $stateParams) {
     /*添加删除模板*/
     $scope.id = $stateParams.id;
-    console.log($scope.id);
 
     $scope.list = function (pageNo, pageSize) {
         var m_params = {
@@ -649,17 +585,14 @@ myProjectCtrl.controller('DistributeCtrl', function ($http, $scope, $rootScope, 
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
             if (d.returnCode == 0) {
                 $scope.page = d.result;
                 $scope.bank_list = d.result.datas;
             }
             else {
-                console.log(d.result);
             }
 
         }).error(function (d) {
-            console.log("login error");
             $location.path("/error");
         })
     };
@@ -679,12 +612,10 @@ myProjectCtrl.controller('DistributeCtrl', function ($http, $scope, $rootScope, 
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
             if (d.returnCode == 0) {
                 $scope.bank_man_list = d.result.datas;
             }
             else {
-                console.log(d.result);
             }
 
         }).error(function (d) {
@@ -702,20 +633,17 @@ myProjectCtrl.controller('DistributeCtrl', function ($http, $scope, $rootScope, 
             "id": $scope.id,
             "bankUserId": $scope.bankManId
         };
-        console.log(m_params);
         $http({
             url: api_uri + "loanApplicationManage/allot/",
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
             if (d.returnCode == 0) {
                 alert("递交成功");
                 //$state.go("master.my_project");
                 $location.path('/master/my_project/detail/' + $scope.id);
             }
             else {
-                console.log(d.result);
                 alert("递交失败");
             }
         }).error(function (d) {
@@ -748,17 +676,14 @@ myProjectCtrl.controller('ApplyHelpCtrl', function ($http, $scope, $rootScope, $
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
             if (d.returnCode == 0) {
                 $scope.page = d.result;
                 $scope.bank_list = d.result.datas;
             }
             else {
-                console.log(d.result);
             }
 
         }).error(function (d) {
-            console.log("login error");
             $location.path("/error");
         })
     };
@@ -767,7 +692,6 @@ myProjectCtrl.controller('ApplyHelpCtrl', function ($http, $scope, $rootScope, $
 
     $scope.editApply = function (id) {
         $location.path('/master/my_project/edit_apply/' + id);
-        console.log(id);
     };
 
     $scope.choiceProduct = function (id, name) {
@@ -794,13 +718,11 @@ myProjectCtrl.controller('ApplyHelpCtrl', function ($http, $scope, $rootScope, $
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
             if (d.returnCode == 0) {
                 $scope.page = d.result;
                 $scope.product_list = d.result.datas;
             }
             else {
-                console.log(d.result);
             }
 
         }).error(function (d) {
@@ -815,21 +737,17 @@ myProjectCtrl.controller('ApplyHelpCtrl', function ($http, $scope, $rootScope, $
             "productId": $scope.productId,
             "mobile": $scope.applyMobile,
         };
-        console.log(m_params);
         $.ajax({
             type: 'POST',
             url: api_uri + "loanApplicationManage/helpApply",
             data: m_params,
             traditional: true,
             success: function (data, textStatus, jqXHR) {
-                console.log(data);
                 if (data.returnCode == 0) {
-                    console.log("apply success");
                     $state.go("master.my_project");
                     //$scope.$apply();
                 }
                 else {
-                    console.log(data);
                 }
             },
             dataType: 'json',

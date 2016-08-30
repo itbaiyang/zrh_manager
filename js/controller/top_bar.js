@@ -20,10 +20,8 @@ topBarCtrl.controller('TopBarCtrl', function ($http, $scope, $rootScope, $locati
         }).success(function (d) {
             if (d.returnCode == 0) {
                 $rootScope.count = d.result;
-                console.log(d.result);
             }
             else {
-                console.log(d.result);
             }
 
         }).error(function (d) {
@@ -45,10 +43,8 @@ topBarCtrl.controller('SideBarCtrl', function ($http, $scope,$state, $rootScope,
         }).success(function (d) {
             if (d.returnCode == 0) {
                 $scope.system_message = d.result;
-                console.log(d.result);
             }
             else {
-                console.log(d.result);
             }
 
         }).error(function (d) {
@@ -67,12 +63,9 @@ topBarCtrl.controller('SideBarCtrl', function ($http, $scope,$state, $rootScope,
         }).success(function (d) {
             if (d.returnCode == 0) {
                 $scope.bank_message = d.result;
-                console.log(d.result);
             }
             else {
-                console.log(d.result);
             }
-
         }).error(function (d) {
         })
     };
@@ -90,21 +83,16 @@ topBarCtrl.controller('ContainsCtrl', function ($http, $scope, $state, $rootScop
         method: "GET",
         params: m_params
     }).success(function (d) {
-        console.log(d);
-
     }).error(function (d) {
-        console.log(d);
     });
     $http({
         url: api_uri + "zrh/index/count",
         method: "GET",
         params: m_params
     }).success(function (d) {
-        console.log(d);
         $scope.count = d.result;
 
     }).error(function (d) {
-        console.log(d);
     });
 
 });
