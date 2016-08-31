@@ -338,7 +338,9 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
         var from_route = $rootScope.getSessionObject("from_route");
         var from_route2 = $rootScope.getSessionObject("from_route2");
         var from_params = $rootScope.getSessionObject("from_params");
-        if(from_route2 ==null){
+        if (from_route == "master.my_project") {
+            $state.go(from_route);
+        } else if (from_route2 == null) {
             $state.go(from_route);
         }else{
             $location.path(from_route2+from_params);

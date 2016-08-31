@@ -25,38 +25,160 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                     //controller: 'UserIndexController'
                 },
                 'top_bar@super': {
-                    templateUrl: templates_root + 'admin/top_bar.html',
+                    templateUrl: templates_root + 'bar/top_bar.html',
                     controller: 'TopBarCtrl'
                 },
                 'side_bar@super': {
-                    templateUrl: templates_root + 'super/side_bar.html',
+                    templateUrl: templates_root + 'bar/side_bar.html',
                     //controller: 'TopBarCtrl'
                 },
-                'sign_up@super': {
-                    templateUrl: templates_root + 'super/user_list.html',
+                'main@super': {
+                    templateUrl: templates_root + 'super/main.html',
+                    // controller: 'UserListCtrl'
+                }
+            }
+        })
+
+        .state('super.manage', {
+            url: '/manage',
+            views: {
+                'main@super': {
+                    templateUrl: templates_root + 'super/product_service/manage/user_list.html',
                     controller: 'UserListCtrl'
                 }
             }
         })
-        .state("super.addUser", {
+        .state("super.manage.addUser", {
             url: '/add_user',
             views: {
-                'sign_up@super': {
-                    templateUrl: templates_root + 'super/add_user.html',
+                'main@super': {
+                    templateUrl: templates_root + 'super/product_service/manage/add_user.html',
                     controller: 'CreateUserCtrl'
                 }
             }
         })
-        .state("super.update", {
+        .state("super.manage.update", {
             url: '/update/:id',
             views: {
-                'sign_up@super': {
-                    templateUrl: templates_root + 'super/user_update.html',
+                'main@super': {
+                    templateUrl: templates_root + 'super/product_service/manage/user_update.html',
                     controller: 'UserUpdateCtrl'
                 }
             }
         })
 
+        .state('super.product', {
+            url: '/product',
+            views: {
+                'main@super': {
+                    templateUrl: templates_root + 'super/product_service/product/product.html',
+                    controller: 'ProductCtrl'
+                }
+            }
+        })
+        .state('super.product.create', {
+            url: '/create',
+            views: {
+                'main@super': {
+                    templateUrl: templates_root + 'super/product_service/product/create.html',
+                    controller: 'ProductCreateCtrl'
+                }
+            }
+        })
+        .state('super.product.update', {
+            url: '/update/:id',
+            views: {
+                'main@super': {
+                    templateUrl: templates_root + 'super/product_service/product/update.html',
+                    controller: 'ProductUpdateCtrl'
+                }
+            }
+        })
+        .state('super.product.sort', {
+            url: '/sort',
+            views: {
+                'main@super': {
+                    templateUrl: templates_root + 'super/product_service/product/sort.html',
+                    controller: 'SortCtrl'
+                }
+            }
+        })
+
+        .state('super.bank', {
+            url: '/bank',
+            views: {
+                'main@super': {
+                    templateUrl: templates_root + 'super/product_service/bank/bank.html',
+                    controller: 'BankCtrl'
+                }
+            }
+        })
+        .state('super.bank.bank_man', {
+            params: {
+                "id": null,
+                "name": null
+            },
+            url: '/bank_man/:id/:name',
+            views: {
+                'main@super': {
+                    templateUrl: templates_root + 'super/product_service/bank/bank_man.html',
+                    controller: 'BankManCtrl'
+                }
+            }
+        })
+        .state('super.bank.add_bank', {
+            params: {
+                "id": null,
+                "name": null
+            },
+            url: '/add_bank/:id/:name',
+            views: {
+                'main@super': {
+                    templateUrl: templates_root + 'super/product_service/bank/add_bank.html',
+                    controller: 'AddBankCtrl'
+                }
+            }
+        })
+        .state('super.bank.add_bank_man', {
+            url: '/add_bank_man/:id/:name',
+            views: {
+                'main@super': {
+                    templateUrl: templates_root + 'super/product_service/bank/add_bank_man.html',
+                    controller: 'AddBankManCtrl'
+                }
+            }
+        })
+        .state('super.bank.update', {
+            url: '/update/:id',
+            views: {
+                'main@super': {
+                    templateUrl: templates_root + 'super/product_service/bank/update.html',
+                    controller: 'UpdateBankCtrl'
+                }
+            }
+        })
+        .state('super.bank.update_bank_man', {
+            url: '/update_bank_man/:id',
+            views: {
+                'main@super': {
+                    templateUrl: templates_root + 'super/product_service/bank/update_bank_man.html',
+                    controller: 'UpdateBankManCtrl'
+                }
+            }
+        })
+
+        .state('super.signUp', {
+            url: '/signUp',
+            views: {
+                'main@super': {
+                    templateUrl: templates_root + 'super/product_service/sign_up/sign_up.html',
+                    controller: 'SignUpCtrl'
+                }
+            }
+        })
+
+        
+        
         .state("master", {
             url: '/master',
             views: {
@@ -65,11 +187,11 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                     //controller: 'UserIndexController'
                 },
                 'top_bar@master': {
-                    templateUrl: templates_root + 'admin/top_bar.html',
+                    templateUrl: templates_root + 'bar/top_bar.html',
                     controller: 'TopBarCtrl'
                 },
                 'side_bar@master': {
-                    templateUrl: templates_root + 'admin/side_bar.html',
+                    templateUrl: templates_root + 'bar/side_bar.html',
                     controller: 'SideBarCtrl'
                 },
                 'contains@master': {
@@ -78,6 +200,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
+
         .state("master.company_message", {
             url: '/company_message',
             views: {
@@ -93,53 +216,6 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 'contains@master': {
                     templateUrl: templates_root + 'admin/product_service/company_message/add_company.html',
                     controller: 'AddCompanyCtrl'
-                }
-            }
-        })
-
-        .state('master.product', {
-            url: '/product',
-            views: {
-                'contains@master': {
-                    templateUrl: templates_root + 'admin/product_service/product/product.html',
-                    controller:'ProductCtrl'
-                }
-            }
-        })
-        .state('master.product.create', {
-            url: '/create',
-            views: {
-                'contains@master': {
-                    templateUrl: templates_root + 'admin/product_service/product/create.html',
-                    controller:'ProductCreateCtrl'
-                }
-            }
-        })
-        .state('master.product.update', {
-            url: '/update/:id',
-            views: {
-                'contains@master': {
-                    templateUrl: templates_root + 'admin/product_service/product/update.html',
-                    controller:'ProductUpdateCtrl'
-                }
-            }
-        })
-        .state('master.product.sort', {
-            url: '/sort',
-            views: {
-                'contains@master': {
-                    templateUrl: templates_root + 'admin/product_service/product/sort.html',
-                    controller:'SortCtrl'
-                }
-            }
-        })
-
-        .state('master.signUp', {
-            url: '/signUp',
-            views: {
-                'contains@master': {
-                    templateUrl: templates_root + 'admin/product_service/sign_up.html',
-                    controller: 'SignUpCtrl'
                 }
             }
         })
@@ -199,75 +275,12 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             }
         })
 
-        .state('master.bank', {
-            url: '/bank',
-            views: {
-                'contains@master': {
-                    templateUrl: templates_root + 'admin/product_service/bank/bank.html',
-                    controller: 'BankCtrl'
-                }
-            }
-        })
-        .state('master.bank.bank_man', {
-            params: {
-                "id": null,
-                "name": null
-            },
-            url: '/bank_man/:id/:name',
-            views: {
-                'contains@master': {
-                    templateUrl: templates_root + 'admin/product_service/bank/bank_man.html',
-                    controller: 'BankManCtrl'
-                }
-            }
-        })
-        .state('master.bank.add_bank', {
-            params: {
-                "id": null,
-                "name": null
-            },
-            url: '/add_bank/:id/:name',
-            views: {
-                'contains@master': {
-                    templateUrl: templates_root + 'admin/product_service/bank/add_bank.html',
-                    controller: 'AddBankCtrl'
-                }
-            }
-        })
-        .state('master.bank.add_bank_man', {
-            url: '/add_bank_man/:id/:name',
-            views: {
-                'contains@master': {
-                    templateUrl: templates_root + 'admin/product_service/bank/add_bank_man.html',
-                    controller: 'AddBankManCtrl'
-                }
-            }
-        })
-        .state('master.bank.update', {
-            url: '/update/:id',
-            views: {
-                'contains@master': {
-                    templateUrl: templates_root + 'admin/product_service/bank/update.html',
-                    controller: 'UpdateBankCtrl'
-                }
-            }
-        })
-        .state('master.bank.update_bank_man', {
-            url: '/update_bank_man/:id',
-            views: {
-                'contains@master': {
-                    templateUrl: templates_root + 'admin/product_service/bank/update_bank_man.html',
-                    controller: 'UpdateBankManCtrl'
-                }
-            }
-        })
-
         .state('master.statistics', {
             url: '/statistics',
             views: {
                 'contains@master': {
                     templateUrl: templates_root + 'admin/statistics/share/statistics.html',
-                    controller:'StatisticsCtrl'
+                    // controller:'StatisticsCtrl'
                 }
             }
         })
@@ -276,84 +289,65 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             views: {
                 'contains@master': {
                     templateUrl: templates_root + 'admin/statistics/share/person.html',
-                    controller:'PersonCtrl'
+                    // controller:'PersonCtrl'
                 }
             }
         })
-        // .state('master.statistics.person.edit_apply', {
-        //     url: '/edit_apply/:id',
-        //     views: {
-        //         'contains@master': {
-        //             templateUrl: templates_root + 'admin/statistics/share/edit_apply.html',
-        //             controller: 'EditApplyCtrl'
-        //         }
-        //     }
-        // })
-        .state('master.statistics.channel', {
+        .state('master.channel', {
             url: '/channel',
             views: {
                 'contains@master': {
-                    templateUrl: templates_root + 'admin/statistics/share/channel.html',
+                    templateUrl: templates_root + 'admin/product_service/channel/channel.html',
                     controller:'ChannelCtrl'
                 }
             }
         })
-        .state('master.statistics.channel.create', {
+        .state('master.channel.create', {
             url: '/create',
             views: {
                 'contains@master': {
-                    templateUrl: templates_root + 'admin/statistics/share/create.html',
+                    templateUrl: templates_root + 'admin/product_service/channel/create.html',
                     controller:'CreateCtrl'
                 }
             }
         })
-        .state('master.statistics.channel.detail', {
+        .state('master.channel.detail', {
             url: '/detail/:id',
             views: {
                 'contains@master': {
-                    templateUrl: templates_root + 'admin/statistics/share/detail.html',
+                    templateUrl: templates_root + 'admin/product_service/channel/detail.html',
                     controller:'ChannelDetailCtrl'
                 }
             }
         })
-        .state('master.statistics.channel.add_apply', {
+        .state('master.channel.add_apply', {
             url: '/add_apply/:id',
             views: {
                 'contains@master': {
-                    templateUrl: templates_root + 'admin/statistics/share/add_apply.html',
+                    templateUrl: templates_root + 'admin/product_service/channel/add_apply.html',
                     controller:'AddApplyCtrl'
                 }
             }
         })
-        
-        .state('master.statistics.share', {
+
+        .state('master.share', {
             url: '/share',
             views: {
                 'contains@master': {
-                    templateUrl: templates_root + 'admin/statistics/share/share.html',
+                    templateUrl: templates_root + 'admin/product_service/share/share.html',
                     controller:'ShareCtrl'
                 }
             }
         })
-        .state('master.statistics.share.share_detail', {
+        .state('master.share.share_detail', {
             url: '/share_detail/:id',
             views: {
                 'contains@master': {
-                    templateUrl: templates_root + 'admin/statistics/share/share_detail.html',
+                    templateUrl: templates_root + 'admin/product_service/share/share_detail.html',
                     controller:'ShareDetailCtrl'
                 }
             }
         })
-
-        // .state('master.account', {
-        //     url: '/statistics',
-        //     views: {
-        //         'contains@master': {
-        //             templateUrl: templates_root + 'admin/user_center/statistics/share/statistics1.html',
-        //             //controller:'AccountCtrl'
-        //         }
-        //     }
-        // })
 
         .state('master.message', {
             url: '/message',

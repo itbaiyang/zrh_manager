@@ -1,0 +1,96 @@
+<!--<div style="position: absolute;overflow-x:hidden; margin-left: 250px;width: calc(100% - 250px); height: calc(100% - 50px);  background: #ffffff">-->
+<div class="content">
+    <div class="contentTitle">
+        <span>渠道统计</span>
+        <div class="fr" style="margin: 10px">
+        </div>
+    </div>
+    <div class="noPadding width100">
+        <div class="noPadding width30">
+            <input type="text" class="form-control" placeholder="搜索企业名称" ng-model="search_text">
+        </div>
+        <div class="width10">
+            <button class="btn btnBlue" ng-click="search()" type="button">搜索</button>
+        </div>
+        <button class="btn btnBlue fr" ng-click="addApply()" style="margin-right: 100px">绑定企业申请</button>
+        <!--<button class="btn fr btnGrew" ng-click="refresh()" type="submit"><img class="btnGrewImg"> 刷新</button>-->
+
+    </div>
+
+    <ul class="list-group list_ul2">
+        <div class="row-roll">
+            <li class=" list_title2">
+                <span class="width15">企业名称或个人</span>
+                <span class="width15">申请产品</span>
+                <div class="btn-group noPadding width8">
+                    <div style="cursor: pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        状态({{status_text}}) <span class="caret"></span>
+                    </div>
+                    <ul class="dropdown-menu" style="width: 100px">
+                        <!--<li ng-click="choice(0)" class="list_select">未申请</li>-->
+                        <li ng-click="choice(1)" class="list_select">审核中</li>
+                        <li ng-click="choice(2)" class="list_select">约见中</li>
+                        <li ng-click="choice(3)" class="list_select">跟进中</li>
+                        <li ng-click="choice(4)" class="list_select">成功融资</li>
+                        <li ng-click="choice()" class="list_select">全部</li>
+                    </ul>
+                </div>
+                <span class="width8">报卷人</span>
+                <span class="width8">预计完成时间</span>
+                <span class="width8">服务费（%）</span>
+                <span class="width8">融资额（万）</span>
+                <span class="width8">年销售额（万）</span>
+                <span class="width8">项目来源</span>
+                <span class="width8">备注</span>
+            </li>
+            <div class="line-roll">
+                <li class="list-group-item list_common2" ng-repeat="resultObj in result_list">
+                <span class="width15">
+            <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}"
+                   ng-checked="isSelected(resultObj.id)"
+                   ng-click="updateSelection($event,resultObj.id)">
+                    <a ng-click="updateApply(resultObj.id)" style="cursor: pointer">
+                        {{resultObj.companyName}}
+                    </a>
+                </span>
+                    <span class="width15">{{resultObj.bankName}}-{{resultObj.productName}}</span>
+                    <span class="width8">{{resultObj.progressText}}</span>
+                    <span class="width8">{{resultObj.opUser}}</span>
+                    <span class="width8">{{resultObj.days}}</span>
+                    <span class="width8">{{resultObj.fee}}</span>
+                    <span class="width8">{{resultObj.loanValue}}</span>
+                    <span class="width8">{{resultObj.continual}}</span>
+                    <span class="width8">{{resultObj.continual}}</span>
+                    <span class="width8">{{resultObj.dealRemark}}</span>
+                    <!--<span class="width15">{{resultObj.time |date:'yyyy-MM-dd'}}</span>-->
+                </li>
+            </div>
+        </div>
+        <li class="list-group-item list_common1">
+            <span class="fl">共有{{page.totalCount}}款金融产品，每页显示{{page.pageSize}}条</span>
+            <ul class="pagination fl" style="margin-left: 30px;margin-top: -5px">
+                <li>
+                    <a aria-label="Previous" ng-click="changePage(1)">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li>
+                    <a aria-label="Previous" ng-click="changePage(page.upPage)">
+                        <span aria-hidden="true">&lsaquo;</span>
+                    </a>
+                </li>
+                <li><a>{{page.pageNo}}</a></li>
+                <li>
+                    <a aria-label="Next" ng-click="changePage(page.nextPage)">
+                        <span aria-hidden="true">&rsaquo;</span>
+                    </a>
+                </li>
+                <li>
+                    <a aria-label="Next" ng-click="changePage(page.totalPage)">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>

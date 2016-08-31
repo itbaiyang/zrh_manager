@@ -197,7 +197,7 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
 
     $scope.update = function(id){
         //$location.state('master.product.update');
-        $location.path('/master/product/update/' + id);
+        $location.path('/super/product/update/' + id);
         console.log(id);
     };
 
@@ -393,7 +393,7 @@ productCtrl.controller('ProductCreateCtrl', function ($http, $scope, $rootScope,
                 console.log(data);
                 if (data.returnCode == 0) {
                     console.log("创建成功了");
-                    $state.go("master.product");
+                    $state.go("super.product");
                     $scope.$apply();
 
                 }
@@ -570,7 +570,7 @@ productCtrl.controller('ProductUpdateCtrl', function ($http, $scope, $state, $ro
                 console.log(data);
                 if (data.returnCode == 0) {
                     console.log("创建成功了");
-                    $state.go('master.product');
+                    $state.go('super.product');
                     $scope.$apply();
                 }
                 else {

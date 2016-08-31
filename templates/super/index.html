@@ -1,3 +1,7 @@
-<div ui-view="top_bar"></div>
-<div style="height: calc(100% - 50px);position: absolute;z-index: 50" ui-view="side_bar"></div>
-<div style="height: calc(100% - 50px);overflow-x: hidden; overflow-y: auto" ui-view="sign_up"></div>
+<!--<div ui-view="top_bar"></div>-->
+<!--<div style="height: calc(100% - 50px);position: absolute;z-index: 50" ui-view="side_bar"></div>-->
+<!--<div style="height: calc(100% - 50px);overflow-x: hidden; overflow-y: auto" ui-view="sign_up"></div>-->
+
+<div ui-view="top_bar" style="min-width:1260px;width: 100%; z-index: 200; position: fixed"></div>
+<div style="height: calc(100% - 50px); position: fixed; top:50px; z-index: 51" ui-view="side_bar"></div>
+<div style="width: 100%; position: relative; top:50px;height: calc(100% - 50px);" ui-view="main"></div>

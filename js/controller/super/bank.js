@@ -34,7 +34,7 @@ bankCtrl.controller('BankCtrl', function ($http, $scope, $state, $rootScope, $lo
     };
 
     $scope.edit_bank = function (id) {
-        $location.path('/master/bank/update/' + id);
+        $location.path('/super/bank/update/' + id);
     };
 
     $scope.delete = function (id) {
@@ -58,7 +58,7 @@ bankCtrl.controller('BankCtrl', function ($http, $scope, $state, $rootScope, $lo
     };
 
     $scope.find_detail = function (id, name) {
-        $state.go("master.bank.bank_man", {id: id, name: name});
+        $state.go("super.bank.bank_man", {id: id, name: name});
     };
 
     $scope.changeModule = function (a, b) {
@@ -130,7 +130,7 @@ bankCtrl.controller('BankManCtrl', function ($http, $scope, $rootScope, $locatio
     };
 
     $scope.add_user = function (id, name) {
-        $state.go("master.bank.add_bank_man", {id: id, name: name});
+        $state.go("super.bank.add_bank_man", {id: id, name: name});
     };
 
     $scope.delete = function () {
@@ -187,7 +187,7 @@ bankCtrl.controller('BankManCtrl', function ($http, $scope, $rootScope, $locatio
     };
 
     $scope.edit_bank_man = function (id) {
-        $location.path('/master/bank/update_bank_man/' + id);
+        $location.path('/super/bank/update_bank_man/' + id);
     };
     
 });
@@ -292,7 +292,7 @@ bankCtrl.controller('AddBankCtrl', function ($http, $scope, $rootScope, $state) 
                 //console.log(data);
                 if (data.returnCode == 0) {
                     //console.log("创建成功了");
-                    $state.go("master.bank");
+                    $state.go("super.bank");
                     $scope.$apply();
                 }
                 else {
@@ -429,7 +429,7 @@ bankCtrl.controller('UpdateBankCtrl', function ($http, $scope, $rootScope, $stat
             success: function (data, textStatus, jqXHR) {
                 if (data.returnCode == 0) {
                     ;
-                    $state.go("master.bank");
+                    $state.go("super.bank");
                     $scope.$apply();
                 }
                 else {
@@ -533,7 +533,7 @@ bankCtrl.controller('AddBankManCtrl', function ($http, $scope, $rootScope, $stat
             success: function (data, textStatus, jqXHR) {
                 //console.log(data);
                 if (data.returnCode == 0) {
-                    $state.go("master.bank.bank_man", {id: m_params.bankId});
+                    $state.go("super.bank.bank_man", {id: m_params.bankId});
                     $scope.$apply();
                 }
                 else {
@@ -696,7 +696,7 @@ bankCtrl.controller('UpdateBankManCtrl', function ($http, $scope, $rootScope, $s
                 //console.log(data);
                 if (data.returnCode == 0) {
                     //console.log("添加成功");
-                    $state.go("master.bank.bank_man", {id: m_params.bankId});
+                    $state.go("super.bank.bank_man", {id: m_params.bankId});
                     $scope.$apply();
 
                 }

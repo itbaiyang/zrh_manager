@@ -18,7 +18,9 @@ var app = angular.module('app', [
     'superCtrl',
     'signUpCtrl',
     'bankCtrl',
-    'statisticsCtrl',
+    // 'statisticsCtrl',
+    'channelCtrl',
+    'shareCtrl',
     'messageCtrl',
 
 ], function ($httpProvider) {
@@ -72,7 +74,6 @@ app.run(function ($location, $rootScope, $http) {
     $rootScope.$on('$stateChangeSuccess',
         function (event, toState, toParams, fromState, fromParams) {
             var present_route = toState.name; //获取当前路由
-            // console.log(present_route);
             if(present_route.indexOf('master.my_project.detail')>-1){
                 var from_route = fromState.name;
                 console.log(fromState.name);
@@ -81,7 +82,7 @@ app.run(function ($location, $rootScope, $http) {
                     $rootScope.putSessionObject('from_route',from_route);
                     if(fromParams.id){
                         var arrayParams = from_route.split(".");
-                        var from_route2 = "/"+arrayParams[0]+"/"+arrayParams[1]+"/"+arrayParams[2]+"/"+arrayParams[3]+"/";
+                        var from_route2 = "/" + arrayParams[0] + "/" + arrayParams[1] + "/" + arrayParams[2] + "/";
                         if(arrayParams[2] != 'edit_apply'){
                         $rootScope.putSessionObject('from_route2',from_route2);
                         }
@@ -94,17 +95,14 @@ app.run(function ($location, $rootScope, $http) {
             }
             var array = present_route.split(".");
             $rootScope.choiceColor = array[1];
-            // console.log(array[1]);
-            if (array[1] == "message"||array[1] == "statistics") {
+            if (array[1] == "message") {
                 $(".sideBarP2").css("text-align", "left");
-                // $(".sideBar").css("width", "60px");
                 console.log(array[1], 'baiyang');
                 $rootScope.sideTwo = true;
                 $rootScope.choiceColorTwo = array[2];
             } else {
                 $rootScope.sideTwo = false;
                 $(".sideBarP2").css("text-align", "center");
-                // $(".sideBar").css("width", "60px");
             }
         });
     // 页面跳转前
@@ -115,6 +113,51 @@ app.run(function ($location, $rootScope, $http) {
                 $location.path("/login");
             } else {
             }
+            $rootScope.check_role = function () {
+                var m_params = {
+                    "userId": $rootScope.login_user.userId,
+                    "token": $rootScope.login_user.token,
+                };
+                $http({
+                    url: api_uri + "p/user/detail/" + $rootScope.login_user.userId,
+                    method: "GET",
+                    params: m_params
+                }).success(function (d) {
+                    if (d.returnCode == 0) {
+                        console.log(d);
+                        var present_route = toState.name;
+                        var arrayParams = present_route.split(".");
+                        $rootScope.role = d.result.role;
+                        if ($rootScope.role == 'super') {
+                            console.log(arrayParams[0]);
+                            if (arrayParams[0] == 'super') {
+                            } else {
+                                console.log(arrayParams[0]);
+                                $location.path("/login");
+                            }
+                        } else if ($rootScope.role == 'admin') {
+                            console.log(arrayParams[0]);
+                            if (arrayParams[0] == 'master') {
+                            } else {
+                                $location.path("/login");
+                            }
+                        }
+                    } else {
+                        //console.log(d);
+                        // var msg = $scope.error_code_msg[d.returnCode];
+                        // if(!msg){
+                        //     msg = "登录失败";
+                        // }
+                        // $scope.error_msg = msg;
+                        //$scope.changeErrorMsg(msg);
+                    }
+
+                }).error(function (d) {
+                    //$scope.changeErrorMsg("网络故障请稍后再试......");
+                    //$location.path("/login");
+                })
+            };
+            $rootScope.check_role();
         });
     /*********************************** 公用方法区 ***************************************/
 

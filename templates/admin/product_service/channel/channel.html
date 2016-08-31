@@ -1,0 +1,69 @@
+<!--<div style="position: absolute;overflow-x:hidden; margin-left: 250px;width: calc(100% - 250px); height: calc(100% - 50px);  background: #ffffff">-->
+<div class="content">
+    <div class="contentTitle">
+        <span>渠道统计</span>
+        <div class="fr" style="margin: 10px">
+        </div>
+    </div>
+    <div class="noPadding width100">
+        <div class="noPadding width30">
+            <input type="text" class="form-control" placeholder="搜索企业名称" ng-model="search_text">
+        </div>
+        <div class="width10">
+            <button class="btn btnBlue" ng-click="search()" type="button">搜索</button>
+        </div>
+        <button class="btn btnBlue fr" ui-sref="master.channel.create" style="margin-right: 100px">添加渠道人员</button>
+        <!--<button class="btn fr btnGrew" ng-click="refresh()" type="submit"><img class="btnGrewImg"> 刷新</button>-->
+
+    </div>
+    <ul class="list-group list_ul1">
+        <li class="list-group-item list_title1">
+            <span class="width25">用户名</span>
+            <span class="width15">注册电话</span>
+            <span class="width15">注册时间</span>
+            <span class="width15">渠道申请</span>
+        </li>
+        <li class="list-group-item list_user1" ng-repeat="resultObj in user_list">
+            <div class="width25">
+                <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}"
+                       ng-checked="isSelected(resultObj.id)"
+                       ng-click="updateSelection($event,resultObj.id)">
+                {{resultObj.name}}
+                <img ng-src="img/channel_best.png" class="channel_best">
+            </div>
+            <span class="width15">{{resultObj.mobile}}</span>
+            <div class="width15">
+                <p>{{resultObj.registerTime +'000' |date:'yyyy-MM-dd'}}</p>
+                <!--<p>{{resultObj.registerTime +'000' |date:'HH:mm'}}</p>-->
+            </div>
+            <span class="width15" style="text-align: center">{{resultObj.count}}</span>
+            <a class="width15" ng-click="showDetail(resultObj.id)" style="text-align: center">查看详情</a>
+        </li>
+        <li class="list-group-item list_common1" style="width: 100%;">
+            <button class="contentClass btn btnGrew" ng-click="cancel()">删除</button>
+            <span>共有{{page.totalCount}}位注册用户，每页显示{{page.pageSize}}条</span>
+            <ul class="pagination fr" style="margin: 0">
+                <li>
+                    <a aria-label="Previous" ng-click="changePage(1)">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                <li>
+                    <a aria-label="Previous" ng-click="changePage(page.upPage)">
+                        <span aria-hidden="true">&lsaquo;</span>
+                    </a>
+                </li>
+                <li><a>{{page.pageNo}}</a></li>
+                <li>
+                    <a aria-label="Next" ng-click="changePage(page.nextPage)">
+                        <span aria-hidden="true">&rsaquo;</span>
+                    </a>
+                </li>
+                <li>
+                    <a aria-label="Next" ng-click="changePage(page.totalPage)">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
