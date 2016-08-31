@@ -14,9 +14,11 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
             method: "GET",
             params: m_params
         }).success(function (d) {
+            console.log(d);
             if (d.returnCode == 0) {
-                $scope.page = d.result;
-                $scope.result_list = d.result.datas;
+                $scope.page = d.result.list;
+                $scope.result_list = d.result.list.datas;
+                $scope.count = d.result.count;
                 angular.forEach($scope.result_list, function (data) {
                     $scope.status = d.result.status;
                     if (data.status == 0) {
@@ -43,6 +45,10 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
         }).error(function (d) {
             $location.path("/error");
         })
+    };
+
+    $scope.updateApply = function (id) {
+        $location.path('/admin/my_project/detail/' + id);
     };
 
     $scope.nextStatus = function (id,status) {
@@ -108,7 +114,7 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
     };
 
     $scope.showDetail = function (id) {
-        $location.path('/master/my_project/detail/' + id);
+        $location.path('/admin/my_project/detail/' + id);
 
     };
 
@@ -138,7 +144,6 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
     };
 
     $scope.cancel = function (id) {
-        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId":$rootScope.login_user.userId,
             "token":$rootScope.login_user.token,
@@ -159,35 +164,54 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
         })
     };
 
-    $scope.giveUp = function (id) {
-        // var login_user = $rootScope.getObject("login_user");
+
+    $scope.giveUp = function () {
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
-            "id": id,
+            ids: $scope.ids
         };
-        $http({
+        console.log($scope.ids);
+        console.log("baiyang", m_params);
+        $.ajax({
+            type: 'POST',
             url: api_uri + "loanApplicationManage/giveUp",
-            method: "GET",
-            params: m_params
-        }).success(function (d) {
-            if (d.returnCode == 0) {
-                $scope.list($scope.pageNo1, 10);
-            }
-            else {
-            }
+            data: m_params,
+            traditional: true,
+            success: function (data, textStatus, jqXHR) {
+                // console.log(data);
+                if (data.returnCode == 0) {
+                    console.log(data);
+                    $scope.list($scope.pageNo1, 20);
+                }
+                else {
+                    console.log(data);
+                }
+            },
+            dataType: 'json',
+        });
 
-        }).error(function (d) {
-        })
     };
-
-    $scope.apply_help = function (id) {
-        $location.path('/master/my_project/apply_help/' + id);
-    };
-
-    $scope.apply_again = function (id, mobile) {
-        $location.path('/master/my_project/apply_again/' + id + '/' + mobile);
-    };
+    // $scope.giveUp = function () {
+    //     var m_params = {
+    //         "userId": $rootScope.login_user.userId,
+    //         "token": $rootScope.login_user.token,
+    //         "id": ids,
+    //     };
+    //     $http({
+    //         url: api_uri + "loanApplicationManage/giveUp",
+    //         method: "GET",
+    //         params: m_params
+    //     }).success(function (d) {
+    //         if (d.returnCode == 0) {
+    //             $scope.list($scope.pageNo1, 10);
+    //         }
+    //         else {
+    //         }
+    //
+    //     }).error(function (d) {
+    //     })
+    // };
 
     $scope.linkCompany = function(id ,remark) {
         // var login_user = $rootScope.getObject("login_user");
@@ -252,6 +276,7 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
             method: "GET",
             params: m_params
         }).success(function (d) {
+            console.log(d);
             $scope.isAllot = d.result.isAllot;
             $scope.registerLinkmanName = d.result.registerLinkmanName;
             $scope.registerLinkmanMobile = d.result.registerLinkmanMobile;
@@ -296,11 +321,41 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
     $scope.get();
 
     $scope.editApply = function (id) {
-        $location.path('/master/my_project/edit_apply/' + id);
+        $location.path('/admin/my_project/edit_apply/' + id);
+    };
+    $scope.apply = function (id) {
+        var m_params = {
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
+            "applyId": id,
+        };
+        $http({
+            url: api_uri + "applyDeal/apply",
+            method: "GET",
+            params: m_params
+        }).success(function (d) {
+            ////console.log(d);
+            if (d.returnCode == 0) {
+                $location.path('/admin/company_message');
+            }
+            else {
+                //console.log(d);
+            }
+
+        }).error(function (d) {
+        })
+    };
+
+    $scope.apply_help = function (id) {
+        $location.path('/admin/my_project/apply_help/' + id);
+    };
+
+    $scope.apply_again = function (id, mobile) {
+        $location.path('/admin/my_project/apply_again/' + id + '/' + mobile);
     };
 
     $scope.distribute = function (id) {
-        $location.path('/master/my_project/distribute/' + id);
+        $location.path('/admin/my_project/distribute/' + id);
     };
 
     $scope.addTips = function () {
@@ -338,7 +393,7 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
         var from_route = $rootScope.getSessionObject("from_route");
         var from_route2 = $rootScope.getSessionObject("from_route2");
         var from_params = $rootScope.getSessionObject("from_params");
-        if (from_route == "master.my_project") {
+        if (from_route == "admin.my_project" || from_route == "admin.company_message") {
             $state.go(from_route);
         } else if (from_route2 == null) {
             $state.go(from_route);
@@ -351,7 +406,7 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
 myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $location, $state, $timeout, $stateParams, $routeParams) {
     /*添加删除模板*/
     $scope.reBackDetail = function () {
-        $location.path("master/my_project/detail/"+$stateParams.id);
+        $location.path("admin/my_project/detail/" + $stateParams.id);
     };
     $scope.get = function() {
         var m_params = {
@@ -551,7 +606,7 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
             traditional: true,
             success: function (data, textStatus, jqXHR) {
                 if (data.returnCode == 0) {
-                    $location.path("master/my_project/detail/"+$stateParams.id);
+                    $location.path("admin/my_project/detail/" + $stateParams.id);
                     $scope.$apply();
                 }
                 else {
@@ -643,7 +698,7 @@ myProjectCtrl.controller('DistributeCtrl', function ($http, $scope, $rootScope, 
             if (d.returnCode == 0) {
                 alert("递交成功");
                 //$state.go("master.my_project");
-                $location.path('/master/my_project/detail/' + $scope.id);
+                $location.path('/admin/my_project/detail/' + $scope.id);
             }
             else {
                 alert("递交失败");
@@ -665,6 +720,11 @@ myProjectCtrl.controller('ApplyHelpCtrl', function ($http, $scope, $rootScope, $
     if ($stateParams.mobile) {
         $scope.applyMobile = $stateParams.mobile;
     }
+
+    $scope.backProjectDetail = function (id) {
+        console.log(id);
+        $location.path('/admin/my_project/detail/' + id);
+    };
 
     $scope.list = function (pageNo, pageSize) {
         var m_params = {
@@ -693,7 +753,7 @@ myProjectCtrl.controller('ApplyHelpCtrl', function ($http, $scope, $rootScope, $
     $scope.list(1, 100);
 
     $scope.editApply = function (id) {
-        $location.path('/master/my_project/edit_apply/' + id);
+        $location.path('/admin/my_project/edit_apply/' + id);
     };
 
     $scope.choiceProduct = function (id, name) {
@@ -737,17 +797,18 @@ myProjectCtrl.controller('ApplyHelpCtrl', function ($http, $scope, $rootScope, $
             "token": $rootScope.login_user.token,
             "applyId": $stateParams.id,
             "productId": $scope.productId,
-            "mobile": $scope.applyMobile,
+            // "mobile": $scope.applyMobile,
         };
         $.ajax({
             type: 'POST',
-            url: api_uri + "loanApplicationManage/helpApply",
+            url: api_uri + "loanApplicationManage/changeProduct",
             data: m_params,
             traditional: true,
             success: function (data, textStatus, jqXHR) {
+                console.log(data);
                 if (data.returnCode == 0) {
-                    $state.go("master.my_project");
-                    //$scope.$apply();
+                    $location.path('/admin/my_project/detail/' + $scope.id);
+                    $scope.$apply();
                 }
                 else {
                 }

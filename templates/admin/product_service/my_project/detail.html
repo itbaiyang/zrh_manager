@@ -1,18 +1,30 @@
 <div style="position: absolute;overflow-x:hidden; z-index: 100;width: 100%; height: 100%; padding: 0 15px; background: #ffffff">
     <div class="contentTitle">
         <span>企业信息</span>
-        <div class="fr" style="margin: 10px">
-            <button class="btn btnGrew fr" ng-click="editApply(id)">完善信息</button>
+        <div class="fr" ng-hide="showBtn == 1" style="margin: 10px">
+            <button class="btn btnGrew fr" ng-click="editApply(id)">修改信息</button>
             <button ng-show="isAllot" style="margin-left:15px" class="btn btnGrew fr">已经递交</button>
             <div ng-hide="isAllot" class="btn-group noPadding fr">
                 <button style="margin-left:15px" class="btn btnBlue" type="button" ng-click="distribute(id)">递交资料
                 </button>
             </div>
+
+            <button class="btnGrew" ng-hide="status != null"
+                    ng-click="apply_help(resultObj.id)">
+                帮助申请
+            </button>
+            <button class="btn btnGrew fr" ng-click="reBackDetails()">返回</button>
+            <button class="btnGrew" ng-show="status != null"
+                    ng-click="apply_again(id,registerLinkmanMobile)">更换银行
+            </button>
+        </div>
+        <div class="fr" ng-show="showBtn == 1" style="margin: 10px">
+            <button class="btnGrew" ng-click="apply(id)">我要处理</button>
             <button class="btn btnGrew fr" ng-click="reBackDetails()">返回</button>
         </div>
     </div>
     <div class="">
-        <div class="clear">
+        <div class="clear" ng-show="status !=null">
             <div class="fl" style="width: 30%">
                 <div class="detailStyle" ng-show="bankName">
                 <span class="detailStyleP1 noPadding">申请的产品：</span>

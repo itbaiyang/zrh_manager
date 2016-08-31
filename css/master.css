@@ -79,19 +79,19 @@
     background: #22282e;
     color: #ffffff;
     font-size: 12px;
-    padding-left: 50px;
+    padding-left: 30px;
 }
 
 .sideBarP2 {
     display: block;
     height: 40px;
     line-height: 40px;
-    text-align: center;
+    /*padding-left: 20px;*/
     font-size: 12px;
     cursor: pointer;
     color: #fff;
     overflow: hidden;
-    padding: 0 12px;
+    padding: 0 15px;
 }
 
 .sideBarP3 {
@@ -140,26 +140,25 @@
 
 .content1 {
     margin-left: 180px;
-    width: 100%;
+    width: calc(100% - 180px);
     height: 100%;
-    padding-left: 15px;
 }
 
 .contentTitle {
-     width: 100%;
      height: 63px;
      border-bottom: 1px solid #cccccc;
      margin-bottom: 20px;
      padding: 0;
  }
 .contentTags {
+    width: 100%;
     background: #ffffff;
     height: 30px;
     margin-bottom: 20px;
-    padding: 0 20px;
+    padding: 0 40px;
     line-height: 30px;
     font-size: 14px;
-    color: #F97383;
+    /*color: #F97383;*/
 }
 
 .contentTitle span {
@@ -523,9 +522,11 @@
 .list_title2 {
     height: 50px;
     padding: 15px 35px 15px 15px;
+    margin: 10px;
     background: #f5f6fa;
     width: 1520px;
-    /*padding-right: 20px;*/
+    box-shadow: 0 0 10px #c1c1c1;
+    /*border: 1px solid #cccccc;*/
 }
 .channel_best{
     display: inline-block;
@@ -613,13 +614,21 @@
     margin-top: 30px;
     height: calc(100% - 209px);
     width: 100%;
-    /*border: 1px solid red;*/
     overflow-x: scroll;
 }
 .line-roll{
     max-height: 429px;
     width: 1520px;
-    /*border: 1px solid red;*/
-    /*overflow-x: hidden;*/
     overflow-y: scroll;
+    margin: 0 10px;
+}
+
+@media (min-width: 768px) {
+    .container {
+        width: 970px;
+    }
+}
+
+.padding-select {
+    padding: 3px 0;
 }

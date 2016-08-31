@@ -1,7 +1,7 @@
 <div class="content">
-    <div class="contentTitle"><span>我的项目</span></div>
-    <div class="noPadding width100">
-        <div class="noPadding width30">
+    <div class="contentTitle width100"><span>我的项目</span></div>
+    <div class="width100">
+        <div class="width30">
             <input type="text" class="form-control" placeholder="搜索企业名称" ng-model="search_text">
         </div>
         <div class="width10">
@@ -9,68 +9,85 @@
         </div>
         <button class="btn btnGrew fr" ng-click="refresh()" type="submit"><img class="btnGrewImg"> 刷新</button>
     </div>
+
     <ul class="list-group list_ul">
-        <li class="list-group-item list_title">
-            <span class="width25">企业名称</span>
-            <span class="width10">申请产品</span>
-            <span class="width10">申请时间</span>
-            <div class="btn-group noPadding width10">
-                <div style="cursor: pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    状态({{status_text}}) <span class="caret"></span>
-                </div>
-                <ul class="dropdown-menu" style="width: 100px">
-                    <li ng-click="choice(0)" class="list_select">未申请</li>
-                    <li ng-click="choice(1)" class="list_select">审核中</li>
-                    <li ng-click="choice(2)" class="list_select">约见中</li>
-                    <li ng-click="choice(3)" class="list_select">跟进中</li>
-                    <li ng-click="choice(4)" class="list_select">成功融资</li>
-                    <li ng-click="choice()" class="list_select">全部</li>
-                </ul>
-            </div>
-            <span class="width10">申请人</span>
-            <span class="width10">操作</span>
-        </li>
-        <li class="list-group-item list_common" ng-repeat="resultObj in result_list">
-            <span class="width25">
-                <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}"
-                       ng-checked="isSelected(resultObj.id)"
-                       ng-click="updateSelection($event,resultObj.id)">
-                {{resultObj.companyName}}</span>
-            <span class="width10">{{resultObj.productName}}</span>
-            <span class="width10">{{resultObj.applyTime | date:'yyyy-MM-dd'}}</span>
-            <span class="width10">{{resultObj.progressText}}</span>
-            <span class="width10">{{resultObj.linkman}}</span>
-            <div ng-if="resultObj.status == 0" class="width35">
-                <button class="btnGrew" ng-click="showDetail(resultObj.id)">补充资料</button>
-                <button class="btnGrew" ng-show="resultObj.firstApply == false"
-                        ng-click="apply_again(resultObj.id,resultObj.applyMobile)">重新申请
-                </button>
-                <button class="btnGrew" ng-hide="resultObj.firstApply ==false" ng-click="apply_help(resultObj.id)">
-                    帮助申请
-                </button>
-                <div class="btn-group">
-                    <button type="button" class="btnGrew" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">
-                        联系企业
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li>{{resultObj.mobile}}</li>
-                        <textarea placeholder="备注" ng-model="resultObj.remark"></textarea>
-                        <button ng-click="linkCompany(resultObj.id ,resultObj.remark)">确定</button>
+        <div class="row-roll">
+            <li class="list_title2">
+                <span class="width15">企业名称或个人</span>
+                <span class="width15">申请产品</span>
+                <div class="btn-group noPadding width8">
+                    <div style="cursor: pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        状态({{status_text}}) <span class="caret"></span>
+                    </div>
+                    <ul class="dropdown-menu" style="width: 100px">
+                        <li ng-click="choice(1)" class="list_select">审核中</li>
+                        <li ng-click="choice(2)" class="list_select">约见中</li>
+                        <li ng-click="choice(3)" class="list_select">跟进中</li>
+                        <li ng-click="choice(4)" class="list_select">成功融资</li>
+                        <li ng-click="choice()" class="list_select">全部</li>
                     </ul>
                 </div>
+                <span class="width8">报卷人</span>
+                <span class="width8">预计完成时间</span>
+                <span class="width8">服务费（%）</span>
+                <span class="width8">融资额（万）</span>
+                <span class="width8">年销售额（万）</span>
+                <span class="width8">项目来源</span>
+                <span class="width8">备注</span>
+            </li>
+            <li class="list_title2">
+                <span class="width15">{{count.total}}/{{count.isOp}}/{{count.noOp}}</span>
+                <span class="width15"></span>
+                <span class="width8"></span>
+                <span class="width8">报卷人</span>
+                <span class="width8">预计完成时间</span>
+                <span class="width8">{{count.fee}}</span>
+                <span class="width8">{{count.loanValue}}</span>
+                <span class="width8">{{count.continual}}</span>
+                <span class="width8">项目来源</span>
+                <span class="width8">备注</span>
+            </li>
+            <div class="line-roll">
+                <li class="list-group-item list_common2" ng-repeat="resultObj in result_list">
+                 <span class="width15">
+            <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}"
+                   ng-checked="isSelected(resultObj.id)"
+                   ng-click="updateSelection($event,resultObj.id)">
+                    <a ng-click="updateApply(resultObj.id)"
+                       style="width: 140px;cursor: pointer;white-space:nowrap;display: inline-block;overflow: inherit">
+                        {{resultObj.companyName}}
+                    </a>
+                </span>
+                    <span class="width15">{{resultObj.bankName}}-{{resultObj.productName}}</span>
+                    <span class="width8">{{resultObj.progressText}}</span>
+                    <span class="width8">{{resultObj.opUser}}</span>
+                    <span class="width8">{{resultObj.days}}</span>
+                    <span class="width8">{{resultObj.fee}}</span>
+                    <span class="width8">{{resultObj.loanValue}}</span>
+                    <span class="width8">{{resultObj.continual}}</span>
+                    <span class="width8">{{resultObj.continual}}</span>
+                    <span class="width8">{{resultObj.dealRemark}}</span>
+                    <div ng-if="resultObj.status == 0" class="width35">
+                        <div class="btn-group">
+                            <button type="button" class="btnGrew" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                联系企业
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>{{resultObj.mobile}}</li>
+                                <textarea placeholder="备注" ng-model="resultObj.remark"></textarea>
+                                <button ng-click="linkCompany(resultObj.id ,resultObj.remark)">确定</button>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
             </div>
-            <div ng-if="resultObj.status != 0" class="width35">
-                <button class="btnGrew" ng-click="showDetail(resultObj.id)">企业信息</button>
-                <!--<button class="btnGrew" ng-click="nextStatus(resultObj.id,resultObj.status)">{{resultObj.progressBtn-->
-                <!--||'下一步'}}-->
-                <!--</button>-->
-                <button class="btnGrew" ng-click="cancel(resultObj.id)">取消申请</button>
-                <button class="btnGrew" ng-click="giveUp(resultObj.id)">放弃任务</button>
-            </div>
-
-        </li>
-        <li class="list-group-item list_common">
+        </div>
+        <li class="list-group-item list_common1">
+            <button class="btnGrew" ng-hide="status != null"
+                    ng-click="giveUp()">
+                放弃任务
+            </button>
             <span>共有{{page.totalCount}}家企业申请，每页显示{{page.pageSize}}条</span>
             <ul class="pagination fr" style="margin: 0">
                 <li>
@@ -96,5 +113,6 @@
                 </li>
             </ul>
         </li>
+
     </ul>
 </div>

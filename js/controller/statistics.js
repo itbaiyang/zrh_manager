@@ -120,7 +120,7 @@ statisticsCtrl.controller('PersonCtrl', function ($http, $scope,$state, $rootSco
     };
 
     $scope.updateApply = function (id) {
-        $location.path('/master/my_project/detail/'+id);
+        $location.path('/admin/my_project/detail/' + id);
     };
 });
 
@@ -225,7 +225,7 @@ statisticsCtrl.controller('ChannelCtrl', function ($http, $scope,$state, $rootSc
     };
 
     $scope.showDetail = function (id) {
-        $location.path('/master/statistics/channel/detail/' + id);
+        $location.path('/admin/statistics/channel/detail/' + id);
         console.log(id);
     };
 });
@@ -249,7 +249,7 @@ statisticsCtrl.controller('CreateCtrl', function ($http, $scope,$state, $rootSco
                 console.log(data);
                 if (data.returnCode == 0) {
                     console.log("创建成功了");
-                    $state.go("master.statistics.channel");
+                    $state.go("admin.statistics.channel");
                     $scope.$apply();
 
                 }else if (data.returnCode == 1003) {
@@ -388,12 +388,12 @@ statisticsCtrl.controller('ChannelDetailCtrl', function ($http, $scope,$state, $
     };
 
     $scope.addApply = function () {
-        $location.path('/master/statistics/channel/add_apply/' + $stateParams.id);
+        $location.path('/admin/statistics/channel/add_apply/' + $stateParams.id);
         console.log($stateParams.id);
     };
 
     $scope.updateApply = function (id) {
-        $location.path('/master/my_project/detail/'+id);
+        $location.path('/admin/my_project/detail/' + id);
     };
 });
 
@@ -443,7 +443,7 @@ statisticsCtrl.controller('AddApplyCtrl', function ($http, $scope,$state, $rootS
             success: function (data, textStatus, jqXHR) {
                 console.log(data);
                 if (data.returnCode == 0) {
-                    $location.path('/master/statistics/channel/detail/' + $stateParams.id);
+                    $location.path('/admin/statistics/channel/detail/' + $stateParams.id);
                     $scope.$apply();
 
                 }
@@ -457,7 +457,7 @@ statisticsCtrl.controller('AddApplyCtrl', function ($http, $scope,$state, $rootS
     };
 
     $scope.back = function () {
-        $location.path('/master/statistics/channel/detail/' + $stateParams.id);
+        $location.path('/admin/statistics/channel/detail/' + $stateParams.id);
         console.log($stateParams.id);
     };
 });
@@ -560,7 +560,7 @@ statisticsCtrl.controller('ShareCtrl', function ($http, $scope,$state, $rootScop
 
     };
     $scope.showDetail = function (id) {
-        $location.path('/master/statistics/share/share_detail/' + id);
+        $location.path('/admin/statistics/share/share_detail/' + id);
         console.log(id);
     };
 });
@@ -686,6 +686,6 @@ statisticsCtrl.controller('ShareDetailCtrl', function ($http, $scope,$state, $ro
     };
 
     $scope.updateApply = function (id) {
-        $location.path('/master/my_project/detail/'+id);
+        $location.path('/admin/my_project/detail/' + id);
     };
 });

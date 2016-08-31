@@ -1,36 +1,36 @@
-<div class="content row">
-    <div class="contentTitle col-sm-10 col-lg-10"><span>职员列表</span></div>
-    <div class="noPadding col-sm-10 col-lg-10">
-        <div class="noPadding col-sm-4 col-lg-4">
+<div class="content">
+    <div class="contentTitle width100"><span>职员列表</span></div>
+    <div class="width100">
+        <div class="width30">
             <input type="text" class="form-control" placeholder="搜索职员" ng-model="search_text">
         </div>
-        <div class="col-sm-1 col-lg-1">
+        <div class="width10">
             <button class="btn btnBlue" ng-click="search()" type="button">搜索</button>
         </div>
         <button class="btn btnBlue fr" ui-sref="super.manage.addUser">添加新职员</button>
         <button class="btn fr btnGrew" ng-click="refresh()" type="submit"><img class="btnGrewImg"> 刷新</button>
-    </div>
-    <ul class="list-group list_ul col-sm-10 col-lg-10">
+        </div>
+    <ul class="list-group list_ul">
         <li class="list-group-item list_title">
-            <span class="col-sm-2 col-lg-2">用户名</span>
-            <span class="col-sm-2 col-lg-2">工号</span>
-            <span class="col-sm-2 col-lg-2">登录邮箱</span>
-            <span class="col-sm-2 col-lg-2">联系电话</span>
-            <span class="col-sm-2 col-lg-2">注册时间</span>
-            <span class="col-sm-2 col-lg-2">操作</span>
+            <span class="width15">用户名</span>
+            <span class="width15">工号</span>
+            <span class="width15">登录邮箱</span>
+            <span class="width15">联系电话</span>
+            <span class="width15">注册时间</span>
+            <span class="width15">操作</span>
         </li>
         <li class="list-group-item list_user" ng-repeat="resultObj in result_list">
 
             <!--<span class="col-sm-2">{{resultObj.companyName}}</span>-->
-                <span class="col-sm-2 col-lg-2">
+                <span class="width15">
                     <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}"
                            ng-checked="isSelected(resultObj.id)"
                            ng-click="updateSelection($event,resultObj.id)">{{resultObj.name}}</span>
-            <span class="col-sm-2 col-lg-2">{{resultObj.empNo}}</span>
-            <span class="col-sm-2 col-lg-2">{{resultObj.email}}</span>
-            <span class="col-sm-2 col-lg-2">{{resultObj.mobile}}</span>
-            <span class="col-sm-2 col-lg-2">{{resultObj.createTime}}</span>
-            <button class="btn btnGrew" ng-click="update(resultObj.id)">修改账号</button>
+            <span class="width15">{{resultObj.empNo}}</span>
+            <span class="width15">{{resultObj.email}}</span>
+            <span class="width15">{{resultObj.mobile}}</span>
+            <span class="width15">{{resultObj.createTime}}</span>
+            <button class="btnGrew" ng-click="update(resultObj.id)">修改账号</button>
         </li>
         <li class="list-group-item list_common">
             <!--<button class="btnGrew" ng-click="submit()">发布产品</button>-->
@@ -62,5 +62,6 @@
             </ul>
         </li>
     </ul>
+</div>
 </div>
 </div>

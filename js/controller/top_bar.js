@@ -2,7 +2,11 @@
  * Created by baiyang on 2016/7/7.
  */
 var topBarCtrl = angular.module('topBarCtrl', []);
-topBarCtrl.controller('TopBarCtrl', function ($http, $scope, $rootScope, $location, $timeout, $routeParams) {
+topBarCtrl.controller('TopBarCtrl', function ($http, $scope, $rootScope, $location) {
+
+    $scope.go_home = function () {
+        $location.path($rootScope.role);
+    }
     $scope.exit = function () {
         $rootScope.removeObject("login_user");
         $location.path('/login');

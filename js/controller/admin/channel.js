@@ -101,7 +101,7 @@ channelCtrl.controller('ChannelCtrl', function ($http, $scope, $state, $rootScop
     };
 
     $scope.showDetail = function (id) {
-        $location.path('/master/channel/detail/' + id);
+        $location.path('/admin/channel/detail/' + id);
         console.log(id);
     };
 });
@@ -125,7 +125,7 @@ channelCtrl.controller('CreateCtrl', function ($http, $scope, $state, $rootScope
                 console.log(data);
                 if (data.returnCode == 0) {
                     console.log("创建成功了");
-                    $state.go("master.channel");
+                    $state.go("admin.channel");
                     $scope.$apply();
 
                 } else if (data.returnCode == 1003) {
@@ -264,12 +264,12 @@ channelCtrl.controller('ChannelDetailCtrl', function ($http, $scope, $state, $ro
     };
 
     $scope.addApply = function () {
-        $location.path('/master/channel/add_apply/' + $stateParams.id);
+        $location.path('/admin/channel/add_apply/' + $stateParams.id);
         console.log($stateParams.id);
     };
 
     $scope.updateApply = function (id) {
-        $location.path('/master/my_project/detail/' + id);
+        $location.path('/admin/my_project/detail/' + id);
     };
 });
 
@@ -319,7 +319,7 @@ channelCtrl.controller('AddApplyCtrl', function ($http, $scope, $state, $rootSco
             success: function (data, textStatus, jqXHR) {
                 console.log(data);
                 if (data.returnCode == 0) {
-                    $location.path('/master/channel/detail/' + $stateParams.id);
+                    $location.path('/admin/channel/detail/' + $stateParams.id);
                     $scope.$apply();
 
                 }
@@ -333,7 +333,7 @@ channelCtrl.controller('AddApplyCtrl', function ($http, $scope, $state, $rootSco
     };
 
     $scope.back = function () {
-        $location.path('/master/channel/detail/' + $stateParams.id);
+        $location.path('/admin/channel/detail/' + $stateParams.id);
         console.log($stateParams.id);
     };
 });

@@ -1,7 +1,7 @@
 api_uri = "http://test.zhironghao.com/api/";
 // api_uri = "http://api.supeiyunjing.com/";
 //api_uri = "http://172.17.2.13:8080/api/";
-//api_uri = "http://172.16.97.95:8080/api/";
+// api_uri = "http://172.16.97.95:8080/api/";
 var templates_root = 'templates/';
 deskey = "abc123.*abc123.*abc123.*abc123.*";
 var app = angular.module('app', [
@@ -15,7 +15,8 @@ var app = angular.module('app', [
     'loanApplicationCtrl',
     'productCtrl',
     'myProjectCtrl',
-    'superCtrl',
+    // 'superCtrl',
+    'manageCtrl',
     'signUpCtrl',
     'bankCtrl',
     // 'statisticsCtrl',
@@ -74,12 +75,19 @@ app.run(function ($location, $rootScope, $http) {
     $rootScope.$on('$stateChangeSuccess',
         function (event, toState, toParams, fromState, fromParams) {
             var present_route = toState.name; //获取当前路由
-            if(present_route.indexOf('master.my_project.detail')>-1){
+            if (present_route.indexOf('admin.my_project.detail') > -1) {
                 var from_route = fromState.name;
                 console.log(fromState.name);
                 console.log(fromState);
-                if(from_route!=""&&from_route.indexOf('master.my_project.edit_apply')<=-1){
+                if (from_route != "" && from_route.indexOf('admin.my_project.edit_apply') <= -1 && from_route.indexOf('admin.my_project.apply_again') <= -1) {
                     $rootScope.putSessionObject('from_route',from_route);
+                    var get_route = $rootScope.getSessionObject('from_route');
+                    console.log(get_route);
+                    if (get_route == "admin.company_message") {
+                        $rootScope.showBtn = 1;
+                    } else {
+                        $rootScope.showBtn = 2;
+                    }
                     if(fromParams.id){
                         var arrayParams = from_route.split(".");
                         var from_route2 = "/" + arrayParams[0] + "/" + arrayParams[1] + "/" + arrayParams[2] + "/";
@@ -96,19 +104,21 @@ app.run(function ($location, $rootScope, $http) {
             var array = present_route.split(".");
             $rootScope.choiceColor = array[1];
             if (array[1] == "message") {
-                $(".sideBarP2").css("text-align", "left");
                 console.log(array[1], 'baiyang');
                 $rootScope.sideTwo = true;
                 $rootScope.choiceColorTwo = array[2];
             } else {
                 $rootScope.sideTwo = false;
-                $(".sideBarP2").css("text-align", "center");
             }
         });
     // 页面跳转前
     $rootScope.$on('$stateChangeStart',
         function (event, toState, toParams, fromState, fromParams) {
-            $rootScope.check_user();
+            if ($location.$$path != '/login') {
+                $rootScope.check_user();
+            } else {
+                // console.log($location.$$path);
+            }
             if (!$rootScope.login_user) {
                 $location.path("/login");
             } else {
@@ -137,27 +147,22 @@ app.run(function ($location, $rootScope, $http) {
                             }
                         } else if ($rootScope.role == 'admin') {
                             console.log(arrayParams[0]);
-                            if (arrayParams[0] == 'master') {
+                            if (arrayParams[0] == 'admin') {
                             } else {
                                 $location.path("/login");
                             }
                         }
                     } else {
-                        //console.log(d);
-                        // var msg = $scope.error_code_msg[d.returnCode];
-                        // if(!msg){
-                        //     msg = "登录失败";
-                        // }
-                        // $scope.error_msg = msg;
-                        //$scope.changeErrorMsg(msg);
                     }
 
                 }).error(function (d) {
-                    //$scope.changeErrorMsg("网络故障请稍后再试......");
-                    //$location.path("/login");
                 })
             };
-            $rootScope.check_role();
+            if ($location.$$path != '/login') {
+                $rootScope.check_role();
+            } else {
+                // console.log($location.$$path);
+            }
         });
     /*********************************** 公用方法区 ***************************************/
 
@@ -253,10 +258,6 @@ app.run(function ($location, $rootScope, $http) {
             return null;
         }
     };
-    //$rootScope.messageSide = false;
-    //$rootScope.changeMessageColor = function(){
-    //    $rootScope.messageSide = true;
-    //};
 
     $rootScope.check_user = function () {
         $rootScope.login_user = $rootScope.getObject("login_user");
@@ -273,10 +274,10 @@ app.run(function ($location, $rootScope, $http) {
                     $rootScope.removeObject("login_user");
                     return false;
                 }
-
             }).error(function (d) {
                 return false;
             });
+        } else {
         }
 
     };

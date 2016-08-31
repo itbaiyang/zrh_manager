@@ -135,7 +135,7 @@
     background: #ffffff;
     padding: 0;
     cursor: pointer;
-    /*border: 1px solid red;*/
+    padding-top: 20px;
 }
 
 .coverGrew {
@@ -153,11 +153,12 @@
 .width100{
     width:100%;
     /*width: calc(100% - 15px);*/
-    min-width: 1000px;
+    min-width: 1065px;
     display: inline-block;
 }
 .width10{
     width:10%;
+    min-width: 70px;
     display: inline-block;
 }
 .width8{
@@ -178,6 +179,7 @@
 }
 .width30{
      width:30%;
+    min-width: 200px;
      display: inline-block;;
  }
 .width35{

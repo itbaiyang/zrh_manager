@@ -6,7 +6,7 @@
            ui-sref="super.manage">
             <img class="btnBlueImg1">职员管理</a>
         <a class="sideBarP2" ng-class="{sideBarP2C:choiceColor =='company_message'}" ng-show="role == 'admin'"
-           ui-sref="master.company_message">
+           ui-sref="admin.company_message">
             <img class="btnBlueImg1">企业信息中心</a>
         <a class="sideBarP2" ng-class="{sideBarP2C:choiceColor =='product'}" ng-show="role == 'super'"
            ui-sref="super.product">
@@ -15,30 +15,24 @@
            ui-sref="super.signUp">
             <img class="btnBlueImg1">注册用户</a>
         <a class="sideBarP2" ng-class="{sideBarP2C:choiceColor =='my_project'}" ng-show="role == 'admin'"
-           ui-sref="master.my_project">
+           ui-sref="admin.my_project">
             <img class="btnBlueImg1">我的项目</a>
         <a class="sideBarP2" ng-class="{sideBarP2C:choiceColor =='bank'}" ng-show="role == 'super'"
            ui-sref="super.bank">
             <img class="btnBlueImg1">合作银行</a>
         <a class="sideBarP2" ng-class="{sideBarP2C:choiceColor =='channel'}" ng-show="role == 'admin'"
-           ui-sref="master.channel">
-            <img class="btnBlueImg1">渠道统计</a>
+           ui-sref="admin.channel">
+            <img class="btnBlueImg1">渠道信息</a>
         <a class="sideBarP2" ng-class="{sideBarP2C:choiceColor =='share'}" ng-show="role == 'admin'"
-           ui-sref="master.share">
+           ui-sref="admin.share">
             <img class="btnBlueImg1">分享统计</a>
     </ul>
-    <!--<p class="sideBarP1" ng-show="role == 'admin'">统计</p>-->
-    <!--<ul>-->
-    <!--<a class="sideBarP2" ng-class="{sideBarP2C:choiceColor =='account'}" ng-show="role == 'admin'"-->
-    <!--ui-sref="master.statistics.person">-->
-    <!--<img class="btnBlueImg1">分享统计</a>-->
-    <!--</ul>-->
     <p class="sideBarP1" ng-show="role == 'admin'">个人中心</p>
     <ul>
         <!--<a class="sideBarP2" ng-class="{sideBarP2C:choiceColor =='statistics'}" ng-click="changeColor(5,1)" ui-sref="master.statistics">-->
         <!--<img class="btnBlueImg1">账号管理</a>-->
         <a class="sideBarP2" ng-class="{sideBarP2C:choiceColor =='message'}" ng-show="role == 'admin'"
-           ui-sref="master.message.bank">
+           ui-sref="admin.message.bank">
             <div style="display: inline-block;width: 30px;height: 40px;position: relative">
                 <img class="btnBlueImg1">
                 <span class="navList2" ng-show="count">{{count}}</span>
@@ -52,7 +46,7 @@
         <!--<li><a ui-sref="master.message.company">企业消息</a></li>-->
         <li style="text-align: center;">
             <a class="sideBarP3" ng-class="{sideBarP3C:choiceColorTwo =='bank'}"
-               ui-sref="master.message.bank">
+               ui-sref="admin.message.bank">
             <div style="display: inline-block;width: 30px;height: 40px;position: relative">
                 <img class="btnBlueImg1">
                 <span class="navList2" ng-show="bank_message">{{bank_message}}</span>
@@ -61,25 +55,11 @@
         </li>
         <!--<li><a ui-sref="master.message.apply">转交申请通知</a></li>-->
         <li style="text-align: center"><a class="sideBarP3" ng-class="{sideBarP3C:choiceColorTwo =='system'}"
-                                          ui-sref="master.message.system">
+                                          ui-sref="admin.message.system">
             <div style="display: inline-block;width: 30px;height: 40px;position: relative">
                 <img class="btnBlueImg1">
                 <span class="navList2" ng-show="system_message">{{system_message}}</span>
             </div>系统消息</a>
         </li>
     </ul>
-    <!--<ul style="text-align: center" ng-show="choiceColor =='statistics'">-->
-    <!--<li style="text-align: center"><a class="sideBarP3 " ng-class="{sideBarP3C:choiceColorTwo =='person'}"-->
-    <!--ui-sref="master.statistics.person">-->
-    <!--<img class="btnBlueImg1">个人统计</a>-->
-    <!--</li>-->
-    <!--<li style="text-align: center"><a class="sideBarP3" ng-class="{sideBarP3C:choiceColorTwo =='channel'}"-->
-    <!--ui-sref="master.statistics.channel">-->
-    <!--<img class="btnBlueImg1">渠道统计</a>-->
-    <!--</li>-->
-    <!--<li style="text-align: center"><a class="sideBarP3" ng-class="{sideBarP3C:choiceColorTwo =='share'}"-->
-    <!--ui-sref="master.statistics.share">-->
-    <!--<img class="btnBlueImg1">分享统计</a>-->
-    <!--</li>-->
-    <!--</ul>-->
 </div>

@@ -1,9 +1,9 @@
 <div style="position: absolute;overflow-x:hidden; z-index: 100;width: 100%; height: calc(100% - 50px); min-width: 1150px; background: #ffffff">
     <div class="contentTitle">
-        <span>重新申请</span>
-        <div class="fr" style="margin: 10px">
-            <button style="margin:0 10px" class="btn btnBlue fr" ng-click="submit_help()">确定</button>
-            <button class="btn btnGrew fr" ui-sref="master.my_project">返回</button>
+        <span class="fl">更换银行</span>
+        <div class="fl" style="margin: 10px">
+            <button class="btn btnGrew" ng-click="backProjectDetail(id)">返回</button>
+            <button style="margin:0 10px" class="btn btnBlue" ng-click="submit_help()">确定</button>
         </div>
     </div>
     <form class="form-horizontal">
@@ -39,7 +39,6 @@
                 </ul>
             </div>
         </div>
-
         <div class="form-group">
             <label for="phone" class="width20 textEnd">企业账号</label>
             <div class="width35">

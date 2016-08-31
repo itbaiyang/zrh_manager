@@ -1,39 +1,49 @@
-<div class="content1 row" style="background: #eaedf1">
-    <div class="contentTags col-sm-10 col-lg-10">
-        系统通知功能未开通
-    </div>
-    <div class="account col-sm-10 col-lg-10">
-        <div class="accountDetail col-sm-2 col-lg-2">
-            <img ng-src="img/upload.png">
-            <p>hi, <span style="color: #009dd0;">孟帅</span></p>
-            <button class="btn btnGrew disabled" disabled>账户管理</button>
-        </div>
-        <div class="col-sm-10 col-lg-10" style="background: #ffffff;height: 160px">
-            <div class="dateCount col-sm-4">
-                <p>企业数据</p>
-                <p>{{count.c1}}家</p>
-                <p>申请融资{{count.c2}}|完成融资{{count.c3}}</p>
+<div class="content1" style="background: #eaedf1">
+    <div class="contentTags">系统通知：<span style="color: #F97383">功能未开通</span></div>
+    <div style="padding: 0 15px">
+        <div class="account">
+            <div class="accountDetail fl" style="border-right: 2px solid #e6e7e8">
+                <img ng-src="img/upload.png">
+                <p>hi, <span style="color: #009dd0;">孟帅</span></p>
+                <div class="padding-select">
+                    <img class="btnBlueImg1"><span>账户管理</span>
+                </div>
+
             </div>
-            <div class="dateCount col-sm-4">
-                <p>金融产品</p>
-                <p>{{count.p1}}款</p>
-                <p>已发布{{count.p2}}|未发布{{count.p3}}</p>
+            <div class="accountDetail fl">
+                <p style="margin-top: 20px">本月已完成 <span>100</span> <span>3000万</span></p>
+                <p>本月已完成 <span>100</span> <span>3000万</span></p>
+                <p>本月已完成 <span>100</span> <span>3000万</span></p>
             </div>
-            <div class="dateCount col-sm-4">
-                <p>注册用户</p>
-                <p>{{count.u1}}人</p>
-                <p>企业人员{{count.u2}}|银行人员{{count.u3}}</p>
+            <div class="account-num fl">
+                <div class="dateCount col-sm-4">
+                    <p>总成交额：</p>
+                    <p><span style="font-size: 22px;padding-right: 4px">{{count.c1}}</span>万</p>
+                    <p><span style="color: #8d98d7;padding-right: 4px">完成融资</span>{{count.c3}}万</p>
+                </div>
+                <div class="dateCount col-sm-4">
+                    <p>企业数据：</p>
+                    <p><span style="font-size: 22px;padding-right: 4px">{{count.p1}}</span>万</p>
+                    <p><span style="color: #8d98d7;padding-right: 4px">完成申请</span>{{count.p3}}个</p>
+                </div>
+                <div class="dateCount col-sm-4">
+                    <p>注册用户</p>
+                    <p><span style="font-size: 22px;padding-right: 4px">{{count.u1}}</span>人</p>
+                    <p><span style="color: #8d98d7;padding-right: 4px">企业</span>
+                        {{count.u2}}万人|<span style="color: #8d98d7;padding-right: 4px">银行</span>{{count.u3}}万人</p>
+                </div>
+            </div>
+        </div>
+        <div style="padding: 0">
+            <div class="addBtn fl" ui-sref="admin.company_message.add_company" style="margin-right: 4%;">
+                <div style="font-size: 40px;text-align: center">+</div>
+                <p style="font-size: 16px;text-align: center">添加企业信息</p>
+            </div>
+            <div class="addBtn fl" ui-sref="admin.product.create">
+                <div style="font-size: 40px;text-align: center">+</div>
+                <p style="font-size: 16px;text-align: center">添加金融产品</p>
             </div>
         </div>
     </div>
-    <div class="col-sm-10 col-lg-10" style="padding: 0">
-        <div class="addBtn fl" ui-sref="master.company_message.add_company" style=" margin-right: 4%;">
-            <div style="font-size: 40px;text-align: center">+</div>
-            <p style="font-size: 16px;text-align: center">添加企业信息</p>
-        </div>
-        <div class="addBtn fl" ui-sref="master.product.create">
-            <div style="font-size: 40px;text-align: center">+</div>
-            <p style="font-size: 16px;text-align: center">添加金融产品</p>
-        </div>
-    </div>
+
 </div>

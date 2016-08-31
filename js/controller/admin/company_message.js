@@ -4,9 +4,6 @@
 var loanApplicationCtrl = angular.module('loanApplicationCtrl', []);
 loanApplicationCtrl.controller('LoanApplicationCtrl', function ($http, $scope, $rootScope, $location, $timeout, $routeParams) {
 
-    var result_list = [];
-
-    // var login_user = $rootScope.getObject("login_user");
     $scope.list = function (pageNo, pageSize) {
         var m_params = {
             "userId":$rootScope.login_user.userId,
@@ -14,14 +11,15 @@ loanApplicationCtrl.controller('LoanApplicationCtrl', function ($http, $scope, $
             "pageNo": pageNo,
             "pageSize": pageSize,
             "wd": $scope.wd,
-            "status": $scope.status
+            // "status": $scope.status
         };
+        console.log(m_params);
         $http({
-            url: api_uri + "loanApplicationManage/list",
+            url: api_uri + "loanApplicationManage/pool",
             method: "GET",
             params: m_params
         }).success(function (d) {
-            //console.log(d);
+            console.log(d);
             if (d.returnCode == 0) {
                 $scope.page = d.result;
                 $scope.result_list = d.result.datas;
@@ -29,17 +27,8 @@ loanApplicationCtrl.controller('LoanApplicationCtrl', function ($http, $scope, $
                     $scope.status = d.result.status;
                     if (data.status == 0) {
                         data.progressText = "未申请";
-                    } else if (data.status == 1) {
-                        data.progressText = "审核中";
-                    } else if (data.status == 2) {
-                        data.progressText = "约见中";
-                    } else if (data.status == 3) {
-                        data.progressText = "跟进中";
-                    } else if (data.status == 4) {
-                        data.progressText = "成功融资";
-                        data.progressBtn = "已结束";
-                    } else if (data.status == -1) {
-                        data.progressText = "申请取消";
+                    } else {
+                        data.progressText = "申请中";
                     }
                 });
             }
@@ -51,33 +40,6 @@ loanApplicationCtrl.controller('LoanApplicationCtrl', function ($http, $scope, $
             //console.log("login error");
             $location.path("/error");
         })
-    };
-    $scope.apply = function (id) {
-        // var login_user = $rootScope.getObject("login_user");
-        var m_params = {
-            "userId":$rootScope.login_user.userId,
-            "token":$rootScope.login_user.token,
-            "applyId":id,
-        };
-        //console.log(m_params);
-            $http({
-                url: api_uri + "applyDeal/apply",
-                method: "GET",
-                params: m_params
-            }).success(function (d) {
-                ////console.log(d);
-                if (d.returnCode == 0) {
-                    //console.log(d);
-                    $scope.list($scope.pageNo1, 20);
-                }
-                else {
-                    //console.log(d);
-                }
-
-            }).error(function (d) {
-                ////console.log("login error");
-                //$location.path("/error");
-            })
     };
     $scope.list(1, 20);
     $scope.changePage = function(page){
@@ -156,17 +118,15 @@ loanApplicationCtrl.controller('LoanApplicationCtrl', function ($http, $scope, $
         if ($scope.status == 0) {
             $scope.status_text = "未申请";
         } else if ($scope.status == 1) {
-            $scope.status_text = "审核中";
-        } else if ($scope.status == 2) {
-            $scope.status_text = "约见中";
-        } else if ($scope.status == 3) {
-            $scope.status_text = "跟进中";
-        } else if ($scope.status == 4) {
-            $scope.status_text = "成功融资";
+            $scope.status_text = "申请中";
         } else if ($scope.status == null) {
             $scope.status_text = "全部";
         }
         $scope.list(1, 20);
+    };
+
+    $scope.updateApply = function (id) {
+        $location.path('/admin/my_project/detail/' + id);
     };
 });
 
@@ -202,7 +162,7 @@ loanApplicationCtrl.controller('AddCompanyCtrl', function ($http, $scope, $rootS
                 //console.log(data);
                 if (data.returnCode == 0) {
                     //console.log("basic success");
-                    $state.go("master.company_message");
+                    $state.go("admin.company_message");
                     $scope.$apply();
                 }
                 else {

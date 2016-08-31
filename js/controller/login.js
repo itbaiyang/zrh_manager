@@ -66,7 +66,7 @@ loginCtrl.controller('LoginCtrl', function ($http, $scope, $rootScope, $location
                 if(d.result.role == 'super'){
                     $location.path("/super");
                 }else{
-                    $location.path("/master");
+                    $location.path("/admin");
                 }
             }else {
                 //console.log(d);

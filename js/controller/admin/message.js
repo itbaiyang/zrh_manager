@@ -155,7 +155,7 @@ messageCtrl.controller('MessageSystemCtrl', function ($http, $scope, $rootScope,
             params: m_params
         }).success(function (d) {
             console.log(d);
-            $location.path('/master/company_message');
+            $location.path('/admin/company_message');
         }).error(function (d) {
             console.log(d);
         });

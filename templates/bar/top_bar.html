@@ -1,11 +1,13 @@
 <nav>
     <div class="navLeft">
-        <a ui-sref="master"><img class="navLogo" src="img/logo1.png" alt=""></a>
+        <a ng-click="go_home()">
+            <img class="navLogo" src="img/logo1.png" alt="">
+        </a>
     </div>
     <div class="navRight fr">
-        <span class="navText" ui-sref="master">直融号企业管理平台</span>
+        <span class="navText" ng-click="go_home()">直融号企业管理平台</span>
         <ul class="fr">
-            <li class="navList" ui-sref="master.message.bank">
+            <li class="navList" ui-sref="admin.message.bank" ng-show="role == 'admin'">
                 <img class="btnBlueImg1">
                 <span class="navList1" ng-show="count">{{count}}</span>
             </li>

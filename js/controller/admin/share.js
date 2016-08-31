@@ -98,7 +98,7 @@ shareCtrl.controller('ShareCtrl', function ($http, $scope, $state, $rootScope, $
 
     };
     $scope.showDetail = function (id) {
-        $location.path('/master/share/share_detail/' + id);
+        $location.path('/admin/share/share_detail/' + id);
         console.log(id);
     };
 });
@@ -224,6 +224,6 @@ shareCtrl.controller('ShareDetailCtrl', function ($http, $scope, $state, $rootSc
     };
 
     $scope.updateApply = function (id) {
-        $location.path('/master/my_project/detail/' + id);
+        $location.path('/admin/my_project/detail/' + id);
     };
 });
