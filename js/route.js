@@ -328,6 +328,24 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
+        .state('admin.channel.history', {
+            url: '/history/:id',
+            views: {
+                'contains@admin': {
+                    templateUrl: templates_root + 'admin/product_service/channel/history.html',
+                    controller: 'HistoryCtrl'
+                }
+            }
+        })
+        .state('admin.channel.change', {
+            url: '/change/:id/:idt',
+            views: {
+                'contains@admin': {
+                    templateUrl: templates_root + 'admin/product_service/channel/change.html',
+                    controller: 'ChangeCtrl'
+                }
+            }
+        })
 
         .state('admin.share', {
             url: '/share',
