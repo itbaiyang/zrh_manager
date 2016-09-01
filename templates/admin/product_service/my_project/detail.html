@@ -24,53 +24,47 @@
         </div>
     </div>
     <div class="">
-        <div class="clear" ng-show="status !=null">
+        <div class="clear">
             <div class="fl" style="width: 30%">
                 <div class="detailStyle" ng-show="bankName">
-                <span class="detailStyleP1 noPadding">申请的产品：</span>
-                <span>{{bankName}}-{{productName}}</span>
+                    <span>{{bankName}}</span>
+                    <span>{{productName}}</span>
             </div>
-                <div class="detailStyle" ng-show="applyTime">
-                    <span class="detailStyleP1 noPadding">申请时间：</span>
-                    <span>{{applyTime | date:'yyyy-MM-dd HH:mm:ss'}}</span>
-                </div>
-                <div class="detailStyle" ng-show="basic.linkmanMobile">
-                    <span class="detailStyleP1 noPadding">申请人：</span>
+                <div class="detailStyle" ng-show="basic.linkmanName">
                     <span>{{basic.linkmanName}}</span>
-                    <span style="padding-left: 30px">{{basic.linkmanMobile}}</span>
-                </div>
-                <div class="detailStyle" ng-show="registerLinkmanMobile">
-                    <p class="detailStyleP1 noPadding">注册人：</p>
-                    <span>{{registerLinkmanName}}</span>
-                    <span style="padding-left: 30px;">{{registerLinkmanMobile}}</span>
+            </div>
+                <div class="detailStyle" ng-show="basic.linkmanMobile">
+                    <span>{{basic.linkmanMobile}}</span>
                 </div>
                 <div class="detailStyle" ng-show="remark">
                     <p class="detailStyleP1 noPadding">备注：</p>
                     <div>{{remark}}</div>
                 </div>
             </div>
-            <div class="fl" style="margin-top: 50px;width: 30%">
-            <p>提交状态&nbsp;<span style="color: red">{{progressText}}</span>&nbsp;&nbsp;<span class="fr">结束时间：{{days}}天</span>
+            <div class="fl" style="margin-top: 0px;width: 30%">
+                <p>
+                    <span style="color: red">{{progressText||'未申请'}}</span>&nbsp;&nbsp;<span class="fr" ng-show="days">预计：{{days}}天</span>
             </p>
-            <div class="progress" style="margin-left: 60px;">
-                <div class="progress-bar progress-bar-success" style="width: {{jindu}}%">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-success" style="width: {{jindu}}%;">
                     <span class="sr-only"></span>
                 </div>
             </div>
         </div>
-            <div class="fr" style="margin-top: 50px">
-               <button class="btnGrew" ng-click="addTips()">备注</button>
+            <div class="fr" style="margin-top: 0px">
+                <button class="btnGrew" ng-click="addTips()">备注</button>
             </div>
             <div class="add-tips">
                 <div class="form-group">
                     <label for="tips" class="textEnd">备注：</label>
                     <div style="display: inline-block;width: 220px">
-                        <input type="text" class="form-control" style="width: 220px" id="tips" placeholder="备注" ng-model="dealRemark">
-                    </div>
+                        <input type="text" class="form-control" style="width: 220px" id="tips" placeholder="备注"
+                               ng-model="dealRemark">
                 </div>
-                <button ng-click="updateRemark()" class="btnBlue" style="margin: 15px 0 0 140px">确定</button>
-                <button ng-click="submitAddTips()" class="btnGrew">取消</button>
             </div>
+                <button ng-click="updateRemark()" class="btnBlue" style="margin: 0 0 0 140px;">确定</button>
+                <button ng-click="submitAddTips()" class="btnGrew">取消</button>
+        </div>
         </div>
         <p class="createTitle">基本内容</p>
         <div class="detailStyle" ng-show="basic.company_name">

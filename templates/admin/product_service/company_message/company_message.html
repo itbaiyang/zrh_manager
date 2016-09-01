@@ -36,12 +36,19 @@
                 <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}"
                        ng-checked="isSelected(resultObj.id)"
                        ng-click="updateSelection($event,resultObj.id)">
-                 <a ng-click="updateApply(resultObj.id)" style="cursor: pointer">
+                <!--<a ng-click="updateApply(resultObj.id)" style="cursor: pointer">-->
                         {{resultObj.companyName}}
-                    </a></span>
-            <span class="width25">{{}}-{{resultObj.productName}}</span>
-            <span class="width15">{{resultObj.applyTime | date:'yyyy-MM-dd'}}</span>
+                <!--</a>-->
+                <img src="img/tips/tel.png" class="img-size" ng-show="resultObj.channel =='tel'">
+                <!--<img src="img/tips/tel.png" class="img-size" ng-show="resultObj.channel =='zrh_manager'">-->
+                <img src="img/tips/bankMan.png" class="img-size" ng-show="resultObj.channel =='a'">
+                <!--<img src="img/tips/bankMan.png" class="img-size" ng-show="resultObj.channel =='zrh'">-->
+                <!--<img src="img/tips/t" ng-show="tel">-->
+            </span>
+            <span class="width25">{{resultObj.bankName ||'未申请'}} <span ng-show="resultObj.bankName">-</span>{{resultObj.productName}}</span>
+            <span class="width15">{{resultObj.time | date:'yyyy-MM-dd'}}</span>
             <span class="width15">{{resultObj.progressText}}</span>
+            <button class="btnBlue" ng-click="updateApply(resultObj.id)">查看详情</button>
         </li>
         <li class="list-group-item list_common">
             <button class="contentClass" ng-click="delete()">删除</button>
