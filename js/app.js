@@ -114,55 +114,20 @@ app.run(function ($location, $rootScope, $http) {
     // 页面跳转前
     $rootScope.$on('$stateChangeStart',
         function (event, toState, toParams, fromState, fromParams) {
+            var present_route = toState.name;
+            $rootScope.arrayParams = present_route.split(".");
             if ($location.$$path != '/login') {
                 $rootScope.check_user();
             } else {
-                // console.log($location.$$path);
             }
             if (!$rootScope.login_user) {
                 $location.path("/login");
             } else {
             }
-            $rootScope.check_role = function () {
-                var m_params = {
-                    "userId": $rootScope.login_user.userId,
-                    "token": $rootScope.login_user.token,
-                };
-                $http({
-                    url: api_uri + "p/user/detail/" + $rootScope.login_user.userId,
-                    method: "GET",
-                    params: m_params
-                }).success(function (d) {
-                    if (d.returnCode == 0) {
-                        console.log(d);
-                        var present_route = toState.name;
-                        var arrayParams = present_route.split(".");
-                        $rootScope.role = d.result.role;
-                        if ($rootScope.role == 'super') {
-                            console.log(arrayParams[0]);
-                            if (arrayParams[0] == 'super') {
-                            } else {
-                                console.log(arrayParams[0]);
-                                $location.path("/login");
-                            }
-                        } else if ($rootScope.role == 'admin') {
-                            console.log(arrayParams[0]);
-                            if (arrayParams[0] == 'admin') {
-                            } else {
-                                $location.path("/login");
-                            }
-                        }
-                    } else {
-                    }
-
-                }).error(function (d) {
-                })
-            };
-            if ($location.$$path != '/login') {
-                $rootScope.check_role();
-            } else {
-                // console.log($location.$$path);
-            }
+            // if (present_route != '/login'&&$location.$$path != '/login') {
+            //     $rootScope.check_role();
+            // } else {
+            // }
         });
     /*********************************** 公用方法区 ***************************************/
 
@@ -267,7 +232,9 @@ app.run(function ($location, $rootScope, $http) {
                 method: "POST",
                 params: $rootScope.login_user
             }).success(function (d) {
+                console.log(d);
                 if (d.returnCode == 0) {
+                    $rootScope.check_role();
                     return true;
                 } else {
                     $rootScope.login_user = {};
@@ -281,5 +248,41 @@ app.run(function ($location, $rootScope, $http) {
         }
 
     };
+
+    $rootScope.check_role = function () {
+        var m_params = {
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
+        };
+        $http({
+            url: api_uri + "p/user/detail/" + $rootScope.login_user.userId,
+            method: "GET",
+            params: m_params
+        }).success(function (d) {
+            console.log(d);
+            if (d.returnCode == 0) {
+                console.log(d);
+                $rootScope.role = d.result.role;
+                if ($rootScope.role == 'super') {
+                    console.log($rootScope.arrayParams[0]);
+                    if ($rootScope.arrayParams[0] == 'super') {
+                    } else {
+                        console.log($rootScope.arrayParams[0]);
+                        $location.path("/login");
+                    }
+                } else if ($rootScope.role == 'admin') {
+                    console.log($rootScope.arrayParams[0]);
+                    if ($rootScope.arrayParams[0] == 'admin') {
+                    } else {
+                        $location.path("/login");
+                    }
+                }
+            } else {
+            }
+
+        }).error(function (d) {
+        })
+    };
+
 
 });

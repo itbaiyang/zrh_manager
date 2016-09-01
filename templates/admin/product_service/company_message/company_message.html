@@ -48,7 +48,7 @@
             <span class="width25">{{resultObj.bankName ||'未申请'}} <span ng-show="resultObj.bankName">-</span>{{resultObj.productName}}</span>
             <span class="width15">{{resultObj.time | date:'yyyy-MM-dd'}}</span>
             <span class="width15">{{resultObj.progressText}}</span>
-            <button class="btnBlue" ng-click="updateApply(resultObj.id)">查看详情</button>
+            <button class="btnBlue" style="vertical-align: top" ng-click="updateApply(resultObj.id)">查看详情</button>
         </li>
         <li class="list-group-item list_common">
             <button class="contentClass" ng-click="delete()">删除</button>
