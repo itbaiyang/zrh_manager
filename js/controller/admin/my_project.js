@@ -334,9 +334,10 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
             method: "GET",
             params: m_params
         }).success(function (d) {
-            ////console.log(d);
+            console.log(d);
             if (d.returnCode == 0) {
-                $location.path('/admin/company_message');
+                $rootScope.putSessionObject('from_route', 'admin.my_project');
+                $rootScope.showBtn = 2;
             }
             else {
                 //console.log(d);

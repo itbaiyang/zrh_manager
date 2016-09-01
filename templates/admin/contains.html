@@ -11,26 +11,32 @@
 
             </div>
             <div class="accountDetail fl">
-                <p style="margin-top: 20px">本月已完成 <span>100</span>/<span>300万</span></p>
-                <p>本月利润 <span>100</span>/<span>2万</span></p>
-                <p>渠道 <span>100人</span></p>
+                <p style="margin-top: 20px;text-align: left;text-indent:10px">本月已完成 <span>0</span>/<span>300万</span></p>
+                <p style="text-align: left;text-indent:10px">本月利润 <span>0</span>/<span>2万</span></p>
+                <p style="text-align: left;text-indent:10px">渠道 <span>{{count.channelUserCount}}人</span></p>
             </div>
             <div class="account-num fl">
                 <div class="dateCount col-sm-4">
                     <p>总成交额：</p>
-                    <p><span style="font-size: 22px;padding-right: 4px">{{count.c1}}</span>万</p>
-                    <p><span style="color: #8d98d7;padding-right: 4px">完成融资</span>{{count.c3}}万</p>
+                    <p><span style="font-size: 22px;padding-right: 4px">{{count.totalLoanValue}}</span>万</p>
+                    <p><span style="color: #8d98d7;padding-right: 4px">完成融资</span>{{count.totalFee}}万</p>
                 </div>
                 <div class="dateCount col-sm-4">
                     <p>企业数据：</p>
-                    <p><span style="font-size: 22px;padding-right: 4px">{{count.p1}}</span>万</p>
-                    <p><span style="color: #8d98d7;padding-right: 4px">完成申请</span>{{count.p3}}个</p>
+                    <p><span style="font-size: 22px;padding-right: 4px">{{count.totalCompany}}</span>万</p>
+                    <p><span style="color: #8d98d7;padding-right: 4px">完成申请</span>{{count.complete}}个</p>
                 </div>
                 <div class="dateCount col-sm-4">
                     <p>注册用户</p>
-                    <p><span style="font-size: 22px;padding-right: 4px">{{count.u1}}</span>人</p>
+                    <p>
+                        <span style="font-size: 22px;padding-right: 4px" ng-hide="count.totalUser >= 10000">{{count.totalUser}}</span>
+                        <span ng-hide="count.totalUser >= 10000">人</span>
+                        <span style="font-size: 22px;padding-right: 4px" ng-show="count.totalUser >= 10000">{{count.totalUser}}</span>
+                        <span ng-show="count.totalUser >= 10000">万人</span>
+                    </p>
                     <p><span style="color: #8d98d7;padding-right: 4px">企业</span>
-                        {{count.u2}}万人|<span style="color: #8d98d7;padding-right: 4px">银行</span>{{count.u3}}万人</p>
+                        {{count.registerUser}}人|<span style="color: #8d98d7;padding-right: 4px">银行</span>{{count.bankUser}}人
+                    </p>
                 </div>
             </div>
         </div>

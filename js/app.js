@@ -85,8 +85,10 @@ app.run(function ($location, $rootScope, $http) {
                     console.log(get_route);
                     if (get_route == "admin.company_message") {
                         $rootScope.showBtn = 1;
+                        console.log($rootScope.showBtn);
                     } else {
                         $rootScope.showBtn = 2;
+                        console.log($rootScope.showBtn);
                     }
                     if(fromParams.id){
                         var arrayParams = from_route.split(".");
@@ -98,6 +100,16 @@ app.run(function ($location, $rootScope, $http) {
                         console.log(from_params);
                         $rootScope.putSessionObject('from_params',from_params);
 
+                    }
+                } else {
+                    var get_route = $rootScope.getSessionObject('from_route');
+                    console.log(get_route);
+                    if (get_route == "admin.company_message") {
+                        $rootScope.showBtn = 1;
+                        console.log($rootScope.showBtn);
+                    } else {
+                        $rootScope.showBtn = 2;
+                        console.log($rootScope.showBtn);
                     }
                 }
             }
@@ -124,10 +136,6 @@ app.run(function ($location, $rootScope, $http) {
                 $location.path("/login");
             } else {
             }
-            // if (present_route != '/login'&&$location.$$path != '/login') {
-            //     $rootScope.check_role();
-            // } else {
-            // }
         });
     /*********************************** 公用方法区 ***************************************/
 

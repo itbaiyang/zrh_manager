@@ -151,7 +151,7 @@ messageCtrl.controller('MessageSystemCtrl', function ($http, $scope, $rootScope,
         };
         $http({
             url: api_uri + "zrh/message/details",
-            method: "GET",
+            method: "GET", 
             params: m_params
         }).success(function (d) {
             console.log(d);
