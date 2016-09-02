@@ -58,7 +58,6 @@ var app = angular.module('app', [
         return query.length ? query.substr(0, query.length - 1) : query;
     };
 
-    // Override $http service's default transformRequest
     $httpProvider.defaults.transformRequest = [function (data) {
         return angular.isObject(data) && String(data) !== '[object File]' ? param(data) : data;
     }];
@@ -293,6 +292,4 @@ app.run(function ($location, $rootScope, $http) {
         }).error(function (d) {
         })
     };
-
-
 });
