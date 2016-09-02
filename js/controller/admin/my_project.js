@@ -295,7 +295,7 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
             $scope.status = d.result.status;
             if ($scope.status == 0) {
                 $scope.progressText = "未申请";
-                $scope.jindu = 20;
+                $scope.jindu = 0;
             } else if ($scope.status == 1) {
                 $scope.progressText = "审核中";
                 $scope.progressBtn = "开始约见";
