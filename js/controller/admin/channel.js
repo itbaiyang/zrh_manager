@@ -2,7 +2,6 @@ var channelCtrl = angular.module('channelCtrl', []);
 
 channelCtrl.controller('ChannelCtrl', function ($http, $scope, $state, $rootScope, $location, $routeParams) {
     $scope.list = function (pageNo, pageSize) {
-        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -58,7 +57,7 @@ channelCtrl.controller('ChannelCtrl', function ($http, $scope, $state, $rootScop
     };
 
     $scope.updateSelection = function ($event, id) {
-        console.log("点击一下")
+        console.log("点击一下");
         var checkbox = $event.target;
         var action = (checkbox.checked ? 'add' : 'remove');
         updateSelected(action, id);
@@ -145,7 +144,6 @@ channelCtrl.controller('CreateCtrl', function ($http, $scope, $state, $rootScope
 
 channelCtrl.controller('ChannelDetailCtrl', function ($http, $scope, $state, $rootScope, $stateParams, $location, $routeParams) {
     $scope.list = function (pageNo, pageSize) {
-        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
