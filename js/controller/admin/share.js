@@ -115,7 +115,7 @@ shareCtrl.controller('ShareDetailCtrl', function ($http, $scope, $state, $rootSc
         };
         console.log(m_params);
         $http({
-            url: api_uri + "wxShare/manager/customerApplyList",
+            url: api_uri + "wxShare/manager/applyList",
             method: "GET",
             params: m_params
         }).success(function (d) {
