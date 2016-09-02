@@ -15,13 +15,13 @@ channelCtrl.controller('ChannelCtrl', function ($http, $scope, $state, $rootScop
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
+            // console.log(d);
             if (d.returnCode == 0) {
                 $scope.page = d.result;
                 $scope.user_list = d.result.datas;
             }
             else {
-                console.log(d.result);
+                // console.log(d.result);
             }
 
         }).error(function (d) {
@@ -33,7 +33,7 @@ channelCtrl.controller('ChannelCtrl', function ($http, $scope, $state, $rootScop
     $scope.list(1, 20);
     $scope.changePage = function (page) {
         $scope.pageNo1 = page;
-        console.log($scope.pageNo1);
+        // console.log($scope.pageNo1);
         $scope.$watch($scope.pageNo1, function () {
             $scope.list($scope.pageNo1, 20);
         });
@@ -48,7 +48,7 @@ channelCtrl.controller('ChannelCtrl', function ($http, $scope, $state, $rootScop
     var updateSelected = function (action, id) {
         if (action == 'add') {
             $scope.ids.push(id);
-            console.log($scope.ids);
+            // console.log($scope.ids);
         }
         if (action == 'remove') {
             var idx = $scope.ids.indexOf(id);
@@ -57,7 +57,6 @@ channelCtrl.controller('ChannelCtrl', function ($http, $scope, $state, $rootScop
     };
 
     $scope.updateSelection = function ($event, id) {
-        console.log("点击一下");
         var checkbox = $event.target;
         var action = (checkbox.checked ? 'add' : 'remove');
         updateSelected(action, id);
@@ -76,8 +75,6 @@ channelCtrl.controller('ChannelCtrl', function ($http, $scope, $state, $rootScop
             "token": $rootScope.login_user.token,
             ids: $scope.ids
         };
-        console.log($scope.ids);
-        console.log("baiyang", m_params);
         $.ajax({
             type: 'POST',
             url: api_uri + "p/user/cancelCustomer",
@@ -86,12 +83,10 @@ channelCtrl.controller('ChannelCtrl', function ($http, $scope, $state, $rootScop
             success: function (data, textStatus, jqXHR) {
                 // console.log(data);
                 if (data.returnCode == 0) {
-                    console.log(data);
                     $scope.ids = [];
                     $scope.list($scope.pageNo1, 10);
                 }
                 else {
-                    console.log(data);
                 }
             },
             dataType: 'json',
@@ -101,7 +96,6 @@ channelCtrl.controller('ChannelCtrl', function ($http, $scope, $state, $rootScop
 
     $scope.showDetail = function (id) {
         $location.path('/admin/channel/detail/' + id);
-        console.log(id);
     };
 });
 
@@ -114,16 +108,13 @@ channelCtrl.controller('CreateCtrl', function ($http, $scope, $state, $rootScope
             "name": $scope.username,
             "mobile": $scope.phone,
         };
-        console.log(m_params);
         $.ajax({
             type: 'POST',
             url: api_uri + "p/user/addCustomer",
             data: m_params,
             traditional: true,
             success: function (data, textStatus, jqXHR) {
-                console.log(data);
                 if (data.returnCode == 0) {
-                    console.log("创建成功了");
                     $state.go("admin.channel");
                     $scope.$apply();
 
@@ -133,7 +124,6 @@ channelCtrl.controller('CreateCtrl', function ($http, $scope, $state, $rootScope
                     alert("该用户已经被分配");
                 }
                 else {
-                    console.log(data);
                 }
             },
             dataType: 'json',
@@ -151,13 +141,11 @@ channelCtrl.controller('ChannelDetailCtrl', function ($http, $scope, $state, $ro
             "pageSize": pageSize,
             "uid": $stateParams.id
         };
-        console.log(m_params);
         $http({
             url: api_uri + "wxShare/manager/customerApplyList",
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
             if (d.returnCode == 0) {
                 $scope.page = d.result;
                 $scope.result_list = d.result.datas;
@@ -183,7 +171,6 @@ channelCtrl.controller('ChannelDetailCtrl', function ($http, $scope, $state, $ro
                 });
             }
             else {
-                console.log(d.result);
             }
 
         }).error(function (d) {
@@ -195,7 +182,6 @@ channelCtrl.controller('ChannelDetailCtrl', function ($http, $scope, $state, $ro
     $scope.list(1, 20);
     $scope.changePage = function (page) {
         $scope.pageNo1 = page;
-        console.log($scope.pageNo1);
         $scope.$watch($scope.pageNo1, function () {
             $scope.list($scope.pageNo1, 20);
         });
@@ -210,7 +196,6 @@ channelCtrl.controller('ChannelDetailCtrl', function ($http, $scope, $state, $ro
     var updateSelected = function (action, id) {
         if (action == 'add') {
             $scope.ids.push(id);
-            console.log($scope.ids);
         }
         if (action == 'remove') {
             var idx = $scope.ids.indexOf(id);
@@ -219,7 +204,6 @@ channelCtrl.controller('ChannelDetailCtrl', function ($http, $scope, $state, $ro
     };
 
     $scope.updateSelection = function ($event, id) {
-        console.log("点击一下")
         var checkbox = $event.target;
         var action = (checkbox.checked ? 'add' : 'remove');
         updateSelected(action, id);
@@ -238,8 +222,6 @@ channelCtrl.controller('ChannelDetailCtrl', function ($http, $scope, $state, $ro
             "token": $rootScope.login_user.token,
             ids: $scope.ids
         };
-        console.log($scope.ids);
-        console.log("baiyang", m_params);
         $.ajax({
             type: 'POST',
             url: api_uri + "p/user/cancelCustomer",
@@ -248,12 +230,10 @@ channelCtrl.controller('ChannelDetailCtrl', function ($http, $scope, $state, $ro
             success: function (data, textStatus, jqXHR) {
                 // console.log(data);
                 if (data.returnCode == 0) {
-                    console.log(data);
                     $scope.ids = [];
                     $scope.list($scope.pageNo1, 10);
                 }
                 else {
-                    console.log(data);
                 }
             },
             dataType: 'json',
@@ -263,12 +243,10 @@ channelCtrl.controller('ChannelDetailCtrl', function ($http, $scope, $state, $ro
 
     $scope.addApply = function () {
         $location.path('/admin/channel/add_apply/' + $stateParams.id);
-        console.log($stateParams.id);
     };
 
     $scope.history = function () {
         $location.path('/admin/channel/history/' + $stateParams.id);
-        console.log($stateParams.id);
     };
 
     $scope.updateApply = function (id) {
@@ -284,19 +262,16 @@ channelCtrl.controller('AddApplyCtrl', function ($http, $scope, $state, $rootSco
             "token": $rootScope.login_user.token,
             "companyName": $scope.companyName
         };
-        console.log(m_params);
         $http({
             url: api_uri + "loanApplicationManage/listByCompanyName",
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
             if (d.returnCode == 0) {
                 $scope.page = d.result;
                 $scope.result_list = d.result.datas;
             }
             else {
-                console.log(d.result);
             }
 
         }).error(function (d) {
@@ -313,21 +288,18 @@ channelCtrl.controller('AddApplyCtrl', function ($http, $scope, $state, $rootSco
             "applyId": id,
             "uid": $stateParams.id
         };
-        console.log(m_params);
         $.ajax({
             type: 'POST',
             url: api_uri + "loanApplicationManage/addChannel",
             data: m_params,
             traditional: true,
             success: function (data, textStatus, jqXHR) {
-                console.log(data);
                 if (data.returnCode == 0) {
                     $location.path('/admin/channel/detail/' + $stateParams.id);
                     $scope.$apply();
 
                 }
                 else {
-                    console.log(data);
                 }
             },
             dataType: 'json',
@@ -337,7 +309,6 @@ channelCtrl.controller('AddApplyCtrl', function ($http, $scope, $state, $rootSco
 
     $scope.back = function () {
         $location.path('/admin/channel/detail/' + $stateParams.id);
-        console.log($stateParams.id);
     };
 });
 
@@ -350,13 +321,11 @@ channelCtrl.controller('HistoryCtrl', function ($http, $scope, $state, $rootScop
             "pageSize": pageSize,
             "uid": $stateParams.id
         };
-        console.log(m_params);
         $http({
             url: api_uri + "/loanApplicationManage/historyList",
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
             if (d.returnCode == 0) {
                 $scope.page = d.result;
                 $scope.result_list = d.result.datas;
@@ -382,11 +351,9 @@ channelCtrl.controller('HistoryCtrl', function ($http, $scope, $state, $rootScop
                 });
             }
             else {
-                console.log(d.result);
             }
 
         }).error(function (d) {
-            //console.log("login error");
             // $location.path("/error");
         })
     };
@@ -394,7 +361,6 @@ channelCtrl.controller('HistoryCtrl', function ($http, $scope, $state, $rootScop
     $scope.list(1, 20);
     $scope.changePage = function (page) {
         $scope.pageNo1 = page;
-        console.log($scope.pageNo1);
         $scope.$watch($scope.pageNo1, function () {
             $scope.list($scope.pageNo1, 20);
         });
@@ -408,11 +374,9 @@ channelCtrl.controller('HistoryCtrl', function ($http, $scope, $state, $rootScop
 
     $scope.goBackDetail = function () {
         $location.path('/admin/channel/detail/' + $stateParams.id);
-        console.log($stateParams.id);
     };
     $scope.change_company = function (id) {
         $location.path('/admin/channel/change/' + $stateParams.id + '/' + id);
-        console.log($stateParams.id);
     };
 
 });
@@ -431,9 +395,7 @@ channelCtrl.controller('ChangeCtrl', function ($http, $scope, $state, $rootScope
             data: m_params,
             traditional: true,
             success: function (data, textStatus, jqXHR) {
-                console.log(data);
                 if (data.returnCode == 0) {
-                    console.log("创建成功了");
                     $location.path('/admin/channel/history/' + $stateParams.id);
                     $scope.$apply();
                 }

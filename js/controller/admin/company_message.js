@@ -13,13 +13,13 @@ loanApplicationCtrl.controller('LoanApplicationCtrl', function ($http, $scope, $
             "wd": $scope.wd,
             // "status": $scope.status
         };
-        console.log(m_params);
+        // console.log(m_params);
         $http({
             url: api_uri + "loanApplicationManage/pool",
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
+            // console.log(d);
             if (d.returnCode == 0) {
                 $scope.page = d.result;
                 $scope.result_list = d.result.datas;

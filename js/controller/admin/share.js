@@ -15,13 +15,13 @@ shareCtrl.controller('ShareCtrl', function ($http, $scope, $state, $rootScope, $
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
+            // console.log(d);
             if (d.returnCode == 0) {
                 $scope.page = d.result;
                 $scope.user_list = d.result.datas;
             }
             else {
-                console.log(d.result);
+                // console.log(d.result);
             }
 
         }).error(function (d) {
@@ -33,7 +33,7 @@ shareCtrl.controller('ShareCtrl', function ($http, $scope, $state, $rootScope, $
     $scope.list(1, 20);
     $scope.changePage = function (page) {
         $scope.pageNo1 = page;
-        console.log($scope.pageNo1);
+        // console.log($scope.pageNo1);
         $scope.$watch($scope.pageNo1, function () {
             $scope.list($scope.pageNo1, 20);
         });
@@ -48,7 +48,7 @@ shareCtrl.controller('ShareCtrl', function ($http, $scope, $state, $rootScope, $
     var updateSelected = function (action, id) {
         if (action == 'add') {
             $scope.ids.push(id);
-            console.log($scope.ids);
+            // console.log($scope.ids);
         }
         if (action == 'remove') {
             var idx = $scope.ids.indexOf(id);
@@ -57,7 +57,7 @@ shareCtrl.controller('ShareCtrl', function ($http, $scope, $state, $rootScope, $
     };
 
     $scope.updateSelection = function ($event, id) {
-        console.log("点击一下")
+        // console.log("点击一下")
         var checkbox = $event.target;
         var action = (checkbox.checked ? 'add' : 'remove');
         updateSelected(action, id);
@@ -75,8 +75,8 @@ shareCtrl.controller('ShareCtrl', function ($http, $scope, $state, $rootScope, $
             "token": $rootScope.login_user.token,
             ids: $scope.ids
         };
-        console.log($scope.ids);
-        console.log("baiyang", m_params);
+        // console.log($scope.ids);
+        // console.log("baiyang", m_params);
         $.ajax({
             type: 'POST',
             url: api_uri + "p/user/toCustomer",
@@ -85,12 +85,12 @@ shareCtrl.controller('ShareCtrl', function ($http, $scope, $state, $rootScope, $
             success: function (data, textStatus, jqXHR) {
                 // console.log(data);
                 if (data.returnCode == 0) {
-                    console.log(data);
+                    // console.log(data);
                     $scope.list($scope.pageNo1, 10);
                     $scope.ids = [];
                 }
                 else {
-                    console.log(data);
+                    // console.log(data);
                 }
             },
             dataType: 'json',
@@ -99,7 +99,7 @@ shareCtrl.controller('ShareCtrl', function ($http, $scope, $state, $rootScope, $
     };
     $scope.showDetail = function (id) {
         $location.path('/admin/share/share_detail/' + id);
-        console.log(id);
+        // console.log(id);
     };
 });
 
@@ -113,13 +113,13 @@ shareCtrl.controller('ShareDetailCtrl', function ($http, $scope, $state, $rootSc
             "pageSize": pageSize,
             "uid": $stateParams.id
         };
-        console.log(m_params);
+        // console.log(m_params);
         $http({
             url: api_uri + "wxShare/manager/applyList",
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
+            // console.log(d);
             if (d.returnCode == 0) {
                 $scope.page = d.result;
                 $scope.result_list = d.result.datas;
@@ -145,7 +145,7 @@ shareCtrl.controller('ShareDetailCtrl', function ($http, $scope, $state, $rootSc
                 });
             }
             else {
-                console.log(d.result);
+                // console.log(d.result);
             }
 
         }).error(function (d) {
@@ -157,7 +157,7 @@ shareCtrl.controller('ShareDetailCtrl', function ($http, $scope, $state, $rootSc
     $scope.list(1, 20);
     $scope.changePage = function (page) {
         $scope.pageNo1 = page;
-        console.log($scope.pageNo1);
+        // console.log($scope.pageNo1);
         $scope.$watch($scope.pageNo1, function () {
             $scope.list($scope.pageNo1, 20);
         });
@@ -172,7 +172,7 @@ shareCtrl.controller('ShareDetailCtrl', function ($http, $scope, $state, $rootSc
     var updateSelected = function (action, id) {
         if (action == 'add') {
             $scope.ids.push(id);
-            console.log($scope.ids);
+            // console.log($scope.ids);
         }
         if (action == 'remove') {
             var idx = $scope.ids.indexOf(id);
@@ -181,7 +181,7 @@ shareCtrl.controller('ShareDetailCtrl', function ($http, $scope, $state, $rootSc
     };
 
     $scope.updateSelection = function ($event, id) {
-        console.log("点击一下")
+        // console.log("点击一下")
         var checkbox = $event.target;
         var action = (checkbox.checked ? 'add' : 'remove');
         updateSelected(action, id);
@@ -200,8 +200,8 @@ shareCtrl.controller('ShareDetailCtrl', function ($http, $scope, $state, $rootSc
             "token": $rootScope.login_user.token,
             ids: $scope.ids
         };
-        console.log($scope.ids);
-        console.log("baiyang", m_params);
+        // console.log($scope.ids);
+        // console.log("baiyang", m_params);
         $.ajax({
             type: 'POST',
             url: api_uri + "p/user/cancelCustomer",
@@ -210,12 +210,12 @@ shareCtrl.controller('ShareDetailCtrl', function ($http, $scope, $state, $rootSc
             success: function (data, textStatus, jqXHR) {
                 // console.log(data);
                 if (data.returnCode == 0) {
-                    console.log(data);
+                    // console.log(data);
                     $scope.ids = [];
                     $scope.list($scope.pageNo1, 10);
                 }
                 else {
-                    console.log(data);
+                    // console.log(data);
                 }
             },
             dataType: 'json',

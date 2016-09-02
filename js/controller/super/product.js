@@ -20,7 +20,6 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
             if (d.returnCode == 0) {
                 $scope.page = d.result;
                 $scope.result_list = d.result.datas;
@@ -34,11 +33,9 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
                 });
             }
             else {
-                console.log(d.result);
             }
 
         }).error(function (d) {
-            console.log("login error");
             $location.path("/error");
         })
     };
@@ -46,7 +43,6 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
     $scope.list(1, 20);
     $scope.changePage = function(page){
         $scope.pageNo1 = page;
-        console.log($scope.pageNo1);
         $scope.$watch($scope.pageNo1, function () {
             $scope.list($scope.pageNo1, 20);
         });
@@ -61,7 +57,6 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
     var updateSelected = function (action, id) {
         if (action == 'add') {
             $scope.ids.push(id);
-            console.log($scope.ids);
         }
         if (action == 'remove') {
             var idx = $scope.ids.indexOf(id);
@@ -70,7 +65,6 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
     };
 
     $scope.updateSelection = function ($event, id) {
-        console.log("点击一下")
         var checkbox = $event.target;
         var action = (checkbox.checked ? 'add' : 'remove');
         updateSelected(action, id);
@@ -93,8 +87,6 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
             "token": $rootScope.login_user.token,
             ids: $scope.ids
         };
-        console.log($scope.ids);
-        console.log("baiyang", m_params);
         $.ajax({
             type: 'POST',
             url: api_uri + "financialProductManage/release",
@@ -103,11 +95,9 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
             success: function (data, textStatus, jqXHR) {
                 // console.log(data);
                 if (data.returnCode == 0) {
-                    console.log(data);
                     $scope.list($scope.pageNo1, 10);
                 }
                 else {
-                    console.log(data);
                 }
             },
             dataType: 'json',
@@ -122,8 +112,6 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
             "token": $rootScope.login_user.token,
             ids: $scope.ids
         };
-        console.log($scope.ids);
-        console.log("baiyang", m_params);
         $.ajax({
             type: 'POST',
             url: api_uri + "financialProductManage/unRelease",
@@ -135,7 +123,6 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
                     $scope.list($scope.pageNo1, 10);
                 }
                 else {
-                    console.log(data);
                 }
             },
             dataType: 'json',
@@ -149,8 +136,6 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
             "token": $rootScope.login_user.token,
             ids: $scope.ids
         };
-        console.log($scope.ids);
-        console.log("baiyang", m_params);
         $.ajax({
             type: 'POST',
             url: api_uri + "financialProductManage/delete",
@@ -162,7 +147,6 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
                     $scope.list($scope.pageNo1, 10);
                 }
                 else {
-                    console.log(data);
                 }
             },
             dataType: 'json',
@@ -175,8 +159,6 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
             "token": $rootScope.login_user.token,
             ids: $scope.ids
         };
-        console.log($scope.ids);
-        console.log("baiyang", m_params);
         $.ajax({
             type: 'POST',
             url: api_uri + "financialProductManage/up",
@@ -188,7 +170,6 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
                     $scope.list($scope.pageNo1, 10);
                 }
                 else {
-                    console.log(data);
                 }
             },
             dataType: 'json',
@@ -198,17 +179,14 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
     $scope.update = function(id){
         //$location.state('master.product.update');
         $location.path('/super/product/update/' + id);
-        console.log(id);
     };
 
     $scope.release = function (id) {
-        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
             ids: id
         };
-        console.log("baiyang", m_params);
         $.ajax({
             type: 'POST',
             url: api_uri + "financialProductManage/release",
@@ -220,7 +198,6 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
                     $scope.list($scope.pageNo1, 10);
                 }
                 else {
-                    console.log(data);
                 }
             },
             dataType: 'json',
@@ -235,7 +212,6 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
             "token": $rootScope.login_user.token,
             ids: id
         };
-        console.log("baiyang", m_params);
         $.ajax({
             type: 'POST',
             url: api_uri + "financialProductManage/unRelease",
@@ -247,7 +223,6 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
                     $scope.list($scope.pageNo1, 10);
                 }
                 else {
-                    console.log(data);
                 }
             },
             dataType: 'json',
@@ -275,7 +250,6 @@ productCtrl.controller('ProductCreateCtrl', function ($http, $scope, $rootScope,
         $scope.feature_list.push({
             "feature":""
         });
-        console.log($scope.feature_list);
     };
 
     $scope.remove_feature = function (feature) {
@@ -317,17 +291,14 @@ productCtrl.controller('ProductCreateCtrl', function ($http, $scope, $rootScope,
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
             if (d.returnCode == 0) {
                 $scope.page = d.result;
                 $scope.bank_list = d.result.datas;
             }
             else {
-                console.log(d.result);
             }
 
         }).error(function (d) {
-            console.log("login error");
             $location.path("/error");
         })
     };
@@ -355,19 +326,14 @@ productCtrl.controller('ProductCreateCtrl', function ($http, $scope, $rootScope,
                 tags.push(array[i]);
             }
         }
-        console.log(tags);
         $scope.feature_list_new = [];
         $scope.condition_list_new = [];
         for (var key in $scope.feature_list) {
-            console.log($scope.feature_list[key].feature)
-            $scope.feature_list_new.push($scope.feature_list[key].feature)
+            $scope.feature_list_new.push($scope.feature_list[key].feature);
         }
         for (var key in $scope.condition_list) {
-            console.log($scope.condition_list[key].condition)
-            $scope.condition_list_new.push($scope.condition_list[key].condition)
+            $scope.condition_list_new.push($scope.condition_list[key].condition);
         }
-        // var login_user = $rootScope.getObject("login_user");
-
         var m_params = {
             "userId":$rootScope.login_user.userId,
             "token":$rootScope.login_user.token,
@@ -383,16 +349,13 @@ productCtrl.controller('ProductCreateCtrl', function ($http, $scope, $rootScope,
             "conditions": $scope.condition_list_new,
             "type": $scope.type
         };
-        console.log(m_params);
         $.ajax({
             type: 'POST',
             url: api_uri + "financialProductManage/create",
             data: m_params,
             traditional: true,
             success: function (data, textStatus, jqXHR) {
-                console.log(data);
                 if (data.returnCode == 0) {
-                    console.log("创建成功了");
                     $state.go("super.product");
                     $scope.$apply();
 
@@ -414,7 +377,6 @@ productCtrl.controller('ProductUpdateCtrl', function ($http, $scope, $state, $ro
         $scope.feature_list.push({
             "feature":""
         });
-        console.log($scope.feature_list);
     };
     $scope.remove_feature = function (feature) {
         for (var key in $scope.feature_list) {
@@ -430,7 +392,6 @@ productCtrl.controller('ProductUpdateCtrl', function ($http, $scope, $state, $ro
             "condition":""
         });
     };
-    console.log($scope.condition_list);
     $scope.remove_condition = function (condition) {
         for (var key in $scope.condition_list) {
             if ($scope.condition_list[key] == condition) {
@@ -453,7 +414,6 @@ productCtrl.controller('ProductUpdateCtrl', function ($http, $scope, $state, $ro
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
             if (d.returnCode == 0) {
                 $scope.page = d.result;
                 $scope.bank_list = d.result.datas;
@@ -463,7 +423,6 @@ productCtrl.controller('ProductUpdateCtrl', function ($http, $scope, $state, $ro
             }
 
         }).error(function (d) {
-            console.log("login error");
             $location.path("/error");
         })
     };
@@ -481,15 +440,11 @@ productCtrl.controller('ProductUpdateCtrl', function ($http, $scope, $state, $ro
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
-
-            console.log(d.result.conditions,'123');
             $scope.product = d.result;
             $scope.type = d.result.type;
             $scope.bankName = $scope.product.bankname;
             $scope.bankId = $scope.product.bankId;
             $scope.tags_arr = $scope.product.tags;
-            console.log($scope.type);
             if ($scope.tags_arr) {
                 for (var i = 0; i < $scope.tags_arr.length; i++) {
                     $scope.tags += "#";
@@ -498,8 +453,6 @@ productCtrl.controller('ProductUpdateCtrl', function ($http, $scope, $state, $ro
                 }
                 ;
             }
-            console.log($scope.tags);
-            console.log($scope.bankName);
             for (var key in d.result.feature) {
                 $scope.feature_list.push({"feature": d.result.feature[key]});
             }
@@ -507,7 +460,6 @@ productCtrl.controller('ProductUpdateCtrl', function ($http, $scope, $state, $ro
                 $scope.condition_list.push({"condition": d.result.conditions[key]});
             }
         }).error(function (d) {
-            console.log("login error");
             $location.path("/error");
         })
     };
@@ -531,16 +483,12 @@ productCtrl.controller('ProductUpdateCtrl', function ($http, $scope, $state, $ro
                 tags.push(array[i]);
             }
         }
-        console.log($scope.type);
-        console.log(tags);
         $scope.feature_list_new = [];
         $scope.condition_list_new = [];
         for (var key in $scope.feature_list) {
-            console.log($scope.feature_list[key].feature)
             $scope.feature_list_new.push($scope.feature_list[key].feature)
         }
         for (var key in $scope.condition_list) {
-            console.log($scope.condition_list[key].condition)
             $scope.condition_list_new.push($scope.condition_list[key].condition)
         }
         // var login_user = $rootScope.getObject("login_user");
@@ -560,16 +508,13 @@ productCtrl.controller('ProductUpdateCtrl', function ($http, $scope, $state, $ro
             "feature": $scope.feature_list_new,
             "conditions": $scope.condition_list_new,
         };
-        console.log(m_params);
         $.ajax({
             type: 'POST',
             url: api_uri + "financialProductManage/update",
             data: m_params,
             traditional: true,
             success: function (data, textStatus, jqXHR) {
-                console.log(data);
                 if (data.returnCode == 0) {
-                    console.log("创建成功了");
                     $state.go('super.product');
                     $scope.$apply();
                 }

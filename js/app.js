@@ -76,20 +76,20 @@ app.run(function ($location, $rootScope, $http) {
             var present_route = toState.name; //获取当前路由
             if (present_route.indexOf('admin.my_project.detail') > -1) {
                 var from_route = fromState.name;
-                console.log(fromState.name);
-                console.log(fromState);
+                // console.log(fromState.name);
+                // console.log(fromState);
                 if (from_route != "" && from_route.indexOf('admin.my_project.edit_apply') <= -1
                     && from_route.indexOf('admin.my_project.change_company') <= -1
                     && from_route.indexOf('admin.my_project.apply_again') <= -1) {
                     $rootScope.putSessionObject('from_route',from_route);
                     var get_route = $rootScope.getSessionObject('from_route');
-                    console.log(get_route);
+                    // console.log(get_route);
                     if (get_route == "admin.company_message") {
                         $rootScope.showBtn = 1;
-                        console.log($rootScope.showBtn);
+                        // console.log($rootScope.showBtn);
                     } else {
                         $rootScope.showBtn = 2;
-                        console.log($rootScope.showBtn);
+                        // console.log($rootScope.showBtn);
                     }
                     if(fromParams.id){
                         var arrayParams = from_route.split(".");
@@ -98,26 +98,26 @@ app.run(function ($location, $rootScope, $http) {
                         $rootScope.putSessionObject('from_route2',from_route2);
                         }
                         var from_params= fromParams.id;
-                        console.log(from_params);
+                        // console.log(from_params);
                         $rootScope.putSessionObject('from_params',from_params);
 
                     }
                 } else {
                     var get_route = $rootScope.getSessionObject('from_route');
-                    console.log(get_route);
+                    // console.log(get_route);
                     if (get_route == "admin.company_message") {
                         $rootScope.showBtn = 1;
-                        console.log($rootScope.showBtn);
+                        // console.log($rootScope.showBtn);
                     } else {
                         $rootScope.showBtn = 2;
-                        console.log($rootScope.showBtn);
+                        // console.log($rootScope.showBtn);
                     }
                 }
             }
             var array = present_route.split(".");
             $rootScope.choiceColor = array[1];
             if (array[1] == "message") {
-                console.log(array[1], 'baiyang');
+                // console.log(array[1], 'baiyang');
                 $rootScope.sideTwo = true;
                 $rootScope.choiceColorTwo = array[2];
             } else {
@@ -241,7 +241,7 @@ app.run(function ($location, $rootScope, $http) {
                 method: "POST",
                 params: $rootScope.login_user
             }).success(function (d) {
-                console.log(d);
+                // console.log(d);
                 if (d.returnCode == 0) {
                     $rootScope.check_role();
                     return true;
@@ -268,19 +268,19 @@ app.run(function ($location, $rootScope, $http) {
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
+            // console.log(d);
             if (d.returnCode == 0) {
-                console.log(d);
+                // console.log(d);
                 $rootScope.role = d.result.role;
                 if ($rootScope.role == 'super') {
-                    console.log($rootScope.arrayParams[0]);
+                    // console.log($rootScope.arrayParams[0]);
                     if ($rootScope.arrayParams[0] == 'super') {
                     } else {
-                        console.log($rootScope.arrayParams[0]);
+                        // console.log($rootScope.arrayParams[0]);
                         $location.path("/login");
                     }
                 } else if ($rootScope.role == 'admin') {
-                    console.log($rootScope.arrayParams[0]);
+                    // console.log($rootScope.arrayParams[0]);
                     if ($rootScope.arrayParams[0] == 'admin') {
                     } else {
                         $location.path("/login");

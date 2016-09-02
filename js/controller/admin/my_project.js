@@ -14,7 +14,7 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
+            // console.log(d);
             if (d.returnCode == 0) {
                 $scope.page = d.result.list;
                 $scope.result_list = d.result.list.datas;
@@ -171,8 +171,8 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
             "token": $rootScope.login_user.token,
             ids: $scope.ids
         };
-        console.log($scope.ids);
-        console.log("baiyang", m_params);
+        // console.log($scope.ids);
+        // console.log("baiyang", m_params);
         $.ajax({
             type: 'POST',
             url: api_uri + "loanApplicationManage/giveUp",
@@ -181,11 +181,11 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
             success: function (data, textStatus, jqXHR) {
                 // console.log(data);
                 if (data.returnCode == 0) {
-                    console.log(data);
+                    // console.log(data);
                     $scope.list($scope.pageNo1, 20);
                 }
                 else {
-                    console.log(data);
+                    // console.log(data);
                 }
             },
             dataType: 'json',
@@ -276,7 +276,7 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
+            // console.log(d);
             $scope.isAllot = d.result.isAllot;
             $scope.w = d.result.w;
             $scope.registerLinkmanName = d.result.registerLinkmanName;
@@ -335,7 +335,7 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
+            // console.log(d);
             if (d.returnCode == 0) {
                 $rootScope.putSessionObject('from_route', 'admin.my_project');
                 $rootScope.showBtn = 2;
@@ -406,7 +406,7 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
 
     $scope.change_company = function (id) {
         $location.path('/admin/my_project/change_company/' + id);
-        console.log(id);
+        // console.log(id);
     };
 
 });
@@ -730,7 +730,7 @@ myProjectCtrl.controller('ApplyHelpCtrl', function ($http, $scope, $rootScope, $
     }
 
     $scope.backProjectDetail = function (id) {
-        console.log(id);
+        // console.log(id);
         $location.path('/admin/my_project/detail/' + id);
     };
 
@@ -813,7 +813,7 @@ myProjectCtrl.controller('ApplyHelpCtrl', function ($http, $scope, $rootScope, $
             data: m_params,
             traditional: true,
             success: function (data, textStatus, jqXHR) {
-                console.log(data);
+                // console.log(data);
                 if (data.returnCode == 0) {
                     $location.path('/admin/my_project/detail/' + $scope.id);
                     $scope.$apply();
@@ -841,9 +841,9 @@ myProjectCtrl.controller('ChangeCompanyCtrl', function ($http, $scope, $state, $
             data: m_params,
             traditional: true,
             success: function (data, textStatus, jqXHR) {
-                console.log(data);
+                // console.log(data);
                 if (data.returnCode == 0) {
-                    console.log("创建成功了");
+                    // console.log("创建成功了");
                     $location.path('/admin/my_project/detail/' + $stateParams.id);
                     $scope.$apply();
                 }

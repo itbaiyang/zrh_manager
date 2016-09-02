@@ -10,7 +10,7 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
+            // console.log(d);
             $scope.message_list = d.result.datas;
             angular.forEach($scope.message_list, function (data) {
                 //$scope.status = d.result.status;
@@ -39,7 +39,7 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
             });
 
         }).error(function (d) {
-            console.log(d);
+            // console.log(d);
         });
     };
     $scope.init();
@@ -47,7 +47,7 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
     $scope.show_allow = function (status, id) {
         $scope.showAllow[id] = true;
         $scope.status = status;
-        console.log($scope.status);
+        // console.log($scope.status);
         if (status == 2) {
             $scope.statusText = "约见中";
         } else if (status == 3) {
@@ -77,39 +77,39 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
             "dayNum": days,
             "id": id,
         };
-        console.log(m_params);
+        // console.log(m_params);
         $http({
             url: api_uri + "applyBankDeal/manage/allow",
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
+            // console.log(d);
             $scope.showAllow[index] = false;
 
         }).error(function (d) {
-            console.log(d);
+            // console.log(d);
         });
     };
 
     $scope.refuse = function (id) {
         $scope.reason_refuse = $("#reason_refuse").val();
-        console.log($scope.reason_refuse);
+        // console.log($scope.reason_refuse);
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
             "id": id,
             "reason": $scope.reason_refuse,
         };
-        console.log(m_params);
+        // console.log(m_params);
         $http({
             url: api_uri + "applyBankDeal/manage/refuse",
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
+            // console.log(d);
 
         }).error(function (d) {
-            console.log(d);
+            // console.log(d);
         });
     }
 });
@@ -127,17 +127,17 @@ messageCtrl.controller('MessageSystemCtrl', function ($http, $scope, $rootScope,
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
+            // console.log(d);
             $scope.page = d.result;
             $scope.result_list = d.result.datas;
         }).error(function (d) {
-            console.log(d);
+            // console.log(d);
         });
     };
     $scope.list(1,20);
     $scope.changePage = function(page){
         $scope.pageNo1 = page;
-        console.log($scope.pageNo1);
+        // console.log($scope.pageNo1);
         $scope.$watch($scope.pageNo1, function () {
             $scope.list($scope.pageNo1, 20);
         });
@@ -154,10 +154,10 @@ messageCtrl.controller('MessageSystemCtrl', function ($http, $scope, $rootScope,
             method: "GET", 
             params: m_params
         }).success(function (d) {
-            console.log(d);
+            // console.log(d);
             $location.path('/admin/company_message');
         }).error(function (d) {
-            console.log(d);
+            // console.log(d);
         });
     };
 });

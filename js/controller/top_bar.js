@@ -22,7 +22,7 @@ topBarCtrl.controller('TopBarCtrl', function ($http, $scope, $rootScope, $locati
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
+            // console.log(d);
             if (d.returnCode == 0) {
                 $rootScope.count = d.result;
             }
@@ -96,7 +96,7 @@ topBarCtrl.controller('ContainsCtrl', function ($http, $scope, $state, $rootScop
         method: "GET",
         params: m_params
     }).success(function (d) {
-        console.log(d);
+        // console.log(d);
         $scope.count = d.result;
 
     }).error(function (d) {

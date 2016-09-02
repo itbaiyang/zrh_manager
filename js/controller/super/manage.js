@@ -13,13 +13,11 @@ manageCtrl.controller('UserListCtrl', function ($http, $scope, $rootScope, $loca
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
             if (d.returnCode == 0) {
                 $scope.page = d.result;
                 $scope.result_list = d.result.datas;
             }
             else {
-                console.log(d.result);
             }
 
         }).error(function (d) {
@@ -30,7 +28,6 @@ manageCtrl.controller('UserListCtrl', function ($http, $scope, $rootScope, $loca
     $scope.list(1, 20);
     $scope.changePage = function (page) {
         $scope.pageNo1 = page;
-        console.log($scope.pageNo1);
         $scope.$watch($scope.pageNo1, function () {
             $scope.list($scope.pageNo1, 8);
         });
@@ -44,16 +41,13 @@ manageCtrl.controller('UserListCtrl', function ($http, $scope, $rootScope, $loca
     var updateSelected = function (action, id) {
         if (action == 'add') {
             $scope.ids.push(id);
-            console.log("添加id" + $scope.ids);
         }
         if (action == 'remove') {
             var idx = $scope.ids.indexOf(id);
             $scope.ids.splice(idx, 1);
-            console.log("删除id" + id);
         }
     };
     $scope.updateSelection = function ($event, id) {
-        console.log("点击一下");
         var checkbox = $event.target;
         var action = (checkbox.checked ? 'add' : 'remove');
         updateSelected(action, id);
@@ -70,8 +64,6 @@ manageCtrl.controller('UserListCtrl', function ($http, $scope, $rootScope, $loca
             "token": $rootScope.login_user.token,
             ids: $scope.ids
         };
-        console.log($scope.ids);
-        console.log(m_params);
         $.ajax({
             type: 'POST',
             url: api_uri + "p/user/delete",
@@ -83,7 +75,6 @@ manageCtrl.controller('UserListCtrl', function ($http, $scope, $rootScope, $loca
                     $scope.list($scope.pageNo1, 20);
                 }
                 else {
-                    console.log(data);
                 }
             },
             dataType: 'json',
@@ -108,17 +99,14 @@ manageCtrl.controller('CreateUserCtrl', function ($http, $scope, $rootScope, $lo
             "password": $scope.password,
             "signature": $rootScope.encryptByDES($scope.email + $scope.password + $scope.timestamp),
         };
-        console.log(m_params);
         $http({
             url: api_uri + "p/user/create",
             method: "POST",
             params: m_params
         }).success(function (d) {
             if (d.returnCode == 0) {
-                console.log(d);
                 $state.go('super.manage');
             } else {
-                console.log(d);
             }
 
         }).error(function (d) {
@@ -144,12 +132,10 @@ manageCtrl.controller('UserUpdateCtrl', function ($http, $scope, $rootScope, $lo
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
             if (d.returnCode == 0) {
                 $scope.user = d.result;
             }
             else {
-                console.log(d.result);
             }
 
         }).error(function (d) {
@@ -168,17 +154,14 @@ manageCtrl.controller('UserUpdateCtrl', function ($http, $scope, $rootScope, $lo
             "password": $scope.user.password,
             "signature": $rootScope.encryptByDES($scope.email + $scope.password + $scope.timestamp),
         };
-        console.log(m_params);
         $http({
             url: api_uri + "p/user/update/" + $stateParams.id,
             method: "POST",
             params: m_params
         }).success(function (d) {
             if (d.returnCode == 0) {
-                console.log(d);
                 $state.go('super.manage');
             } else {
-                console.log(d);
             }
 
         }).error(function (d) {
