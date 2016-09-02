@@ -8,15 +8,16 @@
                 <button style="margin-left:15px" class="btn btnBlue" type="button" ng-click="distribute(id)">递交资料
                 </button>
             </div>
-
+            <button class="btnGrew" ng-click="reBackDetails()">返回</button>
+            <button class="btnGrew" ng-show="w == true" ng-click="change_company(id)">更换企业</button>
             <button class="btnGrew" ng-hide="status != null"
                     ng-click="apply_help(resultObj.id)">
                 帮助申请
             </button>
-            <button class="btn btnGrew fr" ng-click="reBackDetails()">返回</button>
             <button class="btnGrew" ng-show="status != null"
                     ng-click="apply_again(id,registerLinkmanMobile)">更换银行
             </button>
+
         </div>
         <div class="fr" ng-show="showBtn == 1" style="margin: 10px">
             <button class="btnGrew" ng-click="apply(id)">我要处理</button>

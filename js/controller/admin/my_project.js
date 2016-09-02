@@ -278,6 +278,7 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
         }).success(function (d) {
             console.log(d);
             $scope.isAllot = d.result.isAllot;
+            $scope.w = d.result.w;
             $scope.registerLinkmanName = d.result.registerLinkmanName;
             $scope.registerLinkmanMobile = d.result.registerLinkmanMobile;
             $scope.bankId = d.result.bankId;
@@ -402,6 +403,12 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
             $location.path(from_route2+from_params);
         }
     };
+
+    $scope.change_company = function (id) {
+        $location.path('/admin/my_project/change_company/' + id);
+        console.log(id);
+    };
+
 });
 
 myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $location, $state, $timeout, $stateParams, $routeParams) {
@@ -817,5 +824,37 @@ myProjectCtrl.controller('ApplyHelpCtrl', function ($http, $scope, $rootScope, $
             dataType: 'json',
         });
 
+    };
+});
+
+myProjectCtrl.controller('ChangeCompanyCtrl', function ($http, $scope, $state, $rootScope, $stateParams, $location, $routeParams) {
+    $scope.change = function () {
+        var m_params = {
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
+            "applyId": $stateParams.id,
+            "mobile": $scope.phone,
+        };
+        $.ajax({
+            type: 'POST',
+            url: api_uri + "/loanApplicationManage/changeMobile",
+            data: m_params,
+            traditional: true,
+            success: function (data, textStatus, jqXHR) {
+                console.log(data);
+                if (data.returnCode == 0) {
+                    console.log("创建成功了");
+                    $location.path('/admin/my_project/detail/' + $stateParams.id);
+                    $scope.$apply();
+                }
+                else {
+                }
+            },
+            dataType: 'json',
+        });
+    };
+
+    $scope.reBackDetail = function () {
+        $location.path("admin/my_project/detail/" + $stateParams.id);
     };
 });

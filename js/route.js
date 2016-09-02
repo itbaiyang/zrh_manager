@@ -273,6 +273,15 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
+        .state('admin.my_project.change_company', {
+            url: '/change_company/:id',
+            views: {
+                'contains@admin': {
+                    templateUrl: templates_root + 'admin/product_service/my_project/change.html',
+                    controller: 'ChangeCompanyCtrl'
+                }
+            }
+        })
 
         .state('admin.statistics', {
             url: '/statistics',
