@@ -174,7 +174,7 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
         // console.log($scope.ids);
         // console.log("baiyang", m_params);
         $.ajax({
-            type: 'POST',
+            type: 'GET',
             url: api_uri + "loanApplicationManage/giveUp",
             data: m_params,
             traditional: true,

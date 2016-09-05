@@ -29,8 +29,9 @@
     </ul>
     <p class="sideBarP1" ng-show="role == 'admin'">个人中心</p>
     <ul>
-        <!--<a class="sideBarP2" ng-class="{sideBarP2C:choiceColor =='statistics'}" ng-click="changeColor(5,1)" ui-sref="master.statistics">-->
-        <!--<img class="btnBlueImg1">账号管理</a>-->
+        <a class="sideBarP2" ng-class="{sideBarP2C:choiceColor =='account'}" ng-show="role == 'admin'"
+           ui-sref="admin.account">
+            <img class="btnBlueImg1">账号管理</a>
         <a class="sideBarP2" ng-class="{sideBarP2C:choiceColor =='message'}" ng-show="role == 'admin'"
            ui-sref="admin.message.bank">
             <div style="display: inline-block;width: 30px;height: 40px;position: relative">
@@ -41,7 +42,7 @@
 </div>
 <div class="sideModel1 fl" ng-show="sideTwo">
     <p class="modelTitle1" ng-show="choiceColor =='message'">消息中心</p>
-    <p class="modelTitle1" ng-show="choiceColor =='statistics'">分享统计</p>
+    <!--<p class="modelTitle1" ng-show="choiceColor =='statistics'">分享统计</p>-->
     <ul style="text-align: center" ng-show="choiceColor =='message'">
         <!--<li><a ui-sref="master.message.company">企业消息</a></li>-->
         <li style="text-align: center;">

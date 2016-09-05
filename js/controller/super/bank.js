@@ -524,14 +524,14 @@ bankCtrl.controller('AddBankManCtrl', function ($http, $scope, $rootScope, $stat
             "mobile": $scope.bank_man.mobile,
             "email": $scope.bank_man.email,
         };
-        //console.log(m_params);
+        console.log(m_params);
         $.ajax({
             type: 'POST',
             url: api_uri + "manage/bank/user/add",
             data: m_params,
             traditional: true,
             success: function (data, textStatus, jqXHR) {
-                //console.log(data);
+                console.log(data);
                 if (data.returnCode == 0) {
                     $state.go("super.bank.bank_man", {id: m_params.bankId});
                     $scope.$apply();
