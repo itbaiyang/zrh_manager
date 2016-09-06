@@ -14,7 +14,7 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
             method: "GET",
             params: m_params
         }).success(function (d) {
-            // console.log(d);
+            console.log(d);
             if (d.returnCode == 0) {
                 $scope.page = d.result.list;
                 $scope.result_list = d.result.list.datas;
@@ -548,7 +548,6 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
     /*保存基本信息*/
 
     $scope.basicMessage = function () {
-        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "applyId": $stateParams.id,
             "id": $scope.basic.id,
@@ -568,12 +567,14 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
             "loanValue": $scope.basic.loanValue,
             "continual": $scope.basic.continual,
         };
+        console.log(m_params);
         $.ajax({
             type: 'POST',
             url: api_uri + "inforTemplate/saveBase",
             data: m_params,
             traditional: true,
             success: function (data, textStatus, jqXHR) {
+                console.log(data);
                 if (data.returnCode == 0) {
                     $scope.id_basic = data.result;
                     $scope.other();
@@ -590,7 +591,6 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
     /*保存其他信息*/
     $scope.other = function () {
         var list = [];
-        //var list_string = [];
         for (var i = 0; i < $scope.model_list.length; i++) {
             list.push({
                 "title": $scope.model_list[i].title,
@@ -600,7 +600,6 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
                 "imgList": $scope.model_list[i].imgList
             })
         };
-         //var list_string = JSON.stringify(list);
         var m_params1 = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -613,6 +612,7 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
             data: m_params1,
             traditional: true,
             success: function (data, textStatus, jqXHR) {
+                console.log(data);
                 if (data.returnCode == 0) {
                     $location.path("admin/my_project/detail/" + $stateParams.id);
                     $scope.$apply();

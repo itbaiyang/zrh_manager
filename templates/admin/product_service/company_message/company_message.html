@@ -33,12 +33,10 @@
         </li>
         <li class="list-group-item list_common" ng-repeat="resultObj in result_list">
             <span class="width25">
-                <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}"
+                <input type="checkbox" id="{{resultObj.id}}"
                        ng-checked="isSelected(resultObj.id)"
                        ng-click="updateSelection($event,resultObj.id)">
-                <!--<a ng-click="updateApply(resultObj.id)" style="cursor: pointer">-->
                         {{resultObj.companyName}}
-                <!--</a>-->
                 <img src="img/tips/tel.png" class="img-size" ng-show="resultObj.channel =='tel'">
                 <!--<img src="img/tips/tel.png" class="img-size" ng-show="resultObj.channel =='zrh_manager'">-->
                 <img src="img/tips/bankMan.png" class="img-size" ng-show="resultObj.channel =='a'">

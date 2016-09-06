@@ -15,13 +15,12 @@ var app = angular.module('app', [
     'loanApplicationCtrl',
     'productCtrl',
     'myProjectCtrl',
-    // 'superCtrl',
     'manageCtrl',
     'signUpCtrl',
     'bankCtrl',
-    // 'statisticsCtrl',
     'channelCtrl',
     'shareCtrl',
+    'accountCtrl',
     'messageCtrl',
 
 ], function ($httpProvider) {
