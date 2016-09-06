@@ -185,10 +185,30 @@
  }
 .width35{
     display: inline-block;
-    width:35%;
+    width: 35%;
     vertical-align: top;
+}
+
+.width60 {
+    display: inline-block;
+    width: calc(60% - 10px);
+    vertical-align: top;
+    position: relative;
+}
+
+.width80 {
+    display: inline-block;
+    width: 79%;
+    vertical-align: top;
+    position: relative;
 }
 .textEnd{
     text-align: end;
     margin-top: 5px;
+}
+
+.input-right {
+    position: absolute;
+    top: 6px;
+    left: 90%;
 }
