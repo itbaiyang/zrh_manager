@@ -652,3 +652,16 @@
     height: 15px;
     vertical-align: middle;
 }
+
+.cover-img {
+    position: absolute;
+    left: 0;
+    border: 0;
+    z-index: 4;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    background: url("../img/upload1.png");
+    background-size: 100%;
+}
