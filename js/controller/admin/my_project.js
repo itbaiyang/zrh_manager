@@ -1105,7 +1105,6 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
     };
 });
 
-
 myProjectCtrl.controller('DistributeCtrl', function ($http, $scope, $rootScope, $location, $state, $timeout, $routeParams, $stateParams) {
     /*添加删除模板*/
     $scope.id = $stateParams.id;
