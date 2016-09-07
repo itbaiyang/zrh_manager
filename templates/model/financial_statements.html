@@ -14,9 +14,10 @@
                 <div class="redPointInner"></div>
             </div>
         </div>
-        <div id="imgList_model_{{model.id_model}}" class="img-list">
-            <img id="img_model_{{model.id_model}}"  ng-mouseover="get_id(model.id_model)" src="img/upload1.png"
+        <div id="{{model.img_model_div}}" class="img-list">
+            <img id="{{model.img_model_id}}" ng-mouseover="get_id(model.id_model)" src="img/upload1.png"
                  class="loadAdd fl">
+            <!--<div class="cover-img" ng-hide="coverImg[model.id_model] == false" ng-mouseover="get_id(model.id_model)"></div>-->
         </div>
     </div>
 </div>
