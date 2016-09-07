@@ -476,12 +476,17 @@
 
 .list_common {
     height: 108px;
-    line-height: 36px;
+    line-height: 24px;
     min-width: 1065px;
     width: 100%;
-    padding: 36px 15px;
+    padding: 36px 15px 0;
 }
 
+.list_common input {
+    margin-right: 10px;
+    margin-top: 0px;
+    vertical-align: middle;
+}
 .list_common1 {
     height: 108px;
     line-height: 36px;
@@ -550,9 +555,7 @@
 }
 
 .list_common span, .list_common1 span {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    vertical-align: top;
     padding: 0;
 }
 
@@ -648,4 +651,17 @@
     width: 15px;
     height: 15px;
     vertical-align: middle;
+}
+
+.cover-img {
+    position: absolute;
+    left: 0;
+    border: 0;
+    z-index: 4;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    background: url("../img/upload1.png");
+    background-size: 100%;
 }

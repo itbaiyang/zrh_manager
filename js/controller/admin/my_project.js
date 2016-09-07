@@ -2,8 +2,8 @@ var myProjectCtrl = angular.module('myProjectCtrl', []);
 myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $location) {
     $scope.list = function (pageNo, pageSize) {
         var m_params = {
-            "userId":$rootScope.login_user.userId,
-            "token":$rootScope.login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
             "pageNo": pageNo,
             "pageSize": pageSize,
             "wd": $scope.wd,
@@ -51,16 +51,16 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
         $location.path('/admin/my_project/detail/' + id);
     };
 
-    $scope.nextStatus = function (id,status) {
-        if(status <4){
+    $scope.nextStatus = function (id, status) {
+        if (status < 4) {
             status++;
             var m_params = {
-                "userId":$rootScope.login_user.userId,
-                "token":$rootScope.login_user.token,
-                status:status
+                "userId": $rootScope.login_user.userId,
+                "token": $rootScope.login_user.token,
+                status: status
             };
             $http({
-                url: api_uri + "loanApplicationManage/next/"+id,
+                url: api_uri + "loanApplicationManage/next/" + id,
                 method: "GET",
                 params: m_params
             }).success(function (d) {
@@ -73,13 +73,13 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
             }).error(function (d) {
                 $location.path("/error");
             })
-        }else{
+        } else {
         }
 
     };
 
     $scope.list(1, 20);
-    $scope.changePage = function(page){
+    $scope.changePage = function (page) {
         $scope.pageNo1 = page;
         $scope.$watch($scope.pageNo1, function () {
             $scope.list($scope.pageNo1, 20);
@@ -109,7 +109,7 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
         updateSelected(action, id);
     };
 
-    $scope.refresh = function(){
+    $scope.refresh = function () {
         $scope.list($scope.pageNo1, 10);
     };
 
@@ -145,8 +145,8 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
 
     $scope.cancel = function (id) {
         var m_params = {
-            "userId":$rootScope.login_user.userId,
-            "token":$rootScope.login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
             "id": id,
         };
         $http({
@@ -193,6 +193,7 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
     };
 
     $scope.linkCompany = function(id ,remark) {
+        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
