@@ -2,8 +2,8 @@ var myProjectCtrl = angular.module('myProjectCtrl', []);
 myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $location) {
     $scope.list = function (pageNo, pageSize) {
         var m_params = {
-            "userId":$rootScope.login_user.userId,
-            "token":$rootScope.login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
             "pageNo": pageNo,
             "pageSize": pageSize,
             "wd": $scope.wd,
@@ -51,16 +51,16 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
         $location.path('/admin/my_project/detail/' + id);
     };
 
-    $scope.nextStatus = function (id,status) {
-        if(status <4){
+    $scope.nextStatus = function (id, status) {
+        if (status < 4) {
             status++;
             var m_params = {
-                "userId":$rootScope.login_user.userId,
-                "token":$rootScope.login_user.token,
-                status:status
+                "userId": $rootScope.login_user.userId,
+                "token": $rootScope.login_user.token,
+                status: status
             };
             $http({
-                url: api_uri + "loanApplicationManage/next/"+id,
+                url: api_uri + "loanApplicationManage/next/" + id,
                 method: "GET",
                 params: m_params
             }).success(function (d) {
@@ -73,13 +73,13 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
             }).error(function (d) {
                 $location.path("/error");
             })
-        }else{
+        } else {
         }
 
     };
 
     $scope.list(1, 20);
-    $scope.changePage = function(page){
+    $scope.changePage = function (page) {
         $scope.pageNo1 = page;
         $scope.$watch($scope.pageNo1, function () {
             $scope.list($scope.pageNo1, 20);
@@ -109,7 +109,7 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
         updateSelected(action, id);
     };
 
-    $scope.refresh = function(){
+    $scope.refresh = function () {
         $scope.list($scope.pageNo1, 10);
     };
 
@@ -145,8 +145,8 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
 
     $scope.cancel = function (id) {
         var m_params = {
-            "userId":$rootScope.login_user.userId,
-            "token":$rootScope.login_user.token,
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
             "id": id,
         };
         $http({
@@ -213,7 +213,7 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
     //     })
     // };
 
-    $scope.linkCompany = function(id ,remark) {
+    $scope.linkCompany = function (id, remark) {
         // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId": $rootScope.login_user.userId,
@@ -361,10 +361,10 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
     };
 
     $scope.addTips = function () {
-        $(".add-tips").css("display","block");
+        $(".add-tips").css("display", "block");
     }
     $scope.submitAddTips = function () {
-        $(".add-tips").css("display","none");
+        $(".add-tips").css("display", "none");
     };
 
     $scope.updateRemark = function () {
@@ -381,7 +381,7 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
             traditional: true,
             success: function (data, textStatus, jqXHR) {
                 if (data.returnCode == 0) {
-                    $(".add-tips").css("display","none");
+                    $(".add-tips").css("display", "none");
                 }
                 else {
                 }
@@ -399,8 +399,8 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
             $state.go(from_route);
         } else if (from_route2 == null) {
             $state.go(from_route);
-        }else{
-            $location.path(from_route2+from_params);
+        } else {
+            $location.path(from_route2 + from_params);
         }
     };
 
@@ -416,7 +416,7 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
     $scope.reBackDetail = function () {
         $location.path("admin/my_project/detail/" + $stateParams.id);
     };
-    $scope.get = function() {
+    $scope.get = function () {
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token
@@ -430,8 +430,7 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
             $scope.registerLinkmanName = d.result.registerLinkmanName;
             $scope.registerLinkmanMobile = d.result.registerLinkmanMobile;
             $scope.model_list = d.result.templateList;
-            for(var i = 0; i<$scope.model_list.length;i++)
-            {
+            for (var i = 0; i < $scope.model_list.length; i++) {
                 $scope.model_list[i].id_model = i;
             }
             $scope.picSave();
@@ -458,12 +457,12 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
             if (d.returnCode == 0) {
                 $scope.qiniu_token = d.result.uptoken;
                 $scope.get_ids = [];
-                for(var i = 0;i<$scope.model_list;i++){
+                for (var i = 0; i < $scope.model_list; i++) {
                     $scope.get_ids.push(i);
                 }
                 $scope.get_id = function (d) {
                     $scope.saveImg = d;
-                    if(($scope.get_ids.length >0 &&$scope.get_ids.indexOf($scope.saveImg) <= -1)||$scope.get_ids.length == 0){
+                    if (($scope.get_ids.length > 0 && $scope.get_ids.indexOf($scope.saveImg) <= -1) || $scope.get_ids.length == 0) {
                         $scope.get_ids.push(d);
                         var uploader = Qiniu.uploader({
                             runtimes: 'html5,flash,html4',    //上传模式,依次退化
@@ -515,7 +514,7 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
                             }
 
                         });
-                    } else{
+                    } else {
                     }
                 };
             } else {
@@ -526,9 +525,9 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
 
     };
     $scope.addModel = function (templateType) {
-        if($scope.model_list){
+        if ($scope.model_list) {
             var id_model = $scope.model_list.length;
-        }else{
+        } else {
             $scope.model_list = [];
             var id_model = 0;
         }
@@ -538,12 +537,12 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
             "title": $scope.model.title,
             "content": $scope.model.content,
             "name": "",
-            "imgList":[]
+            "imgList": []
         });
         id_model++;
     };
     $scope.delete = function (id) {
-            $scope.model_list.splice(id, 1);
+        $scope.model_list.splice(id, 1);
     };
     /*保存基本信息*/
 
@@ -599,8 +598,9 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
                 "content": $scope.model_list[i].content,
                 "imgList": $scope.model_list[i].imgList
             })
-        };
-         //var list_string = JSON.stringify(list);
+        }
+        ;
+        //var list_string = JSON.stringify(list);
         var m_params1 = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -628,7 +628,7 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
         $scope.basicMessage();
     };
     $scope.saveImg = "";
-    $scope.removeImgList = function (id,index) {
+    $scope.removeImgList = function (id, index) {
         id.splice(index, 1);
     };
 });
