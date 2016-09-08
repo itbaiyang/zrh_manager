@@ -255,7 +255,7 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
             method: "GET",
             params: m_params
         }).success(function (d) {
-            // console.log(d);
+            console.log(d);
             $scope.isAllot = d.result.isAllot;
             $scope.w = d.result.w;
             $scope.registerLinkmanName = d.result.registerLinkmanName;
