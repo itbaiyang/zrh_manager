@@ -375,15 +375,15 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             }
         })
 
-        .state('admin.account', {
-            url: '/account',
-            views: {
-                'contains@admin': {
-                    templateUrl: templates_root + 'admin/user_center/account/account.html',
-                    controller: 'AccountCtrl'
-                }
-            }
-        })
+        // .state('admin.account', {
+        //     url: '/account',
+        //     views: {
+        //         'contains@admin': {
+        //             templateUrl: templates_root + 'admin/user_center/account/account.html',
+        //             controller: 'AccountCtrl'
+        //         }
+        //     }
+        // })
         .state('admin.message', {
             url: '/message',
             views: {

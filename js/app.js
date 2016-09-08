@@ -20,7 +20,7 @@ var app = angular.module('app', [
     'bankCtrl',
     'channelCtrl',
     'shareCtrl',
-    'accountCtrl',
+    // 'accountCtrl',
     'messageCtrl',
 
 ], function ($httpProvider) {
