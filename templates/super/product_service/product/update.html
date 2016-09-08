@@ -1,4 +1,4 @@
-<div style="padding-left:15px;position: absolute;overflow-x:hidden; z-index: 100;width: 100%; height: calc(100% - 50px); background: #ffffff">
+<div style="padding-left:15px;position: absolute;overflow-x:hidden; z-index: 100;width: 100%; height: 100%; background: #ffffff">
     <div class="contentTitle">
         <span>添加金融产品</span>
         <div class="fr" style="margin: 10px">
@@ -8,21 +8,35 @@
     </div>
     <form class="form-horizontal">
         <p class="createTitle">基本内容</p>
-        <div class="form-group">
-            <label for="productName" class="col-sm-2 control-label">产品名称</label>
-            <div class="col-sm-4">
-                <input type="text" class="form-control" id="productName" placeholder="产品名称" ng-model="product.name">
+        <div style="width: 600px">
+            <div class="form-group">
+                <label for="inlineRadio1" class="width20 textEnd">选择类型：</label>
+                <label class="radio-inline width20" style="vertical-align: top">
+                    <input type="radio" name="inlineRadioOptions" id="inlineRadio1" ng-model="type" value="0" checked>
+                    产品
+                </label>
+                <label class="radio-inline width20" style="vertical-align: top">
+                    <input type="radio" name="inlineRadioOptions" id="inlineRadio2" ng-model="type" value="1"> 活动
+                </label>
+                <label class="radio-inline width20" style="vertical-align: top">
+                    <input type="radio" name="inlineRadioOptions" id="inlineRadio3" ng-model="type" value="2"> 个人
+                </label>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="tags" class="col-sm-2 control-label">添加标签</label>
-            <div class="col-sm-4">
-                <input type="text" class="form-control" id="tags" placeholder="添加标签" ng-model="tags">
+            <div class="form-group">
+                <label for="productName" class="width20 textEnd">产品名称：</label>
+                <div class="width80">
+                    <input type="text" class="form-control" id="productName" placeholder="产品名称" ng-model="product.name">
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="bankname" class="col-sm-2 control-label">银行名称</label>
-            <div class="btn-group col-sm-4 col-lg-4">
+            <div class="form-group">
+                <label for="tags" class="width20 textEnd">添加标签：</label>
+                <div class="width80">
+                    <input type="text" class="form-control" id="tags" placeholder="＃标签＃＃标签2＃" ng-model="tags">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="bankname" class="width20 textEnd">银行名称：</label>
+                <div class="btn-group width80">
                 <button type="button" class="btnInput col-sm-12 col-lg-12" id="bankname" data-toggle="dropdown"
                         aria-haspopup="true"
                         aria-expanded="false">
@@ -38,39 +52,47 @@
                 </ul>
             </div>
         </div>
-        <div class="form-group">
-            <label for="rate" class="col-sm-2 control-label">利率</label>
-            <div class="col-sm-2">
-                <input type="text" class="form-control" id="rate" placeholder="利率" ng-model="product.rate">
+
+            <div class="form-group">
+                <label for="rate" class="width20 textEnd">利率：</label>
+                <div class="width80">
+                    <input type="text" class="form-control" id="rate" placeholder="写出利率值即可，请勿加“%”"
+                           ng-model="product.rate">
+                    <span class="input-right">%</span>
+                </div>
             </div>
-            <label for="rateRemark" class="col-sm-1 control-label">备注</label>
-            <div class="col-sm-4">
-                <input type="text" class="form-control" id="rateRemark" placeholder="备注" ng-model="product.rateRemark">
+            <div class="form-group">
+                <label for="rateRemark" class="width20 textEnd">利率描述：</label>
+                <div class="width80">
+                    <input type="text" class="form-control" id="rateRemark" placeholder="最多不得超过6个字"
+                           ng-model="product.rateRemark">
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="loanvalue" class="col-sm-2 control-label">贷款额度</label>
-            <div class="col-sm-4">
-                <input type="text" class="form-control" id="loanvalue" placeholder="贷款额度" ng-model="product.loanvalue">
+            <div class="form-group">
+                <label for="loanvalue" class="width20 textEnd">贷款额度：</label>
+                <div class="width80">
+                    <input type="text" class="form-control" id="loanvalue" placeholder="最多不得超过6个字（额度单位自己写）"
+                           ng-model="product.loanvalue">
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="loanlife" class="col-sm-2 control-label">贷款期限</label>
-            <div class="col-sm-4">
-                <input type="text" class="form-control" id="loanlife" placeholder="贷款期限" ng-model="product.loanlife">
+            <div class="form-group">
+                <label for="loanlife" class="width20 textEnd">贷款期限：</label>
+                <div class="width80">
+                    <input type="text" class="form-control" id="loanlife" placeholder="最多不得超过6个字（期限单位自己写）"
+                           ng-model="product.loanlife">
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="summary" class="col-sm-2 control-label">产品概述</label>
-            <div class="col-sm-6">
+            <div class="form-group">
+                <label for="summary" class="width20 textEnd">产品概述：</label>
+                <div class="width80">
                 <textarea type="text" class="form-control" id="summary" placeholder="产品概述"
                           ng-model="product.summary"></textarea>
+                </div>
             </div>
+            <p class="col-sm-offset-2">
+                最多可输入150个字符，超过部分将不显示
+            </p>
         </div>
-        <p class="col-sm-offset-2">
-            最多可输入150个字符，超过部分将不显示
-        </p>
-
         <p class="createTitle">产品特色
             <button class="btn" ng-click="add_feature()">添加特色</button>
         </p>
