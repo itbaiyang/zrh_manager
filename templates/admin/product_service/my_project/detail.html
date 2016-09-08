@@ -44,7 +44,8 @@
             </div>
             <div class="fl" style="margin-top: 0px;width: 30%">
                 <p>
-                    <span style="color: red">{{progressText||'未申请'}}</span>&nbsp;&nbsp;<span class="fr" ng-show="days">预计：{{days}}天</span>
+                    <span style="color: red">{{progressText||'未申请'}}</span>&nbsp;&nbsp;<span ng-show="days >= 0"
+                                                                                             class="fr">预计：{{days}}天</span>
             </p>
                 <div class="progress">
                     <div class="progress-bar progress-bar-success" style="width: {{jindu}}%;">

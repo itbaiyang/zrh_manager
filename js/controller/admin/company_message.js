@@ -27,8 +27,10 @@ loanApplicationCtrl.controller('LoanApplicationCtrl', function ($http, $scope, $
                     $scope.status = d.result.status;
                     if (data.status == 0) {
                         data.progressText = "未申请";
+                        data.color = 1;
                     } else {
                         data.progressText = "申请中";
+                        data.color = 2;
                     }
                 });
             }

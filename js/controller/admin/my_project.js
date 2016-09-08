@@ -23,20 +23,26 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
                     $scope.status = d.result.status;
                     if (data.status == 0) {
                         data.progressText = "未申请";
+                        data.color = 1;
                     } else if (data.status == 1) {
                         data.progressText = "审核中";
                         data.progressBtn = "开始约见";
+                        data.color = 2;
                     } else if (data.status == 2) {
                         data.progressText = "约见中";
                         data.progressBtn = "继续跟进";
+                        data.color = 2;
                     } else if (data.status == 3) {
                         data.progressText = "跟进中";
                         data.progressBtn = "完成贷款";
+                        data.color = 2;
                     } else if (data.status == 4) {
                         data.progressText = "成功融资";
                         data.progressBtn = "已结束";
+                        data.color = 3;
                     } else if (data.status == -1) {
                         data.progressText = "申请取消";
+                        data.color = 1;
                     }
                 });
             }
@@ -255,8 +261,9 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
             method: "GET",
             params: m_params
         }).success(function (d) {
-            // console.log(d);
+            console.log(d);
             $scope.isAllot = d.result.isAllot;
+            $scope.days = d.result.days;
             $scope.w = d.result.w;
             $scope.registerLinkmanName = d.result.registerLinkmanName;
             $scope.registerLinkmanMobile = d.result.registerLinkmanMobile;
@@ -264,7 +271,6 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
             $scope.bankName = d.result.bankName;
             $scope.productName = d.result.productName;
             $scope.dealRemark = d.result.dealRemark;
-            $scope.days = d.result.days;
             if (d.result.remark) {
                 $scope.remark = d.result.remark;
             }
@@ -1135,7 +1141,7 @@ myProjectCtrl.controller('DistributeCtrl', function ($http, $scope, $rootScope, 
 
     $scope.list(1, 100);
 
-    $scope.bank_man_list = function (id, pageNo, pageSize) {
+    $scope.bank_man_list_get = function (id, pageNo, pageSize) {
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -1189,7 +1195,7 @@ myProjectCtrl.controller('DistributeCtrl', function ($http, $scope, $rootScope, 
     $scope.choiceBank = function (id, name) {
         $scope.bankId = id;
         $scope.bankName = name;
-        $scope.bank_man_list($scope.bankId, 1, 400)
+        $scope.bank_man_list_get($scope.bankId, 1, 400)
     };
 });
 
@@ -1243,9 +1249,9 @@ myProjectCtrl.controller('ApplyHelpCtrl', function ($http, $scope, $rootScope, $
     $scope.choiceBank = function (id, name) {
         $scope.bankId = id;
         $scope.bankName = name;
-        $scope.product_list($scope.bankId, 1, 400)
+        $scope.product_list_get($scope.bankId, 1, 400)
     };
-    $scope.product_list = function (id, pageNo, pageSize) {
+    $scope.product_list_get = function (id, pageNo, pageSize) {
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
