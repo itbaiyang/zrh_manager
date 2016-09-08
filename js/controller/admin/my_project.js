@@ -1135,7 +1135,7 @@ myProjectCtrl.controller('DistributeCtrl', function ($http, $scope, $rootScope, 
 
     $scope.list(1, 100);
 
-    $scope.bank_man_list = function (id, pageNo, pageSize) {
+    $scope.bank_man_list_get = function (id, pageNo, pageSize) {
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -1189,7 +1189,7 @@ myProjectCtrl.controller('DistributeCtrl', function ($http, $scope, $rootScope, 
     $scope.choiceBank = function (id, name) {
         $scope.bankId = id;
         $scope.bankName = name;
-        $scope.bank_man_list($scope.bankId, 1, 400)
+        $scope.bank_man_list_get($scope.bankId, 1, 400)
     };
 });
 
