@@ -1243,9 +1243,9 @@ myProjectCtrl.controller('ApplyHelpCtrl', function ($http, $scope, $rootScope, $
     $scope.choiceBank = function (id, name) {
         $scope.bankId = id;
         $scope.bankName = name;
-        $scope.product_list($scope.bankId, 1, 400)
+        $scope.product_list_get($scope.bankId, 1, 400);
     };
-    $scope.product_list = function (id, pageNo, pageSize) {
+    $scope.product_list_get = function (id, pageNo, pageSize) {
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
