@@ -401,7 +401,6 @@ productCtrl.controller('ProductUpdateCtrl', function ($http, $scope, $state, $ro
     };
 
     $scope.list = function (pageNo, pageSize) {
-        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
