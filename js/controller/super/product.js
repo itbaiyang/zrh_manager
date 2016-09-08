@@ -279,7 +279,6 @@ productCtrl.controller('ProductCreateCtrl', function ($http, $scope, $rootScope,
     };
 
     $scope.list = function (pageNo, pageSize) {
-        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
