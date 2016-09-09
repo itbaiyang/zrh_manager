@@ -379,7 +379,7 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
             traditional: true,
             success: function (data, textStatus, jqXHR) {
                 if (data.returnCode == 0) {
-                    alert('留言成功');
+                    // alert('留言成功');
                     $scope.content = '';
                     $scope.get_message();
                 }
