@@ -14,22 +14,27 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
             $scope.message_list = d.result.datas;
             angular.forEach($scope.message_list, function (data) {
                 //$scope.status = d.result.status;
+                data.dayNum = ''
                 if (data.status == 0) {
                     data.progressText = "未申请";
                 } else if (data.status == 1) {
-                    data.progressText = "申请中";
+                    data.progressText = "约见中";
+                    data.progressTextNext = "申请中";
                     data.jindu = 20;
                     data.jindu_next = 30;
                 } else if (data.status == 2) {
-                    data.progressText = "约见中";
+                    data.progressText = "申请中";
+                    data.progressTextNext = "约见中";
                     data.jindu = 20;
                     data.jindu_next = 30;
                 } else if (data.status == 3) {
-                    data.progressText = "跟进中";
+                    data.progressText = "约见中";
+                    data.progressTextNext = "跟进中";
                     data.jindu = 50;
                     data.jindu_next = 25;
                 } else if (data.status == 4) {
-                    data.progressText = "成功融资";
+                    data.progressText = "跟进中";
+                    data.progressTextNext = "成功融资";
                     data.progressBtn = "已结束";
                     data.jindu = 75;
                     data.jindu_next = 25;
@@ -47,7 +52,6 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
     $scope.show_allow = function (status, id) {
         $scope.showAllow[id] = true;
         $scope.status = status;
-        // console.log($scope.status);
         if (status == 2) {
             $scope.statusText = "约见中";
         } else if (status == 3) {
@@ -69,15 +73,15 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
     $scope.cancel = function (id) {
         $scope.showAllow[id] = false;
     };
-    $scope.allow = function (days, id, index) {
+    $scope.allow = function (dayNum, id, index) {
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
             "status": $scope.status,
-            "dayNum": days,
+            "dayNum": dayNum,
             "id": id,
         };
-        // console.log(m_params);
+        console.log(m_params);
         $http({
             url: api_uri + "applyBankDeal/manage/allow",
             method: "GET",
@@ -85,6 +89,7 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
         }).success(function (d) {
             // console.log(d);
             $scope.showAllow[index] = false;
+            $scope.init();
 
         }).error(function (d) {
             // console.log(d);

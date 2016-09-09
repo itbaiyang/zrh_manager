@@ -45,8 +45,10 @@
             </span>
             <span class="width25">{{resultObj.bankName ||'未申请'}} <span ng-show="resultObj.bankName">-</span>{{resultObj.productName}}</span>
             <span class="width15">{{resultObj.time | date:'yyyy-MM-dd'}}</span>
-            <span class="width15" style="color: grey" ng-show="resultObj.color == 1">{{resultObj.progressText}}</span>
-            <span class="width15" style="color: red" ng-show="resultObj.color == 2">{{resultObj.progressText}}</span>
+            <span class="width15" style="color: #838383"
+                  ng-show="resultObj.color == 1">{{resultObj.progressText}}</span>
+            <span class="width15" style="color: #F97383"
+                  ng-show="resultObj.color == 2">{{resultObj.progressText}}</span>
             <span class="width15">{{resultObj.progressText}}</span>
             <button class="btnBlue" style="vertical-align: top" ng-click="updateApply(resultObj.id)">查看详情</button>
         </li>

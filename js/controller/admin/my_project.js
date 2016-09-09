@@ -272,6 +272,7 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
             $scope.productName = d.result.productName;
             $scope.dealRemark = d.result.dealRemark;
             $scope.days = d.result.days;
+            $scope.type = d.result.type;
             if (d.result.remark) {
                 $scope.remark = d.result.remark;
             }
@@ -327,7 +328,12 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
     $scope.get_message();
 
     $scope.editApply = function (id) {
-        $location.path('/admin/my_project/edit_apply/' + id);
+        if ($scope.type == 2) {
+            alert('个人产品暂不支持修改信息');
+        } else {
+            $location.path('/admin/my_project/edit_apply/' + id);
+        }
+
     };
     $scope.apply = function (id) {
         var m_params = {
@@ -1289,6 +1295,30 @@ myProjectCtrl.controller('ApplyHelpCtrl', function ($http, $scope, $rootScope, $
         $scope.applyMobile = $stateParams.mobile;
     }
 
+    $scope.get = function () {
+        var m_params = {
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
+            "applyId": $scope.id,
+        };
+        $http({
+            url: api_uri + "loanApplicationManage/getProduct",
+            method: "GET",
+            params: m_params
+        }).success(function (d) {
+            console.log(d);
+            if (d.returnCode == 0) {
+                $scope.bankName = d.result.bankName;
+                $scope.productName = d.result.productName;
+                $scope.productId = d.result.productId;
+            }
+            else {
+            }
+        }).error(function (d) {
+        })
+    };
+    $scope.get();
+
     $scope.backProjectDetail = function (id) {
         // console.log(id);
         $location.path('/admin/my_project/detail/' + id);
@@ -1324,9 +1354,13 @@ myProjectCtrl.controller('ApplyHelpCtrl', function ($http, $scope, $rootScope, $
         $location.path('/admin/my_project/edit_apply/' + id);
     };
 
-    $scope.choiceProduct = function (id, name) {
+    $scope.choiceProduct = function (id, name, type) {
         $scope.productId = id;
         $scope.productName = name;
+        if (type == 2) {
+            alert('企业不可以申请个人产品，请更换');
+            $scope.productName = '';
+        }
     };
 
     $scope.choiceBank = function (id, name) {
@@ -1349,6 +1383,7 @@ myProjectCtrl.controller('ApplyHelpCtrl', function ($http, $scope, $rootScope, $
             params: m_params
         }).success(function (d) {
             if (d.returnCode == 0) {
+                console.log(d);
                 $scope.page = d.result;
                 $scope.product_list = d.result.datas;
             }
@@ -1365,24 +1400,27 @@ myProjectCtrl.controller('ApplyHelpCtrl', function ($http, $scope, $rootScope, $
             "token": $rootScope.login_user.token,
             "applyId": $stateParams.id,
             "productId": $scope.productId,
-            // "mobile": $scope.applyMobile,
+            "mobile": $scope.applyMobile,
         };
-        $.ajax({
-            type: 'POST',
-            url: api_uri + "loanApplicationManage/changeProduct",
-            data: m_params,
-            traditional: true,
-            success: function (data, textStatus, jqXHR) {
-                // console.log(data);
-                if (data.returnCode == 0) {
-                    $location.path('/admin/my_project/detail/' + $scope.id);
-                    $scope.$apply();
-                }
-                else {
-                }
-            },
-            dataType: 'json',
-        });
+        console.log(m_params);
+        if (m_params.mobile && m_params.mobile != '') {
+            $.ajax({
+                type: 'POST',
+                url: api_uri + "loanApplicationManage/helpApply",
+                data: m_params,
+                traditional: true,
+                success: function (data, textStatus, jqXHR) {
+                    // console.log(data);
+                    if (data.returnCode == 0) {
+                        $location.path('/admin/my_project/detail/' + $scope.id);
+                        $scope.$apply();
+                    }
+                    else {
+                    }
+                },
+                dataType: 'json',
+            });
+        }
 
     };
 });
