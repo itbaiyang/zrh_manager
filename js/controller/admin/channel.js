@@ -154,7 +154,7 @@ channelCtrl.controller('ChannelDetailCtrl', function ($http, $scope, $state, $ro
                     if (data.status == 0) {
                         data.progressText = "未申请";
                     } else if (data.status == 1) {
-                        data.progressText = "审核中";
+                        data.progressText = "申请中";
                         data.progressBtn = "开始约见";
                     } else if (data.status == 2) {
                         data.progressText = "约见中";
@@ -334,7 +334,7 @@ channelCtrl.controller('HistoryCtrl', function ($http, $scope, $state, $rootScop
                     if (data.status == 0) {
                         data.progressText = "未申请";
                     } else if (data.status == 1) {
-                        data.progressText = "审核中";
+                        data.progressText = "申请中";
                         data.progressBtn = "开始约见";
                     } else if (data.status == 2) {
                         data.progressText = "约见中";

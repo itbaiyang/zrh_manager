@@ -17,7 +17,7 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
                 if (data.status == 0) {
                     data.progressText = "未申请";
                 } else if (data.status == 1) {
-                    data.progressText = "审核中";
+                    data.progressText = "申请中";
                     data.jindu = 20;
                     data.jindu_next = 30;
                 } else if (data.status == 2) {

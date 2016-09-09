@@ -233,7 +233,7 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
         if ($scope.status == 0) {
             $scope.status_text = "未申请";
         } else if ($scope.status == 1) {
-            $scope.status_text = "审核中";
+            $scope.status_text = "申请中";
         } else if ($scope.status == 2) {
             $scope.status_text = "约见中";
         } else if ($scope.status == 3) {
@@ -283,7 +283,7 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
                 $scope.progressText = "未申请";
                 $scope.jindu = 0;
             } else if ($scope.status == 1) {
-                $scope.progressText = "审核中";
+                $scope.progressText = "申请中";
                 $scope.progressBtn = "开始约见";
                 $scope.jindu = 20;
             } else if ($scope.status == 2) {
