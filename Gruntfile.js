@@ -19,7 +19,7 @@ module.exports = function (grunt) {
                     'js/controller/admin/my_project.js',
                     'js/controller/admin/channel.js',
                     'js/controller/admin/share.js',
-                    'js/controller/admin/account.js',
+                    // 'js/controller/admin/account.js',
                     'js/controller/admin/message.js',
                     'js/app.js',
                     'js/route.js'
