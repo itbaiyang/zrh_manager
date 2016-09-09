@@ -307,6 +307,25 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
     };
     $scope.get();
 
+    $scope.get_message = function () {
+        var m_params = {
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
+            "applyId": $stateParams.id,
+        };
+        $http({
+            url: api_uri + "apply/comments/list",
+            method: "GET",
+            params: m_params
+        }).success(function (d) {
+            console.log(d);
+            $scope.message_list = d.result;
+        }).error(function (d) {
+
+        })
+    };
+    $scope.get_message();
+
     $scope.editApply = function (id) {
         $location.path('/admin/my_project/edit_apply/' + id);
     };
@@ -342,32 +361,94 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
         $location.path('/admin/my_project/apply_again/' + id + '/' + mobile);
     };
 
-    $scope.distribute = function (id) {
-        $location.path('/admin/my_project/distribute/' + id);
+    $scope.messages = function (id) {
+        $location.path('/admin/my_project/message/' + id);
     };
 
-    $scope.addTips = function () {
-        $(".add-tips").css("display","block");
-    }
-    $scope.submitAddTips = function () {
-        $(".add-tips").css("display","none");
-    };
-
-    $scope.updateRemark = function () {
+    $scope.remark_submit = function () {
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
             "applyId": $stateParams.id,
-            "dealRemark": $scope.dealRemark,
+            "content": $scope.content,
         };
         $.ajax({
             type: 'POST',
-            url: api_uri + "inforTemplate/updateRemark",
+            url: api_uri + "apply/comments/create",
             data: m_params,
             traditional: true,
             success: function (data, textStatus, jqXHR) {
                 if (data.returnCode == 0) {
-                    $(".add-tips").css("display","none");
+                    alert('留言成功');
+                    $scope.content = '';
+                    $scope.get_message();
+                }
+                else {
+                    alert('留言失败');
+                }
+            },
+            dataType: 'json',
+        });
+
+    };
+
+    $scope.distribute = function (id) {
+        $location.path('/admin/my_project/distribute/' + id);
+    };
+
+    $scope.add_fee = function () {
+        $(".add-fee").css("display", "block");
+        $(".add-loan").css("display", "none");
+    };
+    $scope.add_loan = function () {
+        $(".add-loan").css("display", "block");
+        $(".add-fee").css("display", "none");
+    };
+    $scope.cancel_add = function () {
+        $(".add-fee").css("display", "none");
+        $(".add-loan").css("display", "none");
+    };
+    $scope.update_loan = function () {
+        var m_params = {
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
+            "applyId": $stateParams.id,
+            "loanValue": $scope.loanValue,
+        };
+        console.log(m_params);
+        $.ajax({
+            type: 'POST',
+            url: api_uri + "inforTemplate/updateLoanValue",
+            data: m_params,
+            traditional: true,
+            success: function (data, textStatus, jqXHR) {
+                if (data.returnCode == 0) {
+                    $(".add-loan").css("display", "none");
+                }
+                else {
+                }
+            },
+            dataType: 'json',
+        });
+
+    };
+    $scope.update_fee = function () {
+        var m_params = {
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
+            "applyId": $stateParams.id,
+            "fee": $scope.fee,
+        };
+        console.log(m_params);
+        $.ajax({
+            type: 'POST',
+            url: api_uri + "inforTemplate/updateFee",
+            data: m_params,
+            traditional: true,
+            success: function (data, textStatus, jqXHR) {
+                if (data.returnCode == 0) {
+                    $(".add-fee").css("display", "none");
+                    $scope.get();
                 }
                 else {
                 }
@@ -1042,8 +1123,8 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
             "business_scope": $scope.basic.business_scope,
             "linkmanName": $scope.basic.linkmanName,
             "linkmanMobile": $scope.basic.linkmanMobile,
-            "fee": $scope.basic.fee,
-            "loanValue": $scope.basic.loanValue,
+            // "fee": $scope.basic.fee,
+            // "loanValue": $scope.basic.loanValue,
             "continual": $scope.basic.continual,
         };
         $.ajax({
@@ -1332,6 +1413,31 @@ myProjectCtrl.controller('ChangeCompanyCtrl', function ($http, $scope, $state, $
         });
     };
 
+    $scope.reBackDetail = function () {
+        $location.path("admin/my_project/detail/" + $stateParams.id);
+    };
+});
+
+myProjectCtrl.controller('MessageCtrl', function ($http, $scope, $state, $rootScope, $stateParams, $location, $routeParams) {
+    $scope.get_message = function () {
+        var m_params = {
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
+            "applyId": $stateParams.id,
+        };
+        console.log(m_params);
+        $http({
+            url: api_uri + "apply/comments/list",
+            method: "GET",
+            params: m_params
+        }).success(function (d) {
+            console.log(d);
+            $scope.message_list = d.result;
+        }).error(function (d) {
+
+        })
+    };
+    $scope.get_message();
     $scope.reBackDetail = function () {
         $location.path("admin/my_project/detail/" + $stateParams.id);
     };

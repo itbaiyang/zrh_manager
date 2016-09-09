@@ -1,0 +1,22 @@
+<div style="position: absolute;overflow-x:hidden; z-index: 100;width: 100%; height: 100%; padding: 0 15px; background: #ffffff">
+    <div class="contentTitle">
+        <span>更多{{}}条留言</span>
+        <div class="fr" ng-show="showBtn == 1" style="margin: 10px">
+            <button class="btnGrew" ng-click="apply(id)">我要处理</button>
+            <button class="btn btnGrew fr" ng-click="reBackDetails()">返回</button>
+        </div>
+    </div>
+    <div class="">
+        <div style="padding-left: 30px;height: 70px" ng-repeat="message in message_list">
+            <div class="fl" style="height: 30px;width: 30px">
+                <img style="height: 30px;width: 30px" src="img/recommendl.png" alt="">
+            </div>
+            <div class="fl" style="padding-left: 5px">
+                <p><a href="">{{message.userName}}</a></p>
+                <p>{{message.content}}</p>
+                <p>{{message.createTime | date:'dd.MM.yy hh: mm'}}&nbsp;&nbsp;&nbsp;{{message.statusDesc}}</p>
+            </div>
+        </div>
+        <!--<a href=""style="padding-left: 30px">查看更多留言</a>-->
+    </div>
+</div>

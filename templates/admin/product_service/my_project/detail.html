@@ -1,6 +1,6 @@
 <div style="position: absolute;overflow-x:hidden; z-index: 100;width: 100%; height: 100%; padding: 0 15px; background: #ffffff">
     <div class="contentTitle">
-        <span>企业信息</span>
+        <span>企业详情</span>
         <div class="fr" ng-hide="showBtn == 1" style="margin: 10px">
             <button class="btn btnGrew fr" ng-click="editApply(id)">修改信息</button>
             <button ng-show="isAllot" style="margin-left:15px" class="btn btnGrew fr">已经递交</button>
@@ -27,7 +27,7 @@
         </div>
     </div>
     <div class="">
-        <div class="clear">
+        <div class="clear message-panel">
             <div class="fl" style="width: 30%">
                 <div class="detailStyle" ng-show="bankName">
                     <span>{{bankName}}</span>
@@ -44,31 +44,75 @@
                     <div>{{remark}}</div>
                 </div>
             </div>
-            <div class="fl" style="margin-top: 0px;width: 30%">
+            <div class="fl" style="margin-top: 10px;width: 30%">
                 <p>
                     <span style="color: red">{{progressText||'未申请'}}</span>&nbsp;&nbsp;<span ng-show="days >= 0"
                                                                                              class="fr">预计：{{days}}天</span>
             </p>
-                <div class="progress">
+                <div class="progress" style="height: 6px">
                     <div class="progress-bar progress-bar-success" style="width: {{jindu}}%;">
                     <span class="sr-only"></span>
                 </div>
             </div>
         </div>
-            <div class="fr" style="margin-top: 0px">
-                <button class="btnGrew" ng-click="addTips()">备注</button>
-            </div>
-            <div class="add-tips">
-                <div class="form-group">
-                    <label for="tips" class="textEnd">备注：</label>
-                    <div style="display: inline-block;width: 220px">
-                        <input type="text" class="form-control" style="width: 220px" id="tips" placeholder="备注"
-                               ng-model="dealRemark">
+            <div class="fr" style="margin-top: 5px;text-align: right">
+                <div class="detailStyle">
+                    <span ng-show="basic.loanValue">融资额：{{basic.loanValue}}万</span>
+                    <span ng-hide="basic.loanValue">请填写融资额</span>
+                    <a class="" style="cursor: pointer" ng-click="add_loan()">修改信息</a>
+                </div>
+                <div class="detailStyle" style="margin-top: 5px;text-align: right">
+                    <span ng-show="basic.fee">服务费：{{basic.fee}}%</span>
+                    <span ng-hide="basic.fee">请填写服务费 </span>
+                    <a class="" style="cursor: pointer" ng-click="add_fee()">修改信息</a>
                 </div>
             </div>
-                <button ng-click="updateRemark()" class="btnBlue" style="margin: 0 0 0 140px;">确定</button>
-                <button ng-click="submitAddTips()" class="btnGrew">取消</button>
+            <div class="add-tips add-loan">
+                <div class="form-group">
+                    <label for="loan" class="textEnd">融资额：</label>
+                    <div style="display: inline-block;width: 200px">
+                        <input type="text" class="form-control" style="width: 200px" id="loan"
+                               placeholder="融资额(只写数字，默认“万”)"
+                               ng-model="loanValue">
+                    </div>
+                </div>
+                <button ng-click="update_loan()" class="btnBlue" style="margin: 0 0 0 140px;">确定</button>
+                <button ng-click="cancel_add()" class="btnGrew">取消</button>
+            </div>
+            <div class="add-tips add-fee">
+                <div class="form-group">
+                    <label for="fee" class="textEnd">服务费：</label>
+                    <div style="display: inline-block;width: 200px">
+                        <input type="text" class="form-control" style="width: 200px" id="fee"
+                               placeholder="服务费（只写数字，默认%）"
+                               ng-model="fee">
+                </div>
+            </div>
+                <button ng-click="update_fee()" class="btnBlue" style="margin: 0 0 0 140px;">确定</button>
+                <button ng-click="cancel_add()" class="btnGrew">取消</button>
         </div>
+        </div>
+        <div class="clear">
+            <div class="fl" style="width: 50%;height: 284px;background: #f6f7fd;padding-top: 20px">
+                <div style="padding-left: 30px;height: 70px" ng-repeat="message in message_list | limitTo:3">
+                    <div class="fl" style="height: 30px;width: 30px">
+                        <img style="height: 30px;width: 30px" src="img/recommendl.png" alt="">
+                    </div>
+                    <div class="fl" style="padding-left: 5px">
+                        <p><a href="">{{message.userName}}</a></p>
+                        <p>{{message.content}}</p>
+                        <p>{{message.createTime | date:'dd.MM.yy hh: mm'}}&nbsp;&nbsp;&nbsp;{{message.statusDesc}}</p>
+                    </div>
+                </div>
+                <a href="" style="padding-left: 30px" ng-click="messages(id)">查看更多留言</a>
+            </div>
+            <div class="fl" style="width: 50%;height: 284px;background: #eef0fb;padding-top: 20px">
+                <textarea class="" style="width: calc(100% - 30px);height: 196px;margin-left: 15px;"
+                          ng-model="content"></textarea>
+                <p style="text-align: right;padding-right: 15px">
+                    <button ng-click="remark_submit()">点击发布</button>
+                </p>
+            </div>
         </div>
         <p class="createTitle">基本内容</p>
         <div class="detailStyle" ng-show="basic.company_name">
@@ -113,14 +157,14 @@
             <div>{{basic.linkmanName}}</div>
             <div style="padding-left: 90px;margin-top: -10px">{{basic.linkmanMobile}}</div>
         </div>
-        <div class="detailStyle" ng-show="basic.fee">
-            <p class="detailStyleP1 noPadding">服务费：</p>
-            <div>{{basic.fee}}</div>
-        </div>
-        <div class="detailStyle" ng-show="basic.loanValue">
-            <p class="detailStyleP1 noPadding">融资额：</p>
-            <div>{{basic.loanValue}}</div>
-        </div>
+        <!--<div class="detailStyle" ng-show="basic.fee">-->
+        <!--<p class="detailStyleP1 noPadding">服务费：</p>-->
+        <!--<div>{{basic.fee}}</div>-->
+        <!--</div>-->
+        <!--<div class="detailStyle" ng-show="basic.loanValue">-->
+        <!--<p class="detailStyleP1 noPadding">融资额：</p>-->
+        <!--<div>{{basic.loanValue}}</div>-->
+        <!--</div>-->
         <div class="detailStyle" ng-show="basic.continual">
             <p class="detailStyleP1 noPadding">年销售量：</p>
             <div>{{basic.continual}}</div>

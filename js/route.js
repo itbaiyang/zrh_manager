@@ -282,6 +282,15 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
+        .state('admin.my_project.message', {
+            url: '/message/:id',
+            views: {
+                'contains@admin': {
+                    templateUrl: templates_root + 'admin/product_service/my_project/message.html',
+                    controller: 'MessageCtrl'
+                }
+            }
+        })
 
         .state('admin.statistics', {
             url: '/statistics',
