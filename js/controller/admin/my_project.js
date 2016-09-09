@@ -25,7 +25,7 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
                         data.progressText = "未申请";
                         data.color = 1;
                     } else if (data.status == 1) {
-                        data.progressText = "审核中";
+                        data.progressText = "申请中";
                         data.progressBtn = "开始约见";
                         data.color = 2;
                     } else if (data.status == 2) {
@@ -424,6 +424,7 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
             success: function (data, textStatus, jqXHR) {
                 if (data.returnCode == 0) {
                     $(".add-loan").css("display", "none");
+                    $scope.get();
                 }
                 else {
                 }
