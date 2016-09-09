@@ -271,7 +271,6 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
             $scope.bankName = d.result.bankName;
             $scope.productName = d.result.productName;
             $scope.dealRemark = d.result.dealRemark;
-            $scope.days = d.result.days;
             $scope.type = d.result.type;
             if (d.result.remark) {
                 $scope.remark = d.result.remark;
@@ -1420,6 +1419,8 @@ myProjectCtrl.controller('ApplyHelpCtrl', function ($http, $scope, $rootScope, $
                 },
                 dataType: 'json',
             });
+        } else {
+            alert("手机号不能为空");
         }
 
     };
