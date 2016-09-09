@@ -55,7 +55,7 @@
                    ng-click="updateSelection($event,resultObj.id)">
                     <a ng-click="updateApply(resultObj.id)"
                        style="cursor: pointer;vertical-align: middle;">
-                        {{resultObj.companyName}}
+                        {{resultObj.companyName || resultObj.linkman}}
                     </a>
                 </span>
                     <span class="width15">{{resultObj.bankName}}-{{resultObj.productName}}</span>

@@ -35,7 +35,7 @@
                 <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}"
                        ng-checked="isSelected(resultObj.id)"
                        ng-click="updateSelection($event,resultObj.id)">
-                        {{resultObj.companyName}}
+                        {{resultObj.companyName || resultObj.linkman}}
                 <img src="img/tips/tel.png" class="img-size" ng-show="resultObj.channel =='tel'">
                 <img src="img/tips/bankMan.png" class="img-size" ng-show="resultObj.channel =='a'">
             </span>

@@ -17,7 +17,7 @@
                 <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}"
                        ng-checked="isSelected(resultObj.id)"
                        ng-click="updateSelection($event,resultObj.id)">
-                {{resultObj.name}}
+                {{resultObj.name || resultObj.linkman}}
             </div>
             <span class="width15">{{resultObj.mobile}}</span>
             <div class="width15">

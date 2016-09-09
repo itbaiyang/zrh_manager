@@ -51,7 +51,7 @@
                    ng-checked="isSelected(resultObj.id)"
                    ng-click="updateSelection($event,resultObj.id)">
                     <a ng-click="updateApply(resultObj.id)" style="cursor: pointer">
-                        {{resultObj.companyName}}
+                        {{resultObj.companyName || resultObj.linkman}}
                     </a>
                 </span>
                     <span class="width15">{{resultObj.bankName}}-{{resultObj.productName}}</span>
