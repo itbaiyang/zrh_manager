@@ -14,7 +14,7 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
             method: "GET",
             params: m_params
         }).success(function (d) {
-            // console.log(d);
+            console.log(d);
             if (d.returnCode == 0) {
                 $scope.page = d.result.list;
                 $scope.result_list = d.result.list.datas;
