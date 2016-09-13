@@ -39,6 +39,16 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             }
         })
 
+        .state('super.apply_list', {
+            url: '/apply_list',
+            views: {
+                'main@super': {
+                    templateUrl: templates_root + 'super/product_service/apply_list/apply_list.html',
+                    controller: 'ApplyListCtrl'
+                }
+            }
+        })
+
         .state('super.manage', {
             url: '/manage',
             views: {
@@ -177,7 +187,6 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             }
         })
 
-
         .state("admin", {
             url: '/admin',
             views: {
@@ -292,6 +301,34 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             }
         })
 
+        .state("admin.user_list", {
+            url: '/user_list',
+            views: {
+                'contains@admin': {
+                    templateUrl: templates_root + 'manager/user_list.html',
+                    controller: 'SaleManagerCtrl'
+                }
+            }
+        })
+        .state("admin.user_list.sale_apply_list", {
+            url: '/sale_apply_list/:id',
+            views: {
+                'contains@admin': {
+                    templateUrl: templates_root + 'manager/sale_apply_list.html',
+                    controller: 'SaleApplyListCtrl'
+                }
+            }
+        })
+        // .state("admin.user_list.sale_apply_list.detail", {
+        //     url: '/detail',
+        //     views: {
+        //         'contains@admin': {
+        //             templateUrl: templates_root + 'manager/detail.html',
+        //             controller: 'SaleApplyListCtrl'
+        //         }
+        //     }
+        // })
+        
         .state('admin.statistics', {
             url: '/statistics',
             views: {

@@ -1,5 +1,5 @@
-// api_uri = "http://test.zhironghao.com/api/";
-api_uri = "http://api.supeiyunjing.com/";
+api_uri = "http://test.zhironghao.com/api/";
+// api_uri = "http://api.supeiyunjing.com/";
 //api_uri = "http://172.17.2.13:8080/api/";
 // api_uri = "http://172.16.97.95:8080/api/";
 var templates_root = 'templates/';
@@ -12,9 +12,11 @@ var app = angular.module('app', [
 
     'loginCtrl',
     'topBarCtrl',
+    'applyListCtrl',
     'loanApplicationCtrl',
     'productCtrl',
     'myProjectCtrl',
+    'saleManagerCtrl',
     'manageCtrl',
     'signUpCtrl',
     'bankCtrl',
@@ -279,6 +281,16 @@ app.run(function ($location, $rootScope, $http) {
                         $location.path("/login");
                     }
                 } else if ($rootScope.role == 'admin') {
+                    // console.log($rootScope.arrayParams[0]);
+                    if ($rootScope.arrayParams[0] == 'admin') {
+                        if ($rootScope.arrayParams[1] == 'user_list') {
+                            $location.path("/login");
+                        } else {
+                        }
+                    } else {
+                        $location.path("/login");
+                    }
+                } else if ($rootScope.role == 'manager') {
                     // console.log($rootScope.arrayParams[0]);
                     if ($rootScope.arrayParams[0] == 'admin') {
                     } else {

@@ -15,10 +15,14 @@ channelCtrl.controller('ChannelCtrl', function ($http, $scope, $state, $rootScop
             method: "GET",
             params: m_params
         }).success(function (d) {
-            // console.log(d);
+            console.log(d);
             if (d.returnCode == 0) {
                 $scope.page = d.result;
-                $scope.user_list = d.result.datas;
+                // console.log(d.result);
+                if (d.result != undefined) {
+                    $scope.user_list = d.result.datas;
+                }
+
             }
             else {
                 // console.log(d.result);

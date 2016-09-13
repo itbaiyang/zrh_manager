@@ -34,7 +34,7 @@ loginCtrl.controller('LoginCtrl', function ($http, $scope, $rootScope, $location
             params: m_params
         }).success(function (d) {
             if (d.returnCode == 0) {
-                //console.log(d);
+                console.log(d);
                 $rootScope.login_user = {
                     "userId":d.result.split("_")[0],
                     "token":d.result.split("_")[1],
@@ -62,7 +62,7 @@ loginCtrl.controller('LoginCtrl', function ($http, $scope, $rootScope, $location
             params: m_params
         }).success(function (d) {
             if (d.returnCode == 0) {
-                //console.log(d);
+                console.log(d);
                 if(d.result.role == 'super'){
                     $location.path("/super");
                 }else{

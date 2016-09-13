@@ -251,6 +251,8 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
 myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $location, $state, $timeout, $stateParams) {
     /*添加删除模板*/
     $scope.id = $stateParams.id;
+
+    // $scope.isAllot = '';
     $scope.get = function () {
         var m_params = {
             "userId": $rootScope.login_user.userId,
@@ -271,6 +273,7 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
             $scope.bankName = d.result.bankName;
             $scope.productName = d.result.productName;
             $scope.dealRemark = d.result.dealRemark;
+            $scope.readonly = d.result.readonly;
             $scope.type = d.result.type;
             if (d.result.remark) {
                 $scope.remark = d.result.remark;

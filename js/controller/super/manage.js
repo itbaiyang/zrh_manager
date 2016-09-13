@@ -13,6 +13,7 @@ manageCtrl.controller('UserListCtrl', function ($http, $scope, $rootScope, $loca
             method: "GET",
             params: m_params
         }).success(function (d) {
+            console.log(d);
             if (d.returnCode == 0) {
                 $scope.page = d.result;
                 $scope.result_list = d.result.datas;
@@ -86,8 +87,44 @@ manageCtrl.controller('CreateUserCtrl', function ($http, $scope, $rootScope, $lo
     var timesTamp = new Date().getTime();
     var timesTamp1 = String(timesTamp).substring(0, 10);
     $scope.timestamp = parseInt(timesTamp1);
+    $scope.isUpdate = false;
+    $scope.list = function () {
+        var m_params = {
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
+        };
+        $http({
+            url: api_uri + "p/user/listManager",
+            method: "GET",
+            params: m_params
+        }).success(function (d) {
+            console.log(d);
+            if (d.returnCode == 0) {
+                $scope.manager_list = d.result;
+            }
+            else {
+            }
+
+        }).error(function (d) {
+            //console.log("login error");
+            //$location.path("/error");
+        })
+    };
+    $scope.choice = function (role_sale) {
+        if (role_sale == 'admin') {
+            $scope.role_sale_see = "销售职员";
+            $scope.list(1, 20);
+        } else if (role_sale == 'manager') {
+            $scope.role_sale_see = "销售主管";
+        }
+        $scope.role_sale = role_sale;
+        console.log(role_sale);
+    };
+    $scope.choiceManager = function (id, name) {
+        $scope.managerId = id;
+        $scope.managerName = name;
+    };
     $scope.submit = function () {
-        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -97,6 +134,8 @@ manageCtrl.controller('CreateUserCtrl', function ($http, $scope, $rootScope, $lo
             "mobile": $scope.mobile,
             "empNo": $scope.empNo,
             "password": $scope.password,
+            "role": $scope.role_sale,
+            "manager": $scope.managerId,
             "signature": $rootScope.encryptByDES($scope.email + $scope.password + $scope.timestamp),
         };
         $http({
@@ -104,6 +143,7 @@ manageCtrl.controller('CreateUserCtrl', function ($http, $scope, $rootScope, $lo
             method: "POST",
             params: m_params
         }).success(function (d) {
+            console.log(d);
             if (d.returnCode == 0) {
                 $state.go('super.manage');
             } else {
@@ -120,9 +160,9 @@ manageCtrl.controller('UserUpdateCtrl', function ($http, $scope, $rootScope, $lo
     var timesTamp = new Date().getTime();
     var timesTamp1 = String(timesTamp).substring(0, 10);
     $scope.timestamp = parseInt(timesTamp1);
+    $scope.isUpdate = false;
 
     $scope.get = function () {
-        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -132,8 +172,23 @@ manageCtrl.controller('UserUpdateCtrl', function ($http, $scope, $rootScope, $lo
             method: "GET",
             params: m_params
         }).success(function (d) {
+            console.log(d);
             if (d.returnCode == 0) {
-                $scope.user = d.result;
+                $scope.isUpdate = true;
+                $scope.email = d.result.email;
+                $scope.name = d.result.name;
+                $scope.mobile = d.result.mobile;
+                $scope.empNo = d.result.empNo;
+                $scope.password = d.result.password;
+                $scope.role_sale = d.result.role;
+                $scope.managerId = d.result.manager;
+                $scope.managerName = d.result.managerName;
+                if ($scope.role_sale == "admin") {
+                    $scope.role_sale_see = "销售职员";
+                    $scope.list();
+                } else if ($scope.role_sale == 'manager') {
+                    $scope.role_sale_see = "销售主管";
+                }
             }
             else {
             }
@@ -142,16 +197,54 @@ manageCtrl.controller('UserUpdateCtrl', function ($http, $scope, $rootScope, $lo
         })
     };
     $scope.get();
+    $scope.list = function () {
+        var m_params = {
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
+        };
+        $http({
+            url: api_uri + "p/user/listManager",
+            method: "GET",
+            params: m_params
+        }).success(function (d) {
+            console.log(d);
+            if (d.returnCode == 0) {
+                $scope.manager_list = d.result;
+            }
+            else {
+            }
+
+        }).error(function (d) {
+            //console.log("login error");
+            //$location.path("/error");
+        })
+    };
+
+    $scope.choice = function (role_sale) {
+        if (role_sale == 'admin') {
+            $scope.role_sale_see = "销售职员";
+            $scope.list(1, 20);
+        } else if (role_sale == 'manager') {
+            $scope.role_sale_see = "销售主管";
+        }
+        $scope.role_sale = role_sale;
+        console.log(role_sale);
+    };
+    $scope.choiceManager = function (id, name) {
+        $scope.managerId = id;
+        $scope.managerName = name;
+    };
 
     $scope.submit = function () {
-        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
             "timestamp": $scope.timestamp,
-            "name": $scope.user.name,
-            "mobile": $scope.user.mobile,
-            "password": $scope.user.password,
+            "name": $scope.name,
+            "mobile": $scope.mobile,
+            "password": $scope.password,
+            "role": $scope.role_sale,
+            "manager": $scope.managerId,
             "signature": $rootScope.encryptByDES($scope.email + $scope.password + $scope.timestamp),
         };
         $http({

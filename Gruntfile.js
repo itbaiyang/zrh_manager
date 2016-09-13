@@ -11,6 +11,7 @@ module.exports = function (grunt) {
                 src: [
                     'js/controller/login.js',
                     'js/controller/top_bar.js',
+                    'js/controller/super/apply_list.js',
                     'js/controller/super/product.js',
                     'js/controller/super/manage.js',
                     'js/controller/super/sign_up.js',

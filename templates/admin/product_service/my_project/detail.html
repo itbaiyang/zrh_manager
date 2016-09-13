@@ -1,7 +1,7 @@
 <div style="position: absolute;overflow-x:hidden; z-index: 100;width: 100%; height: 100%; padding: 0 15px; background: #ffffff">
     <div class="contentTitle">
         <span>企业详情</span>
-        <div class="fr" ng-hide="showBtn == 1" style="margin: 10px">
+        <div class="fr" ng-hide="showBtn == 1 || readonly == true" style="margin: 10px">
             <button class="btn btnGrew fr" ng-click="editApply(id)">修改信息</button>
             <button ng-show="isAllot" style="margin-left:15px" class="btn btnGrew fr">已经递交</button>
             <div ng-hide="isAllot" class="btn-group noPadding fr">
@@ -19,8 +19,11 @@
             </button>
             <!--<button class="btnGrew" ng-click="choice_person(id)">选报卷人</button>-->
         </div>
-        <div class="fr" ng-show="showBtn == 1" style="margin: 10px">
+        <div class="fr" ng-show="showBtn == 1 && readonly == false" style="margin: 10px">
             <button class="btnGrew" ng-click="apply(id)">我要处理</button>
+            <button class="btn btnGrew fr" ng-click="reBackDetails()">返回</button>
+        </div>
+        <div class="fr" ng-show="readonly == true" style="margin: 10px">
             <button class="btn btnGrew fr" ng-click="reBackDetails()">返回</button>
         </div>
     </div>
@@ -108,7 +111,7 @@
                 <a href="" style="padding-left: 30px;position: absolute;top: 420px;" ng-click="messages(id)">查看更多留言</a>
             </div>
             <div class="fl" style="width: 50%;height: 284px;background: #eef0fb;padding-top: 20px">
-                <textarea class="" style="width: calc(100% - 30px);height: 196px;margin-left: 15px;"
+                <textarea class="" style="width: calc(100% - 30px);height: 196px;margin-left: 15px;font-size: 16px"
                           placeholder="请在此处输入留言内容"
                           ng-model="content"></textarea>
                 <p style="text-align: right;padding-right: 15px">
