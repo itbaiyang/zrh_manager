@@ -17,6 +17,7 @@ module.exports = function (grunt) {
                     'js/controller/super/sign_up.js',
                     'js/controller/super/bank.js',
                     'js/controller/admin/company_message.js',
+                    'js/controller/admin/sale_manager.js',
                     'js/controller/admin/my_project.js',
                     'js/controller/admin/channel.js',
                     'js/controller/admin/share.js',
