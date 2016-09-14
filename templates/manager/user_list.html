@@ -21,37 +21,12 @@
                            ng-checked="isSelected(resultObj.id)"
                            ng-click="updateSelection($event,resultObj.id)">{{resultObj.name ||'未填写'}}</span>
             <span class="width15">{{resultObj.mobile}}</span>
-            <span class="width15">{{resultObj.position ||'未填写'}}</span>
-            <!--<span class="width15">{{resultObj.createTime | date:'yyyy-MM-dd'}}</span>-->
+            <span class="width15">{{resultObj.count ||'0'}}</span>
             <a href="" ng-click="showDetail(resultObj.id)">查看详情</a>
 
         </li>
         <li class="list-group-item list_common">
             <button class="contentClass btnGrew" ng-click="cancel()">删除</button>
-            <!--<span>共有{{page.totalCount}}位注册用户，每页显示{{page.pageSize}}条</span>-->
-            <!--<ul class="pagination fr" style="margin: 0">-->
-            <!--<li>-->
-            <!--<a aria-label="Previous" ng-click="changePage(1)">-->
-            <!--<span aria-hidden="true">&laquo;</span>-->
-            <!--</a>-->
-            <!--</li>-->
-            <!--<li>-->
-            <!--<a aria-label="Previous" ng-click="changePage(page.upPage)">-->
-            <!--<span aria-hidden="true">&lsaquo;</span>-->
-            <!--</a>-->
-            <!--</li>-->
-            <!--<li><a>{{page.pageNo}}</a></li>-->
-            <!--<li>-->
-            <!--<a aria-label="Next" ng-click="changePage(page.nextPage)">-->
-            <!--<span aria-hidden="true">&rsaquo;</span>-->
-            <!--</a>-->
-            <!--</li>-->
-            <!--<li>-->
-            <!--<a aria-label="Next" ng-click="changePage(page.totalPage)">-->
-            <!--<span aria-hidden="true">&raquo;</span>-->
-            <!--</a>-->
-            <!--</li>-->
-            <!--</ul>-->
         </li>
     </ul>
 </div>

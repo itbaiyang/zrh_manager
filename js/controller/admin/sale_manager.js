@@ -7,7 +7,7 @@ saleManagerCtrl.controller('SaleManagerCtrl', function ($http, $scope, $state, $
             "token": $rootScope.login_user.token,
         };
         $http({
-            url: api_uri + "p/user/listSaleByManager",
+            url: api_uri + "p/user/listSaleDetailByManager",
             method: "GET",
             params: m_params
         }).success(function (d) {
