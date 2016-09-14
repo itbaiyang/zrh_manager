@@ -76,10 +76,30 @@
             </div>
         </div>
         <li class="list-group-item list_common1">
-            <button class="btnGrew" ng-hide="status != null"
-                    ng-click="giveUp()">
-                放弃任务
-            </button>
+            <!--<button class="btnGrew" ng-hide="status != null"-->
+            <!--ng-click="giveUp()">-->
+            <!--放弃任务-->
+            <!--</button>-->
+            <div class="btn-group col-sm-12 col-lg-12" style="position: relative">
+                <button type="button" ng-click="show_cancel()" class="btn btnGrew fr"
+                        id="products">放弃项目
+                </button>
+                <div class="btnDrop2" style="border: 1px solid #cccccc;width: 300px;margin:10px 0"
+                     ng-show="showCancel">
+                    <div class="form-group col-sm-12 col-lg-12 noPadding">
+                        <div class="col-sm-12 noPadding" style="margin-top: 10px">
+                            <textarea class="col-sm-12 noPadding" type="text" style="height: 80px;" class="form-control"
+                                      ng-model="comments_give" placeholder="放弃原因"></textarea>
+                        </div>
+                    </div>
+                    <button style="margin-left:10px" class="btn btnBlue fr" type="submit"
+                            ng-click="giveUp()">确定
+                    </button>
+                    <button style="margin-left:10px" class="btn btnBlue fr" type="submit"
+                            ng-click="hide_cancel()">取消
+                    </button>
+                </div>
+            </div>
             <span>共有{{page.totalCount}}家企业申请，每页显示{{page.pageSize}}条</span>
             <ul class="pagination fr" style="margin: 0">
                 <li>

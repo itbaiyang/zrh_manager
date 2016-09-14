@@ -1,5 +1,9 @@
 var myProjectCtrl = angular.module('myProjectCtrl', []);
 myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $location) {
+    $scope.showCancel = false;
+
+    $scope.comments_give = '';
+
     $scope.list = function (pageNo, pageSize) {
         var m_params = {
             "userId": $rootScope.login_user.userId,
@@ -170,31 +174,45 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
         })
     };
 
+    $scope.show_cancel = function () {
+        $scope.showCancel = true;
+    };
+    $scope.hide_cancel = function () {
+        $scope.showCancel = false;
+    };
+
     $scope.giveUp = function () {
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
-            ids: $scope.ids
+            "ids": $scope.ids,
+            "c": $scope.comments_give
         };
-        // console.log($scope.ids);
-        // console.log("baiyang", m_params);
-        $.ajax({
-            type: 'GET',
-            url: api_uri + "loanApplicationManage/giveUp",
-            data: m_params,
-            traditional: true,
-            success: function (data, textStatus, jqXHR) {
-                // console.log(data);
-                if (data.returnCode == 0) {
+        console.log(m_params);
+        if (m_params.ids.length == 0) {
+            alert("没有选择项目");
+        } else if (m_params.c == '') {
+            alert("必须填写放弃原因");
+        } else {
+            $.ajax({
+                type: 'GET',
+                url: api_uri + "loanApplicationManage/giveUp",
+                data: m_params,
+                traditional: true,
+                success: function (data, textStatus, jqXHR) {
                     // console.log(data);
-                    $scope.list($scope.pageNo1, 20);
-                }
-                else {
-                    // console.log(data);
-                }
-            },
-            dataType: 'json',
-        });
+                    if (data.returnCode == 0) {
+                        // console.log(data);
+                        $scope.list($scope.pageNo1, 20);
+                    }
+                    else {
+                        // console.log(data);
+                    }
+                },
+                dataType: 'json',
+            });
+        }
+
 
     };
 

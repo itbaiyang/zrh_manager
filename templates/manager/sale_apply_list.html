@@ -65,7 +65,7 @@
                           ng-show="resultObj.color == 2">{{resultObj.progressText}}</span>
                     <span class="width8" style="color: #009B27"
                           ng-show="resultObj.color == 3">{{resultObj.progressText}}</span>
-                    <span class="width8">{{resultObj.opUser}}</span>
+                    <span class="width8">{{resultObj.salerName}}</span>
                     <span class="width8">{{resultObj.days}}</span>
                     <span class="width8">{{resultObj.fee}}</span>
                     <span class="width8">{{resultObj.loanValue}}</span>
@@ -76,10 +76,6 @@
             </div>
         </div>
         <li class="list-group-item list_common1">
-            <button class="btnGrew" ng-hide="status != null"
-                    ng-click="giveUp()">
-                放弃任务
-            </button>
             <span>共有{{page.totalCount}}家企业申请，每页显示{{page.pageSize}}条</span>
             <ul class="pagination fr" style="margin: 0">
                 <li>

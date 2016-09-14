@@ -93,6 +93,7 @@ saleManagerCtrl.controller('SaleApplyListCtrl', function ($http, $scope, $state,
             "uid": $stateParams.id,
             "pageNo": pageNo,
             "pageSize": pageSize,
+            "status": $scope.status
         };
         console.log(m_params);
         $http({
@@ -103,6 +104,32 @@ saleManagerCtrl.controller('SaleApplyListCtrl', function ($http, $scope, $state,
             console.log(d);
             if (d.returnCode == 0) {
                 $scope.result_list = d.result.list.datas;
+                angular.forEach($scope.result_list, function (data) {
+                    $scope.status = d.result.status;
+                    if (data.status == 0) {
+                        data.progressText = "未申请";
+                        data.color = 1;
+                    } else if (data.status == 1) {
+                        data.progressText = "申请中";
+                        data.progressBtn = "开始约见";
+                        data.color = 2;
+                    } else if (data.status == 2) {
+                        data.progressText = "约见中";
+                        data.progressBtn = "继续跟进";
+                        data.color = 2;
+                    } else if (data.status == 3) {
+                        data.progressText = "跟进中";
+                        data.progressBtn = "完成贷款";
+                        data.color = 2;
+                    } else if (data.status == 4) {
+                        data.progressText = "成功融资";
+                        data.progressBtn = "已结束";
+                        data.color = 3;
+                    } else if (data.status == -1) {
+                        data.progressText = "申请取消";
+                        data.color = 1;
+                    }
+                });
             }
             else {
                 // console.log(d.result);
@@ -119,6 +146,25 @@ saleManagerCtrl.controller('SaleApplyListCtrl', function ($http, $scope, $state,
     $scope.ids = [];
     $scope.isSelected = function (id) {
         return $scope.selected.indexOf(id) >= 0;
+    };
+
+    $scope.status_text = "全部";
+    $scope.choice = function (status) {
+        $scope.status = status;
+        if ($scope.status == 0) {
+            $scope.status_text = "未申请";
+        } else if ($scope.status == 1) {
+            $scope.status_text = "申请中";
+        } else if ($scope.status == 2) {
+            $scope.status_text = "约见中";
+        } else if ($scope.status == 3) {
+            $scope.status_text = "跟进中";
+        } else if ($scope.status == 4) {
+            $scope.status_text = "成功融资";
+        } else if ($scope.status == null) {
+            $scope.status_text = "全部";
+        }
+        $scope.list(1, 20);
     };
 
     var updateSelected = function (action, id) {
