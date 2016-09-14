@@ -17,6 +17,15 @@ manageCtrl.controller('UserListCtrl', function ($http, $scope, $rootScope, $loca
             if (d.returnCode == 0) {
                 $scope.page = d.result;
                 $scope.result_list = d.result.datas;
+                angular.forEach($scope.result_list, function (data) {
+                    if (data.role == "admin") {
+                        data.position = "销售人员";
+                    } else if (data.role == "manager") {
+                        data.position = "销售主管";
+                    } else if (data.role == "super") {
+                        data.position = "超级管理员";
+                    }
+                });
             }
             else {
             }
