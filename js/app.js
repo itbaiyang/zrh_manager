@@ -81,7 +81,10 @@ app.run(function ($location, $rootScope, $http) {
                 // console.log(fromState);
                 if (from_route != "" && from_route.indexOf('admin.my_project.edit_apply') <= -1
                     && from_route.indexOf('admin.my_project.change_company') <= -1
-                    && from_route.indexOf('admin.my_project.apply_again') <= -1) {
+                    && from_route.indexOf('admin.my_project.apply_again') <= -1
+                    && from_route.indexOf('admin.my_project.distribute') <= -1
+                    && from_route.indexOf('admin.my_project.apply_help') <= -1
+                    && from_route.indexOf('admin.my_project.choice_sale') <= -1) {
                     $rootScope.putSessionObject('from_route',from_route);
                     var get_route = $rootScope.getSessionObject('from_route');
                     // console.log(get_route);
