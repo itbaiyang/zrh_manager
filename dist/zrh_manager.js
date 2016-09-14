@@ -94,7 +94,12 @@ var topBarCtrl = angular.module('topBarCtrl', []);
 topBarCtrl.controller('TopBarCtrl', function ($http, $scope, $rootScope, $location) {
 
     $scope.go_home = function () {
-        $location.path($rootScope.role);
+        if ($rootScope.role != 'manager') {
+            $location.path($rootScope.role);
+        } else {
+            $location.path("admin");
+        }
+
     }
     $scope.exit = function () {
         $rootScope.removeObject("login_user");
@@ -152,14 +157,14 @@ topBarCtrl.controller('ContainsCtrl', function ($http, $scope, $state, $rootScop
         "userId": $rootScope.login_user.userId,
         "token": $rootScope.login_user.token,
     };
-    // $http({
-    //     url: api_uri + "p/user/detail/" + $rootScope.login_user.userId,
-    //     method: "GET",
-    //     params: m_params
-    // }).success(function (d) {
-    //     console.log(d);
-    // }).error(function (d) {
-    // });
+    $http({
+        url: api_uri + "zrh/index/groupCount",
+        method: "GET",
+        params: m_params
+    }).success(function (d) {
+        $scope.countGroup = d.result;
+    }).error(function (d) {
+    });
     $http({
         url: api_uri + "zrh/index/count",
         method: "GET",
@@ -2712,6 +2717,10 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
         // console.log(id);
     };
 
+    $scope.choice_sale = function (id) {
+        $location.path('/admin/my_project/choice_sale/' + id);
+    };
+
 });
 
 myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $location, $state, $timeout, $stateParams, $routeParams) {
@@ -3460,7 +3469,7 @@ myProjectCtrl.controller('DistributeCtrl', function ($http, $scope, $rootScope, 
 
     $scope.list(1, 100);
 
-    $scope.bank_man_list = function (id, pageNo, pageSize) {
+    $scope.bank_man_list_get = function (id, pageNo, pageSize) {
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -3487,7 +3496,7 @@ myProjectCtrl.controller('DistributeCtrl', function ($http, $scope, $rootScope, 
         $scope.bankManId = id;
         $scope.bankManName = name;
     }
-    $scope.sumbit_user = function () {
+    $scope.submit_user = function () {
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -3596,9 +3605,9 @@ myProjectCtrl.controller('ApplyHelpCtrl', function ($http, $scope, $rootScope, $
     $scope.choiceBank = function (id, name) {
         $scope.bankId = id;
         $scope.bankName = name;
-        $scope.product_list($scope.bankId, 1, 400)
+        $scope.product_list_get($scope.bankId, 1, 400)
     };
-    $scope.product_list = function (id, pageNo, pageSize) {
+    $scope.product_list_get = function (id, pageNo, pageSize) {
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -3709,6 +3718,59 @@ myProjectCtrl.controller('MessageCtrl', function ($http, $scope, $state, $rootSc
         })
     };
     $scope.get_message();
+    $scope.reBackDetail = function () {
+        $location.path("admin/my_project/detail/" + $stateParams.id);
+    };
+});
+
+myProjectCtrl.controller('ChoiceSaleCtrl', function ($http, $scope, $state, $rootScope, $stateParams, $location, $routeParams) {
+    if (!$scope.sale_id) {
+        $scope.sale_id = 0;
+    }
+    $scope.get_user = function () {
+        var m_params = {
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
+        };
+        console.log(m_params);
+        $http({
+            url: api_uri + "p/user/listSaleDetailByManager",
+            method: "GET",
+            params: m_params
+        }).success(function (d) {
+            console.log(d);
+            $scope.user_list = d.result;
+        }).error(function (d) {
+
+        })
+    };
+    $scope.get_user();
+    $scope.submit = function () {
+        var m_params = {
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
+            "applyId": $stateParams.id,
+            "salerId": $scope.sale_id,
+        };
+        console.log(m_params);
+        $.ajax({
+            type: 'POST',
+            url: api_uri + "loanApplicationManage/updateSale",
+            data: m_params,
+            traditional: true,
+            success: function (data, textStatus, jqXHR) {
+                console.log(data);
+                if (data.returnCode == 0) {
+                    $scope.reBackDetail();
+                    $scope.$apply();
+                }
+                else {
+                }
+            },
+            dataType: 'json',
+        });
+    };
+
     $scope.reBackDetail = function () {
         $location.path("admin/my_project/detail/" + $stateParams.id);
     };
@@ -4513,7 +4575,7 @@ messageCtrl.controller('MessageSystemCtrl', function ($http, $scope, $rootScope,
         };
         $http({
             url: api_uri + "zrh/message/details",
-            method: "GET",
+            method: "GET", 
             params: m_params
         }).success(function (d) {
             // console.log(d);
@@ -4526,7 +4588,7 @@ messageCtrl.controller('MessageSystemCtrl', function ($http, $scope, $rootScope,
 ;api_uri = "http://test.zhironghao.com/api/";
 // api_uri = "http://api.supeiyunjing.com/";
 //api_uri = "http://172.17.2.13:8080/api/";
-// api_uri = "http://172.16.97.95:8080/api/";
+// api_uri = "http://172.16.97.229:8080/api/";
 var templates_root = 'templates/';
 deskey = "abc123.*abc123.*abc123.*abc123.*";
 var app = angular.module('app', [
@@ -4798,28 +4860,26 @@ app.run(function ($location, $rootScope, $http) {
             if (d.returnCode == 0) {
                 // console.log(d);
                 $rootScope.role = d.result.role;
+                console.log($rootScope.role);
                 if ($rootScope.role == 'super') {
-                    // console.log($rootScope.arrayParams[0]);
                     if ($rootScope.arrayParams[0] == 'super') {
                     } else {
-                        // console.log($rootScope.arrayParams[0]);
                         $location.path("/login");
                     }
                 } else if ($rootScope.role == 'admin') {
-                    // console.log($rootScope.arrayParams[0]);
                     if ($rootScope.arrayParams[0] == 'admin') {
                         if ($rootScope.arrayParams[1] == 'user_list') {
-                            $location.path("/login");
+                            // $location.path("/login");
                         } else {
                         }
                     } else {
-                        $location.path("/login");
+                        // $location.path("/login");
                     }
                 } else if ($rootScope.role == 'manager') {
-                    // console.log($rootScope.arrayParams[0]);
                     if ($rootScope.arrayParams[0] == 'admin') {
                     } else {
-                        $location.path("/login");
+                        // $location.path("/login");
+                        console.log("lll")
                     }
                 }
             } else {
@@ -5128,6 +5188,15 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 'contains@admin': {
                     templateUrl: templates_root + 'admin/product_service/my_project/message.html',
                     controller: 'MessageCtrl'
+                }
+            }
+        })
+        .state('admin.my_project.choice_sale', {
+            url: '/choice_sale/:id',
+            views: {
+                'contains@admin': {
+                    templateUrl: templates_root + 'admin/product_service/my_project/choice_sale.html',
+                    controller: 'ChoiceSaleCtrl'
                 }
             }
         })

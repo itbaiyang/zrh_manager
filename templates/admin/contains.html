@@ -41,5 +41,31 @@
             </div>
         </div>
     </div>
+    <div style="padding: 0 15px">
+        <div class="account">
+            <div class="accountDetail fl">
+                <img ng-src="img/group.png">
+                <p><span>团队统计</span></p>
+
+            </div>
+            <div class="account-num-group fl">
+                <div class="dateCount col-sm-3">
+                    <p>累计成交额：</p>
+                    <p><span style="font-size: 22px;padding-right: 4px">{{countGroup.loanValue}}</span>万</p>
+                </div>
+                <div class="dateCount col-sm-3">
+                    <p>累计成功融资：</p>
+                    <p><span style="font-size: 22px;padding-right: 4px">{{countGroup.num}}</span>个</p>
+                </div>
+                <div class="dateCount col-sm-3">
+                    <p>累计利润</p>
+                    <p>
+                        <span style="font-size: 22px;padding-right: 4px">{{countGroup.fee}}</span>万
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 </div>

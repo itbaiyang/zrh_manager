@@ -300,6 +300,15 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
+        .state('admin.my_project.choice_sale', {
+            url: '/choice_sale/:id',
+            views: {
+                'contains@admin': {
+                    templateUrl: templates_root + 'admin/product_service/my_project/choice_sale.html',
+                    controller: 'ChoiceSaleCtrl'
+                }
+            }
+        })
 
         .state("admin.user_list", {
             url: '/user_list',

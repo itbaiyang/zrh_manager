@@ -5,7 +5,12 @@ var topBarCtrl = angular.module('topBarCtrl', []);
 topBarCtrl.controller('TopBarCtrl', function ($http, $scope, $rootScope, $location) {
 
     $scope.go_home = function () {
-        $location.path($rootScope.role);
+        if ($rootScope.role != 'manager') {
+            $location.path($rootScope.role);
+        } else {
+            $location.path("admin");
+        }
+
     }
     $scope.exit = function () {
         $rootScope.removeObject("login_user");
@@ -63,14 +68,14 @@ topBarCtrl.controller('ContainsCtrl', function ($http, $scope, $state, $rootScop
         "userId": $rootScope.login_user.userId,
         "token": $rootScope.login_user.token,
     };
-    // $http({
-    //     url: api_uri + "p/user/detail/" + $rootScope.login_user.userId,
-    //     method: "GET",
-    //     params: m_params
-    // }).success(function (d) {
-    //     console.log(d);
-    // }).error(function (d) {
-    // });
+    $http({
+        url: api_uri + "zrh/index/groupCount",
+        method: "GET",
+        params: m_params
+    }).success(function (d) {
+        $scope.countGroup = d.result;
+    }).error(function (d) {
+    });
     $http({
         url: api_uri + "zrh/index/count",
         method: "GET",

@@ -1,7 +1,7 @@
 api_uri = "http://test.zhironghao.com/api/";
 // api_uri = "http://api.supeiyunjing.com/";
 //api_uri = "http://172.17.2.13:8080/api/";
-// api_uri = "http://172.16.97.95:8080/api/";
+// api_uri = "http://172.16.97.229:8080/api/";
 var templates_root = 'templates/';
 deskey = "abc123.*abc123.*abc123.*abc123.*";
 var app = angular.module('app', [
@@ -273,28 +273,26 @@ app.run(function ($location, $rootScope, $http) {
             if (d.returnCode == 0) {
                 // console.log(d);
                 $rootScope.role = d.result.role;
+                console.log($rootScope.role);
                 if ($rootScope.role == 'super') {
-                    // console.log($rootScope.arrayParams[0]);
                     if ($rootScope.arrayParams[0] == 'super') {
                     } else {
-                        // console.log($rootScope.arrayParams[0]);
                         $location.path("/login");
                     }
                 } else if ($rootScope.role == 'admin') {
-                    // console.log($rootScope.arrayParams[0]);
                     if ($rootScope.arrayParams[0] == 'admin') {
                         if ($rootScope.arrayParams[1] == 'user_list') {
-                            $location.path("/login");
+                            // $location.path("/login");
                         } else {
                         }
                     } else {
-                        $location.path("/login");
+                        // $location.path("/login");
                     }
                 } else if ($rootScope.role == 'manager') {
-                    // console.log($rootScope.arrayParams[0]);
                     if ($rootScope.arrayParams[0] == 'admin') {
                     } else {
-                        $location.path("/login");
+                        // $location.path("/login");
+                        console.log("lll")
                     }
                 }
             } else {

@@ -485,6 +485,10 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
         // console.log(id);
     };
 
+    $scope.choice_sale = function (id) {
+        $location.path('/admin/my_project/choice_sale/' + id);
+    };
+
 });
 
 myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $location, $state, $timeout, $stateParams, $routeParams) {
@@ -1232,7 +1236,7 @@ myProjectCtrl.controller('DistributeCtrl', function ($http, $scope, $rootScope, 
 
     $scope.list(1, 100);
 
-    $scope.bank_man_list = function (id, pageNo, pageSize) {
+    $scope.bank_man_list_get = function (id, pageNo, pageSize) {
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -1259,7 +1263,7 @@ myProjectCtrl.controller('DistributeCtrl', function ($http, $scope, $rootScope, 
         $scope.bankManId = id;
         $scope.bankManName = name;
     }
-    $scope.sumbit_user = function () {
+    $scope.submit_user = function () {
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -1368,9 +1372,9 @@ myProjectCtrl.controller('ApplyHelpCtrl', function ($http, $scope, $rootScope, $
     $scope.choiceBank = function (id, name) {
         $scope.bankId = id;
         $scope.bankName = name;
-        $scope.product_list($scope.bankId, 1, 400)
+        $scope.product_list_get($scope.bankId, 1, 400)
     };
-    $scope.product_list = function (id, pageNo, pageSize) {
+    $scope.product_list_get = function (id, pageNo, pageSize) {
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -1481,6 +1485,59 @@ myProjectCtrl.controller('MessageCtrl', function ($http, $scope, $state, $rootSc
         })
     };
     $scope.get_message();
+    $scope.reBackDetail = function () {
+        $location.path("admin/my_project/detail/" + $stateParams.id);
+    };
+});
+
+myProjectCtrl.controller('ChoiceSaleCtrl', function ($http, $scope, $state, $rootScope, $stateParams, $location, $routeParams) {
+    if (!$scope.sale_id) {
+        $scope.sale_id = 0;
+    }
+    $scope.get_user = function () {
+        var m_params = {
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
+        };
+        console.log(m_params);
+        $http({
+            url: api_uri + "p/user/listSaleDetailByManager",
+            method: "GET",
+            params: m_params
+        }).success(function (d) {
+            console.log(d);
+            $scope.user_list = d.result;
+        }).error(function (d) {
+
+        })
+    };
+    $scope.get_user();
+    $scope.submit = function () {
+        var m_params = {
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
+            "applyId": $stateParams.id,
+            "salerId": $scope.sale_id,
+        };
+        console.log(m_params);
+        $.ajax({
+            type: 'POST',
+            url: api_uri + "loanApplicationManage/updateSale",
+            data: m_params,
+            traditional: true,
+            success: function (data, textStatus, jqXHR) {
+                console.log(data);
+                if (data.returnCode == 0) {
+                    $scope.reBackDetail();
+                    $scope.$apply();
+                }
+                else {
+                }
+            },
+            dataType: 'json',
+        });
+    };
+
     $scope.reBackDetail = function () {
         $location.path("admin/my_project/detail/" + $stateParams.id);
     };

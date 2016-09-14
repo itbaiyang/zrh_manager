@@ -7,7 +7,13 @@
 .account-num {
     background: #ffffff;
     height: 160px;
-    width: calc(100% - 336px)
+    width: calc(100% - 336px);
+}
+
+.account-num-group {
+    background: #ffffff;
+    height: 160px;
+    width: calc(100% - 168px);
 }
 .accountDetail {
     display: inline-block;
