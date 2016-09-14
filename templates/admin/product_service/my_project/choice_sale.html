@@ -6,6 +6,11 @@
         </div>
     </div>
     <ul class="list-group list_ul">
+        <li class="list-group-item list_user">
+            <input type="radio" ng-value="" name="inlineRadioOptions" ng-model="$parent.sale_id"
+                   style="margin-right: 10px">
+            无
+        </li>
         <li class="list-group-item list_user" ng-repeat="resultObj in user_list track by $index">
             <input type="radio" ng-value="resultObj.id" name="inlineRadioOptions" ng-model="$parent.sale_id"
                    style="margin-right: 10px">

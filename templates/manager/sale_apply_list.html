@@ -41,9 +41,9 @@
                 <span class="width8"></span>
                 <span class="width8"></span>
                 <span class="width8"></span>
-                <span class="width8">{{count.fee}}</span>
-                <span class="width8">{{count.loanValue}}</span>
-                <span class="width8">{{count.continual}}</span>
+                <span class="width8">{{count.fee||"无"}}</span>
+                <span class="width8">{{count.loanValue||"无"}}</span>
+                <span class="width8">{{count.continual||"无"}}</span>
                 <span class="width8"></span>
                 <span class="width8"></span>
             </li>
@@ -65,13 +65,13 @@
                           ng-show="resultObj.color == 2">{{resultObj.progressText}}</span>
                     <span class="width8" style="color: #009B27"
                           ng-show="resultObj.color == 3">{{resultObj.progressText}}</span>
-                    <span class="width8">{{resultObj.salerName}}</span>
-                    <span class="width8">{{resultObj.days}}</span>
-                    <span class="width8">{{resultObj.fee}}</span>
-                    <span class="width8">{{resultObj.loanValue}}</span>
-                    <span class="width8">{{resultObj.continual}}</span>
-                    <span class="width8">{{resultObj.continual}}</span>
-                    <span class="width8">{{resultObj.dealRemark}}</span>
+                    <span class="width8">{{resultObj.salerName||"无"}}</span>
+                    <span class="width8">{{resultObj.days||"无"}}</span>
+                    <span class="width8">{{resultObj.fee||"无"}}</span>
+                    <span class="width8">{{resultObj.loanValue||"无"}}</span>
+                    <span class="width8">{{resultObj.continual||"无"}}</span>
+                    <span class="width8">{{resultObj.continual||"无"}}</span>
+                    <span class="width8">{{resultObj.dealRemark||"无"}}</span>
                 </li>
             </div>
         </div>

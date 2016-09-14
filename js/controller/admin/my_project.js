@@ -204,6 +204,7 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
                     if (data.returnCode == 0) {
                         // console.log(data);
                         $scope.list($scope.pageNo1, 20);
+                        $scope.show_cancel();
                     }
                     else {
                         // console.log(data);

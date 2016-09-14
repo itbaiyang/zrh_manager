@@ -65,21 +65,17 @@
                           ng-show="resultObj.color == 2">{{resultObj.progressText}}</span>
                     <span class="width8" style="color: #009B27"
                           ng-show="resultObj.color == 3">{{resultObj.progressText}}</span>
-                    <span class="width8">{{resultObj.salerName}}</span>
-                    <span class="width8">{{resultObj.days}}</span>
-                    <span class="width8">{{resultObj.fee}}</span>
-                    <span class="width8">{{resultObj.loanValue}}</span>
-                    <span class="width8">{{resultObj.continual}}</span>
-                    <span class="width8">{{resultObj.continual}}</span>
-                    <span class="width8">{{resultObj.dealRemark}}</span>
+                    <span class="width8">{{resultObj.salerName||"无"}}</span>
+                    <span class="width8">{{resultObj.days||"无"}}</span>
+                    <span class="width8">{{resultObj.fee||"无"}}</span>
+                    <span class="width8">{{resultObj.loanValue||"无"}}</span>
+                    <span class="width8">{{resultObj.continual||"无"}}</span>
+                    <span class="width8">{{resultObj.continual||"无"}}</span>
+                    <span class="width8">{{resultObj.dealRemark||"无"}}</span>
                 </li>
             </div>
         </div>
         <li class="list-group-item list_common1">
-            <!--<button class="btnGrew" ng-hide="status != null"-->
-            <!--ng-click="giveUp()">-->
-            <!--放弃任务-->
-            <!--</button>-->
             <div class="btn-group col-sm-12 col-lg-12" style="position: relative">
                 <button type="button" ng-click="show_cancel()" class="btn btnGrew fr"
                         id="products">放弃项目
