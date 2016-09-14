@@ -171,6 +171,8 @@ manageCtrl.controller('UserUpdateCtrl', function ($http, $scope, $rootScope, $lo
     $scope.timestamp = parseInt(timesTamp1);
     $scope.isUpdate = false;
 
+    $scope.password = '111111';
+
     $scope.get = function () {
         var m_params = {
             "userId": $rootScope.login_user.userId,
@@ -188,7 +190,6 @@ manageCtrl.controller('UserUpdateCtrl', function ($http, $scope, $rootScope, $lo
                 $scope.name = d.result.name;
                 $scope.mobile = d.result.mobile;
                 $scope.empNo = d.result.empNo;
-                $scope.password = d.result.password;
                 $scope.role_sale = d.result.role;
                 $scope.managerId = d.result.manager;
                 $scope.managerName = d.result.managerName;
@@ -245,17 +246,23 @@ manageCtrl.controller('UserUpdateCtrl', function ($http, $scope, $rootScope, $lo
     };
 
     $scope.submit = function () {
+        if ($scope.password == '111111') {
+            $scope.password_new = '';
+        } else {
+            $scope.password_new = $scope.password;
+        }
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
             "timestamp": $scope.timestamp,
             "name": $scope.name,
             "mobile": $scope.mobile,
-            "password": $scope.password,
+            "password": $scope.password_new,
             "role": $scope.role_sale,
             "manager": $scope.managerId,
             "signature": $rootScope.encryptByDES($scope.email + $scope.password + $scope.timestamp),
         };
+        console.log(m_params);
         $http({
             url: api_uri + "p/user/update/" + $stateParams.id,
             method: "POST",

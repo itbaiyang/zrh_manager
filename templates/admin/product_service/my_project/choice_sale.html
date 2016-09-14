@@ -5,14 +5,6 @@
             <button class="btn btnGrew fr" ng-click="submit()">确定</button>
         </div>
     </div>
-    <div class="width100">
-        <div class="width30">
-            <input type="text" class="form-control" placeholder="搜索名字或手机号" ng-model="search_text">
-        </div>
-        <div class="width10">
-            <button class="btn btnBlue" ng-click="search()" type="button">搜索</button>
-        </div>
-    </div>
     <ul class="list-group list_ul">
         <li class="list-group-item list_user" ng-repeat="resultObj in user_list track by $index">
             <input type="radio" ng-value="resultObj.id" name="inlineRadioOptions" ng-model="$parent.sale_id"
