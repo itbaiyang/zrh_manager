@@ -23,6 +23,7 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
                 $scope.page = d.result.list;
                 $scope.result_list = d.result.list.datas;
                 $scope.count = d.result.count;
+                $scope.userName = d.result.userName;
                 angular.forEach($scope.result_list, function (data) {
                     $scope.status = d.result.status;
                     if (data.status == 0) {
@@ -1512,8 +1513,27 @@ myProjectCtrl.controller('MessageCtrl', function ($http, $scope, $state, $rootSc
 
 myProjectCtrl.controller('ChoiceSaleCtrl', function ($http, $scope, $state, $rootScope, $stateParams, $location, $routeParams) {
     if (!$scope.sale_id) {
-        $scope.sale_id = 0;
+        $scope.sale_id = '';
     }
+
+    $scope.get_saleId = function () {
+        var m_params = {
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
+            "applyId": $stateParams.id,
+        };
+        console.log(m_params);
+        $http({
+            url: api_uri + "p/user/getSalerByApplyId",
+            method: "GET",
+            params: m_params
+        }).success(function (d) {
+            $scope.saleId = d.result.id;
+        }).error(function (d) {
+
+        })
+    };
+
     $scope.get_user = function () {
         var m_params = {
             "userId": $rootScope.login_user.userId,
@@ -1527,6 +1547,7 @@ myProjectCtrl.controller('ChoiceSaleCtrl', function ($http, $scope, $state, $roo
         }).success(function (d) {
             console.log(d);
             $scope.user_list = d.result;
+            $scope.get_saleId();
         }).error(function (d) {
 
         })

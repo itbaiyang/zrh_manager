@@ -13,6 +13,7 @@
         </li>
         <li class="list-group-item list_user" ng-repeat="resultObj in user_list track by $index">
             <input type="radio" ng-value="resultObj.id" name="inlineRadioOptions" ng-model="$parent.sale_id"
+                   ng-checked="resultObj.id == saleId"
                    style="margin-right: 10px">
             {{resultObj.name ||'未填写'}}
         </li>
