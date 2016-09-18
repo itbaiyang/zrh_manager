@@ -1309,7 +1309,7 @@ myProjectCtrl.controller('DistributeCtrl', function ($http, $scope, $rootScope, 
     $scope.choiceBank = function (id, name) {
         $scope.bankId = id;
         $scope.bankName = name;
-        $scope.bank_man_list($scope.bankId, 1, 400)
+        $scope.bank_man_list_get($scope.bankId, 1, 400)
     };
 });
 

@@ -103,7 +103,10 @@ saleManagerCtrl.controller('SaleApplyListCtrl', function ($http, $scope, $state,
         }).success(function (d) {
             console.log(d);
             if (d.returnCode == 0) {
+                $scope.page = d.result.list;
                 $scope.result_list = d.result.list.datas;
+                $scope.count = d.result.count;
+                $scope.userName = d.result.userName;
                 angular.forEach($scope.result_list, function (data) {
                     $scope.status = d.result.status;
                     if (data.status == 0) {
@@ -192,5 +195,8 @@ saleManagerCtrl.controller('SaleApplyListCtrl', function ($http, $scope, $state,
 
     $scope.updateApply = function (id) {
         $location.path('/admin/my_project/detail/' + id);
+    };
+    $scope.go_sale_manage = function () {
+        $location.path('/admin/user_list');
     };
 });
