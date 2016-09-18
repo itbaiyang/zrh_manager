@@ -205,15 +205,31 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
                 data: m_params,
                 traditional: true,
                 success: function (data, textStatus, jqXHR) {
-                    // console.log(data);
+                    console.log(data);
                     if (data.returnCode == 0) {
-                        // console.log(data);
+                        console.log(data);
                         $scope.list($scope.pageNo1, 20);
                         $scope.hide_cancel();
+                        $scope.code_list = data.result;
+                        if ($scope.code_list) {
+                            for (var i = 0; i < $scope.code_list.length; i++) {
+                                if ($scope.code_list[i].code == 10002) {
+                                    alert("你已经选择了销售职员，所以不可以放弃项目，如果要放弃，请选择自己为销售职员");
+                                } else if ($scope.code_list[i].code == 10001) {
+                                    alert("申请不存在,请刷新页面");
+                                } else {
+                                    alert("发生异常");
+                                }
+                            }
+                        }
                     }
-                    else {
-                        alert("你已经选择了销售职员，所以不可以放弃项目，如果要放弃，请选择自己为销售职员");
-                    }
+                    // else if (data.returnCode == 10002){
+                    //     alert("你已经选择了销售职员，所以不可以放弃项目，如果要放弃，请选择自己为销售职员");
+                    // }else if (data.returnCode == 10001){
+                    //     alert("申请不存在,请刷新页面");
+                    // }else {
+                    //     alert("你已经选择了销售职员，所以不可以放弃项目，如果要放弃，请选择自己为销售职员");
+                    // }
                 },
                 dataType: 'json',
             });
