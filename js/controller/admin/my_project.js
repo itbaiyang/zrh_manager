@@ -96,6 +96,9 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
             $scope.list($scope.pageNo1, 20);
         });
     };
+    if (!$scope.pageNo1) {
+        $scope.pageNo1 = 1;
+    }
     $scope.selected = [];
     $scope.ids = [];
 
@@ -209,7 +212,7 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
                         $scope.hide_cancel();
                     }
                     else {
-                        // console.log(data);
+                        alert("你已经选择了销售职员，所以不可以放弃项目，如果要放弃，请选择自己为销售职员");
                     }
                 },
                 dataType: 'json',
