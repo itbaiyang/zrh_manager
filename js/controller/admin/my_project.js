@@ -1,7 +1,7 @@
 var myProjectCtrl = angular.module('myProjectCtrl', []);
 myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $location) {
     $scope.showCancel = false;
-
+    console.log($rootScope.role);
     $scope.comments_give = '';
 
     $scope.list = function (pageNo, pageSize) {
@@ -533,8 +533,8 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
 
 myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $location, $state, $timeout, $stateParams, $routeParams) {
     /*添加删除模板*/
-    $scope.reBackDetail = function () {
-        $location.path("admin/my_project/detail/" + $stateParams.id);
+    $scope.backProjectDetail = function () {
+        $location.path('/admin/my_project/detail/' + $stateParams.id);
     };
     $scope.get = function () {
         $scope.get_id_arr = [];
@@ -1302,7 +1302,7 @@ myProjectCtrl.controller('DistributeCtrl', function ($http, $scope, $rootScope, 
     $scope.choiceBankMan = function (id, name) {
         $scope.bankManId = id;
         $scope.bankManName = name;
-    }
+    };
     $scope.submit_user = function () {
         var m_params = {
             "userId": $rootScope.login_user.userId,
@@ -1331,6 +1331,9 @@ myProjectCtrl.controller('DistributeCtrl', function ($http, $scope, $rootScope, 
         $scope.bankId = id;
         $scope.bankName = name;
         $scope.bank_man_list_get($scope.bankId, 1, 400)
+    };
+    $scope.backProjectDetail = function () {
+        $location.path('/admin/my_project/detail/' + $stateParams.id);
     };
 });
 
@@ -1366,7 +1369,6 @@ myProjectCtrl.controller('ApplyHelpCtrl', function ($http, $scope, $rootScope, $
     $scope.get();
 
     $scope.backProjectDetail = function (id) {
-        // console.log(id);
         $location.path('/admin/my_project/detail/' + id);
     };
 
@@ -1499,9 +1501,8 @@ myProjectCtrl.controller('ChangeCompanyCtrl', function ($http, $scope, $state, $
             dataType: 'json',
         });
     };
-
-    $scope.reBackDetail = function () {
-        $location.path("admin/my_project/detail/" + $stateParams.id);
+    $scope.backProjectDetail = function () {
+        $location.path('/admin/my_project/detail/' + $stateParams.id);
     };
 });
 
@@ -1525,8 +1526,8 @@ myProjectCtrl.controller('MessageCtrl', function ($http, $scope, $state, $rootSc
         })
     };
     $scope.get_message();
-    $scope.reBackDetail = function () {
-        $location.path("admin/my_project/detail/" + $stateParams.id);
+    $scope.backProjectDetail = function () {
+        $location.path('/admin/my_project/detail/' + $stateParams.id);
     };
 });
 
@@ -1598,7 +1599,7 @@ myProjectCtrl.controller('ChoiceSaleCtrl', function ($http, $scope, $state, $roo
         });
     };
 
-    $scope.reBackDetail = function () {
-        $location.path("admin/my_project/detail/" + $stateParams.id);
+    $scope.backProjectDetail = function () {
+        $location.path('/admin/my_project/detail/' + $stateParams.id);
     };
 });
