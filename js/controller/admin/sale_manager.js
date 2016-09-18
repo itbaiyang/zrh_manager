@@ -144,7 +144,13 @@ saleManagerCtrl.controller('SaleApplyListCtrl', function ($http, $scope, $state,
         })
     };
 
-    $scope.list(1, 100);
+    $scope.list(1, 20);
+    $scope.changePage = function (page) {
+        $scope.pageNo1 = page;
+        $scope.$watch($scope.pageNo1, function () {
+            $scope.list($scope.pageNo1, 20);
+        });
+    };
     $scope.selected = [];
     $scope.ids = [];
     $scope.isSelected = function (id) {

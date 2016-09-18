@@ -165,7 +165,8 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
             params: m_params
         }).success(function (d) {
             if (d.returnCode == 0) {
-                $scope.list($scope.pageNo1, 10);
+                $scope.list($scope.pageNo1, 20);
+                $scope.hide_cancel();
             }
             else {
             }
@@ -204,7 +205,7 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
                     if (data.returnCode == 0) {
                         // console.log(data);
                         $scope.list($scope.pageNo1, 20);
-                        $scope.show_cancel();
+                        $scope.hide_cancel();
                     }
                     else {
                         // console.log(data);

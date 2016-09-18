@@ -1,5 +1,10 @@
 <div class="content">
-    <div class="contentTitle width100"><span>{{userName}}的项目</span></div>
+    <div class="contentTitle width100">
+        <span>{{userName}}的项目</span>
+        <button class="btn btnGrew fr" style="margin-top: 14px" ng-click="go_sale_manage()" type="submit"><img
+                class="btnGrewImg">返回
+        </button>
+    </div>
     <div class="width100">
         <div class="width30">
             <input type="text" class="form-control" placeholder="搜索企业名称" ng-model="search_text">
@@ -7,7 +12,6 @@
         <div class="width10">
             <button class="btn btnBlue" ng-click="search()" type="button">搜索</button>
         </div>
-        <button class="btn btnGrew fr" ng-click="go_sale_manage()" type="submit"><img class="btnGrewImg">返回</button>
     </div>
 
     <ul class="list-group list_ul">
