@@ -171,7 +171,7 @@ manageCtrl.controller('UserUpdateCtrl', function ($http, $scope, $rootScope, $lo
     $scope.timestamp = parseInt(timesTamp1);
     $scope.isUpdate = false;
 
-    $scope.password = '111111';
+    $scope.password = '******';
 
     $scope.get = function () {
         var m_params = {
@@ -246,7 +246,7 @@ manageCtrl.controller('UserUpdateCtrl', function ($http, $scope, $rootScope, $lo
     };
 
     $scope.submit = function () {
-        if ($scope.password == '111111') {
+        if ($scope.password == '******') {
             $scope.password_new = '';
         } else {
             $scope.password_new = $scope.password;

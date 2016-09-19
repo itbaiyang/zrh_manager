@@ -1,10 +1,10 @@
 var myProjectCtrl = angular.module('myProjectCtrl', []);
 myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $location) {
-    $scope.showCancel = false;
-    console.log($rootScope.role);
-    $scope.comments_give = '';
+    $scope.showCancel = false; //放弃任务取消理由框显示
+    $scope.comments_give = '';  //留言板评论内容
 
-    $scope.list = function (pageNo, pageSize) {
+    /* 获取我的项目列表*/
+    $scope.list = function (pageNo, pageSize) { 
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -20,12 +20,11 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
         }).success(function (d) {
             console.log(d);
             if (d.returnCode == 0) {
-                $scope.page = d.result.list;
-                $scope.result_list = d.result.list.datas;
-                $scope.count = d.result.count;
+                $scope.page = d.result.list;              //分页
+                $scope.result_list = d.result.list.datas; //列表参数
+                $scope.count = d.result.count;            //列表统计
                 $scope.userName = d.result.userName;
-                angular.forEach($scope.result_list, function (data) {
-                    $scope.status = d.result.status;
+                angular.forEach($scope.result_list, function (data) { //申请状态显示
                     if (data.status == 0) {
                         data.progressText = "未申请";
                         data.color = 1;
@@ -57,11 +56,128 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
             $location.path("/error");
         })
     };
-
-    $scope.updateApply = function (id) {
-        $location.path('/admin/my_project/detail/' + id);
+    $scope.list(1, 20);
+    if (!$scope.pageNo1) {
+        $scope.pageNo1 = 1;
+    }
+    $scope.changePage = function (page) {  //列表分页函数
+        $scope.pageNo1 = page;
+        $scope.$watch($scope.pageNo1, function () {
+            $scope.list($scope.pageNo1, 20);
+        });
     };
 
+    /*选中申请相关,目前只做放弃项目*/
+    $scope.selected = [];
+    $scope.ids = [];
+    $scope.isSelected = function (id) {
+        return $scope.selected.indexOf(id) >= 0;
+    };
+    var updateSelected = function (action, id) {
+        if (action == 'add') {
+            $scope.ids.push(id);
+        }
+        if (action == 'remove') {
+            var idx = $scope.ids.indexOf(id);
+            $scope.ids.splice(idx, 1);
+        }
+    };
+    $scope.updateSelection = function ($event, id) {
+        var checkbox = $event.target;
+        var action = (checkbox.checked ? 'add' : 'remove');
+        updateSelected(action, id);
+    };
+
+    /*搜索,筛选,刷新页面*/
+    $scope.refresh = function () {
+        $scope.list($scope.pageNo1, 10);
+    };
+    $scope.search_text = null;
+    $scope.search = function () {
+        $scope.wd = $scope.search_text;
+        $scope.list(1, 20);
+    };
+    $scope.status_text = "全部";
+    $scope.choice = function (status) {
+        $scope.status = status;
+        if ($scope.status == 0) {
+            $scope.status_text = "未申请";
+        } else if ($scope.status == 1) {
+            $scope.status_text = "申请中";
+        } else if ($scope.status == 2) {
+            $scope.status_text = "约见中";
+        } else if ($scope.status == 3) {
+            $scope.status_text = "跟进中";
+        } else if ($scope.status == 4) {
+            $scope.status_text = "成功融资";
+        } else if ($scope.status == null) {
+            $scope.status_text = "全部";
+        }
+        $scope.list(1, 20);
+    };
+
+    /*跳转页面函数*/
+    $scope.showDetail = function (id) {
+        $location.path('/admin/my_project/detail/' + id);
+
+    };
+
+    /*放弃任务相关函数*/
+    $scope.show_cancel = function () {
+        $scope.showCancel = true;
+    };
+    $scope.hide_cancel = function () {
+        $scope.showCancel = false;
+    };
+    $scope.giveUp = function () {
+        var m_params = {
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
+            "ids": $scope.ids,
+            "c": $scope.comments_give
+        };
+        console.log(m_params);
+        if (m_params.ids.length == 0) {
+            alert("没有选择项目");
+        } else if (m_params.c == '') {
+            alert("必须填写放弃原因");
+        } else {
+            $.ajax({
+                type: 'GET',
+                url: api_uri + "loanApplicationManage/giveUp",
+                data: m_params,
+                traditional: true,
+                success: function (data, textStatus, jqXHR) {
+                    console.log(data);
+                    if (data.returnCode == 0) {
+                        console.log(data);
+                        $scope.ids = [];
+                        $scope.list($scope.pageNo1, 20);
+                        $scope.hide_cancel();
+                        $scope.code_list = data.result;
+                        if ($scope.code_list) {
+                            for (var i = 0; i < $scope.code_list.length; i++) {
+                                if ($scope.code_list[i].code == 10002) {
+                                    alert($scope.code_list[i].name + "，你已经选择了销售职员，所以不可以放弃项目，如果要放弃，请选择自己为销售职员");
+                                } else if ($scope.code_list[i].code == 10001) {
+                                    alert("申请不存在,请刷新页面");
+                                } else {
+                                    $rootScope.successMsg = "操作成功";
+                                    $rootScope.fadeInOut("#alert", 500);
+                                }
+                            }
+                        }
+                    }
+                },
+                dataType: 'json',
+            });
+        }
+
+
+    };
+
+
+    /*暂时搁置的函数*/
     $scope.nextStatus = function (id, status) {
         if (status < 4) {
             status++;
@@ -88,52 +204,7 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
         }
 
     };
-
-    $scope.list(1, 20);
-    $scope.changePage = function (page) {
-        $scope.pageNo1 = page;
-        $scope.$watch($scope.pageNo1, function () {
-            $scope.list($scope.pageNo1, 20);
-        });
-    };
-    if (!$scope.pageNo1) {
-        $scope.pageNo1 = 1;
-    }
-    $scope.selected = [];
-    $scope.ids = [];
-
-    $scope.isSelected = function (id) {
-        return $scope.selected.indexOf(id) >= 0;
-    };
-
-    var updateSelected = function (action, id) {
-        if (action == 'add') {
-            $scope.ids.push(id);
-        }
-        if (action == 'remove') {
-            var idx = $scope.ids.indexOf(id);
-            $scope.ids.splice(idx, 1);
-        }
-    };
-
-    $scope.updateSelection = function ($event, id) {
-
-        var checkbox = $event.target;
-        var action = (checkbox.checked ? 'add' : 'remove');
-        updateSelected(action, id);
-    };
-
-    $scope.refresh = function () {
-        $scope.list($scope.pageNo1, 10);
-    };
-
-    $scope.showDetail = function (id) {
-        $location.path('/admin/my_project/detail/' + id);
-
-    };
-
     $scope.delete = function () {
-        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             ids: $scope.ids,
             "userId": $rootScope.login_user.userId,
@@ -156,7 +227,6 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
             dataType: 'json',
         });
     };
-
     $scope.cancel = function (id) {
         var m_params = {
             "userId": $rootScope.login_user.userId,
@@ -178,67 +248,7 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
         }).error(function (d) {
         })
     };
-
-    $scope.show_cancel = function () {
-        $scope.showCancel = true;
-    };
-    $scope.hide_cancel = function () {
-        $scope.showCancel = false;
-    };
-
-    $scope.giveUp = function () {
-        var m_params = {
-            "userId": $rootScope.login_user.userId,
-            "token": $rootScope.login_user.token,
-            "ids": $scope.ids,
-            "c": $scope.comments_give
-        };
-        console.log(m_params);
-        if (m_params.ids.length == 0) {
-            alert("没有选择项目");
-        } else if (m_params.c == '') {
-            alert("必须填写放弃原因");
-        } else {
-            $.ajax({
-                type: 'GET',
-                url: api_uri + "loanApplicationManage/giveUp",
-                data: m_params,
-                traditional: true,
-                success: function (data, textStatus, jqXHR) {
-                    console.log(data);
-                    if (data.returnCode == 0) {
-                        console.log(data);
-                        $scope.list($scope.pageNo1, 20);
-                        $scope.hide_cancel();
-                        $scope.code_list = data.result;
-                        if ($scope.code_list) {
-                            for (var i = 0; i < $scope.code_list.length; i++) {
-                                if ($scope.code_list[i].code == 10002) {
-                                    alert("你已经选择了销售职员，所以不可以放弃项目，如果要放弃，请选择自己为销售职员");
-                                } else if ($scope.code_list[i].code == 10001) {
-                                    alert("申请不存在,请刷新页面");
-                                } else {
-                                    alert("发生异常");
-                                }
-                            }
-                        }
-                    }
-                    // else if (data.returnCode == 10002){
-                    //     alert("你已经选择了销售职员，所以不可以放弃项目，如果要放弃，请选择自己为销售职员");
-                    // }else if (data.returnCode == 10001){
-                    //     alert("申请不存在,请刷新页面");
-                    // }else {
-                    //     alert("你已经选择了销售职员，所以不可以放弃项目，如果要放弃，请选择自己为销售职员");
-                    // }
-                },
-                dataType: 'json',
-            });
-        }
-
-
-    };
-
-    $scope.linkCompany = function(id ,remark) {
+    $scope.linkCompany = function (id, remark) {
         // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId": $rootScope.login_user.userId,
@@ -260,39 +270,13 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
             dataType: 'json',
         });
     };
-
-    $scope.search_text = null;
-    $scope.search = function () {
-        $scope.wd = $scope.search_text;
-        $scope.list(1, 20);
-    };
-
-    $scope.status_text = "全部";
-    $scope.choice = function (status) {
-        $scope.status = status;
-        if ($scope.status == 0) {
-            $scope.status_text = "未申请";
-        } else if ($scope.status == 1) {
-            $scope.status_text = "申请中";
-        } else if ($scope.status == 2) {
-            $scope.status_text = "约见中";
-        } else if ($scope.status == 3) {
-            $scope.status_text = "跟进中";
-        } else if ($scope.status == 4) {
-            $scope.status_text = "成功融资";
-        } else if ($scope.status == null) {
-            $scope.status_text = "全部";
-        }
-        $scope.list(1, 20);
-    };
-
 });
 
 myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $location, $state, $timeout, $stateParams) {
-    /*添加删除模板*/
-    $scope.id = $stateParams.id;
 
-    // $scope.isAllot = '';
+    $scope.id = $stateParams.id;  //获取路由参数
+
+    /*获取申请详情*/
     $scope.get = function () {
         var m_params = {
             "userId": $rootScope.login_user.userId,
@@ -350,6 +334,7 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
     };
     $scope.get();
 
+    /*获取公司留言板列表*/
     $scope.get_message = function () {
         var m_params = {
             "userId": $rootScope.login_user.userId,
@@ -361,14 +346,14 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
             $scope.message_list = d.result;
         }).error(function (d) {
-
+            console.log(d);
         })
     };
     $scope.get_message();
 
+    /*跳转页面*/
     $scope.editApply = function (id) {
         if ($scope.type == 2) {
             alert('个人产品暂不支持修改信息');
@@ -376,7 +361,40 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
             $location.path('/admin/my_project/edit_apply/' + id);
         }
 
-    };
+    };  //编辑页面
+    $scope.apply_help = function (id) {
+        $location.path('/admin/my_project/apply_help/' + id);
+    }; //帮助申请
+    $scope.change_bank = function (id, mobile) {
+        $location.path('/admin/my_project/change_bank/' + id + '/' + mobile);
+    }; //更改银行
+    $scope.messages = function (id) {
+        $location.path('/admin/my_project/message/' + id);
+    };   //留言板
+    $scope.distribute = function (id) {
+        $location.path('/admin/my_project/distribute/' + id);
+    };//递交资料
+    $scope.change_company = function (id) {
+        $location.path('/admin/my_project/change_company/' + id);
+        // console.log(id);
+    };//更改银行
+    $scope.choice_sale = function (id) {
+        $location.path('/admin/my_project/choice_sale/' + id);
+    }; //选择销售人员
+    $scope.reBackFromDetails = function () {
+        var from_route = $rootScope.getSessionObject("from_route");
+        var from_route2 = $rootScope.getSessionObject("from_route2");
+        var from_params = $rootScope.getSessionObject("from_params");
+        if (from_route == "admin.my_project" || from_route == "admin.company_message") {
+            $state.go(from_route);
+        } else if (from_route2 == null) {
+            $state.go(from_route);
+        } else {
+            $location.path(from_route2 + from_params);
+        }
+    }; //返回上一级页面
+
+    /*我要处理*/
     $scope.apply = function (id) {
         var m_params = {
             "userId": $rootScope.login_user.userId,
@@ -388,31 +406,25 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
             method: "GET",
             params: m_params
         }).success(function (d) {
-            // console.log(d);
             if (d.returnCode == 0) {
                 $rootScope.putSessionObject('from_route', 'admin.my_project');
                 $rootScope.showBtn = 2;
+                $rootScope.successMsg = "成功领取项目";
+                $rootScope.fadeInOut("#alert", 500);
+            } else if (d.returnCode == 1002) {
+                alert("申请状态错误");
+            } else if (d.returnCode == 1003) {
+                alert("用户不存在");
+            } else if (d.returnCode == 1000) {
+                alert("服务器异常");
+            } else {
+                alert("其他未知错误");
             }
-            else {
-                //console.log(d);
-            }
-
         }).error(function (d) {
         })
     };
 
-    $scope.apply_help = function (id) {
-        $location.path('/admin/my_project/apply_help/' + id);
-    };
-
-    $scope.apply_again = function (id, mobile) {
-        $location.path('/admin/my_project/apply_again/' + id + '/' + mobile);
-    };
-
-    $scope.messages = function (id) {
-        $location.path('/admin/my_project/message/' + id);
-    };
-
+    /*发布评论*/
     $scope.remark_submit = function () {
         var m_params = {
             "userId": $rootScope.login_user.userId,
@@ -427,12 +439,16 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
             traditional: true,
             success: function (data, textStatus, jqXHR) {
                 if (data.returnCode == 0) {
-                    // alert('留言成功');
                     $scope.content = '';
                     $scope.get_message();
-                }
-                else {
-                    alert('留言失败');
+                    $rootScope.successMsg = "发布成功";
+                    $rootScope.fadeInOut("#alert", 500);
+                } else if (d.returnCode == 1003) {
+                    alert("申请不存在，发布失败");
+                } else if (d.returnCode == 1000) {
+                    alert("服务器错误");
+                } else {
+                    alert("其他未知错误");
                 }
             },
             dataType: 'json',
@@ -440,17 +456,30 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
 
     };
 
-    $scope.distribute = function (id) {
-        $location.path('/admin/my_project/distribute/' + id);
-    };
-
-    $scope.add_fee = function () {
+    /*添加服务费和融资额度*/
+    $scope.add_fee = function (id) {
+        $scope.msg = '';
         $(".add-fee").css("display", "block");
         $(".add-loan").css("display", "none");
+        if (id == 3) {
+            $scope.msg = '修改成功';
+        } else if (id == 4) {
+            $scope.msg = '填写成功';
+        } else {
+            alert("异常");
+        }
     };
-    $scope.add_loan = function () {
+    $scope.add_loan = function (id) {
+        $scope.msg = '';
         $(".add-loan").css("display", "block");
         $(".add-fee").css("display", "none");
+        if (id == 1) {
+            $scope.msg = '修改成功';
+        } else if (id == 2) {
+            $scope.msg = '填写成功';
+        } else {
+            alert("异常");
+        }
     };
     $scope.cancel_add = function () {
         $(".add-fee").css("display", "none");
@@ -473,6 +502,9 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
                 if (data.returnCode == 0) {
                     $(".add-loan").css("display", "none");
                     $scope.get();
+                    $rootScope.successMsg = $scope.msg;
+                    $rootScope.fadeInOut("#alert", 500);
+                    $scope.msg = '';
                 }
                 else {
                 }
@@ -498,6 +530,8 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
                 if (data.returnCode == 0) {
                     $(".add-fee").css("display", "none");
                     $scope.get();
+                    $rootScope.successMsg = $scope.msg;
+                    $rootScope.fadeInOut("#alert", 500);
                 }
                 else {
                 }
@@ -506,36 +540,15 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
         });
 
     };
-
-    $scope.reBackDetails = function () {
-        var from_route = $rootScope.getSessionObject("from_route");
-        var from_route2 = $rootScope.getSessionObject("from_route2");
-        var from_params = $rootScope.getSessionObject("from_params");
-        if (from_route == "admin.my_project" || from_route == "admin.company_message") {
-            $state.go(from_route);
-        } else if (from_route2 == null) {
-            $state.go(from_route);
-        }else{
-            $location.path(from_route2+from_params);
-        }
-    };
-
-    $scope.change_company = function (id) {
-        $location.path('/admin/my_project/change_company/' + id);
-        // console.log(id);
-    };
-
-    $scope.choice_sale = function (id) {
-        $location.path('/admin/my_project/choice_sale/' + id);
-    };
-
 });
 
 myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $location, $state, $timeout, $stateParams, $routeParams) {
-    /*添加删除模板*/
+    /*跳转页面*/
     $scope.backProjectDetail = function () {
         $location.path('/admin/my_project/detail/' + $stateParams.id);
-    };
+    }; //返回详情页面
+
+    /*获取企业详情*/
     $scope.get = function () {
         $scope.get_id_arr = [];
         var m_params = {
@@ -575,7 +588,8 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
         title: "",
         content: "",
         name: ""
-    };
+    }; //初始化模块
+    /*图片加载初始化*/
     $scope.picSave = function () {
         var m_params = {
             "userId": $rootScope.login_user.userId,
@@ -1130,6 +1144,8 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
         });
 
     };
+
+    /*添加模块*/
     $scope.addModel = function (templateType) {
         if ($scope.model_list) {
             var id_model = $scope.model_list.length;
@@ -1154,12 +1170,14 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
         }
         id_model++;
     };
+
+    /*删除模块*/
     $scope.delete = function (id) {
         $scope.model_list.splice(id, 1);
     };
-    /*保存基本信息*/
 
-    $scope.basicMessage = function () {
+    /*保存信息*/
+    $scope.submitMessage = function () {
         // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "applyId": $stateParams.id,
@@ -1170,6 +1188,7 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
             "legal_representative": $scope.basic.legal_representative,
             "register_date": $scope.basic.register_date,
             "registered_capital": $scope.basic.registered_capital,
+            "officeAddress": $scope.basic.officeAddress,
             "business_address": $scope.basic.business_address,
             "item_category": $scope.basic.item_category,
             "business_type": $scope.basic.business_type,
@@ -1188,7 +1207,7 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
             success: function (data, textStatus, jqXHR) {
                 if (data.returnCode == 0) {
                     $scope.id_basic = data.result;
-                    $scope.other();
+                    $scope.modelMessage();
                     //$scope.$apply();
                 }
                 else {
@@ -1198,9 +1217,7 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
         });
 
     };
-
-    /*保存其他信息*/
-    $scope.other = function () {
+    $scope.modelMessage = function () {
         var list = [];
         //var list_string = [];
         for (var i = 0; i < $scope.model_list.length; i++) {
@@ -1227,6 +1244,8 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
             traditional: true,
             success: function (data, textStatus, jqXHR) {
                 if (data.returnCode == 0) {
+                    $rootScope.successMsg = "修改成功";
+                    $rootScope.fadeInOut("#alert", 500);
                     $location.path("admin/my_project/detail/" + $stateParams.id);
                     $scope.$apply();
                 }
@@ -1237,20 +1256,19 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
         });
 
     };
-    $scope.submitMessage = function () {
-        $scope.basicMessage();
-    };
-    $scope.saveImg = "";
+
+    $scope.saveImg = ""; //图片数组初始化
     $scope.removeImgList = function (id, index) {
         id.splice(index, 1);
-    };
+    }; //删除图片
 });
 
 myProjectCtrl.controller('DistributeCtrl', function ($http, $scope, $rootScope, $location, $state, $timeout, $routeParams, $stateParams) {
-    /*添加删除模板*/
-    $scope.id = $stateParams.id;
 
-    $scope.list = function (pageNo, pageSize) {
+    $scope.id = $stateParams.id; //获取路由申请Id
+
+    /*获取银行列表*/
+    $scope.bank_list_get = function (pageNo, pageSize) {
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -1273,9 +1291,9 @@ myProjectCtrl.controller('DistributeCtrl', function ($http, $scope, $rootScope, 
             $location.path("/error");
         })
     };
+    $scope.bank_list_get(1, 100);
 
-    $scope.list(1, 100);
-
+    /*获取银行职员列表*/
     $scope.bank_man_list_get = function (id, pageNo, pageSize) {
         var m_params = {
             "userId": $rootScope.login_user.userId,
@@ -1294,15 +1312,24 @@ myProjectCtrl.controller('DistributeCtrl', function ($http, $scope, $rootScope, 
             }
             else {
             }
-
         }).error(function (d) {
         })
     };
 
+    /*选择银行*/
+    $scope.choiceBank = function (id, name) {
+        $scope.bankId = id;
+        $scope.bankName = name;
+        $scope.bank_man_list_get($scope.bankId, 1, 400)
+    };
+
+    /*选择银行职员*/
     $scope.choiceBankMan = function (id, name) {
         $scope.bankManId = id;
         $scope.bankManName = name;
     };
+
+    /*递交资料*/
     $scope.submit_user = function () {
         var m_params = {
             "userId": $rootScope.login_user.userId,
@@ -1315,30 +1342,37 @@ myProjectCtrl.controller('DistributeCtrl', function ($http, $scope, $rootScope, 
             method: "GET",
             params: m_params
         }).success(function (d) {
+            console.log(d);
             if (d.returnCode == 0) {
-                alert("递交成功");
-                //$state.go("master.my_project");
-                $location.path('/admin/my_project/detail/' + $scope.id);
-            }
-            else {
-                alert("递交失败");
+                $rootScope.successMsg = "递交成功";
+                $rootScope.fadeInOut("#alert", 500);
+                $scope.backProjectDetail();
+            } else if (d.returnCode == 1001) {
+                alert("该申请已经被递交");
+            } else if (d.returnCode == 1002) {
+                alert("企业未申请状态或其他未知状态");
+            } else if (d.returnCode == 1003) {
+                alert("申请不存在");
+            } else if (d.returnCode == 1004) {
+                alert("企业名称不存在");
+            } else if (d.returnCode == 1005) {
+                alert("资料不够完善");
+            } else {
+                alert("其他未知因素导致递交失败，请联系后台人员");
             }
         }).error(function (d) {
         })
     };
 
-    $scope.choiceBank = function (id, name) {
-        $scope.bankId = id;
-        $scope.bankName = name;
-        $scope.bank_man_list_get($scope.bankId, 1, 400)
-    };
+    /*返回详情列表*/
     $scope.backProjectDetail = function () {
         $location.path('/admin/my_project/detail/' + $stateParams.id);
     };
 });
 
 myProjectCtrl.controller('ApplyHelpCtrl', function ($http, $scope, $rootScope, $location, $state, $timeout, $stateParams) {
-    /*添加删除模板*/
+    /*初始化参数*/
+    $scope.applyMobile = '';
     $scope.id = $stateParams.id;
     if ($stateParams.mobile) {
         $scope.applyMobile = $stateParams.mobile;
@@ -1442,7 +1476,7 @@ myProjectCtrl.controller('ApplyHelpCtrl', function ($http, $scope, $rootScope, $
         })
     };
 
-    $scope.submit_help = function () {
+    $scope.submit_help = function (msg) {
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -1460,6 +1494,12 @@ myProjectCtrl.controller('ApplyHelpCtrl', function ($http, $scope, $rootScope, $
                 success: function (data, textStatus, jqXHR) {
                     // console.log(data);
                     if (data.returnCode == 0) {
+                        if (msg == 0) {
+                            $rootScope.successMsg = "操作成功";
+                        } else {
+                            $rootScope.successMsg = "更换成功";
+                        }
+                        $rootScope.fadeInOut("#alert", 500);
                         $location.path('/admin/my_project/detail/' + $scope.id);
                         $scope.$apply();
                     }
@@ -1507,6 +1547,8 @@ myProjectCtrl.controller('ChangeCompanyCtrl', function ($http, $scope, $state, $
 });
 
 myProjectCtrl.controller('MessageCtrl', function ($http, $scope, $state, $rootScope, $stateParams, $location, $routeParams) {
+
+    /*获取留言列表*/
     $scope.get_message = function () {
         var m_params = {
             "userId": $rootScope.login_user.userId,
@@ -1526,16 +1568,19 @@ myProjectCtrl.controller('MessageCtrl', function ($http, $scope, $state, $rootSc
         })
     };
     $scope.get_message();
+
+    /*返回详情页面*/
     $scope.backProjectDetail = function () {
         $location.path('/admin/my_project/detail/' + $stateParams.id);
     };
 });
 
 myProjectCtrl.controller('ChoiceSaleCtrl', function ($http, $scope, $state, $rootScope, $stateParams, $location, $routeParams) {
+    /*初始化参数*/
     if (!$scope.sale_id) {
         $scope.sale_id = '';
     }
-
+    /*获取aleId*/
     $scope.get_saleId = function () {
         var m_params = {
             "userId": $rootScope.login_user.userId,
@@ -1554,6 +1599,7 @@ myProjectCtrl.controller('ChoiceSaleCtrl', function ($http, $scope, $state, $roo
         })
     };
 
+    /*获取用户列表*/
     $scope.get_user = function () {
         var m_params = {
             "userId": $rootScope.login_user.userId,
@@ -1573,6 +1619,8 @@ myProjectCtrl.controller('ChoiceSaleCtrl', function ($http, $scope, $state, $roo
         })
     };
     $scope.get_user();
+
+    /*给销售人员*/
     $scope.submit = function () {
         var m_params = {
             "userId": $rootScope.login_user.userId,
@@ -1589,7 +1637,9 @@ myProjectCtrl.controller('ChoiceSaleCtrl', function ($http, $scope, $state, $roo
             success: function (data, textStatus, jqXHR) {
                 console.log(data);
                 if (data.returnCode == 0) {
-                    $scope.reBackDetail();
+                    $rootScope.successMsg = "操作成功";
+                    $rootScope.fadeInOut("#alert", 500);
+                    $scope.backProjectDetail();
                     $scope.$apply();
                 }
                 else {
@@ -1599,6 +1649,7 @@ myProjectCtrl.controller('ChoiceSaleCtrl', function ($http, $scope, $state, $roo
         });
     };
 
+    /*返回到详情页面*/
     $scope.backProjectDetail = function () {
         $location.path('/admin/my_project/detail/' + $stateParams.id);
     };

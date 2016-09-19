@@ -273,11 +273,11 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
-        .state('admin.my_project.apply_again', {
-            url: '/apply_again/:id/:mobile',
+        .state('admin.my_project.change_bank', {
+            url: '/change_bank/:id/:mobile',
             views: {
                 'contains@admin': {
-                    templateUrl: templates_root + 'admin/product_service/my_project/apply_again.html',
+                    templateUrl: templates_root + 'admin/product_service/my_project/change_bank.html',
                     controller: 'ApplyHelpCtrl'
                 }
             }

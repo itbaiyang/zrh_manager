@@ -1,5 +1,5 @@
 <div style="position: absolute;overflow-x:hidden; z-index: 100;width: 100%; height: 100%; padding: 0 15px; background: #ffffff">
-    <div class="contentTitle">
+    <div class="contentTitle" style="">
         <span>企业详情</span>
         <div class="fr" ng-hide="showBtn == 1 || readonly == true" style="margin: 10px">
             <button class="btn btnGrew fr" ng-click="editApply(id)">修改信息</button>
@@ -8,14 +8,14 @@
                 <button style="margin-left:15px" class="btn btnBlue" type="button" ng-click="distribute(id)">递交资料
                 </button>
             </div>
-            <button class="btnGrew" ng-click="reBackDetails()">返回</button>
+            <button class="btnGrew" ng-click="reBackFromDetails()">返回</button>
             <button class="btnGrew" ng-show="w == true" ng-click="change_company(id)">注册人变更</button>
             <button class="btnGrew" ng-show="status == null || status == 0"
                     ng-click="apply_help(id)">
                 帮助申请
             </button>
             <button class="btnGrew" ng-show="status != null && status != 0"
-                    ng-click="apply_again(id,registerLinkmanMobile)">更换银行
+                    ng-click="change_bank(id,registerLinkmanMobile)">更换银行
             </button>
             <button class="btnGrew" ng-show="role == 'manager'"
                     ng-click="choice_sale(id)">选销售职员
@@ -54,7 +54,7 @@
                         class="fr">预计：{{days}}天</span>
             </p>
                 <div class="progress" style="height: 6px">
-                    <div class="progress-bar progress-bar-success" style="width: {{jindu}}%;">
+                    <div class="progress-bar progress-bar-success" style="width:{{jindu}}%;">
                     <span class="sr-only"></span>
                 </div>
             </div>
@@ -63,14 +63,14 @@
                 <div class="detailStyle">
                     <span ng-show="basic.loanValue">融资额：{{basic.loanValue}}万</span>
                     <span ng-hide="basic.loanValue">请填写融资额</span>
-                    <a class="" style="cursor: pointer" ng-show="basic.loanValue" ng-click="add_loan()">修改</a>
-                    <a class="" style="cursor: pointer" ng-hide="basic.loanValue" ng-click="add_loan()">填写</a>
+                    <a class="" style="cursor: pointer" ng-show="basic.loanValue" ng-click="add_loan(1)">修改</a>
+                    <a class="" style="cursor: pointer" ng-hide="basic.loanValue" ng-click="add_loan(2)">填写</a>
                 </div>
                 <div class="detailStyle" style="margin-top: 5px;text-align: right">
                     <span ng-show="basic.fee">服务费：{{basic.fee}}%</span>
                     <span ng-hide="basic.fee">请填写服务费 </span>
-                    <a class="" style="cursor: pointer" ng-show="basic.fee" ng-click="add_fee()">修改</a>
-                    <a class="" style="cursor: pointer" ng-hide="basic.fee" ng-click="add_fee()">填写</a>
+                    <a class="" style="cursor: pointer" ng-show="basic.fee" ng-click="add_fee(3)">修改</a>
+                    <a class="" style="cursor: pointer" ng-hide="basic.fee" ng-click="add_fee(4)">填写</a>
                 </div>
             </div>
             <div class="add-tips add-loan">
@@ -142,6 +142,10 @@
             <p class="detailStyleP1 noPadding">注册地址：</p>
             <div>{{basic.business_address}}</div>
         </div>
+        <div class="detailStyle" ng-show="basic.officeAddress">
+            <p class="detailStyleP1 noPadding">办公地址：</p>
+            <div>{{basic.officeAddress}}</div>
+        </div>
         <div class="detailStyle" ng-show="basic.registered_capital">
             <p class="detailStyleP1 noPadding">注册资本：</p>
             <div>{{basic.registered_capital}}万</div>
@@ -164,14 +168,6 @@
             <div>{{basic.linkmanName}}</div>
             <div style="padding-left: 90px;margin-top: -10px">{{basic.linkmanMobile}}</div>
         </div>
-        <!--<div class="detailStyle" ng-show="basic.fee">-->
-        <!--<p class="detailStyleP1 noPadding">服务费：</p>-->
-        <!--<div>{{basic.fee}}</div>-->
-        <!--</div>-->
-        <!--<div class="detailStyle" ng-show="basic.loanValue">-->
-        <!--<p class="detailStyleP1 noPadding">融资额：</p>-->
-        <!--<div>{{basic.loanValue}}</div>-->
-        <!--</div>-->
         <div class="detailStyle" ng-show="basic.continual">
             <p class="detailStyleP1 noPadding">年销售量：</p>
             <div>{{basic.continual}}</div>

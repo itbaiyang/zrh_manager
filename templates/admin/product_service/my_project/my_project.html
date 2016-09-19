@@ -1,16 +1,16 @@
 <div class="content">
     <div class="contentTitle width100"><span>我的项目</span></div>
-    <div class="width100">
+    <div class="width100" style="height: 27px">
         <div class="width30">
             <input type="text" class="form-control" placeholder="搜索企业名称" ng-model="search_text">
         </div>
         <div class="width10">
             <button class="btn btnBlue" ng-click="search()" type="button">搜索</button>
         </div>
-        <!--<button class="btn btnGrew fr" ng-click="refresh()" type="submit"><img class="btnGrewImg"> 刷新</button>-->
+        <button class="btn btnGrew fr" ng-click="refresh()" type="submit"><img class="btnGrewImg"> 刷新</button>
     </div>
 
-    <ul class="list-group list_ul">
+    <ul class="list-group list_ul" style="height: calc(100% - 170px)">
         <div class="row-roll">
             <li class="list_title2">
                 <span class="width15">企业名称或个人</span>
@@ -55,7 +55,7 @@
             <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}"
                    ng-checked="isSelected(resultObj.id)"
                    ng-click="updateSelection($event,resultObj.id)">
-                    <a ng-click="updateApply(resultObj.id)"
+                    <a ng-click="showDetail(resultObj.id)"
                        style="cursor: pointer;vertical-align: middle;">
                         {{resultObj.companyName || resultObj.linkman}}
                     </a>
@@ -72,7 +72,7 @@
                     <span class="width8">{{resultObj.fee||"无"}}</span>
                     <span class="width8">{{resultObj.loanValue||"无"}}</span>
                     <span class="width8">{{resultObj.continual||"无"}}</span>
-                    <span class="width8">{{resultObj.continual||"无"}}</span>
+                    <span class="width8">{{resultObj.linkman||"无"}}</span>
                     <span class="width8">{{resultObj.dealRemark||"无"}}</span>
                 </li>
             </div>

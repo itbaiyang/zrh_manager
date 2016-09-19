@@ -73,6 +73,7 @@ topBarCtrl.controller('ContainsCtrl', function ($http, $scope, $state, $rootScop
         method: "GET",
         params: m_params
     }).success(function (d) {
+        console.log(d);
         $scope.countGroup = d.result;
     }).error(function (d) {
     });
@@ -81,7 +82,7 @@ topBarCtrl.controller('ContainsCtrl', function ($http, $scope, $state, $rootScop
         method: "GET",
         params: m_params
     }).success(function (d) {
-        // console.log(d);
+        console.log(d);
         $scope.count = d.result;
 
     }).error(function (d) {

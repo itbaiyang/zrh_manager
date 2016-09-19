@@ -130,6 +130,7 @@
 .content{
     margin-left: 195px;
     width: calc(100% - 240px);
+    height: 100%;
 }
 .content2{
     /*margin-left: 195px;*/
@@ -486,9 +487,9 @@
     vertical-align: middle;
 }
 .list_common1 {
-    height: 108px;
+    height: 50px;
     line-height: 36px;
-    padding: 36px 15px;
+    padding: 7px 15px;
 
 }
 .list_common2 {
@@ -526,20 +527,20 @@
  }
 .list_title2 {
     height: 50px;
-    padding: 15px 35px 15px 15px;
+    padding: 15px 15px 15px 15px;
     /*margin: 10px;*/
     background: #f5f6fa;
-    width: 1520px;
+    width: 1500px;
     /*box-shadow: 0 0 10px #c1c1c1;*/
     border: 1px solid #cccccc;
 }
 
 .list_title3 {
     height: 30px;
-    padding: 8px 35px 10px 8px;
+    padding: 8px 15px 10px 8px;
     /*margin: 10px;*/
     background: #f5f6fa;
-    width: 1520px;
+    width: 1500px;
     /*box-shadow: 0 0 10px #c1c1c1;*/
     border-left: 1px solid #cccccc;
     border-right: 1px solid #cccccc;
@@ -638,14 +639,16 @@
 
 .row-roll{
     margin-top: 30px;
-    height: calc(100% - 209px);
+    height: calc(100% - 50px);
     width: 100%;
     overflow-x: scroll;
+    border-left: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
 }
 .line-roll{
-    max-height: 429px;
-    width: 1520px;
-    overflow-y: scroll;
+    /*max-height: 429px;*/
+    width: 1500px;
+    /*overflow-y: scroll;*/
     /*margin: 0 10px;*/
 }
 

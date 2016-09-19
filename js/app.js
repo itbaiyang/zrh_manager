@@ -1,5 +1,5 @@
-// api_uri = "http://test.zhironghao.com/api/";
-api_uri = "http://api.supeiyunjing.com/";
+api_uri = "http://test.zhironghao.com/api/";
+// api_uri = "http://api.supeiyunjing.com/";
 //api_uri = "http://172.17.2.13:8080/api/";
 // api_uri = "http://172.16.97.229:8080/api/";
 var templates_root = 'templates/';
@@ -69,7 +69,7 @@ var app = angular.module('app', [
 app.run(function ($location, $rootScope, $http) {
 
     /*********************************** 回调区 ***************************************/
-        // 页面跳转后
+    // 页面跳转后
     $rootScope.qiniu_bucket_domain = "o793l6o3p.bkt.clouddn.com";
 
     $rootScope.$on('$stateChangeSuccess',
@@ -81,11 +81,11 @@ app.run(function ($location, $rootScope, $http) {
                 // console.log(fromState);
                 if (from_route != "" && from_route.indexOf('admin.my_project.edit_apply') <= -1
                     && from_route.indexOf('admin.my_project.change_company') <= -1
-                    && from_route.indexOf('admin.my_project.apply_again') <= -1
+                    && from_route.indexOf('admin.my_project.change_bank') <= -1
                     && from_route.indexOf('admin.my_project.distribute') <= -1
                     && from_route.indexOf('admin.my_project.apply_help') <= -1
                     && from_route.indexOf('admin.my_project.choice_sale') <= -1) {
-                    $rootScope.putSessionObject('from_route',from_route);
+                    $rootScope.putSessionObject('from_route', from_route);
                     var get_route = $rootScope.getSessionObject('from_route');
                     // console.log(get_route);
                     if (get_route == "admin.company_message") {
@@ -95,15 +95,15 @@ app.run(function ($location, $rootScope, $http) {
                         $rootScope.showBtn = 2;
                         // console.log($rootScope.showBtn);
                     }
-                    if(fromParams.id){
+                    if (fromParams.id) {
                         var arrayParams = from_route.split(".");
                         var from_route2 = "/" + arrayParams[0] + "/" + arrayParams[1] + "/" + arrayParams[2] + "/";
-                        if(arrayParams[2] != 'edit_apply'){
-                        $rootScope.putSessionObject('from_route2',from_route2);
+                        if (arrayParams[2] != 'edit_apply') {
+                            $rootScope.putSessionObject('from_route2', from_route2);
                         }
-                        var from_params= fromParams.id;
+                        var from_params = fromParams.id;
                         // console.log(from_params);
-                        $rootScope.putSessionObject('from_params',from_params);
+                        $rootScope.putSessionObject('from_params', from_params);
 
                     }
                 } else {
@@ -144,7 +144,7 @@ app.run(function ($location, $rootScope, $http) {
         });
     /*********************************** 公用方法区 ***************************************/
 
-        //加密 3des
+    //加密 3des
     $rootScope.encryptByDES = function (message) {
         var keyHex = CryptoJS.enc.Utf8.parse(deskey);
         var encrypted = CryptoJS.DES.encrypt(message, keyHex, {
@@ -168,12 +168,20 @@ app.run(function ($location, $rootScope, $http) {
         return decrypted.toString(CryptoJS.enc.Utf8);
     }
 
-    $rootScope.transFn = function(obj) {
+    $rootScope.transFn = function (obj) {
         var str = [];
-        for(var p in obj){
+        for (var p in obj) {
             str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
         }
         return str.join("&").toString();
+    };
+
+    /*淡入淡出函数*/
+    $rootScope.fadeInOut = function (elem, speed) {
+        $(elem).fadeIn(speed);
+        setTimeout(function () {
+            $(elem).fadeOut(speed);
+        }, 3000);
     };
     /*********************************** 全局变量区 ***************************************/
 

@@ -3,7 +3,7 @@
         <span class="fl">更换银行</span>
         <div class="fl" style="margin: 10px">
             <button class="btn btnGrew" ng-click="backProjectDetail(id)">返回</button>
-            <button style="margin:0 10px" class="btn btnBlue" ng-click="submit_help()">确定</button>
+            <button style="margin:0 10px" class="btn btnBlue" ng-click="submit_help(1)">确定</button>
         </div>
     </div>
     <form class="form-horizontal">
@@ -24,7 +24,7 @@
         </div>
 
         <div class="form-group">
-            <label for="bankMan" class="width20 textEnd">产品名称</label>
+            <label for="bankMan" class="width20 textEnd">产品名称：</label>
             <div class="btn-group width35">
                 <button type="button" class="btnInput col-sm-12 col-lg-12" id="bankMan" data-toggle="dropdown"
                         aria-haspopup="true"
@@ -40,7 +40,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="phone" class="width20 textEnd">企业账号</label>
+            <label for="phone" class="width20 textEnd">企业账号：</label>
             <div class="width35">
                 <input type="text" readonly="readonly" id="phone" placeholder="企业账号"
                        ng-model="applyMobile">
