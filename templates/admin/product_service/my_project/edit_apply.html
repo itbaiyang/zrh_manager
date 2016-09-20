@@ -15,63 +15,66 @@
         </div>
     </div>
     <div class="addRight fl">
-        <div class="contentTitle width100">
-            <span>完善信息</span>
-            <button style="margin:14px 15px 20px 10px" class="btn btn-default fr" type="submit"
-                    ng-click="submitMessage()">
+
+        <form class="form-horizontal width100" id="editApply" style="overflow-x: hidden;" name="userForm">
+            <div class="contentTitle width100">
+                <span>完善信息</span>
+                <input style="margin:14px 15px 20px 10px" class="btn btn-default fr" type="submit" name="btn"
+                       ng-click="submitMessage()">
                 保存
-            </button>
-            <button class="btn btn-default fr" style="margin-top: 14px" ng-click="backProjectDetail()">返回</button>
-        </div>
-        <form class="form-horizontal width100" style="overflow-x: hidden;">
+                </input>
+                <button class="btn btn-default fr" style="margin-top: 14px" ng-click="backProjectDetail()">返回</button>
+            </div>
             <p class="createTitle">基本内容</p>
-            <div style="width: 600px">
+            <div style="width: 800px">
                 <div class="form-group">
                     <label for="companyName" class="width20 textEnd">企业全称：</label>
                     <div class="width80">
-                        <input type="text" readonly="readonly" class="form-control" id="companyName" placeholder="企业全称"
+                        <input type="text" readonly="readonly" class="form-control" name="companyName" id="companyName"
+                               placeholder="企业全称"
                                ng-model="basic.company_name">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="companyType" class="width20 textEnd">企业类型：</label>
                     <div class="width80">
-                        <input type="text" class="form-control" id="companyType" placeholder="企业类型"
+                        <input type="text" class="form-control" id="companyType" name="companyType" placeholder="企业类型"
                                ng-model="basic.business_type">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="lawyer" class="width20 textEnd">企业法人：</label>
                     <div class="width80">
-                        <input type="text" class="form-control" id="lawyer" placeholder="企业法人"
+                        <input type="text" class="form-control" id="lawyer" name="lawyer" placeholder="企业法人"
                                ng-model="basic.legal_representative">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="datetime" class="width20 textEnd">成立时间：</label>
                     <div class="width80">
-                        <input type="text" class="form-control" id="datetime" placeholder="成立时间xxxx-xx-xx（请保证格式正确）"
+                        <input type="text" class="form-control" id="datetime" name="datetime"
+                               placeholder="成立时间xxxx-xx-xx（请保证格式正确）"
                                ng-model="basic.register_date">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="address" class="width20 textEnd">注册地址：</label>
                     <div class="width80">
-                        <input type="text" class="form-control" id="address" placeholder="注册地址"
+                        <input type="text" class="form-control" id="address" name="address" placeholder="注册地址"
                                ng-model="basic.business_address">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="officeAddress" class="width20 textEnd">办公地址：</label>
                     <div class="width80">
-                        <input type="text" class="form-control" id="officeAddress" placeholder="办公地址"
-                               ng-model="basic.officeAddress">
+                        <input type="text" class="form-control required" placeholder="办公地址" id="officeAddress"
+                               name="officeAddress" ng-model="basic.officeAddress" required/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="loan" class="width20 textEnd">注册资本：</label>
                     <div class="width80">
-                        <input type="text" class="form-control" id="loan" placeholder="注册资本（只写数字，单位是万）"
+                        <input type="text" class="form-control" id="loan" name="loan" placeholder="注册资本（只写数字，单位是万）"
                                ng-model="basic.registered_capital">
                         <span class="input-right">万元</span>
                     </div>
@@ -79,60 +82,49 @@
                 <div class="form-group">
                     <label for="classification" class="width20 textEnd">所属行业：</label>
                     <div class="width80">
-                        <input type="text" class="form-control" id="classification" placeholder="所属行业"
+                        <input type="text" class="form-control" id="classification" name="classification"
+                               placeholder="所属行业"
                                ng-model="basic.item_category">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="businessScope" class="width20 textEnd">经营范围：</label>
                     <div class="width80">
-                        <input type="text" class="form-control" id="businessScope" placeholder="经营范围"
+                        <input type="text" class="form-control" id="businessScope" name="businessScope"
+                               placeholder="经营范围"
                                ng-model="basic.business_scope">
                     </div>
                 </div>
                 <div class="form-group" ng-show="registerLinkmanMobile">
                     <label for="phoneNum" class="width20 textEnd">注册电话：</label>
                     <div class="width35">
-                        <input type="text" readonly="readonly" class="form-control" id="phoneMan" placeholder="注册人"
+                        <input type="text" readonly="readonly" class="form-control" id="phoneMan" name="phoneMan"
+                               placeholder="注册人"
                                ng-model="registerLinkmanName">
                     </div>
                     <div class="width35">
-                        <input type="text" readonly="readonly" class="form-control" id="phone" placeholder="注册电话"
+                        <input type="text" readonly="readonly" class="form-control" id="phone" name="phone"
+                               placeholder="注册电话"
                                ng-model="registerLinkmanMobile">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="phoneNumMan" class="width20 textEnd">联系电话：</label>
+                    <label for="phoneNum" class="width20 textEnd">联系电话：</label>
                     <div class="width35">
-                        <input type="text" class="form-control" id="phoneNumMan" placeholder="联系人"
+                        <input type="text" class="form-control" id="phoneNumMan" name="phoneNumMan" placeholder="联系人"
                                ng-model="basic.linkmanName">
                     </div>
                     <div class="width35">
-                        <input type="text" class="form-control" id="phoneNum" placeholder="联系电话"
-                               ng-model="basic.linkmanMobile">
+                        <input type="text" class="form-control required" id="phoneNum" name="phoneNum"
+                               placeholder="联系电话"
+                               ng-model="basic.linkmanMobile" required/>
                     </div>
                 </div>
-
-                <!--<div class="form-group">-->
-                <!--<label for="fee" class="width20 textEnd">服务费：</label>-->
-                <!--<div class="width80">-->
-                <!--<input type="text" class="form-control" id="fee" placeholder="服务费（只写数字，单位是%）"-->
-                <!--ng-model="basic.fee">-->
-                <!--<span class="input-right">%</span>-->
-                <!--</div>-->
-                <!--</div>-->
-                <!--<div class="form-group">-->
-                <!--<label for="loanValue" class="width20 textEnd">融资额：</label>-->
-                <!--<div class="width80">-->
-                <!--<input type="text" class="form-control" id="loanValue" placeholder="融资额（只写数字，单位是万）"-->
-                <!--ng-model="basic.loanValue">-->
-                <!--<span class="input-right">万元</span>-->
-                <!--</div>-->
-                <!--</div>-->
                 <div class="form-group">
                     <label for="continual" class="width20 textEnd">年销售额：</label>
                     <div class="width80">
-                        <input type="text" class="form-control" id="continual" placeholder="年销售额（只写数字，单位是万）"
+                        <input type="text" class="form-control" id="continual" name="continual"
+                               placeholder="年销售额（只写数字，单位是万）"
                                ng-model="basic.continual">
                         <span class="input-right">万元</span>
                     </div>

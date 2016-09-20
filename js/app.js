@@ -24,6 +24,7 @@ var app = angular.module('app', [
     'shareCtrl',
     // 'accountCtrl',
     'messageCtrl',
+    'my_directive',
 
 ], function ($httpProvider) {
     // Use x-www-form-urlencoded Content-Type
@@ -312,4 +313,30 @@ app.run(function ($location, $rootScope, $http) {
         }).error(function (d) {
         })
     };
+
+    /*获取消息数据*/
+    $rootScope.message = function () {
+        var m_params = {
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
+        };
+        $http({
+            // url: api_uri + "zrh/index/message",
+            url: api_uri + "applyBankDeal/manage/count",
+            method: "GET",
+            params: m_params
+        }).success(function (d) {
+            console.log('没错好');
+            if (d.returnCode == 0) {
+                $rootScope.count = d.result;
+            }
+            else {
+            }
+
+        }).error(function (d) {
+        })
+    };
+    if ($rootScope.login_user) {
+        $rootScope.message();
+    }
 });

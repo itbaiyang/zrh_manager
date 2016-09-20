@@ -282,12 +282,12 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
-        .state('admin.my_project.change_company', {
-            url: '/change_company/:id',
+        .state('admin.my_project.change_register', {
+            url: '/change_register/:id',
             views: {
                 'contains@admin': {
                     templateUrl: templates_root + 'admin/product_service/my_project/change.html',
-                    controller: 'ChangeCompanyCtrl'
+                    controller: 'ChangeRegisterCtrl'
                 }
             }
         })

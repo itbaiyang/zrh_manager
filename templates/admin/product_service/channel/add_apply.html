@@ -21,7 +21,8 @@
                         {{productName ||"金融产品 "}}
                     </button>
                     <ul class="dropdown-menu btnDrop col-sm-4 col-lg-4">
-                        <li class="btnDropDetail" ng-click="submit(product.id,product.productName)" ng-repeat="product in result_list">
+                        <li class="btnDropDetail" ng-click="choice_product(product.id,product.productName)"
+                            ng-repeat="product in result_list">
                             {{product.productName}}
                         </li>
                     </ul>

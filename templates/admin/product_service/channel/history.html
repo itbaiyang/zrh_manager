@@ -42,7 +42,7 @@
             <span class="width25">{{resultObj.bankName ||'未申请'}} <span ng-show="resultObj.bankName">-</span>{{resultObj.productName}}</span>
             <span class="width15">{{resultObj.time | date:'yyyy-MM-dd'}}</span>
             <span class="width15">{{resultObj.progressText}}</span>
-            <button class="btnBlue" style="vertical-align: top" ng-click="change_company(resultObj.id)">更改企业</button>
+            <button class="btnBlue" style="vertical-align: top" ng-click="change_register(resultObj.id)">注册人变更</button>
         </li>
         <li class="list-group-item list_common">
             <button class="contentClass" ng-click="delete()">删除</button>

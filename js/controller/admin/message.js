@@ -1,6 +1,8 @@
 var messageCtrl = angular.module('messageCtrl', []);
 messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $location, $timeout, $routeParams) {
-    $scope.init = function () {
+
+    /*获取银行消息列表*/
+    $scope.bank_list = function () {
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -47,9 +49,11 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
             // console.log(d);
         });
     };
-    $scope.init();
-    $scope.showAllow = [];
-    $scope.show_allow = function (status, id) {
+    $scope.bank_list();
+
+    /*显示窗口*/
+    $scope.showAllow = []; //初始化参数
+    $scope.show_allow = function (status, id) { //显示窗口函数
         $scope.showAllow[id] = true;
         $scope.status = status;
         if (status == 2) {
@@ -60,7 +64,7 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
             $scope.statusText = "成功融资";
         }
     };
-    $scope.choiceStatus = function (status) {
+    $scope.choiceStatus = function (status) {  //选择状态
         $scope.status = status;
         if (status == 2) {
             $scope.statusText = "约见中";
@@ -70,9 +74,11 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
             $scope.statusText = "成功融资";
         }
     };
-    $scope.cancel = function (id) {
+    $scope.cancel = function (id) { //关闭窗口
         $scope.showAllow[id] = false;
     };
+
+    /*同意客户经理的请求*/
     $scope.allow = function (dayNum, id, index) {
         var m_params = {
             "userId": $rootScope.login_user.userId,
@@ -87,15 +93,27 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
             method: "GET",
             params: m_params
         }).success(function (d) {
-            // console.log(d);
-            $scope.showAllow[index] = false;
-            $scope.init();
+            if (d.returnCode == 0) {
+                $rootScope.successMsg = "通过已发送";
+                $rootScope.fadeInOut("#alert", 500);
+                $scope.showAllow[index] = false;
+                $scope.bank_list();
+                $rootScope.message();
+                $scope.$apply();
+            } else if (d.returnCode == 1002 && d.result == "abd") {
+                alert("这条操作已经操作过了")
+            } else if (data.returnCode == 1002 && d.result == "la") {
+                alert("申请的状态错误")
+            } else {
+                alert("未知错误");
+            }
 
         }).error(function (d) {
             // console.log(d);
         });
     };
 
+    /*拒绝客户经理的请求*/
     $scope.refuse = function (id) {
         $scope.reason_refuse = $("#reason_refuse").val();
         // console.log($scope.reason_refuse);
@@ -111,8 +129,20 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
             method: "GET",
             params: m_params
         }).success(function (d) {
-            // console.log(d);
-
+            if (d.returnCode == 0) {
+                $rootScope.successMsg = "驳回已发送";
+                $rootScope.fadeInOut("#alert", 500);
+                $scope.showAllow[index] = false;
+                $scope.bank_list();
+                $rootScope.message();
+                $scope.$apply();
+            } else if (d.returnCode == 1002 && d.result == "abd") {
+                alert("这条操作已经操作过了")
+            } else if (data.returnCode == 1002 && d.result == "la") {
+                alert("申请的状态错误")
+            } else {
+                alert("未知错误");
+            }
         }).error(function (d) {
             // console.log(d);
         });

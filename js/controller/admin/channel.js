@@ -1,6 +1,8 @@
 var channelCtrl = angular.module('channelCtrl', []);
 
 channelCtrl.controller('ChannelCtrl', function ($http, $scope, $state, $rootScope, $location, $routeParams) {
+
+    /*渠道人列表*/
     $scope.list = function (pageNo, pageSize) {
         var m_params = {
             "userId": $rootScope.login_user.userId,
@@ -33,22 +35,22 @@ channelCtrl.controller('ChannelCtrl', function ($http, $scope, $state, $rootScop
             // $location.path("/error");
         })
     };
-
     $scope.list(1, 20);
+
+    /*分页*/
     $scope.changePage = function (page) {
         $scope.pageNo1 = page;
-        // console.log($scope.pageNo1);
         $scope.$watch($scope.pageNo1, function () {
             $scope.list($scope.pageNo1, 20);
         });
     };
 
+    /*复选框选择*/
     $scope.selected = [];
     $scope.ids = [];
     $scope.isSelected = function (id) {
         return $scope.selected.indexOf(id) >= 0;
     };
-
     var updateSelected = function (action, id) {
         if (action == 'add') {
             $scope.ids.push(id);
@@ -59,21 +61,21 @@ channelCtrl.controller('ChannelCtrl', function ($http, $scope, $state, $rootScop
             $scope.ids.splice(idx, 1);
         }
     };
-
     $scope.updateSelection = function ($event, id) {
         var checkbox = $event.target;
         var action = (checkbox.checked ? 'add' : 'remove');
         updateSelected(action, id);
     };
 
+    /*搜索*/
     $scope.search_text = null;
     $scope.search = function () {
         $scope.wd = $scope.search_text;
         $scope.list(1, 20);
     };
 
+    /*删除渠道人*/
     $scope.cancel = function () {
-        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -85,7 +87,6 @@ channelCtrl.controller('ChannelCtrl', function ($http, $scope, $state, $rootScop
             data: m_params,
             traditional: true,
             success: function (data, textStatus, jqXHR) {
-                // console.log(data);
                 if (data.returnCode == 0) {
                     $scope.ids = [];
                     $scope.list($scope.pageNo1, 10);
@@ -98,30 +99,37 @@ channelCtrl.controller('ChannelCtrl', function ($http, $scope, $state, $rootScop
 
     };
 
+    /*跳转到渠道人任务列表*/
     $scope.showDetail = function (id) {
         $location.path('/admin/channel/detail/' + id);
     };
 });
 
 channelCtrl.controller('CreateCtrl', function ($http, $scope, $state, $rootScope, $location, $routeParams) {
+
+    /*添加渠道人员*/
     $scope.submit = function () {
-        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
             "name": $scope.username,
             "mobile": $scope.phone,
         };
+        console.log(m_params);
         $.ajax({
             type: 'POST',
             url: api_uri + "p/user/addCustomer",
             data: m_params,
             traditional: true,
             success: function (data, textStatus, jqXHR) {
+                console.log(data);
                 if (data.returnCode == 0) {
                     $state.go("admin.channel");
+                    $rootScope.successMsg = "添加成功";
+                    $rootScope.fadeInOut("#alert", 500);
                     $scope.$apply();
-
+                } else if (data.returnCode == 1002) {
+                    alert("该用户已经有上级，或者是最高级别用户，不可以添加");
                 } else if (data.returnCode == 1003) {
                     alert("该手机号不是直融号用户");
                 } else if (data.returnCode == 1004) {
@@ -137,6 +145,8 @@ channelCtrl.controller('CreateCtrl', function ($http, $scope, $state, $rootScope
 });
 
 channelCtrl.controller('ChannelDetailCtrl', function ($http, $scope, $state, $rootScope, $stateParams, $location, $routeParams) {
+
+    /*渠道人员任务列表*/
     $scope.list = function (pageNo, pageSize) {
         var m_params = {
             "userId": $rootScope.login_user.userId,
@@ -150,6 +160,7 @@ channelCtrl.controller('ChannelDetailCtrl', function ($http, $scope, $state, $ro
             method: "GET",
             params: m_params
         }).success(function (d) {
+            console.log(d);
             if (d.returnCode == 0) {
                 $scope.page = d.result;
                 $scope.result_list = d.result.datas;
@@ -182,8 +193,9 @@ channelCtrl.controller('ChannelDetailCtrl', function ($http, $scope, $state, $ro
             // $location.path("/error");
         })
     };
-
     $scope.list(1, 20);
+
+    /*分页显示*/
     $scope.changePage = function (page) {
         $scope.pageNo1 = page;
         $scope.$watch($scope.pageNo1, function () {
@@ -191,12 +203,12 @@ channelCtrl.controller('ChannelDetailCtrl', function ($http, $scope, $state, $ro
         });
     };
 
+    /*复选框*/
     $scope.selected = [];
     $scope.ids = [];
     $scope.isSelected = function (id) {
         return $scope.selected.indexOf(id) >= 0;
     };
-
     var updateSelected = function (action, id) {
         if (action == 'add') {
             $scope.ids.push(id);
@@ -206,61 +218,32 @@ channelCtrl.controller('ChannelDetailCtrl', function ($http, $scope, $state, $ro
             $scope.ids.splice(idx, 1);
         }
     };
-
     $scope.updateSelection = function ($event, id) {
         var checkbox = $event.target;
         var action = (checkbox.checked ? 'add' : 'remove');
         updateSelected(action, id);
     };
 
+    /*搜索*/
     $scope.search_text = null;
     $scope.search = function () {
         $scope.wd = $scope.search_text;
         $scope.list(1, 20);
     };
 
-    $scope.cancel = function () {
-        // var login_user = $rootScope.getObject("login_user");
-        var m_params = {
-            "userId": $rootScope.login_user.userId,
-            "token": $rootScope.login_user.token,
-            ids: $scope.ids
-        };
-        $.ajax({
-            type: 'POST',
-            url: api_uri + "p/user/cancelCustomer",
-            data: m_params,
-            traditional: true,
-            success: function (data, textStatus, jqXHR) {
-                // console.log(data);
-                if (data.returnCode == 0) {
-                    $scope.ids = [];
-                    $scope.list($scope.pageNo1, 10);
-                }
-                else {
-                }
-            },
-            dataType: 'json',
-        });
-
-    };
-
+    /*跳转到其他页面*/
     $scope.addApply = function () {
         $location.path('/admin/channel/add_apply/' + $stateParams.id);
     };
-
     $scope.history = function () {
         $location.path('/admin/channel/history/' + $stateParams.id);
-    };
-
-    $scope.updateApply = function (id) {
-        $location.path('/admin/my_project/detail/' + id);
     };
 });
 
 channelCtrl.controller('AddApplyCtrl', function ($http, $scope, $state, $rootScope, $location, $stateParams) {
+
+    /*获取申请详情*/
     $scope.getApply = function () {
-        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -284,24 +267,37 @@ channelCtrl.controller('AddApplyCtrl', function ($http, $scope, $state, $rootSco
         })
     };
 
-    $scope.submit = function (id, name) {
-        // var login_user = $rootScope.getObject("login_user");
+    /*选择该公司产品*/
+    $scope.choice_product = function (id, name) {
+        $scope.productId = id;
+        $scope.productName = name;
+    };
+
+    /*提交绑定请求*/
+    $scope.submit = function () {
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
-            "applyId": id,
+            "applyId": $scope.productId,
             "uid": $stateParams.id
         };
+        console.log(m_params);
         $.ajax({
             type: 'POST',
             url: api_uri + "loanApplicationManage/addChannel",
             data: m_params,
             traditional: true,
             success: function (data, textStatus, jqXHR) {
+                console.log(data);
                 if (data.returnCode == 0) {
                     $location.path('/admin/channel/detail/' + $stateParams.id);
+                    $rootScope.successMsg = "绑定成功";
+                    $rootScope.fadeInOut("#alert", 500);
                     $scope.$apply();
-
+                } else if (data.returnCode == 1003) {
+                    alert("用户不存在或申请不存在");
+                } else if (data.returnCode == 1004) {
+                    alert("参数错误");
                 }
                 else {
                 }
@@ -311,12 +307,15 @@ channelCtrl.controller('AddApplyCtrl', function ($http, $scope, $state, $rootSco
 
     };
 
+    /*返回到详情页面*/
     $scope.back = function () {
         $location.path('/admin/channel/detail/' + $stateParams.id);
     };
 });
 
 channelCtrl.controller('HistoryCtrl', function ($http, $scope, $state, $rootScope, $stateParams, $location, $routeParams) {
+
+    /*成为渠道之前的申请列表*/
     $scope.list = function (pageNo, pageSize) {
         var m_params = {
             "userId": $rootScope.login_user.userId,
@@ -361,14 +360,17 @@ channelCtrl.controller('HistoryCtrl', function ($http, $scope, $state, $rootScop
             // $location.path("/error");
         })
     };
-
     $scope.list(1, 20);
+
+    /*分页显示*/
     $scope.changePage = function (page) {
         $scope.pageNo1 = page;
         $scope.$watch($scope.pageNo1, function () {
             $scope.list($scope.pageNo1, 20);
         });
     };
+
+    /*是否选中*/
     $scope.ids = [];
     $scope.search_text = null;
     $scope.search = function () {
@@ -376,16 +378,19 @@ channelCtrl.controller('HistoryCtrl', function ($http, $scope, $state, $rootScop
         $scope.list(1, 20);
     };
 
+    /*跳转页面*/
     $scope.goBackDetail = function () {
         $location.path('/admin/channel/detail/' + $stateParams.id);
     };
-    $scope.change_company = function (id) {
+    $scope.change_register = function (id) {
         $location.path('/admin/channel/change/' + $stateParams.id + '/' + id);
     };
 
 });
 
 channelCtrl.controller('ChangeCtrl', function ($http, $scope, $state, $rootScope, $stateParams, $location, $routeParams) {
+
+    /*变更企业*/
     $scope.change = function () {
         var m_params = {
             "userId": $rootScope.login_user.userId,
@@ -401,13 +406,18 @@ channelCtrl.controller('ChangeCtrl', function ($http, $scope, $state, $rootScope
             success: function (data, textStatus, jqXHR) {
                 if (data.returnCode == 0) {
                     $location.path('/admin/channel/history/' + $stateParams.id);
+                    $rootScope.successMsg = "变更成功";
+                    $rootScope.fadeInOut("#alert", 500);
                     $scope.$apply();
-                }
-                else {
+                } else if (data.returnCode == 1002) {
+                    alert("该申请已经处理过了")
+                } else if (data.returnCode == 1003) {
+                    alert("申请不存在")
+                } else {
+                    alert("未知错误");
                 }
             },
             dataType: 'json',
         });
     };
-
 });

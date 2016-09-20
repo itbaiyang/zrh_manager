@@ -1176,9 +1176,49 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
         $scope.model_list.splice(id, 1);
     };
 
+    /*表单验证*/
+    // $scope.check =  function () {
+    //     $('#editApply').bootstrapValidator({
+    //         message: 'This value is not valid',
+    //         feedbackIcons: {
+    //             valid: 'glyphicon glyphicon-ok',
+    //             invalid: 'glyphicon glyphicon-remove',
+    //             validating: 'glyphicon glyphicon-refresh'
+    //         },
+    //         fields: {
+    //             officeAddress: {
+    //                 message: '办公地址错误',
+    //                 validators: {
+    //                     notEmpty: {
+    //                         message: '办公地址不能为空'
+    //                     }
+    //                     // stringLength: {
+    //                     //     min: 6,
+    //                     //     max: 18,
+    //                     //     message: '用户名长度必须在6到18位之间'
+    //                     // },
+    //                     // regexp: {
+    //                     //     regexp: /^[a-zA-Z0-9_]+$/,
+    //                     //     message: '用户名只能包含大写、小写、数字和下划线'
+    //                     // }
+    //                 }
+    //             },
+    //             email: {
+    //                 validators: {
+    //                     notEmpty: {
+    //                         message: '邮箱不能为空'
+    //                     },
+    //                     emailAddress: {
+    //                         message: '邮箱地址格式有误'
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     });
+    // };
+    // $scope.check();
     /*保存信息*/
     $scope.submitMessage = function () {
-        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "applyId": $stateParams.id,
             "id": $scope.basic.id,
@@ -1195,26 +1235,31 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
             "business_scope": $scope.basic.business_scope,
             "linkmanName": $scope.basic.linkmanName,
             "linkmanMobile": $scope.basic.linkmanMobile,
-            // "fee": $scope.basic.fee,
-            // "loanValue": $scope.basic.loanValue,
             "continual": $scope.basic.continual,
         };
-        $.ajax({
-            type: 'POST',
-            url: api_uri + "inforTemplate/saveBase",
-            data: m_params,
-            traditional: true,
-            success: function (data, textStatus, jqXHR) {
-                if (data.returnCode == 0) {
-                    $scope.id_basic = data.result;
-                    $scope.modelMessage();
-                    //$scope.$apply();
-                }
-                else {
-                }
-            },
-            dataType: 'json',
-        });
+        if (!m_params.officeAddress) {
+            // alert("请输入办公地点");
+        } else if (!m_params.linkmanMobile) {
+            // alert("请输入联系人电话");
+        } else {
+            $.ajax({
+                type: 'POST',
+                url: api_uri + "inforTemplate/saveBase",
+                data: m_params,
+                traditional: true,
+                success: function (data, textStatus, jqXHR) {
+                    if (data.returnCode == 0) {
+                        $scope.id_basic = data.result;
+                        $scope.modelMessage();
+                        //$scope.$apply();
+                    }
+                    else {
+                    }
+                },
+                dataType: 'json',
+            });
+        }
+
 
     };
     $scope.modelMessage = function () {
@@ -1337,31 +1382,35 @@ myProjectCtrl.controller('DistributeCtrl', function ($http, $scope, $rootScope, 
             "id": $scope.id,
             "bankUserId": $scope.bankManId
         };
-        $http({
-            url: api_uri + "loanApplicationManage/allot/",
-            method: "GET",
-            params: m_params
-        }).success(function (d) {
-            console.log(d);
-            if (d.returnCode == 0) {
-                $rootScope.successMsg = "递交成功";
-                $rootScope.fadeInOut("#alert", 500);
-                $scope.backProjectDetail();
-            } else if (d.returnCode == 1001) {
-                alert("该申请已经被递交");
-            } else if (d.returnCode == 1002) {
-                alert("企业未申请状态或其他未知状态");
-            } else if (d.returnCode == 1003) {
-                alert("申请不存在");
-            } else if (d.returnCode == 1004) {
-                alert("企业名称不存在");
-            } else if (d.returnCode == 1005) {
-                alert("资料不够完善");
-            } else {
-                alert("其他未知因素导致递交失败，请联系后台人员");
-            }
-        }).error(function (d) {
-        })
+        if (!m_params.bankUserId) {
+        }
+        else {
+            $http({
+                url: api_uri + "loanApplicationManage/allot/",
+                method: "GET",
+                params: m_params
+            }).success(function (d) {
+                console.log(d);
+                if (d.returnCode == 0) {
+                    $rootScope.successMsg = "递交成功";
+                    $rootScope.fadeInOut("#alert", 500);
+                    $scope.backProjectDetail();
+                } else if (d.returnCode == 1001) {
+                    alert("该申请已经被递交");
+                } else if (d.returnCode == 1002) {
+                    alert("企业未申请状态或其他未知状态");
+                } else if (d.returnCode == 1003) {
+                    alert("申请不存在");
+                } else if (d.returnCode == 1004) {
+                    alert("企业名称不存在");
+                } else if (d.returnCode == 1005) {
+                    alert("资料不够完善");
+                } else {
+                    alert("其他未知因素导致递交失败，请联系后台人员");
+                }
+            }).error(function (d) {
+            })
+        }
     };
 
     /*返回详情列表*/
@@ -1485,7 +1534,13 @@ myProjectCtrl.controller('ApplyHelpCtrl', function ($http, $scope, $rootScope, $
             "mobile": $scope.applyMobile,
         };
         console.log(m_params);
-        if (m_params.mobile && m_params.mobile != '') {
+        if (!m_params.productId) {
+            alert("请选择银行和产品");
+        } else if (!m_params.applyId) {
+            alert("该申请不存在");
+        } else if (!m_params.mobile) {
+
+        } else {
             $.ajax({
                 type: 'POST',
                 url: api_uri + "loanApplicationManage/helpApply",
@@ -1508,14 +1563,14 @@ myProjectCtrl.controller('ApplyHelpCtrl', function ($http, $scope, $rootScope, $
                 },
                 dataType: 'json',
             });
-        } else {
-            alert("手机号不能为空");
         }
 
     };
 });
 
-myProjectCtrl.controller('ChangeCompanyCtrl', function ($http, $scope, $state, $rootScope, $stateParams, $location, $routeParams) {
+myProjectCtrl.controller('ChangeRegisterCtrl', function ($http, $scope, $state, $rootScope, $stateParams, $location, $routeParams) {
+
+    /*渠道申请注册人向企业注册人变更*/
     $scope.change = function () {
         var m_params = {
             "userId": $rootScope.login_user.userId,
@@ -1531,16 +1586,23 @@ myProjectCtrl.controller('ChangeCompanyCtrl', function ($http, $scope, $state, $
             success: function (data, textStatus, jqXHR) {
                 // console.log(data);
                 if (data.returnCode == 0) {
-                    // console.log("创建成功了");
+                    $rootScope.successMsg = "变更成功";
+                    $rootScope.fadeInOut("#alert", 500);
                     $location.path('/admin/my_project/detail/' + $stateParams.id);
                     $scope.$apply();
-                }
-                else {
+                } else if (data.returnCode == 1002) {
+                    alert("该申请已经处理过了")
+                } else if (data.returnCode == 1003) {
+                    alert("申请不存在")
+                } else {
+                    alert("未知错误");
                 }
             },
             dataType: 'json',
         });
     };
+
+    /*跳转到详情页面*/
     $scope.backProjectDetail = function () {
         $location.path('/admin/my_project/detail/' + $stateParams.id);
     };

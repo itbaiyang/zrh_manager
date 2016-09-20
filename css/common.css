@@ -228,3 +228,13 @@
     top: 6px;
     left: 90%;
 }
+
+.help-block {
+    display: inline;
+}
+
+.help-text {
+    color: red;
+    margin-bottom: 20px;
+    padding-left: 10px;
+}
