@@ -17,13 +17,17 @@
                 <span class="width13">申请产品</span>
                 <div class="btn-group noPadding width8">
                     <div style="cursor: pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        状态({{status_text}}) <span class="caret"></span>
+                        {{status_text ||"状态"}} <span class="caret"></span>
                     </div>
                     <ul class="dropdown-menu" style="width: 100px">
-                        <li ng-click="choice(1)" class="list_select">申请中</li>
-                        <li ng-click="choice(2)" class="list_select">约见中</li>
-                        <li ng-click="choice(3)" class="list_select">跟进中</li>
-                        <li ng-click="choice(4)" class="list_select">成功融资</li>
+                        <li ng-click="choice(0)" class="list_select">未申请</li>
+                        <li ng-click="choice(1)" class="list_select">准备中</li>
+                        <li ng-click="choice(2)" class="list_select">下户</li>
+                        <li ng-click="choice(3)" class="list_select">审批中</li>
+                        <li ng-click="choice(4)" class="list_select">审批通过</li>
+                        <li ng-click="choice(5)" class="list_select">开户</li>
+                        <li ng-click="choice(6)" class="list_select">放款</li>
+                        <li ng-click="choice(7)" class="list_select">成功融资</li>
                         <li ng-click="choice()" class="list_select">全部</li>
                     </ul>
                 </div>

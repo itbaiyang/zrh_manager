@@ -63,22 +63,34 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
 
     /*显示窗口*/
     $scope.showAllow = []; //初始化参数
-    $scope.show_allow = function (status, id) { //显示窗口函数
-        $scope.showAllow[id] = true;
-        $scope.status = status;
-        if (status == 2) {
-            $scope.statusText = "下户";
-        } else if (status == 3) {
-            $scope.statusText = "审批中";
-        } else if (status == 4) {
-            $scope.statusText = "审批通过";
-        } else if (status == 5) {
-            $scope.statusText = "开户";
-        } else if (status == 6) {
-            $scope.statusText = "放款";
-        } else if (status == 7) {
-            $scope.statusText = "成功融资";
+    $scope.showRefuse = []; //初始化参数
+    $scope.show_allow = function (status, id, type) { //显示窗口函数
+        if (type == 0) {
+            $scope.showAllow[id] = true;
+            $scope.status = status;
+            if (status == 2) {
+                $scope.statusText = "下户";
+            } else if (status == 3) {
+                $scope.statusText = "审批中";
+            } else if (status == 4) {
+                $scope.statusText = "审批通过";
+            } else if (status == 5) {
+                $scope.statusText = "开户";
+            } else if (status == 6) {
+                $scope.statusText = "放款";
+            } else if (status == 7) {
+                $scope.statusText = "成功融资";
+            }
+            for (var i = 0; i < $scope.showRefuse.length; i++) {
+                $scope.showRefuse[i] = false;
+            }
+        } else {
+            $scope.showRefuse[id] = true;
+            for (var j = 0; j < $scope.showAllow.length; j++) {
+                $scope.showAllow[j] = false;
+            }
         }
+
     };
     $scope.choiceStatus = function (status) {  //选择状态
         $scope.status = status;
@@ -98,6 +110,7 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
     };
     $scope.cancel = function (id) { //关闭窗口
         $scope.showAllow[id] = false;
+        $scope.showRefuse[id] = false;
     };
 
     /*同意客户经理的请求*/
@@ -157,7 +170,7 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
             if (d.returnCode == 0) {
                 $rootScope.successMsg = "驳回已发送";
                 $rootScope.fadeInOut("#alert", 500);
-                $scope.showAllow[index] = false;
+                $scope.showRefuse[index] = false;
                 $scope.bank_list();
                 $rootScope.message();
                 $scope.$apply();

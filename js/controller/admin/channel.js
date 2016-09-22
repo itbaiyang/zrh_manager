@@ -152,6 +152,8 @@ channelCtrl.controller('ChannelDetailCtrl', function ($http, $scope, $state, $ro
             "token": $rootScope.login_user.token,
             "pageNo": pageNo,
             "pageSize": pageSize,
+            "wd": $scope.wd,
+            "status": $scope.status,
             "uid": $stateParams.id
         };
         $http({
@@ -163,33 +165,41 @@ channelCtrl.controller('ChannelDetailCtrl', function ($http, $scope, $state, $ro
             if (d.returnCode == 0) {
                 $scope.page = d.result;
                 $scope.result_list = d.result.datas;
-                angular.forEach($scope.result_list, function (data) {
-                    $scope.status = d.result.status;
+                angular.forEach($scope.result_list, function (data) { //申请状态显示
                     if (data.status == 0) {
                         data.progressText = "未申请";
+                        data.color = 1;
                     } else if (data.status == 1) {
-                        data.progressText = "申请中";
-                        data.progressBtn = "开始约见";
+                        data.progressText = "准备中";
+                        data.color = 2;
                     } else if (data.status == 2) {
-                        data.progressText = "约见中";
-                        data.progressBtn = "继续跟进";
+                        data.progressText = "下户";
+                        data.color = 2;
                     } else if (data.status == 3) {
-                        data.progressText = "跟进中";
-                        data.progressBtn = "完成贷款";
+                        data.progressText = "审批中";
+                        data.color = 2;
                     } else if (data.status == 4) {
+                        data.progressText = "审批通过";
+                        data.color = 2;
+                    } else if (data.status == 5) {
+                        data.progressText = "下户";
+                        data.color = 2;
+                    } else if (data.status == 6) {
+                        data.progressText = "放款";
+                        data.color = 2;
+                    } else if (data.status == 7) {
                         data.progressText = "成功融资";
-                        data.progressBtn = "已结束";
+                        data.color = 3;
                     } else if (data.status == -1) {
                         data.progressText = "申请取消";
+                        data.color = 1;
                     }
                 });
             }
             else {
             }
-
         }).error(function (d) {
-            //console.log("login error");
-            // $location.path("/error");
+
         })
     };
     $scope.list(1, 20);
@@ -227,6 +237,29 @@ channelCtrl.controller('ChannelDetailCtrl', function ($http, $scope, $state, $ro
     $scope.search_text = null;
     $scope.search = function () {
         $scope.wd = $scope.search_text;
+        $scope.list(1, 20);
+    };
+    $scope.choice = function (status) {
+        $scope.status = status;
+        if ($scope.status == 0) {
+            $scope.status_text = "未申请";
+        } else if ($scope.status == 1) {
+            $scope.status_text = "准备中";
+        } else if ($scope.status == 2) {
+            $scope.status_text = "下户";
+        } else if ($scope.status == 3) {
+            $scope.status_text = "审批中";
+        } else if ($scope.status == 4) {
+            $scope.status_text = "审批通过";
+        } else if ($scope.status == 5) {
+            $scope.status_text = "开户";
+        } else if ($scope.status == 6) {
+            $scope.status_text = "放款";
+        } else if ($scope.status == 7) {
+            $scope.status_text = "成功融资";
+        } else if ($scope.status == null) {
+            $scope.status_text = "全部";
+        }
         $scope.list(1, 20);
     };
 

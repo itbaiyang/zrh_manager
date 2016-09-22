@@ -1,4 +1,3 @@
-<!--<div style="position: absolute;overflow-x:hidden; margin-left: 250px;width: calc(100% - 250px); height: calc(100% - 50px);  background: #ffffff">-->
 <div class="content">
     <div class="contentTitle width100">
         <span>渠道统计</span>
@@ -13,8 +12,6 @@
             <button class="btn btnBlue" ng-click="search()" type="button">搜索</button>
         </div>
         <button class="btn btnBlue fr" ui-sref="admin.channel.create">添加渠道人员</button>
-        <!--<button class="btn fr btnGrew" ng-click="refresh()" type="submit"><img class="btnGrewImg"> 刷新</button>-->
-
     </div>
     <ul class="list-group list_ul1">
         <li class="list-group-item list_title1">
@@ -37,7 +34,7 @@
                 <!--<p>{{resultObj.registerTime +'000' |date:'HH:mm'}}</p>-->
             </div>
             <span class="width15">{{resultObj.count}}</span>
-            <a class="width15" ng-click="showDetail(resultObj.id)">查看详情</a>
+            <a class="width15" style="cursor: pointer" ng-click="showDetail(resultObj.id)">查看详情</a>
         </li>
         <li class="list-group-item list_common1" style="width: 100%;">
             <button class="contentClass btn btnGrew" ng-click="cancel()">删除</button>

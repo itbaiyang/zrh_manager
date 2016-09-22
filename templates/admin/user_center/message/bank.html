@@ -40,7 +40,7 @@
             <div class="messageDate col-lg-3 col-sm-3 fl">
                 <div class="form-group col-lg-6 col-sm-6">
                     <div class="btn-group col-sm-12 col-lg-12" style="position: relative">
-                        <button type="button" ng-click="show_allow(message.status,$index)" class="btn btnBlue fr"
+                        <button type="button" ng-click="show_allow(message.status,$index,0)" class="btn btnBlue fr"
                                 id="products">通过
                         </button>
                         <div class="btnDrop2" style="border: 1px solid #4c4c4c;width: 300px;"
@@ -63,7 +63,7 @@
                             </div>
                             <div class="form-group col-sm-12 col-lg-12">
                                 <div class="col-sm-12" style="padding: 0;margin-top: 10px">
-                                    <input type="text" style="padding: 0;" class="form-control"
+                                    <input type="text" style="padding: 0;text-indent:10px;" class="form-control"
                                            ng-model="message.dayNum" placeholder="预计时间">
                                     <span class="input-right">天</span>
                                 </div>
@@ -79,13 +79,13 @@
                 </div>
                 <div class="form-group col-lg-6 col-sm-6">
                     <div class="btn-group col-sm-12 col-lg-12" style="position: relative">
-                        <button type="button" ng-click="show_allow(message.status,$index)" class="btn btnBlue fr">驳回
+                        <button type="button" ng-click="show_allow(message.status,$index,1)" class="btn btnBlue fr">驳回
                         </button>
                         <div class="btnDrop2" style="border: 1px solid #4c4c4c;width: 300px;"
-                             ng-show="showAllow[$index]">
+                             ng-show="showRefuse[$index]">
                             <div class="form-group col-sm-12 col-lg-12">
                                 <div class="col-sm-12" style="padding: 0;margin-top: 10px">
-                                    <input type="text" style="padding: 0;" class="form-control"
+                                    <input type="text" style="padding: 0; text-indent:10px;" class="form-control"
                                            ng-model="reason_refuse" placeholder="驳回原因123">
                                     <span class="input-right">天</span>
                                 </div>

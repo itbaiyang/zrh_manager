@@ -29,20 +29,25 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
                         data.progressText = "未申请";
                         data.color = 1;
                     } else if (data.status == 1) {
-                        data.progressText = "申请中";
-                        data.progressBtn = "开始约见";
+                        data.progressText = "准备中";
                         data.color = 2;
                     } else if (data.status == 2) {
-                        data.progressText = "约见中";
-                        data.progressBtn = "继续跟进";
+                        data.progressText = "下户";
                         data.color = 2;
                     } else if (data.status == 3) {
-                        data.progressText = "跟进中";
-                        data.progressBtn = "完成贷款";
+                        data.progressText = "审批中";
                         data.color = 2;
                     } else if (data.status == 4) {
+                        data.progressText = "审批通过";
+                        data.color = 2;
+                    } else if (data.status == 5) {
+                        data.progressText = "下户";
+                        data.color = 2;
+                    } else if (data.status == 6) {
+                        data.progressText = "放款";
+                        data.color = 2;
+                    } else if (data.status == 7) {
                         data.progressText = "成功融资";
-                        data.progressBtn = "已结束";
                         data.color = 3;
                     } else if (data.status == -1) {
                         data.progressText = "申请取消";
@@ -103,12 +108,18 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
         if ($scope.status == 0) {
             $scope.status_text = "未申请";
         } else if ($scope.status == 1) {
-            $scope.status_text = "申请中";
+            $scope.status_text = "准备中";
         } else if ($scope.status == 2) {
-            $scope.status_text = "约见中";
+            $scope.status_text = "下户";
         } else if ($scope.status == 3) {
-            $scope.status_text = "跟进中";
+            $scope.status_text = "审批中";
         } else if ($scope.status == 4) {
+            $scope.status_text = "审批通过";
+        } else if ($scope.status == 5) {
+            $scope.status_text = "开户";
+        } else if ($scope.status == 6) {
+            $scope.status_text = "放款";
+        } else if ($scope.status == 7) {
             $scope.status_text = "成功融资";
         } else if ($scope.status == null) {
             $scope.status_text = "全部";
@@ -326,16 +337,15 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
                 $scope.progressBtn = "开户";
                 $scope.jindu = 55;
             } else if ($scope.status == 5) {
-                $scope.progressText = "审批通过";
-                $scope.progressBtn = "开户";
-                $scope.jindu = 70;
-            } else if ($scope.status == 6) {
                 $scope.progressText = "开户";
                 $scope.progressBtn = "放款";
-                $scope.jindu = 85;
-            } else if ($scope.status == 7) {
+                $scope.jindu = 70;
+            } else if ($scope.status == 6) {
                 $scope.progressText = "放款";
                 $scope.progressBtn = "完成融资";
+                $scope.jindu = 85;
+            } else if ($scope.status == 7) {
+                $scope.progressText = "完成融资";
                 $scope.jindu = 100;
             } else if ($scope.status == -1) {
                 $scope.progressText = "完成融资";

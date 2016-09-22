@@ -12,36 +12,35 @@
         <div class="width10">
             <button class="btn btnBlue" ng-click="search()" type="button">搜索</button>
         </div>
-        <!--<button class="btn btnBlue fr" ng-click="addApply()" style="margin-right: 100px">绑定企业申请</button>-->
-        <!--<button class="btn fr btnGrew" ng-click="refresh()" type="submit"><img class="btnGrewImg"> 刷新</button>-->
-
     </div>
 
-    <ul class="list-group list_ul2">
+    <ul class="list-group list_ul2" style="height: calc(100% - 170px)">
         <div class="row-roll">
             <li class=" list_title2">
                 <span class="width15">企业名称或个人</span>
-                <span class="width15">申请产品</span>
-                <div class="btn-group noPadding width8">
+                <span class="width13">申请产品</span>
+                <div class="btn-group noPadding width10">
                     <div style="cursor: pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        状态({{status_text}}) <span class="caret"></span>
+                        {{status_text ||"状态"}} <span class="caret"></span>
                     </div>
                     <ul class="dropdown-menu" style="width: 100px">
-                        <!--<li ng-click="choice(0)" class="list_select">未申请</li>-->
-                        <li ng-click="choice(1)" class="list_select">申请中</li>
-                        <li ng-click="choice(2)" class="list_select">约见中</li>
-                        <li ng-click="choice(3)" class="list_select">跟进中</li>
-                        <li ng-click="choice(4)" class="list_select">成功融资</li>
+                        <li ng-click="choice(0)" class="list_select">未申请</li>
+                        <li ng-click="choice(1)" class="list_select">准备中</li>
+                        <li ng-click="choice(2)" class="list_select">下户</li>
+                        <li ng-click="choice(3)" class="list_select">审批中</li>
+                        <li ng-click="choice(4)" class="list_select">审批通过</li>
+                        <li ng-click="choice(5)" class="list_select">开户</li>
+                        <li ng-click="choice(6)" class="list_select">放款</li>
+                        <li ng-click="choice(7)" class="list_select">成功融资</li>
                         <li ng-click="choice()" class="list_select">全部</li>
                     </ul>
                 </div>
-                <span class="width8">报卷人</span>
-                <span class="width8">预计完成时间</span>
-                <span class="width8">服务费（%）</span>
-                <span class="width8">融资额（万）</span>
-                <span class="width8">年销售额（万）</span>
+                <span class="width10">报卷人</span>
+                <span class="width10">预计完成时间</span>
+                <span class="width10">服务费（%）</span>
+                <span class="width10">融资额（万）</span>
+                <span class="width10">年销售额（万）</span>
                 <span class="width8">项目来源</span>
-                <span class="width8">备注</span>
             </li>
             <div class="line-roll">
                 <li class="list-group-item list_common2" ng-repeat="resultObj in result_list">
@@ -53,16 +52,19 @@
                         {{resultObj.companyName}}
                     </a>
                 </span>
-                    <span class="width15">{{resultObj.bankName}}-{{resultObj.productName}}</span>
-                    <span class="width8">{{resultObj.progressText}}</span>
-                    <span class="width8">{{resultObj.opUser}}</span>
-                    <span class="width8">{{resultObj.days}}</span>
-                    <span class="width8">{{resultObj.fee}}</span>
-                    <span class="width8">{{resultObj.loanValue}}</span>
+                    <span class="width13">{{resultObj.bankName}}-{{resultObj.productName}}</span>
+                    <span class="width10" style="color: #838383"
+                          ng-show="resultObj.color == 1">{{resultObj.progressText}}</span>
+                    <span class="width10" style="color: #F97383"
+                          ng-show="resultObj.color == 2">{{resultObj.progressText}}</span>
+                    <span class="width10" style="color: #009B27"
+                          ng-show="resultObj.color == 3">{{resultObj.progressText}}</span>
+                    <span class="width10">{{resultObj.opUser}}</span>
+                    <span class="width10">{{resultObj.days}}</span>
+                    <span class="width10">{{resultObj.fee}}</span>
+                    <span class="width10">{{resultObj.loanValue}}</span>
+                    <span class="width10">{{resultObj.continual}}</span>
                     <span class="width8">{{resultObj.continual}}</span>
-                    <span class="width8">{{resultObj.continual}}</span>
-                    <span class="width8">{{resultObj.dealRemark}}</span>
-                    <!--<span class="width15">{{resultObj.time |date:'yyyy-MM-dd'}}</span>-->
                 </li>
             </div>
         </div>
@@ -94,4 +96,3 @@
         </li>
     </ul>
 </div>
-<!--</div>-->
