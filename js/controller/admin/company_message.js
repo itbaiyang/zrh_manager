@@ -137,7 +137,7 @@ loanApplicationCtrl.controller('LoanApplicationCtrl', function ($http, $scope, $
 
 loanApplicationCtrl.controller('AddCompanyCtrl', function ($http, $scope, $rootScope, $state, $location, $timeout, $routeParams) {
     /*保存基本信息*/
-    $scope.basicMessage = function () {
+    $scope.submitMessage = function () {
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -145,27 +145,22 @@ loanApplicationCtrl.controller('AddCompanyCtrl', function ($http, $scope, $rootS
             "legal_representative": $scope.basic.legal_representative,
             "register_date": $scope.basic.register_date,
             "registered_capital": $scope.basic.registered_capital,
+            "officeAddress": $scope.basic.officeAddress,
             "business_address": $scope.basic.business_address,
             "item_category": $scope.basic.item_category,
             "business_type": $scope.basic.business_type,
             "business_scope": $scope.basic.business_scope,
             "linkmanName": $scope.basic.linkmanName,
             "linkmanMobile": $scope.basic.linkmanMobile,
-            //"phone": $scope.basic.phone,
-            "fee": $scope.basic.fee,
-            "loanValue": $scope.basic.loanValue,
             "continual": $scope.basic.continual,
         };
-        //console.log(m_params);
         $.ajax({
             type: 'POST',
             url: api_uri + "inforTemplate/create",
             data: m_params,
             traditional: true,
             success: function (data, textStatus, jqXHR) {
-                //console.log(data);
                 if (data.returnCode == 0) {
-                    //console.log("basic success");
                     $state.go("admin.company_message");
                     $scope.$apply();
                 }
@@ -176,8 +171,5 @@ loanApplicationCtrl.controller('AddCompanyCtrl', function ($http, $scope, $rootS
             dataType: 'json',
         });
 
-    };
-    $scope.submitMessage = function () {
-        $scope.basicMessage();
     };
 });

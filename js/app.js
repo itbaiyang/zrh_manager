@@ -24,7 +24,6 @@ var app = angular.module('app', [
     'shareCtrl',
     // 'accountCtrl',
     'messageCtrl',
-    'my_directive',
 
 ], function ($httpProvider) {
     // Use x-www-form-urlencoded Content-Type
