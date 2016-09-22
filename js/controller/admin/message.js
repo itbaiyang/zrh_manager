@@ -12,34 +12,44 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
             method: "GET",
             params: m_params
         }).success(function (d) {
-            // console.log(d);
             $scope.message_list = d.result.datas;
             angular.forEach($scope.message_list, function (data) {
-                //$scope.status = d.result.status;
-                data.dayNum = ''
+                data.dayNum = '';
                 if (data.status == 0) {
                     data.progressText = "未申请";
                 } else if (data.status == 1) {
-                    data.progressText = "约见中";
-                    data.progressTextNext = "申请中";
-                    data.jindu = 20;
-                    data.jindu_next = 30;
+                    data.progressText = "准备中";
+                    data.progressTextNext = "下户";
+                    data.jindu = 10;
+                    data.jindu_next = 10;
                 } else if (data.status == 2) {
-                    data.progressText = "申请中";
-                    data.progressTextNext = "约见中";
+                    data.progressText = "下户";
+                    data.progressTextNext = "审批中";
                     data.jindu = 20;
-                    data.jindu_next = 30;
+                    data.jindu_next = 15;
                 } else if (data.status == 3) {
-                    data.progressText = "约见中";
-                    data.progressTextNext = "跟进中";
-                    data.jindu = 50;
-                    data.jindu_next = 25;
+                    data.progressText = "审批中";
+                    data.progressTextNext = "审批通过";
+                    data.jindu = 35;
+                    data.jindu_next = 20;
                 } else if (data.status == 4) {
-                    data.progressText = "跟进中";
+                    data.progressText = "审批通过";
+                    data.progressTextNext = "开户";
+                    data.jindu = 55;
+                    data.jindu_next = 15;
+                } else if (data.status == 5) {
+                    data.progressText = "开户";
+                    data.progressTextNext = "放款";
+                    data.jindu = 70;
+                    data.jindu_next = 15;
+                } else if (data.status == 6) {
+                    data.progressText = "放款";
                     data.progressTextNext = "成功融资";
-                    data.progressBtn = "已结束";
-                    data.jindu = 75;
-                    data.jindu_next = 25;
+                    data.jindu = 85;
+                    data.jindu_next = 15;
+                } else if (data.status == 7) {
+                    data.progressText = "成功融资";
+                    data.jindu = 100;
                 } else if (data.status == -1) {
                     data.progressText = "申请取消";
                 }
@@ -57,20 +67,32 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
         $scope.showAllow[id] = true;
         $scope.status = status;
         if (status == 2) {
-            $scope.statusText = "约见中";
+            $scope.statusText = "下户";
         } else if (status == 3) {
-            $scope.statusText = "跟进中";
+            $scope.statusText = "审批中";
         } else if (status == 4) {
+            $scope.statusText = "审批通过";
+        } else if (status == 5) {
+            $scope.statusText = "开户";
+        } else if (status == 6) {
+            $scope.statusText = "放款";
+        } else if (status == 7) {
             $scope.statusText = "成功融资";
         }
     };
     $scope.choiceStatus = function (status) {  //选择状态
         $scope.status = status;
         if (status == 2) {
-            $scope.statusText = "约见中";
+            $scope.statusText = "下户";
         } else if (status == 3) {
-            $scope.statusText = "跟进中";
+            $scope.statusText = "审批中";
         } else if (status == 4) {
+            $scope.statusText = "审批通过";
+        } else if (status == 5) {
+            $scope.statusText = "开户";
+        } else if (status == 6) {
+            $scope.statusText = "放款";
+        } else if (status == 7) {
             $scope.statusText = "成功融资";
         }
     };
@@ -100,12 +122,15 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
                 $scope.bank_list();
                 $rootScope.message();
                 $scope.$apply();
-            } else if (d.returnCode == 1002 && d.result == "abd") {
-                alert("这条操作已经操作过了")
-            } else if (data.returnCode == 1002 && d.result == "la") {
-                alert("申请的状态错误")
+            } else if (d.returnCode == 1002 && d.errorString == "abd") {
+                alert("这条操作已经操作过了");
+                console.log(d);
+            } else if (d.returnCode == 1002 && d.errorString == "la") {
+                alert("申请的状态错误");
+                console.log(d);
             } else {
-                alert("未知错误");
+                alert(d);
+                console.log(d);
             }
 
         }).error(function (d) {
@@ -114,7 +139,7 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
     };
 
     /*拒绝客户经理的请求*/
-    $scope.refuse = function (id) {
+    $scope.refuse = function (id, index) {
         $scope.reason_refuse = $("#reason_refuse").val();
         // console.log($scope.reason_refuse);
         var m_params = {

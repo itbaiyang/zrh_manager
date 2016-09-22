@@ -476,25 +476,32 @@
 .list_common {
     height: 108px;
     line-height: 24px;
-    min-width: 1065px;
+    min-width: 1120px;
     width: 100%;
     padding: 36px 15px 0;
 }
 
 .list_common input, .list_common2 input {
     margin-right: 10px;
-    margin-top: 0px;
+    margin-top: 0;
     vertical-align: middle;
+}
+
+.list_common2 a {
+    cursor: pointer;
+    vertical-align: middle;
+    overflow: hidden;
+    display: inline;
 }
 .list_common1 {
     height: 50px;
     line-height: 36px;
     padding: 7px 15px;
-
+    min-width: 1120px;
 }
 .list_common2 {
     height: 108px;
-    width: 1500px;
+    width: 1120px;
     line-height: 24px;
     min-width: 1065px;
     padding: 36px 15px 0;
@@ -502,13 +509,13 @@
 
 .list_user {
     height: 60px;
-    min-width: 1065px;
+    min-width: 1120px;
     padding: 20px 15px;
 }
 
 .list_user1 {
     height: 60px;
-    /*min-width: 1065px;*/
+    min-width: 1120px;
     padding: 20px 15px;
 }
 
@@ -516,7 +523,7 @@
     height: 50px;
     width: 100%;
     /*width: calc(100% - 30px);*/
-    min-width: 1065px;
+    min-width: 1120px;
     background: #f5f6fa;
 }
 
@@ -524,13 +531,14 @@
      height: 50px;
      padding: 15px 15px;
      background: #f5f6fa;
+    min-width: 1120px;
  }
 .list_title2 {
     height: 50px;
     padding: 15px 15px 15px 15px;
     /*margin: 10px;*/
     background: #f5f6fa;
-    width: 1500px;
+    width: 1120px;
     /*box-shadow: 0 0 10px #c1c1c1;*/
     border: 1px solid #cccccc;
 }
@@ -540,7 +548,7 @@
     padding: 8px 15px 10px 8px;
     /*margin: 10px;*/
     background: #f5f6fa;
-    width: 1500px;
+    width: 1120px;
     /*box-shadow: 0 0 10px #c1c1c1;*/
     border-left: 1px solid #cccccc;
     border-right: 1px solid #cccccc;
@@ -641,13 +649,15 @@
     margin-top: 30px;
     height: calc(100% - 50px);
     width: 100%;
-    overflow-x: scroll;
+    min-width: 1150px;
+    /*overflow-x: scroll;*/
+    overflow-y: scroll;
     border-left: 1px solid #cccccc;
     border-right: 1px solid #cccccc;
 }
 .line-roll{
     /*max-height: 429px;*/
-    width: 1500px;
+    width: 1120px;
     /*overflow-y: scroll;*/
     /*margin: 0 10px;*/
 }

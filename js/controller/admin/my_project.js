@@ -310,23 +310,35 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
                 $scope.progressText = "未申请";
                 $scope.jindu = 0;
             } else if ($scope.status == 1) {
-                $scope.progressText = "申请中";
-                $scope.progressBtn = "开始约见";
-                $scope.jindu = 20;
+                $scope.progressText = "准备中";
+                $scope.progressBtn = "下户";
+                $scope.jindu = 10;
             } else if ($scope.status == 2) {
-                $scope.progressText = "约见中";
-                $scope.progressBtn = "继续跟进";
-                $scope.jindu = 50;
+                $scope.progressText = "下户";
+                $scope.progressBtn = "审批中";
+                $scope.jindu = 20;
             } else if ($scope.status == 3) {
-                $scope.progressText = "跟进中";
-                $scope.progressBtn = "完成贷款";
-                $scope.jindu = 70;
+                $scope.progressText = "审批中";
+                $scope.progressBtn = "审批通过";
+                $scope.jindu = 35;
             } else if ($scope.status == 4) {
-                $scope.progressText = "成功融资";
-                $scope.progressBtn = "已结束";
+                $scope.progressText = "审批通过";
+                $scope.progressBtn = "开户";
+                $scope.jindu = 55;
+            } else if ($scope.status == 5) {
+                $scope.progressText = "审批通过";
+                $scope.progressBtn = "开户";
+                $scope.jindu = 70;
+            } else if ($scope.status == 6) {
+                $scope.progressText = "开户";
+                $scope.progressBtn = "放款";
+                $scope.jindu = 85;
+            } else if ($scope.status == 7) {
+                $scope.progressText = "放款";
+                $scope.progressBtn = "完成融资";
                 $scope.jindu = 100;
             } else if ($scope.status == -1) {
-                $scope.progressText = "申请取消";
+                $scope.progressText = "完成融资";
             }
         }).error(function (d) {
 
@@ -1539,15 +1551,16 @@ myProjectCtrl.controller('ApplyHelpCtrl', function ($http, $scope, $rootScope, $
         } else if (!m_params.applyId) {
             alert("该申请不存在");
         } else if (!m_params.mobile) {
-
+            alert("电话号码不能为空");
         } else {
+            console.log("dd");
             $.ajax({
                 type: 'POST',
                 url: api_uri + "loanApplicationManage/helpApply",
                 data: m_params,
                 traditional: true,
                 success: function (data, textStatus, jqXHR) {
-                    // console.log(data);
+                    console.log(data);
                     if (data.returnCode == 0) {
                         if (msg == 0) {
                             $rootScope.successMsg = "操作成功";
@@ -1557,8 +1570,8 @@ myProjectCtrl.controller('ApplyHelpCtrl', function ($http, $scope, $rootScope, $
                         $rootScope.fadeInOut("#alert", 500);
                         $location.path('/admin/my_project/detail/' + $scope.id);
                         $scope.$apply();
-                    }
-                    else {
+                    } else if (data.returnCode == 1003) {
+                        alert("申请")
                     }
                 },
                 dataType: 'json',

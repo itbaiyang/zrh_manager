@@ -4,6 +4,7 @@
 var loanApplicationCtrl = angular.module('loanApplicationCtrl', []);
 loanApplicationCtrl.controller('LoanApplicationCtrl', function ($http, $scope, $rootScope, $location, $timeout, $routeParams) {
 
+    /*获取申请列表*/
     $scope.list = function (pageNo, pageSize) {
         var m_params = {
             "userId":$rootScope.login_user.userId,
@@ -53,11 +54,9 @@ loanApplicationCtrl.controller('LoanApplicationCtrl', function ($http, $scope, $
     };
     $scope.selected = [];
     $scope.ids = [];
-
     $scope.isSelected = function (id) {
         return $scope.selected.indexOf(id) >= 0;
     };
-
     var updateSelected = function (action, id) {
         if (action == 'add') {
             $scope.ids.push(id);
@@ -69,7 +68,6 @@ loanApplicationCtrl.controller('LoanApplicationCtrl', function ($http, $scope, $
             //console.log("删除id"+id);
         }
     };
-
     $scope.updateSelection = function ($event, id) {
         //console.log("点击一下")
         var checkbox = $event.target;
@@ -77,10 +75,12 @@ loanApplicationCtrl.controller('LoanApplicationCtrl', function ($http, $scope, $
         updateSelected(action, id);
     };
 
+    /*刷新数据*/
     $scope.refresh = function(){
         $scope.list($scope.pageNo1, 10);
     };
 
+    /*删除申请*/
     $scope.delete = function () {
         var m_params = {
             "userId": $rootScope.login_user.userId,
@@ -108,12 +108,14 @@ loanApplicationCtrl.controller('LoanApplicationCtrl', function ($http, $scope, $
         });
     };
 
+    /*搜索*/
     $scope.search_text = null;
     $scope.search = function () {
         $scope.wd = $scope.search_text;
         $scope.list(1, 20);
     };
 
+    /*筛选状态*/
     $scope.status_text = "全部";
     $scope.choice = function (status) {
         $scope.status = status;
@@ -127,6 +129,7 @@ loanApplicationCtrl.controller('LoanApplicationCtrl', function ($http, $scope, $
         $scope.list(1, 20);
     };
 
+    /*跳转页面*/
     $scope.updateApply = function (id) {
         $location.path('/admin/my_project/detail/' + id);
     };
@@ -135,7 +138,6 @@ loanApplicationCtrl.controller('LoanApplicationCtrl', function ($http, $scope, $
 loanApplicationCtrl.controller('AddCompanyCtrl', function ($http, $scope, $rootScope, $state, $location, $timeout, $routeParams) {
     /*保存基本信息*/
     $scope.basicMessage = function () {
-        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,

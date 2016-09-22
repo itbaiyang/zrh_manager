@@ -20,7 +20,6 @@ channelCtrl.controller('ChannelCtrl', function ($http, $scope, $state, $rootScop
             console.log(d);
             if (d.returnCode == 0) {
                 $scope.page = d.result;
-                // console.log(d.result);
                 if (d.result != undefined) {
                     $scope.user_list = d.result.datas;
                 }
@@ -131,7 +130,7 @@ channelCtrl.controller('CreateCtrl', function ($http, $scope, $state, $rootScope
                 } else if (data.returnCode == 1002) {
                     alert("该用户已经有上级，或者是最高级别用户，不可以添加");
                 } else if (data.returnCode == 1003) {
-                    alert("该手机号不是直融号用户");
+                    alert("此手机号尚未注册，暂不能使用");
                 } else if (data.returnCode == 1004) {
                     alert("该用户已经被分配");
                 }
