@@ -25,33 +25,11 @@
 
         <div class="form-group">
             <label for="role" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">职位：</label>
-            <div class="btn-group col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                <button type="button" class="btnInput" style="width: 100%" id="role" data-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false">
-                    {{role_sale_see ||"职位"}}
-                </button>
-                <ul class="dropdown-menu btnDrop2" style="width: 80%;height: 100px">
-                    <li ng-click="choice('admin')" class="list_select">销售职员</li>
-                    <li ng-click="choice('manager')" class="list_select">销售主管</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="form-group" ng-show="role_sale == 'admin'">
-            <label for="leader" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">所属主管：</label>
-            <div class="btn-group col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                <button type="button" class="btnInput" style="width: 100%" id="leader" data-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false">
-                    {{managerName ||"主管姓名"}}
-                </button>
-                <ul class="dropdown-menu btnDrop" style="width: 80%">
-                    <li class="btnDropDetail" ng-click="choiceManager(manager.id,manager.name)"
-                        ng-repeat="manager in manager_list">
-                        {{manager.name}}
-                    </li>
-                </ul>
+            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                <select name="position" class="form-control" id="role" ng-model="role_sale">
+                    <option value="manager">销售主管</option>
+                    <option value="admin">销售职员</option>
+                </select>
             </div>
         </div>
 

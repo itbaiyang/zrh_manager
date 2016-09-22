@@ -1,0 +1,131 @@
+.team-box {
+    display: inline-block;
+    margin: 0 20px 20px;
+    height: 250px;
+    width: 180px;
+    cursor: pointer;
+    position: relative;
+    border: 1px solid #e7e7e7;
+}
+
+.team-box p {
+    text-align: center;
+}
+
+.team-title {
+    height: 40px;
+    color: #ffffff;
+    background: #394556;
+    font-size: 22px;
+    line-height: 40px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.team-title-input {
+    width: 100%;
+    height: 40px;
+    background: #f97383;
+    color: #ffffff;
+}
+
+.team-content {
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.team-btn {
+    width: 140px;
+    height: 62px;
+    border-top: 1px solid #e7e7e7;
+    margin: 10px auto 0;
+}
+
+.team-add {
+    width: 140px;
+    height: 62px;
+    margin: 10px auto 0;
+}
+
+.team-add-btn {
+    margin-top: 60px;
+    text-align: center;
+    font-size: 60px;
+    color: #cccccc;
+}
+
+.team-btn2 {
+    width: 160px;
+    height: 62px;
+    border-top: 1px solid #e7e7e7;
+    margin: 10px auto 0;
+}
+
+.team-btn-detail {
+    height: 40px;
+    line-height: 20px;
+    padding: 10px 28px;
+    background: #6b7acb;
+    border: 1px solid #cccccc;
+    color: #ffffff;
+    font-size: 14px;
+    margin: 13px;
+}
+
+.team-btn-detail2 {
+    height: 40px;
+    line-height: 20px;
+    padding: 10px 20px;
+    background: #f97383;
+    border: 1px solid #cccccc;
+    color: #ffffff;
+    font-size: 14px;
+    margin: 13px 4px;
+}
+
+.team-title-edit {
+    height: 20px;
+    line-height: 20px;
+    padding: 0 12px;
+    background: #6b7acb;
+    border: 1px solid #cccccc;
+    color: #ffffff;
+    font-size: 14px;
+    position: absolute;
+    right: 5px;
+    top: 10px;
+}
+
+.members-list {
+    margin-top: 20px;
+    margin-right: 15px;
+    width: 40%;
+    border-radius: 2px;
+    border-right: 1px solid #cccccc;
+    border-left: 1px solid #cccccc;
+}
+
+.members-list-title {
+    height: 50px;
+    width: 100%;
+    background: #f5f6fa;
+}
+
+.members-list-height {
+    height: 500px;
+    overflow: auto;
+}
+
+.members-list-option {
+    height: 50px;
+    line-height: 24px;
+    width: 100%;
+    padding: 10px 15px 0;
+}
+
+.list-group-item {
+    border-left: none;
+    border-right: none;
+}

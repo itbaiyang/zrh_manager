@@ -8,6 +8,9 @@
         <a class="sideBarP2" ng-class="{sideBarP2C:choiceColor =='manage'}" ng-show="role == 'super'"
            ui-sref="super.manage">
             <img class="btnBlueImg1">职员管理</a>
+        <a class="sideBarP2" ng-class="{sideBarP2C:choiceColor =='team'}" ng-show="role == 'super'"
+           ui-sref="super.team">
+            <img class="btnBlueImg1">团队管理</a>
         <a class="sideBarP2" ng-class="{sideBarP2C:choiceColor =='company_message'}"
            ng-show="role == 'admin' || role == 'manager'"
            ui-sref="admin.company_message">

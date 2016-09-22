@@ -97,42 +97,6 @@ manageCtrl.controller('CreateUserCtrl', function ($http, $scope, $rootScope, $lo
     var timesTamp1 = String(timesTamp).substring(0, 10);
     $scope.timestamp = parseInt(timesTamp1);
     $scope.isUpdate = false;
-    $scope.list = function () {
-        var m_params = {
-            "userId": $rootScope.login_user.userId,
-            "token": $rootScope.login_user.token,
-        };
-        $http({
-            url: api_uri + "p/user/listManager",
-            method: "GET",
-            params: m_params
-        }).success(function (d) {
-            console.log(d);
-            if (d.returnCode == 0) {
-                $scope.manager_list = d.result;
-            }
-            else {
-            }
-
-        }).error(function (d) {
-            //console.log("login error");
-            //$location.path("/error");
-        })
-    };
-    $scope.choice = function (role_sale) {
-        if (role_sale == 'admin') {
-            $scope.role_sale_see = "销售职员";
-            $scope.list(1, 20);
-        } else if (role_sale == 'manager') {
-            $scope.role_sale_see = "销售主管";
-        }
-        $scope.role_sale = role_sale;
-        console.log(role_sale);
-    };
-    $scope.choiceManager = function (id, name) {
-        $scope.managerId = id;
-        $scope.managerName = name;
-    };
     $scope.submit = function () {
         var m_params = {
             "userId": $rootScope.login_user.userId,
@@ -144,9 +108,9 @@ manageCtrl.controller('CreateUserCtrl', function ($http, $scope, $rootScope, $lo
             "empNo": $scope.empNo,
             "password": $scope.password,
             "role": $scope.role_sale,
-            "manager": $scope.managerId,
             "signature": $rootScope.encryptByDES($scope.email + $scope.password + $scope.timestamp),
         };
+        console.log(m_params);
         $http({
             url: api_uri + "p/user/create",
             method: "POST",
@@ -159,8 +123,8 @@ manageCtrl.controller('CreateUserCtrl', function ($http, $scope, $rootScope, $lo
             }
 
         }).error(function (d) {
-            $scope.changeErrorMsg("网络故障请稍后再试......");
-            $location.path("/login");
+            // $scope.changeErrorMsg("网络故障请稍后再试......");
+            // $location.path("/login");
         })
     };
 });
@@ -191,14 +155,6 @@ manageCtrl.controller('UserUpdateCtrl', function ($http, $scope, $rootScope, $lo
                 $scope.mobile = d.result.mobile;
                 $scope.empNo = d.result.empNo;
                 $scope.role_sale = d.result.role;
-                $scope.managerId = d.result.manager;
-                $scope.managerName = d.result.managerName;
-                if ($scope.role_sale == "admin") {
-                    $scope.role_sale_see = "销售职员";
-                    $scope.list();
-                } else if ($scope.role_sale == 'manager') {
-                    $scope.role_sale_see = "销售主管";
-                }
             }
             else {
             }
@@ -207,43 +163,6 @@ manageCtrl.controller('UserUpdateCtrl', function ($http, $scope, $rootScope, $lo
         })
     };
     $scope.get();
-    $scope.list = function () {
-        var m_params = {
-            "userId": $rootScope.login_user.userId,
-            "token": $rootScope.login_user.token,
-        };
-        $http({
-            url: api_uri + "p/user/listManager",
-            method: "GET",
-            params: m_params
-        }).success(function (d) {
-            console.log(d);
-            if (d.returnCode == 0) {
-                $scope.manager_list = d.result;
-            }
-            else {
-            }
-
-        }).error(function (d) {
-            //console.log("login error");
-            //$location.path("/error");
-        })
-    };
-
-    $scope.choice = function (role_sale) {
-        if (role_sale == 'admin') {
-            $scope.role_sale_see = "销售职员";
-            $scope.list(1, 20);
-        } else if (role_sale == 'manager') {
-            $scope.role_sale_see = "销售主管";
-        }
-        $scope.role_sale = role_sale;
-        console.log(role_sale);
-    };
-    $scope.choiceManager = function (id, name) {
-        $scope.managerId = id;
-        $scope.managerName = name;
-    };
 
     $scope.submit = function () {
         if ($scope.password == '******') {
@@ -259,7 +178,6 @@ manageCtrl.controller('UserUpdateCtrl', function ($http, $scope, $rootScope, $lo
             "mobile": $scope.mobile,
             "password": $scope.password_new,
             "role": $scope.role_sale,
-            "manager": $scope.managerId,
             "signature": $rootScope.encryptByDES($scope.email + $scope.password + $scope.timestamp),
         };
         console.log(m_params);

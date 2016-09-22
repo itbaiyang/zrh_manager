@@ -71,12 +71,18 @@ topBarCtrl.controller('ContainsCtrl', function ($http, $scope, $state, $rootScop
             "token": $rootScope.login_user.token,
         };
         $http({
-            url: api_uri + "zrh/index/groupCount",
+            url: api_uri + "zrh/group/groupCountByUser",
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
-            $scope.countGroup = d.result;
+
+            if (d.returnCode == 0) {
+                $scope.countGroup = d.result;
+            } else if (d.returnCode == 1003) {
+                console.log("用户或分组不存在");
+            } else {
+                console.log(d);
+            }
         }).error(function (d) {
         });
     };

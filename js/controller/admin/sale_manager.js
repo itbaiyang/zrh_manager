@@ -7,13 +7,15 @@ saleManagerCtrl.controller('SaleManagerCtrl', function ($http, $scope, $state, $
             "token": $rootScope.login_user.token,
         };
         $http({
-            url: api_uri + "p/user/listSaleDetailByManager",
+            url: api_uri + "zrh/group/listSalerFromGroup",
             method: "GET",
             params: m_params
         }).success(function (d) {
             console.log(d);
             if (d.returnCode == 0) {
                 $scope.user_list = d.result;
+            } else if (d.returnCode == 1003) {
+                alert("该用户没有分组");
             }
             else {
                 // console.log(d.result);

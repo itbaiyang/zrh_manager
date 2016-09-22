@@ -99,7 +99,10 @@
         </div>
         </div>
         <div class="clear">
-            <div class="fl" style="width: 50%;height: 284px;background: #f6f7fd;padding-top: 20px">
+            <div class="fl"
+                 style="width: 50%;height: 284px;background: #f6f7fd;padding-top: 20px;border-left: 1px solid #cccccc">
+                <div style="height: 214px;overflow: auto;border-bottom: 1px solid #cccccc"
+                ">
                 <div style="padding-left: 30px;height: 70px" ng-repeat="message in message_list | limitTo:3">
                     <div class="fl" style="height: 30px;width: 30px">
                         <img style="height: 30px;width: 30px" src="img/recommendl.png" alt="">
@@ -107,7 +110,8 @@
                     <div class="fl" style="padding-left: 5px">
                         <p><a href="">{{message.userName}}</a></p>
                         <p>{{message.content}}</p>
-                        <p>{{message.createTime | date:'dd.MM.yy hh: mm'}}&nbsp;&nbsp;&nbsp;{{message.statusDesc}}</p>
+                        <p>{{message.createTime | date:'yyyy.MM.dd HH: MM'}}&nbsp;&nbsp;&nbsp;{{message.statusDesc}}</p>
+                    </div>
                     </div>
                 </div>
                 <a href="" style="padding-left: 30px;position: absolute;top: 420px;" ng-click="messages(id)">查看更多留言</a>

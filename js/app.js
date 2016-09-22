@@ -18,6 +18,7 @@ var app = angular.module('app', [
     'myProjectCtrl',
     'saleManagerCtrl',
     'manageCtrl',
+    'teamCtrl',
     'signUpCtrl',
     'bankCtrl',
     'channelCtrl',

@@ -1,0 +1,37 @@
+<div class="content">
+    <div class="contentTitle">成员管理</div>
+    <div class="clear">
+        <ul class="list-group members-list fl">
+            <li class="list-group-item members-list-title">
+                <span class="width100">职员列表</span>
+            </li>
+            <div class="members-list-height">
+                <li class="list-group-item " style="height: 50px" ng-repeat="person in person_list">
+                <span class="">
+                    <input type="checkbox" style="margin-right: 10px" id="{{person.id}}"
+                           ng-checked="isSelected(person.id)"
+                           ng-click="updateSelection($event,person.id)">{{person.name}}</span>
+                </li>
+            </div>
+            <li class="list-group-item members-list-option">
+                <button class="btn btnGrew" ng-click="addToTeam()">添加</button>
+            </li>
+        </ul>
+        <ul class="list-group members-list fl">
+            <li class="list-group-item members-list-title">
+                <span class="width100">团队成员</span>
+            </li>
+            <div class="members-list-height">
+                <li class="list-group-item" style="height: 50px" ng-repeat="member in member_list">
+                <span class="">
+                    <input type="checkbox" style="margin-right: 10px" id="{{member.id}}"
+                           ng-checked="isSelected(member.id)"
+                           ng-click="updateSelection($event,member.id)">{{member.name}}</span>
+                </li>
+            </div>
+            <li class="list-group-item members-list-option">
+                <button class="btn btnGrew" ng-click="deleteFromTeam()">删除</button>
+            </li>
+        </ul>
+    </div>
+</div>

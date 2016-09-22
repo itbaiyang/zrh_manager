@@ -77,6 +77,25 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             }
         })
 
+        .state('super.team', {
+            url: '/team',
+            views: {
+                'main@super': {
+                    templateUrl: templates_root + 'super/product_service/team/team.html',
+                    controller: 'TeamCtrl'
+                }
+            }
+        })
+        .state('super.team.members', {
+            url: '/members/:id',
+            views: {
+                'main@super': {
+                    templateUrl: templates_root + 'super/product_service/team/members.html',
+                    controller: 'MembersCtrl'
+                }
+            }
+        })
+
         .state('super.product', {
             url: '/product',
             views: {

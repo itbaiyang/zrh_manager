@@ -1,0 +1,33 @@
+<div class="content" style="width: calc(100% - 210px)">
+    <p class="contentTitle width100"><span>团队管理</span></p>
+    <div class="width100">
+        <div class="team-box" ng-repeat="team in team_list">
+            <p class="team-title" ng-mouseover="edit = true" ng-mouseleave="edit = false"
+               ng-hide="edit_team_input[$index]">{{team.name}}
+                <button class="team-title-edit fr" ng-show="edit" ng-click="edit_team(team.id,$index,team.name)">编辑
+                </button>
+            </p>
+            <div class="form-group team-title" ng-show="edit_team_input[$index]">
+                <input type="text" class="form-control team-title-input" placeholder="团队名称"
+                       ng-model="$parent.teamName"/>
+            </div>
+            <p class="team-content">共有{{team.count}}位成员</p>
+            <p class="team-content">累计成交额{{team.map.loanValue}}万</p>
+            <p class="team-content">累计成功融资{{team.map.num}}个</p>
+            <p class="team-content">累计利润{{team.map.fee}}万</p>
+            <div class="team-btn" ng-hide="edit_team_input[$index]">
+                <button class="btn team-btn-detail" ng-click="find_detail(team.id)">查看详情</button>
+            </div>
+            <div class="team-btn2" ng-show="edit_team_input[$index]">
+                <button class="team-btn-detail2" ng-click="editTeam(team.id)">确定</button>
+                <button class="team-btn-detail2" ng-click="deleteTeam(team.id)">删除</button>
+            </div>
+        </div>
+        <div class="team-box" style="vertical-align: top">
+            <div class="team-add">
+                <div class="team-add-btn" ng-click="addTeam()">+</div>
+                <div class="team-content">添加新成员</div>
+            </div>
+        </div>
+    </div>
+</div>
