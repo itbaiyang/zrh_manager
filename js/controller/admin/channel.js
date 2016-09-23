@@ -163,8 +163,8 @@ channelCtrl.controller('ChannelDetailCtrl', function ($http, $scope, $state, $ro
         }).success(function (d) {
             console.log(d);
             if (d.returnCode == 0) {
-                $scope.page = d.result;
                 $scope.name = d.result.name;
+                $scope.page = d.result.pagination;
                 $scope.result_list = d.result.pagination.datas;
                 angular.forEach($scope.result_list, function (data) { //申请状态显示
                     if (data.status == 0) {

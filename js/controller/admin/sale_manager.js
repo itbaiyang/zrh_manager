@@ -15,6 +15,15 @@ saleManagerCtrl.controller('SaleManagerCtrl', function ($http, $scope, $state, $
             console.log(d);
             if (d.returnCode == 0) {
                 $scope.user_list = d.result;
+                angular.forEach($scope.user_list, function (data) {
+                    if (data.role == "admin") {
+                        data.position = "销售人员";
+                    } else if (data.role == "manager") {
+                        data.position = "销售主管";
+                    } else if (data.role == "super") {
+                        data.position = "超级管理员";
+                    }
+                });
             } else if (d.returnCode == 1003) {
                 alert("该用户没有分组");
             }

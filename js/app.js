@@ -283,7 +283,7 @@ app.run(function ($location, $rootScope, $http) {
         }).success(function (d) {
             // console.log(d);
             if (d.returnCode == 0) {
-                // console.log(d);
+                $rootScope.message();
                 $rootScope.role = d.result.role;
                 console.log($rootScope.role);
                 if ($rootScope.role == 'super') {
@@ -336,7 +336,4 @@ app.run(function ($location, $rootScope, $http) {
         }).error(function (d) {
         })
     };
-    if ($rootScope.login_user) {
-        $rootScope.message();
-    }
 });

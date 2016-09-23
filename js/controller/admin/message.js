@@ -2,10 +2,12 @@ var messageCtrl = angular.module('messageCtrl', []);
 messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $location, $timeout, $routeParams) {
 
     /*获取银行消息列表*/
-    $scope.bank_list = function () {
+    $scope.bank_list = function (pageNo, pageSize) {
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
+            "pageNo": pageNo,
+            "pageSize": pageSize,
         };
         $http({
             url: api_uri + "applyBankDeal/manage/list",
@@ -66,7 +68,7 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
             // console.log(d);
         });
     };
-    $scope.bank_list();
+    $scope.bank_list(1, 100);
 
     /*显示窗口*/
     $scope.showAllow = []; //初始化参数

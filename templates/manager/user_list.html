@@ -11,6 +11,7 @@
     <ul class="list-group list_ul">
         <li class="list-group-item list_title">
             <span class="width15">用户名</span>
+            <span class="width15">职位</span>
             <span class="width15">注册电话</span>
             <span class="width15">拥有的项目</span>
             <!--<span class="width15">注册时间</span>-->
@@ -20,6 +21,7 @@
                     <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}"
                            ng-checked="isSelected(resultObj.id)"
                            ng-click="updateSelection($event,resultObj.id)">{{resultObj.name ||'未填写'}}</span>
+            <span class="width15">{{resultObj.position}}</span>
             <span class="width15">{{resultObj.mobile}}</span>
             <span class="width15">{{resultObj.count ||'0'}}</span>
             <a href="" ng-click="showDetail(resultObj.id)">查看详情</a>
