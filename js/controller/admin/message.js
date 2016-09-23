@@ -12,6 +12,7 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
             method: "GET",
             params: m_params
         }).success(function (d) {
+            console.log(d);
             $scope.message_list = d.result.datas;
             angular.forEach($scope.message_list, function (data) {
                 data.dayNum = '';
@@ -20,33 +21,39 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
                 } else if (data.status == 1) {
                     data.progressText = "准备中";
                     data.progressTextNext = "下户";
-                    data.jindu = 10;
+                    data.jindu = 15;
                     data.jindu_next = 10;
+                    data.jindu_success = 25;
                 } else if (data.status == 2) {
                     data.progressText = "下户";
                     data.progressTextNext = "审批中";
-                    data.jindu = 20;
+                    data.jindu = 25;
                     data.jindu_next = 15;
+                    data.jindu_success = 40;
                 } else if (data.status == 3) {
                     data.progressText = "审批中";
                     data.progressTextNext = "审批通过";
-                    data.jindu = 35;
-                    data.jindu_next = 20;
+                    data.jindu = 40;
+                    data.jindu_next = 15;
+                    data.jindu_success = 55;
                 } else if (data.status == 4) {
                     data.progressText = "审批通过";
                     data.progressTextNext = "开户";
                     data.jindu = 55;
                     data.jindu_next = 15;
+                    data.jindu_success = 70;
                 } else if (data.status == 5) {
                     data.progressText = "开户";
                     data.progressTextNext = "放款";
                     data.jindu = 70;
                     data.jindu_next = 15;
+                    data.jindu_success = 85;
                 } else if (data.status == 6) {
                     data.progressText = "放款";
                     data.progressTextNext = "成功融资";
                     data.jindu = 85;
                     data.jindu_next = 15;
+                    data.jindu_success = 100;
                 } else if (data.status == 7) {
                     data.progressText = "成功融资";
                     data.jindu = 100;

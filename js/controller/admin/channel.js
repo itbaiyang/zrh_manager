@@ -164,7 +164,8 @@ channelCtrl.controller('ChannelDetailCtrl', function ($http, $scope, $state, $ro
             console.log(d);
             if (d.returnCode == 0) {
                 $scope.page = d.result;
-                $scope.result_list = d.result.datas;
+                $scope.name = d.result.name;
+                $scope.result_list = d.result.pagination.datas;
                 angular.forEach($scope.result_list, function (data) { //申请状态显示
                     if (data.status == 0) {
                         data.progressText = "未申请";
@@ -272,6 +273,10 @@ channelCtrl.controller('ChannelDetailCtrl', function ($http, $scope, $state, $ro
     };
     $scope.go_back_channel = function () {
         $location.path('/admin/channel');
+    };
+
+    $scope.updateApply = function (id) {
+        $location.path('/admin/my_project/detail/' + id);
     };
 });
 

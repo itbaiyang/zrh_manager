@@ -16,7 +16,7 @@ shareCtrl.controller('ShareCtrl', function ($http, $scope, $state, $rootScope, $
             method: "GET",
             params: m_params
         }).success(function (d) {
-            // console.log(d);
+            console.log(d);
             if (d.returnCode == 0) {
                 $scope.page = d.result;
                 $scope.user_list = d.result.datas;
@@ -69,7 +69,6 @@ shareCtrl.controller('ShareCtrl', function ($http, $scope, $state, $rootScope, $
         $scope.list(1, 20);
     };
     $scope.remark = function () {
-        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -81,9 +80,8 @@ shareCtrl.controller('ShareCtrl', function ($http, $scope, $state, $rootScope, $
             data: m_params,
             traditional: true,
             success: function (data, textStatus, jqXHR) {
-                // console.log(data);
+                console.log(data);
                 if (data.returnCode == 0) {
-                    // console.log(data);
                     $scope.list($scope.pageNo1, 10);
                     $scope.ids = [];
                 }
@@ -116,10 +114,11 @@ shareCtrl.controller('ShareDetailCtrl', function ($http, $scope, $state, $rootSc
             method: "GET",
             params: m_params
         }).success(function (d) {
-            // console.log(d);
+            console.log(d);
             if (d.returnCode == 0) {
                 $scope.page = d.result;
-                $scope.result_list = d.result.datas;
+                $scope.name = d.result.name;
+                $scope.result_list = d.result.pagination.datas;
                 angular.forEach($scope.result_list, function (data) { //申请状态显示
                     if (data.status == 0) {
                         data.progressText = "未申请";

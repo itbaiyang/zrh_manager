@@ -461,6 +461,8 @@
     margin-top: 20px;
     margin-right: 15px;
     width: 100%;
+    /*border-left: 1px solid #cccccc;*/
+    /*border-right: 1px solid #cccccc;*/
 }
 .list_ul2 {
     margin-right: 15px;
@@ -468,7 +470,6 @@
 }
 .list_ul1 {
     margin-top: 20px;
-    /*min-width: 1065px;*/
     padding: 0;
     width: calc(100% - 15px);
 }

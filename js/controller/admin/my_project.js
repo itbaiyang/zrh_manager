@@ -1425,9 +1425,9 @@ myProjectCtrl.controller('DistributeCtrl', function ($http, $scope, $rootScope, 
                 } else if (d.returnCode == 1003) {
                     alert("申请不存在");
                 } else if (d.returnCode == 1004) {
-                    alert("企业名称不存在");
+                    alert("企业名称不存在或资料不够完善");
                 } else if (d.returnCode == 1005) {
-                    alert("资料不够完善");
+                    alert("1005");
                 } else {
                     alert("其他未知因素导致递交失败，请联系后台人员");
                 }
@@ -1694,7 +1694,7 @@ myProjectCtrl.controller('ChoiceSaleCtrl', function ($http, $scope, $state, $roo
         };
         console.log(m_params);
         $http({
-            url: api_uri + "p/user/listSaleDetailByManager",
+            url: api_uri + "zrh/group/listSalerFromGroup",
             method: "GET",
             params: m_params
         }).success(function (d) {

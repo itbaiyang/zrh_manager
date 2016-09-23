@@ -7,7 +7,8 @@ saleManagerCtrl.controller('SaleManagerCtrl', function ($http, $scope, $state, $
             "token": $rootScope.login_user.token,
         };
         $http({
-            url: api_uri + "zrh/group/listSalerFromGroup",
+            // url: api_uri + "zrh/group/listSalerFromGroup",
+            url: api_uri + "zrh/group/listOtherFromGroup",
             method: "GET",
             params: m_params
         }).success(function (d) {

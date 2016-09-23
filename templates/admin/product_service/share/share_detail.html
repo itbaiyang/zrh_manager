@@ -1,7 +1,7 @@
 <!--<div style="position: absolute;overflow-x:hidden; margin-left: 250px;width: calc(100% - 250px); height: calc(100% - 50px);  background: #ffffff">-->
 <div class="content">
     <div class="contentTitle">
-        <span>渠道统计</span>
+        <span>{{name}}的申请</span>
         <div class="fr" style="margin: 10px">
         </div>
     </div>
@@ -36,8 +36,8 @@
                         <li ng-click="choice()" class="list_select">全部</li>
                     </ul>
                 </div>
-                <span class="width10">报卷人</span>
-                <span class="width10">预计完成时间</span>
+                <span class="width10">销售</span>
+                <span class="width10">预计时间</span>
                 <span class="width10">服务费（%）</span>
                 <span class="width10">融资额（万）</span>
                 <span class="width10">年销售额（万）</span>
@@ -50,7 +50,7 @@
                    ng-checked="isSelected(resultObj.id)"
                    ng-click="updateSelection($event,resultObj.id)">
                     <a ng-click="updateApply(resultObj.id)" style="cursor: pointer">
-                        {{resultObj.companyName}}
+                        {{resultObj.companyName ||resultObj.linkman}}
                     </a>
                 </span>
                     <span class="width13">{{resultObj.bankName}}-{{resultObj.productName}}</span>
@@ -65,7 +65,7 @@
                     <span class="width10">{{resultObj.fee}}</span>
                     <span class="width10">{{resultObj.loanValue}}</span>
                     <span class="width10">{{resultObj.continual}}</span>
-                    <span class="width8">{{resultObj.continual}}</span>
+                    <span class="width8">{{resultObj.linkman}}</span>
                 </li>
             </div>
         </div>

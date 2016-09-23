@@ -125,7 +125,7 @@
     padding: 10px 15px 0;
 }
 
-.list-group-item {
+.list-border-no {
     border-left: none;
     border-right: none;
 }
