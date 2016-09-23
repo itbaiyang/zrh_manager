@@ -250,4 +250,7 @@ shareCtrl.controller('ShareDetailCtrl', function ($http, $scope, $state, $rootSc
     $scope.updateApply = function (id) {
         $location.path('/admin/my_project/detail/' + id);
     };
+    $scope.go_back_share = function () {
+        $location.path('/admin/share');
+    };
 });

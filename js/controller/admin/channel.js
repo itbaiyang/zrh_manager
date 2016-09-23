@@ -270,6 +270,9 @@ channelCtrl.controller('ChannelDetailCtrl', function ($http, $scope, $state, $ro
     $scope.history = function () {
         $location.path('/admin/channel/history/' + $stateParams.id);
     };
+    $scope.go_back_channel = function () {
+        $location.path('/admin/channel');
+    };
 });
 
 channelCtrl.controller('AddApplyCtrl', function ($http, $scope, $state, $rootScope, $location, $stateParams) {

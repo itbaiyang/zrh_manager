@@ -1388,6 +1388,7 @@ myProjectCtrl.controller('DistributeCtrl', function ($http, $scope, $rootScope, 
         $scope.bankId = id;
         $scope.bankName = name;
         $scope.bank_man_list_get($scope.bankId, 1, 400)
+        $scope.bankManName = "";
     };
 
     /*选择银行职员*/
@@ -1449,6 +1450,7 @@ myProjectCtrl.controller('ApplyHelpCtrl', function ($http, $scope, $rootScope, $
         $scope.applyMobile = $stateParams.mobile;
     }
 
+    /*获取产品名称*/
     $scope.get = function () {
         var m_params = {
             "userId": $rootScope.login_user.userId,
@@ -1473,10 +1475,11 @@ myProjectCtrl.controller('ApplyHelpCtrl', function ($http, $scope, $rootScope, $
     };
     $scope.get();
 
+    /*跳转到详情页面*/
     $scope.backProjectDetail = function (id) {
         $location.path('/admin/my_project/detail/' + id);
     };
-
+    /*获取银行列表*/
     $scope.list = function (pageNo, pageSize) {
         var m_params = {
             "userId": $rootScope.login_user.userId,
@@ -1500,13 +1503,9 @@ myProjectCtrl.controller('ApplyHelpCtrl', function ($http, $scope, $rootScope, $
             $location.path("/error");
         })
     };
-
     $scope.list(1, 100);
 
-    $scope.editApply = function (id) {
-        $location.path('/admin/my_project/edit_apply/' + id);
-    };
-
+    /*选择产品*/
     $scope.choiceProduct = function (id, name, type) {
         $scope.productId = id;
         $scope.productName = name;
@@ -1515,12 +1514,14 @@ myProjectCtrl.controller('ApplyHelpCtrl', function ($http, $scope, $rootScope, $
             $scope.productName = '';
         }
     };
-
+    /*选择银行*/
     $scope.choiceBank = function (id, name) {
         $scope.bankId = id;
         $scope.bankName = name;
-        $scope.product_list_get($scope.bankId, 1, 400)
+        $scope.product_list_get($scope.bankId, 1, 400);
+        $scope.productName = "";
     };
+    /*获取产品列表*/
     $scope.product_list_get = function (id, pageNo, pageSize) {
         var m_params = {
             "userId": $rootScope.login_user.userId,
@@ -1547,7 +1548,7 @@ myProjectCtrl.controller('ApplyHelpCtrl', function ($http, $scope, $rootScope, $
         })
     };
 
-    $scope.submit_help = function (msg) {
+    $scope.submit_apply = function (msg) {
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -1563,25 +1564,26 @@ myProjectCtrl.controller('ApplyHelpCtrl', function ($http, $scope, $rootScope, $
         } else if (!m_params.mobile) {
             alert("电话号码不能为空");
         } else {
-            console.log("dd");
+            if (msg == 0) {
+                var apply_url = "loanApplicationManage/helpApply";
+                $rootScope.successMsg = "操作成功";
+            } else {
+                var apply_url = "loanApplicationManage/changeProduct";
+                $rootScope.successMsg = "更换成功";
+            }
             $.ajax({
                 type: 'POST',
-                url: api_uri + "loanApplicationManage/helpApply",
+                url: api_uri + apply_url,
                 data: m_params,
                 traditional: true,
                 success: function (data, textStatus, jqXHR) {
                     console.log(data);
                     if (data.returnCode == 0) {
-                        if (msg == 0) {
-                            $rootScope.successMsg = "操作成功";
-                        } else {
-                            $rootScope.successMsg = "更换成功";
-                        }
                         $rootScope.fadeInOut("#alert", 500);
                         $location.path('/admin/my_project/detail/' + $scope.id);
                         $scope.$apply();
                     } else if (data.returnCode == 1003) {
-                        alert("申请")
+                        alert("申请不存在")
                     }
                 },
                 dataType: 'json',

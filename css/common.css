@@ -61,6 +61,19 @@
     z-index: 100;
 }
 
+.btn-drop {
+    width: 300px;
+    padding: 15px 10px 0;
+    height: 160px;
+    overflow: auto;
+    position: absolute;
+    top: -170px;
+    left: 0;
+    background: #ffffff;
+    z-index: 120;
+    border: 1px solid #cccccc;
+}
+
 .btnDrop1 {
     margin: 8px 13px 0;
     padding: 5px 10px;
