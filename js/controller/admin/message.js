@@ -79,14 +79,19 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
             $scope.status = status;
             if (status == 2) {
                 $scope.statusText = "下户";
+                $scope.statusNextText = "审批中";
             } else if (status == 3) {
                 $scope.statusText = "审批中";
+                $scope.statusNextText = "审批通过";
             } else if (status == 4) {
                 $scope.statusText = "审批通过";
+                $scope.statusNextText = "开户";
             } else if (status == 5) {
                 $scope.statusText = "开户";
+                $scope.statusNextText = "放款";
             } else if (status == 6) {
                 $scope.statusText = "放款";
+                $scope.statusNextText = "成功融资";
             } else if (status == 7) {
                 $scope.statusText = "成功融资";
             }
