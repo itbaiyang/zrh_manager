@@ -1,7 +1,7 @@
 // api_uri = "http://test.zhironghao.com/api/";
-api_uri = "http://api.supeiyunjing.com/";
+// api_uri = "http://api.supeiyunjing.com/";
 // api_uri = "http://172.17.2.13:8080/api/";
-// api_uri = "http://172.16.97.229:8080/api/";
+api_uri = "http://172.16.97.229:8080/api/";
 var templates_root = 'templates/';
 deskey = "abc123.*abc123.*abc123.*abc123.*";
 var app = angular.module('app', [
@@ -285,7 +285,7 @@ app.run(function ($location, $rootScope, $http) {
             if (d.returnCode == 0) {
                 $rootScope.message();
                 $rootScope.role = d.result.role;
-                console.log($rootScope.role);
+                // console.log($rootScope.role);
                 if ($rootScope.role == 'super') {
                     if ($rootScope.arrayParams[0] == 'super') {
                     } else {
@@ -326,7 +326,6 @@ app.run(function ($location, $rootScope, $http) {
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log('没错好');
             if (d.returnCode == 0) {
                 $rootScope.count = d.result;
             }

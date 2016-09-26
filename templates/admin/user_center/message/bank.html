@@ -6,12 +6,6 @@
             </div>
         </div>
         <div class="messageBox clear" ng-repeat="message in message_list">
-            <!--<div class="coverGrew" ng-show="message.op == 2">-->
-            <!--已经驳回&nbsp;-->
-            <!--</div>-->
-            <!--<div class="coverGrew" ng-show = "message.op == 1">-->
-            <!--已同意&nbsp;-->
-            <!--</div>-->
             <div class="messageImg fl">
                 <img ng-src="{{message.icon}}" alt="">
             </div>
@@ -20,7 +14,7 @@
                 <p><a>{{message.userName}}</a>&nbsp;&nbsp;<a>{{message.position}}</a></p>
                 <p>{{message.reason}}</p>
                 <p><a href="">{{message.companyName}}</a></p>
-                <p ng-show="message.op == 0">提交状态&nbsp;<span style="color: red">{{message.progressText}}->{{message.progressTextNext}}</span>&nbsp;&nbsp;<span
+                <p ng-show="message.op == 0">提交状态&nbsp;<span style="color: red">{{message.statusPro}}->{{message.progressText}}</span>&nbsp;&nbsp;<span
                         class="fr">预计{{message.days}}天</span>
                 </p>
                 <p ng-show="message.op == 1">提交状态&nbsp;<span style="color: red">{{message.progressTextNext}}</span>&nbsp;&nbsp;<span
@@ -98,8 +92,7 @@
                             <div class="form-group col-sm-12 col-lg-12">
                                 <div class="col-sm-12" style="padding: 0;margin-top: 10px">
                                     <input type="text" style="padding: 0; text-indent:10px;" class="form-control"
-                                           ng-model="reason_refuse" placeholder="驳回原因123">
-                                    <span class="input-right">天</span>
+                                           ng-model="reason_refuse" placeholder="驳回原因">
                                 </div>
                             </div>
                             <button style="margin-left:10px" class="btn btnBlue" type="submit"

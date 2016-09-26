@@ -12,7 +12,7 @@ topBarCtrl.controller('TopBarCtrl', function ($http, $scope, $rootScope, $locati
             $location.path("admin");
         }
 
-    }
+    };
 
     /*退出程序*/
     $scope.exit = function () {
