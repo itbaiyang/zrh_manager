@@ -106,7 +106,9 @@ shareCtrl.controller('ShareDetailCtrl', function ($http, $scope, $state, $rootSc
             "token": $rootScope.login_user.token,
             "pageNo": pageNo,
             "pageSize": pageSize,
-            "uid": $stateParams.id
+            "uid": $stateParams.id,
+            "wd": $scope.wd,
+            "status": $scope.status,
         };
         // console.log(m_params);
         $http({

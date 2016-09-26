@@ -14,10 +14,10 @@
                 <p><a>{{message.userName}}</a>&nbsp;&nbsp;<a>{{message.position}}</a></p>
                 <p>{{message.reason}}</p>
                 <p><a href="">{{message.companyName}}</a></p>
-                <p ng-show="message.op == 0">提交状态&nbsp;<span style="color: red">{{message.statusPro}}->{{message.progressText}}</span>&nbsp;&nbsp;<span
+                <p ng-show="message.op == 0">提交状态&nbsp;<span style="color: red">{{message.progressPro}}->{{message.progressText}}</span>&nbsp;&nbsp;<span
                         class="fr">预计{{message.days}}天</span>
                 </p>
-                <p ng-show="message.op == 1">提交状态&nbsp;<span style="color: red">{{message.progressTextNext}}</span>&nbsp;&nbsp;<span
+                <p ng-show="message.op == 1">提交状态&nbsp;<span style="color: red">{{message.progressText}}</span>&nbsp;&nbsp;<span
                         class="fr">预计{{message.days}}天</span>
                 </p>
                 <p ng-show="message.op == 2">提交状态&nbsp;<span style="color: red">{{message.progressText}}</span>&nbsp;&nbsp;<span

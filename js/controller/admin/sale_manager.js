@@ -125,20 +125,25 @@ saleManagerCtrl.controller('SaleApplyListCtrl', function ($http, $scope, $state,
                         data.progressText = "未申请";
                         data.color = 1;
                     } else if (data.status == 1) {
-                        data.progressText = "申请中";
-                        data.progressBtn = "开始约见";
+                        data.progressText = "准备中";
                         data.color = 2;
                     } else if (data.status == 2) {
-                        data.progressText = "约见中";
-                        data.progressBtn = "继续跟进";
+                        data.progressText = "下户";
                         data.color = 2;
                     } else if (data.status == 3) {
-                        data.progressText = "跟进中";
-                        data.progressBtn = "完成贷款";
+                        data.progressText = "审批中";
                         data.color = 2;
                     } else if (data.status == 4) {
+                        data.progressText = "审批通过";
+                        data.color = 2;
+                    } else if (data.status == 5) {
+                        data.progressText = "下户";
+                        data.color = 2;
+                    } else if (data.status == 6) {
+                        data.progressText = "放款";
+                        data.color = 2;
+                    } else if (data.status == 7) {
                         data.progressText = "成功融资";
-                        data.progressBtn = "已结束";
                         data.color = 3;
                     } else if (data.status == -1) {
                         data.progressText = "申请取消";

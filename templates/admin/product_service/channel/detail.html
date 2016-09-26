@@ -23,7 +23,7 @@
                 <span class="width13">申请产品</span>
                 <div class="btn-group noPadding width10">
                     <div style="cursor: pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        状态({{status_text}}) <span class="caret"></span>
+                        {{status_text || "状态"}} <span class="caret"></span>
                     </div>
                     <ul class="dropdown-menu" style="width: 100px">
                         <li ng-click="choice(0)" class="list_select">未申请</li>
@@ -66,7 +66,7 @@
                     <span class="width10">{{resultObj.fee  ||"无"}}</span>
                     <span class="width10">{{resultObj.loanValue  ||"无"}}</span>
                     <span class="width10">{{resultObj.continual ||"无"}}</span>
-                    <span class="width8">{{resultObj.linkman}}</span>
+                    <span class="width8">{{resultObj.createUserName}}</span>
                 </li>
             </div>
         </div>

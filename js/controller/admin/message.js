@@ -18,44 +18,38 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
             $scope.message_list = d.result.datas;
             angular.forEach($scope.message_list, function (data) {
                 data.dayNum = '';
-                if (data.status == 0) {
+                if (data.status == 1) {
                     data.progressText = "未申请";
-                } else if (data.status == 1) {
-                    data.progressText = "准备中";
-                    data.progressTextNext = "下户";
+                } else if (data.status == 2) {
+                    data.progressPro = "准备中";
+                    data.progressText = "下户";
                     data.jindu = 15;
                     data.jindu_next = 10;
                     data.jindu_success = 25;
-                } else if (data.status == 2) {
-                    data.progressText = "下户";
-                    data.progressTextNext = "审批中";
+                } else if (data.status == 3) {
+                    data.progressPro = "下户";
+                    data.progressText = "审批中";
                     data.jindu = 25;
                     data.jindu_next = 15;
                     data.jindu_success = 40;
-                } else if (data.status == 3) {
-                    data.progressText = "审批中";
-                    data.progressTextNext = "审批通过";
+                } else if (data.status == 4) {
+                    data.progressPro = "审批中";
+                    data.progressText = "审批通过";
                     data.jindu = 40;
                     data.jindu_next = 15;
                     data.jindu_success = 55;
-                } else if (data.status == 4) {
-                    data.progressText = "审批通过";
-                    data.progressTextNext = "开户";
+                } else if (data.status == 5) {
+                    data.progressPro = "审批通过";
+                    data.progressText = "开户";
                     data.jindu = 55;
                     data.jindu_next = 15;
                     data.jindu_success = 70;
-                } else if (data.status == 5) {
-                    data.progressText = "开户";
-                    data.progressTextNext = "放款";
+                } else if (data.status == 6) {
+                    data.progressPro = "开户";
+                    data.progressText = "放款";
                     data.jindu = 70;
                     data.jindu_next = 15;
                     data.jindu_success = 85;
-                } else if (data.status == 6) {
-                    data.progressText = "放款";
-                    data.progressTextNext = "成功融资";
-                    data.jindu = 85;
-                    data.jindu_next = 15;
-                    data.jindu_success = 100;
                 } else if (data.status == 7) {
                     data.progressText = "成功融资";
                     data.jindu = 100;
@@ -69,7 +63,7 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
         });
     };
     $scope.bank_list(1, 100);
-
+    $scope.statusPro = "nihao";
     /*显示窗口*/
     $scope.showAllow = []; //初始化参数
     $scope.showRefuse = []; //初始化参数
@@ -78,23 +72,23 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
             $scope.showAllow[id] = true;
             $scope.status = status;
             if (status == 2) {
-                $scope.statusText = "下户";
                 $scope.statusPro = "准备中";
+                $scope.statusText = "下户";
             } else if (status == 3) {
-                $scope.statusText = "审批中";
                 $scope.statusPro = "下户";
+                $scope.statusText = "审批中";
             } else if (status == 4) {
-                $scope.statusText = "审批通过";
                 $scope.statusPro = "审批中";
+                $scope.statusText = "审批通过";
             } else if (status == 5) {
+                $scope.statusPro = "审批通过";
                 $scope.statusText = "开户";
-                $scope.statusPro = "审批通过";
             } else if (status == 6) {
-                $scope.statusText = "放款";
                 $scope.statusPro = "审批通过";
+                $scope.statusText = "放款";
             } else if (status == 7) {
-                $scope.statusText = "成功融资";
                 $scope.statusPro = "放款";
+                $scope.statusText = "成功融资";
             }
             for (var i = 0; i < $scope.showRefuse.length; i++) {
                 $scope.showRefuse[i] = false;

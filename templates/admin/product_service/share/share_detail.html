@@ -65,7 +65,12 @@
                     <span class="width10">{{resultObj.fee}}</span>
                     <span class="width10">{{resultObj.loanValue}}</span>
                     <span class="width10">{{resultObj.continual}}</span>
-                    <span class="width8">{{resultObj.linkman}}</span>
+                    <span class="width8">{{resultObj.createUserName}}
+                        <img src="img/tips/tel.png" class="img-size" ng-show="resultObj.channel =='tel'">
+                        <img src="img/tips/bankMan.png" class="img-size" ng-show="resultObj.channel =='a'">
+                        <img src="img/tips/manager.png" class="img-size" ng-show="resultObj.channel =='zrh_manager'">
+                        <img src="img/tips/channel.png" class="img-size" ng-show="resultObj.channel =='c'">
+                    </span>
                 </li>
             </div>
         </div>
