@@ -1,15 +1,15 @@
-<div class="content" style="width: calc(100% - 210px)">
-    <p class="contentTitle width100"><span>合作银行</span></p>
+<div class="content">
+    <p class="content-title width100"><span>合作银行</span></p>
     <div class="clear width100">
             <div class="fr">
-                <button class="btn btnGrew" ng-click="changeModule(false,false)" type="submit">取消</button>
-                <button class="btn btnGrew" ng-click="changeModule(true,false)" type="submit">
+                <button class="btn btn-grey" ng-click="changeModule(false,false)" type="submit">取消</button>
+                <button class="btn btn-grey" ng-click="changeModule(true,false)" type="submit">
                     编辑银行
                 </button>
-                <button class="btn btnGrew" ng-click="changeModule(false,true)" type="submit">
+                <button class="btn btn-grey" ng-click="changeModule(false,true)" type="submit">
                     删除银行
                 </button>
-                <button class="btn btnBlue" ui-sref="super.bank.add_bank">添加新银行</button>
+                <button class="btn btn-blue margin-left15" ui-sref="super.bank.add_bank">添加新银行</button>
             </div>
         </div>
     <div class="width100">
@@ -24,7 +24,7 @@
             <div class="bankContent fl">
                 <p class="bankContentP1">{{bank.name}}</p>
                 <p class="bankContentP2">共有{{bank.count}}位客户经理</p>
-                <button class="btn btnBlue1" ng-click="find_detail(bank.id,bank.name)">查看详情</button>
+                <button class="btn btn-blue1" ng-click="find_detail(bank.id,bank.name)">查看详情</button>
             </div>
         </div>
     </div>

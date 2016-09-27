@@ -93,10 +93,7 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $rootScope, $
         updateSelected(action, id);
     };
 
-    /*搜索,筛选,刷新页面*/
-    $scope.refresh = function () {
-        $scope.list($scope.pageNo1, 10);
-    };
+    /*搜索,筛选*/
     $scope.search_text = null;
     $scope.search = function () {
         $scope.wd = $scope.search_text;
@@ -396,8 +393,8 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
     $scope.distribute = function (id) {
         $location.path('/admin/my_project/distribute/' + id);
     };//递交资料
-    $scope.change_company = function (id) {
-        $location.path('/admin/my_project/change_company/' + id);
+    $scope.change_register = function (id) {
+        $location.path('/admin/my_project/change_register/' + id);
         // console.log(id);
     };//更改银行
     $scope.choice_sale = function (id) {
@@ -1198,47 +1195,6 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
         $scope.model_list.splice(id, 1);
     };
 
-    /*表单验证*/
-    // $scope.check =  function () {
-    //     $('#editApply').bootstrapValidator({
-    //         message: 'This value is not valid',
-    //         feedbackIcons: {
-    //             valid: 'glyphicon glyphicon-ok',
-    //             invalid: 'glyphicon glyphicon-remove',
-    //             validating: 'glyphicon glyphicon-refresh'
-    //         },
-    //         fields: {
-    //             officeAddress: {
-    //                 message: '办公地址错误',
-    //                 validators: {
-    //                     notEmpty: {
-    //                         message: '办公地址不能为空'
-    //                     }
-    //                     // stringLength: {
-    //                     //     min: 6,
-    //                     //     max: 18,
-    //                     //     message: '用户名长度必须在6到18位之间'
-    //                     // },
-    //                     // regexp: {
-    //                     //     regexp: /^[a-zA-Z0-9_]+$/,
-    //                     //     message: '用户名只能包含大写、小写、数字和下划线'
-    //                     // }
-    //                 }
-    //             },
-    //             email: {
-    //                 validators: {
-    //                     notEmpty: {
-    //                         message: '邮箱不能为空'
-    //                     },
-    //                     emailAddress: {
-    //                         message: '邮箱地址格式有误'
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     });
-    // };
-    // $scope.check();
     /*保存信息*/
     $scope.submitMessage = function () {
         var m_params = {

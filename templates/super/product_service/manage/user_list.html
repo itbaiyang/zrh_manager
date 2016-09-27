@@ -1,17 +1,17 @@
 <div class="content">
-    <div class="contentTitle width100"><span>职员列表</span></div>
-    <div class="width100">
+    <div class="content-title width100"><span>职员列表</span></div>
+    <div class="width100 content-search">
         <div class="width30">
             <input type="text" class="form-control" placeholder="搜索职员" ng-model="search_text">
         </div>
         <div class="width10">
-            <button class="btn btnBlue" ng-click="search()" type="button">搜索</button>
+            <button class="btn btn-blue" ng-click="search()" type="button">搜索</button>
         </div>
-        <button class="btn btnBlue fr" ui-sref="super.manage.addUser">添加新职员</button>
-        <button class="btn fr btnGrew" ng-click="refresh()" type="submit"><img class="btnGrewImg"> 刷新</button>
+        <button class="btn btn-blue margin-left15 fr" ui-sref="super.manage.addUser">添加新职员</button>
+        <button class="btn fr btn-grey" ng-click="refresh()" type="submit"><img class="btn-greyImg"> 刷新</button>
         </div>
-    <ul class="list-group list_ul">
-        <li class="list-group-item list_title">
+    <ul class="list-group list-ul">
+        <li class="list-group-item list-title">
             <span class="width15">用户名</span>
             <span class="width15">职位</span>
             <span class="width15">登录邮箱</span>
@@ -19,22 +19,22 @@
             <span class="width15">注册时间</span>
             <span class="width15">操作</span>
         </li>
-        <li class="list-group-item list_user" ng-repeat="resultObj in result_list">
-
-            <!--<span class="col-sm-2">{{resultObj.companyName}}</span>-->
-                <span class="width15">
-                    <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}"
-                           ng-checked="isSelected(resultObj.id)"
-                           ng-click="updateSelection($event,resultObj.id)">{{resultObj.name}}</span>
-            <span class="width15">{{resultObj.position}}</span>
-            <span class="width15">{{resultObj.email}}</span>
-            <span class="width15">{{resultObj.mobile}}</span>
-            <span class="width15">{{resultObj.createTime |date:'yyyy-MM-dd'}}</span>
-            <button class="btnGrew" ng-click="update(resultObj.id)">修改账号</button>
-        </li>
-        <li class="list-group-item list_common">
-            <button class="btnGrew" ng-click="delete()">删除职员</button>
-            <span>共有{{page.totalCount}}位职工，每页显示{{page.pageSize}}位</span>
+        <div class="line-roll">
+            <li class="list-group-item list_user" ng-repeat="resultObj in result_list">
+            <span class="width15">
+                <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}"
+                       ng-checked="isSelected(resultObj.id)"
+                       ng-click="updateSelection($event,resultObj.id)">{{resultObj.name}}</span>
+                <span class="width15">{{resultObj.position}}</span>
+                <span class="width15">{{resultObj.email}}</span>
+                <span class="width15">{{resultObj.mobile}}</span>
+                <span class="width15">{{resultObj.createTime |date:'yyyy-MM-dd'}}</span>
+                <button class="btn-blue" ng-click="update(resultObj.id)">修改账号</button>
+            </li>
+        </div>
+        <li class="list-group-item list-bottom">
+            <button class="btn-grey" ng-click="delete()">删除职员</button>
+            <span>共有{{page.totalCount || 0}}位职工，每页显示{{page.pageSize || 0}}位</span>
             <ul class="pagination fr" style="margin: 0">
                 <li>
                     <a aria-label="Previous" ng-click="changePage(1)">
@@ -46,7 +46,7 @@
                         <span aria-hidden="true">&lsaquo;</span>
                     </a>
                 </li>
-                <li><a>{{page.pageNo}}</a></li>
+                <li><a>{{page.pageNo || 0}}</a></li>
                 <li>
                     <a aria-label="Next" ng-click="changePage(page.nextPage)">
                         <span aria-hidden="true">&rsaquo;</span>

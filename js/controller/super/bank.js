@@ -544,7 +544,10 @@ bankCtrl.controller('AddBankManCtrl', function ($http, $scope, $rootScope, $stat
         });
     };
 
-
+    $scope.go_back = function () {
+        window.history.go(-1);
+    }
+    
     $scope.show_product = function () {
         $scope.productDiv = true;
     };
@@ -722,5 +725,9 @@ bankCtrl.controller('UpdateBankManCtrl', function ($http, $scope, $rootScope, $s
         ;
         //console.log($scope.products);
         $scope.productDiv = false;
+    }
+
+    $scope.go_back = function () {
+        window.history.go(-1);
     }
 });

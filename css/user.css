@@ -15,57 +15,59 @@
     height: 160px;
     width: calc(100% - 168px);
 }
-.accountDetail {
+
+.account-detail {
     display: inline-block;
     width: 168px;
     margin: 14px 0;
     text-align: center;
 }
 
-.accountDetail > img {
+.account-detail > img {
     border-radius: 25px;
     width: 50px;
     height: 50px;
     margin: 20px 0 2px;
 }
 
-.accountDetail p {
+.account-detail p {
     font-size: 14px;
     color: #bdbdbe;
     padding: 7px 0;
     text-align: center;
 }
 
-.dateCount {
+.date-count {
     padding: 38px 30px;
 }
 
-.dateCount p:nth-child(1) {
+.date-count p:nth-child(1) {
     height: 20px;
     line-height: 20px;
     font-size: 12px;
 }
 
-.dateCount p:nth-child(2) {
+.date-count p:nth-child(2) {
     height: 40px;
     line-height: 40px;
     font-size: 12px;
     margin-top: 6px;
 }
 
-.dateCount p:nth-child(3) {
+.date-count p:nth-child(3) {
     height: 20px;
     line-height: 20px;
     font-size: 12px;
     margin-top: 14px;
 }
-.account_img {
+
+.account-img {
     padding: 18px 20px 0 60px;
     width: 180px;
     text-align: center;
 }
 
-.account_img img {
+.account-img img {
     width: 100px;
     height: 100px;
     border-radius: 50px;
@@ -73,27 +75,26 @@
     margin-bottom: 10px;
 }
 
-.account_p {
+.account-p {
     margin-top: 36px;
     width: 180px;
 }
 
-.account_p p {
+.account-p p {
     height: 25px;
     line-height: 25px;
     font-size: 14px;
 }
 
-.messageBox {
+.message-box {
     position: relative;
-    width: calc(100% - 70px);
+    width: 100%;
     margin: 0 0 20px;
     padding: 0 20px;
-    /*height: 140px;*/
     border: 1px solid #cccccc;
 }
 
-.messageImg {
+.message-img {
     display: inline-block;
     width: 48px;
     height: 48px;
@@ -101,13 +102,13 @@
     margin-top: 13px;
 }
 
-.messageImg img {
+.message-img img {
     width: 60%;
     height: 60%;
     margin: 20%;
 }
 
-.messageDate {
+.message-date {
     margin-top: 55px;
 }
 

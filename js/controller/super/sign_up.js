@@ -55,9 +55,6 @@ signUpCtrl.controller('SignUpCtrl', function ($http, $scope, $rootScope, $locati
         }
     };
 
-    $scope.refresh_user = function(){
-        $scope.list($scope.pageNo1, 20);
-    };
 
     $scope.updateSelection = function ($event, id) {
         var checkbox = $event.target;

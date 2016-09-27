@@ -1,35 +1,33 @@
-<!--<div style="position: absolute;overflow-x:hidden; margin-left: 250px;width: calc(100% - 250px); height: calc(100% - 50px);  background: #ffffff">-->
 <div class="content">
-    <div class="contentTitle">
+    <div class="content-title">
         <span>分享统计</span>
-        <div class="fr" style="margin: 10px">
-        </div>
     </div>
-    <ul class="list-group list_ul1">
-        <li class="list-group-item list_title1">
+    <ul class="list-group list-ul">
+        <li class="list-group-item list-title">
             <span class="width25">用户名</span>
             <span class="width15">注册电话</span>
             <span class="width15">注册时间</span>
             <span class="width15">渠道申请</span>
         </li>
-        <li class="list-group-item list_user1" ng-repeat="resultObj in user_list">
-            <div class="width25">
-                <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}"
-                       ng-checked="isSelected(resultObj.id)"
-                       ng-click="updateSelection($event,resultObj.id)">
-                {{resultObj.name || resultObj.linkman}}
-            </div>
-            <span class="width15">{{resultObj.mobile}}</span>
-            <div class="width15">
-                <p>{{resultObj.registerTime +'000' |date:'yyyy-MM-dd'}}</p>
-                <!--<p>{{resultObj.registerTime +'000' |date:'HH:mm'}}</p>-->
-            </div>
-            <span class="width15">{{resultObj.count}}</span>
-            <a class="width15" style="cursor: pointer" ng-click="showDetail(resultObj.id)">查看详情</a>
-        </li>
-        <li class="list-group-item list_common1">
-            <button class="contentClass btn btnGrew" ng-click="remark()">标记渠道</button>
-            <span>共有{{page.totalCount ||'0'}}位注册用户，每页显示{{page.pageSize}}条</span>
+        <div class="line-roll">
+            <li class="list-group-item list_user" ng-repeat="resultObj in user_list">
+                <div class="width25">
+                    <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}"
+                           ng-checked="isSelected(resultObj.id)"
+                           ng-click="updateSelection($event,resultObj.id)">
+                    {{resultObj.name || resultObj.linkman}}
+                </div>
+                <span class="width15">{{resultObj.mobile}}</span>
+                <div class="width15">
+                    <p>{{resultObj.registerTime +'000' |date:'yyyy-MM-dd'}}</p>
+                </div>
+                <span class="width15">{{resultObj.count}}</span>
+                <a class="width15" style="cursor: pointer" ng-click="showDetail(resultObj.id)">查看详情</a>
+            </li>
+        </div>
+        <li class="list-group-item list-bottom">
+            <button class="content-btn btn btn-grey" ng-click="remark()">标记渠道</button>
+            <span>共有{{page.totalCount ||'0'}}位注册用户，每页显示{{page.pageSize || 0}}条</span>
             <ul class="pagination fr" ng-show="page.totalCount" style="margin: 0">
                 <li>
                     <a aria-label="Previous" ng-click="changePage(1)">
@@ -40,7 +38,7 @@
                         <span aria-hidden="true">&lsaquo;</span>
                     </a>
                 </li>
-                <li><a>{{page.pageNo}}</a></li>
+                <li><a>{{page.pageNo || 0}}</a></li>
                 <li>
                     <a aria-label="Next" ng-click="changePage(page.nextPage)">
                         <span aria-hidden="true">&rsaquo;</span>

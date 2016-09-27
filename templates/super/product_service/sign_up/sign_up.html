@@ -1,31 +1,34 @@
 <div class="content">
-    <div class="contentTitle width100"><span>注册用户</span></div>
-    <div class="width100">
+    <div class="content-title width100"><span>注册用户</span></div>
+    <div class="width100 content-search">
         <div class="width30">
             <input type="text" class="form-control" placeholder="搜索名字或手机号" ng-model="search_text">
         </div>
         <div class="width10">
-            <button class="btn btnBlue" ng-click="search()" type="button">搜索</button>
+            <button class="btn btn-blue" ng-click="search()" type="button">搜索</button>
         </div>
+        <button class="btn-grey fr" ng-click="refresh()">刷新</button>
     </div>
-    <ul class="list-group list_ul">
-        <li class="list-group-item list_title">
+    <ul class="list-group list-ul">
+        <li class="list-group-item list-title">
             <span class="width15">用户名</span>
             <span class="width15">公司职位</span>
             <span class="width15">注册电话</span>
             <span class="width15">注册时间</span>
         </li>
-        <li class="list-group-item list_user" ng-repeat="resultObj in result_list">
+        <div class="line-roll">
+            <li class="list-group-item list_user" ng-repeat="resultObj in result_list">
                 <span class="width15">
                     <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}"
                            ng-checked="isSelected(resultObj.id)"
                            ng-click="updateSelection($event,resultObj.id)">{{resultObj.name ||'未填写'}}</span>
-            <span class="width15">{{resultObj.position ||'未填写'}}</span>
-            <span class="width15">{{resultObj.mobile}}</span>
-            <span class="width15">{{resultObj.createTime +"000" | date:'yyyy-MM-dd'}}</span>
-        </li>
-        <li class="list-group-item list_common">
-            <button class="contentClass btn btnGrew disabled" ng-click="cancel()">删除</button>
+                <span class="width15">{{resultObj.position ||'未填写'}}</span>
+                <span class="width15">{{resultObj.mobile}}</span>
+                <span class="width15">{{resultObj.createTime +"000" | date:'yyyy-MM-dd'}}</span>
+            </li>
+        </div>
+        <li class="list-group-item list-bottom">
+            <!--<button class="content-btn btn btn-grey disabled" ng-click="cancel()">删除</button>-->
             <span>共有{{page.totalCount}}位注册用户，每页显示{{page.pageSize}}条</span>
             <ul class="pagination fr" style="margin: 0">
                 <li>
@@ -38,7 +41,7 @@
                         <span aria-hidden="true">&lsaquo;</span>
                     </a>
                 </li>
-                <li><a>{{page.pageNo}}</a></li>
+                <li><a>{{page.pageNo || 0}}</a></li>
                 <li>
                     <a aria-label="Next" ng-click="changePage(page.nextPage)">
                         <span aria-hidden="true">&rsaquo;</span>

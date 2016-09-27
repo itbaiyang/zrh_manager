@@ -1,32 +1,32 @@
-<div style="position: absolute;overflow-x:hidden; z-index: 100;width: 100%; height: 100%; padding: 0 15px; background: #ffffff">
-    <div class="contentTitle" style="">
+<div class="content-no-side">
+    <div class="content-title" style="">
         <span>企业详情</span>
-        <div class="fr" ng-hide="showBtn == 1 || readonly == true" style="margin: 10px">
-            <button class="btn btnGrew fr" ng-click="editApply(id)">修改信息</button>
-            <button ng-show="isAllot" style="margin-left:15px" class="btn btnGrew fr">已经递交</button>
+        <div class="fr" ng-hide="showBtn == 1 || readonly == true">
+            <button class="btn btn-grey fr" ng-click="editApply(id)">修改信息</button>
+            <button ng-show="isAllot" style="margin-left:15px" class="btn btn-grey fr">已经递交</button>
             <div ng-hide="isAllot" class="btn-group noPadding fr">
-                <button style="margin-left:15px" class="btn btnBlue" type="button" ng-click="distribute(id)">递交资料
+                <button style="margin-left:15px" class="btn btn-blue" type="button" ng-click="distribute(id)">递交资料
                 </button>
             </div>
-            <button class="btnGrew" ng-click="reBackFromDetails()">返回</button>
-            <button class="btnGrew" ng-show="w == true" ng-click="change_company(id)">注册人变更</button>
-            <button class="btnGrew" ng-show="status == null || status == 0"
+            <button class="btn-grey" ng-click="reBackFromDetails()">返回</button>
+            <button class="btn-grey" ng-show="w == true" ng-click="change_register(id)">注册人变更</button>
+            <button class="btn-grey" ng-show="status == null || status == 0"
                     ng-click="apply_help(id)">
                 帮助申请
             </button>
-            <button class="btnGrew" ng-show="status != null && status != 0"
+            <button class="btn-grey" ng-show="status != null && status != 0"
                     ng-click="change_bank(id,registerLinkmanMobile)">更换银行
             </button>
-            <button class="btnGrew" ng-show="role == 'manager'"
+            <button class="btn-grey" ng-show="role == 'manager'"
                     ng-click="choice_sale(id)">选销售职员
             </button>
         </div>
         <div class="fr" ng-show="showBtn == 1 && readonly == false" style="margin: 10px">
-            <button class="btnGrew" ng-click="apply(id)">我要处理</button>
-            <button class="btn btnGrew fr" ng-click="reBackFromDetails()">返回</button>
+            <button class="btn-grey" ng-click="apply(id)">我要处理</button>
+            <button class="btn btn-grey fr" ng-click="reBackFromDetails()">返回</button>
         </div>
         <div class="fr" ng-show="readonly == true" style="margin: 10px">
-            <button class="btn btnGrew fr" ng-click="reBackFromDetails()">返回</button>
+            <button class="btn btn-grey fr" ng-click="reBackFromDetails()">返回</button>
         </div>
     </div>
     <div class="">
@@ -82,8 +82,8 @@
                                ng-model="loanValue">
                     </div>
                 </div>
-                <button ng-click="update_loan()" class="btnBlue" style="margin: 0 0 0 140px;">确定</button>
-                <button ng-click="cancel_add()" class="btnGrew">取消</button>
+                <button ng-click="update_loan()" class="btn-blue" style="margin: 0 0 0 140px;">确定</button>
+                <button ng-click="cancel_add()" class="btn-grey">取消</button>
             </div>
             <div class="add-tips add-fee">
                 <div class="form-group">
@@ -94,8 +94,8 @@
                                ng-model="fee">
                 </div>
             </div>
-                <button ng-click="update_fee()" class="btnBlue" style="margin: 0 0 0 140px;">确定</button>
-                <button ng-click="cancel_add()" class="btnGrew">取消</button>
+                <button ng-click="update_fee()" class="btn-blue" style="margin: 0 0 0 140px;">确定</button>
+                <button ng-click="cancel_add()" class="btn-grey">取消</button>
         </div>
         </div>
         <div class="clear">

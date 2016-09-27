@@ -1,4 +1,4 @@
-<div style="position: absolute;left: 210px; z-index: 100;width: calc(100% - 210px); background: #ffffff">
+<div class="content-no-side">
     <div class="sideModel fl">
         <p class="modelTitle">添加一个模板</p>
         <div>
@@ -14,16 +14,13 @@
             <p>(3)</p>
         </div>
     </div>
-    <div class="addRight fl">
-
+    <div class="add-right fl">
         <form class="form-horizontal width100" id="editApply" style="overflow-x: hidden;" name="userForm">
-            <div class="contentTitle width100">
+            <div class="content-title width100">
                 <span>完善信息</span>
-                <input style="margin:14px 15px 20px 10px" class="btn btn-default fr" type="submit" name="btn"
+                <input class="btn btn-blue margin-left15 fr" type="submit" value="保存" name="btn"
                        ng-click="submitMessage()">
-                保存
-                </input>
-                <button class="btn btn-default fr" style="margin-top: 14px" ng-click="backProjectDetail()">返回</button>
+                <button class="btn btn-grey fr" ng-click="backProjectDetail()">返回</button>
             </div>
             <p class="createTitle">基本内容</p>
             <div style="width: 800px">

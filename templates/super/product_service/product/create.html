@@ -1,14 +1,14 @@
-<div style="padding-left:15px;position: absolute;overflow-x:hidden; z-index: 100;width: 100%;height: 100%; background: #ffffff">
-    <div class="contentTitle">
+<div class="content-no-side">
+    <div class="content-title">
         <span>添加金融产品</span>
-        <div class="fr" style="margin: 10px">
-            <button style="margin-left:10px" class="btn btn-default fr" type="submit" ng-click="submit()">保存</button>
-            <button class="btn btn-default fr" ui-sref="super.product">返回</button>
+        <div class="fr">
+            <button class="btn btn-blue margin-left15 fr" type="submit" ng-click="submit()">保存</button>
+            <button class="btn btn-grey fr" ui-sref="super.product">返回</button>
         </div>
     </div>
     <form class="form-horizontal">
         <p class="createTitle">基本内容</p>
-        <div style="width: 600px">
+        <div class="edit-product">
             <div class="form-group">
                 <label for="inlineRadio1" class="width20 textEnd">选择类型：</label>
                 <label class="radio-inline width20" style="vertical-align: top">
@@ -37,13 +37,13 @@
             <div class="form-group">
                 <label for="bankname" class="width20 textEnd">银行名称：</label>
                 <div class="btn-group width80">
-                    <button type="button" class="btnInput col-sm-12 col-lg-12" id="bankname" data-toggle="dropdown"
+                    <button type="button" class="btn-input col-sm-12 col-lg-12" id="bankname" data-toggle="dropdown"
                             aria-haspopup="true"
                             aria-expanded="false">
                         {{bankName ||"选择银行"}}
                     </button>
-                    <ul class="dropdown-menu btnDrop col-sm-4 col-lg-4">
-                        <li class="btnDropDetail" ng-click="choiceBank(bank.id,bank.name)"
+                    <ul class="dropdown-menu btn-drop col-sm-4 col-lg-4">
+                        <li class="btn-dropDetail" ng-click="choiceBank(bank.id,bank.name)"
                             ng-repeat="bank in bank_list">
                             {{bank.name}}
                         </li>

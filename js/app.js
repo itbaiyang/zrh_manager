@@ -1,5 +1,5 @@
-// api_uri = "http://test.zhironghao.com/api/";
-api_uri = "http://api.supeiyunjing.com/";
+api_uri = "http://test.zhironghao.com/api/";
+// api_uri = "http://api.supeiyunjing.com/";
 // api_uri = "http://172.17.2.13:8080/api/";
 // api_uri = "http://172.16.97.229:8080/api/";
 var templates_root = 'templates/';
@@ -81,10 +81,11 @@ app.run(function ($location, $rootScope, $http) {
                 // console.log(fromState.name);
                 // console.log(fromState);
                 if (from_route != "" && from_route.indexOf('admin.my_project.edit_apply') <= -1
-                    && from_route.indexOf('admin.my_project.change_company') <= -1
+                    && from_route.indexOf('admin.my_project.change_register') <= -1
                     && from_route.indexOf('admin.my_project.change_bank') <= -1
                     && from_route.indexOf('admin.my_project.distribute') <= -1
                     && from_route.indexOf('admin.my_project.apply_help') <= -1
+                    && from_route.indexOf('admin.my_project.message') <= -1
                     && from_route.indexOf('admin.my_project.choice_sale') <= -1) {
                     $rootScope.putSessionObject('from_route', from_route);
                     var get_route = $rootScope.getSessionObject('from_route');
@@ -167,7 +168,10 @@ app.run(function ($location, $rootScope, $http) {
         });
 
         return decrypted.toString(CryptoJS.enc.Utf8);
-    }
+    };
+    $rootScope.refresh = function () {
+        location.reload();
+    };
 
     $rootScope.transFn = function (obj) {
         var str = [];

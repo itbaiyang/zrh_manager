@@ -26,7 +26,6 @@ loginCtrl.controller('LoginCtrl', function ($http, $scope, $rootScope, $location
     $scope.login = function () {
         $scope.loginUser.signature = $rootScope.encryptByDES($scope.loginUser.password+$scope.loginUser.timestamp);
         var m_params = $scope.loginUser;
-        //console.log($scope.loginUser);
         if (!check_params(m_params)) return;
         $http({
             url: api_uri+"p/user/login",
@@ -41,9 +40,12 @@ loginCtrl.controller('LoginCtrl', function ($http, $scope, $rootScope, $location
                 };
                 $rootScope.putObject("login_user", $rootScope.login_user);
                 $scope.choiceUser();
-                //$location.path("/super");
+                $scope.loginUser = {
+                    "account": "",
+                    "password": "",
+                    "timestamp": getTimestamp
+                };
             }else {
-                //console.log(d);
             }
 
         }).error(function (d) {

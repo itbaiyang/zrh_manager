@@ -460,4 +460,7 @@ channelCtrl.controller('ChangeCtrl', function ($http, $scope, $state, $rootScope
             dataType: 'json',
         });
     };
+    $scope.back_channel = function () {
+        $location.path('/admin/channel/history/' + $stateParams.id);
+    };
 });

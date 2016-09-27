@@ -1,13 +1,16 @@
 <div class="content">
-    <div class="contentTitle"><span>{{bankName}}</span></div>
+    <div class="content-title">
+        <span>{{bankName}}</span>
+        <button class="btn btn-blue fr margin-left15" ng-click="add_user(id,bankName)" type="submit">添加银行职员</button>
+        <button class="btn btn-grey fr" ui-sref="super.bank" type="submit">返回</button>
+    </div>
     <div class="clear">
         <div class="fr">
-            <button class="btn btnGrew" ui-sref="super.bank" type="submit">返回</button>
-            <button class="btn btnBlue" ng-click="add_user(id,bankName)" type="submit">添加银行职员</button>
+
         </div>
     </div>
-    <ul class="list-group list_ul">
-        <li class="list-group-item list_title">
+    <ul class="list-group list-ul">
+        <li class="list-group-item list-title">
             <span class="width15">用户名</span>
             <span class="width15">所属银行</span>
             <span class="width15">银行职位</span>
@@ -15,7 +18,7 @@
             <span class="width15">匹配项目数</span>
             <span class="width15">操作</span>
         </li>
-        <li class="list-group-item " style="height: 50px" ng-repeat="bank_man in bank_man_list">
+        <li class="list-group-item list_user" ng-repeat="bank_man in bank_man_list">
                 <span class="width15">
                     <input type="checkbox" style="margin-right: 10px" id="{{bank_man.id}}"
                            ng-checked="isSelected(bank_man.id)"
@@ -24,12 +27,11 @@
             <span class="width15">{{bank_man.position}}</span>
             <span class="width15">{{bank_man.mobile}}</span>
             <span class="width15">{{bank_man.receiveCount}}</span>
-            <button class="btn btnGrew" ng-click="edit_bank_man(bank_man.id)">查看详情</button>
-            <button class="btn btnGrew" ng-click="delete_one(bank_man.id)">删除</button>
+            <a class="list-a-link" ng-click="edit_bank_man(bank_man.id)">查看详情</a>
+            <a class="list-a-link border-left" ng-click="delete_one(bank_man.id)">删除</a>
         </li>
-        <li class="list-group-item list_common">
-            <!--<button class="btn btnGrew disabled" ng-click="submit()">标记</button>-->
-            <button class="btn btnGrew" ng-click="delete()">删除</button>
+        <li class="list-group-item list-bottom">
+            <button class="btn btn-default" ng-click="delete()">删除</button>
             <span>共有{{page.totalCount}}位银行职员，每页显示{{page.pageSize}}条</span>
             <ul class="pagination fr" style="margin: 0">
                 <li>
@@ -42,7 +44,7 @@
                         <span aria-hidden="true">&lsaquo;</span>
                     </a>
                 </li>
-                <li><a>{{page.pageNo}}</a></li>
+                <li><a>{{page.pageNo || 0}}</a></li>
                 <li>
                     <a aria-label="Next" ng-click="changePage(page.nextPage)">
                         <span aria-hidden="true">&rsaquo;</span>

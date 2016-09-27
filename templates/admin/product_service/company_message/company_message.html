@@ -1,59 +1,62 @@
 <div class="content">
-    <div class="contentTitle width100"><span>企业信息列表</span></div>
-    <div class="width100">
+    <div class="content-title width100"><span>企业信息列表</span></div>
+    <div class="width100 content-search">
         <div class="width30">
             <input type="text" class="form-control" placeholder="搜索企业名称" ng-model="search_text">
         </div>
         <div class="width10">
-            <button class="btn btnBlue" ng-click="search()" type="button">搜索</button>
+            <button class="btn btn-blue" ng-click="search()" type="button">搜索</button>
         </div>
-        <button class="btn fr btnBlue" ui-sref="admin.company_message.add_company"
+        <button class="btn fr btn-blue margin-left15" ui-sref="admin.company_message.add_company"
                 type="submit">
-            <img class="btnBlueImg">添加企业信息
+            <img class="btn-blueImg">添加企业信息
         </button>
-        <button class="btn fr btnGrew" ng-click="refresh()" type="submit"><img class="btnGrewImg"> 刷新</button>
-
+        <button class="fr btn-grey btn" ng-click="refresh()" type="submit"><img class="btn-greyImg"> 刷新</button>
     </div>
-    <ul class="list-group list_ul">
-        <li class="list-group-item list_title">
+    <ul class="list-group list-ul">
+        <li class="list-group-item list-title">
             <span class="width25">企业名称或个人</span>
             <span class="width25">申请产品</span>
             <span class="width15">申请时间</span>
             <div class="btn-group width15">
                 <div style="cursor: pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    状态({{status_text}}) <span class="caret"></span>
+                    {{status_text ||"状态"}} <span class="caret"></span>
                 </div>
-                <ul class="dropdown-menu" style="width: 100px">
-                    <li ng-click="choice(0)" class="list_select">未申请</li>
-                    <li ng-click="choice(1)" class="list_select">申请中</li>
-                    <li ng-click="choice()" class="list_select">全部</li>
+                <ul class="dropdown-menu">
+                    <li ng-click="choice(0)" class="list-select">未申请</li>
+                    <li ng-click="choice(1)" class="list-select">已申请</li>
+                    <li ng-click="choice()" class="list-select">全部</li>
                 </ul>
             </div>
             <span class="width15">操作</span>
         </li>
-        <li class="list-group-item list_common" ng-repeat="resultObj in result_list">
-            <span class="width25">
-                <input type="checkbox" id="{{resultObj.id}}"
-                       ng-checked="isSelected(resultObj.id)"
-                       ng-click="updateSelection($event,resultObj.id)">
+        <div class="line-roll">
+            <li class="list-group-item list-common" ng-repeat="resultObj in result_list">
+                <div class="width25">
+                    <p class="company-overflow fl">
+                        <input type="checkbox" id="{{resultObj.id}}" ng-checked="isSelected(resultObj.id)"
+                               ng-click="updateSelection($event,resultObj.id)">
                         {{resultObj.companyName || resultObj.linkman}}
-                <img src="img/tips/tel.png" class="img-size" ng-show="resultObj.channel =='tel'">
-                <!--<img src="img/tips/tel.png" class="img-size" ng-show="resultObj.channel =='zrh_manager'">-->
-                <img src="img/tips/bankMan.png" class="img-size" ng-show="resultObj.channel =='a'">
-                <!--<img src="img/tips/bankMan.png" class="img-size" ng-show="resultObj.channel =='zrh'">-->
-                <!--<img src="img/tips/t" ng-show="tel">-->
+                    </p>
+                    <img src="img/tips/tel.png" class="img-size" ng-show="resultObj.channel =='tel'">
+                    <img src="img/tips/bankMan.png" class="img-size" ng-show="resultObj.channel =='a'">
+                    <img src="img/tips/manager.png" class="img-size" ng-show="resultObj.channel =='zrh_manager'">
+                    <img src="img/tips/channel.png" class="img-size" ng-show="resultObj.channel =='c'">
+                </div>
+            <span class="width25">{{resultObj.bankName ||'未申请'}}
+                <span ng-show="resultObj.bankName">-</span>{{resultObj.productName}}
             </span>
-            <span class="width25">{{resultObj.bankName ||'未申请'}} <span ng-show="resultObj.bankName">-</span>{{resultObj.productName}}</span>
-            <span class="width15">{{resultObj.time | date:'yyyy-MM-dd'}}</span>
+                <span class="width15">{{resultObj.time | date:'yyyy-MM-dd'}}</span>
             <span class="width15" style="color: #838383"
                   ng-show="resultObj.color == 1">{{resultObj.progressText}}</span>
             <span class="width15" style="color: #F97383"
                   ng-show="resultObj.color == 2">{{resultObj.progressText}}</span>
-            <button class="btnBlue" style="vertical-align: top" ng-click="updateApply(resultObj.id)">查看详情</button>
-        </li>
-        <li class="list-group-item list_common">
-            <button class="contentClass" ng-click="delete()">删除</button>
-            <span>共有{{page.totalCount}}家企业申请，每页显示{{page.pageSize}}条</span>
+                <button class="btn-blue" style="vertical-align: top" ng-click="updateApply(resultObj.id)">查看详情</button>
+            </li>
+        </div>
+        <li class="list-group-item list-bottom">
+            <button class="content-btn" ng-click="delete()">删除</button>
+            <span>共有{{page.totalCount || 0}}家企业申请，每页显示{{page.pageSize || 0}}条</span>
             <ul class="pagination fr" style="margin: 0">
                 <li>
                     <a aria-label="Previous" ng-click="changePage(1)">
@@ -65,7 +68,7 @@
                         <span aria-hidden="true">&lsaquo;</span>
                     </a>
                 </li>
-                <li><a ng-click="changePage(page.pageNo)">{{page.pageNo}}</a></li>
+                <li><a>{{page.pageNo || 0}}</a></li>
                 <li>
                     <a aria-label="Next" ng-click="changePage(page.nextPage)">
                         <span aria-hidden="true">&rsaquo;</span>
@@ -80,4 +83,3 @@
         </li>
     </ul>
 </div>
-<!--</div>-->

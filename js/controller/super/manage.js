@@ -1,7 +1,6 @@
 var manageCtrl = angular.module('manageCtrl', []);
 manageCtrl.controller('UserListCtrl', function ($http, $scope, $rootScope, $location, $timeout, $routeParams) {
     $scope.list = function (pageNo, pageSize) {
-        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -31,8 +30,6 @@ manageCtrl.controller('UserListCtrl', function ($http, $scope, $rootScope, $loca
             }
 
         }).error(function (d) {
-            //console.log("login error");
-            //$location.path("/error");
         })
     };
     $scope.list(1, 20);
@@ -68,7 +65,6 @@ manageCtrl.controller('UserListCtrl', function ($http, $scope, $rootScope, $loca
     };
 
     $scope.delete = function () {
-        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -97,35 +93,75 @@ manageCtrl.controller('CreateUserCtrl', function ($http, $scope, $rootScope, $lo
     var timesTamp1 = String(timesTamp).substring(0, 10);
     $scope.timestamp = parseInt(timesTamp1);
     $scope.isUpdate = false;
-    $scope.submit = function () {
-        var m_params = {
-            "userId": $rootScope.login_user.userId,
-            "token": $rootScope.login_user.token,
-            "timestamp": $scope.timestamp,
-            "email": $scope.email,
-            "name": $scope.name,
-            "mobile": $scope.mobile,
-            "empNo": $scope.empNo,
-            "password": $scope.password,
-            "role": $scope.role_sale,
-            "signature": $rootScope.encryptByDES($scope.email + $scope.password + $scope.timestamp),
-        };
-        console.log(m_params);
-        $http({
-            url: api_uri + "p/user/create",
-            method: "POST",
-            params: m_params
-        }).success(function (d) {
-            console.log(d);
-            if (d.returnCode == 0) {
-                $state.go('super.manage');
-            } else {
-            }
+    $scope.checkPassword = function (d) {
+        if (d == 1) {
+            if (!$scope.password_one) {
+                $scope.msg_password_one = "请输入密码";
+                $scope.msg_password = "";
+                $scope.msg_success = "";
+            } else if (!$scope.password_again) {
 
-        }).error(function (d) {
-            // $scope.changeErrorMsg("网络故障请稍后再试......");
-            // $location.path("/login");
-        })
+            } else if ($scope.password_one != $scope.password_again) {
+                $scope.msg_success = "";
+                $scope.msg_password_one = "";
+                $scope.msg_password = "两次输入的密码不一致";
+            } else if ($scope.password_one == $scope.password_again) {
+                $scope.msg_success = "密码正确";
+                $scope.msg_password = "";
+                $scope.msg_password_one = "";
+            }
+        } else if (d == 2) {
+            if (!$scope.password_again) {
+                $scope.msg_success = "";
+                $scope.msg_password_one = "";
+                $scope.msg_password = "请输入密码";
+            } else if ($scope.password_one != $scope.password_again) {
+                $scope.msg_success = "";
+                $scope.msg_password_one = "";
+                $scope.msg_password = "两次输入的密码不一致";
+            } else if ($scope.password_one == $scope.password_again) {
+                $scope.msg_password = "";
+                $scope.msg_password_one = "";
+                $scope.msg_success = "密码正确";
+                $scope.password = $scope.password_one;
+            }
+        }
+    };
+    $scope.submit = function () {
+        if (!$scope.password) {
+            alert("没有输入密码或两次密码不一致");
+        } else {
+            var m_params = {
+                "userId": $rootScope.login_user.userId,
+                "token": $rootScope.login_user.token,
+                "timestamp": $scope.timestamp,
+                "email": $scope.email,
+                "name": $scope.name,
+                "mobile": $scope.mobile,
+                "empNo": $scope.empNo,
+                "password": $scope.password,
+                "role": $scope.role_sale,
+                "signature": $rootScope.encryptByDES($scope.email + $scope.password + $scope.timestamp),
+            };
+            console.log(m_params);
+            $http({
+                url: api_uri + "p/user/create",
+                method: "POST",
+                params: m_params
+            }).success(function (d) {
+                console.log(d);
+                if (d.returnCode == 0) {
+                    $state.go('super.manage');
+                } else {
+                }
+
+            }).error(function (d) {
+                // $scope.changeErrorMsg("网络故障请稍后再试......");
+                // $location.path("/login");
+            })
+        }
+
+
     };
 });
 
@@ -134,9 +170,6 @@ manageCtrl.controller('UserUpdateCtrl', function ($http, $scope, $rootScope, $lo
     var timesTamp1 = String(timesTamp).substring(0, 10);
     $scope.timestamp = parseInt(timesTamp1);
     $scope.isUpdate = false;
-
-    $scope.password = '******';
-
     $scope.get = function () {
         var m_params = {
             "userId": $rootScope.login_user.userId,
@@ -163,37 +196,67 @@ manageCtrl.controller('UserUpdateCtrl', function ($http, $scope, $rootScope, $lo
         })
     };
     $scope.get();
+    $scope.checkPassword = function (d) {
+        if (d == 1) {
+            if (!$scope.password_one) {
+                $scope.msg_password_one = "请输入密码";
+                $scope.msg_password = "";
+                $scope.msg_success = "";
+            } else if (!$scope.password_again) {
 
-    $scope.submit = function () {
-        if ($scope.password == '******') {
-            $scope.password_new = '';
-        } else {
-            $scope.password_new = $scope.password;
-        }
-        var m_params = {
-            "userId": $rootScope.login_user.userId,
-            "token": $rootScope.login_user.token,
-            "timestamp": $scope.timestamp,
-            "name": $scope.name,
-            "mobile": $scope.mobile,
-            "password": $scope.password_new,
-            "role": $scope.role_sale,
-            "signature": $rootScope.encryptByDES($scope.email + $scope.password + $scope.timestamp),
-        };
-        console.log(m_params);
-        $http({
-            url: api_uri + "p/user/update/" + $stateParams.id,
-            method: "POST",
-            params: m_params
-        }).success(function (d) {
-            if (d.returnCode == 0) {
-                $state.go('super.manage');
-            } else {
+            } else if ($scope.password_one != $scope.password_again) {
+                $scope.msg_success = "";
+                $scope.msg_password_one = "";
+                $scope.msg_password = "两次输入的密码不一致";
+            } else if ($scope.password_one == $scope.password_again) {
+                $scope.msg_success = "密码正确";
+                $scope.msg_password = "";
+                $scope.msg_password_one = "";
             }
+        } else if (d == 2) {
+            if (!$scope.password_again) {
+                $scope.msg_success = "";
+                $scope.msg_password_one = "";
+                $scope.msg_password = "请输入密码";
+            } else if ($scope.password_one != $scope.password_again) {
+                $scope.msg_success = "";
+                $scope.msg_password_one = "";
+                $scope.msg_password = "两次输入的密码不一致";
+            } else if ($scope.password_one == $scope.password_again) {
+                $scope.msg_password = "";
+                $scope.msg_password_one = "";
+                $scope.msg_success = "密码正确";
+                $scope.password = $scope.password_one;
+            }
+        }
+    };
+    $scope.submit = function () {
+        if (!$scope.password) {
+            alert("没有输入密码或两次密码不一致");
+        } else {
+            var m_params = {
+                "userId": $rootScope.login_user.userId,
+                "token": $rootScope.login_user.token,
+                "timestamp": $scope.timestamp,
+                "name": $scope.name,
+                "mobile": $scope.mobile,
+                "password": $scope.password_new,
+                "role": $scope.role_sale,
+                "signature": $rootScope.encryptByDES($scope.email + $scope.password + $scope.timestamp),
+            };
+            console.log(m_params);
+            $http({
+                url: api_uri + "p/user/update/" + $stateParams.id,
+                method: "POST",
+                params: m_params
+            }).success(function (d) {
+                if (d.returnCode == 0) {
+                    $state.go('super.manage');
+                } else {
+                }
 
-        }).error(function (d) {
-            //$scope.changeErrorMsg("网络故障请稍后再试......");
-            //$location.path("/login");
-        })
+            }).error(function (d) {
+            })
+        }
     };
 });

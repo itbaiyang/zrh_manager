@@ -74,10 +74,6 @@ applyListCtrl.controller('ApplyListCtrl', function ($http, $scope, $rootScope, $
         updateSelected(action, id);
     };
 
-    $scope.refresh = function () {
-        $scope.list($scope.pageNo1, 10);
-    };
-
     $scope.delete = function () {
         var m_params = {
             "userId": $rootScope.login_user.userId,

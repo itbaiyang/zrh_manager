@@ -1,3 +1,9 @@
+.content-contain {
+    margin-left: 180px;
+    width: calc(100% - 180px);
+    height: 100%;
+    background: #eaedf1
+}
 .navLeft {
     background: #45539c;
     width: 66px;
@@ -126,31 +132,175 @@
     text-decoration: none;
 }
 
-/*company_message*/
-.content{
+/*列表*/
+.content {
     margin-left: 195px;
-    width: calc(100% - 240px);
+    width: calc(100% - 210px);
     height: 100%;
 }
-.content2{
-    /*margin-left: 195px;*/
+
+.content-title {
+    height: 52px;
+    padding-top: 10px;
+    border-bottom: 1px solid #cccccc;
+    margin-bottom: 20px;
+}
+
+.content-search {
+    height: 50px;
+}
+
+.content-title span {
+    margin-top: 10px;
+    display: inline-block;
+    font-size: 14px;
+    color: #4c4c4c;
+    border-left: 1px solid #6b7acb;
+    padding: 0 8px;
+}
+
+.list-ul {
+    margin-right: 15px;
+    width: 100%;
+    height: calc(100% - 260px);
+}
+
+.list-title {
+    height: 50px;
+    line-height: 30px;
+    width: 100%;
+    background: #f5f6fa;
+}
+
+.list-title-count {
+    width: 100%;
+    height: 30px;
+    padding: 8px 15px 10px 8px;
+    background: #f5f6fa;
+    border-left: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
+}
+
+.list-common {
+    height: 100px;
+    line-height: 24px;
+    width: 100%;
+    padding: 36px 15px 0;
+    border-left: none;
+    border-right: none;
+}
+
+.list_user {
+    height: 60px;
+    width: 100%;
+    padding: 20px 15px;
+}
+
+.company-overflow {
+    max-width: calc(100% - 30px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.list-bottom {
+    line-height: 36px;
+    height: 50px;
+    padding: 7px 15px;
+    width: 100%;
+}
+
+.line-roll {
+    height: 100%;
+    overflow-y: auto;
+    background: #ffffff;
+    border-right: 1px solid #cccccc;
+    border-left: 1px solid #cccccc;
+}
+
+.img-size {
+    width: 15px;
+    height: 15px;
+    vertical-align: top;
+    margin-top: 4px;
+    margin-left: 4px;
+}
+
+.list-common input {
+    margin-right: 6px;
+    margin-top: 6px;
+    vertical-align: top;
+}
+
+.list-title span {
+    padding: 0;
+}
+
+.list-common span {
+    vertical-align: top;
+    padding: 0;
+}
+
+.list_user span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0;
+}
+
+.list-a-link {
+    padding: 2px 10px;
+}
+
+.border-left {
+    border-left: 1px solid #cccccc;
+}
+
+.border-left-right {
+    border-right: 1px solid #cccccc;
+    border-left: 1px solid #cccccc;
+}
+
+/*申请列表pool结束*/
+/*没有侧边栏页面*/
+.content-no-side {
+    position: absolute;
+    overflow-x: hidden;
+    padding: 0 15px;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+}
+
+.edit-product {
+    width: 600px;
+    margin-left: 100px;
+}
+
+/*二级侧边栏*/
+.content-two {
+    position: absolute;
+    overflow-x: hidden;
+    margin-left: 250px;
+    width: calc(100% - 250px);
+    height: 100%;
+    background: #ffffff
+}
+
+/*修改信息*/
+.add-right {
+    width: calc(100% - 225px);
+    height: 100%;
+    margin-left: 225px;
+}
+
+.content2 {
     width: 100%;
     background: #ffffff;
     height: 100%;
 }
-
-.content1 {
-    margin-left: 180px;
-    width: calc(100% - 180px);
-    height: 100%;
-}
-
-.contentTitle {
-     height: 63px;
-     border-bottom: 1px solid #cccccc;
-     margin-bottom: 20px;
-     padding: 0;
- }
 .contentTags {
     width: 100%;
     background: #ffffff;
@@ -162,14 +312,7 @@
     /*color: #F97383;*/
 }
 
-.contentTitle span {
-    margin-top: 20px;
-    display: inline-block;
-    font-size: 14px;
-    color: #4c4c4c;
-    border-left: 1px solid #6b7acb;
-    padding: 0 8px;
-}
+
 
 .searchInput {
     width: 300px
@@ -195,19 +338,6 @@
     padding: 0 10px;
     background: #798584;
     color: #ffffff;
-}
-
-.contentClass {
-    display: inline-block;
-    height: 32px;
-    padding: 0 20px;
-    line-height: 32px;
-    font-size: 20px;
-    border: 1px solid #e0e0e0;
-    /*color: #fff;*/
-    /*border-radius: 20px;*/
-    background: #EBEBEB;
-    border: none;
 }
 
 .phoneChange > input {
@@ -383,24 +513,15 @@
     margin: 40px auto 10px;
 }
 
-.addRight {
-    width: calc(100% - 225px);
-    height: 100%;
-    margin-left: 15px;
-    /*overflow-x: hidden;*/
-    /*overflow-y: scroll;*/
-}
-
-.addRight1 {
+.add-right1 {
     width: 100%;
     min-width: 890px;
     height: 100%;
-    margin-left: 15px;
     overflow-x: hidden;
     overflow-y: scroll;
 }
 
-.addRight1 {
+.add-right1 {
     height: 100%;
     padding: 0 15px;
     overflow-x: hidden;
@@ -456,125 +577,13 @@
     height: 40px;
     border-radius: 6px;
 }
-
-.list_ul {
-    margin-top: 20px;
-    margin-right: 15px;
-    width: 100%;
-    /*border-left: 1px solid #cccccc;*/
-    /*border-right: 1px solid #cccccc;*/
-}
-.list_ul2 {
-    margin-right: 15px;
-    width: 100%;
-}
-.list_ul1 {
-    margin-top: 20px;
-    padding: 0;
-    width: calc(100% - 15px);
-}
-
-.list_common {
-    height: 108px;
-    line-height: 24px;
-    min-width: 1120px;
-    width: 100%;
-    padding: 36px 15px 0;
-}
-
-.list_common input, .list_common2 input {
-    margin-right: 10px;
-    margin-top: 0;
-    vertical-align: middle;
-}
-
-.list_common2 a {
-    cursor: pointer;
-    vertical-align: middle;
-    overflow: hidden;
-    display: inline;
-}
-.list_common1 {
-    height: 50px;
-    line-height: 36px;
-    padding: 7px 15px;
-    min-width: 1120px;
-}
-.list_common2 {
-    height: 108px;
-    width: 1120px;
-    line-height: 24px;
-    min-width: 1065px;
-    padding: 36px 15px 0;
-}
-
-.list_user {
-    height: 60px;
-    min-width: 1120px;
-    padding: 20px 15px;
-}
-
-.list_user1 {
-    height: 60px;
-    min-width: 1120px;
-    padding: 20px 15px;
-}
-
-.list_title {
-    height: 50px;
-    width: 100%;
-    /*width: calc(100% - 30px);*/
-    min-width: 1120px;
-    background: #f5f6fa;
-}
-
-.list_title1 {
-     height: 50px;
-     padding: 15px 15px;
-     background: #f5f6fa;
-    min-width: 1120px;
- }
-.list_title2 {
-    height: 50px;
-    padding: 15px 15px 15px 15px;
-    /*margin: 10px;*/
-    background: #f5f6fa;
-    width: 1120px;
-    /*box-shadow: 0 0 10px #c1c1c1;*/
-    border: 1px solid #cccccc;
-}
-
-.list_title3 {
-    height: 30px;
-    padding: 8px 15px 10px 8px;
-    /*margin: 10px;*/
-    background: #f5f6fa;
-    width: 1120px;
-    /*box-shadow: 0 0 10px #c1c1c1;*/
-    border-left: 1px solid #cccccc;
-    border-right: 1px solid #cccccc;
-}
 .channel_best{
     display: inline-block;
     width: 16px;
     height: 16px;
     vertical-align: middle;
 }
-.list_title span {
-    padding: 0;
-}
 
-.list_common span, .list_common1 span, .list_common2 span {
-    vertical-align: top;
-    padding: 0;
-}
-
-.list_user span {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    padding: 0;
-}
 
 .applyHelp {
     width: 600px;
@@ -651,16 +660,9 @@
     height: calc(100% - 50px);
     width: 100%;
     min-width: 1150px;
-    /*overflow-x: scroll;*/
     overflow-y: scroll;
     border-left: 1px solid #cccccc;
     border-right: 1px solid #cccccc;
-}
-.line-roll{
-    /*max-height: 429px;*/
-    width: 1120px;
-    /*overflow-y: scroll;*/
-    /*margin: 0 10px;*/
 }
 
 @media (min-width: 768px) {
@@ -671,12 +673,6 @@
 
 .padding-select {
     padding: 3px 0;
-}
-
-.img-size {
-    width: 15px;
-    height: 15px;
-    vertical-align: middle;
 }
 
 .cover-img {

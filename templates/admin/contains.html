@@ -1,33 +1,33 @@
-<div class="content1" style="background: #eaedf1">
+<div class="content-contain">
     <div class="contentTags">系统通知：<span style="color: #F97383">功能未开通</span></div>
     <div style="padding: 0 15px">
         <div class="account">
-            <div class="accountDetail fl" style="border-right: 2px solid #e6e7e8">
+            <div class="account-detail fl" style="border-right: 2px solid #e6e7e8">
                 <img ng-src="img/upload.png">
                 <p>hi, <span style="color: #009dd0;">孟帅</span></p>
                 <div class="padding-select">
-                    <img class="btnBlueImg1"><span>账户管理</span>
+                    <img class="btn-blueImg1"><span>账户管理</span>
                 </div>
 
             </div>
-            <div class="accountDetail fl">
+            <div class="account-detail fl">
                 <p style="margin-top: 20px;text-align: left;text-indent:10px">本月已完成 <span>0</span>/<span>300万</span></p>
                 <p style="text-align: left;text-indent:10px">本月利润 <span>0</span>/<span>2万</span></p>
                 <p style="text-align: left;text-indent:10px">渠道 <span>{{countContain.channelUserCount || 0}}人</span></p>
             </div>
             <div class="account-num fl">
-                <div class="dateCount col-sm-4">
+                <div class="date-count col-sm-4">
                     <p>总成交额：</p>
                     <p><span style="font-size: 22px;padding-right: 4px">{{countContain.totalLoanValue || 0}}</span>万</p>
                     <p><span style="color: #8d98d7;padding-right: 4px">完成融资</span>{{countContain.totalFee || 0}}万</p>
                 </div>
-                <div class="dateCount col-sm-4">
+                <div class="date-count col-sm-4">
                     <p>企业数据：</p>
                     <!--<p><span style="font-size: 22px;padding-right: 4px" ng-show="countContain.totalCompany >= 10000">{{countContain.totalCompany || 0}}</span>万</p>-->
                     <p><span style="font-size: 22px;padding-right: 4px">{{countContain.totalCompany || 0}}</span>个</p>
                     <p><span style="color: #8d98d7;padding-right: 4px">完成申请</span>{{countContain.complete || 0}}个</p>
                 </div>
-                <div class="dateCount col-sm-4">
+                <div class="date-count col-sm-4">
                     <p>注册用户</p>
                     <p>
                         <span style="font-size: 22px;padding-right: 4px" ng-hide="countContain.totalUser >= 10000">{{countContain.totalUser || 0}}</span>
@@ -45,21 +45,21 @@
     </div>
     <div style="padding: 0 15px">
         <div class="account">
-            <div class="accountDetail fl">
+            <div class="account-detail fl">
                 <img ng-src="img/group.png">
                 <p><span>团队统计</span></p>
 
             </div>
             <div class="account-num-group fl">
-                <div class="dateCount col-sm-3">
+                <div class="date-count col-sm-3">
                     <p>累计成交额：</p>
                     <p><span style="font-size: 22px;padding-right: 4px">{{countGroup.loanValue || 0}}</span>万</p>
                 </div>
-                <div class="dateCount col-sm-3">
+                <div class="date-count col-sm-3">
                     <p>累计成功融资：</p>
                     <p><span style="font-size: 22px;padding-right: 4px">{{countGroup.num || 0}}</span>个</p>
                 </div>
-                <div class="dateCount col-sm-3">
+                <div class="date-count col-sm-3">
                     <p>累计利润</p>
                     <p>
                         <span style="font-size: 22px;padding-right: 4px">{{countGroup.fee}}</span>万

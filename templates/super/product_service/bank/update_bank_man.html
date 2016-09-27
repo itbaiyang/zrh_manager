@@ -1,9 +1,9 @@
-<div class="content row" style="width: 90%">
-    <p class="contentTitle">
+<div class="content row">
+    <p class="content-title">
         <span>修改银行职员</span>
-        <button style="margin-left:10px" class="btn btnBlue" type="submit" ng-click="update()">确定</button>
+        <button class="btn btn-blue margin-left15 fr" type="submit" ng-click="update()">确定</button>
+        <button class="btn btn-grey fr" type="submit" ng-click="go_back()">返回</button>
     </p>
-    <!--<div class="row" style="min-width: 950px">-->
     <form class="form-horizontal">
         <div class="form-group">
             <label for="username" class="col-sm-2 control-label">用户名</label>
@@ -11,7 +11,6 @@
                 <input type="text" class="form-control" id="username" placeholder="用户名" ng-model="bank_man.name">
             </div>
         </div>
-
         <div class="form-group">
             <label for="belongToBank" class="col-sm-2 control-label">所属银行</label>
             <div class="col-sm-4">
@@ -37,10 +36,10 @@
         <div class="form-group">
             <label for="products" class="col-sm-2 control-label">负责产品</label>
             <div class="btn-group col-sm-4 col-lg-4" style="position: relative">
-                <button type="button" ng-click="show_product()" class="btnInput col-sm-12 col-lg-12" id="products">
+                <button type="button" ng-click="show_product()" class="btn-input col-sm-12 col-lg-12" id="products">
                     {{products ||"可多选"}}
                 </button>
-                <ul class="btnDrop col-sm-6 col-lg-6" ng-show="productDiv">
+                <ul class="btn-drop col-sm-6 col-lg-6" ng-show="productDiv">
                     <li ng-repeat="product in product_list">
                         <input type="checkbox" style="margin-right: 10px" id="{{product.id}}"
                                ng-checked="isSelected(product.id)"

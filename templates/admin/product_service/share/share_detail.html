@@ -1,81 +1,79 @@
 <!--<div style="position: absolute;overflow-x:hidden; margin-left: 250px;width: calc(100% - 250px); height: calc(100% - 50px);  background: #ffffff">-->
 <div class="content">
-    <div class="contentTitle">
+    <div class="content-title">
         <span>{{name}}的申请</span>
-        <div class="fr" style="margin: 10px">
+        <div class="fr">
+            <button class="btn btn-grey fr" ng-click="go_back_share()">返回</button>
         </div>
     </div>
-    <div class="noPadding width100">
-        <div class="noPadding width30">
+    <div class="width100">
+        <div class="width30">
             <input type="text" class="form-control" placeholder="搜索企业名称" ng-model="search_text">
         </div>
         <div class="width10">
-            <button class="btn btnBlue" ng-click="search()" type="button">搜索</button>
+            <button class="btn btn-blue" ng-click="search()" type="button">搜索</button>
         </div>
-        <button class="btn btnGrew fr" ng-click="go_back_share()">返回</button>
     </div>
 
-    <ul class="list-group list_ul2" style="height: calc(100% - 170px)">
-        <div class="row-roll">
-            <li class=" list_title2">
-                <span class="width15">企业名称或个人</span>
-                <span class="width13">申请产品</span>
-                <div class="btn-group noPadding width10">
-                    <div style="cursor: pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{status_text ||"状态"}} <span class="caret"></span>
-                    </div>
-                    <ul class="dropdown-menu" style="width: 100px">
-                        <li ng-click="choice(0)" class="list_select">未申请</li>
-                        <li ng-click="choice(1)" class="list_select">准备中</li>
-                        <li ng-click="choice(2)" class="list_select">下户</li>
-                        <li ng-click="choice(3)" class="list_select">审批中</li>
-                        <li ng-click="choice(4)" class="list_select">审批通过</li>
-                        <li ng-click="choice(5)" class="list_select">开户</li>
-                        <li ng-click="choice(6)" class="list_select">放款</li>
-                        <li ng-click="choice(7)" class="list_select">成功融资</li>
-                        <li ng-click="choice()" class="list_select">全部</li>
-                    </ul>
+    <ul class="list-group list-ul">
+        <li class=" list-title">
+            <span class="width15">企业名称或个人</span>
+            <span class="width13">申请产品</span>
+            <div class="btn-group noPadding width10">
+                <div style="cursor: pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{status_text ||"状态"}} <span class="caret"></span>
                 </div>
-                <span class="width10">销售</span>
-                <span class="width10">预计时间</span>
-                <span class="width10">服务费（%）</span>
-                <span class="width10">融资额（万）</span>
-                <span class="width10">年销售额（万）</span>
-                <span class="width8">项目来源</span>
-            </li>
-            <div class="line-roll">
-                <li class="list-group-item list_common2" ng-repeat="resultObj in result_list">
-                <span class="width15">
-            <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}"
-                   ng-checked="isSelected(resultObj.id)"
-                   ng-click="updateSelection($event,resultObj.id)">
-                    <a ng-click="updateApply(resultObj.id)" style="cursor: pointer">
-                        {{resultObj.companyName ||resultObj.linkman}}
-                    </a>
-                </span>
-                    <span class="width13">{{resultObj.bankName}}-{{resultObj.productName}}</span>
-                    <span class="width10" style="color: #838383"
-                          ng-show="resultObj.color == 1">{{resultObj.progressText}}</span>
-                    <span class="width10" style="color: #F97383"
-                          ng-show="resultObj.color == 2">{{resultObj.progressText}}</span>
-                    <span class="width10" style="color: #009B27"
-                          ng-show="resultObj.color == 3">{{resultObj.progressText}}</span>
-                    <span class="width10">{{resultObj.opUser}}</span>
-                    <span class="width10">{{resultObj.days}}</span>
-                    <span class="width10">{{resultObj.fee}}</span>
-                    <span class="width10">{{resultObj.loanValue}}</span>
-                    <span class="width10">{{resultObj.continual}}</span>
-                    <span class="width8">{{resultObj.createUserName}}
-                        <img src="img/tips/tel.png" class="img-size" ng-show="resultObj.channel =='tel'">
-                        <img src="img/tips/bankMan.png" class="img-size" ng-show="resultObj.channel =='a'">
-                        <img src="img/tips/manager.png" class="img-size" ng-show="resultObj.channel =='zrh_manager'">
-                        <img src="img/tips/channel.png" class="img-size" ng-show="resultObj.channel =='c'">
-                    </span>
-                </li>
+                <ul class="dropdown-menu" style="width: 100px">
+                    <li ng-click="choice(0)" class="list-select">未申请</li>
+                    <li ng-click="choice(1)" class="list-select">准备中</li>
+                    <li ng-click="choice(2)" class="list-select">下户</li>
+                    <li ng-click="choice(3)" class="list-select">审批中</li>
+                    <li ng-click="choice(4)" class="list-select">审批通过</li>
+                    <li ng-click="choice(5)" class="list-select">开户</li>
+                    <li ng-click="choice(6)" class="list-select">放款</li>
+                    <li ng-click="choice(7)" class="list-select">成功融资</li>
+                    <li ng-click="choice()" class="list-select">全部</li>
+                </ul>
             </div>
+            <span class="width10">销售</span>
+            <span class="width10">预计时间</span>
+            <span class="width10">服务费（%）</span>
+            <span class="width10">融资额（万）</span>
+            <span class="width10">年销售额（万）</span>
+            <span class="width8">项目来源</span>
+        </li>
+        <div class="line-roll">
+            <li class="list-group-item list-common" ng-repeat="resultObj in result_list">
+            <span class="width15">
+        <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}"
+               ng-checked="isSelected(resultObj.id)"
+               ng-click="updateSelection($event,resultObj.id)">
+                <a ng-click="updateApply(resultObj.id)" style="cursor: pointer">
+                    {{resultObj.companyName ||resultObj.linkman}}
+                </a>
+            </span>
+                <span class="width13">{{resultObj.bankName}}-{{resultObj.productName}}</span>
+                <span class="width10" style="color: #838383"
+                      ng-show="resultObj.color == 1">{{resultObj.progressText}}</span>
+                <span class="width10" style="color: #F97383"
+                      ng-show="resultObj.color == 2">{{resultObj.progressText}}</span>
+                <span class="width10" style="color: #009B27"
+                      ng-show="resultObj.color == 3">{{resultObj.progressText}}</span>
+                <span class="width10">{{resultObj.opUser}}</span>
+                <span class="width10">{{resultObj.days}}</span>
+                <span class="width10">{{resultObj.fee}}</span>
+                <span class="width10">{{resultObj.loanValue}}</span>
+                <span class="width10">{{resultObj.continual}}</span>
+                <span class="width8">{{resultObj.createUserName}}
+                    <img src="img/tips/tel.png" class="img-size" ng-show="resultObj.channel =='tel'">
+                    <img src="img/tips/bankMan.png" class="img-size" ng-show="resultObj.channel =='a'">
+                    <img src="img/tips/manager.png" class="img-size" ng-show="resultObj.channel =='zrh_manager'">
+                    <img src="img/tips/channel.png" class="img-size" ng-show="resultObj.channel =='c'">
+                </span>
+            </li>
         </div>
-        <li class="list-group-item list_common1">
-            <span class="fl">共有{{page.totalCount}}款金融产品，每页显示{{page.pageSize}}条</span>
+        <li class="list-group-item list-bottom">
+            <span class="fl">共有{{page.totalCount || 0}}款金融产品，每页显示{{page.pageSize || 0}}条</span>
             <ul class="pagination fl" style="margin-left: 30px;margin-top: -5px">
                 <li>
                     <a aria-label="Previous" ng-click="changePage(1)">
@@ -87,7 +85,7 @@
                         <span aria-hidden="true">&lsaquo;</span>
                     </a>
                 </li>
-                <li><a>{{page.pageNo}}</a></li>
+                <li><a>{{page.pageNo || 0}}</a></li>
                 <li>
                     <a aria-label="Next" ng-click="changePage(page.nextPage)">
                         <span aria-hidden="true">&rsaquo;</span>
