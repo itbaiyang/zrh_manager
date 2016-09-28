@@ -1,12 +1,11 @@
-<!--<div style="position: absolute;overflow-x:hidden; margin-left: 250px;width: calc(100% - 250px); height: calc(100% - 50px);  background: #ffffff">-->
 <div class="content">
-    <div class="content-title">
+    <div class="content-title width100">
         <span>{{name}}的申请</span>
         <div class="fr">
             <button class="btn btn-grey fr" ng-click="go_back_share()">返回</button>
         </div>
     </div>
-    <div class="width100">
+    <div class="width100 content-search">
         <div class="width30">
             <input type="text" class="form-control" placeholder="搜索企业名称" ng-model="search_text">
         </div>
@@ -16,10 +15,10 @@
     </div>
 
     <ul class="list-group list-ul">
-        <li class=" list-title">
+        <li class="list-group-item list-title">
             <span class="width15">企业名称或个人</span>
             <span class="width13">申请产品</span>
-            <div class="btn-group noPadding width10">
+            <div class="btn-group width10">
                 <div style="cursor: pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {{status_text ||"状态"}} <span class="caret"></span>
                 </div>
@@ -40,7 +39,7 @@
             <span class="width10">服务费（%）</span>
             <span class="width10">融资额（万）</span>
             <span class="width10">年销售额（万）</span>
-            <span class="width8">项目来源</span>
+            <span class="width8 fr">项目来源</span>
         </li>
         <div class="line-roll">
             <li class="list-group-item list-common" ng-repeat="resultObj in result_list">
@@ -64,17 +63,18 @@
                 <span class="width10">{{resultObj.fee}}</span>
                 <span class="width10">{{resultObj.loanValue}}</span>
                 <span class="width10">{{resultObj.continual}}</span>
-                <span class="width8">{{resultObj.createUserName}}
+                <span class="width8 fr">{{resultObj.createUserName}}
                     <img src="img/tips/tel.png" class="img-size" ng-show="resultObj.channel =='tel'">
                     <img src="img/tips/bankMan.png" class="img-size" ng-show="resultObj.channel =='a'">
                     <img src="img/tips/manager.png" class="img-size" ng-show="resultObj.channel =='zrh_manager'">
                     <img src="img/tips/channel.png" class="img-size" ng-show="resultObj.channel =='c'">
+                    <img src="img/tips/zrh.png" class="img-size" ng-show="resultObj.channel =='zrh'">
                 </span>
             </li>
         </div>
         <li class="list-group-item list-bottom">
             <span class="fl">共有{{page.totalCount || 0}}款金融产品，每页显示{{page.pageSize || 0}}条</span>
-            <ul class="pagination fl" style="margin-left: 30px;margin-top: -5px">
+            <ul class="pagination fr" style="margin: 0">
                 <li>
                     <a aria-label="Previous" ng-click="changePage(1)">
                         <span aria-hidden="true">&laquo;</span>

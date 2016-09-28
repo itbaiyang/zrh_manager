@@ -48,7 +48,7 @@
             <span class="width8"></span>
         </li>
         <div class="line-roll">
-            <li class="list-group-item list-common2" ng-repeat="resultObj in result_list">
+            <li class="list-group-item list-common" ng-repeat="resultObj in result_list">
                  <span class="width15">
             <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}"
                    ng-checked="isSelected(resultObj.id)"
@@ -75,6 +75,7 @@
                         <img src="img/tips/bankMan.png" class="img-size" ng-show="resultObj.channel =='a'">
                         <img src="img/tips/manager.png" class="img-size" ng-show="resultObj.channel =='zrh_manager'">
                         <img src="img/tips/channel.png" class="img-size" ng-show="resultObj.channel =='c'">
+                        <img src="img/tips/zrh.png" class="img-size" ng-show="resultObj.channel =='zrh'">
                     </span>
             </li>
         </div>

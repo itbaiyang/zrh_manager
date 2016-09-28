@@ -186,7 +186,7 @@
 .width8 {
     width: 8%;
     display: inline-block;
-    text-align: center;
+    text-align: right;
 }
 .width10{
     width:10%;
@@ -201,7 +201,7 @@
     text-align: center;
 }
 .width15{
-    width: 16%;
+    width: 15%;
     display: inline-block;
 }
 
@@ -316,7 +316,7 @@
 }
 
 .dropdown-menu {
-    min-width: 100px;
+    min-width: 120px;
 }
 
 .margin-left15 {

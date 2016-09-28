@@ -77,6 +77,7 @@
     text-align: center;
     color: #ffffff;
     font-size: 12px;
+    letter-spacing: 3px;
 }
 
 .sideBarP1 {
@@ -170,6 +171,7 @@
     line-height: 30px;
     width: 100%;
     background: #f5f6fa;
+    box-sizing: border-box;
 }
 
 .list-title-count {
@@ -209,6 +211,7 @@
     height: 50px;
     padding: 7px 15px;
     width: 100%;
+    font-size: 12px;
 }
 
 .line-roll {
@@ -235,11 +238,13 @@
 
 .list-title span {
     padding: 0;
+    font-size: 12px;
 }
 
 .list-common span {
     vertical-align: top;
     padding: 0;
+    font-size: 12px;
 }
 
 .list_user span {
@@ -247,6 +252,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     padding: 0;
+    font-size: 12px;
 }
 
 .list-a-link {
