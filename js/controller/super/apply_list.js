@@ -8,7 +8,7 @@ applyListCtrl.controller('ApplyListCtrl', function ($http, $scope, $rootScope, $
             "pageNo": pageNo,
             "pageSize": pageSize,
             "wd": $scope.wd,
-            // "status": $scope.status
+            "status": $scope.status
         };
         // console.log(m_params);
         $http({

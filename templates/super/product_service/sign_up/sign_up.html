@@ -1,31 +1,34 @@
 <div class="content">
-    <div class="content-title width100"><span>注册用户</span></div>
-    <div class="width100 content-search">
-        <div class="width30">
+    <div class="content-title"><span>注册用户</span></div>
+    <div class="content-search">
+        <div class="col-xs-4 col-md-4 col-lg-4 noPadding">
             <input type="text" class="form-control" placeholder="搜索名字或手机号" ng-model="search_text">
         </div>
-        <div class="width10">
+        <div class="col-xs-1 col-md-1 col-lg-1">
             <button class="btn btn-blue" ng-click="search()" type="button">搜索</button>
         </div>
         <button class="btn-grey fr" ng-click="refresh()">刷新</button>
     </div>
-    <ul class="list-group list-ul">
-        <li class="list-group-item list-title">
-            <span class="width15">用户名</span>
-            <span class="width15">公司职位</span>
-            <span class="width15">注册电话</span>
-            <span class="width15">注册时间</span>
+    <li class="list-title">
+        <span class="col-xs-2 col-md-2 col-lg-2">用户名</span>
+        <span class="col-xs-4 col-md-4 col-lg-4 text-center">公司职位</span>
+        <span class="col-xs-4 col-md-4 col-lg-4 text-center">注册电话</span>
+        <span class="col-xs-2 col-md-2 col-lg-2 text-right">注册时间</span>
         </li>
+    <ul class="list-group list-ul list-ul-height-1">
         <div class="line-roll">
-            <li class="list-group-item list-user" ng-repeat="resultObj in result_list">
-                <span class="width15">
+            <div class="list-out">
+                <li class="list-group-item list-user" ng-repeat="resultObj in result_list">
+                <span class="col-xs-2 col-md-2 col-lg-2">
                     <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}"
                            ng-checked="isSelected(resultObj.id)"
                            ng-click="updateSelection($event,resultObj.id)">{{resultObj.name ||'未填写'}}</span>
-                <span class="width15">{{resultObj.position ||'未填写'}}</span>
-                <span class="width15">{{resultObj.mobile}}</span>
-                <span class="width15">{{resultObj.createTime +"000" | date:'yyyy-MM-dd'}}</span>
-            </li>
+                    <span class="col-xs-4 col-md-4 col-lg-4 text-center">{{resultObj.position ||'未填写'}}</span>
+                    <span class="col-xs-4 col-md-4 col-lg-4 text-center">{{resultObj.mobile}}</span>
+                    <span class="col-xs-2 col-md-2 col-lg-2 text-right">{{resultObj.createTime +"000" | date:'yyyy-MM-dd'}}</span>
+                </li>
+            </div>
+
         </div>
         <li class="list-group-item list-bottom">
             <!--<button class="content-btn btn btn-grey disabled" ng-click="cancel()">删除</button>-->

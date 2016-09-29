@@ -71,7 +71,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             url: '/update/:id',
             views: {
                 'main@super': {
-                    templateUrl: templates_root + 'super/product_service/manage/user_update.html',
+                    templateUrl: templates_root + 'super/product_service/manage/add_user.html',
                     controller: 'UserUpdateCtrl'
                 }
             }
@@ -118,7 +118,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             url: '/update/:id',
             views: {
                 'main@super': {
-                    templateUrl: templates_root + 'super/product_service/product/update.html',
+                    templateUrl: templates_root + 'super/product_service/product/create.html',
                     controller: 'ProductUpdateCtrl'
                 }
             }
@@ -181,16 +181,16 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             url: '/update/:id',
             views: {
                 'main@super': {
-                    templateUrl: templates_root + 'super/product_service/bank/update.html',
+                    templateUrl: templates_root + 'super/product_service/bank/add_bank.html',
                     controller: 'UpdateBankCtrl'
                 }
             }
         })
         .state('super.bank.update_bank_man', {
-            url: '/update_bank_man/:id',
+            url: '/update_bank_man/:id/:name',
             views: {
                 'main@super': {
-                    templateUrl: templates_root + 'super/product_service/bank/update_bank_man.html',
+                    templateUrl: templates_root + 'super/product_service/bank/add_bank_man.html',
                     controller: 'UpdateBankManCtrl'
                 }
             }

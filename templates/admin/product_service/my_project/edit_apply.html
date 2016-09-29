@@ -22,7 +22,7 @@
                        ng-click="submitMessage()">
                 <button class="btn btn-grey fr" ng-click="backProjectDetail()">返回</button>
             </div>
-            <p class="createTitle">基本内容</p>
+            <p class="create-title">基本内容</p>
             <div style="width: 800px">
                 <div class="form-group">
                     <label for="companyName" class="width20 textEnd">企业全称：</label>
@@ -126,7 +126,7 @@
                     </div>
                 </div>
 
-                <!--<p class="createTitle">其他类型</p>-->
+                <!--<p class="create-title">其他类型</p>-->
                 <div ng-switch="model.templateType" style="position: relative;left:20%"
                      ng-repeat="model in model_list track by $index">
                     <div ng-switch-when="1">

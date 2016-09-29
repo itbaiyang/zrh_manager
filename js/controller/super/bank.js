@@ -1,6 +1,7 @@
 var bankCtrl = angular.module('bankCtrl', []);
 bankCtrl.controller('BankCtrl', function ($http, $scope, $state, $rootScope, $location) {
-   
+
+    /*获取银行列表*/
     $scope.list = function (pageNo, pageSize) {
         var m_params = {
             "userId": $rootScope.login_user.userId,
@@ -24,19 +25,14 @@ bankCtrl.controller('BankCtrl', function ($http, $scope, $state, $rootScope, $lo
         })
     };
 
-    $scope.list(1, 20);
+    $scope.list(1, 100);
 
-    $scope.changePage = function (page) {
-        $scope.pageNo1 = page;
-        $scope.$watch($scope.pageNo1, function () {
-            $scope.list($scope.pageNo1, 20);
-        });
-    };
-
+    /*编辑银行*/
     $scope.edit_bank = function (id) {
         $location.path('/super/bank/update/' + id);
     };
 
+    /*删除银行*/
     $scope.delete = function (id) {
         var m_params = {
             "userId": $rootScope.login_user.userId,
@@ -57,18 +53,15 @@ bankCtrl.controller('BankCtrl', function ($http, $scope, $state, $rootScope, $lo
         });
     };
 
+    /*查看银行职员列表*/
     $scope.find_detail = function (id, name) {
         $state.go("super.bank.bank_man", {id: id, name: name});
     };
-
-    $scope.changeModule = function (a, b) {
-        $scope.editModule = a;
-        $scope.deleteModule = b;
-    }
-
 });
 
 bankCtrl.controller('BankManCtrl', function ($http, $scope, $rootScope, $location, $stateParams, $state) {
+
+    /*初始化参数*/
     $scope.selected = [];
     
     $scope.ids = [];
@@ -76,7 +69,8 @@ bankCtrl.controller('BankManCtrl', function ($http, $scope, $rootScope, $locatio
     $scope.id = $stateParams.id;
     
     $scope.bankName = $stateParams.name;
-    
+
+    /*获取银行职员列表*/
     $scope.list = function (pageNo, pageSize) {
         var m_params = {
             "userId": $rootScope.login_user.userId,
@@ -102,6 +96,7 @@ bankCtrl.controller('BankManCtrl', function ($http, $scope, $rootScope, $locatio
 
     $scope.list(1, 20);
 
+    /*分页显示*/
     $scope.changePage = function (page) {
         $scope.pageNo1 = page;
         $scope.$watch($scope.pageNo1, function () {
@@ -109,6 +104,7 @@ bankCtrl.controller('BankManCtrl', function ($http, $scope, $rootScope, $locatio
         });
     };
 
+    /*是否被选中*/
     $scope.isSelected = function (id) {
         return $scope.selected.indexOf(id) >= 0;
     };
@@ -129,10 +125,7 @@ bankCtrl.controller('BankManCtrl', function ($http, $scope, $rootScope, $locatio
         updateSelected(action, id);
     };
 
-    $scope.add_user = function (id, name) {
-        $state.go("super.bank.add_bank_man", {id: id, name: name});
-    };
-
+    /*删除银行职员*/
     $scope.delete = function () {
         var m_params = {
             "userId": $rootScope.login_user.userId,
@@ -186,13 +179,20 @@ bankCtrl.controller('BankManCtrl', function ($http, $scope, $rootScope, $locatio
         });
     };
 
-    $scope.edit_bank_man = function (id) {
-        $location.path('/super/bank/update_bank_man/' + id);
+    /*跳转页面*/
+    $scope.add_user = function (id, name) {
+        $state.go("super.bank.add_bank_man", {id: id, name: name});
+    };
+
+    $scope.edit_bank_man = function (id, name) {
+        $state.go("super.bank.update_bank_man", {id: id, name: name});
     };
     
 });
 
 bankCtrl.controller('AddBankCtrl', function ($http, $scope, $rootScope, $state) {
+
+    /*初始化图片*/
     $scope.init = function () {
         var m_params = {
             "userId": $rootScope.login_user.userId,
@@ -267,6 +267,7 @@ bankCtrl.controller('AddBankCtrl', function ($http, $scope, $rootScope, $state) 
     };
     $scope.init();
 
+    /*提交添加银行*/
     $scope.submitAdd = function () {
         $scope.feature_list_new = [];
         $scope.condition_list_new = [];
@@ -276,7 +277,6 @@ bankCtrl.controller('AddBankCtrl', function ($http, $scope, $rootScope, $state) 
         for (var key in $scope.condition_list) {
             $scope.condition_list_new.push($scope.condition_list[key].condition)
         }
-        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -291,7 +291,6 @@ bankCtrl.controller('AddBankCtrl', function ($http, $scope, $rootScope, $state) 
             success: function (data, textStatus, jqXHR) {
                 //console.log(data);
                 if (data.returnCode == 0) {
-                    //console.log("创建成功了");
                     $state.go("super.bank");
                     $scope.$apply();
                 }
@@ -304,8 +303,9 @@ bankCtrl.controller('AddBankCtrl', function ($http, $scope, $rootScope, $state) 
 });
 
 bankCtrl.controller('UpdateBankCtrl', function ($http, $scope, $rootScope, $state, $stateParams) {
+
+    /*获取银行信息*/
     $scope.detail = function () {
-        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -316,6 +316,7 @@ bankCtrl.controller('UpdateBankCtrl', function ($http, $scope, $rootScope, $stat
             params: m_params
         }).success(function (d) {
             if (d.returnCode == 0) {
+                $scope.bankEdit = "编辑银行";
                 $scope.bank = d.result;
                 $scope.name = d.result.name;
                 $scope.bankPic = d.result.icon;
@@ -326,8 +327,9 @@ bankCtrl.controller('UpdateBankCtrl', function ($http, $scope, $rootScope, $stat
         })
     };
     $scope.detail();
+
+    /*初始化图片*/
     $scope.init = function () {
-        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -412,8 +414,8 @@ bankCtrl.controller('UpdateBankCtrl', function ($http, $scope, $rootScope, $stat
     };
     $scope.init();
 
+    /*更新银行数据*/
     $scope.update = function (id) {
-        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -445,8 +447,9 @@ bankCtrl.controller('AddBankManCtrl', function ($http, $scope, $rootScope, $stat
     $scope.selected = [];
     $scope.ids = [];
     $scope.names = [];
+
+    /*获取该银行金融产品*/
     $scope.list = function (pageNo, pageSize) {
-        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -460,29 +463,21 @@ bankCtrl.controller('AddBankManCtrl', function ($http, $scope, $rootScope, $stat
             method: "GET",
             params: m_params
         }).success(function (d) {
-            //console.log(d);
+            console.log(d);
             if (d.returnCode == 0) {
                 $scope.page = d.result;
                 $scope.product_list = d.result.datas;
             }
             else {
-                //console.log(d.result);
             }
 
         }).error(function (d) {
         })
     };
 
-    $scope.list(1, 20);
+    $scope.list(1, 100);
 
-    $scope.changePage = function (page) {
-        $scope.pageNo1 = page;
-        //console.log($scope.pageNo1);
-        $scope.$watch($scope.pageNo1, function () {
-            $scope.list($scope.pageNo1, 20);
-        });
-    };
-
+    /*是否被选中*/
     $scope.isSelected = function (id) {
         return $scope.selected.indexOf(id) >= 0;
     };
@@ -503,15 +498,13 @@ bankCtrl.controller('AddBankManCtrl', function ($http, $scope, $rootScope, $stat
     };
 
     $scope.updateSelection = function ($event, id, name) {
-        //console.log("点击一下")
         var checkbox = $event.target;
         var action = (checkbox.checked ? 'add' : 'remove');
         updateSelected(action, id, name);
     };
 
-
+    /*添加银行职员*/
     $scope.add_bank_man = function () {
-        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -544,15 +537,17 @@ bankCtrl.controller('AddBankManCtrl', function ($http, $scope, $rootScope, $stat
         });
     };
 
+    /*返回上一级页面*/
     $scope.go_back = function () {
         window.history.go(-1);
-    }
-    
+    };
+
+    /*显示金融产品框*/
     $scope.show_product = function () {
         $scope.productDiv = true;
     };
 
-
+    /*隐藏金融产品框*/
     $scope.hide_product = function () {
         $scope.products = "";
         for (var i = 0; i < $scope.names.length; i++) {
@@ -560,16 +555,17 @@ bankCtrl.controller('AddBankManCtrl', function ($http, $scope, $rootScope, $stat
             $scope.products += " ";
         }
         ;
-        //console.log($scope.products);
         $scope.productDiv = false;
     }
-
 });
 
-bankCtrl.controller('UpdateBankManCtrl', function ($http, $scope, $rootScope, $state, $stateParams, $location, $timeout, $routeParams) {
-    //console.log($stateParams.id);
+bankCtrl.controller('UpdateBankManCtrl', function ($http, $scope, $rootScope, $state, $stateParams, $location, $timeout) {
+    /*初始化参数*/
+    $scope.selected = [];
+    $scope.ids = [];
+    $scope.names = [];
+    /*获取银行职员信息*/
     $scope.detail = function () {
-        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -579,40 +575,36 @@ bankCtrl.controller('UpdateBankManCtrl', function ($http, $scope, $rootScope, $s
             method: "GET",
             params: m_params
         }).success(function (d) {
-            //console.log(d);
+            console.log(d);
             if (d.returnCode == 0) {
                 $scope.bank_man = d.result;
-                //console.log($scope.bank_man);
+                $scope.bank_man_title = "修改银行职员";
                 $scope.products = "";
-                $scope.list(1, 20);
+                $scope.list(1, 100);
             }
             else {
-                //console.log(d.result);
             }
-
         }).error(function (d) {
         })
     };
     $scope.detail();
-    $scope.selected = [];
-    $scope.ids = [];
-    $scope.names = [];
+
+    /*获取金融产品*/
     $scope.list = function (pageNo, pageSize) {
-        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
-            //"bankId": $scope.bank_man.bankId,
+            "bankId": $scope.bank_man.bankId,
             "pageNo": pageNo,
             "pageSize": pageSize,
-            "release": true,
+            "release": true
         };
         $http({
             url: api_uri + "financialProductManage/list",
             method: "GET",
             params: m_params
         }).success(function (d) {
-            //console.log(d);
+            console.log(d);
             if (d.returnCode == 0) {
                 $scope.page = d.result;
                 $scope.product_list = d.result.datas;
@@ -624,30 +616,23 @@ bankCtrl.controller('UpdateBankManCtrl', function ($http, $scope, $rootScope, $s
                         }
                     }
                 }
-                $scope.products = ""
+                $scope.products = "";
                 for (var i = 0; i < $scope.names.length; i++) {
                     $scope.products += $scope.names[i];
                     $scope.products += " ";
                 }
-                ;
-
+                console.log($scope.product_list);
+                console.log($scope.bank_man.productIds);
+                console.log($scope.names);
+                console.log($scope.products);
             }
             else {
                 //console.log(d.result);
             }
-
         }).error(function (d) {
         })
     };
-
-    $scope.changePage = function (page) {
-        $scope.pageNo1 = page;
-        //console.log($scope.pageNo1);
-        $scope.$watch($scope.pageNo1, function () {
-            $scope.list($scope.pageNo1, 20);
-        });
-    };
-
+    /*是否被选中*/
     $scope.isSelected = function (id) {
         return $scope.bank_man.productIds.indexOf(id) >= 0;
     };
@@ -674,9 +659,8 @@ bankCtrl.controller('UpdateBankManCtrl', function ($http, $scope, $rootScope, $s
         updateSelected(action, id, name);
     };
 
-
+    /*更新银行职员信息*/
     $scope.update = function () {
-        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -689,7 +673,6 @@ bankCtrl.controller('UpdateBankManCtrl', function ($http, $scope, $rootScope, $s
             "mobile": $scope.bank_man.mobile,
             "email": $scope.bank_man.email,
         };
-        //console.log(m_params);
         $.ajax({
             type: 'POST',
             url: api_uri + "manage/bank/user/update/" + $stateParams.id,
@@ -698,7 +681,6 @@ bankCtrl.controller('UpdateBankManCtrl', function ($http, $scope, $rootScope, $s
             success: function (data, textStatus, jqXHR) {
                 //console.log(data);
                 if (data.returnCode == 0) {
-                    //console.log("添加成功");
                     $state.go("super.bank.bank_man", {id: m_params.bankId});
                     $scope.$apply();
 
@@ -711,7 +693,7 @@ bankCtrl.controller('UpdateBankManCtrl', function ($http, $scope, $rootScope, $s
         });
     };
 
-
+    /*显示，隐藏产品框*/
     $scope.show_product = function () {
         $scope.productDiv = true;
     };
@@ -722,11 +704,10 @@ bankCtrl.controller('UpdateBankManCtrl', function ($http, $scope, $rootScope, $s
             $scope.products += $scope.names[i];
             $scope.products += " ";
         }
-        ;
-        //console.log($scope.products);
         $scope.productDiv = false;
-    }
+    };
 
+    /*返回上一级页面*/
     $scope.go_back = function () {
         window.history.go(-1);
     }

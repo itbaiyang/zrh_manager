@@ -1,48 +1,53 @@
 <div class="content">
-    <div class="content-title width100"><span>金融产品</span></div>
-    <div class="width100 content-search">
-        <div class="width30">
+    <div class="content-title"><span>金融产品</span></div>
+    <div class="content-search">
+        <div class="col-xs-4 col-md-4 col-lg-4 noPadding">
             <input type="text" class="form-control" placeholder="搜索企业名称" ng-model="search_text">
         </div>
-        <div class="width10">
+        <div class="col-xs-1 col-md-1 col-lg-1">
             <button class="btn btn-blue" ng-click="search()" type="button">搜索</button>
         </div>
         <button class="btn btn-blue margin-left15 fr" ui-sref="super.product.create">添加金融产品</button>
         <button class="btn fr btn-grey" ng-click="refresh()" type="submit"><img class="btn-greyImg"> 刷新</button>
     </div>
-    <ul class="list-group list-ul">
-        <li class="list-group-item list-title">
-            <span class="width25">金融产品</span>
-            <span class="width15">企业申请数</span>
-            <span class="width15">所属银行</span>
-            <div class="btn-group width15 noPadding">
-                <div style="cursor: pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    状态({{release_text}}) <span class="caret"></span>
-                </div>
-                <ul class="dropdown-menu">
-                    <li ng-click="choice(true)" class="list-select">已发布</li>
-                    <li ng-click="choice(false)" class="list-select">未发布</li>
-                    <li ng-click="choice()" class="list-select">全部</li>
-                </ul>
+    <li class="list-title">
+        <span class="col-xs-2 col-md-2 col-lg-2">金融产品</span>
+        <span class="col-xs-3 col-md-3 col-lg-3 text-center">企业申请数</span>
+        <span class="col-xs-2 col-md-2 col-lg-2 text-center">所属银行</span>
+        <div class="btn-group noPadding col-xs-1 col-md-1 col-lg-1 col-xs-offset-1 col-md-offset-1 col-lg-offset-1">
+            <div style="cursor: pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                状态({{release_text}}) <span class="caret"></span>
             </div>
-            <span class="width15">操作</span>
-        </li>
+            <ul class="dropdown-menu">
+                <li ng-click="choice(true)" class="list-select">已发布</li>
+                <li ng-click="choice(false)" class="list-select">未发布</li>
+                <li ng-click="choice()" class="list-select">全部</li>
+            </ul>
+        </div>
+        <span class="col-xs-3 col-md-3 col-lg-3 text-right">操作</span>
+    </li>
+    <ul class="list-group list-ul list-ul-height-1">
         <div class="line-roll">
-            <li class="list-group-item list-common" ng-repeat="resultObj in result_list">
-                <span class="width25">
+            <div class="list-out">
+                <li class="list-group-item list-common" style="padding-right: 0" ng-repeat="resultObj in result_list">
+                <span class="col-xs-2 col-md-2 col-lg-2">
                     <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}"
                            ng-checked="isSelected(resultObj.id)"
                            ng-click="updateSelection($event,resultObj.id)">{{resultObj.name}}</span>
-                <span class="width15">{{resultObj.count}}</span>
-                <span class="width15">{{resultObj.bankname}}</span>
-                <span class="width15">{{resultObj.progressText}}</span>
-                <a class="list-a-link" ng-click="update(resultObj.id)">编辑产品</a>
-                <a class="list-a-link border-left-right" ng-click="release(resultObj.id)">发布产品</a>
-                <a class="list-a-link" ng-click="unrelease(resultObj.id)">取消发布</a>
-            </li>
+                    <span class="col-xs-3 col-md-3 col-lg-3 text-center">{{resultObj.count}}</span>
+                    <span class="col-xs-2 col-md-2 col-lg-2 text-center">{{resultObj.bankname}}</span>
+                    <span class="col-xs-1 col-md-1 col-lg-1 col-xs-offset-1 col-md-offset-1 col-lg-offset-1">{{resultObj.progressText}}</span>
+                <span class="col-xs-3 col-md-3 col-lg-3 text-right">
+                    <a class="list-a-link" ng-click="update(resultObj.id)">编辑产品</a>
+                    <a class="list-a-link border-left-right" ng-click="release(resultObj.id)">发布产品</a>
+                    <a class="list-a-link" ng-click="unrelease(resultObj.id)">取消发布</a>
+                </span>
+
+                </li>
+            </div>
         </div>
         <li class="list-group-item list-bottom">
-            <button class="btn-grey" ng-click="submit()">发布产品</button>
+            <button class="content-btn" ng-click="submit()">发布产品</button>
             <button class="btn-grey" ng-click="cancel()">取消发布</button>
             <button class="btn-grey" ng-click="delete()">删除产品</button>
             <button class="btn-grey" ng-click="sort_up()">产品上移</button>

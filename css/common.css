@@ -23,7 +23,7 @@
 .content-btn {
     display: inline-block;
     height: 32px;
-    padding: 0 20px;
+    padding: 0 10px;
     line-height: 32px;
     font-size: 14px;
     color: #4c4c4c;
@@ -63,6 +63,7 @@
     top: 30px;
     background: #ffffff;
     z-index: 100;
+    border: 1px solid #cccccc;
 }
 
 .account-p-bank {
@@ -223,6 +224,11 @@
     width:calc(25% - 30px);
     display: inline-block;
 }
+
+.width-real-25 {
+    width: 25%;
+    display: inline-block;
+}
 .width30{
      width:30%;
     min-width: 200px;
@@ -320,7 +326,7 @@
 }
 
 .dropdown-menu {
-    min-width: 120px;
+    min-width: 100px;
 }
 
 .margin-left15 {
@@ -331,6 +337,9 @@
     text-align: center;
 }
 
+.text-right {
+    text-align: right;
+}
 .progress {
     height: 6px;
     margin-bottom: 20px;
@@ -353,4 +362,88 @@
 
 .progress-bar-go {
     background-color: #fac3ca;
+}
+
+/*滚动条*/
+#nicescroll1 {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 580px;
+    scrollbar-arrow-color: #f0f0f0; /*三角箭头的颜色*/
+    scrollbar-face-color: #000; /*立体滚动条的颜色（包括箭头部分的背景色）*/
+    scrollbar-3dlight-color: #302D30; /*立体滚动条亮边的颜色*/
+    scrollbar-highlight-color: #302D30; /*滚动条的高亮颜色（左阴影？）*/
+    scrollbar-shadow-color: #302D30; /*立体滚动条阴影的颜色*/
+    scrollbar-darkshadow-color: #302D30; /*立体滚动条外阴影的颜色*/
+    scrollbar-track-color: #302D30; /*立体滚动条背景颜色*/
+    scrollbar-base-color: #302D30; /*滚动条的基色*/
+}
+
+#nicescroll2 {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 396px;
+    scrollbar-arrow-color: #302D30; /*三角箭头的颜色*/
+    scrollbar-face-color: #000; /*立体滚动条的颜色（包括箭头部分的背景色）*/
+    scrollbar-3dlight-color: #302D30; /*立体滚动条亮边的颜色*/
+    scrollbar-highlight-color: #302D30; /*滚动条的高亮颜色（左阴影？）*/
+    scrollbar-shadow-color: #302D30; /*立体滚动条阴影的颜色*/
+    scrollbar-darkshadow-color: #302D30; /*立体滚动条外阴影的颜色*/
+    scrollbar-track-color: #302D30; /*立体滚动条背景颜色*/
+    scrollbar-base-color: #302D30; /*滚动条的基色*/
+}
+
+#commend_list {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 229px;
+    scrollbar-arrow-color: #f8f9fb; /*三角箭头的颜色*/
+    scrollbar-face-color: #000; /*立体滚动条的颜色（包括箭头部分的背景色）*/
+    scrollbar-3dlight-color: #302D30; /*立体滚动条亮边的颜色*/
+    scrollbar-highlight-color: #302D30; /*滚动条的高亮颜色（左阴影？）*/
+    scrollbar-shadow-color: #302D30; /*立体滚动条阴影的颜色*/
+    scrollbar-darkshadow-color: #302D30; /*立体滚动条外阴影的颜色*/
+    scrollbar-track-color: #f8f9fb; /*立体滚动条背景颜色*/
+    scrollbar-base-color: #302D30; /*滚动条的基色*/
+}
+
+/*chrome滚动条*/
+::-webkit-scrollbar-track-piece {
+    -webkit-border-radius: 0;
+}
+
+::-webkit-scrollbar {
+    width: 17px;
+    height: 17px;
+}
+
+::-webkit-scrollbar-thumb {
+    height: 50px;
+    background-color: #b1b8e1;
+    -webkit-border-radius: 5px;
+    outline-offset: -2px;
+    border: 5px solid #f8f8f8;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    height: 50px;
+    background-color: #b1b8e1;
+    -webkit-border-radius: 4px;
+}
+
+.list-group-item {
+    border-bottom: 1px solid #cccccc;
+    margin-left: -1px;
+}
+
+.list-group-item:first-child {
+    border-top-left-radius: 0;
+    border-top: none;
+    border-top-right-radius: 0;
+}
+
+.list-group-item:last-child {
+    margin-bottom: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
 }

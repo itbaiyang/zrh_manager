@@ -98,6 +98,19 @@
     top: 10px;
 }
 
+.bank-title-edit {
+    height: 20px;
+    line-height: 20px;
+    padding: 0 12px;
+    background: #6b7acb;
+    border: 1px solid #cccccc;
+    color: #ffffff;
+    font-size: 14px;
+    position: absolute;
+    right: 5px;
+    top: -10px;
+}
+
 .members-list {
     margin-top: 20px;
     margin-right: 15px;

@@ -435,6 +435,7 @@ productCtrl.controller('ProductUpdateCtrl', function ($http, $scope, $state, $ro
             method: "GET",
             params: m_params
         }).success(function (d) {
+            $scope.pageTitle = "修改金融产品";
             $scope.product = d.result;
             $scope.type = d.result.type;
             $scope.bankName = $scope.product.bankname;

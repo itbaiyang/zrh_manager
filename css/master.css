@@ -136,12 +136,13 @@
 /*列表*/
 .content {
     margin-left: 195px;
-    width: calc(100% - 210px);
+    width: calc(100% - 195px);
     height: 100%;
 }
 
 .content-title {
     height: 52px;
+    width: calc(100% - 17px);
     padding-top: 10px;
     border-bottom: 1px solid #cccccc;
     margin-bottom: 20px;
@@ -149,6 +150,7 @@
 
 .content-search {
     height: 50px;
+    width: calc(100% - 17px);
 }
 
 .content-title span {
@@ -163,6 +165,7 @@
 .list-ul {
     margin-right: 15px;
     width: 100%;
+    position: relative;
 }
 
 .list-ul-height-1 {
@@ -181,9 +184,13 @@
     font-size: 12px;
 }
 .list-title {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
     height: 50px;
     line-height: 30px;
-    width: 100%;
+    width: calc(100% - 17px);
     background: #f5f6fa;
     box-sizing: border-box;
 }
@@ -202,15 +209,15 @@
     height: 100px;
     line-height: 24px;
     width: 100%;
-    padding: 36px 15px 0;
-    border-left: none;
-    border-right: none;
+    padding: 36px 15px;
+    border-radius: 0;
 }
 
 .list-user {
     height: 60px;
     width: 100%;
     padding: 20px 15px;
+    box-sizing: border-box;
 }
 
 .company-overflow {
@@ -228,19 +235,24 @@
 }
 
 .list-bottom {
+    width: calc(100% - 17px);
     line-height: 36px;
     height: 50px;
     padding: 7px 15px;
-    width: 100%;
     font-size: 12px;
 }
 
 .line-roll {
     height: 100%;
-    overflow-y: auto;
+    overflow-y: scroll;
+    background: #f8f8f8;
+}
+
+.list-out {
     background: #ffffff;
-    border-right: 1px solid #cccccc;
+    height: 100%;
     border-left: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
 }
 
 .img-size {
@@ -294,7 +306,7 @@
 .content-no-side {
     position: absolute;
     overflow-x: hidden;
-    padding: 0 15px;
+    padding-left: 15px;
     z-index: 100;
     width: 100%;
     height: 100%;
@@ -347,6 +359,7 @@
 
 /*create*/
 .createTitle {
+    width: calc(100% - 15px);
     height: 28px;
     line-height: 28px;
     padding: 0 10px;
@@ -357,14 +370,17 @@
     margin-bottom: 20px;
 }
 
-.createTitle button {
-    float: right;
-    margin-right: 20px;
-    height: 26px;
-    line-height: 26px;
-    padding: 0 10px;
-    background: #798584;
-    color: #ffffff;
+.create-add {
+    padding-bottom: 20px;
+}
+
+.create-add > button {
+    height: 40px;
+    line-height: 40px;
+    font-size: 32px;
+    padding: 0 60px;
+    background: #f8f8f8;
+    color: #cccccc;
 }
 
 .phoneChange > input {
