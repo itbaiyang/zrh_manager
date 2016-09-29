@@ -14,26 +14,27 @@
                 <p><a>{{message.userName}}</a>&nbsp;&nbsp;<a>{{message.position}}</a></p>
                 <p>{{message.reason}}</p>
                 <p><a href="">{{message.companyName}}</a></p>
-                <p ng-show="message.op == 0">提交状态&nbsp;<span style="color: #F97383">{{message.progressPro}}->{{message.progressText}}</span>&nbsp;&nbsp;<span
+                <p class="width80" ng-show="message.op == 0">提交状态&nbsp;<span style="color: #F97383">{{message.progressPro}}->{{message.progressText}}</span>&nbsp;&nbsp;<span
                         class="fr">预计{{message.days}}天</span>
                 </p>
-                <p ng-show="message.op == 1">提交状态&nbsp;<span style="color: #F97383">{{message.progressText}}</span>&nbsp;&nbsp;<span
+                <p class="width80" ng-show="message.op == 1">提交状态&nbsp;<span style="color: #F97383">{{message.progressText}}</span>&nbsp;&nbsp;<span
                         class="fr">预计{{message.days}}天</span>
                 </p>
-                <p ng-show="message.op == 2">提交状态&nbsp;<span style="color: red">{{message.progressText}}</span>&nbsp;&nbsp;<span
+                <p class="width80" ng-show="message.op == 2">提交状态&nbsp;<span
+                        style="color: red">{{message.progressText}}</span>&nbsp;&nbsp;<span
                         class="fr">预计{{message.days}}天</span>
                 </p>
-                <div class="progress" style="margin-left: 60px;">
-                    <div class="progress-bar progress-bar-success" ng-hide="message.op == 1"
+                <div class="progress" style="margin-left: 60px;width:calc(80% - 60px)">
+                    <div class="progress-bar progress-bar-after" ng-hide="message.op == 1"
                          style="width: {{message.jindu}}%">
                         <span class="sr-only"></span>
                     </div>
-                    <div class="progress-bar progress-bar-success" ng-show="message.op == 1"
+                    <div class="progress-bar progress-bar-after" ng-show="message.op == 1"
                          style="width: {{message.jindu_success}}%">
                         <span class="sr-only"></span>
                     </div>
 
-                    <div class="progress-bar progress-bar-warning progress-bar-striped" ng-show="message.op == 0"
+                    <div class="progress-bar progress-bar-go progress-bar-striped" ng-show="message.op == 0"
                          style="width: {{message.jindu_next}}%">
                         <span class="sr-only"></span>
                     </div>
@@ -108,7 +109,7 @@
             <div class="message-over fl" ng-show="message.op == 1">
                 已通过
             </div>
-            <div class="message-over col-lg-3 col-sm-3 fl" ng-show="message.op == 2">
+            <div class="message-over fl" ng-show="message.op == 2">
                 已驳回
             </div>
         </div>

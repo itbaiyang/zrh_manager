@@ -166,6 +166,9 @@
     height: calc(100% - 260px);
 }
 
+.list-ul, .list-title, .list-common, .list-user, .list-title-count, .list-user {
+    font-size: 12px;
+}
 .list-title {
     height: 50px;
     line-height: 30px;
@@ -193,7 +196,7 @@
     border-right: none;
 }
 
-.list_user {
+.list-user {
     height: 60px;
     width: 100%;
     padding: 20px 15px;
@@ -247,7 +250,7 @@
     font-size: 12px;
 }
 
-.list_user span {
+.list-user span {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
