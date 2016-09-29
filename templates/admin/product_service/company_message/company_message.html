@@ -1,6 +1,6 @@
 <div class="content">
-    <div class="content-title width100"><span>企业信息列表</span></div>
-    <div class="width100 content-search">
+    <div class="content-title"><span>企业信息列表</span></div>
+    <div class="content-search">
         <div class="width30">
             <input type="text" class="form-control" placeholder="搜索企业名称" ng-model="search_text">
         </div>
@@ -13,47 +13,50 @@
         </button>
         <button class="fr btn-grey btn" ng-click="refresh()" type="submit"><img class="btn-greyImg"> 刷新</button>
     </div>
-    <ul class="list-group list-ul list-ul-height-1">
-        <li class="list-group-item list-title">
-            <span class="width25">企业名称或个人</span>
-            <span class="width25">申请产品</span>
-            <span class="width20">申请时间</span>
-            <div class="btn-group width15" style="text-align: center">
-                <div style="cursor: pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {{status_text ||"状态"}} <span class="caret"></span>
-                </div>
-                <ul class="dropdown-menu">
-                    <li ng-click="choice(0)" class="list-select">未申请</li>
-                    <li ng-click="choice(1)" class="list-select">已申请</li>
-                    <li ng-click="choice()" class="list-select">全部</li>
-                </ul>
+    <li class="list-title">
+        <span class="col-sm-3 col-md-3 col-lg-3">企业名称或个人</span>
+        <span class="col-sm-3 col-md-3 col-lg-3">申请产品</span>
+        <span class="col-sm-2 col-md-2 col-lg-2">申请时间</span>
+        <div class="btn-group col-sm-2 col-md-2 col-lg-2 text-center">
+            <div style="cursor: pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{status_text ||"状态"}} <span class="caret"></span>
             </div>
-            <span class="width15" style="text-align: right;">操作</span>
-        </li>
+            <ul class="dropdown-menu">
+                <li ng-click="choice(0)" class="list-select">未申请</li>
+                <li ng-click="choice(1)" class="list-select">已申请</li>
+                <li ng-click="choice()" class="list-select">全部</li>
+            </ul>
+        </div>
+        <span class="col-sm-2 col-md-2 col-lg-2 text-right">操作</span>
+    </li>
+    <ul class="list-group list-ul list-ul-height-1">
         <div class="line-roll">
-            <li class="list-group-item list-common" ng-repeat="resultObj in result_list">
-                <div class="width25">
-                    <p class="company-overflow fl">
-                        <input type="checkbox" id="{{resultObj.id}}" ng-checked="isSelected(resultObj.id)"
-                               ng-click="updateSelection($event,resultObj.id)">
-                        {{resultObj.companyName || resultObj.linkman}}
-                    </p>
-                    <img src="img/tips/tel.png" class="img-size" ng-show="resultObj.channel =='tel'">
-                    <img src="img/tips/bankMan.png" class="img-size" ng-show="resultObj.channel =='a'">
-                    <img src="img/tips/manager.png" class="img-size" ng-show="resultObj.channel =='zrh_manager'">
-                    <img src="img/tips/channel.png" class="img-size" ng-show="resultObj.channel =='c'">
-                    <img src="img/tips/zrh.png" class="img-size" ng-show="resultObj.channel =='zrh'">
-                </div>
-                <div class="width25">{{resultObj.bankName ||'未申请'}}
-                    <span ng-show="resultObj.bankName">-</span>{{resultObj.productName}}
-                </div>
-                <span class="width20">{{resultObj.time | date:'yyyy-MM-dd'}}</span>
-                <span class="width15" style="color: #838383;text-align: center"
+            <div class="list-out">
+                <li class="list-group-item list-common" ng-repeat="resultObj in result_list">
+                    <div class="col-sm-3 col-md-3 col-lg-3">
+                        <p class="company-overflow fl">
+                            <input type="checkbox" id="{{resultObj.id}}" ng-checked="isSelected(resultObj.id)"
+                                   ng-click="updateSelection($event,resultObj.id)">
+                            {{resultObj.companyName || resultObj.linkman}}
+                        </p>
+                        <img src="img/tips/tel.png" class="img-size" ng-show="resultObj.channel =='tel'">
+                        <img src="img/tips/bankMan.png" class="img-size" ng-show="resultObj.channel =='a'">
+                        <img src="img/tips/manager.png" class="img-size" ng-show="resultObj.channel =='zrh_manager'">
+                        <img src="img/tips/channel.png" class="img-size" ng-show="resultObj.channel =='c'">
+                        <img src="img/tips/zrh.png" class="img-size" ng-show="resultObj.channel =='zrh'">
+                    </div>
+                    <div class="col-sm-3 col-md-3 col-lg-3">{{resultObj.bankName ||'未申请'}}
+                        <span ng-show="resultObj.bankName">-</span>{{resultObj.productName}}
+                    </div>
+                    <span class="col-sm-2 col-md-2 col-lg-2">{{resultObj.time | date:'yyyy-MM-dd'}}</span>
+                <span class="col-sm-2 col-md-2 col-lg-2 text-center" style="color: #838383;"
                       ng-show="resultObj.color == 1">{{resultObj.progressText}}</span>
-                <span class="width15" style="color: #F97383; text-align: center"
+                <span class="col-sm-2 col-md-2 col-lg-2 text-center" style="color: #F97383;"
                       ng-show="resultObj.color == 2">{{resultObj.progressText}}</span>
-                <a class="width15" style="text-align: right;" ng-click="updateApply(resultObj.id)">查看详情</a>
-            </li>
+                    <a class="col-sm-2 col-md-2 col-lg-2 noPadding text-right"
+                       ng-click="updateApply(resultObj.id)">查看详情</a>
+                </li>
+            </div>
         </div>
         <li class="list-group-item list-bottom">
             <button class="content-btn" ng-click="delete()">删除</button>

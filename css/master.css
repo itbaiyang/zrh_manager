@@ -196,7 +196,7 @@
 }
 
 .list-title-count {
-    width: 100%;
+    width: calc(100% - 17px);
     height: 30px;
     padding: 8px 15px 10px 8px;
     background: #f5f6fa;
