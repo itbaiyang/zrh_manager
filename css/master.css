@@ -163,7 +163,18 @@
 .list-ul {
     margin-right: 15px;
     width: 100%;
-    height: calc(100% - 260px);
+}
+
+.list-ul-height-1 {
+    height: calc(100% - 235px);
+}
+
+.list-ul-height-2 {
+    height: calc(100% - 265px);
+}
+
+.list-ul-height-3 {
+    height: calc(100% - 185px);
 }
 
 .list-ul, .list-title, .list-common, .list-user, .list-title-count, .list-user {
@@ -204,6 +215,13 @@
 
 .company-overflow {
     max-width: calc(100% - 30px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.company-overflow-2 {
+    max-width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

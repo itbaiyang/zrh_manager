@@ -1,26 +1,27 @@
 <div class="content">
     <div class="content-title width100"><span>销售管理</span></div>
-    <ul class="list-group list-ul">
+    <ul class="list-group list-ul list-ul-height-3">
         <li class="list-group-item list-title">
-            <span class="width15">用户名</span>
-            <span class="width15 text-center">职位</span>
-            <span class="width15 text-center">注册电话</span>
-            <span class="width15 text-center">拥有的项目</span>
+            <span class="width25">用户名</span>
+            <span class="width25">职位</span>
+            <span class="width15">注册电话</span>
+            <span class="width20 text-center">拥有的项目</span>
+            <span class="width15 fr" style="text-align: right">操作</span>
         </li>
         <div class="line-roll">
             <li class="list-group-item list-user" ng-repeat="resultObj in user_list">
-                <span class="width15">
+                <span class="width25">
                     <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}"
                            ng-checked="isSelected(resultObj.id)"
                            ng-click="updateSelection($event,resultObj.id)">{{resultObj.name ||'未填写'}}</span>
-                <span class="width15 text-center">{{resultObj.position}}</span>
-                <span class="width15 text-center">{{resultObj.mobile}}</span>
-                <span class="width15 text-center">{{resultObj.count ||'0'}}</span>
-                <a href="" ng-click="showDetail(resultObj.id)">查看详情</a>
+                <span class="width25">{{resultObj.position}}</span>
+                <span class="width15">{{resultObj.mobile}}</span>
+                <span class="width20 text-center">{{resultObj.count ||'0'}}</span>
+                <a class="width15 fr" style="text-align: right" ng-click="showDetail(resultObj.id)">查看详情</a>
             </li>
         </div>
         <li class="list-group-item list-bottom">
-            <button class="content-btn btn-grey" ng-click="cancel()">删除</button>
+            <button class="content-btn" ng-click="cancel()">删除</button>
         </li>
     </ul>
 </div>

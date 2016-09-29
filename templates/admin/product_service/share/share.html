@@ -2,12 +2,13 @@
     <div class="content-title width100">
         <span>分享统计</span>
     </div>
-    <ul class="list-group list-ul">
+    <ul class="list-group list-ul list-ul-height-3">
         <li class="list-group-item list-title">
             <span class="width25">用户名</span>
-            <span class="width15">注册电话</span>
+            <span class="width25">注册电话</span>
             <span class="width15">注册时间</span>
-            <span class="width15">渠道申请</span>
+            <span class="width20 text-center">渠道申请</span>
+            <span class="width15 fr" style="text-align: right">操作</span>
         </li>
         <div class="line-roll">
             <li class="list-group-item list-user" ng-repeat="resultObj in user_list">
@@ -17,16 +18,16 @@
                            ng-click="updateSelection($event,resultObj.id)">
                     {{resultObj.name || resultObj.linkman}}
                 </div>
-                <span class="width15">{{resultObj.mobile}}</span>
+                <span class="width25">{{resultObj.mobile}}</span>
                 <div class="width15">
                     <p>{{resultObj.registerTime +'000' |date:'yyyy-MM-dd'}}</p>
                 </div>
-                <span class="width15">{{resultObj.count}}</span>
-                <a class="width15" style="cursor: pointer" ng-click="showDetail(resultObj.id)">查看详情</a>
+                <span class="width25 text-center">{{resultObj.count}}</span>
+                <a class="width15 fr" style="cursor: pointer; text-align: right" ng-click="showDetail(resultObj.id)">查看详情</a>
             </li>
         </div>
         <li class="list-group-item list-bottom">
-            <button class="content-btn btn btn-grey" ng-click="remark()">标记渠道</button>
+            <button class="content-btn" ng-click="remark()">标记渠道</button>
             <span>共有{{page.totalCount ||'0'}}位注册用户，每页显示{{page.pageSize || 0}}条</span>
             <ul class="pagination fr" ng-show="page.totalCount" style="margin: 0">
                 <li>

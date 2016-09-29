@@ -198,7 +198,7 @@
     width: 12%;
     min-width: 70px;
     display: inline-block;
-    text-align: center;
+    text-align: left;
 }
 .width15{
     width: 15%;
@@ -207,6 +207,12 @@
 
 .width13 {
     width: 13%;
+    display: inline-block;
+}
+
+.width18 {
+    width: 18%;
+    min-width: 70px;
     display: inline-block;
 }
 .width20{

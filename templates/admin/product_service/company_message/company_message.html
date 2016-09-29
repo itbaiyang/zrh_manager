@@ -13,12 +13,12 @@
         </button>
         <button class="fr btn-grey btn" ng-click="refresh()" type="submit"><img class="btn-greyImg"> 刷新</button>
     </div>
-    <ul class="list-group list-ul">
+    <ul class="list-group list-ul list-ul-height-1">
         <li class="list-group-item list-title">
             <span class="width25">企业名称或个人</span>
             <span class="width25">申请产品</span>
-            <span class="width15">申请时间</span>
-            <div class="btn-group width15">
+            <span class="width20">申请时间</span>
+            <div class="btn-group width15" style="text-align: center">
                 <div style="cursor: pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {{status_text ||"状态"}} <span class="caret"></span>
                 </div>
@@ -28,7 +28,7 @@
                     <li ng-click="choice()" class="list-select">全部</li>
                 </ul>
             </div>
-            <span class="width20" style="text-align: right;">操作</span>
+            <span class="width15" style="text-align: right;">操作</span>
         </li>
         <div class="line-roll">
             <li class="list-group-item list-common" ng-repeat="resultObj in result_list">
@@ -44,15 +44,15 @@
                     <img src="img/tips/channel.png" class="img-size" ng-show="resultObj.channel =='c'">
                     <img src="img/tips/zrh.png" class="img-size" ng-show="resultObj.channel =='zrh'">
                 </div>
-            <span class="width25">{{resultObj.bankName ||'未申请'}}
-                <span ng-show="resultObj.bankName">-</span>{{resultObj.productName}}
-            </span>
-                <span class="width15">{{resultObj.time | date:'yyyy-MM-dd'}}</span>
-            <span class="width15" style="color: #838383"
-                  ng-show="resultObj.color == 1">{{resultObj.progressText}}</span>
-            <span class="width15" style="color: #F97383"
-                  ng-show="resultObj.color == 2">{{resultObj.progressText}}</span>
-                <a class="width20" style="text-align: right;" ng-click="updateApply(resultObj.id)">查看详情</a>
+                <div class="width25">{{resultObj.bankName ||'未申请'}}
+                    <span ng-show="resultObj.bankName">-</span>{{resultObj.productName}}
+                </div>
+                <span class="width20">{{resultObj.time | date:'yyyy-MM-dd'}}</span>
+                <span class="width15" style="color: #838383;text-align: center"
+                      ng-show="resultObj.color == 1">{{resultObj.progressText}}</span>
+                <span class="width15" style="color: #F97383; text-align: center"
+                      ng-show="resultObj.color == 2">{{resultObj.progressText}}</span>
+                <a class="width15" style="text-align: right;" ng-click="updateApply(resultObj.id)">查看详情</a>
             </li>
         </div>
         <li class="list-group-item list-bottom">

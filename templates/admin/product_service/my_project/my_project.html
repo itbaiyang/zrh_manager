@@ -9,7 +9,7 @@
         </div>
         <button class="btn btn-grey fr" ng-click="refresh()" type="submit"><img class="btn-greyImg"> 刷新</button>
     </div>
-    <ul class="list-group list-ul">
+    <ul class="list-group list-ul list-ul-height-2">
         <li class="list-group-item list-title">
             <span class="width15">企业名称或个人</span>
             <span class="width13">申请产品</span>
@@ -32,8 +32,8 @@
             <span class="width11">预计时间</span>
             <span class="width11">服务费（%）</span>
             <span class="width11">融资额（万）</span>
-            <span class="width11">年销售额（万）</span>
-            <span class="width8">项目来源</span>
+            <span class="width8 fr">项目来源</span>
+            <span class="width11 fr">年销售额（万）</span>
         </li>
         <li class="list-title-count">
                 <span class="width15"
@@ -44,19 +44,21 @@
             <span class="width11"></span>
             <span class="width11">{{count.fee/100}}万</span>
             <span class="width11">{{count.loanValue}}万</span>
-            <span class="width11">{{count.continual}}</span>
-            <span class="width8"></span>
+            <span class="width8 fr"></span>
+            <span class="width11 fr">{{count.continual}}</span>
         </li>
         <div class="line-roll">
             <li class="list-group-item list-common" ng-repeat="resultObj in result_list">
-                 <span class="width15">
-            <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}"
-                   ng-checked="isSelected(resultObj.id)"
-                   ng-click="updateSelection($event,resultObj.id)">
-                    <a ng-click="showDetail(resultObj.id)">
-                        {{resultObj.companyName || resultObj.linkman}}
-                    </a>
-                </span>
+                <div class="width15">
+                    <p class="company-overflow-2 fl">
+                        <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}"
+                               ng-checked="isSelected(resultObj.id)"
+                               ng-click="updateSelection($event,resultObj.id)">
+                        <a ng-click="showDetail(resultObj.id)">
+                            {{resultObj.companyName || resultObj.linkman}}
+                        </a>
+                    </p>
+                </div>
                 <span class="width13"
                       ng-show="resultObj.productName">{{resultObj.bankName}}-{{resultObj.productName}}</span>
                 <span class="width13" ng-hide="resultObj.productName">无</span>
@@ -69,19 +71,19 @@
                 <span class="width11">{{resultObj.days||"无"}}</span>
                 <span class="width11">{{resultObj.fee||"无"}}</span>
                 <span class="width11">{{resultObj.loanValue||"无"}}</span>
-                <span class="width11">{{resultObj.continual||"无"}}</span>
-                    <span class="width8">{{resultObj.createUserName||"无"}}
-                        <img src="img/tips/tel.png" class="img-size" ng-show="resultObj.channel =='tel'">
-                        <img src="img/tips/bankMan.png" class="img-size" ng-show="resultObj.channel =='a'">
-                        <img src="img/tips/manager.png" class="img-size" ng-show="resultObj.channel =='zrh_manager'">
-                        <img src="img/tips/channel.png" class="img-size" ng-show="resultObj.channel =='c'">
-                        <img src="img/tips/zrh.png" class="img-size" ng-show="resultObj.channel =='zrh'">
-                    </span>
+                <span class="width8 fr">{{resultObj.createUserName||"无"}}
+                    <img src="img/tips/tel.png" class="img-size" ng-show="resultObj.channel =='tel'">
+                    <img src="img/tips/bankMan.png" class="img-size" ng-show="resultObj.channel =='a'">
+                    <img src="img/tips/manager.png" class="img-size" ng-show="resultObj.channel =='zrh_manager'">
+                    <img src="img/tips/channel.png" class="img-size" ng-show="resultObj.channel =='c'">
+                    <img src="img/tips/zrh.png" class="img-size" ng-show="resultObj.channel =='zrh'">
+                </span>
+                <span class="width11 fr">{{resultObj.continual||"无"}}</span>
             </li>
         </div>
         <li class="list-group-item list-bottom">
             <div class="btn-group" style="position: relative">
-                <button type="button" ng-click="show_cancel()" class="btn btn-grey fr"
+                <button type="button" ng-click="show_cancel()" class="content-btn"
                         id="products">放弃项目
                 </button>
                 <div class="account-p-give"
