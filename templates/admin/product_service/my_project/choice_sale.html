@@ -1,14 +1,14 @@
 <div class="content">
-    <div class="content-title width100"><span>选销售职员</span>
+    <div class="content-title"><span>选销售职员</span>
         <div class="fr">
             <button class="btn btn-grey" ng-click="backProjectDetail()">返回</button>
             <button class="btn btn-blue margin-left15" ng-click="submit()">确定</button>
         </div>
     </div>
-    <ul class="list-group list-ul">
-        <li class="list-group-item list-user">
+    <ul class="list-group list-ul-sale">
+        <li class="list-group-item list-user" style="border-top:1px solid #cccccc;margin-top: 0">
             <input type="radio" ng-value="" name="inlineRadioOptions" ng-model="$parent.sale_id"
-                   style="margin-right: 10px">
+                   style="margin-right: 10px;">
             无
         </li>
         <li class="list-group-item list-user" ng-repeat="resultObj in user_list track by $index">

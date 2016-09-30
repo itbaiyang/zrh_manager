@@ -347,34 +347,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
-        // .state("admin.user_list.sale_apply_list.detail", {
-        //     url: '/detail',
-        //     views: {
-        //         'contains@admin': {
-        //             templateUrl: templates_root + 'manager/detail.html',
-        //             controller: 'SaleApplyListCtrl'
-        //         }
-        //     }
-        // })
-        
-        .state('admin.statistics', {
-            url: '/statistics',
-            views: {
-                'contains@admin': {
-                    templateUrl: templates_root + 'admin/statistics/share/statistics.html',
-                    // controller:'StatisticsCtrl'
-                }
-            }
-        })
-        .state('admin.statistics.person', {
-            url: '/person',
-            views: {
-                'contains@admin': {
-                    templateUrl: templates_root + 'admin/statistics/share/person.html',
-                    // controller:'PersonCtrl'
-                }
-            }
-        })
+
         .state('admin.channel', {
             url: '/channel',
             views: {

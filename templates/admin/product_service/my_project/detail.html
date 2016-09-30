@@ -1,11 +1,11 @@
 <div class="content-no-side">
-    <div class="content-title" style="">
+    <div class="content-title">
         <span>企业详情</span>
         <div class="fr" ng-hide="showBtn == 1 || readonly == true">
             <button class="btn btn-grey fr" ng-click="editApply(id)">修改信息</button>
-            <button ng-show="isAllot" style="margin-left:15px" class="btn btn-grey fr">已经递交</button>
+            <button ng-show="isAllot" class="btn-grey margin-left15 fr">已经递交</button>
             <div ng-hide="isAllot" class="btn-group noPadding fr">
-                <button style="margin-left:15px" class="btn btn-blue" type="button" ng-click="distribute(id)">递交资料
+                <button class="btn-blue margin-left15" type="button" ng-click="distribute(id)">递交资料
                 </button>
             </div>
             <button class="btn-grey" ng-click="reBackFromDetails()">返回</button>
@@ -25,21 +25,21 @@
             <button class="btn-grey" ng-click="apply(id)">我要处理</button>
             <button class="btn btn-grey fr" ng-click="reBackFromDetails()">返回</button>
         </div>
-        <div class="fr" ng-show="readonly == true" style="margin: 10px">
+        <div class="fr" ng-show="readonly == true">
             <button class="btn btn-grey fr" ng-click="reBackFromDetails()">返回</button>
         </div>
     </div>
-    <div class="">
-        <div class="clear message-panel">
-            <div class="fl" style="width: 30%">
+    <div>
+        <div class="message-panel clear">
+            <div class="col-sm-4 col-md-4 col-lg-4">
                 <div class="detailStyle" ng-show="bankName">
                     <span>{{bankName}}</span>
                     <span>{{productName}}</span>
-            </div>
-                <div class="detailStyle" ng-show="basic.linkmanName">
+                </div>
+                <div class="detailStyle noPadding" ng-show="basic.linkmanName">
                     <span>{{basic.linkmanName}}</span>
-            </div>
-                <div class="detailStyle" ng-show="basic.linkmanMobile">
+                </div>
+                <div class="detailStyle noPadding" ng-show="basic.linkmanMobile">
                     <span>{{basic.linkmanMobile}}</span>
                 </div>
                 <div class="detailStyle" ng-show="remark">
@@ -47,143 +47,146 @@
                     <div>{{remark}}</div>
                 </div>
             </div>
-            <div class="fl" style="margin-top: 10px;width: 30%">
-                <p>
-                    <span style="color: red">{{progressText||'未申请'}}</span>&nbsp;&nbsp;<span
-                        ng-show="days >= 0 && status !=4 && status !=0"
-                        class="fr">预计：{{days}}天</span>
-            </p>
-                <div class="progress" style="height: 6px">
-                    <div class="progress-bar progress-bar-success" style="width:{{jindu}}%;">
-                    <span class="sr-only"></span>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <p style="margin-top: 10px;">
+                    <span style="color: red">{{progressText||'未申请'}}</span>&nbsp;&nbsp;
+                    <span ng-show="days >= 0 && status !=4 && status !=0" class="fr">预计：{{days}}天</span>
+                </p>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-after" style="width:{{jindu}}%;">
+                        <span class="sr-only"></span>
+                    </div>
                 </div>
             </div>
-        </div>
-            <div class="fr" style="margin-top: 5px;text-align: right" ng-hide="type ==2">
+            <div class="col-sm-4 col-md-4 col-lg-4 text-right" ng-hide="type ==2">
                 <div class="detailStyle">
                     <span ng-show="basic.loanValue">融资额：{{basic.loanValue}}万</span>
                     <span ng-hide="basic.loanValue">请填写融资额</span>
-                    <a class="" style="cursor: pointer" ng-show="basic.loanValue" ng-click="add_loan(1)">修改</a>
-                    <a class="" style="cursor: pointer" ng-hide="basic.loanValue" ng-click="add_loan(2)">填写</a>
+                    <a class="list-a-point" ng-show="basic.loanValue" ng-click="add_loan(1)">修改</a>
+                    <a class="list-a-point" ng-hide="basic.loanValue" ng-click="add_loan(2)">填写</a>
                 </div>
-                <div class="detailStyle" style="margin-top: 5px;text-align: right">
+                <div class="detailStyle text-right">
                     <span ng-show="basic.fee">服务费：{{basic.fee}}%</span>
                     <span ng-hide="basic.fee">请填写服务费 </span>
-                    <a class="" style="cursor: pointer" ng-show="basic.fee" ng-click="add_fee(3)">修改</a>
-                    <a class="" style="cursor: pointer" ng-hide="basic.fee" ng-click="add_fee(4)">填写</a>
+                    <a class="list-a-point" ng-show="basic.fee" ng-click="add_fee(3)">修改</a>
+                    <a class="list-a-point" ng-hide="basic.fee" ng-click="add_fee(4)">填写</a>
                 </div>
             </div>
             <div class="add-tips add-loan">
-                <div class="form-group">
-                    <label for="loan" class="textEnd">融资额：</label>
-                    <div style="display: inline-block;width: 200px">
-                        <input type="text" class="form-control" style="width: 200px" id="loan"
-                               placeholder="融资额(只写数字，默认“万”)"
-                               ng-model="loanValue">
+                <div class="form-group" style="height: 35px">
+                    <label for="loan" class="col-sm-3 col-md-3 col-lg-3 noPadding textEnd">融资额：</label>
+                    <div class="col-sm-9 col-md-9 col-lg-9 noPadding">
+                        <input type="text" class="form-control col-sm-8 col-md-8 col-lg-8" id="loan"
+                               placeholder="融资额(只写数字，默认“万”)" ng-model="loanValue">
                     </div>
                 </div>
-                <button ng-click="update_loan()" class="btn-blue" style="margin: 0 0 0 140px;">确定</button>
-                <button ng-click="cancel_add()" class="btn-grey">取消</button>
+                <button ng-click="cancel_add()" class="btn-grey fr">取消</button>
+                <button ng-click="update_loan()" class="btn-blue fr">确定</button>
             </div>
             <div class="add-tips add-fee">
-                <div class="form-group">
-                    <label for="fee" class="textEnd">服务费：</label>
-                    <div style="display: inline-block;width: 200px">
-                        <input type="text" class="form-control" style="width: 200px" id="fee"
-                               placeholder="服务费（只写数字，默认%）"
-                               ng-model="fee">
+                <div class="form-group" style="height: 35px">
+                    <label for="fee" class="col-sm-3 col-md-3 col-lg-3 noPadding textEnd">服务费：</label>
+                    <div class="col-sm-9 col-md-9 col-lg-9 noPadding">
+                        <input type="text" class="form-control col-sm-8 col-md-8 col-lg-8" id="fee"
+                               placeholder="服务费（只写数字，默认%）" ng-model="fee">
+                    </div>
                 </div>
+                <button ng-click="cancel_add()" class="btn-grey fr">取消</button>
+                <button ng-click="update_fee()" class="btn-blue fr">确定</button>
             </div>
-                <button ng-click="update_fee()" class="btn-blue" style="margin: 0 0 0 140px;">确定</button>
-                <button ng-click="cancel_add()" class="btn-grey">取消</button>
         </div>
-        </div>
-        <div class="clear">
-            <div class="fl"
-                 style="width: 50%;height: 284px;background: #f6f7fd;padding-top: 20px;border-left: 1px solid #cccccc">
-                <div style="height: 214px;overflow: auto;border-bottom: 1px solid #cccccc">
-                    <div style="padding-left: 30px;height: 70px" ng-repeat="message in message_list | limitTo:3">
-                        <div class="fl" style="height: 30px;width: 30px">
-                            <img style="height: 30px;width: 30px" src="img/recommendl.png" alt="">
+        <div class="content-message clear">
+            <div class="col-sm-6 col-md-6 col-lg-6 message-board">
+                <div class="message-board-history">
+                    <div class="message-board-items" ng-repeat="message in message_list | limitTo:3">
+                        <div class="noPadding col-sm-1 col-md-1 col-lg-1">
+                            <img class="message-img-box" src="img/recommendl.png" alt="">
                         </div>
-                        <div class="fl" style="padding-left: 5px;width: calc(100% - 30px)">
+                        <div class="col-ms-11 col-md-11 col-lg-11 noPadding">
                             <p><a href="">{{message.userName}}</a></p>
                             <p>{{message.content}}</p>
-                            <p>{{message.createTime | date:'yyyy.MM.dd HH:
-                                MM'}}&nbsp;&nbsp;&nbsp;{{message.statusDesc}}</p>
+                            <p>{{message.createTime | date:'yyyy.MM.dd
+                                HH:MM'}}&nbsp;&nbsp;&nbsp;{{message.statusDesc}}</p>
                         </div>
                     </div>
                 </div>
-                <a href="" style="padding-left: 30px;position: absolute;top: 420px;" ng-click="messages(id)">查看更多留言</a>
+                <p style="margin-top: 15px">
+                    <a class="list-a-link" ng-click="messages(id)">查看更多留言</a>
+                </p>
             </div>
-            <div class="fl" style="width: 50%;height: 284px;background: #eef0fb;padding-top: 20px">
-                <textarea class="" style="width: calc(100% - 30px);height: 196px;margin-left: 15px;font-size: 16px"
-                          placeholder="请在此处输入留言内容"
-                          ng-model="content"></textarea>
-                <p style="text-align: right;padding-right: 15px">
+            <div class="col-sm-6 col-md-6 col-lg-6 message-write">
+                <textarea class="col-sm-12 col-md-12 col-lg-12 message-textarea" placeholder="请在此处输入留言内容"
+                          ng-model="content">
+                </textarea>
+                <p class="text-right">
                     <button ng-click="remark_submit()">点击发布</button>
                 </p>
             </div>
         </div>
         <p class="create-title">基本内容</p>
-        <div class="detailStyle" ng-show="basic.company_name">
-            <p class="detailStyleP1 noPadding">企业全称：</p>
-            <div>{{basic.company_name}}</div>
+        <div class="detail-style row" ng-show="basic.company_name">
+            <p class="col-sm-2 col-md-2 col-lg-6-2 textEnd">企业全称：</p>
+            <div class="col-sm-10 col-md-10 col-lg-10">{{basic.company_name}}</div>
         </div>
-        <div class="detailStyle" ng-show="basic.business_type">
-            <p class="detailStyleP1 noPadding">企业类型：</p>
-            <div>{{basic.business_type}}</div>
+        <div class="detail-style row" ng-show="basic.business_type">
+            <p class="col-sm-2 col-md-2 col-lg-2 textEnd">企业类型：</p>
+            <div class="col-sm-10 col-md-10 col-lg-10">{{basic.business_type}}</div>
         </div>
-        <div class="detailStyle" ng-show="basic.legal_representative">
-            <p class="detailStyleP1 noPadding">企业法人：</p>
-            <div>{{basic.legal_representative}}</div>
+        <div class="detail-style row" ng-show="basic.legal_representative">
+            <p class="col-sm-2 col-md-2 col-lg-2 textEnd">企业法人：</p>
+            <div class="col-sm-10 col-md-10 col-lg-10">{{basic.legal_representative}}</div>
         </div>
-        <div class="detailStyle" ng-show="basic.register_date">
-            <p class="detailStyleP1 noPadding">成立时间：</p>
-            <div>{{basic.register_date}}</div>
+        <div class="detail-style row" ng-show="basic.register_date">
+            <p class="col-sm-2 col-md-2 col-lg-2 textEnd">成立时间：</p>
+            <div class="col-sm-10 col-md-10 col-lg-10">{{basic.register_date}}</div>
         </div>
-        <div class="detailStyle" ng-show="basic.business_address">
-            <p class="detailStyleP1 noPadding">注册地址：</p>
-            <div>{{basic.business_address}}</div>
+        <div class="detail-style row" ng-show="basic.business_address">
+            <p class="col-sm-2 col-md-2 col-lg-2 textEnd">注册地址：</p>
+            <div class="col-sm-10 col-md-10 col-lg-10">{{basic.business_address}}</div>
         </div>
-        <div class="detailStyle" ng-show="basic.officeAddress">
-            <p class="detailStyleP1 noPadding">办公地址：</p>
-            <div>{{basic.officeAddress}}</div>
+        <div class="detail-style row" ng-show="basic.officeAddress">
+            <p class="col-sm-2 col-md-2 col-lg-2 textEnd">办公地址：</p>
+            <div class="col-sm-10 col-md-10 col-lg-10">{{basic.officeAddress}}</div>
         </div>
-        <div class="detailStyle" ng-show="basic.registered_capital">
-            <p class="detailStyleP1 noPadding">注册资本：</p>
-            <div>{{basic.registered_capital}}万</div>
+        <div class="detail-style row" ng-show="basic.registered_capital">
+            <p class="col-sm-2 col-md-2 col-lg-2 textEnd">注册资本：</p>
+            <div class="col-sm-10 col-md-10 col-lg-10">{{basic.registered_capital}}万</div>
         </div>
-        <div class="detailStyle" ng-show="basic.item_category">
-            <p class="detailStyleP1 noPadding">所属行业：</p>
-            <div>{{basic.item_category}}</div>
+        <div class="detail-style row" ng-show="basic.item_category">
+            <p class="col-sm-2 col-md-2 col-lg-2 textEnd">所属行业：</p>
+            <div class="col-sm-10 col-md-10 col-lg-10">{{basic.item_category}}</div>
         </div>
-        <div class="detailStyle" ng-show="basic.business_scope">
-            <p class="detailStyleP1 noPadding">经营范围：</p>
-            <div>{{basic.business_scope}}</div>
+        <div class="detail-style row" ng-show="basic.business_scope">
+            <p class="col-sm-2 col-md-2 col-lg-2 textEnd">经营范围：</p>
+            <div class="col-sm-10 col-md-10 col-lg-10">{{basic.business_scope}}</div>
         </div>
-        <div class="detailStyle" ng-show="registerLinkmanMobile">
-            <p class="detailStyleP1 noPadding">注册电话：</p>
-            <div>{{registerLinkmanName}}</div>
-            <div style="padding-left: 90px;margin-top: -10px">{{registerLinkmanMobile}}</div>
+        <div class="detail-style row" ng-show="registerLinkmanMobile">
+            <p class="col-sm-2 col-md-2 col-lg-2 textEnd">注册电话：</p>
+            <p class="col-sm-10 col-md-10 col-lg-10">{{registerLinkmanName}}</p>
+            <p class="col-sm-10 col-md-10 col-lg-10 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+                {{registerLinkmanMobile}}</p>
         </div>
-        <div class="detailStyle" ng-show="basic.linkmanMobile">
-            <p class="detailStyleP1 noPadding">联系电话：</p>
-            <div>{{basic.linkmanName}}</div>
-            <div style="padding-left: 90px;margin-top: -10px">{{basic.linkmanMobile}}</div>
+        <div class="detail-style row" ng-show="basic.linkmanMobile">
+            <p class="col-sm-2 col-md-2 col-lg-2 textEnd">联系电话：</p>
+            <p class="col-sm-10 col-md-10 col-lg-10">{{basic.linkmanName}}</p>
+            <div class="col-sm-10 col-md-10 col-lg-10 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+                {{basic.linkmanMobile}}
+            </div>
         </div>
-        <div class="detailStyle" ng-show="basic.continual">
-            <p class="detailStyleP1 noPadding">年销售量：</p>
-            <div>{{basic.continual}}</div>
+        <div class="detail-style row" ng-show="basic.continual">
+            <p class="col-sm-2 col-md-2 col-lg-2 textEnd">年销售量：</p>
+            <div class="col-sm-10 col-md-10 col-lg-10">{{basic.continual}}</div>
         </div>
-        <p class="create-title">其他类型</p>
-        <div class="detailStyle" ng-repeat="template in model_list">
-            <p class="detailStyleP1 noPadding">{{template.title}}:</p>
-            <div ng-show="template.templateType == 3">
-                <img class="applyDetailImg" ng-src="{{list}}" ng-repeat="list in template.imgList">
+        <p class="create-title" ng-show="model_list">其他类型</p>
+        <div class="detail-style row" ng-repeat="template in model_list">
+            <p class="col-sm-2 col-md-2 col-lg-2 textEnd">{{template.title}}:</p>
+            <div class="col-sm-10 col-md-10 col-lg-10"
+                 ng-hide="template.templateType == 3">{{template.content}}
+            </div>
+            <div ng-show="template.templateType == 3" class="col-sm-10 col-md-10 col-lg-10">
+                <img class="apply-detail-img" ng-src="{{list}}" ng-repeat="list in template.imgList">
                 <div>{{template.content}}</div>
             </div>
-            <div ng-hide="template.templateType == 3">{{template.content}}</div>
         </div>
     </div>
 </div>

@@ -8,30 +8,29 @@
     </div>
     <form class="form-horizontal">
         <div class="form-group">
-            <label for="bankname" class="width20 textEnd">银行名称：</label>
-            <div class="btn-group width35">
-                <button type="button" class="btn-input" style="width: 100%" id="bankname" data-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false">
+            <label for="bankname" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 textEnd">银行名称：</label>
+            <div class="btn-group col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <button type="button" class="btn-input col-xs-12 col-sm-12 col-md-12 col-lg-12"
+                        id="bankname" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {{bankName ||"选择银行"}}
                 </button>
-                <ul class="dropdown-menu btn-drop" style="width: 35%">
+                <ul class="dropdown-menu btn-drop col-xs-11 col-sm-11 col-md-11 col-lg-11">
                     <li class="btn-dropDetail" ng-click="choiceBank(bank.id,bank.name)" ng-repeat="bank in bank_list">
                         {{bank.name}}
                     </li>
                 </ul>
             </div>
         </div>
-
         <div class="form-group">
-            <label for="bankMan" class="width20 textEnd">银行职员：</label>
-            <div class="btn-group width35">
-                <button type="button" class="btn-input" style="width: 100%" id="bankMan" data-toggle="dropdown"
+            <label for="bankMan" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 textEnd">银行职员：</label>
+            <div class="btn-group col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <button type="button" class="btn-input col-xs-12 col-sm-12 col-md-12 col-lg-12" id="bankMan"
+                        data-toggle="dropdown"
                         aria-haspopup="true"
                         aria-expanded="false">
                     {{bankManName ||"选择银行职员"}}
                 </button>
-                <ul class="dropdown-menu btn-drop" style="width: 35%">
+                <ul class="dropdown-menu btn-drop col-xs-11 col-sm-11 col-md-11 col-lg-11">
                     <li class="btn-dropDetail" ng-click="choiceBankMan(bankMan.id,bankMan.name)"
                         ng-repeat="bankMan in bank_man_list">
                         {{bankMan.name}}

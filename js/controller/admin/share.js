@@ -68,6 +68,7 @@ shareCtrl.controller('ShareCtrl', function ($http, $scope, $state, $rootScope, $
         $scope.wd = $scope.search_text;
         $scope.list(1, 20);
     };
+
     $scope.remark = function () {
         var m_params = {
             "userId": $rootScope.login_user.userId,
@@ -99,8 +100,8 @@ shareCtrl.controller('ShareCtrl', function ($http, $scope, $state, $rootScope, $
 });
 
 shareCtrl.controller('ShareDetailCtrl', function ($http, $scope, $state, $rootScope, $stateParams, $location, $routeParams) {
+    /*申请列表*/
     $scope.list = function (pageNo, pageSize) {
-        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -160,15 +161,16 @@ shareCtrl.controller('ShareDetailCtrl', function ($http, $scope, $state, $rootSc
 
         })
     };
-
     $scope.list(1, 20);
+
+    /*分页*/
     $scope.changePage = function (page) {
         $scope.pageNo1 = page;
-        // console.log($scope.pageNo1);
         $scope.$watch($scope.pageNo1, function () {
             $scope.list($scope.pageNo1, 20);
         });
     };
+
     /*复选框*/
     $scope.selected = [];
     $scope.ids = [];

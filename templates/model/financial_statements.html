@@ -1,28 +1,23 @@
-<div class="form-group" style="margin-bottom: 0;padding-left: 15px">
-    <div class="width80">
+<div class="form-group">
+    <div class="col-sm-8 col-md-8 col-lg-8 col-sm-offset-2 col-md-offset-2 col-lg-offset-2 noPadding">
         <input type="text" class="form-control" style="border-radius: 0" placeholder="模板名称"
                ng-model="model.title">
-    </div>
-    <!--<button ng-click="delete(model.id_model)" class=" btn btnDelete">-</button>-->
-</div>
-<div class="form-group" style="margin-bottom: 0;padding-left: 15px">
-    <div class="width80" style="padding:0 10px; border-left: 1px solid #cccccc;border-right: 1px solid #cccccc">
-        <div class="img-list fl" ng-repeat="imgList in model.imgList track by $index"
-             ng-click="removeImgList(model.imgList,$index)">
-            <img ng-src="{{imgList}}" alt="" style="border: 0">
-            <div class="redPoint">
-                <div class="redPointInner"></div>
+        <div class="" style="padding:0 10px; border-left: 1px solid #cccccc;border-right: 1px solid #cccccc">
+            <div class="img-list fl" ng-repeat="imgList in model.imgList track by $index"
+                 ng-click="removeImgList(model.imgList,$index)">
+                <img ng-src="{{imgList}}" alt="" style="border: 0">
+                <div class="redPoint">
+                    <div class="redPointInner"></div>
+                </div>
+            </div>
+            <div id="{{model.img_model_div}}" class="img-list">
+                <img id="{{model.img_model_id}}" ng-mouseover="get_id(model.id_model)" src="img/upload1.png"
+                     class="loadAdd fl">
             </div>
         </div>
-        <div id="{{model.img_model_div}}" class="img-list">
-            <img id="{{model.img_model_id}}" ng-mouseover="get_id(model.id_model)" src="img/upload1.png"
-                 class="loadAdd fl">
-        </div>
-    </div>
-</div>
-<div class="form-group" style="padding-left: 15px">
-    <div class="width80" style="padding-right: 0">
+        <div class="" style="padding-right: 0">
         <textarea type="text" class="form-control" style="border-radius: 0" placeholder="图片描述"
                   ng-model="model.content"></textarea>
+        </div>
     </div>
 </div>

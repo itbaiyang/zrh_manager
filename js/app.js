@@ -1,5 +1,5 @@
-api_uri = "http://test.zhironghao.com/api/";
-// api_uri = "http://api.supeiyunjing.com/";
+// api_uri = "http://test.zhironghao.com/api/";
+api_uri = "http://api.supeiyunjing.com/";
 // api_uri = "http://172.17.2.13:8080/api/";
 // api_uri = "http://172.16.97.229:8080/api/";
 var templates_root = 'templates/';
@@ -78,8 +78,6 @@ app.run(function ($location, $rootScope, $http) {
             var present_route = toState.name; //获取当前路由
             if (present_route.indexOf('admin.my_project.detail') > -1) {
                 var from_route = fromState.name;
-                // console.log(fromState.name);
-                // console.log(fromState);
                 if (from_route != "" && from_route.indexOf('admin.my_project.edit_apply') <= -1
                     && from_route.indexOf('admin.my_project.change_register') <= -1
                     && from_route.indexOf('admin.my_project.change_bank') <= -1

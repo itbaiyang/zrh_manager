@@ -102,6 +102,11 @@ channelCtrl.controller('ChannelCtrl', function ($http, $scope, $state, $rootScop
     $scope.showDetail = function (id) {
         $location.path('/admin/channel/detail/' + id);
     };
+
+    /*添加渠道人员*/
+    $scope.add_channel_man = function () {
+        $location.path('/admin/channel/create');
+    };
 });
 
 channelCtrl.controller('CreateCtrl', function ($http, $scope, $state, $rootScope, $location, $routeParams) {

@@ -1,24 +1,21 @@
-<div class="content2 row" style="z-index: 102;position: relative">
-    <p class="content-title" style="margin-left: 50px">
+<div class="content-no-side">
+    <p class="content-title">
         <span>添加渠道人员</span>
-        <button style="margin-left:10px" class="btn btn-blue" type="submit" ng-click="submit()">确定</button>
-        <button style="margin-left:10px" class="btn btn-blue" ui-sref="admin.channel" style="margin-right: 100px">返回
-        </button>
+        <button class="btn-blue margin-left15 fr" type="submit" ng-click="submit()">确定</button>
+        <button class="btn-grey fr" ui-sref="admin.channel">返回</button>
     </p>
-    <div class="row" style="min-width: 950px">
-        <form class="form-horizontal">
+    <form class="form-horizontal">
             <div class="form-group">
-                <label for="username" class="col-sm-2 control-label">用户名</label>
-                <div class="col-sm-4">
+                <label for="username" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">用户名：</label>
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                     <input type="text" class="form-control" id="username" placeholder="用户名" ng-model="username">
                 </div>
             </div>
             <div class="form-group">
-                <label for="phone" class="col-sm-2 control-label">手机号</label>
-                <div class="col-sm-4">
+                <label for="phone" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">手机号：</label>
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                     <input type="text" class="form-control" id="phone" placeholder="手机号" ng-model="phone">
                 </div>
             </div>
         </form>
-    </div>
 </div>
