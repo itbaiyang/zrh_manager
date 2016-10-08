@@ -374,11 +374,11 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
 
     /*跳转页面*/
     $scope.editApply = function (id) {
-        if ($scope.type == 2) {
-            alert('个人产品暂不支持修改信息');
-        } else {
+        // if ($scope.type == 2) {
+        //     alert('个人产品暂不支持修改信息');
+        // } else {
             $location.path('/admin/my_project/edit_apply/' + id);
-        }
+        // }
 
     };  //编辑页面
     $scope.apply_help = function (id) {
@@ -579,7 +579,9 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
             method: "GET",
             params: m_params
         }).success(function (d) {
+            console.log(d);
             $scope.basic = d.result.baseInfo;
+            $scope.type = d.result.type;
             $scope.registerLinkmanName = d.result.registerLinkmanName;
             $scope.registerLinkmanMobile = d.result.registerLinkmanMobile;
             $scope.model_list = d.result.templateList;
@@ -1197,35 +1199,66 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
 
     /*保存信息*/
     $scope.submitMessage = function () {
-        var m_params = {
-            "applyId": $stateParams.id,
-            "id": $scope.basic.id,
-            "userId": $rootScope.login_user.userId,
-            "token": $rootScope.login_user.token,
-            "company_name": $scope.basic.company_name,
-            "legal_representative": $scope.basic.legal_representative,
-            "register_date": $scope.basic.register_date,
-            "registered_capital": $scope.basic.registered_capital,
-            "officeAddress": $scope.basic.officeAddress,
-            "business_address": $scope.basic.business_address,
-            "item_category": $scope.basic.item_category,
-            "business_type": $scope.basic.business_type,
-            "business_scope": $scope.basic.business_scope,
-            "linkmanName": $scope.basic.linkmanName,
-            "linkmanMobile": $scope.basic.linkmanMobile,
-            "continual": $scope.basic.continual,
-        };
-        if (!m_params.officeAddress) {
-            // alert("请输入办公地点");
-        } else if (!m_params.linkmanMobile) {
-            // alert("请输入联系人电话");
+        if ($scope.type == 1) {
+            var m_params = {
+                "applyId": $stateParams.id,
+                "id": $scope.basic.id,
+                "userId": $rootScope.login_user.userId,
+                "token": $rootScope.login_user.token,
+                "company_name": $scope.basic.company_name,
+                "legal_representative": $scope.basic.legal_representative,
+                "register_date": $scope.basic.register_date,
+                "registered_capital": $scope.basic.registered_capital,
+                "officeAddress": $scope.basic.officeAddress,
+                "business_address": $scope.basic.business_address,
+                "item_category": $scope.basic.item_category,
+                "business_type": $scope.basic.business_type,
+                "business_scope": $scope.basic.business_scope,
+                "linkmanName": $scope.basic.linkmanName,
+                "linkmanMobile": $scope.basic.linkmanMobile,
+                "continual": $scope.basic.continual,
+            };
+            if (!m_params.officeAddress) {
+                // alert("请输入办公地点");
+            } else if (!m_params.linkmanMobile) {
+                // alert("请输入联系人电话");
+            } else {
+                $.ajax({
+                    type: 'POST',
+                    url: api_uri + "inforTemplate/saveBase",
+                    data: m_params,
+                    traditional: true,
+                    success: function (data, textStatus, jqXHR) {
+                        console.log(data);
+                        if (data.returnCode == 0) {
+                            $scope.id_basic = data.result;
+                            $scope.modelMessage();
+                            //$scope.$apply();
+                        }
+                        else {
+                        }
+                    },
+                    dataType: 'json',
+                });
+            }
         } else {
+            var m_params_person = {
+                "applyId": $stateParams.id,
+                "id": $scope.basic.id,
+                "userId": $rootScope.login_user.userId,
+                "token": $rootScope.login_user.token,
+                "loanMan": $scope.basic.loanMan,
+                "linkmanName": $scope.basic.linkmanName,
+                "linkmanMobile": $scope.basic.linkmanMobile,
+                "continual": $scope.basic.continual,
+            };
             $.ajax({
                 type: 'POST',
                 url: api_uri + "inforTemplate/saveBase",
-                data: m_params,
+                data: m_params_person,
                 traditional: true,
                 success: function (data, textStatus, jqXHR) {
+                    console.log(data);
                     if (data.returnCode == 0) {
                         $scope.id_basic = data.result;
                         $scope.modelMessage();
@@ -1237,7 +1270,6 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
                 dataType: 'json',
             });
         }
-
 
     };
     $scope.modelMessage = function () {

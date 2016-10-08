@@ -61,9 +61,11 @@ topBarCtrl.controller('ContainsCtrl', function ($http, $scope, $state, $rootScop
         }).success(function (d) {
             console.log(d);
             $scope.countContain = d.result;
+            $scope.get_group_count();
         }).error(function (d) {
         });
     };
+    $scope.get_count();
     $scope.get_group_count = function () {
         var m_params = {
             "userId": $rootScope.login_user.userId,
@@ -74,7 +76,7 @@ topBarCtrl.controller('ContainsCtrl', function ($http, $scope, $state, $rootScop
             method: "GET",
             params: m_params
         }).success(function (d) {
-
+            console.log(d);
             if (d.returnCode == 0) {
                 $scope.countGroup = d.result;
             } else if (d.returnCode == 1003) {
@@ -85,6 +87,4 @@ topBarCtrl.controller('ContainsCtrl', function ($http, $scope, $state, $rootScop
         }).error(function (d) {
         });
     };
-    $scope.get_count();
-    $scope.get_group_count();
 });

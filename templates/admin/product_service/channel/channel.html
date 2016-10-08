@@ -14,7 +14,7 @@
         <div class="line-roll">
             <div class="list-out">
                 <li class="list-group-item list-user" ng-repeat="resultObj in user_list">
-                    <div class="col-sm-2 col-md-2 col-lg-2">
+                    <div class="col-sm-2 col-md-2 col-lg-2 noPadding">
                         <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}"
                                ng-checked="isSelected(resultObj.id)"
                                ng-click="updateSelection($event,resultObj.id)">

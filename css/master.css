@@ -1,3 +1,6 @@
+.contains-home {
+
+}
 .content-contain {
     margin-left: 180px;
     width: calc(100% - 180px);
@@ -244,6 +247,9 @@
     white-space: nowrap;
 }
 
+.company-overflow a, .company-overflow-2 a {
+    cursor: pointer;
+}
 .list-bottom {
     width: calc(100% - 17px);
     line-height: 36px;
@@ -423,7 +429,7 @@
     height: 100%;
 }
 
-.contentTags {
+.content-tags {
     width: 100%;
     background: #ffffff;
     height: 30px;
@@ -694,7 +700,7 @@
     border-radius: 6px;
 }
 
-.channel_best {
+.channel-best {
     display: inline-block;
     width: 16px;
     height: 16px;

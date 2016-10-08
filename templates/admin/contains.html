@@ -1,19 +1,19 @@
 <div class="content-contain">
-    <div class="contentTags">系统通知：<span style="color: #F97383">功能未开通</span></div>
+    <div class="content-tags">系统通知：<span style="color: #F97383">功能未开通</span></div>
     <div style="padding: 0 15px">
         <div class="account">
             <div class="account-detail fl" style="border-right: 2px solid #e6e7e8">
                 <img ng-src="img/upload.png">
                 <p>hi, <span style="color: #009dd0;">孟帅</span></p>
-                <div class="padding-select">
+                <p style="padding: 3px 0">
                     <img class="btn-blueImg1"><span>账户管理</span>
-                </div>
+                </p>
 
             </div>
             <div class="account-detail fl">
-                <p style="margin-top: 20px;text-align: left;text-indent:10px">本月已完成 <span>0</span>/<span>300万</span></p>
-                <p style="text-align: left;text-indent:10px">本月利润 <span>0</span>/<span>2万</span></p>
-                <p style="text-align: left;text-indent:10px">渠道 <span>{{countContain.channelUserCount || 0}}人</span></p>
+                <div class="contains-home" style="margin-top: 20px;">本月已完成 <span>0</span>/<span>300万</span></div>
+                <div class="contains-home">本月利润 <span>0</span>/<span>2万</span></div>
+                <div class="contains-home">渠道 <span>{{countContain.channelUserCount || 0}}人</span></div>
             </div>
             <div class="account-num fl">
                 <div class="date-count col-sm-4">
@@ -36,7 +36,8 @@
                         <span ng-show="countContain.totalUser >= 10000">万人</span>
                     </p>
                     <p><span style="color: #8d98d7;padding-right: 4px">企业</span>
-                        {{countContain.registerUser}}人|<span style="color: #8d98d7;padding-right: 4px">银行</span>{{countContain.bankUser
+                        {{countContain.registerUser}}人&nbsp;|&nbsp;<span
+                                style="color: #8d98d7;padding-right: 4px">银行</span>{{countContain.bankUser
                         || 0}}人
                     </p>
                 </div>
@@ -44,11 +45,10 @@
         </div>
     </div>
     <div style="padding: 0 15px">
-        <div class="account">
+        <div class="account-group">
             <div class="account-detail fl">
-                <img ng-src="img/group.png">
+                <p><img class="account-detail-img" ng-src="img/group.png"></p>
                 <p><span>团队统计</span></p>
-
             </div>
             <div class="account-num-group fl">
                 <div class="date-count col-sm-3">
