@@ -46,7 +46,6 @@ topBarCtrl.controller('SideBarCtrl', function ($http, $scope,$state, $rootScope,
 
 });
 
-
 topBarCtrl.controller('ContainsCtrl', function ($http, $scope, $state, $rootScope, $location, $timeout, $routeParams) {
 
     /*获取数据*/
