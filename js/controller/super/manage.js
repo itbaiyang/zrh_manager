@@ -240,7 +240,7 @@ manageCtrl.controller('UserUpdateCtrl', function ($http, $scope, $rootScope, $lo
                 "timestamp": $scope.timestamp,
                 "name": $scope.name,
                 "mobile": $scope.mobile,
-                "password": $scope.password_new,
+                "password": $scope.password,
                 "role": $scope.role_sale,
                 "signature": $rootScope.encryptByDES($scope.email + $scope.password + $scope.timestamp),
             };

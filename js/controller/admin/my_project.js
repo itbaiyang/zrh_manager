@@ -374,11 +374,11 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
 
     /*跳转页面*/
     $scope.editApply = function (id) {
-        // if ($scope.type == 2) {
-        //     alert('个人产品暂不支持修改信息');
-        // } else {
+        if ($scope.type == 2) {
+            alert('个人产品暂不支持修改信息');
+        } else {
             $location.path('/admin/my_project/edit_apply/' + id);
-        // }
+        }
 
     };  //编辑页面
     $scope.apply_help = function (id) {
@@ -1199,7 +1199,7 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
 
     /*保存信息*/
     $scope.submitMessage = function () {
-        if ($scope.type == 1) {
+        if ($scope.type != 2) {
             var m_params = {
                 "applyId": $stateParams.id,
                 "id": $scope.basic.id,

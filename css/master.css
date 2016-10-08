@@ -730,16 +730,15 @@
     background: #ffffff;
     padding: 15px;
     border: 1px solid #cccccc;
+    z-index: 1;
 }
 
 .add-fee {
     display: none;
-    z-index: 500;
 }
 
 .add-loan {
     display: none;
-    z-index: 500;
 }
 
 .row-roll {
