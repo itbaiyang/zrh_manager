@@ -67,7 +67,7 @@ var app = angular.module('app', [
 });
 
 
-app.run(function ($location, $rootScope, $http) {
+app.run(function ($location, $rootScope, $timeout, $http) {
 
     /*********************************** 回调区 ***************************************/
     // 页面跳转后
@@ -285,9 +285,7 @@ app.run(function ($location, $rootScope, $http) {
         }).success(function (d) {
             // console.log(d);
             if (d.returnCode == 0) {
-                $rootScope.message();
                 $rootScope.role = d.result.role;
-                // console.log($rootScope.role);
                 if ($rootScope.role == 'super') {
                     if ($rootScope.arrayParams[0] == 'super') {
                     } else {
