@@ -399,6 +399,10 @@
     padding-left: 15px;
 }
 
+.margin-left {
+    margin-left: 15px;
+}
+
 .list-bank {
     width: 100%;
     height: calc(100% - 88px);
@@ -714,8 +718,8 @@
 
 .add-tips {
     position: absolute;
-    top: 180px;
-    right: 15px;
+    top: 140px;
+    right: 30px;
     width: 300px;
     background: #ffffff;
     padding: 15px;
@@ -724,10 +728,12 @@
 
 .add-fee {
     display: none;
+    z-index: 500;
 }
 
 .add-loan {
     display: none;
+    z-index: 500;
 }
 
 .row-roll {
