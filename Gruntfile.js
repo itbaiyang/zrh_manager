@@ -25,6 +25,7 @@ module.exports = function (grunt) {
                     // 'js/controller/admin/account.js',
                     'js/controller/admin/message.js',
                     'js/app.js',
+                    'js/animation.js',
                     'js/route.js'
                 ],
 

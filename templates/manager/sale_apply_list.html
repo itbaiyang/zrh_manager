@@ -15,7 +15,7 @@
     </div>
     <li class="list-title">
         <div class="col-sm-6 col-md-6 col-lg-6 noPadding">
-            <span class="col-sm-4 col-md-4 col-lg-4">企业名称或个人</span>
+            <span class="col-sm-4 col-md-4 col-lg-4 ">企业名称或个人</span>
             <span class="col-sm-4 col-md-4 col-lg-4">申请产品</span>
             <div class="btn-group col-sm-2 col-md-2 col-lg-2 text-center">
                 <div style="cursor: pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -46,7 +46,7 @@
     <ul class="list-group list-ul list-ul-height-2">
         <li class="list-title-count">
             <div class="col-sm-6 col-md-6 col-lg-6 noPadding">
-                <span class="col-sm-4 col-md-4 col-lg-4">全部{{count.total}}</span>
+                <span class="col-sm-4 col-md-4 col-lg-4 noPadding">全部{{count.total}}</span>
             </div>
             <div class="col-sm-6 col-md-6 col-lg-6 noPadding">
                 <span class="col-sm-3 col-md-3 col-lg-3 col-sm-offset-2 col-md-offset-2 col-lg-offset-2 text-center">
@@ -60,7 +60,7 @@
             <div class="list-out">
                 <li class="list-group-item list-common" ng-repeat="resultObj in result_list">
                     <div class="col-sm-6 col-md-6 col-lg-6 noPadding">
-                        <div class="col-sm-4 col-md-4 col-lg-4">
+                        <div class="col-sm-4 col-md-4 col-lg-4 noPadding">
                             <p class="company-overflow-2 fl">
                                 <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}"
                                        ng-checked="isSelected(resultObj.id)"
