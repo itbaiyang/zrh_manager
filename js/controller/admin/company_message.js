@@ -14,7 +14,6 @@ loanApplicationCtrl.controller('LoanApplicationCtrl', function ($http, $scope, $
             "wd": $scope.wd,
             "status": $scope.status
         };
-        // console.log(m_params);
         $http({
             url: api_uri + "loanApplicationManage/pool",
             method: "GET",
@@ -29,9 +28,27 @@ loanApplicationCtrl.controller('LoanApplicationCtrl', function ($http, $scope, $
                     if (data.status == 0) {
                         data.progressText = "未申请";
                         data.color = 1;
-                    } else {
-                        data.progressText = "已申请";
+                    } else if (data.status == 1) {
+                        data.progressText = "准备中";
                         data.color = 2;
+                    } else if (data.status == 2) {
+                        data.progressText = "下户";
+                        data.color = 2;
+                    } else if (data.status == 3) {
+                        data.progressText = "审批中";
+                        data.color = 2;
+                    } else if (data.status == 4) {
+                        data.progressText = "审批通过";
+                        data.color = 2;
+                    } else if (data.status == 5) {
+                        data.progressText = "开户";
+                        data.color = 2;
+                    } else if (data.status == 6) {
+                        data.progressText = "放款";
+                        data.color = 2;
+                    } else if (data.status == 7) {
+                        data.progressText = "完成融资";
+                        data.color = 3;
                     }
                 });
             }
@@ -140,22 +157,30 @@ loanApplicationCtrl.controller('AddCompanyCtrl', function ($http, $scope, $rootS
             "linkmanMobile": $scope.basic.linkmanMobile,
             "continual": $scope.basic.continual,
         };
-        $.ajax({
-            type: 'POST',
-            url: api_uri + "inforTemplate/create",
-            data: m_params,
-            traditional: true,
-            success: function (data, textStatus, jqXHR) {
-                if (data.returnCode == 0) {
-                    $state.go("admin.company_message");
-                    $scope.$apply();
-                }
-                else {
-                    //console.log(data);
-                }
-            },
-            dataType: 'json',
-        });
+        console.log(m_params);
+        if (m_params.company_name) {
+            $.ajax({
+                type: 'POST',
+                url: api_uri + "inforTemplate/create",
+                data: m_params,
+                traditional: true,
+                success: function (data, textStatus, jqXHR) {
+                    console.log(data);
+                    if (data.returnCode == 0) {
+                        $state.go("admin.company_message");
+                        $scope.$apply();
+                    } else if (data.returnCode == 1001) {
+                        alert("该公司信息已经存在");
+                    }
+                    else {
+                        //console.log(data);
+                    }
+                },
+                dataType: 'json',
+            });
+        } else {
+            alert("公司名称必填")
+        }
 
     };
 });

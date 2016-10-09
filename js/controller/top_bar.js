@@ -35,8 +35,8 @@ topBarCtrl.controller('TopBarCtrl', function ($http, $scope, $rootScope, $locati
     };
 });
 
-topBarCtrl.controller('SideBarCtrl', function ($http, $scope,$state, $rootScope, $location, $timeout, $routeParams) {
-
+topBarCtrl.controller('SideBarCtrl', function ($http, $scope, $state, $rootScope, $location, $timeout, $routeParams) {
+    
 });
 
 topBarCtrl.controller('ContainsCtrl', function ($http, $scope, $state, $rootScope, $location, $timeout, $routeParams) {

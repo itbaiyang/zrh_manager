@@ -6,26 +6,37 @@
                 <img ng-src="img/upload.png">
                 <p>hi, <span style="color: #009dd0;">孟帅</span></p>
                 <p style="padding: 3px 0">
-                    <img class="btn-blueImg1"><span>账户管理</span>
+                    <img class="btn-blue-img"><span style="color: #3989db">账户管理</span>
                 </p>
 
             </div>
             <div class="account-detail fl">
-                <div class="contains-home" style="margin-top: 20px;">本月已完成 <span>0</span>/<span>300万</span></div>
-                <div class="contains-home">本月利润 <span>0</span>/<span>2万</span></div>
-                <div class="contains-home">渠道 <span>{{countContain.channelUserCount || 0}}人</span></div>
+                <div class="contains-home" style="margin-top: 20px;">
+                    <span style="color: #8592d4">本月已完成</span>
+                    <span style="color: #009b27">{{countContain.myLoanValue || 0}}</span>/
+                    <span>300万</span>
+                </div>
+                <div class="contains-home">
+                    <span style="color: #8592d4">本月利润</span>
+                    <span style="color: #009b27">{{countContain.fee || 0}}</span>/
+                    <span>2万</span>
+                </div>
+                <div class="contains-home">
+                    <span style="color: #8592d4">渠道</span>
+                    <span>{{countContain.channelUserCount || 0}}人</span>
+                </div>
             </div>
             <div class="account-num fl">
                 <div class="date-count col-sm-4">
-                    <p>总成交额：</p>
-                    <p><span style="font-size: 22px;padding-right: 4px">{{countContain.totalLoanValue || 0}}</span>万</p>
-                    <p><span style="color: #8d98d7;padding-right: 4px">完成融资</span>{{countContain.totalFee || 0}}万</p>
+                    <p>成功融资成交额：</p>
+                    <p><span style="font-size: 22px;padding-right: 4px">{{countContain.totalFee || 0}}</span>万</p>
+                    <p><span style="color: #8d98d7;padding-right: 4px">总成交额</span>{{countContain.totalLoanValue || 0}}万
+                    </p>
                 </div>
                 <div class="date-count col-sm-4">
                     <p>企业数据：</p>
-                    <!--<p><span style="font-size: 22px;padding-right: 4px" ng-show="countContain.totalCompany >= 10000">{{countContain.totalCompany || 0}}</span>万</p>-->
                     <p><span style="font-size: 22px;padding-right: 4px">{{countContain.totalCompany || 0}}</span>个</p>
-                    <p><span style="color: #8d98d7;padding-right: 4px">完成申请</span>{{countContain.complete || 0}}个</p>
+                    <p><span style="color: #8d98d7;padding-right: 4px">成功融资</span>{{countContain.complete || 0}}个</p>
                 </div>
                 <div class="date-count col-sm-4">
                     <p>注册用户</p>
@@ -48,21 +59,24 @@
         <div class="account-group">
             <div class="account-detail fl">
                 <p><img class="account-detail-img" ng-src="img/group.png"></p>
-                <p><span>团队统计</span></p>
+                <p><span style="color: #009b27">团队统计</span></p>
             </div>
             <div class="account-num-group fl">
                 <div class="date-count col-sm-3">
                     <p>累计成交额：</p>
-                    <p><span style="font-size: 22px;padding-right: 4px">{{countGroup.loanValue || 0}}</span>万</p>
+                    <p><span
+                            style="font-size: 22px; padding-right: 4px; color: #009b27">{{countGroup.loanValue || 0}}</span>万
+                    </p>
                 </div>
                 <div class="date-count col-sm-3">
                     <p>累计成功融资：</p>
-                    <p><span style="font-size: 22px;padding-right: 4px">{{countGroup.num || 0}}</span>个</p>
+                    <p><span style="font-size: 22px; padding-right: 4px; color: #009b27">{{countGroup.num || 0}}</span>个
+                    </p>
                 </div>
                 <div class="date-count col-sm-3">
                     <p>累计利润</p>
                     <p>
-                        <span style="font-size: 22px;padding-right: 4px">{{countGroup.fee}}</span>万
+                        <span style="font-size: 22px;padding-right: 4px; color: #009b27">{{countGroup.fee}}</span>万
                     </p>
                 </div>
             </div>

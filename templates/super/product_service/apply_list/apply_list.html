@@ -1,4 +1,4 @@
-<div class="content">
+<div class="row" ng-class="{true: 'content-open', false: 'content'}[isOpenMenu]">
     <div class="content-title"><span>企业信息列表</span></div>
     <div class="content-search">
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 noPadding">
@@ -19,7 +19,13 @@
             </div>
             <ul class="dropdown-menu fr">
                 <li ng-click="choice(0)" class="list-select">未申请</li>
-                <li ng-click="choice(1)" class="list-select">申请中</li>
+                <li ng-click="choice(1)" class="list-select">准备中</li>
+                <li ng-click="choice(2)" class="list-select">下户</li>
+                <li ng-click="choice(3)" class="list-select">审批中</li>
+                <li ng-click="choice(4)" class="list-select">审批通过</li>
+                <li ng-click="choice(5)" class="list-select">开户</li>
+                <li ng-click="choice(6)" class="list-select">放款</li>
+                <li ng-click="choice(7)" class="list-select">成功融资</li>
                 <li ng-click="choice()" class="list-select">全部</li>
             </ul>
         </div>
@@ -43,10 +49,12 @@
                     <span class="col-xs-3 col-lg-3 col-md-3">{{resultObj.bankName ||'未申请'}} <span
                             ng-show="resultObj.bankName">-</span>{{resultObj.productName}}</span>
                     <span class="col-xs-2 col-lg-2 col-md-2 text-center">{{resultObj.applyTime | date:'yyyy-MM-dd'}}</span>
-            <span class="col-xs-3 col-lg-3 col-md-3 text-right" style="color: #838383"
-                  ng-show="resultObj.color == 1">{{resultObj.progressText}}</span>
-            <span class="col-xs-3 col-lg-3 col-md-3 text-right" style="color: #F97383"
-                  ng-show="resultObj.color == 2">{{resultObj.progressText}}</span>
+                    <span class="col-xs-3 col-lg-3 col-md-3 text-right" style="color: #838383"
+                          ng-show="resultObj.color == 1">{{resultObj.progressText}}</span>
+                    <span class="col-xs-3 col-lg-3 col-md-3 text-right" style="color: #F97383"
+                          ng-show="resultObj.color == 2">{{resultObj.progressText}}</span>
+                    <span class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-right" style="color: #009B27"
+                          ng-show="resultObj.color == 3">{{resultObj.progressText}}</span>
                 </li>
             </div>
 

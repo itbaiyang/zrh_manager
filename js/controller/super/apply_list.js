@@ -25,9 +25,27 @@ applyListCtrl.controller('ApplyListCtrl', function ($http, $scope, $rootScope, $
                     if (data.status == 0) {
                         data.progressText = "未申请";
                         data.color = 1;
-                    } else {
-                        data.progressText = "申请中";
+                    } else if (data.status == 1) {
+                        data.progressText = "准备中";
                         data.color = 2;
+                    } else if (data.status == 2) {
+                        data.progressText = "下户";
+                        data.color = 2;
+                    } else if (data.status == 3) {
+                        data.progressText = "审批中";
+                        data.color = 2;
+                    } else if (data.status == 4) {
+                        data.progressText = "审批通过";
+                        data.color = 2;
+                    } else if (data.status == 5) {
+                        data.progressText = "开户";
+                        data.color = 2;
+                    } else if (data.status == 6) {
+                        data.progressText = "放款";
+                        data.color = 2;
+                    } else if (data.status == 7) {
+                        data.progressText = "完成融资";
+                        data.color = 3;
                     }
                 });
             }

@@ -118,10 +118,11 @@ app.run(function ($location, $rootScope, $timeout, $http) {
                     }
                 }
             }
+            $rootScope.isOpenMenu = true;
             var array = present_route.split(".");
             $rootScope.choiceColor = array[1];
             if (array[1] == "message") {
-                // console.log(array[1], 'baiyang');
+                $rootScope.isOpenMenu = false;
                 $rootScope.sideTwo = true;
                 $rootScope.choiceColorTwo = array[2];
             } else {
@@ -185,6 +186,13 @@ app.run(function ($location, $rootScope, $timeout, $http) {
         setTimeout(function () {
             $(elem).fadeOut(speed);
         }, 3000);
+    };
+
+    $rootScope.openMenu = function () {
+        $rootScope.isOpenMenu = true;
+    };
+    $rootScope.closeMenu = function () {
+        $rootScope.isOpenMenu = false;
     };
     /*********************************** 全局变量区 ***************************************/
 

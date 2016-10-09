@@ -1,4 +1,4 @@
-<div class="content">
+<div class="row" ng-class="{true: 'content-open', false: 'content'}[isOpenMenu]">
     <p class="content-title">
         <span>{{bankEdit || "添加新银行"}}</span>
         <button class="btn btn-blue margin-left15 fr" type="submit" ng-click="submitAdd()">确定</button>

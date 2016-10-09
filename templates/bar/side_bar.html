@@ -1,80 +1,78 @@
-<div class="sideBar fl">
-    <p class="sideBarP">|||</p>
-    <p class="sideBarP1" >产品与服务</p>
-    <ul>
-        <a class="sideBarP2" ng-class="{sideBarP2C:choiceColor =='apply_list'}" ng-show="role == 'super'"
+<div class="side-menu-1 fl" ng-class="{true: 'side-menu-big', false: 'side-menu-small'}[isOpenMenu]">
+    <p class="side-bar-title" ng-show="isOpenMenu" ng-click="closeMenu()">|||</p>
+    <p class="side-bar-title" ng-hide="isOpenMenu" ng-click="openMenu()">三</p>
+    <p class="side-bar-class">产品与服务</p>
+    <ul class="" style="width: 100%">
+        <a class="side-bar-link" ng-class="{'side-bar-select':choiceColor =='apply_list'}" ng-show="role == 'super'"
            ui-sref="super.apply_list">
-            <img class="btn-blueImg1">企业信息中心</a>
-        <a class="sideBarP2" ng-class="{sideBarP2C:choiceColor =='manage'}" ng-show="role == 'super'"
+            <img class="btn-blue-img">企业信息中心</a>
+        <a class="side-bar-link" ng-class="{'side-bar-select':choiceColor =='manage'}" ng-show="role == 'super'"
            ui-sref="super.manage">
-            <img class="btn-blueImg1">职员管理</a>
-        <a class="sideBarP2" ng-class="{sideBarP2C:choiceColor =='team'}" ng-show="role == 'super'"
+            <img class="btn-blue-img">职员管理</a>
+        <a class="side-bar-link" ng-class="{'side-bar-select':choiceColor =='team'}" ng-show="role == 'super'"
            ui-sref="super.team">
-            <img class="btn-blueImg1">团队管理</a>
-        <a class="sideBarP2" ng-class="{sideBarP2C:choiceColor =='company_message'}"
+            <img class="btn-blue-img">团队管理</a>
+        <a class="side-bar-link" ng-class="{'side-bar-select':choiceColor =='company_message'}"
            ng-show="role == 'admin' || role == 'manager'"
            ui-sref="admin.company_message">
-            <img class="btn-blueImg1">企业信息中心</a>
-        <a class="sideBarP2" ng-class="{sideBarP2C:choiceColor =='product'}" ng-show="role == 'super'"
+            <img class="btn-blue-img">企业信息中心</a>
+        <a class="side-bar-link" ng-class="{'side-bar-select':choiceColor =='product'}" ng-show="role == 'super'"
            ui-sref="super.product">
-            <img class="btn-blueImg1">金融产品</a>
-        <a class="sideBarP2" ng-class="{sideBarP2C:choiceColor =='signUp'}" ng-show="role == 'super'"
+            <img class="btn-blue-img">金融产品</a>
+        <a class="side-bar-link" ng-class="{'side-bar-select':choiceColor =='signUp'}" ng-show="role == 'super'"
            ui-sref="super.signUp">
-            <img class="btn-blueImg1">注册用户</a>
-        <a class="sideBarP2" ng-class="{sideBarP2C:choiceColor =='my_project'}"
+            <img class="btn-blue-img">注册用户</a>
+        <a class="side-bar-link" ng-class="{'side-bar-select':choiceColor =='my_project'}"
            ng-show="role == 'admin' || role == 'manager'"
            ui-sref="admin.my_project">
-            <img class="btn-blueImg1">我的项目</a>
-        <a class="sideBarP2" ng-class="{sideBarP2C:choiceColor =='user_list'}" ng-show="role == 'manager'"
+            <img class="btn-blue-img">我的项目</a>
+        <a class="side-bar-link" ng-class="{'side-bar-select':choiceColor =='user_list'}" ng-show="role == 'manager'"
            ui-sref="admin.user_list">
-            <img class="btn-blueImg1">销售管理</a>
-        <a class="sideBarP2" ng-class="{sideBarP2C:choiceColor =='bank'}" ng-show="role == 'super'"
+            <img class="btn-blue-img">销售管理</a>
+        <a class="side-bar-link" ng-class="{'side-bar-select':choiceColor =='bank'}" ng-show="role == 'super'"
            ui-sref="super.bank">
-            <img class="btn-blueImg1">合作银行</a>
-        <a class="sideBarP2" ng-class="{sideBarP2C:choiceColor =='channel'}"
+            <img class="btn-blue-img">合作银行</a>
+        <a class="side-bar-link" ng-class="{'side-bar-select':choiceColor =='channel'}"
            ng-show="role == 'admin' || role == 'manager'"
            ui-sref="admin.channel">
-            <img class="btn-blueImg1">渠道信息</a>
-        <a class="sideBarP2" ng-class="{sideBarP2C:choiceColor =='share'}"
+            <img class="btn-blue-img">渠道信息</a>
+        <a class="side-bar-link" ng-class="{'side-bar-select':choiceColor =='share'}"
            ng-show="role == 'admin' || role == 'manager'"
            ui-sref="admin.share">
-            <img class="btn-blueImg1">分享统计</a>
+            <img class="btn-blue-img">分享统计</a>
     </ul>
-    <p class="sideBarP1" ng-show="role == 'admin' || role == 'manager'">个人中心</p>
+    <p class="side-bar-class" ng-show="role == 'admin' || role == 'manager'">个人中心</p>
     <ul>
-        <!--<a class="sideBarP2" ng-class="{sideBarP2C:choiceColor =='account'}" ng-show="role == 'admin'  || role == 'manager'"-->
-        <!--ui-sref="admin.account">-->
-        <!--<img class="btn-blueImg1">账号管理</a>-->
-        <a class="sideBarP2" ng-class="{sideBarP2C:choiceColor =='message'}"
+        <a class="side-bar-link" ng-class="{'side-bar-select':choiceColor =='message'}"
            ng-show="role == 'admin'  || role == 'manager'"
-           ui-sref="admin.message.bank">
-            <div style="display: inline-block;width: 30px;height: 40px;position: relative">
-                <img class="btn-blueImg1">
-                <span class="navList2" ng-show="count">{{count}}</span>
-            </div>消息中心</a>
-    </ul>
-</div>
-<div class="sideModel1 fl" ng-show="sideTwo">
-    <p class="modelTitle1" ng-show="choiceColor =='message'">消息中心</p>
-    <!--<p class="modelTitle1" ng-show="choiceColor =='statistics'">分享统计</p>-->
-    <ul style="text-align: center" ng-show="choiceColor =='message'">
-        <!--<li><a ui-sref="master.message.company">企业消息</a></li>-->
-        <li style="text-align: center;">
-            <a class="sideBarP3" ng-class="{sideBarP3C:choiceColorTwo =='bank'}"
                ui-sref="admin.message.bank">
-            <div style="display: inline-block;width: 30px;height: 40px;position: relative">
-                <img class="btn-blueImg1">
-                <span class="navList2" ng-show="count">{{count}}</span>
-            </div>银行消息
+            <img class="btn-blue-img">
+            <span class="navList2" ng-show="count">{{count}}</span>消息中心
         </a>
+    </ul>
+</div>
+<div class="side-menu-2 fl" ng-show="sideTwo">
+    <p class="model-title-2" ng-show="choiceColor =='message'">消息中心</p>
+    <ul style="text-align: center" ng-show="choiceColor =='message'">
+        <li style="text-align: center;">
+            <a class="side-bar-content-2" ng-class="{'side-bar-link-2':choiceColorTwo =='bank'}"
+               ui-sref="admin.message.bank">
+                <div style="display: inline-block;width: 30px;height: 40px;position: relative">
+                    <img class="btn-blue-img">
+                    <span class="navList2" ng-show="count">{{count}}</span>
+                </div>
+                银行消息
+            </a>
         </li>
-        <!--<li><a ui-sref="master.message.apply">转交申请通知</a></li>-->
-        <li style="text-align: center"><a class="sideBarP3" ng-class="{sideBarP3C:choiceColorTwo =='system'}"
-                                          ui-sref="admin.message.system">
-            <div style="display: inline-block;width: 30px;height: 40px;position: relative">
-                <img class="btn-blueImg1">
-                <span class="navList2" ng-show="system_message">{{system_message}}</span>
-            </div>系统消息</a>
+        <li style="text-align: center">
+            <a class="side-bar-content-2" ng-class="{'side-bar-link-2':choiceColorTwo =='system'}"
+               ui-sref="admin.message.system">
+                <div style="display: inline-block;width: 30px;height: 40px;position: relative">
+                    <img class="btn-blue-img">
+                    <span class="navList2" ng-show="system_message">{{system_message}}</span>
+                </div>
+                系统消息</a>
         </li>
     </ul>
 </div>
+
