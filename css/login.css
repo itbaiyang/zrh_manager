@@ -1,6 +1,6 @@
 html, body, p, ul, li {
-    padding: 0px;
-    margin: 0px;
+    padding: 0;
+    margin: 0;
     font-family: OneNikeCurrency, 'TradeGothicW01-BoldCn20 675334', Helvetica, Arial, 'Heiti SC', 'ST Heiti', 华文黑体, 'Microsoft YaHei', 雅黑体, SimHei, 黑体, sans-serif;
 }
 
@@ -52,13 +52,20 @@ canvas {
     float: right;
 }
 
+.main-index {
+    /*height: 100%;*/
+    width: 100%;
+    min-width: 1200px;
+    overflow: hidden;
+    scroll: "no"
+}
 /*login*/
 .login{
     width: 100%;
     height:-moz-calc(100% - 160px);
     height:-webkit-calc(100% - 160px);
     height: calc(100% - 160px);
-    /*position: relative;*/
+    overflow: hidden;
     background: url("../img/background.png")no-repeat;
 }
 

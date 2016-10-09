@@ -322,6 +322,7 @@
     position: relative;
     top: 50px;
     height: calc(100% - 50px);
+    overflow: hidden;
 }
 
 .dropdown-menu {

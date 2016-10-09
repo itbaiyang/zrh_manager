@@ -2,11 +2,13 @@ app.animation('.fad', function () {
     return {
         enter: function (element, done) {
             element.css({
-                opacity: 0
+                opacity: 0,
+                height: 0
             });
             element.animate({
-                opacity: 1
-            }, 1000, done);
+                opacity: 1,
+                height: 100 + '%'
+            }, 500, done);
         },
         leave: function (element, done) {
             element.css({
@@ -14,7 +16,7 @@ app.animation('.fad', function () {
             });
             element.animate({
                 opacity: 0
-            }, 1000, done);
+            }, 500, done);
         }
     };
 });
