@@ -6,7 +6,8 @@ topBarCtrl.controller('TopBarCtrl', function ($http, $scope, $rootScope, $locati
     $timeout(function () {
         console.log("timeout");
         $rootScope.message();
-    }, 3);
+        console.log(1);
+    }, 30000);
     var i = 0;
     $rootScope.c = 0;
     var loop = function () {

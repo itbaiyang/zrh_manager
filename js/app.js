@@ -122,8 +122,10 @@ app.run(function ($location, $rootScope, $timeout, $http) {
             var array = present_route.split(".");
             $rootScope.choiceColor = array[1];
             if (array[1] == "message") {
-                $rootScope.isOpenMenu = false;
                 $rootScope.sideTwo = true;
+                $timeout(function () {
+                    $rootScope.closeMenu();
+                }, 500);
                 $rootScope.choiceColorTwo = array[2];
             } else {
                 $rootScope.sideTwo = false;
@@ -193,6 +195,7 @@ app.run(function ($location, $rootScope, $timeout, $http) {
     };
     $rootScope.closeMenu = function () {
         $rootScope.isOpenMenu = false;
+
     };
     /*********************************** 全局变量区 ***************************************/
 

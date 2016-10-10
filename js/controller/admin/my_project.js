@@ -374,11 +374,11 @@ myProjectCtrl.controller('DetailCtrl', function ($http, $scope, $rootScope, $loc
 
     /*跳转页面*/
     $scope.editApply = function (id) {
-        if ($scope.type == 2) {
-            alert('个人产品暂不支持修改信息');
-        } else {
+        // if ($scope.type == 2) {
+        //     alert('个人产品暂不支持修改信息');
+        // } else {
             $location.path('/admin/my_project/edit_apply/' + id);
-        }
+        // }
 
     };  //编辑页面
     $scope.apply_help = function (id) {
@@ -1254,13 +1254,12 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
             };
             $.ajax({
                 type: 'POST',
-                url: api_uri + "inforTemplate/saveBase",
+                url: api_uri + "inforTemplate/savePersonBase",
                 data: m_params_person,
                 traditional: true,
                 success: function (data, textStatus, jqXHR) {
                     console.log(data);
                     if (data.returnCode == 0) {
-                        $scope.id_basic = data.result;
                         $scope.modelMessage();
                         //$scope.$apply();
                     }
@@ -1274,7 +1273,6 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
     };
     $scope.modelMessage = function () {
         var list = [];
-        //var list_string = [];
         for (var i = 0; i < $scope.model_list.length; i++) {
             list.push({
                 "title": $scope.model_list[i].title,
@@ -1283,32 +1281,60 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
                 "content": $scope.model_list[i].content,
                 "imgList": $scope.model_list[i].imgList
             })
-        }
-        ;
-        //var list_string = JSON.stringify(list);
-        var m_params1 = {
-            "userId": $rootScope.login_user.userId,
-            "token": $rootScope.login_user.token,
-            "comId": $scope.id_basic,
-            "list": JSON.stringify(list)
         };
-        $.ajax({
-            type: 'POST',
-            url: api_uri + "inforTemplate/saveList",
-            data: m_params1,
-            traditional: true,
-            success: function (data, textStatus, jqXHR) {
-                if (data.returnCode == 0) {
-                    $rootScope.successMsg = "修改成功";
-                    $rootScope.fadeInOut("#alert", 500);
-                    $location.path("admin/my_project/detail/" + $stateParams.id);
-                    $scope.$apply();
-                }
-                else {
-                }
-            },
-            dataType: 'json',
-        });
+
+        if ($scope.type != 2) {
+            var m_params = {
+                "userId": $rootScope.login_user.userId,
+                "token": $rootScope.login_user.token,
+                "comId": $scope.id_basic,
+                "list": JSON.stringify(list)
+            };
+            console.log(m_params);
+            $.ajax({
+                type: 'POST',
+                url: api_uri + "inforTemplate/saveList",
+                data: m_params,
+                traditional: true,
+                success: function (data, textStatus, jqXHR) {
+                    console.log(data);
+                    if (data.returnCode == 0) {
+                        $rootScope.successMsg = "修改成功";
+                        $rootScope.fadeInOut("#alert", 500);
+                        $location.path("admin/my_project/detail/" + $stateParams.id);
+                        $scope.$apply();
+                    }
+                    else {
+                    }
+                },
+                dataType: 'json',
+            });
+        } else {
+            var m_params1 = {
+                "userId": $rootScope.login_user.userId,
+                "token": $rootScope.login_user.token,
+                "applyId": $stateParams.id,
+                "list": JSON.stringify(list)
+            };
+            $.ajax({
+                type: 'POST',
+                url: api_uri + "inforTemplate/savePersonList",
+                data: m_params1,
+                traditional: true,
+                success: function (data, textStatus, jqXHR) {
+                    console.log(data);
+                    if (data.returnCode == 0) {
+                        $rootScope.successMsg = "修改成功";
+                        $rootScope.fadeInOut("#alert", 500);
+                        $location.path("admin/my_project/detail/" + $stateParams.id);
+                        $scope.$apply();
+                    }
+                    else {
+                    }
+                },
+                dataType: 'json',
+            });
+        }
 
     };
 

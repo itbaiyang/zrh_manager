@@ -1,6 +1,8 @@
 <div class="side-menu-1 fl" ng-class="{true: 'side-menu-big', false: 'side-menu-small'}[isOpenMenu]">
-    <p class="side-bar-title" ng-show="isOpenMenu" ng-click="closeMenu()">|||</p>
-    <p class="side-bar-title" ng-hide="isOpenMenu" ng-click="openMenu()">三</p>
+    <p class="side-bar-title">
+        <span class="side-bar-change" ng-show="isOpenMenu" ng-click="closeMenu()"></span>
+        <span class="side-bar-change" ng-hide="isOpenMenu" ng-click="openMenu()"></span>
+    </p>
     <p class="side-bar-class">产品与服务</p>
     <ul class="" style="width: 100%">
         <a class="side-bar-link" ng-class="{'side-bar-select':choiceColor =='apply_list'}" ng-show="role == 'super'"
@@ -14,7 +16,7 @@
             <img class="btn-blue-img">团队管理</a>
         <a class="side-bar-link" ng-class="{'side-bar-select':choiceColor =='company_message'}"
            ng-show="role == 'admin' || role == 'manager'"
-           ui-sref="admin.company_message">
+           ui-sref="admin.company_message({page:1,wd:'',status:''})">
             <img class="btn-blue-img">企业信息中心</a>
         <a class="side-bar-link" ng-class="{'side-bar-select':choiceColor =='product'}" ng-show="role == 'super'"
            ui-sref="super.product">

@@ -80,11 +80,50 @@
     background: #394556;
 }
 
+@keyframes close {
+    from {
+        width: 180px;
+    }
+    to {
+        width: 50px;
+    }
+}
+
+@-webkit-keyframes close /* Safari and Chrome */
+{
+    from {
+        width: 180px;
+    }
+    to {
+        width: 50px;
+    }
+}
+
+@keyframes open {
+    from {
+        width: 50px;
+    }
+    to {
+        width: 180px;
+    }
+}
+
+@-webkit-keyframes open /* Safari and Chrome */
+{
+    from {
+        width: 50px;
+    }
+    to {
+        width: 180px;
+    }
+}
 .side-menu-big {
+    animation: open .5s;
     width: 180px;
 }
 
 .side-menu-small {
+    animation: close .5s;
     width: 50px;
 }
 
@@ -104,6 +143,18 @@
     cursor: pointer;
 }
 
+.side-bar-change {
+    display: inline-block;
+    width: 12px;
+    height: 14px;
+    background: url("../img/aside_bar.png");
+    background-size: 100%;
+    transform: rotate(90deg);
+    -ms-transform: rotate(90deg); /* IE 9 */
+    -webkit-transform: rotate(90deg); /* Safari and Chrome */
+    -o-transform: rotate(90deg); /* Opera */
+    -moz-transform: rotate(90deg); /* Firefox */
+}
 .side-bar-class {
     height: 40px;
     line-height: 40px;
@@ -159,16 +210,64 @@
 }
 
 /*列表*/
+@keyframes big-content-width {
+    from {
+        width: calc(100% - 195px);
+        margin-left: 195px;
+    }
+    to {
+        width: calc(100% - 65px);
+        margin-left: 65px;
+    }
+}
+
+@-webkit-keyframes big-content-width /* Safari and Chrome */
+{
+    from {
+        width: calc(100% - 195px);
+        margin-left: 195px;
+    }
+    to {
+        width: calc(100% - 65px);
+        margin-left: 65px;
+    }
+}
+
+@keyframes small-content-width {
+    from {
+        width: calc(100% - 65px);
+        margin-left: 65px;
+    }
+    to {
+        width: calc(100% - 195px);
+        margin-left: 195px;
+    }
+}
+
+@-webkit-keyframes small-content-width /* Safari and Chrome */
+{
+    from {
+        width: calc(100% - 65px);
+        margin-left: 65px;
+    }
+    to {
+        width: calc(100% - 195px);
+        margin-left: 195px;
+    }
+}
+
 .content {
     margin-left: 65px;
     width: calc(100% - 65px);
     height: 100%;
+    animation: big-content-width .5s;
 }
 
 .content-open {
     margin-left: 195px;
     width: calc(100% - 195px);
     height: 100%;
+    animation: small-content-width .5s;
 }
 
 .content-title {
@@ -355,10 +454,10 @@
 /*申请列表pool结束*/
 /*没有侧边栏页面*/
 .content-no-side {
+    z-index: 10;
     position: absolute;
     overflow-x: hidden;
     padding-left: 15px;
-    z-index: 100;
     width: 100%;
     height: 100%;
     background: #ffffff;
@@ -421,22 +520,69 @@
 }
 
 /*二级侧边栏*/
+@keyframes big-width {
+    from {
+        width: calc(100% - 380px);
+        margin-left: 380px;
+    }
+    to {
+        width: calc(100% - 250px);
+        margin-left: 250px;
+    }
+}
+
+@-webkit-keyframes big-width /* Safari and Chrome */
+{
+    from {
+        width: calc(100% - 380px);
+        margin-left: 380px;
+    }
+    to {
+        width: calc(100% - 250px);
+        margin-left: 250px;
+    }
+}
+
+@keyframes small-width {
+    from {
+        width: calc(100% - 250px);
+        margin-left: 250px;
+    }
+    to {
+        width: calc(100% - 380px);
+        margin-left: 380px;
+    }
+}
+
+@-webkit-keyframes small-width /* Safari and Chrome */
+{
+    from {
+        width: calc(100% - 250px);
+        margin-left: 250px;
+    }
+    to {
+        width: calc(100% - 380px);
+        margin-left: 380px;
+    }
+}
 .content-two {
     position: absolute;
     overflow-x: hidden;
-    margin-left: 250px;
-    width: calc(100% - 250px);
     height: 100%;
     background: #ffffff
 }
 
 .content-two-open {
-    position: absolute;
-    overflow-x: hidden;
-    margin-left: 380px;
     width: calc(100% - 380px);
-    height: 100%;
-    background: #ffffff
+    margin-left: 380px;
+    animation: small-width .5s;
+
+}
+
+.content-two-close {
+    width: calc(100% - 250px);
+    margin-left: 250px;
+    animation: big-width .5s;
 }
 
 .padding-left {
@@ -685,7 +831,7 @@
     top: -8px;
     right: -8px;
     padding-top: 8px;
-    z-index: 100;
+    z-index: 10;
     width: 18px;
     height: 18px;
     border-radius: 100%;
@@ -698,7 +844,7 @@
     top: -10px;
     right: 15%;
     padding-top: 8px;
-    z-index: 100;
+    z-index: 10;
     width: 18px;
     height: 18px;
     border-radius: 100%;

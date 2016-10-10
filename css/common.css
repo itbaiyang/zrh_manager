@@ -62,7 +62,7 @@
     position: absolute;
     top: 30px;
     background: #ffffff;
-    z-index: 100;
+    z-index: 10;
     border: 1px solid #cccccc;
 }
 
@@ -75,7 +75,7 @@
     top: 30px;
     left: -200px;
     background: #ffffff;
-    z-index: 100;
+    z-index: 10;
 }
 
 .account-p-give {
@@ -87,7 +87,7 @@
     top: -170px;
     left: 0;
     background: #ffffff;
-    z-index: 120;
+    z-index: 12;
     border: 1px solid #cccccc;
 }
 
@@ -99,7 +99,7 @@
     position: absolute;
     top: 30px;
     background: #ffffff;
-    z-index: 100;
+    z-index: 10;
 }
 
 .btn-dropDetail {
@@ -174,7 +174,7 @@
 .coverGrew {
     position: absolute;
     left: 0;
-    z-index: 90;
+    z-index: 9;
     background: rgba(255, 255, 255, 0.5);
     width: 100%;
     height: 180px;
@@ -306,20 +306,21 @@
 .top-bar {
     min-width: 1200px;
     width: 100%;
-    z-index: 200;
+    z-index: 20;
     position: fixed;
 }
 
 .side-bar {
+    z-index: 6;
     height: calc(100% - 50px);
     position: fixed;
     top: 50px;
-    z-index: 51;
 }
 
 .contain-home {
     width: 100%;
     position: relative;
+    left: 0;
     top: 50px;
     height: calc(100% - 50px);
     overflow: hidden;

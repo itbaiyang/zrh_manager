@@ -30,7 +30,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 },
                 'side_bar@super': {
                     templateUrl: templates_root + 'bar/side_bar.html',
-                    //controller: 'TopBarCtrl'
+                    controller: 'SideBarCtrl'
                 },
                 'main@super': {
                     templateUrl: templates_root + 'super/main.html',
@@ -61,6 +61,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         .state("super.manage.addUser", {
             url: '/add_user',
             views: {
+                'side_bar@super': {
+                    templateUrl: templates_root + 'bar/no_side.html'
+                },
                 'main@super': {
                     templateUrl: templates_root + 'super/product_service/manage/add_user.html',
                     controller: 'CreateUserCtrl'
@@ -70,6 +73,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         .state("super.manage.update", {
             url: '/update/:id',
             views: {
+                'side_bar@super': {
+                    templateUrl: templates_root + 'bar/no_side.html'
+                },
                 'main@super': {
                     templateUrl: templates_root + 'super/product_service/manage/add_user.html',
                     controller: 'UserUpdateCtrl'
@@ -89,6 +95,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         .state('super.team.members', {
             url: '/members/:id',
             views: {
+                'side_bar@super': {
+                    templateUrl: templates_root + 'bar/no_side.html'
+                },
                 'main@super': {
                     templateUrl: templates_root + 'super/product_service/team/members.html',
                     controller: 'MembersCtrl'
@@ -108,6 +117,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         .state('super.product.create', {
             url: '/create',
             views: {
+                'side_bar@super': {
+                    templateUrl: templates_root + 'bar/no_side.html'
+                },
                 'main@super': {
                     templateUrl: templates_root + 'super/product_service/product/create.html',
                     controller: 'ProductCreateCtrl'
@@ -117,6 +129,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         .state('super.product.update', {
             url: '/update/:id',
             views: {
+                'side_bar@super': {
+                    templateUrl: templates_root + 'bar/no_side.html'
+                },
                 'main@super': {
                     templateUrl: templates_root + 'super/product_service/product/create.html',
                     controller: 'ProductUpdateCtrl'
@@ -126,6 +141,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         .state('super.product.sort', {
             url: '/sort',
             views: {
+                'side_bar@super': {
+                    templateUrl: templates_root + 'bar/no_side.html'
+                },
                 'main@super': {
                     templateUrl: templates_root + 'super/product_service/product/sort.html',
                     controller: 'SortCtrl'
@@ -149,6 +167,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             },
             url: '/bank_man/:id/:name',
             views: {
+                'side_bar@super': {
+                    templateUrl: templates_root + 'bar/no_side.html'
+                },
                 'main@super': {
                     templateUrl: templates_root + 'super/product_service/bank/bank_man.html',
                     controller: 'BankManCtrl'
@@ -162,6 +183,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             },
             url: '/add_bank/:id/:name',
             views: {
+                'side_bar@super': {
+                    templateUrl: templates_root + 'bar/no_side.html'
+                },
                 'main@super': {
                     templateUrl: templates_root + 'super/product_service/bank/add_bank.html',
                     controller: 'AddBankCtrl'
@@ -171,6 +195,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         .state('super.bank.add_bank_man', {
             url: '/add_bank_man/:id/:name',
             views: {
+                'side_bar@super': {
+                    templateUrl: templates_root + 'bar/no_side.html'
+                },
                 'main@super': {
                     templateUrl: templates_root + 'super/product_service/bank/add_bank_man.html',
                     controller: 'AddBankManCtrl'
@@ -180,6 +207,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         .state('super.bank.update', {
             url: '/update/:id',
             views: {
+                'side_bar@super': {
+                    templateUrl: templates_root + 'bar/no_side.html'
+                },
                 'main@super': {
                     templateUrl: templates_root + 'super/product_service/bank/add_bank.html',
                     controller: 'UpdateBankCtrl'
@@ -189,6 +219,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         .state('super.bank.update_bank_man', {
             url: '/update_bank_man/:id/:name',
             views: {
+                'side_bar@super': {
+                    templateUrl: templates_root + 'bar/no_side.html'
+                },
                 'main@super': {
                     templateUrl: templates_root + 'super/product_service/bank/add_bank_man.html',
                     controller: 'UpdateBankManCtrl'
@@ -229,7 +262,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         })
 
         .state("admin.company_message", {
-            url: '/company_message',
+            url: '/company_message/:page/:wd',
             views: {
                 'contains@admin': {
                     templateUrl: templates_root + 'admin/product_service/company_message/company_message.html',
@@ -240,6 +273,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         .state('admin.company_message.add_company', {
             url: '/add_company',
             views: {
+                'side_bar@admin': {
+                    templateUrl: templates_root + 'bar/no_side.html'
+                },
                 'contains@admin': {
                     templateUrl: templates_root + 'admin/product_service/company_message/add_company.html',
                     controller: 'AddCompanyCtrl'
@@ -259,6 +295,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         .state('admin.my_project.detail', {
             url: '/detail/:id',
             views: {
+                'side_bar@admin': {
+                    templateUrl: templates_root + 'bar/no_side.html'
+                },
                 'contains@admin': {
                     templateUrl: templates_root + 'admin/product_service/my_project/detail.html',
                     controller: 'DetailCtrl'
@@ -268,6 +307,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         .state('admin.my_project.edit_apply', {
             url: '/edit_apply/:id',
             views: {
+                'side_bar@admin': {
+                    templateUrl: templates_root + 'bar/no_side.html'
+                },
                 'contains@admin': {
                     templateUrl: templates_root + 'admin/product_service/my_project/edit_apply.html',
                     controller: 'EditApplyCtrl'
@@ -277,6 +319,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         .state('admin.my_project.distribute', {
             url: '/distribute/:id',
             views: {
+                'side_bar@admin': {
+                    templateUrl: templates_root + 'bar/no_side.html'
+                },
                 'contains@admin': {
                     templateUrl: templates_root + 'admin/product_service/my_project/distribute.html',
                     controller: 'DistributeCtrl'
@@ -286,6 +331,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         .state('admin.my_project.apply_help', {
             url: '/apply_help/:id',
             views: {
+                'side_bar@admin': {
+                    templateUrl: templates_root + 'bar/no_side.html'
+                },
                 'contains@admin': {
                     templateUrl: templates_root + 'admin/product_service/my_project/apply_help.html',
                     controller: 'ApplyHelpCtrl'
@@ -295,6 +343,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         .state('admin.my_project.change_bank', {
             url: '/change_bank/:id/:mobile',
             views: {
+                'side_bar@admin': {
+                    templateUrl: templates_root + 'bar/no_side.html'
+                },
                 'contains@admin': {
                     templateUrl: templates_root + 'admin/product_service/my_project/change_bank.html',
                     controller: 'ApplyHelpCtrl'
@@ -304,6 +355,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         .state('admin.my_project.change_register', {
             url: '/change_register/:id',
             views: {
+                'side_bar@admin': {
+                    templateUrl: templates_root + 'bar/no_side.html'
+                },
                 'contains@admin': {
                     templateUrl: templates_root + 'admin/product_service/my_project/change.html',
                     controller: 'ChangeRegisterCtrl'
@@ -313,6 +367,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         .state('admin.my_project.message', {
             url: '/message/:id',
             views: {
+                'side_bar@admin': {
+                    templateUrl: templates_root + 'bar/no_side.html'
+                },
                 'contains@admin': {
                     templateUrl: templates_root + 'admin/product_service/my_project/message.html',
                     controller: 'MessageCtrl'
@@ -322,6 +379,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         .state('admin.my_project.choice_sale', {
             url: '/choice_sale/:id',
             views: {
+                'side_bar@admin': {
+                    templateUrl: templates_root + 'bar/no_side.html'
+                },
                 'contains@admin': {
                     templateUrl: templates_root + 'admin/product_service/my_project/choice_sale.html',
                     controller: 'ChoiceSaleCtrl'
@@ -341,6 +401,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         .state("admin.user_list.sale_apply_list", {
             url: '/sale_apply_list/:id',
             views: {
+                'side_bar@admin': {
+                    templateUrl: templates_root + 'bar/no_side.html'
+                },
                 'contains@admin': {
                     templateUrl: templates_root + 'manager/sale_apply_list.html',
                     controller: 'SaleApplyListCtrl'
@@ -360,6 +423,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         .state('admin.channel.create', {
             url: '/create',
             views: {
+                'side_bar@admin': {
+                    templateUrl: templates_root + 'bar/no_side.html'
+                },
                 'contains@admin': {
                     templateUrl: templates_root + 'admin/product_service/channel/create.html',
                     controller:'CreateCtrl'
@@ -369,6 +435,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         .state('admin.channel.detail', {
             url: '/detail/:id',
             views: {
+                'side_bar@admin': {
+                    templateUrl: templates_root + 'bar/no_side.html'
+                },
                 'contains@admin': {
                     templateUrl: templates_root + 'admin/product_service/channel/detail.html',
                     controller:'ChannelDetailCtrl'
@@ -378,6 +447,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         .state('admin.channel.add_apply', {
             url: '/add_apply/:id',
             views: {
+                'side_bar@admin': {
+                    templateUrl: templates_root + 'bar/no_side.html'
+                },
                 'contains@admin': {
                     templateUrl: templates_root + 'admin/product_service/channel/add_apply.html',
                     controller:'AddApplyCtrl'
@@ -387,6 +459,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         .state('admin.channel.history', {
             url: '/history/:id',
             views: {
+                'side_bar@admin': {
+                    templateUrl: templates_root + 'bar/no_side.html'
+                },
                 'contains@admin': {
                     templateUrl: templates_root + 'admin/product_service/channel/history.html',
                     controller: 'HistoryCtrl'
@@ -396,6 +471,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         .state('admin.channel.change', {
             url: '/change/:id/:idt',
             views: {
+                'side_bar@admin': {
+                    templateUrl: templates_root + 'bar/no_side.html'
+                },
                 'contains@admin': {
                     templateUrl: templates_root + 'admin/product_service/channel/change.html',
                     controller: 'ChangeCtrl'
@@ -415,6 +493,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         .state('admin.share.share_detail', {
             url: '/share_detail/:id',
             views: {
+                'side_bar@admin': {
+                    templateUrl: templates_root + 'bar/no_side.html'
+                },
                 'contains@admin': {
                     templateUrl: templates_root + 'admin/product_service/share/share_detail.html',
                     controller:'ShareDetailCtrl'

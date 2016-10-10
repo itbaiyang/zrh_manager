@@ -2,8 +2,17 @@
  * Created by baiyang on 2016/7/7.
  */
 var loanApplicationCtrl = angular.module('loanApplicationCtrl', []);
-loanApplicationCtrl.controller('LoanApplicationCtrl', function ($http, $scope, $rootScope, $location) {
-
+loanApplicationCtrl.controller('LoanApplicationCtrl', function ($http, $scope, $stateParams, $rootScope, $location) {
+    console.log($stateParams.page);
+    console.log($stateParams.wd);
+    // if($stateParams.page){
+    // }else {
+    //     $stateParams.page = 1;
+    // }
+    // if($stateParams.wd){
+    // }else {
+    //     $stateParams.wd = null;
+    // }
     /*获取申请列表*/
     $scope.list = function (pageNo, pageSize) {
         var m_params = {
@@ -11,8 +20,8 @@ loanApplicationCtrl.controller('LoanApplicationCtrl', function ($http, $scope, $
             "token":$rootScope.login_user.token,
             "pageNo": pageNo,
             "pageSize": pageSize,
-            "wd": $scope.wd,
-            "status": $scope.status
+            "wd": $stateParams.wd,
+            // "status": $stateParams.status
         };
         $http({
             url: api_uri + "loanApplicationManage/pool",
@@ -58,11 +67,16 @@ loanApplicationCtrl.controller('LoanApplicationCtrl', function ($http, $scope, $
             $location.path("/error");
         })
     };
-    $scope.list(1, 20);
+    $scope.list($stateParams.page, 20);
     $scope.changePage = function(page){
         $scope.pageNo1 = page;
         $scope.$watch($scope.pageNo1, function () {
-            $scope.list($scope.pageNo1, 20);
+            // $state.go('/admin/company_message/', {
+            //     page: $scope.pageNo1,
+            //     wd: $scope.wd,
+            //     status: $scope.status,
+            // });
+            $location.path('/admin/company_message/' + $scope.pageNo1 + '/' + $scope.wd);
         });
     };
     $scope.selected = [];
@@ -115,7 +129,9 @@ loanApplicationCtrl.controller('LoanApplicationCtrl', function ($http, $scope, $
     $scope.search_text = null;
     $scope.search = function () {
         $scope.wd = $scope.search_text;
-        $scope.list(1, 20);
+        // $scope.list(1, 500);
+        console.log($scope.wd);
+        $location.path('/admin/company_message/1/' + $scope.wd);
     };
 
     /*筛选状态*/
@@ -129,7 +145,7 @@ loanApplicationCtrl.controller('LoanApplicationCtrl', function ($http, $scope, $
         } else if ($scope.status == null) {
             $scope.status_text = "全部";
         }
-        $scope.list(1, 20);
+        $scope.list(1, 500);
     };
 
     /*跳转页面*/
