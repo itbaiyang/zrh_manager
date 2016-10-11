@@ -284,7 +284,7 @@ loanApplicationCtrl.controller('DetailsCtrl', function ($http, $scope, $rootScop
     $scope.get_message();
     /*跳转页面*/
     $scope.messages = function (id) {
-        $state.go('admin.company_message.message', {'id': id});
+        $state.go('admin.company_message.messages', {'id': id});
     };   //留言板
     $scope.reBackFromDetails = function () {
         $state.go('admin.company_message');
@@ -407,7 +407,7 @@ loanApplicationCtrl.controller('AddCompanyCtrl', function ($http, $scope, $rootS
     };
 });
 
-myProjectCtrl.controller('MessagesCtrl', function ($http, $scope, $state, $rootScope, $stateParams, $location) {
+loanApplicationCtrl.controller('MessagesCtrl', function ($http, $scope, $state, $rootScope, $stateParams, $location) {
 
     /*获取留言列表*/
     $scope.get_message = function () {

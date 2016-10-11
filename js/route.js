@@ -308,8 +308,8 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
-        .state('admin.company_message.message', {
-            url: '/message/:id',
+        .state('admin.company_message.messages', {
+            url: '/messages/:id',
             views: {
                 'side_bar@admin': {
                     templateUrl: templates_root + 'bar/no_side.html'
