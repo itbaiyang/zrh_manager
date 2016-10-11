@@ -8,26 +8,21 @@ shareCtrl.controller('ShareCtrl', function ($http, $scope, $state, $rootScope, $
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
             "pageNo": pageNo,
-            "pageSize": pageSize,
-            // "wd": wd,
+            "pageSize": pageSize
         };
         $http({
             url: api_uri + "wxShare/manager/userList",
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
             if (d.returnCode == 0) {
                 $scope.page = d.result;
                 $scope.user_list = d.result.datas;
             }
             else {
-                // console.log(d.result);
+                console.log(d);
             }
-
         }).error(function (d) {
-            //console.log("login error");
-            // $location.path("/error");
         })
     };
     $scope.list(1, 20);
@@ -35,7 +30,6 @@ shareCtrl.controller('ShareCtrl', function ($http, $scope, $state, $rootScope, $
     /*分页*/
     $scope.changePage = function (page) {
         $scope.pageNo1 = page;
-        // console.log($scope.pageNo1);
         $scope.$watch($scope.pageNo1, function () {
             $scope.list($scope.pageNo1, 20);
         });
@@ -56,7 +50,6 @@ shareCtrl.controller('ShareCtrl', function ($http, $scope, $state, $rootScope, $
         }
     };
     $scope.updateSelection = function ($event, id) {
-        // console.log("点击一下")
         var checkbox = $event.target;
         var action = (checkbox.checked ? 'add' : 'remove');
         updateSelected(action, id);
@@ -87,7 +80,7 @@ shareCtrl.controller('ShareCtrl', function ($http, $scope, $state, $rootScope, $
                     $scope.ids = [];
                 }
                 else {
-                    // console.log(data);
+                    console.log(data);
                 }
             },
             dataType: 'json',
@@ -95,7 +88,7 @@ shareCtrl.controller('ShareCtrl', function ($http, $scope, $state, $rootScope, $
 
     };
     $scope.showDetail = function (id) {
-        $location.path('/admin/share/share_detail/' + id);
+        $state.go('admin.share.share_detail', ({'id': id}));
     };
 });
 
@@ -111,13 +104,12 @@ shareCtrl.controller('ShareDetailCtrl', function ($http, $scope, $state, $rootSc
             "wd": $scope.wd,
             "status": $scope.status,
         };
-        // console.log(m_params);
         $http({
             url: api_uri + "wxShare/manager/applyList",
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
+
             if (d.returnCode == 0) {
                 $scope.name = d.result.name;
                 $scope.page = d.result.pagination;
@@ -154,11 +146,9 @@ shareCtrl.controller('ShareDetailCtrl', function ($http, $scope, $state, $rootSc
                 });
             }
             else {
-
+                console.log(d);
             }
-
         }).error(function (d) {
-
         })
     };
     $scope.list(1, 20);
@@ -180,7 +170,6 @@ shareCtrl.controller('ShareDetailCtrl', function ($http, $scope, $state, $rootSc
     var updateSelected = function (action, id) {
         if (action == 'add') {
             $scope.ids.push(id);
-            // console.log($scope.ids);
         }
         if (action == 'remove') {
             var idx = $scope.ids.indexOf(id);
@@ -188,7 +177,6 @@ shareCtrl.controller('ShareDetailCtrl', function ($http, $scope, $state, $rootSc
         }
     };
     $scope.updateSelection = function ($event, id) {
-        // console.log("点击一下")
         var checkbox = $event.target;
         var action = (checkbox.checked ? 'add' : 'remove');
         updateSelected(action, id);
@@ -246,14 +234,13 @@ shareCtrl.controller('ShareDetailCtrl', function ($http, $scope, $state, $rootSc
             },
             dataType: 'json',
         });
-
     };
 
     /*跳转页面*/
     $scope.updateApply = function (id) {
-        $location.path('/admin/my_project/detail/' + id);
+        $state.go('admin.my_project.detail', ({'id': id}));
     };
     $scope.go_back_share = function () {
-        $location.path('/admin/share');
+        $state.go('admin.share');
     };
 });

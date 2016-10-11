@@ -16,7 +16,7 @@
             <img class="btn-blue-img">团队管理</a>
         <a class="side-bar-link" ng-class="{'side-bar-select':choiceColor =='company_message'}"
            ng-show="role == 'admin' || role == 'manager'"
-           ui-sref="admin.company_message({page:1,wd:'',status:''})">
+           ui-sref="admin.company_message({page:1,wd:'',status:'',scroll:0})">
             <img class="btn-blue-img">企业信息中心</a>
         <a class="side-bar-link" ng-class="{'side-bar-select':choiceColor =='product'}" ng-show="role == 'super'"
            ui-sref="super.product">
@@ -26,7 +26,7 @@
             <img class="btn-blue-img">注册用户</a>
         <a class="side-bar-link" ng-class="{'side-bar-select':choiceColor =='my_project'}"
            ng-show="role == 'admin' || role == 'manager'"
-           ui-sref="admin.my_project">
+           ui-sref="admin.my_project({page:1,wd:'',status:'',scroll:0})">
             <img class="btn-blue-img">我的项目</a>
         <a class="side-bar-link" ng-class="{'side-bar-select':choiceColor =='user_list'}" ng-show="role == 'manager'"
            ui-sref="admin.user_list">

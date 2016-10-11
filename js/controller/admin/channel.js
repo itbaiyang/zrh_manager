@@ -9,15 +9,13 @@ channelCtrl.controller('ChannelCtrl', function ($http, $scope, $state, $rootScop
             "token": $rootScope.login_user.token,
             "pageNo": pageNo,
             "pageSize": pageSize,
-            // "wd": wd,
-            // "shareId": shareId,
         };
         $http({
             url: api_uri + "wxShare/manager/customerList",
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
+
             if (d.returnCode == 0) {
                 $scope.page = d.result;
                 if (d.result != undefined) {
@@ -26,12 +24,10 @@ channelCtrl.controller('ChannelCtrl', function ($http, $scope, $state, $rootScop
 
             }
             else {
-                // console.log(d.result);
+                console.log(d);
             }
 
         }).error(function (d) {
-            //console.log("login error");
-            // $location.path("/error");
         })
     };
     $scope.list(1, 20);
@@ -100,12 +96,11 @@ channelCtrl.controller('ChannelCtrl', function ($http, $scope, $state, $rootScop
 
     /*跳转到渠道人任务列表*/
     $scope.showDetail = function (id) {
-        $location.path('/admin/channel/detail/' + id);
+        $state.go('admin.channel.detail', ({'id': id}));
     };
-
     /*添加渠道人员*/
     $scope.add_channel_man = function () {
-        $location.path('/admin/channel/create');
+        $state.go('admin.channel.create');
     };
 });
 
@@ -126,7 +121,6 @@ channelCtrl.controller('CreateCtrl', function ($http, $scope, $state, $rootScope
             data: m_params,
             traditional: true,
             success: function (data, textStatus, jqXHR) {
-                console.log(data);
                 if (data.returnCode == 0) {
                     $state.go("admin.channel");
                     $rootScope.successMsg = "添加成功";
@@ -140,6 +134,7 @@ channelCtrl.controller('CreateCtrl', function ($http, $scope, $state, $rootScope
                     alert("该用户已经被分配");
                 }
                 else {
+                    console.log(data);
                 }
             },
             dataType: 'json',
@@ -166,7 +161,6 @@ channelCtrl.controller('ChannelDetailCtrl', function ($http, $scope, $state, $ro
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
             if (d.returnCode == 0) {
                 $scope.name = d.result.name;
                 $scope.page = d.result.pagination;
@@ -203,6 +197,7 @@ channelCtrl.controller('ChannelDetailCtrl', function ($http, $scope, $state, $ro
                 });
             }
             else {
+                console.log(d);
             }
         }).error(function (d) {
 
@@ -271,17 +266,17 @@ channelCtrl.controller('ChannelDetailCtrl', function ($http, $scope, $state, $ro
 
     /*跳转到其他页面*/
     $scope.addApply = function () {
-        $location.path('/admin/channel/add_apply/' + $stateParams.id);
+        $state.go('admin.channel.add_apply', ({'id': $stateParams.id}));
     };
     $scope.history = function () {
-        $location.path('/admin/channel/history/' + $stateParams.id);
+        $state.go('admin.channel.history', ({'id': $stateParams.id}));
     };
     $scope.go_back_channel = function () {
-        $location.path('/admin/channel');
+        $state.go('admin.channel');
     };
 
     $scope.updateApply = function (id) {
-        $location.path('/admin/my_project/detail/' + id);
+        $state.go('admin.my_project.detail', ({'id': id}));
     };
 });
 
@@ -307,8 +302,6 @@ channelCtrl.controller('AddApplyCtrl', function ($http, $scope, $state, $rootSco
             }
 
         }).error(function (d) {
-            //console.log("login error");
-            // $location.path("/error");
         })
     };
 
@@ -333,9 +326,8 @@ channelCtrl.controller('AddApplyCtrl', function ($http, $scope, $state, $rootSco
             data: m_params,
             traditional: true,
             success: function (data, textStatus, jqXHR) {
-                console.log(data);
                 if (data.returnCode == 0) {
-                    $location.path('/admin/channel/detail/' + $stateParams.id);
+                    $scope.back();
                     $rootScope.successMsg = "绑定成功";
                     $rootScope.fadeInOut("#alert", 500);
                     $scope.$apply();
@@ -345,6 +337,7 @@ channelCtrl.controller('AddApplyCtrl', function ($http, $scope, $state, $rootSco
                     alert("参数错误");
                 }
                 else {
+                    console.log(data);
                 }
             },
             dataType: 'json',
@@ -354,7 +347,7 @@ channelCtrl.controller('AddApplyCtrl', function ($http, $scope, $state, $rootSco
 
     /*返回到详情页面*/
     $scope.back = function () {
-        $location.path('/admin/channel/detail/' + $stateParams.id);
+        $state.go('admin.channel.detail', ({'id': $stateParams.id}));
     };
 });
 
@@ -425,10 +418,10 @@ channelCtrl.controller('HistoryCtrl', function ($http, $scope, $state, $rootScop
 
     /*跳转页面*/
     $scope.goBackDetail = function () {
-        $location.path('/admin/channel/detail/' + $stateParams.id);
+        $state.go('admin.channel.detail', ({'id': $stateParams.id}));
     };
     $scope.change_register = function (id) {
-        $location.path('/admin/channel/change/' + $stateParams.id + '/' + id);
+        $state.go('admin.channel.change', ({'id': $stateParams.id, 'idt': id}));
     };
 
 });
@@ -450,7 +443,7 @@ channelCtrl.controller('ChangeCtrl', function ($http, $scope, $state, $rootScope
             traditional: true,
             success: function (data, textStatus, jqXHR) {
                 if (data.returnCode == 0) {
-                    $location.path('/admin/channel/history/' + $stateParams.id);
+                    $scope.back_channel();
                     $rootScope.successMsg = "变更成功";
                     $rootScope.fadeInOut("#alert", 500);
                     $scope.$apply();
@@ -466,6 +459,6 @@ channelCtrl.controller('ChangeCtrl', function ($http, $scope, $state, $rootScope
         });
     };
     $scope.back_channel = function () {
-        $location.path('/admin/channel/history/' + $stateParams.id);
+        $state.go('admin.channel.history', ({'id': $stateParams.id}));
     };
 });

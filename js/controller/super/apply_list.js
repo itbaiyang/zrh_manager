@@ -10,13 +10,11 @@ applyListCtrl.controller('ApplyListCtrl', function ($http, $scope, $rootScope, $
             "wd": $scope.wd,
             "status": $scope.status
         };
-        // console.log(m_params);
         $http({
             url: api_uri + "loanApplicationManage/list",
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
             if (d.returnCode == 0) {
                 $scope.page = d.result;
                 $scope.result_list = d.result.datas;
@@ -50,12 +48,9 @@ applyListCtrl.controller('ApplyListCtrl', function ($http, $scope, $rootScope, $
                 });
             }
             else {
-                //console.log(d.result);
             }
 
         }).error(function (d) {
-            //console.log("login error");
-            $location.path("/error");
         })
     };
     $scope.list(1, 20);

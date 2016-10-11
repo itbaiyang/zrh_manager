@@ -84,17 +84,17 @@ app.run(function ($location, $rootScope, $timeout, $http) {
                     && from_route.indexOf('admin.my_project.distribute') <= -1
                     && from_route.indexOf('admin.my_project.apply_help') <= -1
                     && from_route.indexOf('admin.my_project.message') <= -1
-                    && from_route.indexOf('admin.my_project.choice_sale') <= -1) {
+                    && from_route.indexOf('admin.my_project.choice_sale') <= -1
+                    && from_route.indexOf('admin.company_message.detail') <= -1) {
                     $rootScope.putSessionObject('from_route', from_route);
                     var get_route = $rootScope.getSessionObject('from_route');
-                    // console.log(get_route);
-                    if (get_route == "admin.company_message") {
-                        $rootScope.showBtn = 1;
-                        // console.log($rootScope.showBtn);
-                    } else {
-                        $rootScope.showBtn = 2;
-                        // console.log($rootScope.showBtn);
-                    }
+                    // if (get_route == "admin.company_message") {
+                    //     $rootScope.showBtn = 1;
+                    //     // console.log($rootScope.showBtn);
+                    // } else {
+                    //     $rootScope.showBtn = 2;
+                    //     // console.log($rootScope.showBtn);
+                    // }
                     if (fromParams.id) {
                         var arrayParams = from_route.split(".");
                         var from_route2 = "/" + arrayParams[0] + "/" + arrayParams[1] + "/" + arrayParams[2] + "/";
@@ -109,13 +109,13 @@ app.run(function ($location, $rootScope, $timeout, $http) {
                 } else {
                     var get_route = $rootScope.getSessionObject('from_route');
                     // console.log(get_route);
-                    if (get_route == "admin.company_message") {
-                        $rootScope.showBtn = 1;
-                        // console.log($rootScope.showBtn);
-                    } else {
-                        $rootScope.showBtn = 2;
-                        // console.log($rootScope.showBtn);
-                    }
+                    // if (get_route == "admin.company_message") {
+                    //     $rootScope.showBtn = 1;
+                    //     // console.log($rootScope.showBtn);
+                    // } else {
+                    //     $rootScope.showBtn = 2;
+                    //     // console.log($rootScope.showBtn);
+                    // }
                 }
             }
             $rootScope.isOpenMenu = true;
@@ -341,9 +341,15 @@ app.run(function ($location, $rootScope, $timeout, $http) {
                 $rootScope.count = d.result;
             }
             else {
+                console.log(d);
             }
-
+            $timeout(function () {
+                $rootScope.message();
+            }, 20000);
         }).error(function (d) {
+            $timeout(function () {
+                $rootScope.message();
+            }, 20000);
         })
     };
 });

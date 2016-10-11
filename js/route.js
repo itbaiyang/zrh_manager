@@ -262,11 +262,37 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         })
 
         .state("admin.company_message", {
-            url: '/company_message/:page/:wd',
+            url: '/company_message/:page/:wd/:status/:scroll',
             views: {
                 'contains@admin': {
                     templateUrl: templates_root + 'admin/product_service/company_message/company_message.html',
                     controller: 'LoanApplicationCtrl'
+                }
+            },
+            resolve: {
+                page: ['$stateParams', function ($stateParams) {
+                    return $stateParams.page;
+                }],
+                wd: ['$stateParams', function ($stateParams) {
+                    return $stateParams.wd;
+                }],
+                status: ['$stateParams', function ($stateParams) {
+                    return $stateParams.status;
+                }],
+                scroll: ['$stateParams', function ($stateParams) {
+                    return $stateParams.scroll;
+                }]
+            }
+        })
+        .state('admin.company_message.detail', {
+            url: '/detail/:id',
+            views: {
+                'side_bar@admin': {
+                    templateUrl: templates_root + 'bar/no_side.html'
+                },
+                'contains@admin': {
+                    templateUrl: templates_root + 'admin/product_service/my_project/detail.html',
+                    controller: 'DetailsCtrl'
                 }
             }
         })
@@ -284,12 +310,23 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         })
 
         .state('admin.my_project', {
-            url: '/my_project',
+            url: '/my_project/:page/:wd/:status/:scroll',
             views: {
                 'contains@admin': {
                     templateUrl: templates_root + 'admin/product_service/my_project/my_project.html',
                     controller: 'MyProjectCtrl'
                 }
+            },
+            resolve: {
+                page: ['$stateParams', function ($stateParams) {
+                    return $stateParams.page;
+                }],
+                wd: ['$stateParams', function ($stateParams) {
+                    return $stateParams.wd;
+                }],
+                status: ['$stateParams', function ($stateParams) {
+                    return $stateParams.status;
+                }]
             }
         })
         .state('admin.my_project.detail', {

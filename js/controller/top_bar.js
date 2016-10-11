@@ -3,24 +3,19 @@
  */
 var topBarCtrl = angular.module('topBarCtrl', []);
 topBarCtrl.controller('TopBarCtrl', function ($http, $scope, $rootScope, $location, $timeout) {
-    $timeout(function () {
-        console.log("timeout");
-        $rootScope.message();
-        console.log(1);
-    }, 30000);
-    var i = 0;
-    $rootScope.c = 0;
-    var loop = function () {
-        $timeout(function () {
-            if (i >= 5) {
-                i = 0;
-            }
-            $rootScope.message();
-            loop();
-            i++
-        }, 2000)
-    };
-    loop();
+    // $timeout(function () {
+    //     console.log("timeout");
+    //     $rootScope.message();
+    //     console.log(1);
+    // }, 30000);
+    // var i = 1;
+    // for(i = 1; i > 0; i++){
+    //     $timeout(function () {
+    //         $rootScope.message();
+    //     }, 2000);
+    // }
+    // $rootScope.c = 0;
+    $rootScope.message();
     /*回到首页*/
     $scope.go_home = function () {
         if ($rootScope.role != 'manager') {

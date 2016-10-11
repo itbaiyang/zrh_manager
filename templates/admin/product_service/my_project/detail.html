@@ -1,7 +1,7 @@
 <div class="content-no-side">
     <div class="content-title">
         <span>企业详情</span>
-        <div class="fr" ng-hide="showBtn == 1 || readonly == true">
+        <div class="fr" ng-show="show_btn == 'my_project' && readonly == false">
             <button class="btn btn-grey fr" ng-click="editApply(id)">修改信息</button>
             <button ng-show="isAllot" class="btn-grey margin-left15 fr">已经递交</button>
             <div ng-hide="isAllot" class="btn-group noPadding fr">
@@ -21,11 +21,11 @@
                     ng-click="choice_sale(id)">选销售职员
             </button>
         </div>
-        <div class="fr" ng-show="showBtn == 1 && readonly == false">
+        <div class="fr" ng-show="show_btn == 'company_message'">
             <button class="btn-grey" ng-click="apply(id)">我要处理</button>
             <button class="btn btn-grey fr" ng-click="reBackFromDetails()">返回</button>
         </div>
-        <div class="fr" ng-show="readonly == true">
+        <div class="fr" ng-show="show_btn == 'my_project' && readonly == true">
             <button class="btn btn-grey fr" ng-click="reBackFromDetails()">返回</button>
         </div>
     </div>
@@ -58,7 +58,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-4 col-md-4 col-lg-4 text-right">
+            <div class="col-sm-4 col-md-4 col-lg-4 text-right" ng-show="show_btn == 'my_project' && readonly == false">
                 <div class="detailStyle">
                     <span ng-show="basic.loanValue">融资额：{{basic.loanValue}}万</span>
                     <span ng-hide="basic.loanValue">请填写融资额</span>

@@ -14,7 +14,7 @@ teamCtrl.controller('TeamCtrl', function ($http, $scope, $state, $rootScope, $lo
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
+            // console.log(d);
             if (d.returnCode == 0) {
                 $scope.page = d.result;
                 $scope.team_list = d.result;
@@ -23,7 +23,6 @@ teamCtrl.controller('TeamCtrl', function ($http, $scope, $state, $rootScope, $lo
                 console.log(d);
             }
         }).error(function (d) {
-            // $location.path("/error");
         })
     };
     $scope.list();

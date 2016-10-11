@@ -14,7 +14,6 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
             $scope.message_list = d.result.datas;
             angular.forEach($scope.message_list, function (data) {
                 data.dayNum = '';
@@ -57,13 +56,11 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
                     data.progressText = "申请取消";
                 }
             });
-
         }).error(function (d) {
-            // console.log(d);
         });
     };
     $scope.bank_list(1, 100);
-    $scope.statusPro = "nihao";
+    $scope.statusPro = "";
     /*显示窗口*/
     $scope.showAllow = []; //初始化参数
     $scope.showRefuse = []; //初始化参数

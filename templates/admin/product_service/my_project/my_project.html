@@ -63,7 +63,7 @@
                                 <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}"
                                        ng-checked="isSelected(resultObj.id)"
                                        ng-click="updateSelection($event,resultObj.id)">
-                                <a ng-click="showDetail(resultObj.id)" target="_blank">
+                                <a ng-click="showDetail(resultObj.id,$index)" target="_blank">
                                     {{resultObj.companyName || resultObj.linkman}}
                                 </a>
                             </p>
@@ -116,7 +116,7 @@
                     </button>
                 </div>
             </div>
-            <span>共有{{page.totalCount || 0}}家企业申请，每页显示{{page.pageSize || 0}}条</span>
+            <span>共有{{pages.totalCount || 0}}家企业申请，每页显示{{pages.pageSize || 0}}条</span>
             <ul class="pagination fr" style="margin: 0">
                 <li>
                     <a aria-label="Previous" ng-click="changePage(1)">
@@ -124,18 +124,18 @@
                     </a>
                 </li>
                 <li>
-                    <a aria-label="Previous" ng-click="changePage(page.upPage)">
+                    <a aria-label="Previous" ng-click="changePage(pages.upPage)">
                         <span aria-hidden="true">&lsaquo;</span>
                     </a>
                 </li>
-                <li><a>{{page.pageNo || 0}}</a></li>
+                <li><a>{{pages.pageNo || 0}}</a></li>
                 <li>
-                    <a aria-label="Next" ng-click="changePage(page.nextPage)">
+                    <a aria-label="Next" ng-click="changePage(pages.nextPage)">
                         <span aria-hidden="true">&rsaquo;</span>
                     </a>
                 </li>
                 <li>
-                    <a aria-label="Next" ng-click="changePage(page.totalPage)">
+                    <a aria-label="Next" ng-click="changePage(pages.totalPage)">
                         <span aria-hidden="true">&raquo;</span>
                     </a>
                 </li>

@@ -2,11 +2,9 @@
  * Created by baiyang on 2016/7/7.
  */
 var productCtrl = angular.module('productCtrl', []);
-productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $location, $timeout, $routeParams) {
+productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $location, $timeout) {
 
-    var result_list = [];
     $scope.list = function (pageNo, pageSize) {
-        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId":$rootScope.login_user.userId,
             "token":$rootScope.login_user.token,
@@ -20,7 +18,6 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
             if (d.returnCode == 0) {
                 $scope.page = d.result;
                 $scope.result_list = d.result.datas;
@@ -78,7 +75,6 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
     };
 
     $scope.submit = function () {
-        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -90,7 +86,6 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
             data: m_params,
             traditional: true,
             success: function (data, textStatus, jqXHR) {
-                // console.log(data);
                 if (data.returnCode == 0) {
                     $scope.list($scope.pageNo1, 10);
                 }
@@ -99,11 +94,9 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
             },
             dataType: 'json',
         });
-
     };
 
     $scope.cancel = function () {
-        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -115,7 +108,6 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
             data: m_params,
             traditional: true,
             success: function (data, textStatus, jqXHR) {
-                // console.log(data);
                 if (data.returnCode == 0) {
                     $scope.list($scope.pageNo1, 10);
                 }

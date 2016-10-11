@@ -1,5 +1,7 @@
 var manageCtrl = angular.module('manageCtrl', []);
-manageCtrl.controller('UserListCtrl', function ($http, $scope, $rootScope, $location, $timeout, $routeParams) {
+manageCtrl.controller('UserListCtrl', function ($http, $scope, $rootScope, $location, $timeout) {
+
+    /*获取团队人员列表*/
     $scope.list = function (pageNo, pageSize) {
         var m_params = {
             "userId": $rootScope.login_user.userId,
@@ -12,7 +14,6 @@ manageCtrl.controller('UserListCtrl', function ($http, $scope, $rootScope, $loca
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
             if (d.returnCode == 0) {
                 $scope.page = d.result;
                 $scope.result_list = d.result.datas;
@@ -33,6 +34,7 @@ manageCtrl.controller('UserListCtrl', function ($http, $scope, $rootScope, $loca
         })
     };
     $scope.list(1, 20);
+    /*分页显示*/
     $scope.changePage = function (page) {
         $scope.pageNo1 = page;
         $scope.$watch($scope.pageNo1, function () {
@@ -149,15 +151,12 @@ manageCtrl.controller('CreateUserCtrl', function ($http, $scope, $rootScope, $lo
                 method: "POST",
                 params: m_params
             }).success(function (d) {
-                console.log(d);
                 if (d.returnCode == 0) {
                     $state.go('super.manage');
                 } else {
                 }
 
             }).error(function (d) {
-                // $scope.changeErrorMsg("网络故障请稍后再试......");
-                // $location.path("/login");
             })
         }
 

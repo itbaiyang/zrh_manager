@@ -30,7 +30,7 @@
                 <li ng-click="choice(5)" class="list-select">开户</li>
                 <li ng-click="choice(6)" class="list-select">放款</li>
                 <li ng-click="choice(7)" class="list-select">成功融资</li>
-                <li ng-click="choice()" class="list-select">全部</li>
+                <li ng-click="choice('')" class="list-select">全部</li>
             </ul>
         </div>
         <span class="col-sm-2 col-md-2 col-lg-2 text-right">操作</span>
@@ -62,7 +62,7 @@
                     <span class="col-xs-3 col-sm-3 col-md-3 col-lg-3 noPadding text-center" style="color: #009B27"
                           ng-show="resultObj.color == 3">{{resultObj.progressText}}</span>
                     <a class="col-sm-2 col-md-2 col-lg-2 noPadding text-right"
-                       ng-click="updateApply(resultObj.id)">查看详情</a>
+                       ng-click="updateApply(resultObj.id,$index)">查看详情</a>
                 </li>
             </div>
         </div>
