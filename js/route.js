@@ -308,7 +308,19 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
-
+        .state('admin.company_message.message', {
+            url: '/message/:id',
+            views: {
+                'side_bar@admin': {
+                    templateUrl: templates_root + 'bar/no_side.html'
+                },
+                'contains@admin': {
+                    templateUrl: templates_root + 'admin/product_service/my_project/message.html',
+                    controller: 'MessagesCtrl'
+                }
+            }
+        })
+        
         .state('admin.my_project', {
             url: '/my_project/:page/:wd/:status/:scroll',
             views: {

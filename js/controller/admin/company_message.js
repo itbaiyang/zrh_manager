@@ -284,7 +284,7 @@ loanApplicationCtrl.controller('DetailsCtrl', function ($http, $scope, $rootScop
     $scope.get_message();
     /*跳转页面*/
     $scope.messages = function (id) {
-        $state.go('admin.my_project.message', {'id': id});
+        $state.go('admin.company_message.message', {'id': id});
     };   //留言板
     $scope.reBackFromDetails = function () {
         $state.go('admin.company_message');
@@ -304,13 +304,14 @@ loanApplicationCtrl.controller('DetailsCtrl', function ($http, $scope, $rootScop
         }).success(function (d) {
             if (d.returnCode == 0) {
                 $rootScope.putSessionObject('from_route', 'admin.my_project');
-                $state.go('admin.my_project.detail', {
-                    'page': 1,
-                    'wd': '',
-                    'status': '',
-                    'scroll': 0,
-                    id: $stateParams.id
-                });
+                $scope.reBackFromDetails();
+                // $state.go('admin.my_project.detail', {
+                //     'page': 1,
+                //     'wd': '',
+                //     'status': '',
+                //     'scroll': 0,
+                //     id: $stateParams.id
+                // });
                 $rootScope.successMsg = "成功领取项目";
                 $rootScope.fadeInOut("#alert", 500);
             } else if (d.returnCode == 1002) {
@@ -403,5 +404,34 @@ loanApplicationCtrl.controller('AddCompanyCtrl', function ($http, $scope, $rootS
             alert("公司名称必填")
         }
 
+    };
+});
+
+myProjectCtrl.controller('MessagesCtrl', function ($http, $scope, $state, $rootScope, $stateParams, $location) {
+
+    /*获取留言列表*/
+    $scope.get_message = function () {
+        var m_params = {
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
+            "applyId": $stateParams.id,
+        };
+        console.log(m_params);
+        $http({
+            url: api_uri + "apply/comments/list",
+            method: "GET",
+            params: m_params
+        }).success(function (d) {
+            console.log(d);
+            $scope.message_list = d.result;
+        }).error(function (d) {
+
+        })
+    };
+    $scope.get_message();
+
+    /*返回详情页面*/
+    $scope.backProjectDetail = function () {
+        $state.go('admin.company_message.detail', {'id': $stateParams.id});
     };
 });
