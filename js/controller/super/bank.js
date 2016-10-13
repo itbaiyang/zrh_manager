@@ -486,8 +486,6 @@ bankCtrl.controller('AddBankManCtrl', function ($http, $scope, $rootScope, $stat
         if (action == 'add') {
             $scope.ids.push(id);
             $scope.names.push(name);
-            //console.log($scope.ids);
-            //console.log($scope.names);
         }
         if (action == 'remove') {
             var idx = $scope.ids.indexOf(id);
@@ -510,7 +508,7 @@ bankCtrl.controller('AddBankManCtrl', function ($http, $scope, $rootScope, $stat
             "token": $rootScope.login_user.token,
             "name": $scope.bank_man.name,
             "bankId": $stateParams.id,
-            "branchBankName": $scope.bank_man.branchBank,
+            "branchBankName": $scope.bank_man.branchBankName,
             "address": $scope.bank_man.address,
             "position": $scope.bank_man.position,
             "productIds": $scope.ids,
@@ -575,7 +573,7 @@ bankCtrl.controller('UpdateBankManCtrl', function ($http, $scope, $rootScope, $s
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
+            // console.log(d);
             if (d.returnCode == 0) {
                 $scope.bank_man = d.result;
                 $scope.bank_man_title = "修改银行职员";
@@ -604,7 +602,7 @@ bankCtrl.controller('UpdateBankManCtrl', function ($http, $scope, $rootScope, $s
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
+            // console.log(d);
             if (d.returnCode == 0) {
                 $scope.page = d.result;
                 $scope.product_list = d.result.datas;
@@ -621,10 +619,10 @@ bankCtrl.controller('UpdateBankManCtrl', function ($http, $scope, $rootScope, $s
                     $scope.products += $scope.names[i];
                     $scope.products += " ";
                 }
-                console.log($scope.product_list);
-                console.log($scope.bank_man.productIds);
-                console.log($scope.names);
-                console.log($scope.products);
+                // console.log($scope.product_list);
+                // console.log($scope.bank_man.productIds);
+                // console.log($scope.names);
+                // console.log($scope.products);
             }
             else {
                 //console.log(d.result);
@@ -641,8 +639,6 @@ bankCtrl.controller('UpdateBankManCtrl', function ($http, $scope, $rootScope, $s
         if (action == 'add') {
             $scope.ids.push(id);
             $scope.names.push(name);
-            //console.log($scope.ids);
-            //console.log($scope.names);
         }
         if (action == 'remove') {
             var idx = $scope.ids.indexOf(id);
@@ -660,7 +656,7 @@ bankCtrl.controller('UpdateBankManCtrl', function ($http, $scope, $rootScope, $s
     };
 
     /*更新银行职员信息*/
-    $scope.update = function () {
+    $scope.add_bank_man = function () {
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -679,7 +675,7 @@ bankCtrl.controller('UpdateBankManCtrl', function ($http, $scope, $rootScope, $s
             data: m_params,
             traditional: true,
             success: function (data, textStatus, jqXHR) {
-                //console.log(data);
+                console.log(data);
                 if (data.returnCode == 0) {
                     $state.go("super.bank.bank_man", {id: m_params.bankId});
                     $scope.$apply();

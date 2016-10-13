@@ -14,11 +14,23 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
             method: "GET",
             params: m_params
         }).success(function (d) {
-            $scope.message_list = d.result.datas;
+            console.log(d);
+            $scope.id_arr = [];
+            $scope.message_list = [];
+            $scope.message_list_old = d.result.datas;
+            for (var i = 0; i < $scope.message_list_old.length; i++) {
+                if ($scope.id_arr.indexOf($scope.message_list_old[i].applyId) == -1) {
+                    $scope.id_arr.push($scope.message_list_old[i].applyId);
+                    $scope.message_list.push($scope.message_list_old[i]);
+                }
+            }
+            console.log($scope.id_arr);
+            console.log($scope.message_list);
             angular.forEach($scope.message_list, function (data) {
                 data.dayNum = '';
                 if (data.status == 1) {
-                    data.progressText = "未申请";
+                    data.progressText = "准备中";
+                    data.jindu_success = 15;
                 } else if (data.status == 2) {
                     data.progressPro = "准备中";
                     data.progressText = "下户";
@@ -52,6 +64,7 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
                 } else if (data.status == 7) {
                     data.progressText = "成功融资";
                     data.jindu = 100;
+                    data.jindu_success = 100;
                 } else if (data.status == -1) {
                     data.progressText = "申请取消";
                 }
@@ -138,7 +151,7 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
                 $rootScope.successMsg = "通过已发送";
                 $rootScope.fadeInOut("#alert", 500);
                 $scope.showAllow[index] = false;
-                $scope.bank_list();
+                $scope.bank_list(1, 100);
                 $rootScope.message();
                 $scope.$apply();
             } else if (d.returnCode == 1002 && d.errorString == "abd") {
@@ -156,18 +169,45 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
             // console.log(d);
         });
     };
-
+    /*修改进度*/
+    $scope.change_status = function (dayNum, id, index) {
+        var m_params = {
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
+            "status": $scope.status,
+            "days": dayNum,
+            "id": id,
+        };
+        console.log(m_params);
+        $.ajax({
+            type: 'POST',
+            url: api_uri + "loanApplicationManage/modifyRate",
+            data: m_params,
+            traditional: true,
+            success: function (data, textStatus, jqXHR) {
+                if (data.returnCode == 0) {
+                    console.log(data);
+                    $rootScope.successMsg = "已经修改进度";
+                    $rootScope.fadeInOut("#alert", 500);
+                    $scope.showAllow[index] = false;
+                    $scope.bank_list(1, 100);
+                    // $scope.$apply();
+                } else {
+                    console.log(data);
+                }
+            },
+            dataType: 'json',
+        });
+    };
     /*拒绝客户经理的请求*/
     $scope.refuse = function (id, index) {
         $scope.reason_refuse = $("#reason_refuse").val();
-        // console.log($scope.reason_refuse);
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
             "id": id,
             "reason": $scope.reason_refuse,
         };
-        // console.log(m_params);
         $http({
             url: api_uri + "applyBankDeal/manage/refuse",
             method: "GET",
@@ -177,7 +217,7 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
                 $rootScope.successMsg = "驳回已发送";
                 $rootScope.fadeInOut("#alert", 500);
                 $scope.showRefuse[index] = false;
-                $scope.bank_list();
+                $scope.bank_list(1, 100);
                 $rootScope.message();
                 $scope.$apply();
             } else if (d.returnCode == 1002 && d.result == "abd") {
@@ -190,7 +230,86 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
         }).error(function (d) {
             // console.log(d);
         });
-    }
+    };
+
+    /*中止项目*/
+    $scope.continue = function (dayNum, id, index) {
+        var m_params = {
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
+            "id": id,
+        };
+        console.log(m_params);
+        $.ajax({
+            type: 'POST',
+            url: api_uri + "applyBankDeal/manage/follow",
+            data: m_params,
+            traditional: true,
+            success: function (data, textStatus, jqXHR) {
+                if (data.returnCode == 0) {
+                    console.log(data);
+                    $rootScope.successMsg = "继续项目";
+                    $rootScope.fadeInOut("#alert", 500);
+                    $scope.bank_list(1, 100);
+                } else {
+                    console.log(data);
+                }
+            },
+            dataType: 'json',
+        });
+    };
+
+    $scope.stopped = function (dayNum, id, index) {
+        var m_params = {
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
+            "id": id,
+        };
+        console.log(m_params);
+        $.ajax({
+            type: 'POST',
+            url: api_uri + "applyBankDeal/manage/stopped",
+            data: m_params,
+            traditional: true,
+            success: function (data, textStatus, jqXHR) {
+                if (data.returnCode == 0) {
+                    console.log(data);
+                    $rootScope.successMsg = "已经中止项目";
+                    $rootScope.fadeInOut("#alert", 500);
+                    $scope.bank_list(1, 100);
+                } else {
+                    console.log(data);
+                }
+            },
+            dataType: 'json',
+        });
+    };
+
+    $scope.stopped_person = function (dayNum, id, index) {
+        var m_params = {
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
+            "id": id,
+        };
+        console.log(m_params);
+        $.ajax({
+            type: 'POST',
+            url: api_uri + "loanApplicationManage/stopped",
+            data: m_params,
+            traditional: true,
+            success: function (data, textStatus, jqXHR) {
+                if (data.returnCode == 0) {
+                    console.log(data);
+                    $rootScope.successMsg = "继续项目";
+                    $rootScope.fadeInOut("#alert", 500);
+                    $scope.bank_list(1, 100);
+                } else {
+                    console.log(data);
+                }
+            },
+            dataType: 'json',
+        });
+    };
 });
 
 messageCtrl.controller('MessageSystemCtrl', function ($http, $scope, $rootScope, $location, $timeout, $routeParams) {

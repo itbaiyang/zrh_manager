@@ -2,19 +2,7 @@
  * Created by baiyang on 2016/7/7.
  */
 var topBarCtrl = angular.module('topBarCtrl', []);
-topBarCtrl.controller('TopBarCtrl', function ($http, $scope, $rootScope, $location, $timeout) {
-    // $timeout(function () {
-    //     console.log("timeout");
-    //     $rootScope.message();
-    //     console.log(1);
-    // }, 30000);
-    // var i = 1;
-    // for(i = 1; i > 0; i++){
-    //     $timeout(function () {
-    //         $rootScope.message();
-    //     }, 2000);
-    // }
-    // $rootScope.c = 0;
+topBarCtrl.controller('TopBarCtrl', function ($http, $scope, $rootScope, $location) {
     $rootScope.message();
     /*回到首页*/
     $scope.go_home = function () {
