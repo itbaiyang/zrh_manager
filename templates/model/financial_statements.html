@@ -5,14 +5,15 @@
         <div class="" style="padding:0 10px; border-left: 1px solid #cccccc;border-right: 1px solid #cccccc">
             <div class="img-list fl" ng-repeat="imgList in model.imgList track by $index"
                  ng-click="removeImgList(model.imgList,$index)">
-                <img ng-src="{{imgList}}" alt="" style="border: 0">
-                <div class="redPoint">
+                <img class="img-real" imageonload="img_loaded()" ng-src="{{imgList}}" alt="" style="border: 0">
+                <img class="img-real img-loading" ng-src="img/quanquan.jpg" alt="" style="border: 0">
+                <div class="redPoint red_point_look">
                     <div class="redPointInner"></div>
                 </div>
             </div>
             <div id="{{model.img_model_div}}" class="img-list">
                 <img id="{{model.img_model_id}}" ng-mouseover="get_id(model.id_model)" src="img/upload1.png"
-                     class="loadAdd fl">
+                     class="img-real loadAdd fl">
             </div>
         </div>
         <div class="" style="padding-right: 0">

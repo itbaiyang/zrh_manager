@@ -22,8 +22,13 @@
                         <img ng-src="img/tips/channel.png" class="channel-best">
                     </div>
                     <span class="col-sm-3 col-md-3 col-lg-3 text-center">{{resultObj.mobile}}</span>
-                    <div class="col-sm-3 col-md-3 col-lg-3 text-center">
-                        <p>{{resultObj.registerTime +'000' | date:'yyyy-MM-dd'}}</p>
+                    <!--<div class="col-sm-3 col-md-3 col-lg-3 text-center">-->
+                    <!--<p>{{resultObj.registerTime +'000' | date:'yyyy-MM-dd'}}</p>-->
+                    <!--</div>-->
+                    <div class="col-sm-3 col-md-3 col-lg-3 noPadding text-center" style="margin-top: -8px">
+                        <span class="col-sm-12 col-md-12 col-lg-12">{{resultObj.registerTime +'000' | date:'yyyy-MM-dd'}}</span>
+                        <span>{{resultObj.registerTime +'000' | date:'HH:mm'}}</span>
+                        <span ng-hide="resultObj.registerTime">&nbsp;</span>
                     </div>
                     <span class="col-sm-2 col-md-2 col-lg-2 text-center">{{resultObj.count}}</span>
                     <a class="col-sm-2 col-md-2 col-lg-2 noPadding text-right list-a-point"

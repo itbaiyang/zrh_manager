@@ -71,6 +71,7 @@ app.run(function ($location, $rootScope, $timeout, $http) {
 
     /*********************************** 回调区 ***************************************/
     // 页面跳转后
+    $rootScope.isOpenMenu = true;
     $rootScope.qiniu_bucket_domain = "o793l6o3p.bkt.clouddn.com";
 
     $rootScope.$on('$stateChangeSuccess',
@@ -118,17 +119,23 @@ app.run(function ($location, $rootScope, $timeout, $http) {
                     // }
                 }
             }
-            $rootScope.isOpenMenu = true;
+            // $rootScope.isOpenMenu = true;
             var array = present_route.split(".");
             $rootScope.choiceColor = array[1];
             if (array[1] == "message") {
                 $rootScope.sideTwo = true;
-                $timeout(function () {
-                    $rootScope.closeMenu();
-                }, 500);
+                if ($rootScope.isOpenMenu) {
+                    $timeout(function () {
+                        $rootScope.closeMenu();
+                    }, 100);
+                }
                 $rootScope.choiceColorTwo = array[2];
             } else {
                 $rootScope.sideTwo = false;
+                if (!$rootScope.isOpenMenu) {
+                    $rootScope.openMenu();
+                }
+
             }
         });
     // 页面跳转前
@@ -191,9 +198,15 @@ app.run(function ($location, $rootScope, $timeout, $http) {
     };
 
     $rootScope.openMenu = function () {
+        $('.side-menu-1').css('animation', 'open .4s');
+        $('.content').css('animation', 'small-content-width .4s');
+        $('.content-two').css('animation', 'small-width .4s');
         $rootScope.isOpenMenu = true;
     };
     $rootScope.closeMenu = function () {
+        $('.side-menu-1').css('animation', 'close .4s');
+        $('.content-open').css('animation', 'big-content-width .4s');
+        $('.content-two').css('animation', 'big-width .4s');
         $rootScope.isOpenMenu = false;
 
     };

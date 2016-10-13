@@ -28,7 +28,7 @@ app.animation('.fad', function () {
             });
             element.animate({
                 opacity: 1
-            }, 500, done);
+            }, 400, done);
         },
         leave: function (element, done) {
             element.css({
@@ -36,7 +36,7 @@ app.animation('.fad', function () {
             });
             element.animate({
                 opacity: 0
-            }, 500, done);
+            }, 400, done);
         }
     };
 });

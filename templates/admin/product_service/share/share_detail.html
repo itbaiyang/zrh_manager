@@ -67,7 +67,11 @@
                         <span class="col-sm-2 col-md-2 col-lg-2 text-center">{{resultObj.salerName|| userName}}</span>
                     </div>
                     <div class="col-sm-6 col-md-6 col-lg-6 noPadding">
-                        <span class="col-sm-2 col-md-2 col-lg-2 text-center">{{resultObj.days||"无"}}</span>
+                        <div class="col-lg-2 col-md-2 col-sm-2 noPadding text-center" style="margin-top: -8px">
+                            <span class="col-lg-12 col-md-12 col-sm-12">{{resultObj.endDate |date:'yyyy-MM-dd'}}</span>
+                            <span>{{resultObj.endDate |date:'HH:mm'}}</span>
+                            <span ng-hide="resultObj.endDate">&nbsp;</span>
+                        </div>
                         <span class="col-sm-3 col-md-3 col-lg-3 text-center">{{resultObj.fee||"无"}}</span>
                         <span class="col-sm-2 col-md-2 col-lg-2 text-center">{{resultObj.loanValue||"无"}}</span>
                         <span class="col-sm-3 col-md-3 col-lg-3 text-center">{{resultObj.continual||"无"}}</span>

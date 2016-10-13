@@ -37,7 +37,7 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $state, $root
             method: "GET",
             params: m_params
         }).success(function (d) {
-
+            console.log(d);
             if (d.returnCode == 0) {
                 $scope.pages = d.result.list;              //分页
                 $scope.result_list = d.result.list.datas; //列表参数
@@ -608,7 +608,6 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
             $scope.basic = d.result.baseInfo;
             $scope.type = d.result.type;
             $scope.registerLinkmanName = d.result.registerLinkmanName;
@@ -626,9 +625,10 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
                     j++;
                 }
             }
-            console.log($scope.model_list);
-            console.log($scope.img_model_arr);
-            $scope.picSave();
+            $timeout(function () {
+                $scope.picSave();
+            }, 500);
+
         }).error(function (d) {
         })
     };
@@ -640,6 +640,13 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
         name: ""
     }; //初始化模块
     /*图片加载初始化*/
+    $scope.imgLoaded = true;
+    $scope.img_loaded = function () {
+        $scope.imgLoaded = false;
+        $(".img-loading").css("display", "none");
+        $(".red_point_look").css("display", "inline-block");
+
+    };
     $scope.picSave = function () {
         var m_params = {
             "userId": $rootScope.login_user.userId,
@@ -650,7 +657,7 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
+            // console.log(d);
             if (d.returnCode == 0) {
                 $scope.qiniu_token = d.result.uptoken;
                 $scope.saveImg = 0;
@@ -678,7 +685,8 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
                                 'BeforeUpload': function (up, file) {
                                 },
                                 'UploadProgress': function (up, file) {
-                                    // 每个文件上传时,处理相关的事情
+                                    // console.log(file.loaded);
+                                    // console.log(file.size);
 
                                 },
                                 'FileUploaded': function (up, file, info) {
@@ -688,9 +696,11 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
                                     $timeout(function () {
                                         $scope.model_list[$scope.saveImg].imgList.push(file_url);
                                     });
+                                    console.log(file.loaded);
+                                    console.log(file.size);
                                 },
                                 'Error': function (up, err, errTip) {
-                                    $rootScope.alert("图片上传失败！");
+                                    alert("图片上传失败！");
                                 },
                                 'UploadComplete': function () {
                                     //队列文件处理完毕后,处理相关的事情
@@ -784,7 +794,6 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
                                 },
                                 'UploadProgress': function (up, file) {
                                     // 每个文件上传时,处理相关的事情
-
                                 },
                                 'FileUploaded': function (up, file, info) {
                                     var res = $.parseJSON(info);
@@ -1214,7 +1223,6 @@ myProjectCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
         if (templateType == 3) {
             $scope.model_list[id_model].img_model_id = "img_model" + $scope.img_model_count;
             $scope.model_list[id_model].img_model_div = "imgList_model" + $scope.img_model_count;
-            console.log($scope.img_model_count);
             $scope.img_model_count++;
             $scope.picSave();
         }

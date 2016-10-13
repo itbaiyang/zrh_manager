@@ -46,7 +46,12 @@
                     <div class="col-sm-3 col-md-3 col-lg-3">{{resultObj.bankName ||'未申请'}}
                         <span ng-show="resultObj.bankName">-</span>{{resultObj.productName}}
                     </div>
-                    <span class="col-sm-2 col-md-2 col-lg-2">{{resultObj.time | date:'yyyy-MM-dd'}}</span>
+                    <!--<span class="col-sm-2 col-md-2 col-lg-2">{{resultObj.time | date:'yyyy-MM-dd'}}</span>-->
+                    <div class="col-lg-2 col-md-2 col-sm-2 noPadding" style="margin-top: -8px">
+                        <span class="col-lg-12 col-md-12 col-sm-12">{{resultObj.time |date:'yyyy-MM-dd'}}</span>
+                        <span>{{resultObj.time |date:'HH:mm'}}</span>
+                        <span ng-hide="resultObj.time">&nbsp;</span>
+                    </div>
                     <span class="col-sm-2 col-md-2 col-lg-2 text-center">{{resultObj.progressText}}</span>
                     <a class="list-a-point col-sm-2 col-md-2 col-lg-2 noPadding text-right"
                        ng-click="change_register(resultObj.id)">注册人变更</a>

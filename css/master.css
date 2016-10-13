@@ -118,12 +118,10 @@
     }
 }
 .side-menu-big {
-    animation: open .5s;
     width: 180px;
 }
 
 .side-menu-small {
-    animation: close .5s;
     width: 50px;
 }
 
@@ -145,15 +143,15 @@
 
 .side-bar-change {
     display: inline-block;
-    width: 12px;
-    height: 14px;
+    width: 15px;
+    height: 11px;
     background: url("../img/aside_bar.png");
     background-size: 100%;
-    transform: rotate(90deg);
-    -ms-transform: rotate(90deg); /* IE 9 */
-    -webkit-transform: rotate(90deg); /* Safari and Chrome */
-    -o-transform: rotate(90deg); /* Opera */
-    -moz-transform: rotate(90deg); /* Firefox */
+    /*transform: rotate(90deg);*/
+    /*-ms-transform: rotate(90deg); !* IE 9 *!*/
+    /*-webkit-transform: rotate(90deg); !* Safari and Chrome *!*/
+    /*-o-transform: rotate(90deg); !* Opera *!*/
+    /*-moz-transform: rotate(90deg); !* Firefox *!*/
 }
 .side-bar-class {
     height: 40px;
@@ -260,14 +258,12 @@
     margin-left: 65px;
     width: calc(100% - 65px);
     height: 100%;
-    animation: big-content-width .5s;
 }
 
 .content-open {
     margin-left: 195px;
     width: calc(100% - 195px);
     height: 100%;
-    animation: small-content-width .5s;
 }
 
 .content-title {
@@ -344,16 +340,16 @@
 
 .list-common {
     height: 100px;
-    line-height: 24px;
+    line-height: 16px;
     width: 100%;
-    padding: 36px 15px;
+    padding: 42px 15px;
     border-radius: 0;
 }
 
 .list-user {
     height: 60px;
     width: 100%;
-    padding: 18px 15px;
+    padding: 22px 15px;
     box-sizing: border-box;
 }
 
@@ -401,13 +397,13 @@
     width: 15px;
     height: 15px;
     vertical-align: top;
-    margin-top: 4px;
+    /*margin-top: 4px;*/
     margin-left: 4px;
 }
 
 .list-common input, .list-user input {
     margin-right: 6px;
-    margin-top: 6px;
+    margin-top: 1px;
     vertical-align: top;
 }
 
@@ -428,11 +424,11 @@
     text-overflow: ellipsis;
     padding: 0;
     font-size: 12px;
-    line-height: 24px;
+    line-height: 16px;
 }
 
 .list-user div {
-    line-height: 24px;
+    line-height: 16px;
 }
 .list-a-link {
     padding: 2px 10px;
@@ -575,14 +571,14 @@
 .content-two-open {
     width: calc(100% - 380px);
     margin-left: 380px;
-    animation: small-width .5s;
+    /*animation: small-width .5s;*/
 
 }
 
 .content-two-close {
     width: calc(100% - 250px);
     margin-left: 250px;
-    animation: big-width .5s;
+    /*animation: big-width .5s;*/
 }
 
 .padding-left {
@@ -839,6 +835,9 @@
     background: #f97383;
 }
 
+.red_point_look {
+    display: none;
+}
 .redPoint2 {
     position: absolute;
     top: -10px;
@@ -867,9 +866,15 @@
     margin-right: 15px;
 }
 
-.img-list img {
+.img-loading {
+    position: absolute;
+    top: 0;
+    z-index: 5;
+    background: rgba(255, 255, 255, 1);
+}
+
+.img-real {
     border: 0;
-    z-index: 3;
     display: inline-block;
     width: 40px;
     height: 40px;
