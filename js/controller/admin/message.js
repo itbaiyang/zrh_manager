@@ -1,5 +1,5 @@
 var messageCtrl = angular.module('messageCtrl', []);
-messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $location, $timeout, $routeParams) {
+messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $location, $timeout, $state) {
 
     /*获取银行消息列表*/
     $scope.bank_list = function (pageNo, pageSize) {
@@ -78,6 +78,7 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
     $scope.showAllow = []; //初始化参数
     $scope.showRefuse = []; //初始化参数
     $scope.show_allow = function (status, id, type) { //显示窗口函数
+        $scope.showAllow = [];
         if (type == 0) {
             $scope.showAllow[id] = true;
             $scope.status = status;
@@ -132,6 +133,22 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
         $scope.showRefuse[id] = false;
     };
 
+    /*关闭弹出框*/
+    $scope.closeAlert = function (name, $event) {
+        $scope.change_alert = false;
+        if ($scope.stopPropagation) {
+            $event.stopPropagation();
+        }
+    };
+    $scope.cancel_alert = function () {
+        $scope.change_alert = false;
+
+    };
+    $scope.change_alert = false;
+    $scope.stop_alert = function (id) {
+        $scope.stop_alert_id = id;
+        $scope.change_alert = true;
+    };
     /*同意客户经理的请求*/
     $scope.allow = function (dayNum, id, index) {
         var m_params = {
@@ -233,7 +250,7 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
     };
 
     /*中止项目*/
-    $scope.continue = function (dayNum, id, index) {
+    $scope.continue = function (id) {
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -259,11 +276,11 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
         });
     };
 
-    $scope.stopped = function (dayNum, id, index) {
+    $scope.stopped = function () {
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
-            "id": id,
+            "id": $scope.stop_alert_id,
         };
         console.log(m_params);
         $.ajax({
@@ -284,6 +301,15 @@ messageCtrl.controller('MessageBankCtrl', function ($http, $scope, $rootScope, $
             dataType: 'json',
         });
     };
+
+    $scope.change_to_bank = function (id) {
+        $state.go('admin.my_project.change_bank', {
+                'id': id,
+                'page': 1,
+                'scroll': 0
+            }
+        )
+    }
 
     $scope.stopped_person = function (dayNum, id, index) {
         var m_params = {
@@ -325,7 +351,7 @@ messageCtrl.controller('MessageSystemCtrl', function ($http, $scope, $rootScope,
             method: "GET",
             params: m_params
         }).success(function (d) {
-            // console.log(d);
+            console.log(d);
             $scope.page = d.result;
             $scope.result_list = d.result.datas;
         }).error(function (d) {
@@ -335,13 +361,12 @@ messageCtrl.controller('MessageSystemCtrl', function ($http, $scope, $rootScope,
     $scope.list(1,20);
     $scope.changePage = function(page){
         $scope.pageNo1 = page;
-        // console.log($scope.pageNo1);
         $scope.$watch($scope.pageNo1, function () {
             $scope.list($scope.pageNo1, 20);
         });
     };
 
-    $scope.to_company_message = function (id) {
+    $scope.to_company_message = function (id, url) {
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -352,10 +377,9 @@ messageCtrl.controller('MessageSystemCtrl', function ($http, $scope, $rootScope,
             method: "GET", 
             params: m_params
         }).success(function (d) {
-            // console.log(d);
-            $location.path('/admin/company_message');
+
         }).error(function (d) {
-            // console.log(d);
         });
+        $location.path(url);
     };
 });

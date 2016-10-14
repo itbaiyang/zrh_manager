@@ -4,6 +4,8 @@
 var topBarCtrl = angular.module('topBarCtrl', []);
 topBarCtrl.controller('TopBarCtrl', function ($http, $scope, $rootScope, $location) {
     $rootScope.message();
+    $rootScope.bank_messages();
+    $rootScope.system_messages();
     /*回到首页*/
     $scope.go_home = function () {
         if ($rootScope.role != 'manager') {
@@ -25,7 +27,60 @@ topBarCtrl.controller('SideBarCtrl', function ($http, $scope, $state, $rootScope
 
 topBarCtrl.controller('ContainsCtrl', function ($http, $scope, $state, $rootScope, $location, $timeout, $routeParams) {
 
+
+    $scope.message_roll = function (pageNo, pageSize) {
+        var m_params = {
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
+            "pageNo": pageNo,
+            "pageSize": pageSize,
+        };
+        $http({
+            url: api_uri + "zrh/message/listIndexs",
+            method: "GET",
+            params: m_params
+        }).success(function (d) {
+            console.log(d);
+            $scope.message_roll = d.result.datas;
+            if ($scope.message_roll.length > 0) {
+                $scope.roll();
+            }
+        }).error(function (d) {
+        });
+    };
+    $scope.message_roll(1, 20);
+    $scope.item = 0;
+    $scope.roll = function () {
+        $scope.message_roll_item = $scope.message_roll[$scope.item].content;
+        $scope.message_roll_id = $scope.message_roll[$scope.item].id;
+        $scope.message_roll_url = $scope.message_roll[$scope.item].url;
+        $timeout(function () {
+            $scope.item++;
+            if ($scope.item >= $scope.message_roll.length) {
+                $scope.item = 0;
+            }
+            $scope.roll();
+        }, 10000);
+        console.log($scope.message_roll_item);
+    };
     /*获取数据*/
+    $scope.to_company_message = function (id, url) {
+        var m_params = {
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
+            "id": id,
+        };
+        $http({
+            url: api_uri + "zrh/message/details",
+            method: "GET",
+            params: m_params
+        }).success(function (d) {
+
+        }).error(function (d) {
+        });
+        $location.path(url);
+    };
+
     $scope.get_count = function () {
         var m_params = {
             "userId": $rootScope.login_user.userId,
@@ -64,4 +119,6 @@ topBarCtrl.controller('ContainsCtrl', function ($http, $scope, $state, $rootScop
         }).error(function (d) {
         });
     };
+
+
 });

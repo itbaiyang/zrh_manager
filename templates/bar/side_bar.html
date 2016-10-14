@@ -47,9 +47,9 @@
     <ul>
         <a class="side-bar-link" ng-class="{'side-bar-select':choiceColor =='message'}"
            ng-show="role == 'admin'  || role == 'manager'"
-               ui-sref="admin.message.bank">
+           ui-sref="admin.message.bank">
             <img class="btn-blue-img">
-            <span class="navList2" ng-show="count">{{count}}</span>消息中心
+            <span class="navList2" style="left: 25px" ng-show="count > 0">{{count}}</span>消息中心
         </a>
     </ul>
 </div>
@@ -61,20 +61,20 @@
                ui-sref="admin.message.bank">
                 <div style="display: inline-block;width: 30px;height: 40px;position: relative">
                     <img class="btn-blue-img">
-                    <span class="navList2" ng-show="count">{{count}}</span>
+                    <span class="navList2" ng-show="bank_message > 0">{{bank_message}}</span>
                 </div>
                 银行消息
             </a>
         </li>
-        <!--<li style="text-align: center">-->
-        <!--<a class="side-bar-content-2" ng-class="{'side-bar-link-2':choiceColorTwo =='system'}"-->
-        <!--ui-sref="admin.message.system">-->
-        <!--<div style="display: inline-block;width: 30px;height: 40px;position: relative">-->
-        <!--<img class="btn-blue-img">-->
-        <!--<span class="navList2" ng-show="system_message">{{system_message}}</span>-->
-        <!--</div>-->
-        <!--系统消息</a>-->
-        <!--</li>-->
+        <li style="text-align: center">
+            <a class="side-bar-content-2" ng-class="{'side-bar-link-2':choiceColorTwo =='system'}"
+               ui-sref="admin.message.system">
+                <div style="display: inline-block;width: 30px;height: 40px;position: relative">
+                    <img class="btn-blue-img">
+                    <span class="navList2" ng-show="system_message > 0">{{system_message}}</span>
+                </div>
+                系统消息</a>
+        </li>
     </ul>
 </div>
 

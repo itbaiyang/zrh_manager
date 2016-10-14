@@ -1560,10 +1560,10 @@ myProjectCtrl.controller('ApplyHelpCtrl', function ($http, $scope, $rootScope, $
     $scope.choiceProduct = function (id, name, type) {
         $scope.productId = id;
         $scope.productName = name;
-        if (type == 2) {
-            alert('企业不可以申请个人产品，请更换');
-            $scope.productName = '';
-        }
+        // if (type == 2) {
+        //     alert('企业不可以申请个人产品，请更换');
+        //     $scope.productName = '';
+        // }
     };
     /*选择银行*/
     $scope.choiceBank = function (id, name) {

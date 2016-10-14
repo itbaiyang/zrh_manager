@@ -210,6 +210,9 @@ app.run(function ($location, $rootScope, $timeout, $http) {
         $rootScope.isOpenMenu = false;
 
     };
+    $rootScope.change_alert = function ($event) {
+        $event.stopPropagation();
+    };
     /*********************************** 全局变量区 ***************************************/
 
     $rootScope.putObject = function (key, value) {
@@ -345,8 +348,8 @@ app.run(function ($location, $rootScope, $timeout, $http) {
             "token": $rootScope.login_user.token,
         };
         $http({
-            // url: api_uri + "zrh/index/message",
-            url: api_uri + "applyBankDeal/manage/count",
+            url: api_uri + "zrh/index/message",
+            // url: api_uri + "applyBankDeal/manage/count",
             method: "GET",
             params: m_params
         }).success(function (d) {
@@ -365,4 +368,57 @@ app.run(function ($location, $rootScope, $timeout, $http) {
             }, 20000);
         })
     };
+    $rootScope.bank_messages = function () {
+        var m_params = {
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
+        };
+        $http({
+            // url: api_uri + "zrh/index/message",
+            url: api_uri + "applyBankDeal/manage/count",
+            method: "GET",
+            params: m_params
+        }).success(function (d) {
+            if (d.returnCode == 0) {
+                $rootScope.bank_message = d.result;
+            }
+            else {
+                console.log(d);
+            }
+            $timeout(function () {
+                $rootScope.bank_messages();
+            }, 20000);
+        }).error(function (d) {
+            $timeout(function () {
+                $rootScope.bank_messages();
+            }, 20000);
+        })
+    };
+    $rootScope.system_messages = function () {
+        var m_params = {
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
+        };
+        $http({
+            url: api_uri + "zrh/message/counts",
+            method: "GET",
+            params: m_params
+        }).success(function (d) {
+            if (d.returnCode == 0) {
+                $rootScope.system_message = d.result;
+            }
+            else {
+                console.log(d);
+            }
+            $timeout(function () {
+                $rootScope.system_messages();
+            }, 20000);
+        }).error(function (d) {
+            $timeout(function () {
+                $rootScope.system_messages();
+            }, 20000);
+        })
+    };
+    // $rootScope.bank_messages();
+    // $rootScope.system_messages();
 });

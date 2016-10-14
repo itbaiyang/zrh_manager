@@ -11,7 +11,7 @@
                 <p>{{message.bankName}}-{{message.productName}}</p>
                 <p><a>{{message.userName}}</a>&nbsp;&nbsp;<a>{{message.position}}</a></p>
                 <p>{{message.reason}}</p>
-                <p><a href="">{{message.companyName}}</a></p>
+                <p><a href="">{{message.companyName || message.applyName}}</a></p>
                 <p class="col-sm-10 col-md-10 col-lg-10 noPadding" ng-show="message.op == 0 && message.opType !='stop'">
                     提交状态&nbsp;<span
                         style="color: #F97383">{{message.progressPro}}->{{message.progressText}}</span>&nbsp;&nbsp;
@@ -54,14 +54,16 @@
                 <p>{{message.datetime |date:'yyyy-MM-dd'}}</p>
                 <p>{{message.datetime |date:'HH:mm'}}</p>
             </div>
-            <div class="message-date col-lg-3 col-md-3 col-sm-3 noPadding fl" ng-show="message.op == 0">
+            <div class="message-date col-lg-3 col-md-3 col-sm-3 noPadding fl"
+                 ng-show="message.op == 0 && message.opType != 'stop'">
                 <div class="form-group col-lg-6 col-md-6 col-sm-6 noPadding">
                     <div class="col-sm-12 col-md-12 col-lg-12 noPadding" style="position: relative">
-                        <button type="button" ng-click="show_allow(message.status,$index,0)" class="btn btn-blue fr"
+                        <button type="button" ng-click="show_allow(message.status,$index,0)" class="btn-blue fr"
                                 id="products">通过
                         </button>
                         <div class="account-p-bank" style="border: 1px solid #4c4c4c;width: 300px; left: -140px"
                              ng-show="showAllow[$index]">
+                            <p style="padding-bottom: 6px">通过</p>
                             <div class="btn-group col-sm-12 col-md-12 col-lg-12">
                                 <button type="button" class="btn-input col-sm-12 col-lg-12" id="bankname"
                                         data-toggle="dropdown"
@@ -69,7 +71,7 @@
                                         aria-expanded="false">
                                     {{statusText ||"选择进度"}}
                                 </button>
-                                <ul class="dropdown-menu account-p-choice col-sm-4 col-lg-4">
+                                <ul class="dropdown-menu account-p-choice col-sm-6 col-lg-6">
                                     <li class="list-select" ng-click="choiceStatus(2)">下户</li>
                                     <li class="list-select" ng-click="choiceStatus(3)">审批中</li>
                                     <li class="list-select" ng-click="choiceStatus(4)">审批通过</li>
@@ -96,10 +98,11 @@
                 </div>
                 <div class="form-group col-lg-6 col-md-6 col-sm-6 fr noPadding">
                     <div class="col-sm-12 col-md-12 col-lg-12 nopadding" style="position: relative">
-                        <button type="button" ng-click="show_allow(message.status,$index,1)" class="btn btn-blue fr">驳回
+                        <button type="button" ng-click="show_allow(message.status,$index,1)" class="btn-blue fr">驳回
                         </button>
-                        <div class="account-p-bank" style="border: 1px solid #4c4c4c;width: 300px;"
+                        <div class="account-p-bank" style="border: 1px solid #4c4c4c;width: 300px;height: 160px"
                              ng-show="showRefuse[$index]">
+                            <p>驳回</p>
                             <div class="form-group col-sm-12 col-md-12 col-lg-12 ">
                                 <div class="col-sm-12 col-md-12 col-lg-12" style="padding: 0;margin-top: 10px">
                                     <input type="text" style="padding: 0; text-indent:10px;" class="form-control"
@@ -116,16 +119,40 @@
                     </div>
                 </div>
             </div>
+            <div class="message-date col-lg-3 col-md-3 col-sm-3 noPadding fl"
+                 ng-show="message.op == 0 && message.opType == 'stop'">
+                <div class="form-group col-lg-4 col-md-4 col-sm-4 noPadding">
+                    <div class="col-sm-12 col-md-12 col-lg-12 noPadding" style="position: relative">
+                        <button type="button" ng-click="continue(message.id)" class="btn-blue"
+                                id="continue">继续任务
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group col-lg-4 col-md-4 col-sm-4 noPadding">
+                    <div class="col-sm-12 col-md-12 col-lg-12 noPadding" style="position: relative">
+                        <button type="button" ng-click="change_to_bank(message.applyId)" class="btn-blue"
+                                id="change_bank">更换银行
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group col-lg-4 col-md-4 col-sm-4 noPadding">
+                    <div class="col-sm-12 col-md-12 col-lg-12 nopadding" style="position: relative">
+                        <button type="button" ng-click="stop_alert($index)" class="btn-blue fr">中止项目
+                        </button>
+                    </div>
+                </div>
+            </div>
             <div class="message-date col-lg-3 col-md-3 col-sm-3 noPadding fl" ng-show="message.op != 0">
                 <div class="btn-group col-sm-12 col-md-12 col-lg-12 noPadding" style="position: relative">
                     <div class="form-group col-lg-6 col-md-6 col-sm-6 fr">
-                        <button type="button" ng-click="show_allow(message.status,$index,0)" class="btn btn-blue fr"
+                        <button type="button" ng-click="show_allow(message.status,$index,0)" class="btn-blue fr"
                                 id="change">修改进度
                         </button>
                     </div>
                     <div class="account-p-bank" style="border: 1px solid #4c4c4c;width: 300px;left: -60px;"
                          ng-show="showAllow[$index]">
                         <div class="btn-group col-sm-12 col-md-12 col-lg-12">
+                            <p>修改进度</p>
                             <button type="button" class="btn-input col-sm-12 col-lg-12" id="change_status"
                                     data-toggle="dropdown"
                                     aria-haspopup="true"
@@ -157,6 +184,16 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+<div class="change-alert" ng-show="change_alert == true" ng-click="closeAlert('father',$event)">
+    <div class="alert-content" ng-click="change_alert($event)">
+        <h4>中止项目</h4>
+        <p>你确定要中止这个项目吗？</p>
+        <div>
+            <button class="btn-blue" ng-click="stopped()">确定</button>
+            <button class="btn-blue" ng-click="cancel_alert()">取消</button>
         </div>
     </div>
 </div>

@@ -173,6 +173,7 @@
     color: #fff;
     overflow: hidden;
     padding: 0 15px;
+    position: relative;
 }
 
 .side-bar-content-2 {
