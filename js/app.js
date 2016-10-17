@@ -73,7 +73,6 @@ app.run(function ($location, $rootScope, $timeout, $http) {
     // 页面跳转后
     $rootScope.isOpenMenu = true;
     $rootScope.qiniu_bucket_domain = "o793l6o3p.bkt.clouddn.com";
-
     $rootScope.$on('$stateChangeSuccess',
         function (event, toState, toParams, fromState, fromParams) {
             var present_route = toState.name; //获取当前路由
@@ -88,14 +87,6 @@ app.run(function ($location, $rootScope, $timeout, $http) {
                     && from_route.indexOf('admin.my_project.choice_sale') <= -1
                     && from_route.indexOf('admin.company_message.detail') <= -1) {
                     $rootScope.putSessionObject('from_route', from_route);
-                    var get_route = $rootScope.getSessionObject('from_route');
-                    // if (get_route == "admin.company_message") {
-                    //     $rootScope.showBtn = 1;
-                    //     // console.log($rootScope.showBtn);
-                    // } else {
-                    //     $rootScope.showBtn = 2;
-                    //     // console.log($rootScope.showBtn);
-                    // }
                     if (fromParams.id) {
                         var arrayParams = from_route.split(".");
                         var from_route2 = "/" + arrayParams[0] + "/" + arrayParams[1] + "/" + arrayParams[2] + "/";
@@ -109,17 +100,9 @@ app.run(function ($location, $rootScope, $timeout, $http) {
                     }
                 } else {
                     var get_route = $rootScope.getSessionObject('from_route');
-                    // console.log(get_route);
-                    // if (get_route == "admin.company_message") {
-                    //     $rootScope.showBtn = 1;
-                    //     // console.log($rootScope.showBtn);
-                    // } else {
-                    //     $rootScope.showBtn = 2;
-                    //     // console.log($rootScope.showBtn);
-                    // }
+
                 }
             }
-            // $rootScope.isOpenMenu = true;
             var array = present_route.split(".");
             $rootScope.choiceColor = array[1];
             if (array[1] == "message") {
@@ -143,14 +126,19 @@ app.run(function ($location, $rootScope, $timeout, $http) {
         function (event, toState, toParams, fromState, fromParams) {
             var present_route = toState.name;
             $rootScope.arrayParams = present_route.split(".");
+
             if ($location.$$path != '/login') {
                 $rootScope.check_user();
+                $timeout(function () {
+                    if (!$rootScope.login_user) {
+                        $location.path("/login");
+                    } else {
+                    }
+                }, 500)
             } else {
-            }
-            if (!$rootScope.login_user) {
                 $location.path("/login");
-            } else {
             }
+
         });
     /*********************************** 公用方法区 ***************************************/
 
@@ -274,7 +262,6 @@ app.run(function ($location, $rootScope, $timeout, $http) {
             return null;
         }
     };
-
     $rootScope.check_user = function () {
         $rootScope.login_user = $rootScope.getObject("login_user");
         if ($rootScope.login_user) {
@@ -419,6 +406,5 @@ app.run(function ($location, $rootScope, $timeout, $http) {
             }, 20000);
         })
     };
-    // $rootScope.bank_messages();
-    // $rootScope.system_messages();
+    $rootScope.url_detail = 'http://localhost:8080/zrh_manager/detail.html#/apply/detail/';
 });

@@ -1,6 +1,8 @@
 var saleManagerCtrl = angular.module('saleManagerCtrl', []);
 
 saleManagerCtrl.controller('SaleManagerCtrl', function ($http, $scope, $state, $rootScope, $location) {
+
+    $scope.list_show = true;
     /*获取团队成员列表*/
     $scope.list = function () {
         var m_params = {
@@ -36,6 +38,45 @@ saleManagerCtrl.controller('SaleManagerCtrl', function ($http, $scope, $state, $
     };
     $scope.list();
 
+    $scope.list_company = function () {
+        var m_params = {
+            "userId": $rootScope.login_user.userId,
+            "token": $rootScope.login_user.token,
+            "wd": $scope.wd,
+        };
+        $http({
+            url: api_uri + "zrh/group/listApplyInGroup",
+            method: "GET",
+            params: m_params
+        }).success(function (d) {
+            console.log(d);
+            if (d.returnCode == 0) {
+                $scope.company_list = d.result.datas;
+                console.log($scope.company_list);
+            } else if (d.returnCode == 1003) {
+                alert("该用户没有分组");
+            }
+            else {
+                console.log(d);
+            }
+
+        }).error(function (d) {
+        })
+    };
+    /*搜索*/
+
+    $scope.$watch('search_text', function (newValue, oldValue) {
+        if (newValue) {
+        } else {
+            $scope.list_show = true;
+        }
+    });
+
+    $scope.search = function () {
+        $scope.wd = $scope.search_text;
+        $scope.list_show = false;
+        $scope.list_company();
+    };
     $scope.cancel = function () {
         var m_params = {
             "userId": $rootScope.login_user.userId,

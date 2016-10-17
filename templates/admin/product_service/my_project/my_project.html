@@ -63,9 +63,10 @@
                                 <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}"
                                        ng-checked="isSelected(resultObj.id)"
                                        ng-click="updateSelection($event,resultObj.id)">
-                                <a ng-click="showDetail(resultObj.id,$index)" target="_blank">
-                                    {{resultObj.companyName || resultObj.linkman}}
-                                </a>
+                                <!--<a ng-click="showDetail(resultObj.id,$index)" target="_blank">-->
+                                <!--</a>-->
+                                <a href="{{url_detail}}{{resultObj.id}}" target="_blank">{{resultObj.companyName ||
+                                    resultObj.linkman}}</a>
                             </p>
                         </div>
                         <span class="col-xs-4 col-sm-4 col-md-4 col-lg-4"

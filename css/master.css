@@ -402,6 +402,14 @@
     margin-left: 4px;
 }
 
+.list-common > a:visited {
+    color: #4C6788;
+}
+
+.list-common > a:visited {
+    color: #F97383;
+}
+
 .list-common input, .list-user input {
     margin-right: 6px;
     margin-top: 1px;

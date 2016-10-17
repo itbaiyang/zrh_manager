@@ -262,37 +262,11 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         })
 
         .state("admin.company_message", {
-            url: '/company_message/:page/:wd/:status/:scroll',
+            url: '/company_message',
             views: {
                 'contains@admin': {
                     templateUrl: templates_root + 'admin/product_service/company_message/company_message.html',
                     controller: 'LoanApplicationCtrl'
-                }
-            },
-            resolve: {
-                page: ['$stateParams', function ($stateParams) {
-                    return $stateParams.page;
-                }],
-                wd: ['$stateParams', function ($stateParams) {
-                    return $stateParams.wd;
-                }],
-                status: ['$stateParams', function ($stateParams) {
-                    return $stateParams.status;
-                }],
-                scroll: ['$stateParams', function ($stateParams) {
-                    return $stateParams.scroll;
-                }]
-            }
-        })
-        .state('admin.company_message.detail', {
-            url: '/detail/:id',
-            views: {
-                'side_bar@admin': {
-                    templateUrl: templates_root + 'bar/no_side.html'
-                },
-                'contains@admin': {
-                    templateUrl: templates_root + 'admin/product_service/my_project/detail.html',
-                    controller: 'DetailsCtrl'
                 }
             }
         })
@@ -308,21 +282,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
-        .state('admin.company_message.messages', {
-            url: '/messages/:id',
-            views: {
-                'side_bar@admin': {
-                    templateUrl: templates_root + 'bar/no_side.html'
-                },
-                'contains@admin': {
-                    templateUrl: templates_root + 'admin/product_service/my_project/message.html',
-                    controller: 'MessagesCtrl'
-                }
-            }
-        })
         
         .state('admin.my_project', {
-            url: '/my_project/:page/:wd/:status/:scroll',
+            url: '/my_project',
             views: {
                 'contains@admin': {
                     templateUrl: templates_root + 'admin/product_service/my_project/my_project.html',

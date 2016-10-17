@@ -1,0 +1,6 @@
+.content-detail {
+    width: 100%;
+    padding: 0 15px;
+    height: 100%;
+    overflow: auto;
+}
