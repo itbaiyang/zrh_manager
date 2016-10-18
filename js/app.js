@@ -199,8 +199,8 @@ app.run(function ($location, $rootScope, $timeout, $http) {
     /*********************************** 全局变量区 ***************************************/
 
     // $rootScope.url_detail = 'http://localhost:8080/zrh_manager/detail.html#/apply/detail/';
-    $rootScope.url_detail = 'http://testmanager.zhironghao.com/home/apps/html/zrh_manager/detail.html#/apply/detail/';
-    // $rootScope.url_detail = 'http://manager.zhironghao.com//home/apps/html/zrh_manager/detail.html#/apply/detail/';
+    $rootScope.url_detail = 'http://testmanager.zhironghao.com/detail.html#/apply/detail/';
+    // $rootScope.url_detail = 'http://manager.zhironghao.com/detail.html#/apply/detail/';
 
     $rootScope.putObject = function (key, value) {
         localStorage.setItem(key, angular.toJson(value));
