@@ -1,6 +1,7 @@
 var detailAppCtrl = angular.module('detailAppCtrl', []);
 
-detailAppCtrl.controller('DetailAppCtrl', function ($http, $scope, $state, $rootScope, $location, $stateParams) {
+detailAppCtrl.controller('DetailAppCtrl',
+    ['$http', '$scope', '$state', '$rootScope', '$location', '$stateParams', function ($http, $scope, $state, $rootScope, $location, $stateParams) {
     $scope.id = $stateParams.id;
     $rootScope.login_user = $rootScope.getObject("login_user");
     /*获取申请详情*/
@@ -87,6 +88,7 @@ detailAppCtrl.controller('DetailAppCtrl', function ($http, $scope, $state, $root
             params: m_params
         }).success(function (d) {
             $scope.message_list = d.result;
+            $scope.check_role_class();
         }).error(function (d) {
             console.log(d);
         })
@@ -177,6 +179,50 @@ detailAppCtrl.controller('DetailAppCtrl', function ($http, $scope, $state, $root
 
     };
 
+        /*role*/
+        $scope.check_role_class = function () {
+            var m_params = {
+                "userId": $rootScope.login_user.userId,
+                "token": $rootScope.login_user.token,
+            };
+            $http({
+                url: api_uri + "p/user/detail/" + $rootScope.login_user.userId,
+                method: "GET",
+                params: m_params
+            }).success(function (d) {
+                console.log(d);
+                if (d.returnCode == 0) {
+                    $scope.role_class = d.result;
+                } else {
+                }
+
+            }).error(function (d) {
+            })
+        };
+
+        /*中止项目*/
+        $scope.stopped = function (id) {
+            var m_params = {
+                "userId": $rootScope.login_user.userId,
+                "token": $rootScope.login_user.token,
+                "id": id,
+                "reason": 'good',
+            };
+            $http({
+                url: api_uri + "loanApplicationManage/stopped",
+                method: "GET",
+                params: m_params
+            }).success(function (d) {
+                console.log(d);
+                if (d.returnCode == 0) {
+                    $rootScope.successMsg = "已经中止项目";
+                    $rootScope.fadeInOut("#alert", 500);
+                } else {
+                    console.log(d);
+                }
+            }).error(function (d) {
+            })
+        };
     /*添加服务费和融资额度*/
     $scope.add_fee = function (id) {
         $scope.msg = '';
@@ -261,9 +307,10 @@ detailAppCtrl.controller('DetailAppCtrl', function ($http, $scope, $state, $root
         });
 
     };
-});
+    }]);
 
-detailAppCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $location, $state, $timeout, $stateParams) {
+detailAppCtrl.controller('EditApplyCtrl',
+    ['$http', '$scope', '$state', '$rootScope', '$location', '$timeout', '$stateParams', function ($http, $scope, $state, $rootScope, $location, $timeout, $stateParams) {
 
     /*获取企业详情*/
     $scope.get = function () {
@@ -433,7 +480,6 @@ detailAppCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
                                 }
                             }
                         });
-                        console.log(uploader2);
                     } else if (i == 2) {
                         var Qiniu3 = new QiniuJsSDK();
                         var uploader3 = Qiniu3.uploader({
@@ -1050,9 +1096,10 @@ detailAppCtrl.controller('EditApplyCtrl', function ($http, $scope, $rootScope, $
     $scope.removeImgList = function (id, index) {
         id.splice(index, 1);
     }; //删除图片
-});
+    }]);
 
-detailAppCtrl.controller('DistributeCtrl', function ($http, $scope, $rootScope, $location, $state, $timeout, $routeParams, $stateParams) {
+detailAppCtrl.controller('DistributeCtrl',
+    ['$http', '$scope', '$state', '$rootScope', '$location', '$timeout', '$stateParams', function ($http, $scope, $state, $rootScope, $location, $timeout, $stateParams) {
 
     $scope.id = $stateParams.id; //获取路由申请Id
 
@@ -1157,7 +1204,7 @@ detailAppCtrl.controller('DistributeCtrl', function ($http, $scope, $rootScope, 
             })
         }
     };
-});
+    }]);
 
 detailAppCtrl.controller('ApplyHelpCtrl', function ($http, $scope, $rootScope, $location, $state, $timeout, $stateParams) {
     /*初始化参数*/

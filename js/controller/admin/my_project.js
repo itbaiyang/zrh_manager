@@ -1,5 +1,6 @@
 var myProjectCtrl = angular.module('myProjectCtrl', []);
-myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $state, $rootScope, $location, $stateParams) {
+myProjectCtrl.controller('MyProjectCtrl',
+    ['$http', '$scope', '$state', '$rootScope', function ($http, $scope, $state, $rootScope) {
     $scope.showCancel = false; //放弃任务取消理由框显示
     $scope.comments_give = '';  //留言板评论内容
 
@@ -175,4 +176,4 @@ myProjectCtrl.controller('MyProjectCtrl', function ($http, $scope, $state, $root
             });
         }
     };
-});
+    }]);

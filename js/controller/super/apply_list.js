@@ -1,5 +1,5 @@
 var applyListCtrl = angular.module('applyListCtrl', []);
-applyListCtrl.controller('ApplyListCtrl', function ($http, $scope, $rootScope, $location, $timeout, $routeParams) {
+applyListCtrl.controller('ApplyListCtrl', ['$scope', '$rootScope', '$http', '$location', function ($scope, $rootScope, $http, $location) {
 
     $scope.list = function (pageNo, pageSize) {
         var m_params = {
@@ -136,4 +136,4 @@ applyListCtrl.controller('ApplyListCtrl', function ($http, $scope, $rootScope, $
     $scope.updateApply = function (id) {
         $location.path('/admin/my_project/detail/' + id);
     };
-});
+}]);

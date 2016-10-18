@@ -1,5 +1,6 @@
 var manageCtrl = angular.module('manageCtrl', []);
-manageCtrl.controller('UserListCtrl', function ($http, $scope, $rootScope, $location, $timeout) {
+manageCtrl.controller('UserListCtrl',
+    ['$http', '$scope', '$rootScope', '$location', function ($http, $scope, $rootScope, $location) {
 
     /*获取团队人员列表*/
     $scope.list = function (pageNo, pageSize) {
@@ -88,9 +89,10 @@ manageCtrl.controller('UserListCtrl', function ($http, $scope, $rootScope, $loca
             dataType: 'json',
         });
     };
-});
+    }]);
 
-manageCtrl.controller('CreateUserCtrl', function ($http, $scope, $rootScope, $location, $state, $timeout, $routeParams) {
+manageCtrl.controller('CreateUserCtrl',
+    ['$http', '$scope', '$rootScope', '$location', '$state', function ($http, $scope, $rootScope, $location, $state) {
     var timesTamp = new Date().getTime();
     var timesTamp1 = String(timesTamp).substring(0, 10);
     $scope.timestamp = parseInt(timesTamp1);
@@ -162,9 +164,10 @@ manageCtrl.controller('CreateUserCtrl', function ($http, $scope, $rootScope, $lo
 
 
     };
-});
+    }]);
 
-manageCtrl.controller('UserUpdateCtrl', function ($http, $scope, $rootScope, $location, $state, $timeout, $stateParams) {
+manageCtrl.controller('UserUpdateCtrl',
+    ['$http', '$scope', '$rootScope', '$location', '$state', '$timeout', '$stateParams', function ($http, $scope, $rootScope, $location, $state, $timeout, $stateParams) {
     var timesTamp = new Date().getTime();
     var timesTamp1 = String(timesTamp).substring(0, 10);
     $scope.timestamp = parseInt(timesTamp1);
@@ -258,4 +261,4 @@ manageCtrl.controller('UserUpdateCtrl', function ($http, $scope, $rootScope, $lo
             })
         }
     };
-});
+    }]);

@@ -2,10 +2,9 @@
  * Created by baiyang on 2016/7/11.
  */
 var signUpCtrl = angular.module('signUpCtrl', []);
-signUpCtrl.controller('SignUpCtrl', function ($http, $scope, $rootScope, $location, $timeout, $routeParams) {
-
+signUpCtrl.controller('SignUpCtrl',
+    ['$http', '$scope', '$rootScope', function ($http, $scope, $rootScope) {
     $scope.list = function (pageNo, pageSize) {
-        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -67,4 +66,4 @@ signUpCtrl.controller('SignUpCtrl', function ($http, $scope, $rootScope, $locati
         $scope.wd = $scope.search_text;
         $scope.list(1, 20);
     };
-});
+    }]);

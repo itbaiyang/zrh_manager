@@ -1,6 +1,7 @@
 var channelCtrl = angular.module('channelCtrl', []);
 
-channelCtrl.controller('ChannelCtrl', function ($http, $scope, $state, $rootScope, $location, $routeParams) {
+channelCtrl.controller('ChannelCtrl',
+    ['$http', '$scope', '$state', '$rootScope', function ($http, $scope, $state, $rootScope) {
 
     /*渠道人列表*/
     $scope.list = function (pageNo, pageSize) {
@@ -102,9 +103,10 @@ channelCtrl.controller('ChannelCtrl', function ($http, $scope, $state, $rootScop
     $scope.add_channel_man = function () {
         $state.go('admin.channel.create');
     };
-});
+    }]);
 
-channelCtrl.controller('CreateCtrl', function ($http, $scope, $state, $rootScope, $location, $routeParams) {
+channelCtrl.controller('CreateCtrl',
+    ['$http', '$scope', '$state', '$rootScope', function ($http, $scope, $state, $rootScope) {
 
     /*添加渠道人员*/
     $scope.submit = function () {
@@ -141,9 +143,10 @@ channelCtrl.controller('CreateCtrl', function ($http, $scope, $state, $rootScope
         });
 
     };
-});
+    }]);
 
-channelCtrl.controller('ChannelDetailCtrl', function ($http, $scope, $state, $rootScope, $stateParams, $location, $routeParams) {
+channelCtrl.controller('ChannelDetailCtrl',
+    ['$http', '$scope', '$state', '$rootScope', '$stateParams', function ($http, $scope, $state, $rootScope, $stateParams) {
 
     /*渠道人员任务列表*/
     $scope.list = function (pageNo, pageSize) {
@@ -279,9 +282,10 @@ channelCtrl.controller('ChannelDetailCtrl', function ($http, $scope, $state, $ro
     $scope.updateApply = function (id) {
         $state.go('admin.my_project.detail', ({'id': id}));
     };
-});
+    }]);
 
-channelCtrl.controller('AddApplyCtrl', function ($http, $scope, $state, $rootScope, $location, $stateParams) {
+channelCtrl.controller('AddApplyCtrl',
+    ['$http', '$scope', '$state', '$rootScope', '$location', '$stateParams', function ($http, $scope, $state, $rootScope, $location, $stateParams) {
 
     /*获取申请详情*/
     $scope.getApply = function () {
@@ -350,9 +354,10 @@ channelCtrl.controller('AddApplyCtrl', function ($http, $scope, $state, $rootSco
     $scope.back = function () {
         $state.go('admin.channel.detail', ({'id': $stateParams.id}));
     };
-});
+    }]);
 
-channelCtrl.controller('HistoryCtrl', function ($http, $scope, $state, $rootScope, $stateParams, $location, $routeParams) {
+channelCtrl.controller('HistoryCtrl',
+    ['$http', '$scope', '$state', '$rootScope', '$stateParams', function ($http, $scope, $state, $rootScope, $stateParams) {
 
     /*成为渠道之前的申请列表*/
     $scope.list = function (pageNo, pageSize) {
@@ -425,9 +430,10 @@ channelCtrl.controller('HistoryCtrl', function ($http, $scope, $state, $rootScop
         $state.go('admin.channel.change', ({'id': $stateParams.id, 'idt': id}));
     };
 
-});
+    }]);
 
-channelCtrl.controller('ChangeCtrl', function ($http, $scope, $state, $rootScope, $stateParams, $location, $routeParams) {
+channelCtrl.controller('ChangeCtrl',
+    ['$http', '$scope', '$state', '$rootScope', '$stateParams', function ($http, $scope, $state, $rootScope, $stateParams) {
 
     /*变更企业*/
     $scope.change = function () {
@@ -462,4 +468,4 @@ channelCtrl.controller('ChangeCtrl', function ($http, $scope, $state, $rootScope
     $scope.back_channel = function () {
         $state.go('admin.channel.history', ({'id': $stateParams.id}));
     };
-});
+    }]);

@@ -1,6 +1,6 @@
 var bankCtrl = angular.module('bankCtrl', []);
-bankCtrl.controller('BankCtrl', function ($http, $scope, $state, $rootScope, $location) {
-
+bankCtrl.controller('BankCtrl',
+    ['$http', '$scope', '$state', '$rootScope', '$location', function ($http, $scope, $state, $rootScope, $location) {
     /*获取银行列表*/
     $scope.list = function (pageNo, pageSize) {
         var m_params = {
@@ -57,9 +57,10 @@ bankCtrl.controller('BankCtrl', function ($http, $scope, $state, $rootScope, $lo
     $scope.find_detail = function (id, name) {
         $state.go("super.bank.bank_man", {id: id, name: name});
     };
-});
+    }]);
 
-bankCtrl.controller('BankManCtrl', function ($http, $scope, $rootScope, $location, $stateParams, $state) {
+bankCtrl.controller('BankManCtrl',
+    ['$http', '$scope', '$state', '$rootScope', '$location', '$stateParams', function ($http, $scope, $state, $rootScope, $location, $stateParams) {
 
     /*初始化参数*/
     $scope.selected = [];
@@ -187,10 +188,11 @@ bankCtrl.controller('BankManCtrl', function ($http, $scope, $rootScope, $locatio
     $scope.edit_bank_man = function (id, name) {
         $state.go("super.bank.update_bank_man", {id: id, name: name});
     };
-    
-});
 
-bankCtrl.controller('AddBankCtrl', function ($http, $scope, $rootScope, $state) {
+    }]);
+
+bankCtrl.controller('AddBankCtrl',
+    ['$http', '$scope', '$state', '$rootScope', function ($http, $scope, $state, $rootScope) {
 
     /*初始化图片*/
     $scope.init = function () {
@@ -300,9 +302,10 @@ bankCtrl.controller('AddBankCtrl', function ($http, $scope, $rootScope, $state) 
             dataType: 'json',
         });
     };
-});
+    }]);
 
-bankCtrl.controller('UpdateBankCtrl', function ($http, $scope, $rootScope, $state, $stateParams) {
+bankCtrl.controller('UpdateBankCtrl',
+    ['$http', '$scope', '$state', '$rootScope', '$stateParams', function ($http, $scope, $state, $rootScope, $stateParams) {
 
     /*获取银行信息*/
     $scope.detail = function () {
@@ -440,9 +443,10 @@ bankCtrl.controller('UpdateBankCtrl', function ($http, $scope, $rootScope, $stat
             dataType: 'json'
         });
     };
-});
+    }]);
 
-bankCtrl.controller('AddBankManCtrl', function ($http, $scope, $rootScope, $state, $stateParams, $location, $timeout) {
+bankCtrl.controller('AddBankManCtrl',
+    ['$http', '$scope', '$state', '$rootScope', '$stateParams', function ($http, $scope, $state, $rootScope, $stateParams) {
 
     $scope.selected = [];
     $scope.ids = [];
@@ -555,9 +559,10 @@ bankCtrl.controller('AddBankManCtrl', function ($http, $scope, $rootScope, $stat
         ;
         $scope.productDiv = false;
     }
-});
+    }]);
 
-bankCtrl.controller('UpdateBankManCtrl', function ($http, $scope, $rootScope, $state, $stateParams, $location, $timeout) {
+bankCtrl.controller('UpdateBankManCtrl',
+    ['$http', '$scope', '$state', '$rootScope', '$stateParams', function ($http, $scope, $state, $rootScope, $stateParams) {
     /*初始化参数*/
     $scope.selected = [];
     $scope.ids = [];
@@ -707,4 +712,4 @@ bankCtrl.controller('UpdateBankManCtrl', function ($http, $scope, $rootScope, $s
     $scope.go_back = function () {
         window.history.go(-1);
     }
-});
+    }]);

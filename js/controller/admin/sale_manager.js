@@ -1,6 +1,7 @@
 var saleManagerCtrl = angular.module('saleManagerCtrl', []);
 
-saleManagerCtrl.controller('SaleManagerCtrl', function ($http, $scope, $state, $rootScope, $location) {
+saleManagerCtrl.controller('SaleManagerCtrl',
+    ['$http', '$scope', '$state', '$rootScope', function ($http, $scope, $state, $rootScope) {
 
     $scope.list_show = true;
     /*获取团队成员列表*/
@@ -105,9 +106,10 @@ saleManagerCtrl.controller('SaleManagerCtrl', function ($http, $scope, $state, $
     $scope.showDetail = function (id) {
         $state.go('admin.user_list.sale_apply_list', ({'id': id}))
     };
-});
+    }]);
 
-saleManagerCtrl.controller('SaleApplyListCtrl', function ($http, $scope, $state, $rootScope, $location, $stateParams) {
+saleManagerCtrl.controller('SaleApplyListCtrl',
+    ['$http', '$scope', '$state', '$rootScope', '$location', '$stateParams', function ($http, $scope, $state, $rootScope, $location, $stateParams) {
 
     /*获取团队人员申请列表*/
     $scope.list = function (pageNo, pageSize) {
@@ -208,4 +210,4 @@ saleManagerCtrl.controller('SaleApplyListCtrl', function ($http, $scope, $state,
     $scope.go_sale_manage = function () {
         $state.go('admin.user_list')
     };
-});
+    }]);

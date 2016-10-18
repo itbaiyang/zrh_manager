@@ -2,7 +2,7 @@
  * Created by baiyang on 2016/7/7.
  */
 var productCtrl = angular.module('productCtrl', []);
-productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $location, $timeout) {
+productCtrl.controller('ProductCtrl', ['$http', '$scope', '$rootScope', '$location', function ($http, $scope, $rootScope, $location) {
 
     $scope.list = function (pageNo, pageSize) {
         var m_params = {
@@ -119,7 +119,6 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
     };
 
     $scope.delete = function () {
-        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -142,7 +141,6 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
         });
     };
     $scope.sort_up = function () {
-        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -166,7 +164,6 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
     };
 
     $scope.update = function(id){
-        //$location.state('master.product.update');
         $location.path('/super/product/update/' + id);
     };
 
@@ -195,7 +192,6 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
     };
 
     $scope.unrelease = function (id) {
-        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -231,9 +227,9 @@ productCtrl.controller('ProductCtrl', function ($http, $scope, $rootScope, $loca
         $scope.list(1, 20);
     };
 
-});
+}]);
 
-productCtrl.controller('ProductCreateCtrl', function ($http, $scope, $rootScope,$state, $location, $timeout, $routeParams) {
+productCtrl.controller('ProductCreateCtrl', ['$http', '$scope', '$rootScope', '$state', '$location', function ($http, $scope, $rootScope, $state, $location) {
     $scope.feature_list = [{"feature":""}];
     $scope.add_feature = function () {
         $scope.feature_list.push({
@@ -356,9 +352,9 @@ productCtrl.controller('ProductCreateCtrl', function ($http, $scope, $rootScope,
         });
 
     };
-});
+}]);
 
-productCtrl.controller('ProductUpdateCtrl', function ($http, $scope, $state, $rootScope, $location, $stateParams, $timeout, $routeParams) {
+productCtrl.controller('ProductUpdateCtrl', ['$http', '$scope', '$state', '$rootScope', '$location', '$stateParams', function ($http, $scope, $state, $rootScope, $location, $stateParams) {
     $scope.feature_list = [];
     $scope.tags = "";
     $scope.add_feature = function () {
@@ -417,7 +413,6 @@ productCtrl.controller('ProductUpdateCtrl', function ($http, $scope, $state, $ro
     $scope.list(1, 100);
 
     $scope.get = function(){
-        // var login_user = $rootScope.getObject("login_user");
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -457,8 +452,6 @@ productCtrl.controller('ProductUpdateCtrl', function ($http, $scope, $state, $ro
         $scope.bankId = id;
         $scope.bankName = name;
     };
-
-    //var tags = [];
 
     $scope.submit = function () {
         var tags = [];
@@ -514,4 +507,4 @@ productCtrl.controller('ProductUpdateCtrl', function ($http, $scope, $state, $ro
         });
 
     };
-});
+}]);

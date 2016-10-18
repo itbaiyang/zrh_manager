@@ -2,7 +2,8 @@
  * Created by baiyang on 2016/7/7.
  */
 var loanApplicationCtrl = angular.module('loanApplicationCtrl', []);
-loanApplicationCtrl.controller('LoanApplicationCtrl', function ($http, $state, $scope, $stateParams, $rootScope, $location) {
+loanApplicationCtrl.controller('LoanApplicationCtrl',
+    ['$http', '$scope', '$state', '$rootScope', '$location', '$stateParams', function ($http, $scope, $state, $rootScope, $location, $stateParams) {
 
     /*获取申请列表*/
     $scope.list = function (pageNo, pageSize) {
@@ -140,9 +141,10 @@ loanApplicationCtrl.controller('LoanApplicationCtrl', function ($http, $state, $
         $scope.list(1, 20);
     };
 
-});
+    }]);
 
-loanApplicationCtrl.controller('AddCompanyCtrl', function ($http, $scope, $rootScope, $state) {
+loanApplicationCtrl.controller('AddCompanyCtrl',
+    ['$http', '$scope', '$state', '$rootScope', function ($http, $scope, $state, $rootScope) {
     /*保存基本信息*/
     $scope.submitMessage = function () {
         var m_params = {
@@ -186,4 +188,4 @@ loanApplicationCtrl.controller('AddCompanyCtrl', function ($http, $scope, $rootS
             alert("公司名称必填")
         }
     };
-});
+    }]);

@@ -2,13 +2,14 @@
     <div class="content-title">
         <span>企业详情</span>
         <div class="fr" ng-show="isOp == true && readonly == false">
-            <button class="btn btn-grey fr" ng-click="editApply(id)">修改信息</button>
+            <button class="btn-grey fr" ng-click="editApply(id)">修改信息</button>
             <button ng-show="isAllot" class="btn-grey margin-left15 fr">已经递交</button>
             <div ng-hide="isAllot" class="btn-group noPadding fr">
                 <button class="btn-blue margin-left15" type="button" ng-click="distribute(id)">递交资料
                 </button>
             </div>
             <button class="btn-grey" ng-show="w == true" ng-click="change_register(id)">注册人变更</button>
+            <button class="btn-grey" ng-click="stopped(id)">中止项目</button>
             <button class="btn-grey" ng-show="status == null || status == 0"
                     ng-click="apply_help(id)">
                 帮助申请
@@ -16,7 +17,7 @@
             <button class="btn-grey" ng-show="status != null && status != 0"
                     ng-click="change_bank(id,registerLinkmanMobile)">更换银行
             </button>
-            <button class="btn-grey" ng-show="role == 'manager'"
+            <button class="btn-grey" ng-show="role_class.role == 'manager'"
                     ng-click="choice_sale(id)">选销售职员
             </button>
         </div>

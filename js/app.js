@@ -9,7 +9,6 @@ var app = angular.module('app', [
     'ngRoute',
     'ngAnimate',
     'ui.router',
-
     'loginCtrl',
     'topBarCtrl',
     'applyListCtrl',
@@ -23,10 +22,9 @@ var app = angular.module('app', [
     'bankCtrl',
     'channelCtrl',
     'shareCtrl',
-    // 'accountCtrl',
-    'messageCtrl',
-
-], function ($httpProvider) {
+    'messageCtrl'
+]
+, ['$httpProvider',function ($httpProvider) {
     // Use x-www-form-urlencoded Content-Type
     $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
     $httpProvider.defaults.headers.put['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
@@ -64,10 +62,9 @@ var app = angular.module('app', [
         return angular.isObject(data) && String(data) !== '[object File]' ? param(data) : data;
     }];
 
-});
+}]);
 
-
-app.run(function ($location, $rootScope, $timeout, $http) {
+app.run(['$location', '$rootScope', '$timeout', '$http',function ($location, $rootScope, $timeout, $http) {
 
     /*********************************** 回调区 ***************************************/
     // 页面跳转后
@@ -198,8 +195,8 @@ app.run(function ($location, $rootScope, $timeout, $http) {
     };
     /*********************************** 全局变量区 ***************************************/
 
-    // $rootScope.url_detail = 'http://localhost:8080/zrh_manager/detail.html#/apply/detail/';
-    $rootScope.url_detail = 'http://testmanager.zhironghao.com/detail.html#/apply/detail/';
+    $rootScope.url_detail = 'http://localhost:8080/zrh_manager/detail.html#/apply/detail/';
+    // $rootScope.url_detail = 'http://testmanager.zhironghao.com/detail.html#/apply/detail/';
     // $rootScope.url_detail = 'http://manager.zhironghao.com/detail.html#/apply/detail/';
 
     $rootScope.putObject = function (key, value) {
@@ -316,8 +313,6 @@ app.run(function ($location, $rootScope, $timeout, $http) {
                 } else if ($rootScope.role == 'manager') {
                     if ($rootScope.arrayParams[0] == 'admin') {
                     } else {
-                        // $location.path("/login");
-                        console.log("lll")
                     }
                 }
             } else {
@@ -405,4 +400,4 @@ app.run(function ($location, $rootScope, $timeout, $http) {
             }, 20000);
         })
     };
-});
+}]);

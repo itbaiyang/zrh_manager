@@ -1,5 +1,6 @@
 var teamCtrl = angular.module('teamCtrl', []);
-teamCtrl.controller('TeamCtrl', function ($http, $scope, $state, $rootScope, $location) {
+teamCtrl.controller('TeamCtrl',
+    ['$http', '$scope', '$state', '$rootScope', '$location', function ($http, $scope, $state, $rootScope, $location) {
 
     $scope.edit_team_input = [];
     $scope.teamName = "";
@@ -123,9 +124,10 @@ teamCtrl.controller('TeamCtrl', function ($http, $scope, $state, $rootScope, $lo
     $scope.find_detail = function (id) {
         $location.path("super/team/members/" + id);
     };
-});
+    }]);
 
-teamCtrl.controller('MembersCtrl', function ($http, $scope, $rootScope, $stateParams) {
+teamCtrl.controller('MembersCtrl',
+    ['$http', '$scope', '$rootScope', '$stateParams', function ($http, $scope, $rootScope, $stateParams) {
 
     /*获取成员列表*/
     $scope.member_list_get = function () {
@@ -154,8 +156,7 @@ teamCtrl.controller('MembersCtrl', function ($http, $scope, $rootScope, $statePa
     };
     $scope.member_list_get();
 
-
-    /*获取职员列表*/
+        /*获取职员列表*/
     $scope.person_list_get = function () {
         var m_params = {
             "userId": $rootScope.login_user.userId,
@@ -266,4 +267,4 @@ teamCtrl.controller('MembersCtrl', function ($http, $scope, $rootScope, $statePa
             dataType: 'json',
         });
     };
-});
+    }]);

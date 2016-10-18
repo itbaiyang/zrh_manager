@@ -2,7 +2,7 @@
  * Created by baiyang on 2016/7/7.
  */
 var topBarCtrl = angular.module('topBarCtrl', []);
-topBarCtrl.controller('TopBarCtrl', function ($http, $scope, $rootScope, $location) {
+topBarCtrl.controller('TopBarCtrl', ['$scope', '$rootScope', '$http', '$location', function ($scope, $rootScope, $http, $location) {
     $rootScope.message();
     $rootScope.bank_messages();
     $rootScope.system_messages();
@@ -19,13 +19,14 @@ topBarCtrl.controller('TopBarCtrl', function ($http, $scope, $rootScope, $locati
         $rootScope.removeObject("login_user");
         $location.path('/login');
     };
-});
+}]);
 
-topBarCtrl.controller('SideBarCtrl', function ($http, $scope, $state, $rootScope, $location, $timeout, $routeParams) {
-    
-});
+topBarCtrl.controller('SideBarCtrl', ['$scope', function ($scope) {
 
-topBarCtrl.controller('ContainsCtrl', function ($http, $scope, $state, $rootScope, $location, $timeout, $routeParams) {
+}]);
+
+topBarCtrl.controller('ContainsCtrl',
+    ['$scope', '$rootScope', '$http', '$state', '$location', '$timeout', function ($scope, $rootScope, $http, $state, $location, $timeout) {
 
 
     $scope.message_roll = function (pageNo, pageSize) {
@@ -121,4 +122,4 @@ topBarCtrl.controller('ContainsCtrl', function ($http, $scope, $state, $rootScop
     };
 
 
-});
+    }]);

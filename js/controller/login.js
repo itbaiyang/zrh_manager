@@ -1,5 +1,5 @@
 var loginCtrl = angular.module('loginCtrl', []);
-loginCtrl.controller('LoginCtrl', function ($http, $scope, $rootScope, $location, $state, $timeout, $routeParams) {
+loginCtrl.controller('LoginCtrl', ['$scope', '$rootScope', '$http', '$location', function ($scope, $rootScope, $http, $location) {
     var getTimestampTemp=new Date().getTime();
     var timestamp=String(getTimestampTemp).substring(0,10);
     var getTimestamp=parseInt(timestamp);
@@ -88,4 +88,4 @@ loginCtrl.controller('LoginCtrl', function ($http, $scope, $rootScope, $location
     $scope.reset = function(){
         //$location.path("/");
     };
-});
+}]);

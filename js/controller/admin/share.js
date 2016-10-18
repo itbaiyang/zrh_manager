@@ -1,6 +1,7 @@
 var shareCtrl = angular.module('shareCtrl', []);
 
-shareCtrl.controller('ShareCtrl', function ($http, $scope, $state, $rootScope, $location, $routeParams) {
+shareCtrl.controller('ShareCtrl',
+    ['$http', '$scope', '$state', '$rootScope', function ($http, $scope, $state, $rootScope) {
 
     /*分享列表*/
     $scope.list = function (pageNo, pageSize) {
@@ -90,9 +91,10 @@ shareCtrl.controller('ShareCtrl', function ($http, $scope, $state, $rootScope, $
     $scope.showDetail = function (id) {
         $state.go('admin.share.share_detail', ({'id': id}));
     };
-});
+    }]);
 
-shareCtrl.controller('ShareDetailCtrl', function ($http, $scope, $state, $rootScope, $stateParams, $location, $routeParams) {
+shareCtrl.controller('ShareDetailCtrl',
+    ['$http', '$scope', '$state', '$rootScope', '$stateParams', function ($http, $scope, $state, $rootScope, $stateParams) {
     /*申请列表*/
     $scope.list = function (pageNo, pageSize) {
         var m_params = {
@@ -243,4 +245,4 @@ shareCtrl.controller('ShareDetailCtrl', function ($http, $scope, $state, $rootSc
     $scope.go_back_share = function () {
         $state.go('admin.share');
     };
-});
+    }]);

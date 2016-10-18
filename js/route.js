@@ -2,7 +2,7 @@
  * Created by baiyang on 2016/7/7.
  */
 //路由设定
-app.config(function ($stateProvider, $urlRouterProvider) {
+app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
 
     $urlRouterProvider
         .otherwise('/login');
@@ -282,7 +282,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
-        
+
         .state('admin.my_project', {
             url: '/my_project',
             views: {
@@ -568,4 +568,4 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
-});
+}]);
