@@ -162,6 +162,7 @@ channelCtrl.controller('ChannelDetailCtrl', function ($http, $scope, $state, $ro
             params: m_params
         }).success(function (d) {
             if (d.returnCode == 0) {
+                console.log(d)
                 $scope.name = d.result.name;
                 $scope.page = d.result.pagination;
                 $scope.result_list = d.result.pagination.datas;

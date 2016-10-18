@@ -7,11 +7,11 @@
             <input type="text" class="form-control" placeholder="搜索企业名称" ng-model="search_text">
         </div>
         <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-            <button class="btn btn-blue" ng-click="search()" type="button">搜索</button>
+            <button class="btn-blue" ng-click="search()" type="button">搜索</button>
         </div>
-        <button class="btn btn-blue fr margin-left15" ng-click="addApply()">绑定企业申请</button>
-        <button class="btn btn-grey fr" ng-click="history()">历史申请</button>
-        <button class="btn btn-grey fr" ng-click="go_back_channel()">返回</button>
+        <button class="btn-blue fr margin-left15" ng-click="addApply()">绑定企业申请</button>
+        <button class="btn-grey fr" ng-click="history()">历史申请</button>
+        <button class="btn-grey fr" ng-click="go_back_channel()">返回</button>
     </div>
     <li class="list-title">
         <div class="col-sm-6 col-md-6 col-lg-6 noPadding">
@@ -53,8 +53,7 @@
                                 <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}"
                                        ng-checked="isSelected(resultObj.id)"
                                        ng-click="updateSelection($event,resultObj.id)">
-                                <a ng-click="updateApply(resultObj.id)"
-                                   style="cursor: pointer;vertical-align: middle;">
+                                <a href="{{url_detail}}{{resultObj.id}}" target="_blank" class="list-a-point">
                                     {{resultObj.companyName || resultObj.linkman}}
                                 </a>
                             </p>

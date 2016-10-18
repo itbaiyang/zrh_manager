@@ -145,13 +145,6 @@
     display: inline-block;
     width: 15px;
     height: 11px;
-    background: url("../img/aside_bar.png");
-    background-size: 100%;
-    /*transform: rotate(90deg);*/
-    /*-ms-transform: rotate(90deg); !* IE 9 *!*/
-    /*-webkit-transform: rotate(90deg); !* Safari and Chrome *!*/
-    /*-o-transform: rotate(90deg); !* Opera *!*/
-    /*-moz-transform: rotate(90deg); !* Firefox *!*/
 }
 .side-bar-class {
     height: 40px;
@@ -525,69 +518,13 @@
 }
 
 /*二级侧边栏*/
-@keyframes big-width {
-    from {
-        width: calc(100% - 380px);
-        margin-left: 380px;
-    }
-    to {
-        width: calc(100% - 250px);
-        margin-left: 250px;
-    }
-}
-
-@-webkit-keyframes big-width /* Safari and Chrome */
-{
-    from {
-        width: calc(100% - 380px);
-        margin-left: 380px;
-    }
-    to {
-        width: calc(100% - 250px);
-        margin-left: 250px;
-    }
-}
-
-@keyframes small-width {
-    from {
-        width: calc(100% - 250px);
-        margin-left: 250px;
-    }
-    to {
-        width: calc(100% - 380px);
-        margin-left: 380px;
-    }
-}
-
-@-webkit-keyframes small-width /* Safari and Chrome */
-{
-    from {
-        width: calc(100% - 250px);
-        margin-left: 250px;
-    }
-    to {
-        width: calc(100% - 380px);
-        margin-left: 380px;
-    }
-}
 .content-two {
+    width: calc(100% - 250px);
+    margin-left: 250px;
     position: absolute;
     overflow-x: hidden;
     height: 100%;
     background: #ffffff
-}
-
-.content-two-open {
-    width: calc(100% - 380px);
-    margin-left: 380px;
-    /*animation: small-width .5s;*/
-
-}
-
-.content-two-close {
-    width: calc(100% - 250px);
-    margin-left: 250px;
-    /*animation: big-width .5s;*/
 }
 
 .padding-left {

@@ -107,18 +107,13 @@ app.run(function ($location, $rootScope, $timeout, $http) {
             $rootScope.choiceColor = array[1];
             if (array[1] == "message") {
                 $rootScope.sideTwo = true;
-                if ($rootScope.isOpenMenu) {
-                    $timeout(function () {
-                        $rootScope.closeMenu();
-                    }, 100);
-                }
+                $rootScope.isOpenMenu = false;
                 $rootScope.choiceColorTwo = array[2];
             } else {
                 $rootScope.sideTwo = false;
                 if (!$rootScope.isOpenMenu) {
                     $rootScope.openMenu();
                 }
-
             }
         });
     // 页面跳转前
@@ -202,6 +197,10 @@ app.run(function ($location, $rootScope, $timeout, $http) {
         $event.stopPropagation();
     };
     /*********************************** 全局变量区 ***************************************/
+
+    // $rootScope.url_detail = 'http://localhost:8080/zrh_manager/detail.html#/apply/detail/';
+    $rootScope.url_detail = 'http://testmanager.zhironghao.com/home/apps/html/zrh_manager/detail.html#/apply/detail/';
+    // $rootScope.url_detail = 'http://manager.zhironghao.com//home/apps/html/zrh_manager/detail.html#/apply/detail/';
 
     $rootScope.putObject = function (key, value) {
         localStorage.setItem(key, angular.toJson(value));
@@ -406,5 +405,4 @@ app.run(function ($location, $rootScope, $timeout, $http) {
             }, 20000);
         })
     };
-    $rootScope.url_detail = 'http://localhost:8080/zrh_manager/detail.html#/apply/detail/';
 });

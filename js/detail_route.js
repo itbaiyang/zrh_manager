@@ -43,7 +43,7 @@ detail_app.config(function ($stateProvider, $urlRouterProvider) {
         .state('apply.distribute', {
             url: '/distribute/:id',
             views: {
-                'contains@admin': {
+                'contains@apply': {
                     templateUrl: templates_root + 'detail/distribute.html',
                     controller: 'DistributeCtrl'
                 }

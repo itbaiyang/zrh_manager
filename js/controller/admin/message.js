@@ -366,7 +366,7 @@ messageCtrl.controller('MessageSystemCtrl', function ($http, $scope, $rootScope,
         });
     };
 
-    $scope.to_company_message = function (id, url) {
+    $scope.to_company_message = function (id) {
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -377,9 +377,9 @@ messageCtrl.controller('MessageSystemCtrl', function ($http, $scope, $rootScope,
             method: "GET", 
             params: m_params
         }).success(function (d) {
+            console.log(d);
 
         }).error(function (d) {
         });
-        $location.path(url);
     };
 });

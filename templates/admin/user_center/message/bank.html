@@ -1,4 +1,4 @@
-<div class="content-two" ng-class="{true: 'content-two-open', false: 'content-two-close'}[isOpenMenu]">
+<div class="content-two">
     <div class="content-title margin-left">
         <span>银行消息</span>
     </div>
@@ -65,7 +65,7 @@
                              ng-show="showAllow[$index]">
                             <p style="padding-bottom: 6px">通过</p>
                             <div class="btn-group col-sm-12 col-md-12 col-lg-12">
-                                <button type="button" class="btn-input col-sm-12 col-lg-12" id="bankname"
+                                <button type="button" class="btn-input col-sm-12 col-md-12 col-lg-12" id="bankname"
                                         data-toggle="dropdown"
                                         aria-haspopup="true"
                                         aria-expanded="false">
@@ -144,7 +144,7 @@
             </div>
             <div class="message-date col-lg-3 col-md-3 col-sm-3 noPadding fl" ng-show="message.op != 0">
                 <div class="btn-group col-sm-12 col-md-12 col-lg-12 noPadding" style="position: relative">
-                    <div class="form-group col-lg-6 col-md-6 col-sm-6 fr">
+                    <div class="form-group col-sm-12 col-md-12 col-lg-12 fr">
                         <button type="button" ng-click="show_allow(message.status,$index,0)" class="btn-blue fr"
                                 id="change">修改进度
                         </button>
