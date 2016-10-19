@@ -33,7 +33,7 @@ module.exports = function (grunt) {
                     'js/controller/*.js',
                     'js/controller/super/*.js',
                     'js/controller/admin/*.js',
-                    'js/controller/detail/*.js',
+                    'js/controller/detail/detail.js',
                     'js/app.js',
                     'js/directive/directive.js',
                     'js/animation.js',

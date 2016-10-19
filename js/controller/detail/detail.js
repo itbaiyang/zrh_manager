@@ -1215,7 +1215,8 @@ detailAppCtrl.controller('DistributeCtrl',
         };
     }]);
 
-detailAppCtrl.controller('ApplyHelpCtrl', function ($http, $scope, $rootScope, $location, $state, $timeout, $stateParams) {
+detailAppCtrl.controller('ApplyHelpCtrl',
+    ['$http', '$scope', '$state', '$rootScope', '$location', '$timeout', '$stateParams', function ($http, $scope, $state, $rootScope, $location, $timeout, $stateParams) {
     /*初始化参数*/
     $scope.applyMobile = '';
     $scope.id = $stateParams.id;
@@ -1360,9 +1361,10 @@ detailAppCtrl.controller('ApplyHelpCtrl', function ($http, $scope, $rootScope, $
         }
 
     };
-});
+    }]);
 
-detailAppCtrl.controller('ChangeRegisterCtrl', function ($http, $scope, $state, $rootScope, $stateParams, $location) {
+detailAppCtrl.controller('ChangeRegisterCtrl',
+    ['$http', '$scope', '$state', '$rootScope', '$stateParams', function ($http, $scope, $state, $rootScope, $stateParams) {
 
     /*渠道申请注册人向企业注册人变更*/
     $scope.change = function () {
@@ -1395,9 +1397,10 @@ detailAppCtrl.controller('ChangeRegisterCtrl', function ($http, $scope, $state, 
             dataType: 'json',
         });
     };
-});
+    }]);
 
-detailAppCtrl.controller('MessageCtrl', function ($http, $scope, $state, $rootScope, $stateParams, $location) {
+detailAppCtrl.controller('MessageCtrl',
+    ['$http', '$scope', '$state', '$rootScope', '$stateParams', function ($http, $scope, $state, $rootScope, $stateParams) {
 
     /*获取留言列表*/
     $scope.get_message = function () {
@@ -1419,9 +1422,10 @@ detailAppCtrl.controller('MessageCtrl', function ($http, $scope, $state, $rootSc
         })
     };
     $scope.get_message();
-});
+    }]);
 
-detailAppCtrl.controller('ChoiceSaleCtrl', function ($http, $scope, $state, $rootScope, $stateParams) {
+detailAppCtrl.controller('ChoiceSaleCtrl',
+    ['$http', '$scope', '$state', '$rootScope', '$stateParams', function ($http, $scope, $state, $rootScope, $stateParams) {
     /*初始化参数*/
     if (!$scope.sale_id) {
         $scope.sale_id = '';
@@ -1494,4 +1498,4 @@ detailAppCtrl.controller('ChoiceSaleCtrl', function ($http, $scope, $state, $roo
             dataType: 'json',
         });
     };
-});
+    }]);
