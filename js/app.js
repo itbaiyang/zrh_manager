@@ -5,66 +5,66 @@ api_uri = "http://test.zhironghao.com/api/";
 var templates_root = 'templates/';
 deskey = "abc123.*abc123.*abc123.*abc123.*";
 var app = angular.module('app', [
-    'ng',
-    'ngRoute',
-    'ngAnimate',
-    'ui.router',
-    'loginCtrl',
-    'topBarCtrl',
-    'applyListCtrl',
-    'loanApplicationCtrl',
-    'productCtrl',
-    'myProjectCtrl',
-    'saleManagerCtrl',
-    'manageCtrl',
-    'teamCtrl',
-    'signUpCtrl',
-    'bankCtrl',
-    'channelCtrl',
-    'shareCtrl',
-    'messageCtrl'
-]
-, ['$httpProvider',function ($httpProvider) {
-    // Use x-www-form-urlencoded Content-Type
-    $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
-    $httpProvider.defaults.headers.put['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
+        'ng',
+        'ngRoute',
+        'ngAnimate',
+        'ui.router',
+        'loginCtrl',
+        'topBarCtrl',
+        'applyListCtrl',
+        'loanApplicationCtrl',
+        'productCtrl',
+        'myProjectCtrl',
+        'detailAppCtrl',
+        'saleManagerCtrl',
+        'manageCtrl',
+        'teamCtrl',
+        'signUpCtrl',
+        'bankCtrl',
+        'channelCtrl',
+        'shareCtrl',
+        'messageCtrl'],
+    ['$httpProvider', function ($httpProvider) {
+        // Use x-www-form-urlencoded Content-Type
+        $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
+        $httpProvider.defaults.headers.put['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
 
-    var param = function (obj) {
-        var query = '', name, value, fullSubName, subName, subValue, innerObj, i;
-        for (name in obj) {
-            value = obj[name];
-            if (value instanceof Array) {
-                for (i = 0; i < value.length; ++i) {
-                    subValue = value[i];
-                    fullSubName = name + '[' + i + ']';
-                    innerObj = {};
-                    innerObj[fullSubName] = subValue;
-                    query += param(innerObj) + '&';
+        var param = function (obj) {
+            var query = '', name, value, fullSubName, subName, subValue, innerObj, i;
+            for (name in obj) {
+                value = obj[name];
+                if (value instanceof Array) {
+                    for (i = 0; i < value.length; ++i) {
+                        subValue = value[i];
+                        fullSubName = name + '[' + i + ']';
+                        innerObj = {};
+                        innerObj[fullSubName] = subValue;
+                        query += param(innerObj) + '&';
+                    }
                 }
-            }
-            else if (value instanceof Object) {
-                for (subName in value) {
-                    subValue = value[subName];
-                    fullSubName = name + '[' + subName + ']';
-                    innerObj = {};
-                    innerObj[fullSubName] = subValue;
-                    query += param(innerObj) + '&';
+                else if (value instanceof Object) {
+                    for (subName in value) {
+                        subValue = value[subName];
+                        fullSubName = name + '[' + subName + ']';
+                        innerObj = {};
+                        innerObj[fullSubName] = subValue;
+                        query += param(innerObj) + '&';
+                    }
                 }
+                else if (value !== undefined && value !== null)
+                    query += encodeURIComponent(name) + '=' + encodeURIComponent(value) + '&';
             }
-            else if (value !== undefined && value !== null)
-                query += encodeURIComponent(name) + '=' + encodeURIComponent(value) + '&';
-        }
 
-        return query.length ? query.substr(0, query.length - 1) : query;
-    };
+            return query.length ? query.substr(0, query.length - 1) : query;
+        };
 
-    $httpProvider.defaults.transformRequest = [function (data) {
-        return angular.isObject(data) && String(data) !== '[object File]' ? param(data) : data;
-    }];
+        $httpProvider.defaults.transformRequest = [function (data) {
+            return angular.isObject(data) && String(data) !== '[object File]' ? param(data) : data;
+        }];
 
-}]);
+    }]);
 
-app.run(['$location', '$rootScope', '$timeout', '$http',function ($location, $rootScope, $timeout, $http) {
+app.run(['$location', '$rootScope', '$timeout', '$http', function ($location, $rootScope, $timeout, $http) {
 
     /*********************************** 回调区 ***************************************/
     // 页面跳转后
@@ -195,7 +195,8 @@ app.run(['$location', '$rootScope', '$timeout', '$http',function ($location, $ro
     };
     /*********************************** 全局变量区 ***************************************/
 
-    $rootScope.url_detail = 'http://localhost:8080/zrh_manager/detail.html#/apply/detail/';
+    $rootScope.url_detail = 'http://localhost:8080/zrh_manager/#/admin/apply/detail/';
+    $rootScope.url_edit = 'http://localhost:8080/zrh_manager/#/apply/choice_sale/';
     // $rootScope.url_detail = 'http://testmanager.zhironghao.com/detail.html#/apply/detail/';
     // $rootScope.url_detail = 'http://manager.zhironghao.com/detail.html#/apply/detail/';
 

@@ -9,7 +9,25 @@
                 </button>
             </div>
             <button class="btn-grey" ng-show="w == true" ng-click="change_register(id)">注册人变更</button>
-            <button class="btn-grey" ng-click="stopped(id)">中止项目</button>
+            <div class="btn-group" ng-show="isStop == false" style="position: relative;vertical-align: top">
+                <button ng-click="show_cancel()" class="btn-grey"
+                        id="products">中止项目
+                </button>
+                <div class="account-p-bank" ng-show="showCancel" style="height: 170px;border: 1px solid #cccccc">
+                    <div class="form-group col-sm-12 col-lg-12 noPadding">
+                        <div class="col-sm-12 noPadding" style="margin-top: 10px">
+                            <textarea class="col-sm-12 noPadding" type="text" style="height: 80px;" class="form-control"
+                                      ng-model="reason" placeholder="放弃原因"></textarea>
+                        </div>
+                    </div>
+                    <button style="margin-left:10px" class="btn btn-blue fr" type="submit"
+                            ng-click="stopped(id,reason)">确定
+                    </button>
+                    <button style="margin-left:10px" class="btn btn-blue fr" type="submit"
+                            ng-click="hide_cancel()">取消
+                    </button>
+                </div>
+            </div>
             <button class="btn-grey" ng-show="status == null || status == 0"
                     ng-click="apply_help(id)">
                 帮助申请

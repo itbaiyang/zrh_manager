@@ -59,15 +59,15 @@
                 <li class="list-group-item list-common" ng-repeat="resultObj in result_list">
                     <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 noPadding">
                         <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 noPadding">
-                            <p class="company-overflow-2 fl">
+                            <p class="company-overflow fl">
                                 <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}"
                                        ng-checked="isSelected(resultObj.id)"
                                        ng-click="updateSelection($event,resultObj.id)">
-                                <!--<a ng-click="showDetail(resultObj.id,$index)" target="_blank">-->
-                                <!--</a>-->
                                 <a href="{{url_detail}}{{resultObj.id}}" target="_blank">{{resultObj.companyName ||
                                     resultObj.linkman}}</a>
                             </p>
+                            <img src="img/tips/day_red.png" class="img-size" ng-show="resultObj.timeOver > 10">
+                            <img src="img/tips/day_yellow.png" class="img-size" ng-show="resultObj.timeOver > 7">
                         </div>
                         <span class="col-xs-4 col-sm-4 col-md-4 col-lg-4"
                               ng-show="resultObj.productName">{{resultObj.bankName}}-{{resultObj.productName}}</span>

@@ -303,98 +303,86 @@ app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
                 }]
             }
         })
-        .state('admin.my_project.detail', {
-            url: '/detail/:id',
+        .state("admin.apply", {
+            url: '/apply',
             views: {
                 'side_bar@admin': {
-                    templateUrl: templates_root + 'bar/no_side.html'
+                    templateUrl: templates_root + 'bar/no_side.html',
                 },
                 'contains@admin': {
-                    templateUrl: templates_root + 'admin/product_service/my_project/detail.html',
-                    controller: 'DetailCtrl'
+                    templateUrl: templates_root + 'detail/apply_detail.html',
+                    controller: 'DetailAppCtrl'
                 }
             }
         })
-        .state('admin.my_project.edit_apply', {
+        .state("admin.apply.detail", {
+            url: '/detail/:id',
+            views: {
+                'contains@admin': {
+                    templateUrl: templates_root + 'detail/apply_detail.html',
+                    controller: 'DetailAppCtrl'
+                }
+            }
+        })
+        .state('admin.apply.edit_apply', {
             url: '/edit_apply/:id',
             views: {
-                'side_bar@admin': {
-                    templateUrl: templates_root + 'bar/no_side.html'
-                },
                 'contains@admin': {
-                    templateUrl: templates_root + 'admin/product_service/my_project/edit_apply.html',
+                    templateUrl: templates_root + 'detail/edit_apply.html',
                     controller: 'EditApplyCtrl'
                 }
             }
         })
-        .state('admin.my_project.distribute', {
+        .state('admin.apply.distribute', {
             url: '/distribute/:id',
             views: {
-                'side_bar@admin': {
-                    templateUrl: templates_root + 'bar/no_side.html'
-                },
                 'contains@admin': {
-                    templateUrl: templates_root + 'admin/product_service/my_project/distribute.html',
+                    templateUrl: templates_root + 'detail/distribute.html',
                     controller: 'DistributeCtrl'
                 }
             }
         })
-        .state('admin.my_project.apply_help', {
+        .state('admin.apply.apply_help', {
             url: '/apply_help/:id',
             views: {
-                'side_bar@admin': {
-                    templateUrl: templates_root + 'bar/no_side.html'
-                },
                 'contains@admin': {
-                    templateUrl: templates_root + 'admin/product_service/my_project/apply_help.html',
+                    templateUrl: templates_root + 'detail/apply_help.html',
                     controller: 'ApplyHelpCtrl'
                 }
             }
         })
-        .state('admin.my_project.change_bank', {
+        .state('admin.apply.change_bank', {
             url: '/change_bank/:id/:mobile',
             views: {
-                'side_bar@admin': {
-                    templateUrl: templates_root + 'bar/no_side.html'
-                },
                 'contains@admin': {
-                    templateUrl: templates_root + 'admin/product_service/my_project/change_bank.html',
+                    templateUrl: templates_root + 'detail/change_bank.html',
                     controller: 'ApplyHelpCtrl'
                 }
             }
         })
-        .state('admin.my_project.change_register', {
+        .state('admin.apply.change_register', {
             url: '/change_register/:id',
             views: {
-                'side_bar@admin': {
-                    templateUrl: templates_root + 'bar/no_side.html'
-                },
                 'contains@admin': {
-                    templateUrl: templates_root + 'admin/product_service/my_project/change.html',
+                    templateUrl: templates_root + 'detail/change.html',
                     controller: 'ChangeRegisterCtrl'
                 }
             }
         })
-        .state('admin.my_project.message', {
+        .state('admin.apply.message', {
             url: '/message/:id',
             views: {
-                'side_bar@admin': {
-                    templateUrl: templates_root + 'bar/no_side.html'
-                },
                 'contains@admin': {
-                    templateUrl: templates_root + 'admin/product_service/my_project/message.html',
+                    templateUrl: templates_root + 'detail/message.html',
                     controller: 'MessageCtrl'
                 }
             }
         })
-        .state('admin.my_project.choice_sale', {
+        .state('admin.apply.choice_sale', {
             url: '/choice_sale/:id',
             views: {
-                'side_bar@admin': {
-                    templateUrl: templates_root + 'bar/no_side.html'
-                },
                 'contains@admin': {
-                    templateUrl: templates_root + 'admin/product_service/my_project/choice_sale.html',
+                    templateUrl: templates_root + 'detail/choice_sale.html',
                     controller: 'ChoiceSaleCtrl'
                 }
             }

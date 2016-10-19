@@ -117,6 +117,10 @@ shareCtrl.controller('ShareDetailCtrl',
                 $scope.page = d.result.pagination;
                 $scope.result_list = d.result.pagination.datas;
                 angular.forEach($scope.result_list, function (data) { //申请状态显示
+                    if (data.lastCommentTime) {
+                        data.currentTime = new Date().getTime();
+                        data.timeOver = (data.currentTime - data.lastCommentTime) / 1000 / 3600 / 24;
+                    }
                     if (data.status == 0) {
                         data.progressText = "未申请";
                         data.color = 1;

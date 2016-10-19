@@ -132,6 +132,10 @@ saleManagerCtrl.controller('SaleApplyListCtrl',
                 $scope.count = d.result.count;
                 $scope.userName = d.result.userName;
                 angular.forEach($scope.result_list, function (data) {
+                    if (data.lastCommentTime) {
+                        data.currentTime = new Date().getTime();
+                        data.timeOver = (data.currentTime - data.lastCommentTime) / 1000 / 3600 / 24;
+                    }
                     $scope.status = d.result.status;
                     if (data.status == 0) {
                         data.progressText = "未申请";

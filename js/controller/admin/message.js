@@ -218,13 +218,12 @@ messageCtrl.controller('MessageBankCtrl',
             });
         };
         /*拒绝客户经理的请求*/
-        $scope.refuse = function (id, index) {
-            $scope.reason_refuse = $("#reason_refuse").val();
+        $scope.refuse = function (id, index, reason_refuse) {
             var m_params = {
                 "userId": $rootScope.login_user.userId,
                 "token": $rootScope.login_user.token,
                 "id": id,
-                "reason": $scope.reason_refuse,
+                "reason": reason_refuse,
             };
             $http({
                 url: api_uri + "applyBankDeal/manage/refuse",
@@ -240,7 +239,7 @@ messageCtrl.controller('MessageBankCtrl',
                     $scope.$apply();
                 } else if (d.returnCode == 1002 && d.result == "abd") {
                     alert("这条操作已经操作过了")
-                } else if (data.returnCode == 1002 && d.result == "la") {
+                } else if (d.returnCode == 1002 && d.result == "la") {
                     alert("申请的状态错误")
                 } else {
                     alert("未知错误");
@@ -388,6 +387,67 @@ messageCtrl.controller('MessageSystemCtrl',
             });
         };
 
+        /*同意销售的驳回请求*/
+        $scope.agree = function (id) {
+            var m_params = {
+                "userId": $rootScope.login_user.userId,
+                "token": $rootScope.login_user.token,
+                "id": id
+            };
+            $http({
+                url: api_uri + "loanApplicationManage/agree",
+                method: 'GET',
+                params: m_params,
+            }).success(function (d) {
+                console.log(d);
+                $scope.list_stop(1, 100);
+                $rootScope.message();
+            })
+                .error(function (d) {
+
+                });
+        };
+
+        /*拒绝销售的驳回请求*/
+        $scope.showRefuse = []; //初始化参数
+        $scope.show_alert = function (id) { //显示窗口函数
+            $scope.showRefuse[id] = true;
+            console.log(id);
+        };
+        $scope.refuse = function (id, index, reason_refuse) {
+            var m_params = {
+                "userId": $rootScope.login_user.userId,
+                "token": $rootScope.login_user.token,
+                "id": id,
+                "reason": reason_refuse,
+            };
+            $http({
+                url: api_uri + "loanApplicationManage/reject",
+                method: "GET",
+                params: m_params
+            }).success(function (d) {
+                console.log(d);
+                if (d.returnCode == 0) {
+                    $rootScope.successMsg = "驳回已发送";
+                    $rootScope.fadeInOut("#alert", 500);
+                    $scope.showRefuse[index] = false;
+                    $scope.list_stop(1, 100);
+                    $rootScope.message();
+                } else if (d.returnCode == 1002 && d.result == "abd") {
+                    alert("这条操作已经操作过了")
+                } else if (d.returnCode == 1002 && d.result == "la") {
+                    alert("申请的状态错误")
+                } else {
+                    alert("未知错误");
+                }
+            }).error(function (d) {
+                // console.log(d);
+            });
+        };
+        $scope.cancel = function (id) { //关闭窗口
+            $scope.showRefuse[id] = false;
+        };
+        
         $scope.to_company_message = function (id) {
             var m_params = {
                 "userId": $rootScope.login_user.userId,

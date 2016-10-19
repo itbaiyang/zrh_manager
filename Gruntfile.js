@@ -3,7 +3,7 @@ module.exports = function (grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         concat: {
-            js: {
+            js_base: {
                 options: {
                     separator: ';'
                 },
@@ -21,39 +21,26 @@ module.exports = function (grunt) {
                     'js/security/core.js',
                     'js/security/tripledes3.js',
                     'js/security/mode-ecb.js',
-                    'js/controller/*.js',
-                    'js/controller/super/*.js',
-                    'js/controller/admin/*.js',
-                    'js/app.js',
-                    'js/animation.js',
-                    'js/route.js'
                 ],
 
-                dest: 'dist/<%= pkg.name %>.js'
+                dest: 'dist/base_<%= pkg.name %>.js'
             },
-            js_detail: {
+            js_app: {
                 options: {
                     separator: ';'
                 },
                 src: [
-                    'js/vendor/jquery.min.js',
-                    'js/vendor/angular.min.js',
-                    'js/vendor/angular-route.min.js',
-                    'js/vendor/angular-animate.min.js',
-                    'js/vendor/angular-ui-router.min.js',
-                    'js/vendor/bootstrap.min.js',
-                    'js/qiniu/ajaxfileupload.js',
-                    'js/qiniu/moment.js',
-                    'js/qiniu/qiniu.min.js',
-                    'js/qiniu/plupload.full.min.js',
-                    'js/controller/top_bar.js',
+                    'js/controller/*.js',
+                    'js/controller/super/*.js',
+                    'js/controller/admin/*.js',
                     'js/controller/detail/*.js',
-                    'js/detail_app.js',
+                    'js/app.js',
                     'js/directive/directive.js',
-                    'js/detail_route.js'
+                    'js/animation.js',
+                    'js/route.js'
                 ],
 
-                dest: 'dist/detail_<%= pkg.name %>.js'
+                dest: 'dist/app_<%= pkg.name %>.js'
             },
             css: {
                 src: [
@@ -75,8 +62,8 @@ module.exports = function (grunt) {
             },
             dist: {
                 files: {
-                    'dist/<%= pkg.name %>.min.<%= pkg.version %>.js': ['<%= concat.js.dest %>'],
-                    'dist/detail_<%= pkg.name %>.min.<%= pkg.version %>.js': ['<%= concat.js_detail.dest %>']
+                    'dist/base_<%= pkg.name %>.min.<%= pkg.version %>.js': ['<%= concat.js_base.dest %>'],
+                    'dist/app_<%= pkg.name %>.min.<%= pkg.version %>.js': ['<%= concat.js_app.dest %>']
                 }
             }
         }

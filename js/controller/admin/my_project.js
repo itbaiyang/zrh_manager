@@ -25,7 +25,11 @@ myProjectCtrl.controller('MyProjectCtrl',
                 $scope.result_list = d.result.list.datas; //列表参数
                 $scope.count = d.result.count;            //列表统计
                 $scope.userName = d.result.userName;
-                angular.forEach($scope.result_list, function (data) { //申请状态显示
+                angular.forEach($scope.result_list, function (data) {//申请状态显示
+                    if (data.lastCommentTime) {
+                        data.currentTime = new Date().getTime();
+                        data.timeOver = (data.currentTime - data.lastCommentTime) / 1000 / 3600 / 24;
+                    }
                     if (data.status == 0) {
                         data.progressText = "未申请";
                         data.color = 1;

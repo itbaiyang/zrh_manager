@@ -37,19 +37,21 @@
     </ul>
 
     <li class="list-title" ng-show="list_show == false">
-        <span class="col-sm-2 col-md-2 col-lg-2">用户名</span>
-        <span class="col-sm-3 col-md-3 col-lg-3 text-center">企业名</span>
+        <span class="col-sm-3 col-md-3 col-lg-3">用户名</span>
+        <span class="col-sm-4 col-md-4 col-lg-4 noPadding">企业名</span>
         <span class="col-sm-3 col-md-3 col-lg-3 text-center">操作</span>
     </li>
     <ul class="list-group list-ul list-ul-height-1" ng-show="list_show == false">
         <div class="line-roll">
             <div class="list-out">
                 <li class="list-group-item list-user" ng-repeat="company in company_list">
-                    <span class="col-sm-2 col-md-2 col-lg-2">
-                    <input type="checkbox" style="margin-right: 10px" id="{{company.id}}"
-                           ng-checked="isSelected(company.id)"
-                           ng-click="updateSelection($event,company.id)">{{company.userName}}</span>
-                    <span class="col-sm-3 col-md-3 col-lg-3 text-center">{{company.companyName}}</span>
+                    <span class="col-sm-3 col-md-3 col-lg-3">{{company.userName}}</span>
+
+                    <div class="col-sm-4 col-md-4 col-lg-4 noPadding">
+                        <p class="company-overflow fl">{{company.companyName}}</p>
+                        <img src="img/tips/day_red.png" class="img-size" ng-show="resultObj.timeOver > 10">
+                        <img src="img/tips/day_yellow.png" class="img-size" ng-show="resultObj.timeOver > 7">
+                    </div>
                     <a class="col-sm-3 col-md-3 col-lg-3 text-center list-a-point" href="{{url_detail}}{{company.id}}"
                        target="_blank">查看详情</a>
                 </li>
