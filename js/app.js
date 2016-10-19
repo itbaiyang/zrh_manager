@@ -195,10 +195,10 @@ app.run(['$location', '$rootScope', '$timeout', '$http', function ($location, $r
     };
     /*********************************** 全局变量区 ***************************************/
 
-    $rootScope.url_detail = 'http://localhost:8080/zrh_manager/#/admin/apply/detail/';
-    $rootScope.url_edit = 'http://localhost:8080/zrh_manager/#/apply/choice_sale/';
-    // $rootScope.url_detail = 'http://testmanager.zhironghao.com/detail.html#/apply/detail/';
-    // $rootScope.url_detail = 'http://manager.zhironghao.com/detail.html#/apply/detail/';
+    // $rootScope.url_detail = 'http://localhost:8080/zrh_manager/#/admin/apply/detail/';
+    // $rootScope.url_edit = 'http://localhost:8080/zrh_manager/#/apply/choice_sale/';
+    $rootScope.url_detail = 'http://testmanager.zhironghao.com/#/admin/apply/detail/';
+    $rootScope.url_detail = 'http://testmanager.zhironghao.com/#/admin/apply/choice_sale/';
 
     $rootScope.putObject = function (key, value) {
         localStorage.setItem(key, angular.toJson(value));
