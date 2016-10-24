@@ -68,7 +68,7 @@
         <p style="width: 100%;height: 45px;" ng-repeat="message in result_list">
             <span ng-hide="message.readTime" style="color: #f97383">{{message.content}}</span>
             <span ng-show="message.readTime">{{message.content}}</span>
-            <a href="{{url_detail}}{{message.map.applyId}}" ng-mouseenter="to_company_message(message.id)"
+            <a href="{{url_detail}}{{message.params.applyId}}" ng-mouseenter="to_company_message(message.id)"
                target="_blank" style="padding: 0 10px">{{message.urlName}}</a>
             <span class="fr">{{message.sendTime | date:'yyyy.MM.dd'}}</span>
         </p>
