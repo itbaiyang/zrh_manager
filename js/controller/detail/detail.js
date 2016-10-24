@@ -1218,6 +1218,7 @@ detailAppCtrl.controller('DistributeCtrl',
 detailAppCtrl.controller('ApplyHelpCtrl',
     ['$http', '$scope', '$state', '$rootScope', '$location', '$timeout', '$stateParams', function ($http, $scope, $state, $rootScope, $location, $timeout, $stateParams) {
         /*初始化参数*/
+        $scope.productType = 0;
         $scope.applyMobile = '';
         $scope.id = $stateParams.id;
         if ($stateParams.mobile) {
