@@ -1,5 +1,5 @@
-api_uri = "http://test.zhironghao.com/api/";
-// api_uri = "http://api.supeiyunjing.com/";
+// api_uri = "http://test.zhironghao.com/api/";
+api_uri = "http://api.supeiyunjing.com/";
 // api_uri = "http://172.17.2.13:8080/api/";
 // api_uri = "http://172.16.97.229:8080/api/";
 var templates_root = 'templates/';
@@ -197,8 +197,10 @@ app.run(['$location', '$rootScope', '$timeout', '$http', function ($location, $r
 
     // $rootScope.url_detail = 'http://localhost:8080/zrh_manager/#/admin/apply/detail/';
     // $rootScope.url_edit = 'http://localhost:8080/zrh_manager/#/apply/choice_sale/';
-    $rootScope.url_detail = 'http://testmanager.zhironghao.com/#/admin/apply/detail/';
-    $rootScope.url_edit = 'http://testmanager.zhironghao.com/#/admin/apply/choice_sale/';
+    // $rootScope.url_detail = 'http://testmanager.zhironghao.com/#/admin/apply/detail/';
+    // $rootScope.url_edit = 'http://testmanager.zhironghao.com/#/admin/apply/choice_sale/';
+    $rootScope.url_detail = 'http://manager.zhironghao.com/#/admin/apply/detail/';
+    $rootScope.url_edit = 'http://manager.zhironghao.com/#/admin/apply/choice_sale/';
 
     $rootScope.putObject = function (key, value) {
         localStorage.setItem(key, angular.toJson(value));
