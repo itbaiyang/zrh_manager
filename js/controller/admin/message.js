@@ -198,7 +198,7 @@ messageCtrl.controller('MessageBankCtrl',
             };
             console.log(m_params);
             $.ajax({
-                type: 'POST',
+                type: 'GET',
                 url: api_uri + "loanApplicationManage/modifyRate",
                 data: m_params,
                 traditional: true,

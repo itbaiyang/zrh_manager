@@ -364,6 +364,9 @@
     background-color: #f97383;
 }
 
+.progress-bar-after-grey {
+    background-color: #e0e0e0;
+}
 .progress-bar-go {
     background-color: #fac3ca;
 }

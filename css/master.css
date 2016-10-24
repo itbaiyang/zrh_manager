@@ -842,11 +842,17 @@
 /*background-color: #ffffff;*/
 /*border: 1px solid red;*/
 /*}*/
+.apply-detail-link {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    margin: 10px 5px;
+}
 
 .apply-detail-img {
     width: 40px;
     height: 40px;
-    margin: 10px 5px;
 }
 
 .add-tips {

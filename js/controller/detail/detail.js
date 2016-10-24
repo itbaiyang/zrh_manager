@@ -1217,280 +1217,284 @@ detailAppCtrl.controller('DistributeCtrl',
 
 detailAppCtrl.controller('ApplyHelpCtrl',
     ['$http', '$scope', '$state', '$rootScope', '$location', '$timeout', '$stateParams', function ($http, $scope, $state, $rootScope, $location, $timeout, $stateParams) {
-    /*初始化参数*/
-    $scope.applyMobile = '';
-    $scope.id = $stateParams.id;
-    if ($stateParams.mobile) {
-        $scope.applyMobile = $stateParams.mobile;
-    }
-
-    /*获取产品名称*/
-    $scope.get = function () {
-        var m_params = {
-            "userId": $rootScope.login_user.userId,
-            "token": $rootScope.login_user.token,
-            "applyId": $scope.id,
-        };
-        $http({
-            url: api_uri + "loanApplicationManage/getProduct",
-            method: "GET",
-            params: m_params
-        }).success(function (d) {
-            console.log(d);
-            if (d.returnCode == 0) {
-                $scope.bankName = d.result.bankName;
-                $scope.productName = d.result.productName;
-                $scope.productId = d.result.productId;
-            }
-            else {
-            }
-        }).error(function (d) {
-        })
-    };
-    $scope.get();
-
-    /*获取银行列表*/
-    $scope.list = function (pageNo, pageSize) {
-        var m_params = {
-            "userId": $rootScope.login_user.userId,
-            "token": $rootScope.login_user.token,
-            "pageNo": pageNo,
-            "pageSize": pageSize,
-        };
-        $http({
-            url: api_uri + "manage/bank/list",
-            method: "GET",
-            params: m_params
-        }).success(function (d) {
-            if (d.returnCode == 0) {
-                $scope.page = d.result;
-                $scope.bank_list = d.result.datas;
-            }
-            else {
-            }
-
-        }).error(function (d) {
-            $location.path("/error");
-        })
-    };
-    $scope.list(1, 100);
-
-    /*选择产品*/
-    $scope.choiceProduct = function (id, name, type) {
-        $scope.productId = id;
-        $scope.productName = name;
-    };
-    /*选择银行*/
-    $scope.choiceBank = function (id, name) {
-        $scope.bankId = id;
-        $scope.bankName = name;
-        $scope.product_list_get($scope.bankId, 1, 400);
-        $scope.productName = "";
-    };
-    /*获取产品列表*/
-    $scope.product_list_get = function (id, pageNo, pageSize) {
-        var m_params = {
-            "userId": $rootScope.login_user.userId,
-            "token": $rootScope.login_user.token,
-            "bankId": id,
-            "pageNo": pageNo,
-            "pageSize": pageSize,
-            "release": true
-        };
-        $http({
-            url: api_uri + "financialProductManage/list",
-            method: "GET",
-            params: m_params
-        }).success(function (d) {
-            if (d.returnCode == 0) {
-                console.log(d);
-                $scope.page = d.result;
-                $scope.product_list = d.result.datas;
-            }
-            else {
-            }
-
-        }).error(function (d) {
-        })
-    };
-
-    $scope.submit_apply = function (msg) {
-        var m_params = {
-            "userId": $rootScope.login_user.userId,
-            "token": $rootScope.login_user.token,
-            "applyId": $stateParams.id,
-            "productId": $scope.productId,
-            "mobile": $scope.applyMobile,
-        };
-        console.log(m_params);
-        if (!m_params.productId) {
-            alert("请选择银行和产品");
-        } else if (!m_params.applyId) {
-            alert("该申请不存在");
-        } else if (!m_params.mobile) {
-            alert("电话号码不能为空");
-        } else {
-            if (msg == 0) {
-                var apply_url = "loanApplicationManage/helpApply";
-                $rootScope.successMsg = "操作成功";
-            } else {
-                var apply_url = "loanApplicationManage/changeProduct";
-                $rootScope.successMsg = "更换成功";
-            }
-            $.ajax({
-                type: 'POST',
-                url: api_uri + apply_url,
-                data: m_params,
-                traditional: true,
-                success: function (data, textStatus, jqXHR) {
-                    console.log(data);
-                    if (data.returnCode == 0) {
-                        $rootScope.fadeInOut("#alert", 500);
-                        $state.go('admin.apply.detail', {'id': $stateParams.id});
-                        $scope.$apply();
-                    } else if (data.returnCode == 1003) {
-                        alert("申请不存在")
-                    }
-                },
-                dataType: 'json',
-            });
+        /*初始化参数*/
+        $scope.applyMobile = '';
+        $scope.id = $stateParams.id;
+        if ($stateParams.mobile) {
+            $scope.applyMobile = $stateParams.mobile;
         }
 
-    };
+        /*获取产品名称*/
+        $scope.get = function () {
+            var m_params = {
+                "userId": $rootScope.login_user.userId,
+                "token": $rootScope.login_user.token,
+                "applyId": $scope.id,
+            };
+            $http({
+                url: api_uri + "loanApplicationManage/getProduct",
+                method: "GET",
+                params: m_params
+            }).success(function (d) {
+                console.log(d);
+                if (d.returnCode == 0) {
+                    $scope.bankName = d.result.bankName;
+                    $scope.productName = d.result.productName;
+                    $scope.productId = d.result.productId;
+                    $scope.productType = d.result.productType;
+                }
+                else {
+                }
+            }).error(function (d) {
+            })
+        };
+        $scope.get();
+
+        /*获取银行列表*/
+        $scope.list = function (pageNo, pageSize) {
+            var m_params = {
+                "userId": $rootScope.login_user.userId,
+                "token": $rootScope.login_user.token,
+                "pageNo": pageNo,
+                "pageSize": pageSize,
+            };
+            $http({
+                url: api_uri + "manage/bank/list",
+                method: "GET",
+                params: m_params
+            }).success(function (d) {
+                if (d.returnCode == 0) {
+                    $scope.page = d.result;
+                    $scope.bank_list = d.result.datas;
+                }
+                else {
+                }
+
+            }).error(function (d) {
+                $location.path("/error");
+            })
+        };
+        $scope.list(1, 100);
+
+        /*选择产品*/
+        $scope.choiceProduct = function (id, name, type) {
+            $scope.productId = id;
+            $scope.productName = name;
+            $scope.type = type;
+        };
+        /*选择银行*/
+        $scope.choiceBank = function (id, name) {
+            $scope.bankId = id;
+            $scope.bankName = name;
+            $scope.product_list_get($scope.bankId, 1, 400);
+            $scope.productName = "";
+        };
+        /*获取产品列表*/
+        $scope.product_list_get = function (id, pageNo, pageSize) {
+            var m_params = {
+                "userId": $rootScope.login_user.userId,
+                "token": $rootScope.login_user.token,
+                "bankId": id,
+                "pageNo": pageNo,
+                "pageSize": pageSize,
+                "productType": $scope.productType,
+                "release": true
+            };
+            console.log(m_params);
+            $http({
+                url: api_uri + "financialProductManage/list",
+                method: "GET",
+                params: m_params
+            }).success(function (d) {
+                if (d.returnCode == 0) {
+                    console.log(d);
+                    $scope.page = d.result;
+                    $scope.product_list = d.result.datas;
+                }
+                else {
+                }
+
+            }).error(function (d) {
+            })
+        };
+
+        $scope.submit_apply = function (msg) {
+            var m_params = {
+                "userId": $rootScope.login_user.userId,
+                "token": $rootScope.login_user.token,
+                "applyId": $stateParams.id,
+                "productId": $scope.productId,
+                "mobile": $scope.applyMobile,
+            };
+            console.log(m_params);
+            if (!m_params.productId) {
+                alert("请选择银行和产品");
+            } else if (!m_params.applyId) {
+                alert("该申请不存在");
+            } else if (!m_params.mobile) {
+                alert("电话号码不能为空");
+            } else {
+                if (msg == 0) {
+                    var apply_url = "loanApplicationManage/helpApply";
+                    $rootScope.successMsg = "操作成功";
+                } else {
+                    var apply_url = "loanApplicationManage/changeProduct";
+                    $rootScope.successMsg = "更换成功";
+                }
+                $.ajax({
+                    type: 'POST',
+                    url: api_uri + apply_url,
+                    data: m_params,
+                    traditional: true,
+                    success: function (data, textStatus, jqXHR) {
+                        console.log(data);
+                        if (data.returnCode == 0) {
+                            $rootScope.fadeInOut("#alert", 500);
+                            $state.go('admin.apply.detail', {'id': $stateParams.id});
+                            $scope.$apply();
+                        } else if (data.returnCode == 1003) {
+                            alert("申请不存在")
+                        }
+                    },
+                    dataType: 'json',
+                });
+            }
+
+        };
     }]);
 
 detailAppCtrl.controller('ChangeRegisterCtrl',
     ['$http', '$scope', '$state', '$rootScope', '$stateParams', function ($http, $scope, $state, $rootScope, $stateParams) {
 
-    /*渠道申请注册人向企业注册人变更*/
-    $scope.change = function () {
-        var m_params = {
-            "userId": $rootScope.login_user.userId,
-            "token": $rootScope.login_user.token,
-            "applyId": $stateParams.id,
-            "mobile": $scope.phone,
+        /*渠道申请注册人向企业注册人变更*/
+        $scope.change = function () {
+            var m_params = {
+                "userId": $rootScope.login_user.userId,
+                "token": $rootScope.login_user.token,
+                "applyId": $stateParams.id,
+                "mobile": $scope.phone,
+            };
+            $.ajax({
+                type: 'POST',
+                url: api_uri + "/loanApplicationManage/changeMobile",
+                data: m_params,
+                traditional: true,
+                success: function (data, textStatus, jqXHR) {
+                    if (data.returnCode == 0) {
+                        $rootScope.successMsg = "变更成功";
+                        $rootScope.fadeInOut("#alert", 500);
+                        $state.go('admin.apply.detail', {'id': $stateParams.id});
+                        $scope.$apply();
+                    } else if (data.returnCode == 1002) {
+                        alert("该申请已经处理过了")
+                    } else if (data.returnCode == 1003) {
+                        alert("申请不存在")
+                    } else {
+                        alert("未知错误");
+                    }
+                },
+                dataType: 'json',
+            });
         };
-        $.ajax({
-            type: 'POST',
-            url: api_uri + "/loanApplicationManage/changeMobile",
-            data: m_params,
-            traditional: true,
-            success: function (data, textStatus, jqXHR) {
-                if (data.returnCode == 0) {
-                    $rootScope.successMsg = "变更成功";
-                    $rootScope.fadeInOut("#alert", 500);
-                    $state.go('admin.apply.detail', {'id': $stateParams.id});
-                    $scope.$apply();
-                } else if (data.returnCode == 1002) {
-                    alert("该申请已经处理过了")
-                } else if (data.returnCode == 1003) {
-                    alert("申请不存在")
-                } else {
-                    alert("未知错误");
-                }
-            },
-            dataType: 'json',
-        });
-    };
     }]);
 
 detailAppCtrl.controller('MessageCtrl',
     ['$http', '$scope', '$state', '$rootScope', '$stateParams', function ($http, $scope, $state, $rootScope, $stateParams) {
 
-    /*获取留言列表*/
-    $scope.get_message = function () {
-        var m_params = {
-            "userId": $rootScope.login_user.userId,
-            "token": $rootScope.login_user.token,
-            "applyId": $stateParams.id,
-        };
-        console.log(m_params);
-        $http({
-            url: api_uri + "apply/comments/list",
-            method: "GET",
-            params: m_params
-        }).success(function (d) {
-            console.log(d);
-            $scope.message_list = d.result;
-        }).error(function (d) {
+        /*获取留言列表*/
+        $scope.get_message = function () {
+            var m_params = {
+                "userId": $rootScope.login_user.userId,
+                "token": $rootScope.login_user.token,
+                "applyId": $stateParams.id,
+            };
+            console.log(m_params);
+            $http({
+                url: api_uri + "apply/comments/list",
+                method: "GET",
+                params: m_params
+            }).success(function (d) {
+                console.log(d);
+                $scope.message_list = d.result;
+            }).error(function (d) {
 
-        })
-    };
-    $scope.get_message();
+            })
+        };
+        $scope.get_message();
     }]);
 
 detailAppCtrl.controller('ChoiceSaleCtrl',
     ['$http', '$scope', '$state', '$rootScope', '$stateParams', function ($http, $scope, $state, $rootScope, $stateParams) {
-    /*初始化参数*/
-    if (!$scope.sale_id) {
-        $scope.sale_id = '';
-    }
-    /*获取aleId*/
-    $scope.get_saleId = function () {
-        var m_params = {
-            "userId": $rootScope.login_user.userId,
-            "token": $rootScope.login_user.token,
-            "applyId": $stateParams.id,
+        /*初始化参数*/
+        if (!$scope.sale_id) {
+            $scope.sale_id = '';
+        }
+        /*获取aleId*/
+        $scope.get_saleId = function () {
+            var m_params = {
+                "userId": $rootScope.login_user.userId,
+                "token": $rootScope.login_user.token,
+                "applyId": $stateParams.id,
+            };
+            console.log(m_params);
+            $http({
+                url: api_uri + "p/user/getSalerByApplyId",
+                method: "GET",
+                params: m_params
+            }).success(function (d) {
+                $scope.saleId = d.result.id;
+            }).error(function (d) {
+
+            })
         };
-        console.log(m_params);
-        $http({
-            url: api_uri + "p/user/getSalerByApplyId",
-            method: "GET",
-            params: m_params
-        }).success(function (d) {
-            $scope.saleId = d.result.id;
-        }).error(function (d) {
 
-        })
-    };
+        /*获取用户列表*/
+        $scope.get_user = function () {
+            var m_params = {
+                "userId": $rootScope.login_user.userId,
+                "token": $rootScope.login_user.token,
+            };
+            console.log(m_params);
+            $http({
+                url: api_uri + "zrh/group/listSalerFromGroup",
+                method: "GET",
+                params: m_params
+            }).success(function (d) {
+                console.log(d);
+                $scope.user_list = d.result;
+                $scope.get_saleId();
+            }).error(function (d) {
 
-    /*获取用户列表*/
-    $scope.get_user = function () {
-        var m_params = {
-            "userId": $rootScope.login_user.userId,
-            "token": $rootScope.login_user.token,
+            })
         };
-        console.log(m_params);
-        $http({
-            url: api_uri + "zrh/group/listSalerFromGroup",
-            method: "GET",
-            params: m_params
-        }).success(function (d) {
-            console.log(d);
-            $scope.user_list = d.result;
-            $scope.get_saleId();
-        }).error(function (d) {
+        $scope.get_user();
 
-        })
-    };
-    $scope.get_user();
-
-    /*给销售人员*/
-    $scope.submit = function () {
-        var m_params = {
-            "userId": $rootScope.login_user.userId,
-            "token": $rootScope.login_user.token,
-            "applyId": $stateParams.id,
-            "salerId": $scope.sale_id,
+        /*给销售人员*/
+        $scope.submit = function () {
+            var m_params = {
+                "userId": $rootScope.login_user.userId,
+                "token": $rootScope.login_user.token,
+                "applyId": $stateParams.id,
+                "salerId": $scope.sale_id,
+            };
+            console.log(m_params);
+            $.ajax({
+                type: 'POST',
+                url: api_uri + "loanApplicationManage/updateSale",
+                data: m_params,
+                traditional: true,
+                success: function (data, textStatus, jqXHR) {
+                    console.log(data);
+                    if (data.returnCode == 0) {
+                        $rootScope.successMsg = "操作成功";
+                        $rootScope.fadeInOut("#alert", 500);
+                        $state.go('admin.apply.detail', {'id': $stateParams.id});
+                        $scope.$apply();
+                    }
+                    else {
+                    }
+                },
+                dataType: 'json',
+            });
         };
-        console.log(m_params);
-        $.ajax({
-            type: 'POST',
-            url: api_uri + "loanApplicationManage/updateSale",
-            data: m_params,
-            traditional: true,
-            success: function (data, textStatus, jqXHR) {
-                console.log(data);
-                if (data.returnCode == 0) {
-                    $rootScope.successMsg = "操作成功";
-                    $rootScope.fadeInOut("#alert", 500);
-                    $state.go('admin.apply.detail', {'id': $stateParams.id});
-                    $scope.$apply();
-                }
-                else {
-                }
-            },
-            dataType: 'json',
-        });
-    };
     }]);

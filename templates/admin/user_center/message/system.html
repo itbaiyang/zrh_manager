@@ -5,7 +5,8 @@
     <div class="list-bank">
         <div class="message-box clear" ng-repeat="message in stop_list track by $index">
             <div class="col-sm-6 col-md-6 col-lg-6  fl" style="margin-top: 18px">
-                <p>白杨（销售）销售对白杨申请的主打产品速房贷进行中止项目操作</p>
+                <p>{{message.salerName}}对{{message.companyName ||
+                    message.linkman}}申请的{{message.bankName}}{{message.productName}}进行中止项目操作</p>
                 <p><a>{{message.applyReason}}</a></p>
                 <p>{{message.reason}}</p>
                 <p class="col-sm-10 col-md-10 col-lg-10 noPadding">
@@ -69,7 +70,7 @@
             <span ng-show="message.readTime">{{message.content}}</span>
             <a href="{{url_detail}}{{message.map.applyId}}" ng-mouseenter="to_company_message(message.id)"
                target="_blank" style="padding: 0 10px">{{message.urlName}}</a>
-            <span class="fr">{{message.sendTime | date:'yyyy.mm.dd'}}</span>
+            <span class="fr">{{message.sendTime | date:'yyyy.MM.dd'}}</span>
         </p>
     </div>
     <div style="position: fixed; bottom: 0">

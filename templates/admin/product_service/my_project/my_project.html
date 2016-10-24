@@ -32,7 +32,7 @@
         </div>
         <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 noPadding">
             <span class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">预计时间</span>
-            <span class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-center">服务费（%）</span>
+            <span class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-center">服务费（元）</span>
             <span class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">融资额（万）</span>
             <span class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-center">年销售额（万）</span>
             <span class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-right">项目来源</span>
@@ -47,9 +47,9 @@
         </div>
         <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 noPadding">
             <span class="col-sm-3 col-md-3 col-lg-3 col-sm-offset-2 col-md-offset-2 col-lg-offset-2 text-center">
-                {{count.fee/100 || "无"}}万
+                {{count.fee}}
             </span>
-            <span class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">{{count.loanValue}}万</span>
+            <span class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">{{count.loanValue}}</span>
             <span class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-center">{{count.continual}}</span>
         </div>
     </li>
@@ -67,7 +67,8 @@
                                     resultObj.linkman}}</a>
                             </p>
                             <img src="img/tips/day_red.png" class="img-size" ng-show="resultObj.timeOver > 10">
-                            <img src="img/tips/day_yellow.png" class="img-size" ng-show="resultObj.timeOver > 7">
+                            <img src="img/tips/day_yellow.png" class="img-size"
+                                 ng-show="resultObj.timeOver > 7 &&resultObj.timeOver <= 10">
                         </div>
                         <span class="col-xs-4 col-sm-4 col-md-4 col-lg-4"
                               ng-show="resultObj.productName">{{resultObj.bankName}}-{{resultObj.productName}}</span>
