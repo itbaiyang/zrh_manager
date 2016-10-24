@@ -137,33 +137,38 @@ saleManagerCtrl.controller('SaleApplyListCtrl',
                         data.timeOver = (data.currentTime - data.lastCommentTime) / 1000 / 3600 / 24;
                     }
                     $scope.status = d.result.status;
-                    if (data.status == 0) {
-                        data.progressText = "未申请";
+                    if (data.isStop == true) {
+                        data.progressText = '申请失败';
                         data.color = 1;
-                    } else if (data.status == 1) {
-                        data.progressText = "准备中";
-                        data.color = 2;
-                    } else if (data.status == 2) {
-                        data.progressText = "下户";
-                        data.color = 2;
-                    } else if (data.status == 3) {
-                        data.progressText = "审批中";
-                        data.color = 2;
-                    } else if (data.status == 4) {
-                        data.progressText = "审批通过";
-                        data.color = 2;
-                    } else if (data.status == 5) {
-                        data.progressText = "下户";
-                        data.color = 2;
-                    } else if (data.status == 6) {
-                        data.progressText = "放款";
-                        data.color = 2;
-                    } else if (data.status == 7) {
-                        data.progressText = "成功融资";
-                        data.color = 3;
-                    } else if (data.status == -1) {
-                        data.progressText = "申请取消";
-                        data.color = 1;
+                    } else {
+                        if (data.status == 0) {
+                            data.progressText = "未申请";
+                            data.color = 1;
+                        } else if (data.status == 1) {
+                            data.progressText = "准备中";
+                            data.color = 2;
+                        } else if (data.status == 2) {
+                            data.progressText = "下户";
+                            data.color = 2;
+                        } else if (data.status == 3) {
+                            data.progressText = "审批中";
+                            data.color = 2;
+                        } else if (data.status == 4) {
+                            data.progressText = "审批通过";
+                            data.color = 2;
+                        } else if (data.status == 5) {
+                            data.progressText = "下户";
+                            data.color = 2;
+                        } else if (data.status == 6) {
+                            data.progressText = "放款";
+                            data.color = 2;
+                        } else if (data.status == 7) {
+                            data.progressText = "成功融资";
+                            data.color = 3;
+                        } else if (data.status == -1) {
+                            data.progressText = "申请取消";
+                            data.color = 1;
+                        }
                     }
                 });
             }

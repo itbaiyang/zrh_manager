@@ -30,7 +30,10 @@ myProjectCtrl.controller('MyProjectCtrl',
                         data.currentTime = new Date().getTime();
                         data.timeOver = (data.currentTime - data.lastCommentTime) / 1000 / 3600 / 24;
                     }
-                    if (data.isStop == false) {
+                    if (data.isStop == true) {
+                        data.progressText = '申请失败';
+                        data.color = 1;
+                    } else {
                         if (data.status == 0) {
                             data.progressText = "未申请";
                             data.color = 1;
@@ -59,9 +62,6 @@ myProjectCtrl.controller('MyProjectCtrl',
                             data.progressText = "申请取消";
                             data.color = 1;
                         }
-                    } else {
-                        data.progressText = '申请失败';
-                        data.color = 1;
                     }
                 });
             }

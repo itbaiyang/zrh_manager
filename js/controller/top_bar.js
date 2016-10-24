@@ -62,7 +62,7 @@ topBarCtrl.controller('ContainsCtrl',
             }
             $scope.roll();
         }, 10000);
-        console.log($scope.message_roll_item);
+        // console.log($scope.message_roll_item);
     };
     /*获取数据*/
     $scope.to_company_message = function (id, url) {

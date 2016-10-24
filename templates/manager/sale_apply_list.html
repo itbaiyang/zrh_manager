@@ -70,7 +70,8 @@
                                 </a>
                             </p>
                             <img src="img/tips/day_red.png" class="img-size" ng-show="resultObj.timeOver > 10">
-                            <img src="img/tips/day_yellow.png" class="img-size" ng-show="resultObj.timeOver > 7">
+                            <img src="img/tips/day_yellow.png" class="img-size"
+                                 ng-show="resultObj.timeOver > 7 &&resultObj.timeOver <= 10">
                         </div>
                         <span class="col-sm-4 col-md-4 col-lg-4">{{resultObj.bankName}}-{{resultObj.productName}}</span>
                         <span class="col-sm-2 col-md-2 col-lg-2 text-center" style="color: #838383"
