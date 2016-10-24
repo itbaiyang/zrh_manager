@@ -30,7 +30,7 @@ myProjectCtrl.controller('MyProjectCtrl',
                         data.currentTime = new Date().getTime();
                         data.timeOver = (data.currentTime - data.lastCommentTime) / 1000 / 3600 / 24;
                     }
-                    if (data.isStop == true) {
+                    if (data.hasStopDeal == true) {
                         data.progressText = '申请失败';
                         data.color = 1;
                     } else {
