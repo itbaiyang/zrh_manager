@@ -12,8 +12,8 @@ loanApplicationCtrl.controller('LoanApplicationCtrl',
             "token":$rootScope.login_user.token,
             "pageNo": pageNo,
             "pageSize": pageSize,
-            "wd": $stateParams.wd,
-            "status": $stateParams.status
+            "wd": $scope.wd,
+            "status": $scope.status
         };
         $http({
             url: api_uri + "loanApplicationManage/pool",
