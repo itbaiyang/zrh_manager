@@ -223,9 +223,9 @@ detailAppCtrl.controller('DetailAppCtrl',
                 console.log(d);
                 if (d.returnCode == 0) {
                     $scope.showCancel = false;
-                    alert('请关闭当前页面');
                     $rootScope.successMsg = "已经中止项目";
                     $rootScope.fadeInOut("#alert", 500);
+                    window.close();
                 } else {
                     console.log(d);
                 }
