@@ -9,7 +9,7 @@
         </div>
         <button class="btn-blue margin-left15 fr" ui-sref="super.manage.addUser">添加新职员</button>
         <button class="fr btn-grey" ng-click="refresh()" type="submit"><img class="btn-greyImg"> 刷新</button>
-        </div>
+    </div>
     <li class="list-title">
         <span class="col-xs-2 col-md-2 col-lg-2">用户名</span>
         <span class="col-xs-2 col-md-2 col-lg-2">职位</span>
@@ -31,7 +31,7 @@
                     <span class="col-xs-2 col-md-2 col-lg-2">{{resultObj.mobile}}</span>
                     <span class="col-xs-1 col-md-1 col-lg-1 text-center">{{resultObj.createTime |date:'yyyy-MM-dd'}}</span>
                     <a class="fr" ng-click="update(resultObj.id)">修改账号</a>
-            </li>
+                </li>
             </div>
         </div>
         <li class="list-bottom">

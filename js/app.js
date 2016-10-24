@@ -178,15 +178,15 @@ app.run(['$location', '$rootScope', '$timeout', '$http', function ($location, $r
     };
 
     $rootScope.openMenu = function () {
-        $('.side-menu-1').css('animation', 'open .4s');
-        $('.content').css('animation', 'small-content-width .4s');
-        $('.content-two').css('animation', 'small-width .4s');
+        // $('.side-menu-1').css('animation', 'open .4s');
+        // $('.content').css('animation', 'small-content-width .4s');
+        // $('.content-two').css('animation', 'small-width .4s');
         $rootScope.isOpenMenu = true;
     };
     $rootScope.closeMenu = function () {
-        $('.side-menu-1').css('animation', 'close .4s');
-        $('.content-open').css('animation', 'big-content-width .4s');
-        $('.content-two').css('animation', 'big-width .4s');
+        // $('.side-menu-1').css('animation', 'close .4s');
+        // $('.content-open').css('animation', 'big-content-width .4s');
+        // $('.content-two').css('animation', 'big-width .4s');
         $rootScope.isOpenMenu = false;
 
     };
@@ -267,7 +267,6 @@ app.run(['$location', '$rootScope', '$timeout', '$http', function ($location, $r
                 method: "POST",
                 params: $rootScope.login_user
             }).success(function (d) {
-                // console.log(d);
                 if (d.returnCode == 0) {
                     $rootScope.check_role();
                     return true;
