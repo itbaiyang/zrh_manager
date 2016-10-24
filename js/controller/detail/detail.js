@@ -1064,7 +1064,7 @@ detailAppCtrl.controller('EditApplyCtrl',
                         if (data.returnCode == 0) {
                             $rootScope.successMsg = "修改成功";
                             $rootScope.fadeInOut("#alert", 500);
-                            $state.go('apply.detail', {'id': $stateParams.id});
+                            $state.go('admin.apply.detail', {'id': $stateParams.id});
                             $scope.$apply();
                         }
                         else {
@@ -1089,7 +1089,7 @@ detailAppCtrl.controller('EditApplyCtrl',
                         if (data.returnCode == 0) {
                             $rootScope.successMsg = "修改成功";
                             $rootScope.fadeInOut("#alert", 500);
-                            $state.go('apply.detail', {'id': $stateParams.id});
+                            $state.go('admin.apply.detail', {'id': $stateParams.id});
                             $scope.$apply();
                         }
                         else {
@@ -1195,7 +1195,7 @@ detailAppCtrl.controller('DistributeCtrl',
                     if (d.returnCode == 0) {
                         $rootScope.successMsg = "递交成功";
                         $rootScope.fadeInOut("#alert", 500);
-                        $state.go('apply.detail', {'id': $stateParams.id});
+                        $state.go('admin.apply.detail', {'id': $stateParams.id});
                     } else if (d.returnCode == 1001) {
                         alert("该申请已经被递交");
                     } else if (d.returnCode == 1002) {
@@ -1279,10 +1279,6 @@ detailAppCtrl.controller('ApplyHelpCtrl',
     $scope.choiceProduct = function (id, name, type) {
         $scope.productId = id;
         $scope.productName = name;
-        // if (type == 2) {
-        //     alert('企业不可以申请个人产品，请更换');
-        //     $scope.productName = '';
-        // }
     };
     /*选择银行*/
     $scope.choiceBank = function (id, name) {
@@ -1350,7 +1346,7 @@ detailAppCtrl.controller('ApplyHelpCtrl',
                     console.log(data);
                     if (data.returnCode == 0) {
                         $rootScope.fadeInOut("#alert", 500);
-                        $state.go('apply.detail', {'id': $stateParams.id});
+                        $state.go('admin.apply.detail', {'id': $stateParams.id});
                         $scope.$apply();
                     } else if (data.returnCode == 1003) {
                         alert("申请不存在")
@@ -1380,11 +1376,10 @@ detailAppCtrl.controller('ChangeRegisterCtrl',
             data: m_params,
             traditional: true,
             success: function (data, textStatus, jqXHR) {
-                // console.log(data);
                 if (data.returnCode == 0) {
                     $rootScope.successMsg = "变更成功";
                     $rootScope.fadeInOut("#alert", 500);
-                    $state.go('apply.detail', {'id': $stateParams.id});
+                    $state.go('admin.apply.detail', {'id': $stateParams.id});
                     $scope.$apply();
                 } else if (data.returnCode == 1002) {
                     alert("该申请已经处理过了")
@@ -1489,7 +1484,7 @@ detailAppCtrl.controller('ChoiceSaleCtrl',
                 if (data.returnCode == 0) {
                     $rootScope.successMsg = "操作成功";
                     $rootScope.fadeInOut("#alert", 500);
-                    $state.go('apply.detail', {'id': $stateParams.id});
+                    $state.go('admin.apply.detail', {'id': $stateParams.id});
                     $scope.$apply();
                 }
                 else {
