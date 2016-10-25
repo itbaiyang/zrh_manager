@@ -38,7 +38,7 @@ loginCtrl.controller('LoginCtrl', ['$scope', '$rootScope', '$http', '$location',
                     "userId":d.result.split("_")[0],
                     "token":d.result.split("_")[1],
                 };
-                $rootScope.putObject("login_user", $rootScope.login_user);
+                $rootScope.putObject("login_user_manage", $rootScope.login_user);
                 $scope.choiceUser();
                 $scope.loginUser = {
                     "account": "",
@@ -65,6 +65,7 @@ loginCtrl.controller('LoginCtrl', ['$scope', '$rootScope', '$http', '$location',
         }).success(function (d) {
             if (d.returnCode == 0) {
                 console.log(d);
+                $rootScope.putObject("role_manage", d.result);
                 if(d.result.role == 'super'){
                     $location.path("/super");
                 }else{

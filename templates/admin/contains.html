@@ -7,7 +7,7 @@
         <div class="account">
             <div class="account-detail fl" style="border-right: 2px solid #e6e7e8">
                 <img ng-src="img/upload.png">
-                <p>hi, <span style="color: #009dd0;">孟帅</span></p>
+                <p>hi, <span style="color: #009dd0;">{{role_manage.name}}</span></p>
                 <p style="padding: 3px 0">
                     <img class="btn-blue-img"><span style="color: #3989db">账户管理</span>
                 </p>
@@ -59,7 +59,7 @@
             </div>
         </div>
     </div>
-    <div style="padding: 0 15px">
+    <div style="padding: 0 15px" ng-show="role_manage.role == 'manager'">
         <div class="account-group">
             <div class="account-detail fl">
                 <p><img class="account-detail-img" ng-src="img/group.png"></p>

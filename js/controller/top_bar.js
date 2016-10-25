@@ -3,6 +3,7 @@
  */
 var topBarCtrl = angular.module('topBarCtrl', []);
 topBarCtrl.controller('TopBarCtrl', ['$scope', '$rootScope', '$http', '$location', function ($scope, $rootScope, $http, $location) {
+    $scope.role_manage = $rootScope.getObject("role_manage");
     $rootScope.message();
     $rootScope.bank_messages();
     $rootScope.system_messages();
@@ -28,7 +29,7 @@ topBarCtrl.controller('SideBarCtrl', ['$scope', function ($scope) {
 topBarCtrl.controller('ContainsCtrl',
     ['$scope', '$rootScope', '$http', '$state', '$location', '$timeout', function ($scope, $rootScope, $http, $state, $location, $timeout) {
 
-
+        $scope.role_manage = $rootScope.getObject("role_manage");
     $scope.message_roll = function (pageNo, pageSize) {
         var m_params = {
             "userId": $rootScope.login_user.userId,

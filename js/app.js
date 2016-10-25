@@ -262,7 +262,7 @@ app.run(['$location', '$rootScope', '$timeout', '$http', function ($location, $r
         }
     };
     $rootScope.check_user = function () {
-        $rootScope.login_user = $rootScope.getObject("login_user");
+        $rootScope.login_user = $rootScope.getObject("login_user_manage");
         if ($rootScope.login_user) {
             $http({
                 url: api_uri + "p/user/validateAuth",
