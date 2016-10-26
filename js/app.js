@@ -331,18 +331,13 @@ app.run(['$location', '$rootScope', '$timeout', '$http', function ($location, $r
             params: m_params
         }).success(function (d) {
             if (d.returnCode == 0) {
+                // console.log('message');
                 $rootScope.count = d.result;
             }
             else {
                 console.log(d);
             }
-            $timeout(function () {
-                $rootScope.message();
-            }, 20000);
         }).error(function (d) {
-            $timeout(function () {
-                $rootScope.message();
-            }, 20000);
         })
     };
     $rootScope.bank_messages = function () {
@@ -356,19 +351,14 @@ app.run(['$location', '$rootScope', '$timeout', '$http', function ($location, $r
             method: "GET",
             params: m_params
         }).success(function (d) {
+            // console.log('bank_messages');
             if (d.returnCode == 0) {
                 $rootScope.bank_message = d.result;
             }
             else {
                 console.log(d);
             }
-            $timeout(function () {
-                $rootScope.bank_messages();
-            }, 20000);
         }).error(function (d) {
-            $timeout(function () {
-                $rootScope.bank_messages();
-            }, 20000);
         })
     };
     $rootScope.system_messages = function () {
@@ -381,19 +371,15 @@ app.run(['$location', '$rootScope', '$timeout', '$http', function ($location, $r
             method: "GET",
             params: m_params
         }).success(function (d) {
+
             if (d.returnCode == 0) {
+                // console.log('system_messages');
                 $rootScope.system_message = d.result;
             }
             else {
                 console.log(d);
             }
-            $timeout(function () {
-                $rootScope.system_messages();
-            }, 20000);
         }).error(function (d) {
-            $timeout(function () {
-                $rootScope.system_messages();
-            }, 20000);
         })
     };
 }]);

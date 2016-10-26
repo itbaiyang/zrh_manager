@@ -2,11 +2,11 @@
  * Created by baiyang on 2016/7/7.
  */
 var topBarCtrl = angular.module('topBarCtrl', []);
-topBarCtrl.controller('TopBarCtrl', ['$scope', '$rootScope', '$http', '$location', function ($scope, $rootScope, $http, $location) {
+topBarCtrl.controller('TopBarCtrl', ['$scope', '$rootScope', '$http', '$location', '$interval', function ($scope, $rootScope, $http, $location, $interval) {
     $scope.role_manage = $rootScope.getObject("role_manage");
-    $rootScope.message();
-    $rootScope.bank_messages();
-    $rootScope.system_messages();
+    $interval($rootScope.message, 20000);
+    $interval($rootScope.bank_messages, 20000);
+    $interval($rootScope.system_messages, 20000);
     /*回到首页*/
     $scope.go_home = function () {
         if ($rootScope.role != 'manager') {
