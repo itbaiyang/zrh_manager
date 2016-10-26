@@ -12,19 +12,22 @@
         <div class="form-group">
             <label for="username" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">姓名：</label>
             <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                <input type="text" class="form-control" id="username" placeholder="姓名" ng-model="name">
+                <input type="text" class="form-control" id="username" placeholder="姓名" ng-model="name"
+                       autocomplete="off">
             </div>
         </div>
         <div class="form-group">
             <label for="userNum" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">工号：</label>
             <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                <input type="text" class="form-control" id="userNum" placeholder="工号" ng-model="empNo">
+                <input type="text" class="form-control" id="userNum" placeholder="工号" ng-model="empNo"
+                       autocomplete="off">
             </div>
         </div>
         <div class="form-group">
             <label for="role" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">职位：</label>
             <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                <select name="position" class="form-control" id="role" ng-model="role_sale">
+                <span class="select-placeholder" ng-hide="role_sale">请选择职位</span>
+                <select name="position" class="form-control" id="role" data-value="ggg" ng-model="role_sale">
                     <option value="manager">销售主管</option>
                     <option value="admin">销售职员</option>
                 </select>
@@ -33,30 +36,24 @@
         <div class="form-group">
             <label for="phoneNum" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">联系电话：</label>
             <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                <input type="text" class="form-control" id="phoneNum" placeholder="联系电话" ng-model="mobile">
+                <input type="text" class="form-control" id="phoneNum" placeholder="联系电话" ng-model="mobile"
+                       autocomplete="off">
             </div>
         </div>
         <div class="form-group">
             <label for="email" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">登录邮箱：</label>
             <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                <input type="email" class="form-control" value="" id="email" placeholder="登录邮箱" ng-model="email">
+                <input type="email" style="display: none">
+                <input type="email" class="form-control" value="" id="email" placeholder="登录邮箱" ng-model="email"
+                       autocomplete="off">
             </div>
         </div>
         <div class="form-group">
-            <label for="password" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">登录密码：</label>
+            <label ng-show="isUpdate == false" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">登录密码：</label>
+            <label ng-show="isUpdate == true" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">重置密码：</label>
             <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                <input type="password" class="form-control" id="password" placeholder="输入密码"
-                       ng-blur="checkPassword(1)" ng-model="password_one">
+                <input type="password" class="form-control" placeholder="输入密码" ng-model="password">
                 <span class="input-tips-password" ng-show="msg_password_one">{{msg_password_one}}</span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="password_again" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">再次输入密码：</label>
-            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                <input type="password" class="form-control" id="password_again" placeholder="重复输入密码"
-                       ng-blur="checkPassword(2)" ng-model="password_again">
-                <span class="input-tips-password" ng-show="msg_password">{{msg_password}}</span>
-                <span class="input-tips-password" style="color: limegreen;" ng-show="msg_success">{{msg_success}}</span>
             </div>
         </div>
     </form>

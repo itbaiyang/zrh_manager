@@ -178,15 +178,9 @@ app.run(['$location', '$rootScope', '$timeout', '$http', function ($location, $r
     };
 
     $rootScope.openMenu = function () {
-        // $('.side-menu-1').css('animation', 'open .4s');
-        // $('.content').css('animation', 'small-content-width .4s');
-        // $('.content-two').css('animation', 'small-width .4s');
         $rootScope.isOpenMenu = true;
     };
     $rootScope.closeMenu = function () {
-        // $('.side-menu-1').css('animation', 'close .4s');
-        // $('.content-open').css('animation', 'big-content-width .4s');
-        // $('.content-two').css('animation', 'big-width .4s');
         $rootScope.isOpenMenu = false;
 
     };

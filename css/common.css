@@ -495,3 +495,12 @@
     padding-top: 20px;
     text-align: center;
 }
+
+.select-placeholder {
+    display: inline-block;
+    position: absolute;
+    left: 28px;
+    top: 7px;
+    font-size: 14px;
+    color: #999999;
+}

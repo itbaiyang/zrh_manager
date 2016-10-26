@@ -10,13 +10,11 @@ detailAppCtrl.controller('DetailAppCtrl',
                 "userId": $rootScope.login_user.userId,
                 "token": $rootScope.login_user.token,
             };
-            console.log(m_params);
             $http({
                 url: api_uri + "inforTemplate/detail/" + $stateParams.id,
                 method: "GET",
                 params: m_params
             }).success(function (d) {
-                console.log(d);
                 $scope.isAllot = d.result.isAllot;
                 $scope.days = d.result.days;
                 $scope.w = d.result.w;
