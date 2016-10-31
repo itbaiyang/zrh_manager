@@ -6,6 +6,8 @@ accountCtrl.controller('AccountCtrl',
     }]);
 accountCtrl.controller('PasswordCtrl',
     ['$http', '$scope', '$state', '$rootScope', '$stateParams', function ($http, $scope, $state, $rootScope, $stateParams) {
+        $scope.step = $stateParams.step;
+        console.log($scope.step)
         var timesTamp = new Date().getTime();
         var timesTamp1 = String(timesTamp).substring(0, 10);
         $scope.timestamp = parseInt(timesTamp1);
@@ -21,11 +23,12 @@ accountCtrl.controller('PasswordCtrl',
                 method: "POST",
                 params: m_params
             }).success(function (d) {
-                console.log(d)
+                console.log(d);
                 if (d.returnCode == 0) {
                     $rootScope.successMsg = "修改成功";
                     $rootScope.fadeInOut("#alert", 500);
-                    $state.go('admin.account');
+                    $state.go('admin.account.password', {step: 3});
+                    $rootScope.removeObject('login_user_manage')
                 } else {
                 }
 

@@ -512,7 +512,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
             }
         })
         .state('admin.account.password', {
-            url: '/password',
+            url: '/password/:step',
             views: {
                 'contains@admin': {
                     templateUrl: templates_root + 'admin/user_center/account/password.html',

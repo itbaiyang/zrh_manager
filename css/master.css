@@ -909,22 +909,34 @@
 
 .account-model {
     height: 128px;
-    padding-top: 60px;
+    padding: 60px 0 0 0;
+    position: relative;
+    border-bottom: 1px dashed #cccccc;
 }
 
 .account-title {
-    text-align: center;
+    position: absolute;
+    left: 33px;
+    width: 87px;
+    text-align: left;
     height: 20px;
     line-height: 20px;
     font-size: 16px;
 }
 
 .account-content {
+    position: absolute;
+    left: 120px;
+    width: calc(100% - 520px);
     height: 40px;
     line-height: 20px;
     font-size: 14px;
 }
 
+.account-setting {
+    position: absolute;
+    right: 33px;
+}
 .step {
     width: 100%;
     margin-top: 100px;
