@@ -145,29 +145,90 @@ loanApplicationCtrl.controller('LoanApplicationCtrl',
 
 loanApplicationCtrl.controller('AddCompanyCtrl',
     ['$http', '$scope', '$state', '$rootScope', function ($http, $scope, $state, $rootScope) {
+
+        /*获取银行列表*/
+        $scope.list = function (pageNo, pageSize) {
+            var m_params = {
+                "userId": $rootScope.login_user.userId,
+                "token": $rootScope.login_user.token,
+                "pageNo": pageNo,
+                "pageSize": pageSize,
+            };
+            $http({
+                url: api_uri + "manage/bank/list",
+                method: "GET",
+                params: m_params
+            }).success(function (d) {
+                if (d.returnCode == 0) {
+                    $scope.page = d.result;
+                    $scope.bank_list = d.result.datas;
+                }
+                else {
+                }
+
+            }).error(function (d) {
+                $location.path("/error");
+            })
+        };
+        $scope.list(1, 100);
+
+        /*选择产品*/
+        $scope.choiceProduct = function (id, name) {
+            $scope.productId = id;
+            $scope.productName = name;
+        };
+        /*选择银行*/
+        $scope.choiceBank = function (id, name) {
+            $scope.bankId = id;
+            $scope.bankName = name;
+            $scope.product_list_get($scope.bankId, 1, 400);
+            $scope.productName = "";
+        };
+        /*获取产品列表*/
+        $scope.product_list_get = function (id, pageNo, pageSize) {
+            var m_params = {
+                "userId": $rootScope.login_user.userId,
+                "token": $rootScope.login_user.token,
+                "bankId": id,
+                "pageNo": pageNo,
+                "pageSize": pageSize,
+                "productType": $scope.productType,
+                "release": true
+            };
+            console.log(m_params);
+            $http({
+                url: api_uri + "financialProductManage/list",
+                method: "GET",
+                params: m_params
+            }).success(function (d) {
+                if (d.returnCode == 0) {
+                    console.log(d);
+                    $scope.page = d.result;
+                    $scope.product_list = d.result.datas;
+                }
+                else {
+                }
+
+            }).error(function (d) {
+            })
+        };
     /*保存基本信息*/
     $scope.submitMessage = function () {
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
-            "company_name": $scope.basic.company_name,
-            "legal_representative": $scope.basic.legal_representative,
-            "register_date": $scope.basic.register_date,
-            "registered_capital": $scope.basic.registered_capital,
-            "officeAddress": $scope.basic.officeAddress,
-            "business_address": $scope.basic.business_address,
-            "item_category": $scope.basic.item_category,
-            "business_type": $scope.basic.business_type,
-            "business_scope": $scope.basic.business_scope,
-            "linkmanName": $scope.basic.linkmanName,
-            "linkmanMobile": $scope.basic.linkmanMobile,
-            "continual": $scope.basic.continual,
+            "companyName": $scope.companyName,
+            "linkman": $scope.linkman,
+            "mobile": $scope.applyMobile,
+            "applyMobile": $scope.applyMobile,
+            "productType": $scope.productType,
+            "productId": $scope.productId
         };
         console.log(m_params);
-        if (m_params.company_name) {
-            $.ajax({
+        $.ajax({
                 type: 'POST',
-                url: api_uri + "inforTemplate/create",
+            url: api_uri + "loanApplicationManage/apply",
+            // url: api_uri + "inforTemplate/create",
                 data: m_params,
                 traditional: true,
                 success: function (data, textStatus, jqXHR) {
@@ -184,8 +245,5 @@ loanApplicationCtrl.controller('AddCompanyCtrl',
                 },
                 dataType: 'json',
             });
-        } else {
-            alert("公司名称必填")
-        }
     };
     }]);

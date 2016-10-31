@@ -906,3 +906,68 @@
     background: url("../img/upload1.png");
     background-size: 100%;
 }
+
+.account-model {
+    height: 128px;
+    padding-top: 60px;
+}
+
+.account-title {
+    text-align: center;
+    height: 20px;
+    line-height: 20px;
+    font-size: 16px;
+}
+
+.account-content {
+    height: 40px;
+    line-height: 20px;
+    font-size: 14px;
+}
+
+.step {
+    width: 100%;
+    margin-top: 100px;
+    margin-left: calc(50% - 363px);
+}
+
+.step-container {
+    position: relative;
+    width: 726px;
+}
+
+.step-password {
+    width: 46px;
+    height: 46px;
+    border: 6px solid #d4d8f3;
+    border-radius: 23px;
+    background: #6b7acb;
+    line-height: 34px;
+    text-align: center;
+    color: #ffffff;
+}
+
+.step-password-line {
+    margin-top: 18px;
+    background: #d4d8f3;
+    width: 294px;
+    height: 10px
+}
+
+.step-cover {
+    position: absolute;
+    right: 0;
+    width: 680px;
+    height: 46px;
+    z-index: 3;
+    background-color: #ffffff;
+    opacity: 0.6;
+}
+
+.step-cover-1 {
+    width: 340px;
+}
+
+.step-cover-2 {
+    width: 0;
+}

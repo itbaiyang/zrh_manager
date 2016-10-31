@@ -502,15 +502,24 @@ app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
             }
         })
 
-        // .state('admin.account', {
-        //     url: '/account',
-        //     views: {
-        //         'contains@admin': {
-        //             templateUrl: templates_root + 'admin/user_center/account/account.html',
-        //             controller: 'AccountCtrl'
-        //         }
-        //     }
-        // })
+        .state('admin.account', {
+            url: '/account',
+            views: {
+                'contains@admin': {
+                    templateUrl: templates_root + 'admin/user_center/account/account.html',
+                    controller: 'AccountCtrl'
+                }
+            }
+        })
+        .state('admin.account.password', {
+            url: '/password',
+            views: {
+                'contains@admin': {
+                    templateUrl: templates_root + 'admin/user_center/account/password.html',
+                    controller: 'PasswordCtrl'
+                }
+            }
+        })
         .state('admin.message', {
             url: '/message',
             views: {

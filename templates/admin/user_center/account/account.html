@@ -1,4 +1,4 @@
-<div class="content row">
+<div class="row" ng-class="{true: 'content-open', false: 'content'}[isOpenMenu]">
     <div class="content-title col-sm-10 col-lg-10"><span>账号管理</span></div>
     <div class="account col-sm-10 col-lg-10">
         <div class="account-img fl">
@@ -6,16 +6,40 @@
             <p><a href="">点击修改</a></p>
         </div>
         <div class="account-p fl">
-            <p>姓名：孟帅</p>
-            <p>工号：AD007</p>
-            <p>注册时间：2016.6.28</p>
+            <p>姓名：{{role_manage.name}}</p>
+            <p>工号：{{role_manage.empNo}}</p>
+            <p>注册时间：{{role_manage.createTime | date:'yyyy.MM.dd'}}</p>
         </div>
     </div>
-    <div class="col-sm-10 col-lg-10">您当前的账号安全程度
-        <span>------------------------------------------------</span>
+    <div class="col-sm-12 col-md-12 col-lg-12" style="border-bottom: 1px dashed #cccccc">您当前的账号安全程度
+        <div class="progress" style="width: 40%;display: inline-block;vertical-align: top;margin-top: 8px">
+            <div class="progress-bar progress-bar-success" style="width:100%;">
+                <span class="sr-only"></span>
+            </div>
+        </div>
         <span>安全级别：高</span>
         <span>继续保持</span>
     </div>
-    <div class="col-sm-10 col-lg-10">
+    <br/>
+    <div class="col-sm-12 col-md-12 col-lg-12 account-model">
+        <div class="col-sm-2 col-md-2 col-lg-2 account-title">登录密码</div>
+        <div class="col-sm-6 col-md-6 col-lg-6 account-content">
+            安全性高的密码可以使账号更安全。建议您定期更换密码，设置一个包含字母，符号活数字中至少两项且长度超过6位密码。
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4"><a ui-sref="admin.account.password">设置</a>|修改</div>
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-12 account-model">
+        <div class="col-sm-2 col-md-2 col-lg-2 account-title">绑定邮箱</div>
+        <div class="col-sm-6 col-md-6 col-lg-6 account-content">
+            安全性高的密码可以使账号更安全。建议您定期更换密码，设置一个包含字母，符号活数字中至少两项且长度超过6位密码。
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4"><a href="">设置</a>|修改</div>
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-12 account-model">
+        <div class="col-sm-2 col-md-2 col-lg-2 account-title">绑定手机</div>
+        <div class="col-sm-6 col-md-6 col-lg-6 account-content">
+            您已经绑定了手机{{role_manage.mobile}}，[您的手机位安全手机，可以找回密码，但不能用于登录，为保障用户安全，如果换绑手机，5天内只能操作一次]
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4"><a href="">设置</a>|修改</div>
     </div>
 </div>

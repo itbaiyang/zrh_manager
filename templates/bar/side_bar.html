@@ -45,6 +45,12 @@
     </ul>
     <p class="side-bar-class" ng-show="role == 'admin' || role == 'manager'">个人中心</p>
     <ul>
+        <a class="side-bar-link" ng-class="{'side-bar-select':choiceColor =='account'}"
+           ng-show="role == 'admin'  || role == 'manager'"
+           ui-sref="admin.account">
+            <img class="btn-blue-img">账号管理</a>
+    </ul>
+    <ul>
         <a class="side-bar-link" ng-class="{'side-bar-select':choiceColor =='message'}"
            ng-show="role == 'admin'  || role == 'manager'"
            ui-sref="admin.message.bank">
