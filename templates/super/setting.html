@@ -1,0 +1,8 @@
+<div class="row " ng-class="{true: 'content-open', false: 'content'}[isOpenMenu]">
+    <div class="content-title">
+        <span>系统设置</span>
+    </div>
+    <div class="range-container">发送短信
+        <input type="range" name="range" ng-model="range" id="range" min="0" max="1" ng-change="change_sms()">
+    </div>
+</div>

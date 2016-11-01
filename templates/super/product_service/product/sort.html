@@ -1,11 +1,22 @@
-<div class="content row">
-    <div class="content-title col-sm-10 col-lg-10"><span>金融产品</span></div>
-    <ul class="list-group list-ul col-sm-10 col-lg-10">
-        <li class="list-group-item list-common" ng-repeat="resultObj in result_list">
-            <span class="col-sm-3 col-lg-3">
-                    <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}"
-                           ng-checked="isSelected(resultObj.id)"
-                           ng-click="updateSelection($event,resultObj.id)">{{resultObj.name}}</span>
+<div class="content-no-side">
+    <div class="content-title">
+        <span>分类</span>
+        <div class="fr">
+            <button class="btn-grey" type="submit" name="btn" ui-sref="super.product">返回</button>
+            <button class="btn-blue margin-left15" type="submit" ng-click="sort_save()">保存
+            </button>
+        </div>
+    </div>
+    <ul class="list-group col-sm-8 col-md-8 col-lg-8 noPadding"
+        style="border-top: 1px solid #cccccc;border-bottom: 1px solid #cccccc">
+        <li class="list-group-item list-user" ng-repeat="resultObj in result_list">
+            <span class="col-sm-3 col-md-3 col-lg-3">{{resultObj.bankname}}-{{resultObj.name}}</span>
+            <div class="form-group col-sm-3 col-md-3 col-lg-3 col-sm-offset-5 col-md-offset-5 col-lg-offset-5"
+                 style="margin-top: -10px">
+                <div class="col-sm-6 col-md-6 col-lg-6 fr">
+                    <input type="text" class="form-control" id="sort" ng-model="resultObj.sort">
+                </div>
+            </div>
         </li>
     </ul>
 </div>

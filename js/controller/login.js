@@ -1,5 +1,6 @@
 var loginCtrl = angular.module('loginCtrl', []);
-loginCtrl.controller('LoginCtrl', ['$scope', '$rootScope', '$http', '$location', function ($scope, $rootScope, $http, $location) {
+loginCtrl.controller('LoginCtrl',
+    ['$scope', '$rootScope', '$http', '$state', '$location', function ($scope, $rootScope, $http, $state, $location) {
     var getTimestampTemp = new Date().getTime();
     var timestamp = String(getTimestampTemp).substring(0, 10);
     var getTimestamp = parseInt(timestamp);
@@ -82,5 +83,138 @@ loginCtrl.controller('LoginCtrl', ['$scope', '$rootScope', '$http', '$location',
         })
     };
     $scope.reset = function () {
+        $state.go('forget')
     };
 }]);
+
+loginCtrl.controller('ForgetPasswordCtrl',
+    ['$http', '$scope', '$state', '$rootScope', '$stateParams', function ($http, $scope, $state, $rootScope, $stateParams) {
+        $scope.step = 1;
+        console.log($scope.step);
+        $scope.phoneNumCheck = false;
+        $scope.check_account = function () {
+            var m_params = {
+                "account": $scope.account
+            };
+            $http({
+                url: api_uri + "p/user/getTokenByAccount",
+                method: "GET",
+                params: m_params
+            }).success(function (d) {
+                if (d.returnCode == 0) {
+                    console.log(d);
+                    $scope.mobile_return = d.result.mobile;
+                    $scope.phoneNumCheck = true;
+                    $scope.token = d.result.token;
+                    return true;
+                } else if (d.returnCode == 1003) {
+                    alert("该用户不存在，重新输入邮箱");
+                } else {
+                    alert('未知错误');
+                }
+            }).error(function (d) {
+            });
+        };
+
+        $scope.check_phone = function () {
+            var m_params = {
+                "token": $scope.token,
+                "mobile": $scope.mobile
+            };
+            $http({
+                url: api_uri + "p/user/validateMobile",
+                method: "GET",
+                params: m_params
+            }).success(function (d) {
+                if (d.returnCode == 0) {
+                    console.log(d);
+                    $scope.send_code()
+                } else if (d.returnCode == 1003) {
+                    alert('用户不存在或参数错误');
+                } else if (d.returnCode == 1004) {
+                    alert('手机号码错误');
+                } else {
+                    alert('未知错误');
+                }
+            }).error(function (d) {
+            });
+        };
+
+        $scope.send_code = function () {
+            var m_params = {
+                "token": $scope.token
+            };
+            $http({
+                url: api_uri + "p/user/sendSms",
+                method: "GET",
+                params: m_params
+            }).success(function (d) {
+                console.log(d);
+                if (d.returnCode == 0) {
+
+                } else if (d.returnCode == 1003) {
+                    alert('用户不存在或参数错误');
+                } else if (d.returnCode == 1004) {
+                    alert('手机号码错误');
+                } else if (d.returnCode == 3002) {
+                    alert('短信发送失败');
+                } else if (d.returnCode == 3003) {
+                    alert('短信发送过于频繁');
+                } else {
+                    alert('未知错误');
+                }
+            }).error(function (d) {
+            });
+        };
+
+        $scope.check_code = function () {
+            var m_params = {
+                "token": $scope.token,
+                code: $scope.code
+            };
+            $http({
+                url: api_uri + "p/user/validateSmsCode",
+                method: "GET",
+                params: m_params
+            }).success(function (d) {
+                console.log(d);
+                if (d.returnCode == 0) {
+                    $scope.step = 2;
+                } else if (d.returnCode == 1003) {
+                    alert('用户不存在或参数错误');
+                } else {
+                    alert('未知错误');
+                }
+            }).error(function (d) {
+            });
+        };
+
+
+        var timesTamp = new Date().getTime();
+        var timesTamp1 = String(timesTamp).substring(0, 10);
+        $scope.timestamp = parseInt(timesTamp1);
+        $scope.submit = function () {
+            var m_params = {
+                "token": $scope.token,
+                "pwd": $scope.pwd,
+                "password": $scope.password
+            };
+            console.log(m_params);
+            $http({
+                url: api_uri + "p/user/resetPwd ",
+                method: "GET",
+                params: m_params
+            }).success(function (d) {
+                console.log(d);
+                if (d.returnCode == 0) {
+                    $scope.step = 3
+                } else {
+                }
+
+            }).error(function (d) {
+            })
+        };
+        $scope.go_login = function () {
+            $state.go('login')
+        }
+    }]);

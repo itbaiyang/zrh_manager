@@ -1,9 +1,7 @@
-/**
- * Created by baiyang on 2016/7/7.
- */
 var productCtrl = angular.module('productCtrl', []);
-productCtrl.controller('ProductCtrl', ['$http', '$scope', '$rootScope', '$location', function ($http, $scope, $rootScope, $location) {
-
+productCtrl.controller('ProductCtrl',
+    ['$http', '$scope', '$state', '$rootScope', '$location', function ($http, $scope, $state, $rootScope, $location) {
+        console.log($rootScope.login_user);
     $scope.list = function (pageNo, pageSize) {
         var m_params = {
             "userId":$rootScope.login_user.userId,
@@ -140,27 +138,9 @@ productCtrl.controller('ProductCtrl', ['$http', '$scope', '$rootScope', '$locati
             dataType: 'json',
         });
     };
-    $scope.sort_up = function () {
-        var m_params = {
-            "userId": $rootScope.login_user.userId,
-            "token": $rootScope.login_user.token,
-            ids: $scope.ids
-        };
-        $.ajax({
-            type: 'POST',
-            url: api_uri + "financialProductManage/up",
-            data: m_params,
-            traditional: true,
-            success: function (data, textStatus, jqXHR) {
-                // console.log(data);
-                if (data.returnCode == 0) {
-                    $scope.list($scope.pageNo1, 10);
-                }
-                else {
-                }
-            },
-            dataType: 'json',
-        });
+
+        $scope.go_sort = function () {
+            $state.go('super.product.sort');
     };
 
     $scope.update = function(id){
@@ -508,3 +488,73 @@ productCtrl.controller('ProductUpdateCtrl', ['$http', '$scope', '$state', '$root
 
     };
 }]);
+
+productCtrl.controller('SortCtrl',
+    ['$http', '$scope', '$state', '$rootScope', function ($http, $scope, $state, $rootScope) {
+        $scope.list = function (pageNo, pageSize) {
+            var m_params = {
+                "userId": $rootScope.login_user.userId,
+                "token": $rootScope.login_user.token,
+                "pageNo": pageNo,
+                "pageSize": pageSize,
+                "release": true
+            };
+            console.log(m_params);
+            $http({
+                url: api_uri + "financialProductManage/list",
+                method: "GET",
+                params: m_params
+            }).success(function (d) {
+                if (d.returnCode == 0) {
+                    console.log(d);
+                    $scope.result_list = d.result.datas;
+                    // angular.forEach($scope.result_list, function (data) {
+                    //
+                    // });
+                }
+                else {
+                }
+
+            }).error(function (d) {
+                $location.path("/error");
+            })
+        };
+
+        $scope.list(1, 100);
+
+        $scope.go_back = function () {
+            $state.go('super.product');
+        };
+
+        $scope.sort_save = function () {
+            $scope.sorts = [];
+            for (var i = 0; i < $scope.result_list.length; i++) {
+                $scope.sorts.push({
+                    id: $scope.result_list[i].id,
+                    sort: $scope.result_list[i].sort
+                })
+            }
+            var m_params = {
+                "userId": $rootScope.login_user.userId,
+                "token": $rootScope.login_user.token,
+                sorts: JSON.stringify($scope.sorts)
+            };
+            console.log(m_params);
+            $.ajax({
+                type: 'POST',
+                url: api_uri + "financialProductManage/sort",
+                data: m_params,
+                traditional: true,
+                success: function (data, textStatus, jqXHR) {
+                    if (data.returnCode == 0) {
+                        $state.go('super.product')
+                    }
+                    else {
+                    }
+                },
+                dataType: 'json',
+            });
+
+        };
+
+    }]);

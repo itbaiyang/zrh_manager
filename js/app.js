@@ -1,106 +1,103 @@
-api_uri = "http://test.zhironghao.com/api/";
-// api_uri = "http://api.supeiyunjing.com/";
-// api_uri = "http://172.17.2.13:8080/api/";
-// api_uri = "http://172.16.97.229:8080/api/";
+api_uri = "http://test.zhironghao.com/api/";  //测试服接口
+// api_uri = "http://api.supeiyunjing.com/";  //正式服接口
+// api_uri = "http://172.16.97.229:8080/api/";//本地服务器接口
 var templates_root = 'templates/';
 deskey = "abc123.*abc123.*abc123.*abc123.*";
 var app = angular.module('app', [
-        'ng',
-        'ngRoute',
-        'ngAnimate',
-        'ui.router',
-        'loginCtrl',
-        'topBarCtrl',
-        'applyListCtrl',
-        'loanApplicationCtrl',
-        'productCtrl',
-        'myProjectCtrl',
-        'detailAppCtrl',
-        'saleManagerCtrl',
-        'manageCtrl',
-        'teamCtrl',
-        'signUpCtrl',
-        'bankCtrl',
-        'channelCtrl',
-        'shareCtrl',
+    'ng',
+    'ngRoute',
+    'ngAnimate',
+    'ui.router',
+    'loginCtrl',
+    'topBarCtrl',
+    'applyListCtrl',
+    'loanApplicationCtrl',
+    'productCtrl',
+    'myProjectCtrl',
+    'detailAppCtrl',
+    'saleManagerCtrl',
+    'manageCtrl',
+    'teamCtrl',
+    'signUpCtrl',
+    'bankCtrl',
+    'channelCtrl',
+    'shareCtrl',
     'messageCtrl',
-    'accountCtrl',
+    'accountCtrl'
 ]);
-app.config(['$httpProvider', function ($httpProvider) {
-        // Use x-www-form-urlencoded Content-Type
-        $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
-        $httpProvider.defaults.headers.put['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
+app.config(['$httpProvider', function ($httpProvider) {  //请求拦截器
+    $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
+    $httpProvider.defaults.headers.put['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
 
-        var param = function (obj) {
-            var query = '', name, value, fullSubName, subName, subValue, innerObj, i;
-            for (name in obj) {
-                value = obj[name];
-                if (value instanceof Array) {
-                    for (i = 0; i < value.length; ++i) {
-                        subValue = value[i];
-                        fullSubName = name + '[' + i + ']';
-                        innerObj = {};
-                        innerObj[fullSubName] = subValue;
-                        query += param(innerObj) + '&';
-                    }
+    var param = function (obj) {
+        var query = '', name, value, fullSubName, subName, subValue, innerObj, i;
+        for (name in obj) {
+            value = obj[name];
+            if (value instanceof Array) {
+                for (i = 0; i < value.length; ++i) {
+                    subValue = value[i];
+                    fullSubName = name + '[' + i + ']';
+                    innerObj = {};
+                    innerObj[fullSubName] = subValue;
+                    query += param(innerObj) + '&';
                 }
-                else if (value instanceof Object) {
-                    for (subName in value) {
-                        subValue = value[subName];
-                        fullSubName = name + '[' + subName + ']';
-                        innerObj = {};
-                        innerObj[fullSubName] = subValue;
-                        query += param(innerObj) + '&';
-                    }
-                }
-                else if (value !== undefined && value !== null)
-                    query += encodeURIComponent(name) + '=' + encodeURIComponent(value) + '&';
             }
+            else if (value instanceof Object) {
+                for (subName in value) {
+                    subValue = value[subName];
+                    fullSubName = name + '[' + subName + ']';
+                    innerObj = {};
+                    innerObj[fullSubName] = subValue;
+                    query += param(innerObj) + '&';
+                }
+            }
+            else if (value !== undefined && value !== null)
+                query += encodeURIComponent(name) + '=' + encodeURIComponent(value) + '&';
+        }
 
-            return query.length ? query.substr(0, query.length - 1) : query;
-        };
+        return query.length ? query.substr(0, query.length - 1) : query;
+    };
 
-        $httpProvider.defaults.transformRequest = [function (data) {
-            return angular.isObject(data) && String(data) !== '[object File]' ? param(data) : data;
-        }];
-    }]);
+    $httpProvider.defaults.transformRequest = [function (data) {
+        return angular.isObject(data) && String(data) !== '[object File]' ? param(data) : data;
+    }];
+}]);
 
 app.run(['$location', '$rootScope', '$timeout', '$http', function ($location, $rootScope, $timeout, $http) {
 
     /*********************************** 回调区 ***************************************/
-    // 页面跳转后
     $rootScope.isOpenMenu = true;
     $rootScope.qiniu_bucket_domain = "o793l6o3p.bkt.clouddn.com";
     $rootScope.$on('$stateChangeSuccess',
         function (event, toState, toParams, fromState, fromParams) {
             var present_route = toState.name; //获取当前路由
-            if (present_route.indexOf('admin.my_project.detail') > -1) {
-                var from_route = fromState.name;
-                if (from_route != "" && from_route.indexOf('admin.my_project.edit_apply') <= -1
-                    && from_route.indexOf('admin.my_project.change_register') <= -1
-                    && from_route.indexOf('admin.my_project.change_bank') <= -1
-                    && from_route.indexOf('admin.my_project.distribute') <= -1
-                    && from_route.indexOf('admin.my_project.apply_help') <= -1
-                    && from_route.indexOf('admin.my_project.message') <= -1
-                    && from_route.indexOf('admin.my_project.choice_sale') <= -1
-                    && from_route.indexOf('admin.company_message.detail') <= -1) {
-                    $rootScope.putSessionObject('from_route', from_route);
-                    if (fromParams.id) {
-                        var arrayParams = from_route.split(".");
-                        var from_route2 = "/" + arrayParams[0] + "/" + arrayParams[1] + "/" + arrayParams[2] + "/";
-                        if (arrayParams[2] != 'edit_apply') {
-                            $rootScope.putSessionObject('from_route2', from_route2);
-                        }
-                        var from_params = fromParams.id;
-                        // console.log(from_params);
-                        $rootScope.putSessionObject('from_params', from_params);
-
-                    }
-                } else {
-                    var get_route = $rootScope.getSessionObject('from_route');
-
-                }
-            }
+            // if (present_route.indexOf('admin.my_project.detail') > -1) {
+            //     var from_route = fromState.name;
+            //     if (from_route != "" && from_route.indexOf('admin.my_project.edit_apply') <= -1
+            //         && from_route.indexOf('admin.my_project.change_register') <= -1
+            //         && from_route.indexOf('admin.my_project.change_bank') <= -1
+            //         && from_route.indexOf('admin.my_project.distribute') <= -1
+            //         && from_route.indexOf('admin.my_project.apply_help') <= -1
+            //         && from_route.indexOf('admin.my_project.message') <= -1
+            //         && from_route.indexOf('admin.my_project.choice_sale') <= -1
+            //         && from_route.indexOf('admin.company_message.detail') <= -1) {
+            //         $rootScope.putSessionObject('from_route', from_route);
+            //         if (fromParams.id) {
+            //             var arrayParams = from_route.split(".");
+            //             var from_route2 = "/" + arrayParams[0] + "/" + arrayParams[1] + "/" + arrayParams[2] + "/";
+            //             if (arrayParams[2] != 'edit_apply') {
+            //                 $rootScope.putSessionObject('from_route2', from_route2);
+            //             }
+            //             var from_params = fromParams.id;
+            //             // console.log(from_params);
+            //             $rootScope.putSessionObject('from_params', from_params);
+            //
+            //         }
+            //     } else {
+            //         var get_route = $rootScope.getSessionObject('from_route');
+            //
+            //     }
+            // }
             var array = present_route.split(".");
             $rootScope.choiceColor = array[1];
             if (array[1] == "message") {
@@ -120,7 +117,7 @@ app.run(['$location', '$rootScope', '$timeout', '$http', function ($location, $r
             var present_route = toState.name;
             $rootScope.arrayParams = present_route.split(".");
 
-            if ($location.$$path != '/login') {
+            if ($location.$$path.indexOf('/forget') < 0 || $location.$$path != '/login') {
                 $rootScope.check_user();
                 $timeout(function () {
                     if (!$rootScope.login_user) {
@@ -129,7 +126,7 @@ app.run(['$location', '$rootScope', '$timeout', '$http', function ($location, $r
                     }
                 }, 500)
             } else {
-                $location.path("/login");
+                $location.path($location.$$path);
             }
 
         });
@@ -256,6 +253,7 @@ app.run(['$location', '$rootScope', '$timeout', '$http', function ($location, $r
             return null;
         }
     };
+
     $rootScope.check_user = function () {
         $rootScope.login_user = $rootScope.getObject("login_user_manage");
         if ($rootScope.login_user) {
@@ -290,7 +288,6 @@ app.run(['$location', '$rootScope', '$timeout', '$http', function ($location, $r
             method: "GET",
             params: m_params
         }).success(function (d) {
-            // console.log(d);
             if (d.returnCode == 0) {
                 $rootScope.role = d.result.role;
                 if ($rootScope.role == 'super') {

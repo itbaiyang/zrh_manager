@@ -17,6 +17,16 @@ app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
             }
         })
 
+        .state("forget", {
+            url: '/forget',
+            views: {
+                '': {
+                    templateUrl: templates_root + 'login/forget_pwd.html',
+                    controller: 'ForgetPasswordCtrl'
+                },
+            }
+        })
+
         .state("super", {
             url: '/super',
             views: {
@@ -235,6 +245,15 @@ app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
                 'main@super': {
                     templateUrl: templates_root + 'super/product_service/sign_up/sign_up.html',
                     controller: 'SignUpCtrl'
+                }
+            }
+        })
+        .state('super.setting', {
+            url: '/setting',
+            views: {
+                'main@super': {
+                    templateUrl: templates_root + 'super/setting.html',
+                    controller: 'SettingCtrl'
                 }
             }
         })

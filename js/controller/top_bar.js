@@ -125,3 +125,53 @@ topBarCtrl.controller('ContainsCtrl',
             });
         };
     }]);
+
+topBarCtrl.controller('SettingCtrl',
+    ['$scope', '$rootScope', '$http', '$state', '$location', '$timeout', function ($scope, $rootScope, $http, $state, $location, $timeout) {
+
+        $scope.get_properties = function () {
+            var m_params = {
+                "userId": $rootScope.login_user.userId,
+                "token": $rootScope.login_user.token,
+            };
+            $http({
+                url: api_uri + "sys/getProperties",
+                method: "GET",
+                params: m_params
+            }).success(function (d) {
+                if (d.returnCode == 0) {
+                    console.log(d);
+                    if (d.result.sendSms == true) {
+                        $scope.range = 0;
+                    } else {
+                        $scope.range = 1;
+                    }
+
+                } else {
+                    console.log(d);
+                }
+            }).error(function (d) {
+                console.log(d);
+            });
+        };
+        $scope.change_sms = function () {
+            var m_params = {
+                "userId": $rootScope.login_user.userId,
+                "token": $rootScope.login_user.token
+            };
+            $http({
+                url: api_uri + "sys/updateSendSms",
+                method: "GET",
+                params: m_params
+            }).success(function (d) {
+                if (d.returnCode == 0) {
+                    console.log(d);
+                } else {
+                    console.log(d);
+                }
+            }).error(function (d) {
+                console.log(d);
+            });
+        };
+        $scope.get_properties();
+    }]);
