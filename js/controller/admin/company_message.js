@@ -177,6 +177,9 @@ loanApplicationCtrl.controller('AddCompanyCtrl',
             $scope.productId = id;
             $scope.productName = name;
         };
+        $scope.choice_product_type = function (type) {
+            $scope.productType = type
+        };
         /*选择银行*/
         $scope.choiceBank = function (id, name) {
             $scope.bankId = id;

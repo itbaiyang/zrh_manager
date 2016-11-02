@@ -71,33 +71,11 @@ app.run(['$location', '$rootScope', '$timeout', '$http', function ($location, $r
     $rootScope.$on('$stateChangeSuccess',
         function (event, toState, toParams, fromState, fromParams) {
             var present_route = toState.name; //获取当前路由
-            // if (present_route.indexOf('admin.my_project.detail') > -1) {
-            //     var from_route = fromState.name;
-            //     if (from_route != "" && from_route.indexOf('admin.my_project.edit_apply') <= -1
-            //         && from_route.indexOf('admin.my_project.change_register') <= -1
-            //         && from_route.indexOf('admin.my_project.change_bank') <= -1
-            //         && from_route.indexOf('admin.my_project.distribute') <= -1
-            //         && from_route.indexOf('admin.my_project.apply_help') <= -1
-            //         && from_route.indexOf('admin.my_project.message') <= -1
-            //         && from_route.indexOf('admin.my_project.choice_sale') <= -1
-            //         && from_route.indexOf('admin.company_message.detail') <= -1) {
-            //         $rootScope.putSessionObject('from_route', from_route);
-            //         if (fromParams.id) {
-            //             var arrayParams = from_route.split(".");
-            //             var from_route2 = "/" + arrayParams[0] + "/" + arrayParams[1] + "/" + arrayParams[2] + "/";
-            //             if (arrayParams[2] != 'edit_apply') {
-            //                 $rootScope.putSessionObject('from_route2', from_route2);
-            //             }
-            //             var from_params = fromParams.id;
-            //             // console.log(from_params);
-            //             $rootScope.putSessionObject('from_params', from_params);
-            //
-            //         }
-            //     } else {
-            //         var get_route = $rootScope.getSessionObject('from_route');
-            //
-            //     }
-            // }
+            console.log($location.absUrl());
+            var to_url = $location.absUrl().split('#');
+            console.log(to_url);
+            $rootScope.url_detail = to_url[0] + '#/admin/apply/detail/';
+            $rootScope.url_edit = to_url[0] + '#/admin/apply/choice_sale/';
             var array = present_route.split(".");
             $rootScope.choiceColor = array[1];
             if (array[1] == "message") {
@@ -186,13 +164,6 @@ app.run(['$location', '$rootScope', '$timeout', '$http', function ($location, $r
         $event.stopPropagation();
     };
     /*********************************** 全局变量区 ***************************************/
-
-    // $rootScope.url_detail = 'http://localhost:8080/zrh_manager/#/admin/apply/detail/';
-    // $rootScope.url_edit = 'http://localhost:8080/zrh_manager/#/apply/choice_sale/';
-    $rootScope.url_detail = 'http://testmanager.zhironghao.com/#/admin/apply/detail/';
-    $rootScope.url_edit = 'http://testmanager.zhironghao.com/#/admin/apply/choice_sale/';
-    // $rootScope.url_detail = 'http://manager.zhironghao.com/#/admin/apply/detail/';
-    // $rootScope.url_edit = 'http://manager.zhironghao.com/#/admin/apply/choice_sale/';
 
     $rootScope.putObject = function (key, value) {
         localStorage.setItem(key, angular.toJson(value));

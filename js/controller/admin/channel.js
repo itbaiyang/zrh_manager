@@ -159,6 +159,7 @@ channelCtrl.controller('ChannelDetailCtrl',
             "status": $scope.status,
             "uid": $stateParams.id
         };
+        console.log(m_params);
         $http({
             url: api_uri + "wxShare/manager/customerApplyList",
             method: "GET",
