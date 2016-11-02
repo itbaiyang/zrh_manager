@@ -70,28 +70,15 @@ app.run(['$location', '$rootScope', '$timeout', '$http', function ($location, $r
     $rootScope.qiniu_bucket_domain = "o793l6o3p.bkt.clouddn.com";
     $rootScope.$on('$stateChangeSuccess',
         function (event, toState, toParams, fromState, fromParams) {
-            var present_route = toState.name; //获取当前路由
             console.log($location.absUrl());
             var to_url = $location.absUrl().split('#');
             console.log(to_url);
             $rootScope.url_detail = to_url[0] + '#/admin/apply/detail/';
             $rootScope.url_edit = to_url[0] + '#/admin/apply/choice_sale/';
-            var array = present_route.split(".");
-            $rootScope.choiceColor = array[1];
-            if (array[1] == "message") {
-                $rootScope.sideTwo = true;
-                $rootScope.isOpenMenu = false;
-                $rootScope.choiceColorTwo = array[2];
-            } else {
-                $rootScope.sideTwo = false;
-                if (!$rootScope.isOpenMenu) {
-                    $rootScope.openMenu();
-                }
-            }
         });
     // 页面跳转前
     $rootScope.$on('$stateChangeStart',
-        function (event, toState, toParams, fromState, fromParams) {
+        function (event, toState) {
             var present_route = toState.name;
             $rootScope.arrayParams = present_route.split(".");
 

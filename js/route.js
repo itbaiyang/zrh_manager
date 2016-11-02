@@ -1,6 +1,3 @@
-/**
- * Created by baiyang on 2016/7/7.
- */
 //路由设定
 app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
 
@@ -258,6 +255,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
             }
         })
 
+
         .state("admin", {
             url: '/admin',
             views: {
@@ -322,6 +320,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
                 }]
             }
         })
+
         .state("admin.apply", {
             url: '/apply',
             views: {
@@ -539,6 +538,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
                 }
             }
         })
+        
         .state('admin.message', {
             url: '/message',
             views: {

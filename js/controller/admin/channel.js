@@ -9,7 +9,7 @@ channelCtrl.controller('ChannelCtrl',
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
             "pageNo": pageNo,
-            "pageSize": pageSize,
+            "pageSize": pageSize
         };
         $http({
             url: api_uri + "wxShare/manager/customerList",
@@ -445,14 +445,14 @@ channelCtrl.controller('ChangeCtrl',
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
             "applyId": $stateParams.idt,
-            "mobile": $scope.phone,
+            "mobile": $scope.phone
         };
         $.ajax({
             type: 'POST',
             url: api_uri + "/loanApplicationManage/changeMobile",
             data: m_params,
             traditional: true,
-            success: function (data, textStatus, jqXHR) {
+            success: function (data) {
                 if (data.returnCode == 0) {
                     $scope.back_channel();
                     $rootScope.successMsg = "变更成功";

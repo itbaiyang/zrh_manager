@@ -1,12 +1,11 @@
 <div class="side-menu-1 fl" ng-class="{true: 'side-menu-big', false: 'side-menu-small'}[isOpenMenu]">
     <p class="side-bar-title">
         <span class="side-bar-change" ng-show="isOpenMenu">|||</span>
-        <!--<span class="side-bar-change" ng-hide="isOpenMenu" ng-click="openMenu()">三</span>-->
     </p>
     <p class="side-bar-class">产品与服务</p>
     <ul class="" style="width: 100%">
         <a class="side-bar-link" ng-class="{'side-bar-select':choiceColor =='apply_list'}" ng-show="role == 'super'"
-           ui-sref="super.apply_list">
+           ui-sref="super.apply_list" ng-m>
             <img class="btn-blue-img">企业信息中心</a>
         <a class="side-bar-link" ng-class="{'side-bar-select':choiceColor =='manage'}" ng-show="role == 'super'"
            ui-sref="super.manage">
@@ -23,10 +22,10 @@
             <img class="btn-blue-img">金融产品</a>
         <a class="side-bar-link" ng-class="{'side-bar-select':choiceColor =='signUp'}" ng-show="role == 'super'"
            ui-sref="super.signUp">
-            <img class="btn-blue-img">注册用户</a>
+            <img class="btn-blue-img" ng-cl>注册用户</a>
         <a class="side-bar-link" ng-class="{'side-bar-select':choiceColor =='my_project'}"
            ng-show="role == 'admin' || role == 'manager'"
-           ui-sref="admin.my_project({page:1,wd:'',status:'',scroll:0})">
+           ui-sref="admin.my_project">
             <img class="btn-blue-img">我的项目</a>
         <a class="side-bar-link" ng-class="{'side-bar-select':choiceColor =='user_list'}" ng-show="role == 'manager'"
            ui-sref="admin.user_list">
