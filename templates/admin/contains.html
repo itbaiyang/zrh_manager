@@ -6,10 +6,10 @@
     <div style="padding: 0 15px">
         <div class="account">
             <div class="account-detail fl" style="border-right: 2px solid #e6e7e8">
-                <img ng-src="img/upload.png">
+                <img ng-src="{{role_manage.headImg || 'img/upload.png'}}">
                 <p>hi, <span style="color: #009dd0;">{{role_manage.name}}</span></p>
                 <p style="padding: 3px 0">
-                    <img class="btn-blue-img"><span style="color: #3989db">账户管理</span>
+                    <img class="btn-blue-img"><a style="color: #3989db" ui-sref="admin.account">账户管理</a>
                 </p>
 
             </div>
