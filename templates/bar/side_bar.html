@@ -58,13 +58,13 @@
         <a class="side-bar-link" ng-class="{'side-bar-select':choiceColor =='account'}"
            ng-show="role == 'admin'  || role == 'manager'"
            ui-sref="admin.account">
-            <span class="btn-blue-img" data-toggle="tooltip" data-placement="right" title="账号管理"></span>账号管理</a>
+            <span class="btn-blue-img img-setting" data-toggle="tooltip" data-placement="right" title="账号管理"></span>账号管理</a>
     </ul>
     <ul>
         <a class="side-bar-link" ng-class="{'side-bar-select':choiceColor =='message'}"
            ng-show="role == 'admin'  || role == 'manager'"
            ui-sref="admin.message.bank">
-            <span class="btn-blue-img" data-toggle="tooltip" data-placement="right" title="消息中心"></span>
+            <span class="btn-blue-img img-message" data-toggle="tooltip" data-placement="right" title="消息中心"></span>
             <span class="navList2" style="left: 25px" ng-show="count > 0">{{count}}</span>消息中心
         </a>
     </ul>

@@ -153,6 +153,28 @@
     margin-right: 15px;
 }
 
+.img-message {
+    border: none;
+    background: url("../img/tips/message.png");
+    background-size: 100%;
+}
+
+.img-setting {
+    border: none;
+    background: url("../img/tips/setting.png");
+    background-size: 100%;
+}
+
+.img-account {
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+    margin-top: -1px;
+    border: none;
+    background: url("../img/tips/account.png");
+    background-size: 100%;
+    vertical-align: middle;
+}
 .noPadding {
     padding: 0;
 }
