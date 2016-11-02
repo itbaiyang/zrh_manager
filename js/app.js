@@ -81,7 +81,18 @@ app.run(['$location', '$rootScope', '$timeout', '$http', function ($location, $r
         function (event, toState) {
             var present_route = toState.name;
             $rootScope.arrayParams = present_route.split(".");
-
+            var array = present_route.split(".");
+            $rootScope.choiceColor = array[1];
+            if (array[1] == "message") {
+                $rootScope.sideTwo = true;
+                $rootScope.isOpenMenu = false;
+                $rootScope.choiceColorTwo = array[2];
+            } else {
+                $rootScope.sideTwo = false;
+                if (!$rootScope.isOpenMenu) {
+                    $rootScope.openMenu();
+                }
+            }
             if ($location.$$path.indexOf('/forget') < 0 || $location.$$path != '/login') {
                 $rootScope.check_user();
                 $timeout(function () {

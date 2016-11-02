@@ -35,7 +35,7 @@ topBarCtrl.controller('ContainsCtrl',
                 "userId": $rootScope.login_user.userId,
                 "token": $rootScope.login_user.token,
                 "pageNo": pageNo,
-                "pageSize": pageSize,
+                "pageSize": pageSize
             };
             $http({
                 url: api_uri + "zrh/message/listIndexs",
@@ -128,7 +128,9 @@ topBarCtrl.controller('ContainsCtrl',
 
 topBarCtrl.controller('SettingCtrl',
     ['$scope', '$rootScope', '$http', '$state', '$location', '$timeout', function ($scope, $rootScope, $http, $state, $location, $timeout) {
-
+        $scope.myStyle = {
+            color: '#ffffff'
+        };
         $scope.get_properties = function () {
             var m_params = {
                 "userId": $rootScope.login_user.userId,
