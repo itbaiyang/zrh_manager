@@ -15,7 +15,6 @@ messageCtrl.controller('MessageBankCtrl',
                 method: "GET",
                 params: m_params
             }).success(function (d) {
-                console.log(d);
                 $scope.id_arr = [];
                 $scope.message_list = [];
                 $scope.message_list_old = d.result.datas;
@@ -25,8 +24,6 @@ messageCtrl.controller('MessageBankCtrl',
                         $scope.message_list.push($scope.message_list_old[i]);
                     }
                 }
-                console.log($scope.id_arr);
-                console.log($scope.message_list);
                 angular.forEach($scope.message_list, function (data) {
                     data.dayNum = '';
                     if (data.status == 1) {
@@ -157,9 +154,8 @@ messageCtrl.controller('MessageBankCtrl',
                 "token": $rootScope.login_user.token,
                 "status": $scope.status,
                 "dayNum": dayNum,
-                "id": id,
+                "id": id
             };
-            console.log(m_params);
             $http({
                 url: api_uri + "applyBankDeal/manage/allow",
                 method: "GET",
@@ -174,13 +170,10 @@ messageCtrl.controller('MessageBankCtrl',
                     $scope.$apply();
                 } else if (d.returnCode == 1002 && d.errorString == "abd") {
                     alert("这条操作已经操作过了");
-                    console.log(d);
                 } else if (d.returnCode == 1002 && d.errorString == "la") {
                     alert("申请的状态错误");
-                    console.log(d);
                 } else {
                     alert(d);
-                    console.log(d);
                 }
 
             }).error(function (d) {
@@ -194,9 +187,8 @@ messageCtrl.controller('MessageBankCtrl',
                 "token": $rootScope.login_user.token,
                 "status": $scope.status,
                 "days": dayNum,
-                "id": id,
+                "id": id
             };
-            console.log(m_params);
             $.ajax({
                 type: 'GET',
                 url: api_uri + "loanApplicationManage/modifyRate",
@@ -204,7 +196,6 @@ messageCtrl.controller('MessageBankCtrl',
                 traditional: true,
                 success: function (data, textStatus, jqXHR) {
                     if (data.returnCode == 0) {
-                        console.log(data);
                         $rootScope.successMsg = "已经修改进度";
                         $rootScope.fadeInOut("#alert", 500);
                         $scope.showAllow[index] = false;
@@ -256,7 +247,6 @@ messageCtrl.controller('MessageBankCtrl',
                 "token": $rootScope.login_user.token,
                 "id": id,
             };
-            console.log(m_params);
             $.ajax({
                 type: 'POST',
                 url: api_uri + "applyBankDeal/manage/follow",
@@ -264,7 +254,6 @@ messageCtrl.controller('MessageBankCtrl',
                 traditional: true,
                 success: function (data, textStatus, jqXHR) {
                     if (data.returnCode == 0) {
-                        console.log(data);
                         $rootScope.successMsg = "继续项目";
                         $rootScope.fadeInOut("#alert", 500);
                         $scope.bank_list(1, 100);
@@ -282,7 +271,6 @@ messageCtrl.controller('MessageBankCtrl',
                 "token": $rootScope.login_user.token,
                 "id": $scope.stop_alert_id,
             };
-            console.log(m_params);
             $.ajax({
                 type: 'POST',
                 url: api_uri + "applyBankDeal/manage/stopped",
@@ -290,7 +278,6 @@ messageCtrl.controller('MessageBankCtrl',
                 traditional: true,
                 success: function (data, textStatus, jqXHR) {
                     if (data.returnCode == 0) {
-                        console.log(data);
                         $rootScope.successMsg = "已经中止项目";
                         $rootScope.fadeInOut("#alert", 500);
                         $scope.bank_list(1, 100);
@@ -315,9 +302,8 @@ messageCtrl.controller('MessageBankCtrl',
             var m_params = {
                 "userId": $rootScope.login_user.userId,
                 "token": $rootScope.login_user.token,
-                "id": id,
+                "id": id
             };
-            console.log(m_params);
             $.ajax({
                 type: 'POST',
                 url: api_uri + "loanApplicationManage/stopped",
@@ -325,7 +311,6 @@ messageCtrl.controller('MessageBankCtrl',
                 traditional: true,
                 success: function (data, textStatus, jqXHR) {
                     if (data.returnCode == 0) {
-                        console.log(data);
                         $rootScope.successMsg = "继续项目";
                         $rootScope.fadeInOut("#alert", 500);
                         $scope.bank_list(1, 100);
@@ -352,7 +337,6 @@ messageCtrl.controller('MessageSystemCtrl',
                 method: "GET",
                 params: m_params
             }).success(function (d) {
-                console.log(d);
                 $scope.page = d.result;
                 $scope.result_list = d.result.datas;
             }).error(function (d) {
@@ -373,7 +357,6 @@ messageCtrl.controller('MessageSystemCtrl',
                 method: "GET",
                 params: m_params
             }).success(function (d) {
-                console.log(d);
                 $scope.stop_list = d.result.datas;
             }).error(function (d) {
                 // console.log(d);
@@ -399,7 +382,6 @@ messageCtrl.controller('MessageSystemCtrl',
                 method: 'GET',
                 params: m_params,
             }).success(function (d) {
-                console.log(d);
                 $scope.list_stop(1, 100);
                 $rootScope.message();
             })
@@ -412,7 +394,6 @@ messageCtrl.controller('MessageSystemCtrl',
         $scope.showRefuse = []; //初始化参数
         $scope.show_alert = function (id) { //显示窗口函数
             $scope.showRefuse[id] = true;
-            console.log(id);
         };
         $scope.refuse = function (id, index, reason_refuse) {
             var m_params = {
@@ -426,7 +407,6 @@ messageCtrl.controller('MessageSystemCtrl',
                 method: "GET",
                 params: m_params
             }).success(function (d) {
-                console.log(d);
                 if (d.returnCode == 0) {
                     $rootScope.successMsg = "驳回已发送";
                     $rootScope.fadeInOut("#alert", 500);
@@ -459,9 +439,8 @@ messageCtrl.controller('MessageSystemCtrl',
                 method: "GET",
                 params: m_params
             }).success(function (d) {
-                console.log(d);
-
             }).error(function (d) {
+                console.log(d)
             });
         };
     }]);

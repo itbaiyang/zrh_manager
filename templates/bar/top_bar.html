@@ -1,17 +1,17 @@
 <nav>
-    <div class="navLeft">
+    <div class="nav-left">
         <a ng-click="go_home()">
-            <img class="navLogo" src="img/logo1.png" alt="">
+            <img class="nav-logo" src="img/logo1.png" alt="">
         </a>
     </div>
-    <div class="navRight fr">
-        <span class="navText" ng-click="go_home()">直融号企业管理平台</span>
+    <div class="nav-right fr">
+        <span class="nav-list" ng-click="go_home()">直融号企业管理平台</span>
         <ul class="fr">
-            <li class="navList" ui-sref="admin.message.bank" ng-hide="role == 'super'">
+            <li class="nav-list" ui-sref="admin.message.bank" ng-hide="role == 'super'">
                 <span class="btn-blue-img img-message"></span>
-                <span class="navList1" ng-show="count">{{count}}</span>
+                <span class="nav-list1" ng-show="count">{{count}}</span>
             </li>
-            <li class="dropdown navList" style="color: #ffffff">
+            <li class="dropdown nav-list" style="color: #ffffff">
                 <a style="color: #ffffff" class="dropdown-toggle" data-toggle="dropdown" role="button"
                    aria-haspopup="true" aria-expanded="false">{{role_manage.empNo}}<span class="caret"></span></a>
                 <ul class="dropdown-menu ">

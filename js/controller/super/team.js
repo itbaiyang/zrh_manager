@@ -41,9 +41,8 @@ teamCtrl.controller('TeamCtrl',
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
             "name": $scope.teamName,
-            "groupId": id,
+            "groupId": id
         };
-        console.log(m_params);
         $.ajax({
             type: 'POST',
             url: api_uri + "zrh/group/updateGroup",
@@ -99,7 +98,6 @@ teamCtrl.controller('TeamCtrl',
             "token": $rootScope.login_user.token,
             "groupId": id
         };
-        console.log(m_params);
         $http({
             url: api_uri + "zrh/group/deleteGroup",
             method: "GET",
@@ -141,7 +139,6 @@ teamCtrl.controller('MembersCtrl',
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
             if (d.returnCode == 0) {
                 $scope.page = d.result;
                 $scope.member_list = d.result;
@@ -168,7 +165,6 @@ teamCtrl.controller('MembersCtrl',
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
             if (d.returnCode == 0) {
                 $scope.page = d.result;
                 $scope.person_list = d.result;
@@ -192,12 +188,10 @@ teamCtrl.controller('MembersCtrl',
     var updateSelected = function (action, id) {
         if (action == 'add') {
             $scope.ids.push(id);
-            console.log($scope.ids);
         }
         if (action == 'remove') {
             var idx = $scope.ids.indexOf(id);
             $scope.ids.splice(idx, 1);
-            console.log($scope.ids);
         }
     };
     $scope.updateSelection = function ($event, id) {
@@ -220,7 +214,6 @@ teamCtrl.controller('MembersCtrl',
             data: m_params,
             traditional: true,
             success: function (data, textStatus, jqXHR) {
-                console.log(data);
                 if (data.returnCode == 0) {
                     // alert("添加成功");
                     $scope.member_list_get();
@@ -245,7 +238,6 @@ teamCtrl.controller('MembersCtrl',
             "groupId": $stateParams.id,
             "uids": $scope.ids,
         };
-        console.log(m_params);
         $.ajax({
             type: 'POST',
             url: api_uri + "zrh/group/removeUserFromGroup",

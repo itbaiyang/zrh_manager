@@ -1,4 +1,4 @@
-.bankBox {
+.bank-box {
     display: inline-block;
     margin: 35px;
     height: 100px;
@@ -7,23 +7,23 @@
     position: relative;
 }
 
-.bankImg {
+.bank-img {
     width: 100px;
     height: 100px;
     border: 1px solid #e1e1e1;
 }
 
-.bankImg img {
+.bank-img img {
     width: 98px;
     height: 98px;
 }
 
-.bankContent {
+.bank-content {
     position: relative;
     padding-left: 10px;
 }
 
-.bankContentDelete {
+.bank-content-delete {
     display: inline-block;
     position: absolute;
     top: -12px;
@@ -35,30 +35,14 @@
     border-radius: 15px;
 }
 
-.whiteLine {
+.white-line {
     margin: 13px 7px;
     width: 16px;
     height: 4px;
     background: #ffffff;
 }
 
-/*.bankContentEdit {*/
-/*display: inline-block;*/
-/*position: absolute;*/
-/*top: 0;*/
-/*left: 0;*/
-/*z-index: 50;*/
-/*width: 225px;*/
-/*height: 100px;*/
-/*line-height: 100px;*/
-/*color: #888888;*/
-/*font-size: 22px;*/
-/*text-align: center;*/
-/*background: rgba(255, 255, 255, 0.6);*/
-/*!*border: 1px solid #cccccc;*!*/
-/*}*/
-
-.bankContentP1 {
+.bank-content-name {
     height: 24px;
     line-height: 24px;
     font-size: 16px;
@@ -66,9 +50,18 @@
     color: #000000;
 }
 
-.bankContentP2 {
+.bank-content-detail {
     height: 30px;
     line-height: 30px;
     font-size: 14px;
     color: #cccccc;
+}
+
+.bank-set-name {
+    margin-right: 10px;
+    display: inline-block;
+    color: #9695a7;
+    height: 45px;
+    line-height: 45px;
+    cursor: pointer;
 }

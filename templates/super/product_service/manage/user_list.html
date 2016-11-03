@@ -1,13 +1,13 @@
 <div class="row" ng-class="{true: 'content-open', false: 'content'}[isOpenMenu]">
     <div class="content-title"><span>职员列表</span></div>
     <div class="content-search">
-        <div class="col-xs-4 col-md-4 col-lg-4 noPadding">
+        <div class="col-xs-4 col-md-4 col-lg-4 padding-none">
             <input type="text" class="form-control" placeholder="搜索职员" ng-model="search_text">
         </div>
         <div class="col-xs-1 col-md-1 col-lg-1">
             <button class="btn-blue" ng-click="search()" type="button">搜索</button>
         </div>
-        <button class="btn-blue margin-left15 fr" ui-sref="super.manage.addUser">添加新职员</button>
+        <button class="btn-blue margin-left-15 fr" ui-sref="super.manage.addUser">添加新职员</button>
         <button class="fr btn-grey" ng-click="refresh()" type="submit"><img class="btn-greyImg"> 刷新</button>
     </div>
     <li class="list-title">

@@ -75,7 +75,6 @@ shareCtrl.controller('ShareCtrl',
             data: m_params,
             traditional: true,
             success: function (data, textStatus, jqXHR) {
-                console.log(data);
                 if (data.returnCode == 0) {
                     $scope.list($scope.pageNo1, 10);
                     $scope.ids = [];

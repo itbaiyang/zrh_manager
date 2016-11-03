@@ -1,7 +1,7 @@
 <div class="row" ng-class="{true: 'content-open', false: 'content'}[isOpenMenu]">
     <div class="content-title">
         <span>渠道统计</span>
-        <button class="btn-blue fr margin-left15" type="submit" ng-click="add_channel_man()">添加渠道人员</button>
+        <button class="btn-blue fr margin-left-15" type="submit" ng-click="add_channel_man()">添加渠道人员</button>
     </div>
     <li class="list-title">
         <span class="col-sm-2 col-md-2 col-lg-2">用户名</span>
@@ -14,7 +14,7 @@
         <div class="line-roll">
             <div class="list-out">
                 <li class="list-group-item list-user" ng-repeat="resultObj in user_list">
-                    <div class="col-sm-2 col-md-2 col-lg-2 noPadding">
+                    <div class="col-sm-2 col-md-2 col-lg-2 padding-none">
                         <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}"
                                ng-checked="isSelected(resultObj.id)"
                                ng-click="updateSelection($event,resultObj.id)">
@@ -25,13 +25,13 @@
                     <!--<div class="col-sm-3 col-md-3 col-lg-3 text-center">-->
                     <!--<p>{{resultObj.registerTime +'000' | date:'yyyy-MM-dd'}}</p>-->
                     <!--</div>-->
-                    <div class="col-sm-3 col-md-3 col-lg-3 noPadding text-center" style="margin-top: -8px">
+                    <div class="col-sm-3 col-md-3 col-lg-3 padding-none text-center" style="margin-top: -8px">
                         <span class="col-sm-12 col-md-12 col-lg-12">{{resultObj.registerTime +'000' | date:'yyyy-MM-dd'}}</span>
                         <span>{{resultObj.registerTime +'000' | date:'HH:mm'}}</span>
                         <span ng-hide="resultObj.registerTime">&nbsp;</span>
                     </div>
                     <span class="col-sm-2 col-md-2 col-lg-2 text-center">{{resultObj.count}}</span>
-                    <a class="col-sm-2 col-md-2 col-lg-2 noPadding text-right list-a-point"
+                    <a class="col-sm-2 col-md-2 col-lg-2 padding-none text-right link-pointer"
                        ng-click="showDetail(resultObj.id)">查看详情</a>
                 </li>
             </div>

@@ -50,10 +50,8 @@ saleManagerCtrl.controller('SaleManagerCtrl',
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
             if (d.returnCode == 0) {
                 $scope.company_list = d.result.datas;
-                console.log($scope.company_list);
             } else if (d.returnCode == 1003) {
                 alert("该用户没有分组");
             }

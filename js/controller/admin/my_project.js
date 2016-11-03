@@ -19,7 +19,6 @@ myProjectCtrl.controller('MyProjectCtrl',
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
             if (d.returnCode == 0) {
                 $scope.pages = d.result.list;              //分页
                 $scope.result_list = d.result.list.datas; //列表参数
@@ -147,7 +146,6 @@ myProjectCtrl.controller('MyProjectCtrl',
             "ids": $scope.ids,
             "c": $scope.comments_give
         };
-        console.log(m_params);
         if (m_params.ids.length == 0) {
             alert("没有选择项目");
         } else if (m_params.c == '') {
@@ -159,7 +157,6 @@ myProjectCtrl.controller('MyProjectCtrl',
                 data: m_params,
                 traditional: true,
                 success: function (data, textStatus, jqXHR) {
-                    console.log(data);
                     if (data.returnCode == 0) {
                         // console.log(data);
                         $scope.ids = [];

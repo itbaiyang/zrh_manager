@@ -111,7 +111,6 @@ manageCtrl.controller('CreateUserCtrl',
                 "role": $scope.role_sale,
                 "signature": $rootScope.encryptByDES($scope.email + $scope.password + $scope.timestamp),
             };
-            console.log(m_params);
             $http({
                 url: api_uri + "p/user/create",
                 method: "POST",
@@ -143,7 +142,6 @@ manageCtrl.controller('UserUpdateCtrl',
                 method: "GET",
                 params: m_params
             }).success(function (d) {
-                console.log(d);
                 if (d.returnCode == 0) {
                     $scope.isUpdate = true;
                     $scope.email = d.result.email;
@@ -170,7 +168,6 @@ manageCtrl.controller('UserUpdateCtrl',
                 "role": $scope.role_sale,
                 "signature": $rootScope.encryptByDES($scope.email + $scope.password + $scope.timestamp),
             };
-            console.log(m_params);
             $http({
                 url: api_uri + "p/user/update/" + $stateParams.id,
                 method: "POST",

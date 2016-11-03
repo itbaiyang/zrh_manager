@@ -1,5 +1,5 @@
-// api_uri = "http://test.zhironghao.com/api/";  //测试服接口
-api_uri = "http://api.supeiyunjing.com/";  //正式服接口
+api_uri = "http://test.zhironghao.com/api/";  //测试服接口
+// api_uri = "http://api.supeiyunjing.com/";  //正式服接口
 // api_uri = "http://172.16.97.229:8080/api/";//本地服务器接口
 var templates_root = 'templates/';
 deskey = "abc123.*abc123.*abc123.*abc123.*";
@@ -70,9 +70,7 @@ app.run(['$location', '$rootScope', '$timeout', '$http', function ($location, $r
     $rootScope.qiniu_bucket_domain = "o793l6o3p.bkt.clouddn.com";
     $rootScope.$on('$stateChangeSuccess',
         function (event, toState, toParams, fromState, fromParams) {
-            console.log($location.absUrl());
             var to_url = $location.absUrl().split('#');
-            console.log(to_url);
             $rootScope.url_detail = to_url[0] + '#/admin/apply/detail/';
             $rootScope.url_edit = to_url[0] + '#/admin/apply/choice_sale/';
         });

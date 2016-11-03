@@ -96,7 +96,6 @@ topBarCtrl.controller('ContainsCtrl',
                 method: "GET",
                 params: m_params
             }).success(function (d) {
-                console.log(d);
                 $scope.countContain = d.result;
                 $scope.get_group_count();
             }).error(function (d) {
@@ -113,7 +112,6 @@ topBarCtrl.controller('ContainsCtrl',
                 method: "GET",
                 params: m_params
             }).success(function (d) {
-                console.log(d);
                 if (d.returnCode == 0) {
                     $scope.countGroup = d.result;
                 } else if (d.returnCode == 1003) {
@@ -142,7 +140,6 @@ topBarCtrl.controller('SettingCtrl',
                 params: m_params
             }).success(function (d) {
                 if (d.returnCode == 0) {
-                    console.log(d);
                     if (d.result.sendSms == true) {
                         $scope.range = 0;
                     } else {
@@ -167,7 +164,6 @@ topBarCtrl.controller('SettingCtrl',
                 params: m_params
             }).success(function (d) {
                 if (d.returnCode == 0) {
-                    console.log(d);
                 } else {
                     console.log(d);
                 }

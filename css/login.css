@@ -1,64 +1,3 @@
-html, body, p, ul, li {
-    padding: 0;
-    margin: 0;
-    font-family: OneNikeCurrency, 'TradeGothicW01-BoldCn20 675334', Helvetica, Arial, 'Heiti SC', 'ST Heiti', 华文黑体, 'Microsoft YaHei', 雅黑体, SimHei, 黑体, sans-serif;
-}
-
-html, body {
-    height: 100%;
-    width: 100%;
-    background: #f8f8f8;
-    scrollbar-arrow-color: #f8f8f8; /*图6,三角箭头的颜色*/
-    scrollbar-face-color: #b1b8e1; /*图5,立体滚动条的颜色*/
-    scrollbar-3dlight-color: #f8f8f8; /*图1,立体滚动条亮边的颜色*/
-    scrollbar-highlight-color: #f8f8f8; /*图2,滚动条空白部分的颜色*/
-    scrollbar-shadow-color: #f8f8f8; /*图3,立体滚动条阴影的颜色*/
-    scrollbar-darkshadow-color: #f8f8f8; /*图4,立体滚动条强阴影的颜色*/
-    scrollbar-track-color: #f8f8f8; /*图7,立体滚动条背景颜色*/
-    scrollbar-base-color: #f8f8f8; /*滚动条的基本颜色*/
-    scrollbar-base-width: 6px;
-    /*Cursor:url(mouse.cur);  !*自定义个性鼠标*!*/
-}
-
-ul, li {
-    list-style-type: none;
-}
-
-a, input {
-    outline: none;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
-
-canvas {
-    width: 100%;
-    border: 1px solid #000000;
-}
-
-.clear {
-    zoom: 1;
-}
-
-.clear:after {
-    content: '';
-    display: block;
-    clear: both;
-}
-
-.fl {
-    float: left;
-}
-
-.fr {
-    float: right;
-}
-
-.main-index {
-    height: 100%;
-    width: 100%;
-    min-width: 1200px;
-    overflow: hidden;
-    scroll: "no"
-}
 /*login*/
 .login{
     width: 100%;
@@ -110,6 +49,12 @@ canvas {
     color: #b7b7b7;
     font-size: 12px;
     margin-bottom: 16px;
+}
+
+.login-btn {
+    width: 100%;
+    background: #6b7acb;
+    color: #ffffff;
 }
 
 .forget {

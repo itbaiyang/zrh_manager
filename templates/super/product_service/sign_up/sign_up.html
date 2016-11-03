@@ -1,11 +1,11 @@
 <div class="row" ng-class="{true: 'content-open', false: 'content'}[isOpenMenu]">
     <div class="content-title"><span>注册用户</span></div>
     <div class="content-search">
-        <div class="col-xs-4 col-md-4 col-lg-4 noPadding">
+        <div class="col-xs-4 col-md-4 col-lg-4 padding-none">
             <input type="text" class="form-control" placeholder="搜索名字或手机号" ng-model="search_text">
         </div>
         <div class="col-xs-1 col-md-1 col-lg-1">
-            <button class="btn btn-blue" ng-click="search()" type="button">搜索</button>
+            <button class="btn-blue" ng-click="search()" type="button">搜索</button>
         </div>
         <button class="btn-grey fr" ng-click="refresh()">刷新</button>
     </div>
@@ -31,7 +31,6 @@
 
         </div>
         <li class="list-bottom">
-            <!--<button class="content-btn btn btn-grey disabled" ng-click="cancel()">删除</button>-->
             <span>共有{{page.totalCount}}位注册用户，每页显示{{page.pageSize}}条</span>
             <ul class="pagination fr" style="margin: 0">
                 <li>
@@ -58,5 +57,4 @@
             </ul>
         </li>
     </ul>
-</div>
 </div>

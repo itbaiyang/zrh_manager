@@ -198,14 +198,12 @@ loanApplicationCtrl.controller('AddCompanyCtrl',
                 "productType": $scope.productType,
                 "release": true
             };
-            console.log(m_params);
             $http({
                 url: api_uri + "financialProductManage/list",
                 method: "GET",
                 params: m_params
             }).success(function (d) {
                 if (d.returnCode == 0) {
-                    console.log(d);
                     $scope.page = d.result;
                     $scope.product_list = d.result.datas;
                 }
@@ -227,7 +225,6 @@ loanApplicationCtrl.controller('AddCompanyCtrl',
             "productType": $scope.productType,
             "productId": $scope.productId
         };
-        console.log(m_params);
         $.ajax({
                 type: 'POST',
             url: api_uri + "loanApplicationManage/apply",
@@ -235,7 +232,6 @@ loanApplicationCtrl.controller('AddCompanyCtrl',
                 data: m_params,
                 traditional: true,
                 success: function (data, textStatus, jqXHR) {
-                    console.log(data);
                     if (data.returnCode == 0) {
                         $state.go("admin.company_message");
                         $scope.$apply();

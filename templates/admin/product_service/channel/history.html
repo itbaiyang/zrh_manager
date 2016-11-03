@@ -1,7 +1,7 @@
 <div class="content-no-side">
     <div class="content-title"><span>历史申请</span></div>
     <div class="content-search">
-        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 noPadding">
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 padding-none">
             <input type="text" class="form-control" placeholder="搜索企业名称" ng-model="search_text">
         </div>
         <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
@@ -47,13 +47,13 @@
                         <span ng-show="resultObj.bankName">-</span>{{resultObj.productName}}
                     </div>
                     <!--<span class="col-sm-2 col-md-2 col-lg-2">{{resultObj.time | date:'yyyy-MM-dd'}}</span>-->
-                    <div class="col-lg-2 col-md-2 col-sm-2 noPadding" style="margin-top: -8px">
+                    <div class="col-lg-2 col-md-2 col-sm-2 padding-none" style="margin-top: -8px">
                         <span class="col-lg-12 col-md-12 col-sm-12">{{resultObj.time |date:'yyyy-MM-dd'}}</span>
                         <span>{{resultObj.time |date:'HH:mm'}}</span>
                         <span ng-hide="resultObj.time">&nbsp;</span>
                     </div>
                     <span class="col-sm-2 col-md-2 col-lg-2 text-center">{{resultObj.progressText}}</span>
-                    <a class="list-a-point col-sm-2 col-md-2 col-lg-2 noPadding text-right"
+                    <a class="link-pointer col-sm-2 col-md-2 col-lg-2 padding-none text-right"
                        ng-click="change_register(resultObj.id)">注册人变更</a>
                 </li>
             </div>

@@ -12,21 +12,23 @@
                 <p><a>{{message.userName}}</a>&nbsp;&nbsp;<a>{{message.position}}</a></p>
                 <p>{{message.reason}}</p>
                 <p><a href="">{{message.companyName || message.applyName}}</a></p>
-                <p class="col-sm-10 col-md-10 col-lg-10 noPadding" ng-show="message.op == 0 && message.opType !='stop'">
+                <p class="col-sm-10 col-md-10 col-lg-10 padding-none"
+                   ng-show="message.op == 0 && message.opType !='stop'">
                     提交状态&nbsp;<span
                         style="color: #F97383">{{message.progressPro}}->{{message.progressText}}</span>&nbsp;&nbsp;
                     <span class="fr">预计{{message.days}}天</span>
                 </p>
-                <p class="col-sm-10 col-md-10 col-lg-10 noPadding" ng-show="message.op == 0 && message.opType =='stop'">
+                <p class="col-sm-10 col-md-10 col-lg-10 padding-none"
+                   ng-show="message.op == 0 && message.opType =='stop'">
                     提交状态&nbsp;
                     <span>{{message.progressText}}</span>>&nbsp;&nbsp;
                     <span class="fr">项目已中止</span>
                 </p>
-                <p class="col-sm-10 col-md-10 col-lg-10 noPadding" ng-show="message.op == 1">提交状态&nbsp;<span
+                <p class="col-sm-10 col-md-10 col-lg-10 padding-none" ng-show="message.op == 1">提交状态&nbsp;<span
                         style="color: #F97383">{{message.progressText}}</span>&nbsp;&nbsp;<span
                         class="fr">预计{{message.days}}天</span>
                 </p>
-                <p class="col-sm-10 col-md-10 col-lg-10 noPadding" ng-show="message.op == 2">提交状态&nbsp;<span
+                <p class="col-sm-10 col-md-10 col-lg-10 padding-none" ng-show="message.op == 2">提交状态&nbsp;<span
                         style="color: red">{{message.progressText}}</span>&nbsp;&nbsp;<span
                         class="fr">预计{{message.days}}天</span>
                 </p>
@@ -54,10 +56,10 @@
                 <p>{{message.datetime |date:'yyyy-MM-dd'}}</p>
                 <p>{{message.datetime |date:'HH:mm'}}</p>
             </div>
-            <div class="message-date col-lg-3 col-md-3 col-sm-3 noPadding fl"
+            <div class="message-date col-lg-3 col-md-3 col-sm-3 padding-none fl"
                  ng-show="message.op == 0 && message.opType != 'stop'">
-                <div class="form-group col-lg-6 col-md-6 col-sm-6 noPadding">
-                    <div class="col-sm-12 col-md-12 col-lg-12 noPadding" style="position: relative">
+                <div class="form-group col-lg-6 col-md-6 col-sm-6 padding-none">
+                    <div class="col-sm-12 col-md-12 col-lg-12 padding-none" style="position: relative">
                         <button type="button" ng-click="show_allow(message.status,$index,0)" class="btn-blue fr"
                                 id="products">通过
                         </button>
@@ -87,17 +89,17 @@
                                     <span class="input-right">天</span>
                                 </div>
                             </div>
-                            <button class="btn btn-blue margin-left15" type="submit"
+                            <button class="btn btn-blue margin-left-15" type="submit"
                                     ng-click="allow(message.dayNum,message.id,$index)">确定
                             </button>
-                            <button class="btn btn-grey margin-left15" type="submit"
+                            <button class="btn btn-grey margin-left-15" type="submit"
                                     ng-click="cancel($index)">取消
                             </button>
                         </div>
                     </div>
                 </div>
-                <div class="form-group col-lg-6 col-md-6 col-sm-6 fr noPadding">
-                    <div class="col-sm-12 col-md-12 col-lg-12 noPadding" style="position: relative">
+                <div class="form-group col-lg-6 col-md-6 col-sm-6 fr padding-none">
+                    <div class="col-sm-12 col-md-12 col-lg-12 padding-none" style="position: relative">
                         <button type="button" ng-click="show_allow(message.status,$index,1)" class="btn-blue fr">驳回
                         </button>
                         <div class="account-p-bank" style="border: 1px solid #4c4c4c;width: 300px;height: 160px"
@@ -109,41 +111,41 @@
                                            ng-model="reason_refuse" placeholder="驳回原因">
                                 </div>
                             </div>
-                            <button class="btn btn-blue margin-left15" type="submit"
+                            <button class="btn btn-blue margin-left-15" type="submit"
                                     ng-click="refuse(message.id,$index,reason_refuse)">确定
                             </button>
-                            <button class="btn btn-blue margin-left15" type="submit"
+                            <button class="btn btn-blue margin-left-15" type="submit"
                                     ng-click="cancel($index)">取消
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="message-date col-lg-3 col-md-3 col-sm-3 noPadding fl"
+            <div class="message-date col-lg-3 col-md-3 col-sm-3 padding-none fl"
                  ng-show="message.op == 0 && message.opType == 'stop'">
-                <div class="form-group col-lg-4 col-md-4 col-sm-4 noPadding">
-                    <div class="col-sm-12 col-md-12 col-lg-12 noPadding" style="position: relative">
+                <div class="form-group col-lg-4 col-md-4 col-sm-4 padding-none">
+                    <div class="col-sm-12 col-md-12 col-lg-12 padding-none" style="position: relative">
                         <button type="button" ng-click="continue(message.id)" class="btn-blue"
                                 id="continue">继续项目
                         </button>
                     </div>
                 </div>
-                <div class="form-group col-lg-4 col-md-4 col-sm-4 noPadding">
-                    <div class="col-sm-12 col-md-12 col-lg-12 noPadding" style="position: relative">
+                <div class="form-group col-lg-4 col-md-4 col-sm-4 padding-none">
+                    <div class="col-sm-12 col-md-12 col-lg-12 padding-none" style="position: relative">
                         <button type="button" ng-click="change_to_bank(message.applyId)" class="btn-blue"
                                 id="change_bank">更换银行
                         </button>
                     </div>
                 </div>
-                <div class="form-group col-lg-4 col-md-4 col-sm-4 noPadding">
-                    <div class="col-sm-12 col-md-12 col-lg-12 nopadding" style="position: relative">
+                <div class="form-group col-lg-4 col-md-4 col-sm-4 padding-none">
+                    <div class="col-sm-12 col-md-12 col-lg-12 padding-none" style="position: relative">
                         <button type="button" ng-click="stop_alert($index)" class="btn-blue fr">中止项目
                         </button>
                     </div>
                 </div>
             </div>
-            <div class="message-date col-lg-3 col-md-3 col-sm-3 noPadding fl" ng-show="message.op != 0">
-                <div class="btn-group col-sm-12 col-md-12 col-lg-12 noPadding" style="position: relative">
+            <div class="message-date col-lg-3 col-md-3 col-sm-3 padding-none fl" ng-show="message.op != 0">
+                <div class="btn-group col-sm-12 col-md-12 col-lg-12 padding-none" style="position: relative">
                     <div class="form-group col-sm-12 col-md-12 col-lg-12 fr">
                         <button type="button" ng-click="show_allow(message.status,$index,0)" class="btn-blue fr"
                                 id="change">修改进度
@@ -175,10 +177,10 @@
                                 <span class="input-right">天</span>
                             </div>
                         </div>
-                        <button class="btn btn-blue margin-left15" type="submit"
+                        <button class="btn btn-blue margin-left-15" type="submit"
                                 ng-click="change_status(message.dayNum,message.applyId,$index)">确定
                         </button>
-                        <button class="btn btn-grey margin-left15" type="submit"
+                        <button class="btn btn-grey margin-left-15" type="submit"
                                 ng-click="cancel($index)">取消
                         </button>
                     </div>

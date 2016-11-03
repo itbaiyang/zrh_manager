@@ -9,7 +9,7 @@
                 <button class="btn-grey" type="submit" ng-show="productType == 0 || productType == 2"
                         ng-click="choice_product_type(100)">返回
                 </button>
-                <button class="btn-blue margin-left15" ng-show="productType == 0 || productType == 2" type="submit"
+                <button class="btn-blue margin-left-15" ng-show="productType == 0 || productType == 2" type="submit"
                         ng-click="submitMessage()">保存
                 </button>
             </div>
@@ -51,7 +51,7 @@
             </div>
         </div>
         <div class="form-group" ng-show="productType == 0 || productType == 2">
-            <label for="bankname" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 textEnd">银行名称：</label>
+            <label for="bankname" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-right">银行名称：</label>
             <div class="btn-group col-xs-6 col-sm-6 col-md-6 col-lg-6">
                 <button type="button" class="btn-input col-xs-12 col-sm-12 col-md-12 col-lg-12" id="bankname"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{bankName ||"选择银行"}}
@@ -64,7 +64,7 @@
             </div>
         </div>
         <div class="form-group" ng-show="productType == 0 || productType == 2">
-            <label for="bankMan" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 textEnd">产品名称：</label>
+            <label for="bankMan" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-right">产品名称：</label>
             <div class="btn-group col-xs-6 col-sm-6 col-md-6 col-lg-6">
                 <button type="button" class="btn-input col-xs-12 col-sm-12 col-md-12 col-lg-12" id="bankMan"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{productName||"选择产品名称"}}

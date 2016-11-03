@@ -1,26 +1,24 @@
 <div class="row" ng-class="{true: 'content-open', false: 'content'}[isOpenMenu]">
-    <p class="content-title"><span>合作银行</span></p>
-    <div class="clear content-search">
-            <div class="fr">
-                <button class="btn btn-blue margin-left15" ui-sref="super.bank.add_bank">添加新银行</button>
+    <p class="content-title">
+        <span>合作银行</span>
+        <button class="btn-blue fr" ui-sref="super.bank.add_bank">添加新银行</button>
+    </p>
+    <div>
+        <div class="bank-box" ng-mouseover="edit = true" ng-mouseleave="edit = false" ng-repeat="bank in bank_list">
+            <div class="bank-content-delete" ng-show="edit" ng-click="delete(bank.id)">
+                <div class="white-line"></div>
             </div>
-        </div>
-    <div class="width100">
-        <div class="bankBox" ng-mouseover="edit = true" ng-mouseleave="edit = false" ng-repeat="bank in bank_list">
-            <div class="bankContentDelete" ng-show="edit" ng-click="delete(bank.id)">
-                <div class="whiteLine"></div>
-            </div>
-            <button class="bank-title-edit fr" ng-show="edit" ng-click="edit_bank(bank.id)">编辑
-            </button>
-            <div class="bankImg fl">
+            <p class="bank-title-edit" ng-show="edit" ng-click="edit_bank(bank.id)"
+               style="font-family:'Segoe MDL2 Assets';">&#xE104;
+            <p/>
+            <div class="bank-img fl">
                 <img ng-src="{{bank.icon || 'img/recommendl.png'}}" alt="">
             </div>
-            <div class="bankContent fl">
-                <p class="bankContentP1">{{bank.name}}</p>
-                <p class="bankContentP2">共有{{bank.count}}位客户经理</p>
-                <button class="btn btn-blue1" ng-click="find_detail(bank.id,bank.name)">查看详情</button>
+            <div class="bank-content fl">
+                <p class="bank-content-name">{{bank.name}}</p>
+                <p class="bank-content-detail">共有{{bank.count}}位客户经理</p>
+                <button class="btn-blue1" ng-click="find_detail(bank.id,bank.name)">查看详情</button>
             </div>
         </div>
     </div>
-    <!--</div>-->
 </div>

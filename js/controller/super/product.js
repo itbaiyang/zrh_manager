@@ -1,7 +1,6 @@
 var productCtrl = angular.module('productCtrl', []);
 productCtrl.controller('ProductCtrl',
     ['$http', '$scope', '$state', '$rootScope', '$location', function ($http, $scope, $state, $rootScope, $location) {
-        console.log($rootScope.login_user);
     $scope.list = function (pageNo, pageSize) {
         var m_params = {
             "userId":$rootScope.login_user.userId,
@@ -499,18 +498,13 @@ productCtrl.controller('SortCtrl',
                 "pageSize": pageSize,
                 "release": true
             };
-            console.log(m_params);
             $http({
                 url: api_uri + "financialProductManage/list",
                 method: "GET",
                 params: m_params
             }).success(function (d) {
                 if (d.returnCode == 0) {
-                    console.log(d);
                     $scope.result_list = d.result.datas;
-                    // angular.forEach($scope.result_list, function (data) {
-                    //
-                    // });
                 }
                 else {
                 }
@@ -539,7 +533,6 @@ productCtrl.controller('SortCtrl',
                 "token": $rootScope.login_user.token,
                 sorts: JSON.stringify($scope.sorts)
             };
-            console.log(m_params);
             $.ajax({
                 type: 'POST',
                 url: api_uri + "financialProductManage/sort",

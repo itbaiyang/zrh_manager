@@ -101,14 +101,12 @@
 .bank-title-edit {
     height: 20px;
     line-height: 20px;
-    padding: 0 12px;
-    background: #6b7acb;
-    border: 1px solid #cccccc;
-    color: #ffffff;
-    font-size: 14px;
+    color: #6b7acb;
+    font-weight: 400;
+    font-size: 18px;
     position: absolute;
     right: 5px;
-    top: -10px;
+    top: -8px;
 }
 
 .members-list {
@@ -144,6 +142,7 @@
     overflow-y: scroll;
     max-height: calc(100% - 98px);
 }
+
 .members-list-height {
     border: 1px solid #cccccc;
     border-left: none;

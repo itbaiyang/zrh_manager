@@ -3,13 +3,13 @@
         <span>企业信息列表</span>
     </div>
     <div class="content-search">
-        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 noPadding">
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 padding-none">
             <input type="text" class="form-control" placeholder="搜索企业名称" ng-model="search_text">
         </div>
-        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 noPadding">
-            <button class="btn-blue margin-left15" ng-click="search()" type="button">搜索</button>
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 padding-none">
+            <button class="btn-blue margin-left-15" ng-click="search()" type="button">搜索</button>
         </div>
-        <button class="fr btn-blue margin-left15" ui-sref="admin.company_message.add_company"
+        <button class="fr btn-blue margin-left-15" ui-sref="admin.company_message.add_company"
                 type="submit">
             <img class="btn-blueImg">添加申请
         </button>
@@ -41,7 +41,7 @@
         <div class="line-roll">
             <div class="list-out">
                 <li class="list-group-item list-common" ng-repeat="resultObj in result_list">
-                    <div class="col-sm-3 col-md-3 col-lg-3 noPadding">
+                    <div class="col-sm-3 col-md-3 col-lg-3 padding-none">
                         <p class="company-overflow fl">
                             <input type="checkbox" id="{{resultObj.id}}" ng-checked="isSelected(resultObj.id)"
                                    ng-click="updateSelection($event,resultObj.id)">
@@ -53,10 +53,10 @@
                         <img src="img/tips/channel.png" class="img-size" ng-show="resultObj.channel =='c'">
                         <img src="img/tips/zrh.png" class="img-size" ng-show="resultObj.channel =='zrh'">
                     </div>
-                    <div class="col-sm-3 col-md-3 col-lg-3 noPadding">{{resultObj.bankName ||'未申请'}}
+                    <div class="col-sm-3 col-md-3 col-lg-3 padding-none">{{resultObj.bankName ||'未申请'}}
                         <span ng-show="resultObj.bankName">-</span>{{resultObj.productName}}
                     </div>
-                    <div class="col-lg-2 col-md-2 col-sm-2 noPadding" style="margin-top: -8px">
+                    <div class="col-lg-2 col-md-2 col-sm-2 padding-none" style="margin-top: -8px">
                         <span class="col-lg-12 col-md-12 col-sm-12">{{resultObj.time |date:'yyyy-MM-dd'}}</span>
                         <span>{{resultObj.time |date:'HH:mm'}}</span>
                     </div>
@@ -64,9 +64,9 @@
                           ng-show="resultObj.color == 1">{{resultObj.progressText}}</span>
                     <span class="col-sm-2 col-md-2 col-lg-2 text-center" style="color: #F97383;"
                           ng-show="resultObj.color == 2">{{resultObj.progressText}}</span>
-                    <span class="col-xs-3 col-sm-3 col-md-3 col-lg-3 noPadding text-center" style="color: #009B27"
+                    <span class="col-xs-3 col-sm-3 col-md-3 col-lg-3 padding-none text-center" style="color: #009B27"
                           ng-show="resultObj.color == 3">{{resultObj.progressText}}</span>
-                    <a class="col-sm-2 col-md-2 col-lg-2 noPadding text-right"
+                    <a class="col-sm-2 col-md-2 col-lg-2 padding-none text-right"
                        href="{{url_detail}}{{resultObj.id}}" target="_blank">查看详情</a>
                 </li>
             </div>

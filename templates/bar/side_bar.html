@@ -3,7 +3,7 @@
         <span class="side-bar-change" ng-show="isOpenMenu">|||</span>
     </p>
     <p class="side-bar-class">产品与服务</p>
-    <ul class="" style="width: 100%">
+    <ul style="width: 100%">
         <a class="side-bar-link" ng-class="{'side-bar-select':choiceColor =='apply_list'}" ng-show="role == 'super'"
            ui-sref="super.apply_list">
             <span class="btn-blue-img" data-toggle="tooltip" data-placement="right" title="企业信息中心"></span>
@@ -65,7 +65,7 @@
            ng-show="role == 'admin'  || role == 'manager'"
            ui-sref="admin.message.bank">
             <span class="btn-blue-img img-message" data-toggle="tooltip" data-placement="right" title="消息中心"></span>
-            <span class="navList2" style="left: 25px" ng-show="count > 0">{{count}}</span>消息中心
+            <span class="nav-list2" style="left: 25px" ng-show="count > 0">{{count}}</span>消息中心
         </a>
     </ul>
 </div>
@@ -77,7 +77,7 @@
                ui-sref="admin.message.bank">
                 <div style="display: inline-block;width: 30px;height: 40px;position: relative">
                     <img class="btn-blue-img">
-                    <span class="navList2" ng-show="bank_message > 0">{{bank_message}}</span>
+                    <span class="nav-list2" ng-show="bank_message > 0">{{bank_message}}</span>
                 </div>
                 银行消息
             </a>
@@ -87,7 +87,7 @@
                ui-sref="admin.message.system">
                 <div style="display: inline-block;width: 30px;height: 40px;position: relative">
                     <img class="btn-blue-img">
-                    <span class="navList2" ng-show="system_message > 0">{{system_message}}</span>
+                    <span class="nav-list2" ng-show="system_message > 0">{{system_message}}</span>
                 </div>
                 系统消息</a>
         </li>

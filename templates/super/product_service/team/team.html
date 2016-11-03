@@ -1,6 +1,6 @@
 <div class="row" ng-class="{true: 'content-open', false: 'content'}[isOpenMenu]">
-    <p class="content-title width100"><span>团队管理</span></p>
-    <div class="width100">
+    <p class="content-title"><span>团队管理</span></p>
+    <div class="">
         <div class="team-box" ng-repeat="team in team_list">
             <p class="team-title" ng-mouseover="edit = true" ng-mouseleave="edit = false"
                ng-hide="edit_team_input[$index]">{{team.name}}

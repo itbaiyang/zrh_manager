@@ -2,8 +2,8 @@
     <div class="content-title">
         <span>{{pageTitle||"添加金融产品"}}</span>
         <div class="fr">
-            <button class="btn btn-blue margin-left15 fr" type="submit" ng-click="submit()">保存</button>
-            <button class="btn btn-grey fr" ui-sref="super.product">返回</button>
+            <button class="btn-blue margin-left-15 fr" type="submit" ng-click="submit()">保存</button>
+            <button class="btn-grey fr" ui-sref="super.product">返回</button>
         </div>
     </div>
     <form class="form-horizontal">
@@ -89,7 +89,6 @@
             最多可输入150个字符，超过部分将不显示
         </p>
         <p class="create-title">产品特色
-            <!--<button class="btn" ng-click="add_feature()">添加特色</button>-->
         </p>
         <div class="form-group" ng-repeat="features in feature_list track by $index">
             <label for="feature" class="col-sm-2 control-label">产品特色{{$index + 1}}：</label>
@@ -102,7 +101,6 @@
             <button ng-click="add_feature()">+</button>
         </p>
         <p class="create-title">准入条件
-            <!--<button class="btn" >添加条件</button>-->
         </p>
         <div class="form-group" ng-repeat="conditions in condition_list">
             <label for="conditions" class="col-sm-2 control-label">准入条件{{$index + 1}}：</label>

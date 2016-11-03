@@ -467,7 +467,6 @@ bankCtrl.controller('AddBankManCtrl',
             method: "GET",
             params: m_params
         }).success(function (d) {
-            console.log(d);
             if (d.returnCode == 0) {
                 $scope.page = d.result;
                 $scope.product_list = d.result.datas;
@@ -519,14 +518,12 @@ bankCtrl.controller('AddBankManCtrl',
             "mobile": $scope.bank_man.mobile,
             "email": $scope.bank_man.email,
         };
-        console.log(m_params);
         $.ajax({
             type: 'POST',
             url: api_uri + "manage/bank/user/add",
             data: m_params,
             traditional: true,
             success: function (data, textStatus, jqXHR) {
-                console.log(data);
                 if (data.returnCode == 0) {
                     $state.go("super.bank.bank_man", {id: m_params.bankId});
                     $scope.$apply();
@@ -680,7 +677,6 @@ bankCtrl.controller('UpdateBankManCtrl',
             data: m_params,
             traditional: true,
             success: function (data, textStatus, jqXHR) {
-                console.log(data);
                 if (data.returnCode == 0) {
                     $state.go("super.bank.bank_man", {id: m_params.bankId});
                     $scope.$apply();

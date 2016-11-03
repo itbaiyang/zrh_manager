@@ -3,11 +3,11 @@
         <span>分类</span>
         <div class="fr">
             <button class="btn-grey" type="submit" name="btn" ui-sref="super.product">返回</button>
-            <button class="btn-blue margin-left15" type="submit" ng-click="sort_save()">保存
+            <button class="btn-blue margin-left-15" type="submit" ng-click="sort_save()">保存
             </button>
         </div>
     </div>
-    <ul class="list-group col-sm-8 col-md-8 col-lg-8 noPadding"
+    <ul class="list-group col-sm-8 col-md-8 col-lg-8 padding-none"
         style="border-top: 1px solid #cccccc;border-bottom: 1px solid #cccccc">
         <li class="list-group-item list-user" ng-repeat="resultObj in result_list">
             <span class="col-sm-3 col-md-3 col-lg-3">{{resultObj.bankname}}-{{resultObj.name}}</span>

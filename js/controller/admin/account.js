@@ -70,13 +70,11 @@ accountCtrl.controller('AccountCtrl',
                                     "token": $rootScope.login_user.token,
                                     "headImg": file_url
                                 };
-                                console.log(m_params);
                                 $http({
                                     url: api_uri + "p/user/updateHeadImg",
                                     method: "POST",
                                     params: m_params
                                 }).success(function (d) {
-                                    console.log(d);
                                     if (d.returnCode == 0) {
                                         $scope.choiceUser()
                                     } else {
@@ -128,13 +126,11 @@ accountCtrl.controller('PasswordCtrl',
                 "token": $rootScope.login_user.token,
                 "pd": $scope.password
             };
-            console.log(m_params);
             $http({
                 url: api_uri + "p/user/updatePwd",
                 method: "POST",
                 params: m_params
             }).success(function (d) {
-                console.log(d);
                 if (d.returnCode == 0) {
                     $rootScope.successMsg = "修改成功";
                     $rootScope.fadeInOut("#alert", 500);

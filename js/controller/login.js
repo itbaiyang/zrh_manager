@@ -90,7 +90,6 @@ loginCtrl.controller('LoginCtrl',
 loginCtrl.controller('ForgetPasswordCtrl',
     ['$http', '$scope', '$state', '$rootScope', '$stateParams', function ($http, $scope, $state, $rootScope, $stateParams) {
         $scope.step = 1;
-        console.log($scope.step);
         $scope.phoneNumCheck = false;
         $scope.check_account = function () {
             var m_params = {
@@ -102,7 +101,6 @@ loginCtrl.controller('ForgetPasswordCtrl',
                 params: m_params
             }).success(function (d) {
                 if (d.returnCode == 0) {
-                    console.log(d);
                     $scope.mobile_return = d.result.mobile;
                     $scope.phoneNumCheck = true;
                     $scope.token = d.result.token;
@@ -127,7 +125,6 @@ loginCtrl.controller('ForgetPasswordCtrl',
                 params: m_params
             }).success(function (d) {
                 if (d.returnCode == 0) {
-                    console.log(d);
                     $scope.send_code()
                 } else if (d.returnCode == 1003) {
                     alert('用户不存在或参数错误');
@@ -149,7 +146,6 @@ loginCtrl.controller('ForgetPasswordCtrl',
                 method: "GET",
                 params: m_params
             }).success(function (d) {
-                console.log(d);
                 if (d.returnCode == 0) {
 
                 } else if (d.returnCode == 1003) {
@@ -177,7 +173,6 @@ loginCtrl.controller('ForgetPasswordCtrl',
                 method: "GET",
                 params: m_params
             }).success(function (d) {
-                console.log(d);
                 if (d.returnCode == 0) {
                     $scope.step = 2;
                 } else if (d.returnCode == 1003) {
@@ -199,13 +194,11 @@ loginCtrl.controller('ForgetPasswordCtrl',
                 "pwd": $scope.pwd,
                 "password": $scope.password
             };
-            console.log(m_params);
             $http({
                 url: api_uri + "p/user/resetPwd ",
                 method: "GET",
                 params: m_params
             }).success(function (d) {
-                console.log(d);
                 if (d.returnCode == 0) {
                     $scope.step = 3
                 } else {

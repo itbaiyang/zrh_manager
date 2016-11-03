@@ -189,7 +189,6 @@ detailAppCtrl.controller('DetailAppCtrl',
                 method: "GET",
                 params: m_params
             }).success(function (d) {
-                console.log(d);
                 if (d.returnCode == 0) {
                     $scope.role_class = d.result;
                 } else {
@@ -218,7 +217,6 @@ detailAppCtrl.controller('DetailAppCtrl',
                 method: "GET",
                 params: m_params
             }).success(function (d) {
-                console.log(d);
                 if (d.returnCode == 0) {
                     $scope.showCancel = false;
                     $rootScope.successMsg = "已经中止项目";
@@ -266,7 +264,6 @@ detailAppCtrl.controller('DetailAppCtrl',
                 "applyId": $stateParams.id,
                 "loanValue": $scope.loanValue,
             };
-            console.log(m_params);
             $.ajax({
                 type: 'POST',
                 url: api_uri + "inforTemplate/updateLoanValue",
@@ -292,9 +289,8 @@ detailAppCtrl.controller('DetailAppCtrl',
                 "userId": $rootScope.login_user.userId,
                 "token": $rootScope.login_user.token,
                 "applyId": $stateParams.id,
-                "fee": $scope.fee,
+                "fee": $scope.fee
             };
-            console.log(m_params);
             $.ajax({
                 type: 'POST',
                 url: api_uri + "inforTemplate/updateFee",
@@ -419,8 +415,7 @@ detailAppCtrl.controller('EditApplyCtrl',
                                         $timeout(function () {
                                             $scope.model_list[$scope.saveImg].imgList.push(file_url);
                                         });
-                                        console.log(file.loaded);
-                                        console.log(file.size);
+
                                     },
                                     'Error': function (up, err, errTip) {
                                         alert("图片上传失败！");
@@ -538,7 +533,6 @@ detailAppCtrl.controller('EditApplyCtrl',
                                     }
                                 }
                             });
-                            console.log(uploader3);
                         } else if (i == 3) {
                             var Qiniu4 = new QiniuJsSDK();
                             var option4 = {
@@ -918,7 +912,6 @@ detailAppCtrl.controller('EditApplyCtrl',
                     ;
                     $scope.get_id = function (d) {
                         $scope.saveImg = d;
-                        console.log($scope.saveImg);
                     };
                 } else {
                 }
@@ -989,7 +982,6 @@ detailAppCtrl.controller('EditApplyCtrl',
                         data: m_params,
                         traditional: true,
                         success: function (data, textStatus, jqXHR) {
-                            console.log(data);
                             if (data.returnCode == 0) {
                                 $scope.id_basic = data.result;
                                 $scope.modelMessage();
@@ -1018,7 +1010,6 @@ detailAppCtrl.controller('EditApplyCtrl',
                     data: m_params_person,
                     traditional: true,
                     success: function (data, textStatus, jqXHR) {
-                        console.log(data);
                         if (data.returnCode == 0) {
                             $scope.modelMessage();
                             //$scope.$apply();
@@ -1051,7 +1042,6 @@ detailAppCtrl.controller('EditApplyCtrl',
                     "comId": $scope.id_basic,
                     "list": JSON.stringify(list)
                 };
-                console.log(m_params);
                 $.ajax({
                     type: 'POST',
                     url: api_uri + "inforTemplate/saveList",
@@ -1083,7 +1073,6 @@ detailAppCtrl.controller('EditApplyCtrl',
                     data: m_params1,
                     traditional: true,
                     success: function (data, textStatus, jqXHR) {
-                        console.log(data);
                         if (data.returnCode == 0) {
                             $rootScope.successMsg = "修改成功";
                             $rootScope.fadeInOut("#alert", 500);
@@ -1189,7 +1178,6 @@ detailAppCtrl.controller('DistributeCtrl',
                     method: "GET",
                     params: m_params
                 }).success(function (d) {
-                    console.log(d);
                     if (d.returnCode == 0) {
                         $rootScope.successMsg = "递交成功";
                         $rootScope.fadeInOut("#alert", 500);
@@ -1234,7 +1222,6 @@ detailAppCtrl.controller('ApplyHelpCtrl',
                 method: "GET",
                 params: m_params
             }).success(function (d) {
-                console.log(d);
                 if (d.returnCode == 0) {
                     $scope.bankName = d.result.bankName;
                     $scope.productName = d.result.productName;
@@ -1303,14 +1290,12 @@ detailAppCtrl.controller('ApplyHelpCtrl',
                 "productType": $scope.productType,
                 "release": true
             };
-            console.log(m_params);
             $http({
                 url: api_uri + "financialProductManage/list",
                 method: "GET",
                 params: m_params
             }).success(function (d) {
                 if (d.returnCode == 0) {
-                    console.log(d);
                     $scope.page = d.result;
                     $scope.product_list = d.result.datas;
                 }
@@ -1329,7 +1314,6 @@ detailAppCtrl.controller('ApplyHelpCtrl',
                 "productId": $scope.productId,
                 "mobile": $scope.applyMobile,
             };
-            console.log(m_params);
             if (!m_params.productId) {
                 alert("请选择银行和产品");
             } else if (!m_params.applyId) {
@@ -1350,7 +1334,6 @@ detailAppCtrl.controller('ApplyHelpCtrl',
                     data: m_params,
                     traditional: true,
                     success: function (data, textStatus, jqXHR) {
-                        console.log(data);
                         if (data.returnCode == 0) {
                             $rootScope.fadeInOut("#alert", 500);
                             $state.go('admin.apply.detail', {'id': $stateParams.id});
@@ -1411,13 +1394,11 @@ detailAppCtrl.controller('MessageCtrl',
                 "token": $rootScope.login_user.token,
                 "applyId": $stateParams.id,
             };
-            console.log(m_params);
             $http({
                 url: api_uri + "apply/comments/list",
                 method: "GET",
                 params: m_params
             }).success(function (d) {
-                console.log(d);
                 $scope.message_list = d.result;
             }).error(function (d) {
 
@@ -1439,7 +1420,6 @@ detailAppCtrl.controller('ChoiceSaleCtrl',
                 "token": $rootScope.login_user.token,
                 "applyId": $stateParams.id,
             };
-            console.log(m_params);
             $http({
                 url: api_uri + "p/user/getSalerByApplyId",
                 method: "GET",
@@ -1457,13 +1437,11 @@ detailAppCtrl.controller('ChoiceSaleCtrl',
                 "userId": $rootScope.login_user.userId,
                 "token": $rootScope.login_user.token,
             };
-            console.log(m_params);
             $http({
                 url: api_uri + "zrh/group/listSalerFromGroup",
                 method: "GET",
                 params: m_params
             }).success(function (d) {
-                console.log(d);
                 $scope.user_list = d.result;
                 $scope.get_saleId();
             }).error(function (d) {
@@ -1478,16 +1456,14 @@ detailAppCtrl.controller('ChoiceSaleCtrl',
                 "userId": $rootScope.login_user.userId,
                 "token": $rootScope.login_user.token,
                 "applyId": $stateParams.id,
-                "salerId": $scope.sale_id,
+                "salerId": $scope.sale_id
             };
-            console.log(m_params);
             $.ajax({
                 type: 'POST',
                 url: api_uri + "loanApplicationManage/updateSale",
                 data: m_params,
                 traditional: true,
                 success: function (data, textStatus, jqXHR) {
-                    console.log(data);
                     if (data.returnCode == 0) {
                         $rootScope.successMsg = "操作成功";
                         $rootScope.fadeInOut("#alert", 500);

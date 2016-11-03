@@ -1,19 +1,19 @@
 <div class="row" ng-class="{true: 'content-open', false: 'content'}[isOpenMenu]">
     <div class="content-title"><span>我的项目</span></div>
     <div class="content-search">
-        <div class="col-sm-4 col-md-4 col-lg-4 noPadding">
+        <div class="col-sm-4 col-md-4 col-lg-4 padding-none">
             <input type="text" class="form-control" placeholder="搜索企业名称" ng-model="search_text">
         </div>
-        <div class="col-sm-1 col-md-1 col-lg-1 noPadding">
-            <button class="btn-blue margin-left15" ng-click="search()" type="button">搜索</button>
+        <div class="col-sm-1 col-md-1 col-lg-1 padding-none">
+            <button class="btn-blue margin-left-15" ng-click="search()" type="button">搜索</button>
         </div>
         <button class="btn-grey fr" ng-click="refresh()" type="submit"><img class="btn-greyImg"> 刷新</button>
     </div>
     <li class="list-title">
-        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 noPadding">
+        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 padding-none">
             <span class="col-xs-5 col-sm-5 col-md-5 col-lg-5">企业名称或个人</span>
             <span class="col-xs-4 col-sm-4 col-md-4 col-lg-4">申请产品</span>
-            <div class="btn-group col-xs-3 col-sm-3 col-md-3 col-lg-3 noPadding text-center">
+            <div class="btn-group col-xs-3 col-sm-3 col-md-3 col-lg-3 padding-none text-center">
                 <div style="cursor: pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {{status_text ||"状态"}} <span class="caret"></span>
                 </div>
@@ -30,7 +30,7 @@
                 </ul>
             </div>
         </div>
-        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 noPadding">
+        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 padding-none">
             <span class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">预计时间</span>
             <span class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-center">服务费（元）</span>
             <span class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">融资额（万）</span>
@@ -39,13 +39,13 @@
         </div>
     </li>
     <li class="list-title-count">
-        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 noPadding">
-            <span class="col-xs-5 col-sm-5 col-md-5 col-lg-5 noPadding" ng-show="role == 'manager'">
+        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 padding-none">
+            <span class="col-xs-5 col-sm-5 col-md-5 col-lg-5 padding-none" ng-show="role == 'manager'">
                 全部{{count.total}}/已分配{{count.isOp}}/未分配{{count.noOp}}
             </span>
             <span class="col-xs-5 col-sm-5 col-md-5 col-lg-5" ng-show="role == 'admin'">全部{{count.total}}</span>
         </div>
-        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 noPadding">
+        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 padding-none">
             <span class="col-sm-3 col-md-3 col-lg-3 col-sm-offset-2 col-md-offset-2 col-lg-offset-2 text-center">
                 {{count.fee}}
             </span>
@@ -57,8 +57,8 @@
         <div class="line-roll">
             <div class="list-out">
                 <li class="list-group-item list-common" ng-repeat="resultObj in result_list">
-                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 noPadding">
-                        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 noPadding">
+                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 padding-none">
+                        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 padding-none">
                             <p class="company-overflow fl">
                                 <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}"
                                        ng-checked="isSelected(resultObj.id)"
@@ -73,16 +73,19 @@
                         <span class="col-xs-4 col-sm-4 col-md-4 col-lg-4"
                               ng-show="resultObj.productName">{{resultObj.bankName}}-{{resultObj.productName}}</span>
                         <span class="col-xs-4 col-sm-4 col-md-4 col-lg-4" ng-hide="resultObj.productName">无</span>
-                        <span class="col-xs-3 col-sm-3 col-md-3 col-lg-3 noPadding text-center" style="color: #838383"
+                        <span class="col-xs-3 col-sm-3 col-md-3 col-lg-3 padding-none text-center"
+                              style="color: #838383"
                               ng-show="resultObj.color == 1">{{resultObj.progressText}}</span>
-                        <span class="col-xs-3 col-sm-3 col-md-3 col-lg-3 noPadding text-center" style="color: #F97383"
+                        <span class="col-xs-3 col-sm-3 col-md-3 col-lg-3 padding-none text-center"
+                              style="color: #F97383"
                               ng-show="resultObj.color == 2">{{resultObj.progressText}}</span>
-                        <span class="col-xs-3 col-sm-3 col-md-3 col-lg-3 noPadding text-center" style="color: #009B27"
+                        <span class="col-xs-3 col-sm-3 col-md-3 col-lg-3 padding-none text-center"
+                              style="color: #009B27"
                               ng-show="resultObj.color == 3">{{resultObj.progressText}}</span>
                     </div>
-                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 noPadding">
+                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 padding-none">
                         <!--<span class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">{{resultObj.days||"无"}}</span>-->
-                        <div class="col-lg-2 col-md-2 col-sm-2 noPadding text-center" style="margin-top: -8px">
+                        <div class="col-lg-2 col-md-2 col-sm-2 padding-none text-center" style="margin-top: -8px">
                             <span class="col-lg-12 col-md-12 col-sm-12">{{resultObj.endDate |date:'yyyy-MM-dd'}}</span>
                             <span>{{resultObj.endDate |date:'HH:mm'}}</span>
                             <span ng-hide="resultObj.endDate">&nbsp;</span>
@@ -109,9 +112,10 @@
                 </button>
                 <div class="account-p-give"
                      ng-show="showCancel">
-                    <div class="form-group col-sm-12 col-lg-12 noPadding">
-                        <div class="col-sm-12 noPadding" style="margin-top: 10px">
-                            <textarea class="col-sm-12 noPadding" type="text" style="height: 80px;" class="form-control"
+                    <div class="form-group col-sm-12 col-lg-12 padding-none">
+                        <div class="col-sm-12 padding-none" style="margin-top: 10px">
+                            <textarea class="col-sm-12 padding-none" type="text" style="height: 80px;"
+                                      class="form-control"
                                       ng-model="comments_give" placeholder="放弃原因"></textarea>
                         </div>
                     </div>

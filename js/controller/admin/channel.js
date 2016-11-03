@@ -116,7 +116,6 @@ channelCtrl.controller('CreateCtrl',
             "name": $scope.username,
             "mobile": $scope.phone,
         };
-        console.log(m_params);
         $.ajax({
             type: 'POST',
             url: api_uri + "p/user/addCustomer",
@@ -159,7 +158,6 @@ channelCtrl.controller('ChannelDetailCtrl',
             "status": $scope.status,
             "uid": $stateParams.id
         };
-        console.log(m_params);
         $http({
             url: api_uri + "wxShare/manager/customerApplyList",
             method: "GET",
@@ -328,7 +326,6 @@ channelCtrl.controller('AddApplyCtrl',
             "applyId": $scope.productId,
             "uid": $stateParams.id
         };
-        console.log(m_params);
         $.ajax({
             type: 'POST',
             url: api_uri + "loanApplicationManage/addChannel",

@@ -9,7 +9,7 @@
                     message.linkman}}申请的{{message.bankName}}{{message.productName}}进行中止项目操作</p>
                 <p><a>{{message.applyReason}}</a></p>
                 <p>{{message.reason}}</p>
-                <p class="col-sm-10 col-md-10 col-lg-10 noPadding">
+                <p class="col-sm-10 col-md-10 col-lg-10 padding-none">
                     提交状态&nbsp;<span
                         style="color: #F97383">{{message.progressPro}}</span>&nbsp;&nbsp;
                     <span class="fr">项目已中止</span>
@@ -24,24 +24,24 @@
                 <p>{{message.createTime |date:'yyyy-MM-dd'}}</p>
                 <p>{{message.createTime |date:'HH:mm'}}</p>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-4 noPadding fl" style="margin-top: 30px">
-                <div class="form-group col-lg-5 col-md-5 col-sm-5 noPadding">
-                    <div class="col-sm-12 col-md-12 col-lg-12 noPadding" style="position: relative">
+            <div class="col-lg-4 col-md-4 col-sm-4 padding-none fl" style="margin-top: 30px">
+                <div class="form-group col-lg-5 col-md-5 col-sm-5 padding-none">
+                    <div class="col-sm-12 col-md-12 col-lg-12 padding-none" style="position: relative">
                         <button type="button" class="btn-blue" id="continue">
                             <a style="color: #ffffff;text-decoration: none" href="{{url_edit}}{{message.applyId}}"
                                target="_blank">更换销售职员</a>
                         </button>
                     </div>
                 </div>
-                <div class="form-group col-lg-4 col-md-4 col-sm-4 noPadding">
-                    <div class="col-sm-12 col-md-12 col-lg-12 text-center noPadding" style="position: relative">
+                <div class="form-group col-lg-4 col-md-4 col-sm-4 padding-none">
+                    <div class="col-sm-12 col-md-12 col-lg-12 text-center padding-none" style="position: relative">
                         <button type="button" ng-click="agree(message.id)" class="btn-blue"
                                 id="change_bank">通过
                         </button>
                     </div>
                 </div>
-                <div class="form-group col-lg-3 col-md-3 col-sm-3 noPadding">
-                    <div class="col-sm-12 col-md-12 col-lg-12 noPadding" style="position: relative">
+                <div class="form-group col-lg-3 col-md-3 col-sm-3 padding-none">
+                    <div class="col-sm-12 col-md-12 col-lg-12 padding-none" style="position: relative">
                         <button type="button" ng-click="show_alert($index)" class="btn-blue fr">驳回
                         </button>
                         <div class="account-p-bank"
@@ -54,10 +54,10 @@
                                            ng-model="reason_refuse" placeholder="驳回原因">
                                 </div>
                             </div>
-                            <button class="btn btn-blue margin-left15" type="submit"
+                            <button class="btn btn-blue margin-left-15" type="submit"
                                     ng-click="refuse(message.id,$index,reason_refuse)">确定
                             </button>
-                            <button class="btn btn-blue margin-left15" type="submit"
+                            <button class="btn btn-blue margin-left-15" type="submit"
                                     ng-click="cancel($index)">取消
                             </button>
                         </div>

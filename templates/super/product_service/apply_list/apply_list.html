@@ -1,7 +1,7 @@
 <div class="row" ng-class="{true: 'content-open', false: 'content'}[isOpenMenu]">
     <div class="content-title"><span>企业信息列表</span></div>
     <div class="content-search">
-        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 noPadding">
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 padding-none">
             <input type="text" class="form-control" placeholder="搜索企业名称" ng-model="search_text">
         </div>
         <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
@@ -13,8 +13,8 @@
         <span class="col-xs-4 col-lg-4 col-md-4">企业名称或个人</span>
         <span class="col-xs-3 col-lg-3 col-md-3">申请产品</span>
         <span class="col-xs-2 col-lg-2 col-md-2 text-center">申请时间</span>
-        <div class="btn-group col-lg-1 col-md-1 col-lg-offset-2 col-md-offset-2 noPadding text-right">
-            <div style="cursor: pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <div class="btn-group col-lg-1 col-md-1 col-lg-offset-2 col-md-offset-2 padding-none text-right">
+            <div class="link-pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 状态({{status_text}}) <span class="caret"></span>
             </div>
             <ul class="dropdown-menu fr">
@@ -34,7 +34,7 @@
         <div class="line-roll">
             <div class="list-out">
                 <li class="list-group-item list-common" ng-repeat="resultObj in result_list">
-                    <div class="col-xs-4 col-lg-4 col-md-4 noPadding">
+                    <div class="col-xs-4 col-lg-4 col-md-4 padding-none">
                         <p class="company-overflow fl">
                             <input type="checkbox" id="{{resultObj.id}}" ng-checked="isSelected(resultObj.id)"
                                    ng-click="updateSelection($event,resultObj.id)">
@@ -88,4 +88,3 @@
         </li>
     </ul>
 </div>
-<!--</div>-->

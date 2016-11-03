@@ -1,11 +1,11 @@
-<div class="content-detail">
+<div class="detail-container">
     <div class="content-title">
         <span>企业详情</span>
         <div class="fr" ng-show="isOp == true && readonly == false && isStop == false">
             <button class="btn-grey fr" ng-click="editApply(id)">修改信息</button>
-            <button ng-show="isAllot" class="btn-grey margin-left15 fr">已经递交</button>
-            <div ng-hide="isAllot" class="btn-group noPadding fr">
-                <button class="btn-blue margin-left15" type="button" ng-click="distribute(id)">递交资料
+            <button ng-show="isAllot" class="btn-grey margin-left-15 fr">已经递交</button>
+            <div ng-hide="isAllot" class="btn-group padding-none fr">
+                <button class="btn-blue margin-left-15" type="button" ng-click="distribute(id)">递交资料
                 </button>
             </div>
             <button class="btn-grey" ng-show="w == true" ng-click="change_register(id)">注册人变更</button>
@@ -14,9 +14,10 @@
                         id="products">中止项目
                 </button>
                 <div class="account-p-bank" ng-show="showCancel" style="height: 170px;border: 1px solid #cccccc">
-                    <div class="form-group col-sm-12 col-lg-12 noPadding">
-                        <div class="col-sm-12 noPadding" style="margin-top: 10px">
-                            <textarea class="col-sm-12 noPadding" type="text" style="height: 80px;" class="form-control"
+                    <div class="form-group col-sm-12 col-lg-12 padding-none">
+                        <div class="col-sm-12 padding-none" style="margin-top: 10px">
+                            <textarea class="col-sm-12 padding-none" type="text" style="height: 80px;"
+                                      class="form-control"
                                       ng-model="reason" placeholder="中止原因"></textarea>
                         </div>
                     </div>
@@ -51,14 +52,14 @@
                     <span>{{bankName}}</span>
                     <span>{{productName}}</span>
                 </div>
-                <div class="detailStyle noPadding" ng-show="basic.linkmanName">
+                <div class="detailStyle padding-none" ng-show="basic.linkmanName">
                     <span>{{basic.linkmanName}}</span>
                 </div>
-                <div class="detailStyle noPadding" ng-show="basic.linkmanMobile">
+                <div class="detailStyle padding-none" ng-show="basic.linkmanMobile">
                     <span>{{basic.linkmanMobile}}</span>
                 </div>
                 <div class="detailStyle" ng-show="remark">
-                    <p class="detailStyleP1 noPadding">备注：</p>
+                    <p class="detailStyleP1 padding-none">备注：</p>
                     <div>{{remark}}</div>
                 </div>
             </div>
@@ -85,20 +86,20 @@
                 <div class="detailStyle">
                     <span ng-show="basic.loanValue">融资额：{{basic.loanValue}}万</span>
                     <span ng-hide="basic.loanValue">请填写融资额</span>
-                    <a class="list-a-point" ng-show="basic.loanValue" ng-click="add_loan(1)">修改</a>
-                    <a class="list-a-point" ng-hide="basic.loanValue" ng-click="add_loan(2)">填写</a>
+                    <a class="link-pointer" ng-show="basic.loanValue" ng-click="add_loan(1)">修改</a>
+                    <a class="link-pointer" ng-hide="basic.loanValue" ng-click="add_loan(2)">填写</a>
                 </div>
                 <div class="detailStyle text-right">
                     <span ng-show="basic.fee">服务费：{{basic.fee}}元</span>
                     <span ng-hide="basic.fee">请填写服务费 </span>
-                    <a class="list-a-point" ng-show="basic.fee" ng-click="add_fee(3)">修改</a>
-                    <a class="list-a-point" ng-hide="basic.fee" ng-click="add_fee(4)">填写</a>
+                    <a class="link-pointer" ng-show="basic.fee" ng-click="add_fee(3)">修改</a>
+                    <a class="link-pointer" ng-hide="basic.fee" ng-click="add_fee(4)">填写</a>
                 </div>
             </div>
             <div class="add-tips add-loan">
                 <div class="form-group" style="height: 35px">
-                    <label for="loan" class="col-sm-3 col-md-3 col-lg-3 noPadding textEnd">融资额：</label>
-                    <div class="col-sm-9 col-md-9 col-lg-9 noPadding">
+                    <label for="loan" class="col-sm-3 col-md-3 col-lg-3 padding-none text-right">融资额：</label>
+                    <div class="col-sm-9 col-md-9 col-lg-9 padding-none">
                         <input type="text" class="form-control col-sm-8 col-md-8 col-lg-8" id="loan"
                                placeholder="融资额(只写数字，默认“万”)" ng-model="loanValue">
                     </div>
@@ -108,8 +109,8 @@
             </div>
             <div class="add-tips add-fee">
                 <div class="form-group" style="height: 35px">
-                    <label for="fee" class="col-sm-3 col-md-3 col-lg-3 noPadding textEnd">服务费：</label>
-                    <div class="col-sm-9 col-md-9 col-lg-9 noPadding">
+                    <label for="fee" class="col-sm-3 col-md-3 col-lg-3 padding-none text-right">服务费：</label>
+                    <div class="col-sm-9 col-md-9 col-lg-9 padding-none">
                         <input type="text" class="form-control col-sm-8 col-md-8 col-lg-8" id="fee"
                                placeholder="服务费（只写数字，默认元）" ng-model="fee">
                     </div>
@@ -122,10 +123,10 @@
             <div class="col-sm-6 col-md-6 col-lg-6 message-board">
                 <div class="message-board-history">
                     <div class="message-board-items" ng-repeat="message in message_list | limitTo:3">
-                        <div class="noPadding col-sm-1 col-md-1 col-lg-1">
+                        <div class="padding-none col-sm-1 col-md-1 col-lg-1">
                             <img class="message-img-box" src="img/recommendl.png" alt="">
                         </div>
-                        <div class="col-ms-11 col-md-11 col-lg-11 noPadding">
+                        <div class="col-ms-11 col-md-11 col-lg-11 padding-none">
                             <p><a href="">{{message.userName}}</a></p>
                             <p>{{message.content}}</p>
                             <p>{{message.createTime | date:'yyyy.MM.dd HH:MM'}}&nbsp;&nbsp;&nbsp;
@@ -148,61 +149,61 @@
         </div>
         <p class="create-title">基本内容</p>
         <div class="detail-style row" ng-show="basic.company_name">
-            <p class="col-sm-2 col-md-2 col-lg-6-2 textEnd">企业全称：</p>
+            <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">企业全称：</p>
             <div class="col-sm-10 col-md-10 col-lg-10">{{basic.company_name}}</div>
         </div>
         <div class="detail-style row" ng-show="basic.business_type">
-            <p class="col-sm-2 col-md-2 col-lg-2 textEnd">企业类型：</p>
+            <p class="col-sm-2 col-md-2 col-lg-2 text-right">企业类型：</p>
             <div class="col-sm-10 col-md-10 col-lg-10">{{basic.business_type}}</div>
         </div>
         <div class="detail-style row" ng-show="basic.legal_representative">
-            <p class="col-sm-2 col-md-2 col-lg-2 textEnd">企业法人：</p>
+            <p class="col-sm-2 col-md-2 col-lg-2 text-right">企业法人：</p>
             <div class="col-sm-10 col-md-10 col-lg-10">{{basic.legal_representative}}</div>
         </div>
         <div class="detail-style row" ng-show="basic.register_date">
-            <p class="col-sm-2 col-md-2 col-lg-2 textEnd">成立时间：</p>
+            <p class="col-sm-2 col-md-2 col-lg-2 text-right">成立时间：</p>
             <div class="col-sm-10 col-md-10 col-lg-10">{{basic.register_date}}</div>
         </div>
         <div class="detail-style row" ng-show="basic.business_address">
-            <p class="col-sm-2 col-md-2 col-lg-2 textEnd">注册地址：</p>
+            <p class="col-sm-2 col-md-2 col-lg-2 text-right">注册地址：</p>
             <div class="col-sm-10 col-md-10 col-lg-10">{{basic.business_address}}</div>
         </div>
         <div class="detail-style row" ng-show="basic.officeAddress">
-            <p class="col-sm-2 col-md-2 col-lg-2 textEnd">办公地址：</p>
+            <p class="col-sm-2 col-md-2 col-lg-2 text-right">办公地址：</p>
             <div class="col-sm-10 col-md-10 col-lg-10">{{basic.officeAddress}}</div>
         </div>
         <div class="detail-style row" ng-show="basic.registered_capital">
-            <p class="col-sm-2 col-md-2 col-lg-2 textEnd">注册资本：</p>
+            <p class="col-sm-2 col-md-2 col-lg-2 text-right">注册资本：</p>
             <div class="col-sm-10 col-md-10 col-lg-10">{{basic.registered_capital}}万</div>
         </div>
         <div class="detail-style row" ng-show="basic.item_category">
-            <p class="col-sm-2 col-md-2 col-lg-2 textEnd">所属行业：</p>
+            <p class="col-sm-2 col-md-2 col-lg-2 text-right">所属行业：</p>
             <div class="col-sm-10 col-md-10 col-lg-10">{{basic.item_category}}</div>
         </div>
         <div class="detail-style row" ng-show="basic.business_scope">
-            <p class="col-sm-2 col-md-2 col-lg-2 textEnd">经营范围：</p>
+            <p class="col-sm-2 col-md-2 col-lg-2 text-right">经营范围：</p>
             <div class="col-sm-10 col-md-10 col-lg-10">{{basic.business_scope}}</div>
         </div>
         <div class="detail-style row" ng-show="registerLinkmanMobile">
-            <p class="col-sm-2 col-md-2 col-lg-2 textEnd">注册电话：</p>
+            <p class="col-sm-2 col-md-2 col-lg-2 text-right">注册电话：</p>
             <p class="col-sm-10 col-md-10 col-lg-10">{{registerLinkmanName}}</p>
             <p class="col-sm-10 col-md-10 col-lg-10 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
                 {{registerLinkmanMobile}}</p>
         </div>
         <div class="detail-style row" ng-show="basic.linkmanMobile">
-            <p class="col-sm-2 col-md-2 col-lg-2 textEnd">联系电话：</p>
+            <p class="col-sm-2 col-md-2 col-lg-2 text-right">联系电话：</p>
             <p class="col-sm-10 col-md-10 col-lg-10">{{basic.linkmanName}}</p>
             <div class="col-sm-10 col-md-10 col-lg-10 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
                 {{basic.linkmanMobile}}
             </div>
         </div>
         <div class="detail-style row" ng-show="basic.continual">
-            <p class="col-sm-2 col-md-2 col-lg-2 textEnd">年销售量：</p>
+            <p class="col-sm-2 col-md-2 col-lg-2 text-right">年销售量：</p>
             <div class="col-sm-10 col-md-10 col-lg-10">{{basic.continual}}</div>
         </div>
         <p class="create-title" ng-show="model_list">其他类型</p>
         <div class="detail-style row" ng-repeat="template in model_list">
-            <p class="col-sm-2 col-md-2 col-lg-2 textEnd">{{template.title}}:</p>
+            <p class="col-sm-2 col-md-2 col-lg-2 text-right">{{template.title}}:</p>
             <div class="col-sm-10 col-md-10 col-lg-10"
                  ng-hide="template.templateType == 3">{{template.content}}
             </div>

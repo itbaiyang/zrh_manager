@@ -1,7 +1,7 @@
 <div class="row" ng-class="{true: 'content-open', false: 'content'}[isOpenMenu]">
     <div class="content-title"><span>销售管理</span></div>
     <div class="content-search">
-        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 noPadding">
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 padding-none">
             <input type="text" class="form-control" placeholder="搜索企业名称" ng-model="search_text">
         </div>
         <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
@@ -26,7 +26,7 @@
                     <span class="col-sm-3 col-md-3 col-lg-3 text-center">{{resultObj.position}}</span>
                     <span class="col-sm-3 col-md-3 col-lg-3 text-center">{{resultObj.mobile}}</span>
                     <span class="col-sm-2 col-md-2 col-lg-2 text-center">{{resultObj.count ||'0'}}</span>
-                    <a class="col-sm-2 col-md-2 col-lg-2 noPadding text-right list-a-point"
+                    <a class="col-sm-2 col-md-2 col-lg-2 padding-none text-right link-pointer"
                        ng-click="showDetail(resultObj.id)">查看详情</a>
                 </li>
             </div>
@@ -38,7 +38,7 @@
 
     <li class="list-title" ng-show="list_show == false">
         <span class="col-sm-3 col-md-3 col-lg-3">用户名</span>
-        <span class="col-sm-4 col-md-4 col-lg-4 noPadding">企业名</span>
+        <span class="col-sm-4 col-md-4 col-lg-4 padding-none">企业名</span>
         <span class="col-sm-3 col-md-3 col-lg-3 text-center">操作</span>
     </li>
     <ul class="list-group list-ul list-ul-height-1" ng-show="list_show == false">
@@ -47,12 +47,12 @@
                 <li class="list-group-item list-user" ng-repeat="company in company_list">
                     <span class="col-sm-3 col-md-3 col-lg-3">{{company.userName}}</span>
 
-                    <div class="col-sm-4 col-md-4 col-lg-4 noPadding">
+                    <div class="col-sm-4 col-md-4 col-lg-4 padding-none">
                         <p class="company-overflow fl">{{company.companyName}}</p>
                         <img src="img/tips/day_red.png" class="img-size" ng-show="resultObj.timeOver > 10">
                         <img src="img/tips/day_yellow.png" class="img-size" ng-show="resultObj.timeOver > 7">
                     </div>
-                    <a class="col-sm-3 col-md-3 col-lg-3 text-center list-a-point" href="{{url_detail}}{{company.id}}"
+                    <a class="col-sm-3 col-md-3 col-lg-3 text-center link-pointer" href="{{url_detail}}{{company.id}}"
                        target="_blank">查看详情</a>
                 </li>
             </div>
