@@ -82,9 +82,6 @@ loginCtrl.controller('LoginCtrl',
         }).error(function (d) {
         })
     };
-    $scope.reset = function () {
-        $state.go('forget')
-    };
 }]);
 
 loginCtrl.controller('ForgetPasswordCtrl',
@@ -184,10 +181,6 @@ loginCtrl.controller('ForgetPasswordCtrl',
             });
         };
 
-
-        var timesTamp = new Date().getTime();
-        var timesTamp1 = String(timesTamp).substring(0, 10);
-        $scope.timestamp = parseInt(timesTamp1);
         $scope.submit = function () {
             var m_params = {
                 "token": $scope.token,

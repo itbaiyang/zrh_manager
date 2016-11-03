@@ -1,5 +1,5 @@
-api_uri = "http://test.zhironghao.com/api/";  //测试服接口
-// api_uri = "http://api.supeiyunjing.com/";  //正式服接口
+// api_uri = "http://test.zhironghao.com/api/";  //测试服接口
+api_uri = "http://api.supeiyunjing.com/";  //正式服接口
 // api_uri = "http://172.16.97.229:8080/api/";//本地服务器接口
 var templates_root = 'templates/';
 deskey = "abc123.*abc123.*abc123.*abc123.*";
@@ -91,7 +91,7 @@ app.run(['$location', '$rootScope', '$timeout', '$http', function ($location, $r
                     $rootScope.openMenu();
                 }
             }
-            if ($location.$$path.indexOf('/forget') < 0 || $location.$$path != '/login') {
+            if ($location.$$path != '/forget' && $location.$$path != '/login') {
                 $rootScope.check_user();
                 $timeout(function () {
                     if (!$rootScope.login_user) {
