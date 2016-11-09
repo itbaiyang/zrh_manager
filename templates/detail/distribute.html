@@ -28,12 +28,15 @@
                         data-toggle="dropdown"
                         aria-haspopup="true"
                         aria-expanded="false">
-                    {{bankManName ||"选择银行职员"}}
+                    <span class="col-xs-2 clo-sm-2 col-md-2 col-lg-2 padding-none">{{bankManName ||"选择银行职员"}}</span>
+                    {{bankBelongMan}}
                 </button>
                 <ul class="dropdown-menu btn-drop col-xs-11 col-sm-11 col-md-11 col-lg-11">
-                    <li class="btn-dropDetail" ng-click="choiceBankMan(bankMan.id,bankMan.name)"
+                    <li class="btn-dropDetail"
+                        ng-click="choiceBankMan(bankMan.id, bankMan.name, bankMan.branchBankName)"
                         ng-repeat="bankMan in bank_man_list">
-                        {{bankMan.name}}
+                        <span class="col-xs-2 clo-sm-2 col-md-2 col-lg-2 padding-none">{{bankMan.name}}</span>
+                        <span style="padding-left: 10px">{{bankMan.branchBankName}}</span>
                     </li>
                 </ul>
             </div>

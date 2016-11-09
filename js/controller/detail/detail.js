@@ -1141,6 +1141,7 @@ detailAppCtrl.controller('DistributeCtrl',
             }).success(function (d) {
                 if (d.returnCode == 0) {
                     $scope.bank_man_list = d.result.datas;
+                    console.log($scope.bank_man_list)
                 }
                 else {
                 }
@@ -1154,12 +1155,14 @@ detailAppCtrl.controller('DistributeCtrl',
             $scope.bankName = name;
             $scope.bank_man_list_get($scope.bankId, 1, 400)
             $scope.bankManName = "";
+            $scope.bankBelongMan = "";
         };
 
         /*选择银行职员*/
-        $scope.choiceBankMan = function (id, name) {
+        $scope.choiceBankMan = function (id, name, bank) {
             $scope.bankManId = id;
             $scope.bankManName = name;
+            $scope.bankBelongMan = bank;
         };
 
         /*递交资料*/

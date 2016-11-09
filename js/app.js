@@ -308,15 +308,13 @@ app.run(['$location', '$rootScope', '$timeout', '$http', function ($location, $r
     $rootScope.bank_messages = function () {
         var m_params = {
             "userId": $rootScope.login_user.userId,
-            "token": $rootScope.login_user.token,
+            "token": $rootScope.login_user.token
         };
         $http({
-            // url: api_uri + "zrh/index/message",
             url: api_uri + "applyBankDeal/manage/count",
             method: "GET",
             params: m_params
         }).success(function (d) {
-            // console.log('bank_messages');
             if (d.returnCode == 0) {
                 $rootScope.bank_message = d.result;
             }
