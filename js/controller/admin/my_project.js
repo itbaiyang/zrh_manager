@@ -20,6 +20,7 @@ myProjectCtrl.controller('MyProjectCtrl',
             params: m_params
         }).success(function (d) {
             if (d.returnCode == 0) {
+                console.log(d.result.list);
                 $scope.pages = d.result.list;              //分页
                 $scope.result_list = d.result.list.datas; //列表参数
                 $scope.count = d.result.count;            //列表统计

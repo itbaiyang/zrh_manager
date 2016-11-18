@@ -669,7 +669,7 @@ bankCtrl.controller('UpdateBankManCtrl',
             "position": $scope.bank_man.position,
             "productIds": $scope.ids,
             "mobile": $scope.bank_man.mobile,
-            "email": $scope.bank_man.email,
+            "email": $scope.bank_man.email
         };
         $.ajax({
             type: 'POST',
@@ -681,9 +681,9 @@ bankCtrl.controller('UpdateBankManCtrl',
                     $state.go("super.bank.bank_man", {id: m_params.bankId});
                     $scope.$apply();
 
-                }
-                else {
-                    //console.log(data);
+                } else {
+                    console.log(data);
+                    alert("F12 查看错误状态")
                 }
             },
             dataType: 'json',
