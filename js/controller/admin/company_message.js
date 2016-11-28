@@ -242,7 +242,7 @@ loanApplicationCtrl.controller('AddCompanyCtrl',
                         console.log(data);
                     }
                 },
-                dataType: 'json',
+            dataType: 'json'
             });
     };
     }]);

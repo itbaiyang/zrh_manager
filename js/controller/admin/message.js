@@ -205,7 +205,7 @@ messageCtrl.controller('MessageBankCtrl',
                         console.log(data);
                     }
                 },
-                dataType: 'json',
+                dataType: 'json'
             });
         };
         /*拒绝客户经理的请求*/
@@ -214,7 +214,7 @@ messageCtrl.controller('MessageBankCtrl',
                 "userId": $rootScope.login_user.userId,
                 "token": $rootScope.login_user.token,
                 "id": id,
-                "reason": reason_refuse,
+                "reason": reason_refuse
             };
             $http({
                 url: api_uri + "applyBankDeal/manage/refuse",
@@ -236,7 +236,6 @@ messageCtrl.controller('MessageBankCtrl',
                     alert("未知错误");
                 }
             }).error(function (d) {
-                // console.log(d);
             });
         };
 
@@ -245,7 +244,7 @@ messageCtrl.controller('MessageBankCtrl',
             var m_params = {
                 "userId": $rootScope.login_user.userId,
                 "token": $rootScope.login_user.token,
-                "id": id,
+                "id": id
             };
             $.ajax({
                 type: 'POST',
@@ -261,7 +260,7 @@ messageCtrl.controller('MessageBankCtrl',
                         console.log(data);
                     }
                 },
-                dataType: 'json',
+                dataType: 'json'
             });
         };
 
@@ -269,7 +268,7 @@ messageCtrl.controller('MessageBankCtrl',
             var m_params = {
                 "userId": $rootScope.login_user.userId,
                 "token": $rootScope.login_user.token,
-                "id": $scope.stop_alert_id,
+                "id": $scope.stop_alert_id
             };
             $.ajax({
                 type: 'POST',
@@ -285,7 +284,7 @@ messageCtrl.controller('MessageBankCtrl',
                         console.log(data);
                     }
                 },
-                dataType: 'json',
+                dataType: 'json'
             });
         };
 
@@ -296,7 +295,7 @@ messageCtrl.controller('MessageBankCtrl',
                 'scroll': 0
                 }
             )
-        }
+        };
 
         $scope.stopped_person = function (dayNum, id, index) {
             var m_params = {
@@ -318,7 +317,7 @@ messageCtrl.controller('MessageBankCtrl',
                         console.log(data);
                     }
                 },
-                dataType: 'json',
+                dataType: 'json'
             });
         };
     }]);
@@ -330,7 +329,7 @@ messageCtrl.controller('MessageSystemCtrl',
                 "userId": $rootScope.login_user.userId,
                 "token": $rootScope.login_user.token,
                 "pageNo": pageNo,
-                "pageSize": pageSize,
+                "pageSize": pageSize
             };
             $http({
                 url: api_uri + "zrh/message/lists",
@@ -340,7 +339,6 @@ messageCtrl.controller('MessageSystemCtrl',
                 $scope.page = d.result;
                 $scope.result_list = d.result.datas;
             }).error(function (d) {
-                // console.log(d);
             });
         };
         $scope.list(1, 100);
@@ -350,7 +348,7 @@ messageCtrl.controller('MessageSystemCtrl',
                 "userId": $rootScope.login_user.userId,
                 "token": $rootScope.login_user.token,
                 "pageNo": pageNo,
-                "pageSize": pageSize,
+                "pageSize": pageSize
             };
             $http({
                 url: api_uri + "zrh/message/listApplyManageDeal",

@@ -9,7 +9,7 @@
         <span class="col-sm-2 col-md-2 col-lg-2 text-center">渠道申请</span>
         <span class="col-sm-2 col-md-2 col-lg-2 text-right">操作</span>
     </li>
-    <ul class="list-group list-ul list-ul-height-3">
+    <ul class="list-group list-ul list-ul-height-3" ng-hide="page.totalCount == 0">
         <div class="line-roll">
             <div class="list-out">
                 <li class="list-group-item list-user" ng-repeat="resultObj in user_list">
@@ -25,11 +25,6 @@
                         <span>{{resultObj.registerTime +'000' | date:'HH:mm'}}</span>
                         <span ng-hide="resultObj.registerTime">&nbsp;</span>
                     </div>
-                    <!--<div class="col-lg-2 col-md-2 col-sm-2 padding-none text-center" >-->
-                    <!--<span class="col-lg-12 col-md-12 col-sm-12">{{resultObj.days |date:'yyyy-MM-dd'}}</span>-->
-                    <!--<span>{{resultObj.days |date:'HH:mm'}}</span>-->
-                    <!--<span ng-hide="resultObj.days">&nbsp;</span>-->
-                    <!--</div>-->
                     <span class="col-sm-2 col-md-2 col-lg-2 text-center">{{resultObj.count}}</span>
                     <a class="col-sm-2 col-md-2 col-lg-2 padding-none text-right link-pointer"
                        ng-click="showDetail(resultObj.id)">查看详情</a>

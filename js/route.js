@@ -29,7 +29,6 @@ app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
             views: {
                 '': {
                     templateUrl: templates_root + 'super/index.html',
-                    //controller: 'UserIndexController'
                 },
                 'top_bar@super': {
                     templateUrl: templates_root + 'bar/top_bar.html',

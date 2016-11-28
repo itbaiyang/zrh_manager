@@ -90,7 +90,7 @@ channelCtrl.controller('ChannelCtrl',
                 else {
                 }
             },
-            dataType: 'json',
+            dataType: 'json'
         });
 
     };
@@ -114,7 +114,7 @@ channelCtrl.controller('CreateCtrl',
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
             "name": $scope.username,
-            "mobile": $scope.phone,
+            "mobile": $scope.phone
         };
         $.ajax({
             type: 'POST',
@@ -138,7 +138,7 @@ channelCtrl.controller('CreateCtrl',
                     console.log(data);
                 }
             },
-            dataType: 'json',
+            dataType: 'json'
         });
 
     };
@@ -346,7 +346,7 @@ channelCtrl.controller('AddApplyCtrl',
                     console.log(data);
                 }
             },
-            dataType: 'json',
+            dataType: 'json'
         });
 
     };
@@ -463,7 +463,7 @@ channelCtrl.controller('ChangeCtrl',
                     alert("未知错误");
                 }
             },
-            dataType: 'json',
+            dataType: 'json'
         });
     };
     $scope.back_channel = function () {

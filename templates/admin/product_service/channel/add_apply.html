@@ -5,26 +5,26 @@
         <button class="btn-grey fr" ng-click="back()">返回</button>
     </p>
     <form class="form-horizontal">
-            <div class="form-group">
-                <label for="companyName" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">用户名：</label>
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                    <input type="text" class="form-control" id="companyName" placeholder="用户名" ng-model="companyName">
-                </div>
+        <div class="form-group">
+            <label for="companyName" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">用户名：</label>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <input type="text" class="form-control" id="companyName" placeholder="用户名" ng-model="companyName">
             </div>
-            <div class="form-group">
-                <label for="apply" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">金融产品：</label>
-                <div class="btn-group col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                    <button type="button" class="btn-input col-xs-12 col-sm-12 col-md-12 col-lg-12" id="apply"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-click="getApply()">
-                        {{productName ||"金融产品 "}}
-                    </button>
-                    <ul class="dropdown-menu btn-drop col-xs-11 col-sm-11 col-md-11 col-lg-11">
-                        <li class="btn-dropDetail" ng-click="choice_product(product.id,product.productName)"
-                            ng-repeat="product in result_list">
-                            {{product.productName}}
-                        </li>
-                    </ul>
-                </div>
+        </div>
+        <div class="form-group">
+            <label for="apply" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">金融产品：</label>
+            <div class="btn-group col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <button type="button" class="btn-input col-xs-12 col-sm-12 col-md-12 col-lg-12" id="apply"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-click="getApply()">
+                    {{productName ||"金融产品 "}}
+                </button>
+                <ul class="dropdown-menu btn-drop col-xs-11 col-sm-11 col-md-11 col-lg-11">
+                    <li class="btn-dropDetail" ng-click="choice_product(product.id,product.productName)"
+                        ng-repeat="product in result_list">
+                        {{product.productName}}
+                    </li>
+                </ul>
             </div>
-        </form>
+        </div>
+    </form>
 </div>

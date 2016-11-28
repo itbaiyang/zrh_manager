@@ -1,23 +1,3 @@
-<!DOCTYPE html>
-<html lang="en" ng-app="app">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta http-equiv="Cache-control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="pragma" content="no-cache">
-    <meta http-equiv="expires" content="-1">
-    <title>直融号管理平台</title>
-    <style>
-        body {
-            font-family: "\5FAE\8F6F\96C5\9ED1", "Microsoft Yahei", "Hiragino Sans GB", tahoma, arial, "\5B8B\4F53" !important;
-        }
-    </style>
-    <!--min-->
-    <!--<link rel="stylesheet" href="dist/zrh_manager.min.2.9.5.css">-->
-    <!--<script src="dist/base_zrh_manager.min.2.9.5.js"></script>-->
-    <!--<script src="dist/app_zrh_manager.min.2.9.5.js"></script>-->
-    <!--test-->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/list.css">
@@ -47,8 +27,3 @@
     <script src="js/directive/directive.js"></script>
     <script src="js/animation.js"></script>
     <script src="js/route.js"></script>
-</head>
-<body>
-<div ui-view class="fad-main main-index"></div>
-</body>
-</html>
