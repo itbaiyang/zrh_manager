@@ -1,8 +1,20 @@
 var myProjectCtrl = angular.module('myProjectCtrl', []);
 myProjectCtrl.controller('MyProjectCtrl',
-    ['$http', '$scope', '$state', '$rootScope', function ($http, $scope, $state, $rootScope) {
+    ['$http', '$scope', '$state', '$location', '$rootScope', '$stateParams', function ($http, $scope, $state, $location, $rootScope, $stateParams) {
     $scope.showCancel = false; //放弃任务取消理由框显示
     $scope.comments_give = '';  //留言板评论内容
+        console.log($location.$$path);
+        if ($location.$$path == "/admin/my_project/working") {
+            $scope.status = 7;
+            $scope.class_apply = 'working'
+        } else if ($location.$$path == "/admin/my_project/finished") {
+            $scope.status = '0';
+            $scope.class_apply = 'finished'
+        } else {
+            $scope.status = '';
+            $scope.class_apply = 'drop'
+
+        }
 
     /* 获取我的项目列表*/
     $scope.list = function (pageNo, pageSize) { 

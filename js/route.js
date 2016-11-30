@@ -320,6 +320,34 @@ app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
             }
         })
 
+        .state('admin.my_project.working', {
+            url: '/working',
+            views: {
+                'contains@admin': {
+                    templateUrl: templates_root + 'admin/product_service/my_project/my_project.html',
+                    controller: 'MyProjectCtrl'
+                }
+            }
+        })
+        .state('admin.my_project.finished', {
+            url: '/finished',
+            views: {
+                'contains@admin': {
+                    templateUrl: templates_root + 'admin/product_service/my_project/my_project.html',
+                    controller: 'MyProjectCtrl'
+                }
+            }
+        })
+        .state('admin.my_project.drop', {
+            url: '/drop',
+            views: {
+                'contains@admin': {
+                    templateUrl: templates_root + 'admin/product_service/my_project/my_project.html',
+                    controller: 'MyProjectCtrl'
+                }
+            }
+        })
+
         .state("admin.apply", {
             url: '/apply',
             views: {

@@ -1,5 +1,5 @@
-// api_uri = "http://test.zhironghao.com/api/";  //测试服接口
-api_uri = "http://api.supeiyunjing.com/";  //正式服接口
+api_uri = "http://test.zhironghao.com/api/";  //测试服接口
+// api_uri = "http://api.supeiyunjing.com/";  //正式服接口
 // api_uri = "http://172.16.97.229:8080/api/";//本地服务器接口
 var templates_root = 'templates/';
 deskey = "abc123.*abc123.*abc123.*abc123.*";
@@ -81,7 +81,7 @@ app.run(['$location', '$rootScope', '$timeout', '$http', function ($location, $r
             $rootScope.arrayParams = present_route.split(".");
             var array = present_route.split(".");
             $rootScope.choiceColor = array[1];
-            if (array[1] == "message") {
+            if (array[1] == "message" || array[1] == "my_project") {
                 $rootScope.sideTwo = true;
                 $rootScope.isOpenMenu = false;
                 $rootScope.choiceColorTwo = array[2];

@@ -25,7 +25,8 @@
         <a class="side-bar-link" ng-class="{'side-bar-select':choiceColor =='signUp'}" ng-show="role == 'super'"
            ui-sref="super.signUp">
             <span class="btn-blue-img" data-toggle="tooltip" data-placement="right" title="注册用户"></span>注册用户</a>
-        <a class="side-bar-link" ng-class="{'side-bar-select':choiceColor =='my_project'}" ui-sref="admin.my_project"
+        <a class="side-bar-link" ng-class="{'side-bar-select':choiceColor =='my_project'}"
+           ui-sref="admin.my_project.working"
            ng-show="role == 'admin' || role == 'manager'">
             <span class="btn-blue-img" data-toggle="tooltip" data-placement="right" title="我的项目"></span>
             我的项目</a>
@@ -70,6 +71,34 @@
     </ul>
 </div>
 <div class="side-menu-2 fl" ng-show="sideTwo">
+    <p class="model-title-2" ng-show="choiceColor =='my_project'">我的项目</p>
+    <ul style="text-align: center" ng-show="choiceColor =='my_project'">
+        <li style="text-align: center;">
+            <a class="side-bar-content-2" ng-class="{'side-bar-link-2':choiceColorTwo =='working'}"
+               ui-sref="admin.my_project.working">
+                <div style="display: inline-block;width: 30px;height: 40px;position: relative">
+                    <img class="btn-blue-img">
+                </div>
+                进行中
+            </a>
+        </li>
+        <li style="text-align: center">
+            <a class="side-bar-content-2" ng-class="{'side-bar-link-2':choiceColorTwo =='finished'}"
+               ui-sref="admin.my_project.finished">
+                <div style="display: inline-block;width: 30px;height: 40px;position: relative">
+                    <img class="btn-blue-img">
+                </div>
+                已完成</a>
+        </li>
+        <li style="text-align: center">
+            <a class="side-bar-content-2" ng-class="{'side-bar-link-2':choiceColorTwo =='drop'}"
+               ui-sref="admin.my_project.drop">
+                <div style="display: inline-block;width: 30px;height: 40px;position: relative">
+                    <img class="btn-blue-img">
+                </div>
+                垃圾桶</a>
+        </li>
+    </ul>
     <p class="model-title-2" ng-show="choiceColor =='message'">消息中心</p>
     <ul style="text-align: center" ng-show="choiceColor =='message'">
         <li style="text-align: center;">

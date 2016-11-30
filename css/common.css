@@ -10,6 +10,16 @@
     text-align: right;
 }
 
+.jump-page {
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: top;
+    padding: 0;
+    text-align: center;
+}
+
 .margin-left-15 {
     margin-left: 15px;
 }
@@ -25,6 +35,9 @@
     margin-left: 15px;
 }
 
+.btn-jump-page {
+
+}
 .btn-greyImg {
     display: inline-block;
     width: 18px;
