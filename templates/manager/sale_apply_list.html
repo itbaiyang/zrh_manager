@@ -14,35 +14,51 @@
         </div>
     </div>
     <li class="list-title">
-        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 padding-none">
-            <span class="col-xs-5 col-sm-5 col-md-5 col-lg-5">企业名称或个人</span>
-            <span class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">预计时间</span>
-            <span class="col-xs-5 col-sm-5 col-md-5 col-lg-5">留言</span>
+        <div class="col-sm-7 col-md-7 col-lg-7 padding-none">
+            <span class="col-sm-5 col-md-5 col-lg-5">企业名称或个人</span>
+            <span class="col-sm-3 col-md-3 col-lg-3">申请产品</span>
+            <div class="btn-group col-sm-2 col-md-2 col-lg-2 text-center">
+                <div style="cursor: pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{status_text || "状态"}} <span class="caret"></span>
+                </div>
+                <ul class="dropdown-menu">
+                    <li ng-click="choice(0)" class="list-select">未申请</li>
+                    <li ng-click="choice(1)" class="list-select">准备中</li>
+                    <li ng-click="choice(2)" class="list-select">下户</li>
+                    <li ng-click="choice(3)" class="list-select">审批中</li>
+                    <li ng-click="choice(4)" class="list-select">审批通过</li>
+                    <li ng-click="choice(5)" class="list-select">开户</li>
+                    <li ng-click="choice(6)" class="list-select">放款</li>
+                    <li ng-click="choice(7)" class="list-select">成功融资</li>
+                    <li ng-click="choice()" class="list-select">全部</li>
+                </ul>
+            </div>
+            <span class="col-sm-2 col-md-2 col-lg-2 text-center">销售职员</span>
         </div>
-        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 padding-none">
-            <span class="col-xs-4 col-sm-4 col-md-4 col-lg-4">申请产品</span>
-            <span class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-center">服务费（元）</span>
-            <span class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-center">融资额（万）</span>
-            <span class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-right">项目来源</span>
+        <div class="col-sm-5 col-md-5 col-lg-5 padding-none">
+            <span class="col-sm-2 col-md-2 col-lg-2 text-center">预计时间</span>
+            <span class="col-sm-4 col-md-4 col-lg-4 text-center">服务费（元）</span>
+            <span class="col-sm-3 col-md-3 col-lg-3 text-center">融资额（万）</span>
+            <span class="col-sm-3 col-md-3 col-lg-3 text-right">项目来源</span>
         </div>
     </li>
     <ul class="list-group list-ul list-ul-height-2">
         <li class="list-title-count">
-            <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 padding-none">
-                <span class="col-xs-5 col-sm-5 col-md-5 col-lg-5">全部{{count.total}}</span>
+            <div class="col-sm-7 col-md-7 col-lg-7 padding-none">
+                <span class="col-sm-5 col-md-5 col-lg-5 padding-none">全部{{count.total}}</span>
             </div>
-            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 padding-none">
-            <span class="col-sm-3 col-md-3 col-lg-3 col-sm-offset-4 col-md-offset-4 col-lg-offset-4 text-center">
-                {{count.fee}}
-            </span>
-                <span class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-center">{{count.loanValue}}</span>
+            <div class="col-sm-5 col-md-5 col-lg-5 padding-none">
+                <span class="col-sm-4 col-md-4 col-lg-4 col-sm-offset-2 col-md-offset-2 col-lg-offset-2 text-center">
+                    {{count.fee}}
+                </span>
+                <span class="col-sm-3 col-md-3 col-lg-3 text-center">{{count.loanValue}}</span>
             </div>
         </li>
         <div class="line-roll">
             <div class="list-out">
                 <li class="list-group-item list-common" ng-repeat="resultObj in result_list">
-                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 padding-none">
-                        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 padding-none">
+                    <div class="col-sm-7 col-md-7 col-lg-7 padding-none">
+                        <div class="col-sm-5 col-md-5 col-lg-5 padding-none">
                             <p class="company-overflow fl">
                                 <input type="checkbox" style="margin-right: 10px" id="{{resultObj.id}}"
                                        ng-checked="isSelected(resultObj.id)"
@@ -55,22 +71,26 @@
                             <img src="img/tips/day_yellow.png" class="img-size"
                                  ng-show="resultObj.timeOver > 7 &&resultObj.timeOver <= 10">
                         </div>
+                        <span class="col-sm-3 col-md-3 col-lg-3">{{resultObj.bankName}}
+                            <span ng-show="resultObj.bankName">-</span>
+                            {{resultObj.productName}}</span>
+                        <span class="col-sm-2 col-md-2 col-lg-2 text-center" style="color: #838383"
+                              ng-show="resultObj.color == 1">{{resultObj.progressText}}</span>
+                        <span class="col-sm-2 col-md-2 col-lg-2 text-center" style="color: #F97383"
+                              ng-show="resultObj.color == 2">{{resultObj.progressText}}</span>
+                        <span class="col-sm-2 col-md-2 col-lg-2 text-center" style="color: #009B27"
+                              ng-show="resultObj.color == 3">{{resultObj.progressText}}</span>
+                        <span class="col-sm-2 col-md-2 col-lg-2 text-center">{{resultObj.salerName|| userName}}</span>
+                    </div>
+                    <div class="col-sm-5 col-md-5 col-lg-5 padding-none">
                         <div class="col-lg-2 col-md-2 col-sm-2 padding-none text-center" style="margin-top: -8px">
                             <span class="col-lg-12 col-md-12 col-sm-12">{{resultObj.endDate |date:'yyyy-MM-dd'}}</span>
                             <span>{{resultObj.endDate |date:'HH:mm'}}</span>
                             <span ng-hide="resultObj.endDate">&nbsp;</span>
                         </div>
-                        <span class="col-xs-5 col-sm-5 col-md-5 col-lg-5 padding-none" title="{{resultObj.comment}}"
-                              style="padding-right: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
-                            {{resultObj.comment}}</span>
-                    </div>
-                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 padding-none">
-                        <span class="col-sm-4 col-md-4 col-lg-4">
-                            <span ng-show="resultObj.bankName">{{resultObj.bankName}}-</span>
-                            {{resultObj.productName}}</span>
-                        <span class="col-sm-3 col-md-3 col-lg-3 text-center">{{resultObj.fee||"无"}}</span>
+                        <span class="col-sm-4 col-md-4 col-lg-4 text-center">{{resultObj.fee||"无"}}</span>
                         <span class="col-sm-3 col-md-3 col-lg-3 text-center">{{resultObj.loanValue||"无"}}</span>
-                        <span class="col-sm-2 col-md-2 col-lg-2 text-right">{{resultObj.createUserName||"无"}}
+                        <span class="col-sm-3 col-md-3 col-lg-3 text-right">{{resultObj.createUserName||"无"}}
                             <img src="img/tips/tel.png" class="img-size" ng-show="resultObj.channel =='tel'">
                             <img src="img/tips/bankMan.png" class="img-size" ng-show="resultObj.channel =='a'">
                             <img src="img/tips/manager.png" class="img-size"
