@@ -47,7 +47,7 @@
     </div>
     <div>
         <div class="message-panel clear">
-            <div class="col-sm-4 col-md-4 col-lg-4">
+            <div class="col-sm-3 col-md-3 col-lg-3">
                 <div class="detailStyle" ng-show="bankName">
                     <span>{{bankName}}</span>
                     <span>{{productName}}</span>
@@ -63,7 +63,7 @@
                     <div>{{remark}}</div>
                 </div>
             </div>
-            <div class="col-sm-4 col-md-4 col-lg-4">
+            <div class="col-sm-3 col-md-3 col-lg-3">
                 <p style="margin-top: 10px;" ng-show="isStop == false">
                     <span style="color: red">{{progressText||'未申请'}}</span>&nbsp;&nbsp;
                     <span ng-show="days >= 0 && status !=4 && status != 0 && status != 1" class="fr">预计：{{days}}天</span>
@@ -82,7 +82,12 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-4 col-md-4 col-lg-4 text-right" ng-show="readonly == false">
+
+            <div class="col-sm-3 col-md-3 col-lg-3 text-right">
+                <input type="date" ng-model="date_delay" ng-change="input_date()">
+            </div>
+
+            <div class="col-sm-3 col-md-3 col-lg-3 text-right" ng-show="readonly == false">
                 <div class="detailStyle">
                     <span ng-show="basic.loanValue">融资额：{{basic.loanValue}}万</span>
                     <span ng-hide="basic.loanValue">请填写融资额</span>
@@ -147,7 +152,8 @@
                 </p>
             </div>
         </div>
-        <p class="create-title">基本内容 <a class="fr link-pointer" ng-click="editApply(id)">修改信息</a></p>
+        <p class="create-title">基本内容 <a class="fr link-pointer" ng-click="editApply(id)"><img
+                src="../../img/tips/edit_message.png" alt="">修改信息</a></p>
         <div class="detail-style row" ng-show="basic.company_name">
             <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">企业全称：</p>
             <div class="col-sm-10 col-md-10 col-lg-10">{{basic.company_name}}</div>

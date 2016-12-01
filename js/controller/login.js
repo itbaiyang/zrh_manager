@@ -27,6 +27,7 @@ loginCtrl.controller('LoginCtrl',
     $scope.login = function () {
         $scope.loginUser.signature = $rootScope.encryptByDES($scope.loginUser.password + $scope.loginUser.timestamp);
         var m_params = $scope.loginUser;
+        console.log(m_params)
         if (!check_params(m_params)) return;
         $http({
             url: api_uri + "p/user/login",

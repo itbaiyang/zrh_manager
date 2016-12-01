@@ -4,6 +4,7 @@ detailAppCtrl.controller('DetailAppCtrl',
     ['$http', '$scope', '$state', '$rootScope', '$location', '$stateParams', function ($http, $scope, $state, $rootScope, $location, $stateParams) {
         $scope.id = $stateParams.id;
         $scope.showCancel = false;
+        $scope.date_delay = '';
         /*获取申请详情*/
         $scope.get = function () {
             var m_params = {
@@ -93,7 +94,22 @@ detailAppCtrl.controller('DetailAppCtrl',
             })
         };
         $scope.get_message();
-
+        $scope.input_date = function () {
+            var params = {
+                userId: $rootScope.login_user.userId,
+                token: $rootScope.login_user.token,
+                applyId: $stateParams.id,
+                planTime: $scope.date_delay.getTime()
+            };
+            console.log(params);
+            $http({
+                url: api_uri + "inforTemplate/updatePlanTime",
+                method: 'POST',
+                params: params
+            }).success(function (d) {
+                console.log(d);
+            });
+        };
         /*跳转页面*/
         $scope.editApply = function (id) {
             $state.go('admin.apply.edit_apply', {'id': id})

@@ -54,8 +54,11 @@
                                     resultObj.linkman}}</a>
                             </p>
                             <img src="img/tips/day_red.png" class="img-size" ng-show="resultObj.timeOver > 10">
+
                             <img src="img/tips/day_yellow.png" class="img-size"
                                  ng-show="resultObj.timeOver > 7 &&resultObj.timeOver <= 10">
+                            <img src="img/tips/delay.png" class="img-size"
+                                 title="{{resultObj.planTime | date: 'yyyy-MM-dd'}}" ng-show="resultObj.planTime">
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-2 padding-none text-center" style="margin-top: -8px">
                             <span class="col-lg-12 col-md-12 col-sm-12">{{resultObj.endDate |date:'yyyy-MM-dd'}}</span>
@@ -86,16 +89,16 @@
             </div>
         </div>
         <li class="list-bottom" ng-hide="pages.totalCount == 0">
+            <button ng-click="trash()" ng-show="class_apply == 'working'" class="content-btn">删除</button>
             <div class="btn-group" style="position: relative" ng-show="class_apply == 'drop'">
-                <button type="button" ng-click="show_cancel()" class="content-btn"
+                <button ng-click="show_cancel()" class="content-btn"
                         id="products">放弃项目
                 </button>
                 <div class="account-p-give"
                      ng-show="showCancel">
                     <div class="form-group col-sm-12 col-lg-12 padding-none">
                         <div class="col-sm-12 padding-none" style="margin-top: 10px">
-                            <textarea class="col-sm-12 padding-none" type="text" style="height: 80px;"
-                                      class="form-control"
+                            <textarea class="form-control col-sm-12 padding-none" type="text" style="height: 80px;"
                                       ng-model="comments_give" placeholder="放弃原因"></textarea>
                         </div>
                     </div>
@@ -107,6 +110,8 @@
                     </button>
                 </div>
             </div>
+            <button ng-click="from_trash()" ng-show="class_apply == 'drop'" class="content-btn">还原</button>
+            <button ng-click="delete()" ng-show="class_apply == 'drop'" class="content-btn">彻底删除</button>
             <span>共有{{pages.totalCount || 0}}家企业申请，每页显示{{pages.pageSize || 0}}条</span>
             <div class="fr">
                 <input type="text" class="jump-page form-control" maxlength="3" ng-model="goToPage">
