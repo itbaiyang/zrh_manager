@@ -21,6 +21,7 @@ loanApplicationCtrl.controller('LoanApplicationCtrl',
             params: m_params
         }).success(function (d) {
             if (d.returnCode == 0) {
+                console.log(d);
                 $scope.page = d.result;
                 $scope.result_list = d.result.datas;
                 angular.forEach($scope.result_list, function (data) {

@@ -58,7 +58,7 @@
                             <img src="img/tips/day_yellow.png" class="img-size"
                                  ng-show="resultObj.timeOver > 7 &&resultObj.timeOver <= 10">
                             <img src="img/tips/delay.png" class="img-size"
-                                 title="{{resultObj.planTime | date: 'yyyy-MM-dd'}}" ng-show="resultObj.planTime">
+                                 title="到时提醒：{{resultObj.planTime | date: 'yyyy-MM-dd'}}" ng-show="resultObj.planTime">
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-2 padding-none text-center" style="margin-top: -8px">
                             <span class="col-lg-12 col-md-12 col-sm-12">{{resultObj.endDate |date:'yyyy-MM-dd'}}</span>

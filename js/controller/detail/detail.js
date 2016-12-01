@@ -16,6 +16,7 @@ detailAppCtrl.controller('DetailAppCtrl',
                 method: "GET",
                 params: m_params
             }).success(function (d) {
+                console.log(d)
                 $scope.isAllot = d.result.isAllot;
                 $scope.days = d.result.days;
                 $scope.w = d.result.w;
@@ -29,6 +30,7 @@ detailAppCtrl.controller('DetailAppCtrl',
                 $scope.isStop = d.result.isStop;
                 $scope.readonly = d.result.readonly;
                 $scope.type = d.result.type;
+                $scope.date_delay = new Date(d.result.planTime);
                 if (d.result.remark) {
                     $scope.remark = d.result.remark;
                 }
@@ -107,7 +109,7 @@ detailAppCtrl.controller('DetailAppCtrl',
                 method: 'POST',
                 params: params
             }).success(function (d) {
-                // console.log(d);
+                console.log(d);
             });
         };
         /*跳转页面*/
