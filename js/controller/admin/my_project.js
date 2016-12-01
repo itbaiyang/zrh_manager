@@ -3,7 +3,7 @@ myProjectCtrl.controller('MyProjectCtrl',
     ['$http', '$scope', '$state', '$location', '$rootScope', '$stateParams', function ($http, $scope, $state, $location, $rootScope, $stateParams) {
         $scope.showCancel = false; //放弃任务取消理由框显示
         $scope.comments_give = '';  //留言板评论内容
-        console.log($location.$$path);
+        // console.log($location.$$path);
         if ($location.$$path == "/admin/my_project/working") {
             $scope.complete = false;
             $scope.class_apply = 'working'
@@ -29,14 +29,14 @@ myProjectCtrl.controller('MyProjectCtrl',
                 "laji": $scope.laji,
                 "complete": $scope.complete
             };
-            console.log(m_params);
+            // console.log(m_params);
             $http({
                 url: api_uri + "applyDeal/list",
                 method: "GET",
                 params: m_params
             }).success(function (d) {
                 if (d.returnCode == 0) {
-                    console.log(d.result.list);
+                    // console.log(d.result.list);
                     $scope.pages = d.result.list;              //分页
                     $scope.result_list = d.result.list.datas; //列表参数
                     $scope.count = d.result.count;            //列表统计
@@ -205,14 +205,14 @@ myProjectCtrl.controller('MyProjectCtrl',
                 "token": $rootScope.login_user.token,
                 "ids": $scope.ids
             };
-            console.log(m_params)
+            // console.log(m_params)
             $http({
                 url: api_uri + "loanApplicationManage/toLaji",
                 method: 'GET',
                 params: m_params
             }).success(function (d) {
                 if (d.returnCode == 0) {
-                    console.log(d);
+                    // console.log(d);
                     $scope.ids = [];
                     $scope.list($scope.pageNo1, 20);
                 }
@@ -230,7 +230,7 @@ myProjectCtrl.controller('MyProjectCtrl',
                 params: m_params
             }).success(function (d) {
                 if (d.returnCode == 0) {
-                    console.log(d);
+                    // console.log(d);
                     $scope.ids = [];
                     $scope.list($scope.pageNo1, 20);
                 }

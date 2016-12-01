@@ -101,13 +101,13 @@ detailAppCtrl.controller('DetailAppCtrl',
                 applyId: $stateParams.id,
                 planTime: $scope.date_delay.getTime()
             };
-            console.log(params);
+            // console.log(params);
             $http({
                 url: api_uri + "inforTemplate/updatePlanTime",
                 method: 'POST',
                 params: params
             }).success(function (d) {
-                console.log(d);
+                // console.log(d);
             });
         };
         /*跳转页面*/
@@ -1064,7 +1064,7 @@ detailAppCtrl.controller('EditApplyCtrl',
                     data: m_params,
                     traditional: true,
                     success: function (data, textStatus, jqXHR) {
-                        console.log(data);
+                        // console.log(data);
                         if (data.returnCode == 0) {
                             $rootScope.successMsg = "修改成功";
                             $rootScope.fadeInOut("#alert", 500);
@@ -1157,7 +1157,7 @@ detailAppCtrl.controller('DistributeCtrl',
             }).success(function (d) {
                 if (d.returnCode == 0) {
                     $scope.bank_man_list = d.result.datas;
-                    console.log($scope.bank_man_list)
+                    // console.log($scope.bank_man_list)
                 }
                 else {
                 }
