@@ -71,6 +71,10 @@
         <li class="list-bottom">
             <button class="content-btn" ng-click="delete()">删除</button>
             <span>共有{{page.totalCount || 0}}家企业申请，每页显示{{page.pageSize || 0}}条</span>
+            <div class="fr">
+                <input type="text" class="jump-page form-control" maxlength="3" ng-model="goToPage">
+                <button ng-click="changePage(goToPage)" class="btn-grey" style="margin-left: 10px">跳转</button>
+            </div>
             <ul class="pagination fr" style="margin: 0">
                 <li>
                     <a aria-label="Previous" ng-click="changePage(1)">
@@ -94,6 +98,7 @@
                     </a>
                 </li>
             </ul>
+
         </li>
     </ul>
 </div>
