@@ -31,8 +31,8 @@
                 <ul class="dropdown-menu btn-drop col-xs-11 col-sm-11 col-md-11 col-lg-11">
                     <li class="btn-dropDetail" ng-click="choiceProduct(product.id,product.name,product.type)"
                         ng-repeat="product in product_list">
-                        <span ng-show="product.type == 2" style="color: red">{{product.name}}</span>
-                        <span ng-hide="product.type == 2">{{product.name}}</span>
+                        <!--<span ng-show="product.type == 2" style="color: red">{{product.name}}</span>-->
+                        <span>{{product.name}}</span>
                     </li>
                 </ul>
             </div>

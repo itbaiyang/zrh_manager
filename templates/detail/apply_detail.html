@@ -4,7 +4,8 @@
         <div class="fr" ng-show="isOp == true && readonly == false && isStop == false">
             <button ng-show="isAllot" class="btn-grey margin-left-15 fr">已经递交</button>
             <div ng-hide="isAllot" class="btn-group padding-none fr">
-                <button class="btn-blue margin-left-15" type="button" ng-click="distribute(id)">递交资料
+                <button class="btn-blue margin-left-15" ng-show="status != 0" type="button" ng-click="distribute(id)">
+                    递交资料
                 </button>
             </div>
             <button class="btn-grey" ng-show="w == true" ng-click="change_register(id)">注册人变更</button>

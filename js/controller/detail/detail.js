@@ -16,7 +16,7 @@ detailAppCtrl.controller('DetailAppCtrl',
                 method: "GET",
                 params: m_params
             }).success(function (d) {
-                console.log(d)
+                console.log(d);
                 $scope.isAllot = d.result.isAllot;
                 $scope.days = d.result.days;
                 $scope.w = d.result.w;
@@ -346,7 +346,7 @@ detailAppCtrl.controller('EditApplyCtrl',
                 params: m_params
             }).success(function (d) {
                 $scope.basic = d.result.baseInfo;
-                $scope.type = d.result.type;
+                $scope.type = $scope.basic.productType;
                 $scope.registerLinkmanName = d.result.registerLinkmanName;
                 $scope.registerLinkmanMobile = d.result.registerLinkmanMobile;
                 $scope.model_list = d.result.templateList;
@@ -1244,6 +1244,7 @@ detailAppCtrl.controller('ApplyHelpCtrl',
                 params: m_params
             }).success(function (d) {
                 if (d.returnCode == 0) {
+                    console.log(d)
                     $scope.bankName = d.result.bankName;
                     $scope.productName = d.result.productName;
                     $scope.productId = d.result.productId;

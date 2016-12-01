@@ -226,6 +226,7 @@ loanApplicationCtrl.controller('AddCompanyCtrl',
             "productType": $scope.productType,
             "productId": $scope.productId
         };
+        console.log(m_params)
         $.ajax({
                 type: 'POST',
             url: api_uri + "loanApplicationManage/apply",
@@ -234,7 +235,8 @@ loanApplicationCtrl.controller('AddCompanyCtrl',
                 traditional: true,
                 success: function (data, textStatus, jqXHR) {
                     if (data.returnCode == 0) {
-                        $state.go("admin.company_message");
+                        console.log(data);
+                        $state.go("admin.my_project");
                         $scope.$apply();
                     } else if (data.returnCode == 1001) {
                         alert("该公司信息已经存在");
