@@ -251,6 +251,7 @@ myProjectCtrl.controller('MyProjectCtrl',
                 data: m_params,
                 traditional: true,
                 success: function (data, textStatus, jqXHR) {
+                    console.log(data);
                     if (data.returnCode == 0) {
                         $('.line-roll').scrollTop(scroll);
                         $scope.list($scope.pageNo1, 20);
