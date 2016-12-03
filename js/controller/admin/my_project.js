@@ -8,7 +8,8 @@ myProjectCtrl.controller('MyProjectCtrl',
             $scope.complete = false;
             $scope.class_apply = 'working'
         } else if ($location.$$path == "/admin/my_project/finished") {
-            $scope.status = 7;
+            // $scope.status = 7;
+            $scope.complete = true;
             $scope.class_apply = 'finished'
         } else {
             $scope.status = '';
