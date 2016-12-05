@@ -70,6 +70,7 @@ app.run(['$location', '$rootScope', '$timeout', '$http', function ($location, $r
     $rootScope.qiniu_bucket_domain = "o793l6o3p.bkt.clouddn.com";
     $rootScope.$on('$stateChangeSuccess',
         function (event, toState, toParams, fromState, fromParams) {
+            $rootScope.login_user = $rootScope.getObject("login_user_manage");
             var to_url = $location.absUrl().split('#');
             $rootScope.url_detail = to_url[0] + '#/admin/apply/detail/';
             $rootScope.url_edit = to_url[0] + '#/admin/apply/choice_sale/';
@@ -223,6 +224,7 @@ app.run(['$location', '$rootScope', '$timeout', '$http', function ($location, $r
 
     $rootScope.check_user = function () {
         $rootScope.login_user = $rootScope.getObject("login_user_manage");
+        console.log($rootScope.login_user);
         if ($rootScope.login_user) {
             $http({
                 url: api_uri + "p/user/validateAuth",
