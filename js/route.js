@@ -46,7 +46,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
         })
 
         .state('super.company', {
-            url: '/company',
+            url: '/company/:page/:wd',
             views: {
                 'main@super': {
                     templateUrl: templates_root + 'super/product_service/company_list/company.html',
@@ -55,11 +55,11 @@ app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
             }
         })
 
-        .state('super.company.detail', {
-            url: '/detail',
+        .state('super.companyDetail', {
+            url: '/companyDetail/:id',
             views: {
                 'main@super': {
-                    templateUrl: templates_root + 'super/product_service/company_list/detail.html',
+                    templateUrl: templates_root + 'super/product_service/company_list/company_detail.html',
                     controller: 'CompanyDetailCtrl'
                 }
             }

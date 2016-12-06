@@ -5,14 +5,14 @@
     <p class="side-bar-class">产品与服务</p>
     <ul style="width: 100%">
         <a ng-class="{'side-bar-link':choiceColor !='company', 'side-bar-select':choiceColor =='company'}"
-           ng-show="role == 'super'" ui-sref="super.company">
+           ng-show="role == 'super'" ui-sref="super.company({'page':companyParams.page, 'wd':companyParams.wd})">
             <img src="./img/icon/company.png" class="margin-right-15" title="企业信息中心">
             企业信息中心
         </a>
 
         <a ng-class="{'side-bar-link':choiceColor !='apply_list', 'side-bar-select':choiceColor =='apply_list'}"
            ng-show="role == 'super'" ui-sref="super.apply_list">
-            <img src="./img/icon/my_product.png" class="margin-right-15" title="企业申请">
+            <img src="./img/icon/my_project.png" class="margin-right-15" title="企业申请">
             企业申请
         </a>
 

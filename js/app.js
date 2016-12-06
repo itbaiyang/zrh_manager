@@ -75,10 +75,11 @@ app.run(['$location', '$rootScope', '$timeout', '$http', function ($location, $r
             var to_url = $location.absUrl().split('#');
             $rootScope.url_detail = to_url[0] + '#/admin/apply/detail/';
             $rootScope.url_edit = to_url[0] + '#/admin/apply/choice_sale/';
+            $rootScope.companyParams = $rootScope.getSessionObject('companyParams')
         });
     // 页面跳转前
     $rootScope.$on('$stateChangeStart',
-        function (event, toState) {
+        function (event, toState, toParams, fromState, fromParams) {
             var present_route = toState.name;
             $rootScope.arrayParams = present_route.split(".");
             var array = present_route.split(".");
@@ -104,7 +105,13 @@ app.run(['$location', '$rootScope', '$timeout', '$http', function ($location, $r
             } else {
                 $location.path($location.$$path);
             }
-
+            // console.log(fromState, fromParams);
+            // console.log(toState, toParams);
+            if (fromState.name == "^" && toState.name == "super.company") {
+                $rootScope.putSessionObject('companyParams', toParams)
+            } else if (fromState.name == "super.company") {
+                $rootScope.putSessionObject('companyParams', fromParams)
+            }
         });
     /*********************************** 公用方法区 ***************************************/
 
@@ -225,7 +232,6 @@ app.run(['$location', '$rootScope', '$timeout', '$http', function ($location, $r
 
     $rootScope.check_user = function () {
         $rootScope.login_user = $rootScope.getObject("login_user_manage");
-        console.log($rootScope.login_user);
         if ($rootScope.login_user) {
             $http({
                 url: api_uri + "p/user/validateAuth",

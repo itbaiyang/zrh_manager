@@ -184,10 +184,13 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 .detail-container {
+    position: relative;
     width: 100%;
     padding: 0 15px;
     height: 100%;
     overflow: auto;
+    z-index: 200;
+    background: #ffffff;
 }
 
 .contains-home {

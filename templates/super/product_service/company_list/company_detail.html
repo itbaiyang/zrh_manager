@@ -1,3 +1,19 @@
-<div class="content-two" style="padding-left: 15px">
-    <div class="content-title"><span>公司信息</span></div>
+<div class="detail-container">
+    <div class="content-title">
+        <span>公司信息</span>
+        <div class="fr">
+            <button class="btn btn-grey fr">
+                <a ui-sref="super.company({'page':companyParams.page, 'wd':companyParams.wd})">返回</a>
+            </button>
+        </div>
+    </div>
+    <!--<p class="create-title">基本内容</p>-->
+    <div class="detail-style row" ng-show="basic.company_name">
+        <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">企业全称：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{basic.company_name}}</div>
+    </div>
+    <div class="detail-style row" ng-show="basic.business_type">
+        <p class="col-sm-2 col-md-2 col-lg-2 text-right">企业类型：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{basic.business_type}}</div>
+    </div>
 </div>
