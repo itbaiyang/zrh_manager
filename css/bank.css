@@ -43,18 +43,26 @@
 }
 
 .bank-content-name {
+    width: 114px;
     height: 24px;
     line-height: 24px;
     font-size: 16px;
     font-weight: 400;
     color: #000000;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .bank-content-detail {
+    width: 114px;
     height: 30px;
     line-height: 30px;
     font-size: 14px;
     color: #cccccc;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .bank-set-name {

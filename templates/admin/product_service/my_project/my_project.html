@@ -4,14 +4,13 @@
         <div class="col-sm-4 col-md-4 col-lg-4 padding-none">
             <input type="text" class="form-control" placeholder="搜索企业名称" ng-model="search_text">
         </div>
-        <div class="col-sm-1 col-md-1 col-lg-1 padding-none">
+        <div class="col-sm-2 col-md-2 col-lg-2 padding-none">
             <button class="btn-blue margin-left-15" ng-click="search()" type="button">搜索</button>
         </div>
         <button class="fr btn-blue margin-left-15" ui-sref="admin.company_message.add_company"
-                type="submit" ng-show="class_apply == 'working'">
-            <img class="btn-blueImg">添加申请
+                type="submit" ng-show="class_apply == 'working'">添加申请
         </button>
-        <button class="btn-grey fr" ng-click="refresh()" type="submit"><img class="btn-greyImg"> 刷新</button>
+        <button class="btn-grey fr" ng-click="refresh()" type="submit">刷新</button>
     </div>
     <li class="list-title">
         <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 padding-none">

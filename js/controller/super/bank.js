@@ -418,7 +418,7 @@ bankCtrl.controller('UpdateBankCtrl',
     $scope.init();
 
     /*更新银行数据*/
-    $scope.update = function (id) {
+        $scope.submitAdd = function (id) {
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -432,8 +432,8 @@ bankCtrl.controller('UpdateBankCtrl',
             data: m_params,
             traditional: true,
             success: function (data, textStatus, jqXHR) {
+                console.log(data)
                 if (data.returnCode == 0) {
-                    ;
                     $state.go("super.bank");
                     $scope.$apply();
                 }

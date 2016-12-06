@@ -4,10 +4,10 @@
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 padding-none">
             <input type="text" class="form-control" placeholder="搜索企业名称" ng-model="search_text">
         </div>
-        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
             <button class=" btn-blue" ng-click="search()" type="button">搜索</button>
         </div>
-        <button class="btn-grey fr" ng-click="refresh()" type="submit"><img class="btn-greyImg"> 刷新</button>
+        <button class="btn-grey fr" ng-click="refresh()" type="submit">刷新</button>
     </div>
     <li class="list-title">
         <!--<span class="col-xs-4 col-lg-4 col-md-4">企业名称或个人</span>-->
@@ -73,7 +73,7 @@
                         <span aria-hidden="true">&lsaquo;</span>
                     </a>
                 </li>
-                <li><a ng-click="changePage(page.pageNo)">{{page.pageNo}}</a></li>
+                <li><a ng-click="changePage(page.pageNo)">{{page.pageNo || '0'}}</a></li>
                 <li>
                     <a aria-label="Next" ng-click="changePage(page.nextPage)">
                         <span aria-hidden="true">&rsaquo;</span>

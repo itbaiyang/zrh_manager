@@ -5,15 +5,15 @@
         </a>
     </div>
     <div class="nav-right fr">
-        <span class="nav-list" ng-click="go_home()">直融号企业管理平台</span>
+        <span class="nav-common nav-title" ng-click="go_home()">直融号企业管理平台</span>
         <ul class="fr">
-            <li class="nav-list" ui-sref="admin.message.bank" ng-hide="role == 'super'">
+            <li class="nav-common nav-message" ui-sref="admin.message.bank" ng-hide="role == 'super'">
                 <span class="btn-blue-img img-message"></span>
                 <span class="nav-list1" ng-show="count">{{count}}</span>
             </li>
-            <li class="dropdown nav-list" style="color: #ffffff">
+            <li class="dropdown nav-common nav-list" style="color: #ffffff">
                 <a style="color: #ffffff" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                   aria-haspopup="true" aria-expanded="false">{{role_manage.empNo}}<span class="caret"></span></a>
+                   aria-haspopup="true" aria-expanded="false">{{role_manage.name}}<span class="caret"></span></a>
                 <ul class="dropdown-menu ">
                     <li><a ng-click="exit()">退出</a></li>
                 </ul>

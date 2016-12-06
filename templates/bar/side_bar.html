@@ -18,7 +18,7 @@
 
         <a ng-class="{'side-bar-link':choiceColor !='manage', 'side-bar-select':choiceColor =='manage'}"
            ng-show="role == 'super'" ui-sref="super.manage">
-            <img src="./img/icon/sale_manage.png" class="margin-right-15" title="职员管理">
+            <img src="./img/icon/manage.png" class="margin-right-15" title="职员管理">
             职员管理
         </a>
 
@@ -37,13 +37,13 @@
 
         <a ng-class="{'side-bar-link':choiceColor !='product', 'side-bar-select':choiceColor =='product'}"
            ng-show="role == 'super'" ui-sref="super.product">
-            <img src="./img/icon/company.png" alt="" title="金融产品">
+            <img src="./img/icon/manage.png" class="margin-right-15" title="金融产品">
             金融产品
         </a>
 
         <a ng-class="{'side-bar-link':choiceColor !='signUp', 'side-bar-select':choiceColor =='signUp'}"
            ng-show="role == 'super'" ui-sref="super.signUp">
-            <span class="btn-blue-img" data-toggle="tooltip" data-placement="right" title="注册用户"></span>
+            <img src="./img/icon/manage.png" class="margin-right-15" title="注册用户">
             注册用户
         </a>
 
@@ -61,7 +61,7 @@
 
         <a ng-class="{'side-bar-link':choiceColor !='bank', 'side-bar-select':choiceColor =='bank'}"
            ng-show="role == 'super'" ui-sref="super.bank">
-            <span class="btn-blue-img" data-toggle="tooltip" data-placement="right" title="合作银行"></span>
+            <img src="./img/icon/bank.png" class="margin-right-15" title="合作银行">
             合作银行
         </a>
 
@@ -144,10 +144,6 @@
         <li style="text-indent: 40px">
             <a class="side-bar-content-2" ng-class="{'side-bar-link-2':choiceColorTwo =='bank'}"
                ui-sref="admin.message.bank">
-                <!--<div style="display: inline-block;width: 30px;height: 40px;position: relative">-->
-                <!--&lt;!&ndash;<img class="btn-blue-img">&ndash;&gt;-->
-                <!--<span class="nav-list2" ng-show="bank_message > 0">{{bank_message}}</span>-->
-                <!--</div>-->
                 银行消息
                 <span class="nav-list-item" ng-show="bank_message > 0">{{bank_message}}</span>
             </a>
