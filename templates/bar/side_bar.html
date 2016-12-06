@@ -4,49 +4,85 @@
     </p>
     <p class="side-bar-class">产品与服务</p>
     <ul style="width: 100%">
-        <a class="side-bar-link" ng-class="{'side-bar-select':choiceColor =='apply_list'}" ng-show="role == 'super'"
-           ui-sref="super.apply_list">
-            <span class="btn-blue-img" data-toggle="tooltip" data-placement="right" title="企业信息中心"></span>
-            企业信息中心</a>
-        <a class="side-bar-link" ng-class="{'side-bar-select':choiceColor =='manage'}" ng-show="role == 'super'"
-           ui-sref="super.manage">
-            <span class="btn-blue-img" data-toggle="tooltip" data-placement="right" title="职员管理"></span>
-            职员管理</a>
-        <a class="side-bar-link" ng-class="{'side-bar-select':choiceColor =='team'}" ng-show="role == 'super'"
-           ui-sref="super.team">
-            <span class="btn-blue-img" data-toggle="tooltip" data-placement="right" title="团队管理"></span>团队管理</a>
-        <a class="side-bar-link" ng-class="{'side-bar-select':choiceColor =='company_message'}"
-           ng-show="role == 'admin' || role == 'manager'"
-           ui-sref="admin.company_message({page:1,wd:'',status:'',scroll:0})">
-            <span class="btn-blue-img" data-toggle="tooltip" data-placement="right" title="企业信息中心"></span>企业信息中心</a>
-        <a class="side-bar-link" ng-class="{'side-bar-select':choiceColor =='product'}" ng-show="role == 'super'"
-           ui-sref="super.product">
-            <span class="btn-blue-img" data-toggle="tooltip" data-placement="right" title="金融产品"></span>金融产品</a>
-        <a class="side-bar-link" ng-class="{'side-bar-select':choiceColor =='signUp'}" ng-show="role == 'super'"
-           ui-sref="super.signUp">
-            <span class="btn-blue-img" data-toggle="tooltip" data-placement="right" title="注册用户"></span>注册用户</a>
-        <a class="side-bar-link" ng-class="{'side-bar-select':choiceColor =='my_project'}"
-           ui-sref="admin.my_project.working"
-           ng-show="role == 'admin' || role == 'manager'">
-            <span class="btn-blue-img" data-toggle="tooltip" data-placement="right" title="我的项目"></span>
-            我的项目</a>
-        <a class="side-bar-link" ng-class="{'side-bar-select':choiceColor =='user_list'}" ng-show="role == 'manager'"
-           ui-sref="admin.user_list">
-            <span class="btn-blue-img" data-toggle="tooltip" data-placement="right" title="销售管理"></span>销售管理</a>
-        <a class="side-bar-link" ng-class="{'side-bar-select':choiceColor =='bank'}" ng-show="role == 'super'"
-           ui-sref="super.bank">
-            <span class="btn-blue-img" data-toggle="tooltip" data-placement="right" title="合作银行"></span>合作银行</a>
-        <a class="side-bar-link" ng-class="{'side-bar-select':choiceColor =='setting'}" ng-show="role == 'super'"
-           ui-sref="super.setting">
-            <span class="btn-blue-img" data-toggle="tooltip" data-placement="right" title="系统设置"></span>系统设置</a>
-        <a class="side-bar-link" ng-class="{'side-bar-select':choiceColor =='channel'}"
-           ng-show="role == 'admin' || role == 'manager'"
-           ui-sref="admin.channel">
-            <span class="btn-blue-img" data-toggle="tooltip" data-placement="right" title="渠道信息"></span>渠道信息</a>
-        <a class="side-bar-link" ng-class="{'side-bar-select':choiceColor =='share'}"
-           ng-show="role == 'admin' || role == 'manager'"
-           ui-sref="admin.share">
-            <span class="btn-blue-img" data-toggle="tooltip" data-placement="right" title="分享统计"></span>分享统计</a>
+        <a ng-class="{'side-bar-link':choiceColor !='company', 'side-bar-select':choiceColor =='company'}"
+           ng-show="role == 'super'" ui-sref="super.company">
+            <img src="./img/icon/company.png" class="margin-right-15" title="企业信息中心">
+            企业信息中心
+        </a>
+
+        <a ng-class="{'side-bar-link':choiceColor !='apply_list', 'side-bar-select':choiceColor =='apply_list'}"
+           ng-show="role == 'super'" ui-sref="super.apply_list">
+            <img src="./img/icon/my_product.png" class="margin-right-15" title="企业申请">
+            企业申请
+        </a>
+
+        <a ng-class="{'side-bar-link':choiceColor !='manage', 'side-bar-select':choiceColor =='manage'}"
+           ng-show="role == 'super'" ui-sref="super.manage">
+            <img src="./img/icon/sale_manage.png" class="margin-right-15" title="职员管理">
+            职员管理
+        </a>
+
+        <a ng-class="{'side-bar-link':choiceColor !='team', 'side-bar-select':choiceColor =='team'}"
+           ng-show="role == 'super'" ui-sref="super.team">
+            <img src="./img/icon/sale_manage.png" class="margin-right-15" title="职员管理">
+            团队管理
+        </a>
+
+        <a ng-class="{'side-bar-link':choiceColor !='company_message','side-bar-select':choiceColor =='company_message'}"
+           ng-show="role == 'admin' || role == 'manager'" ui-sref="admin.company_message">
+            <!--<span class="btn-blue-img" data-toggle="tooltip" data-placement="right" title="企业信息中心"></span>-->
+            <img src="./img/icon/company.png" class="margin-right-15" title="企业信息中心">
+            企业信息中心
+        </a>
+
+        <a ng-class="{'side-bar-link':choiceColor !='product', 'side-bar-select':choiceColor =='product'}"
+           ng-show="role == 'super'" ui-sref="super.product">
+            <img src="./img/icon/company.png" alt="" title="金融产品">
+            金融产品
+        </a>
+
+        <a ng-class="{'side-bar-link':choiceColor !='signUp', 'side-bar-select':choiceColor =='signUp'}"
+           ng-show="role == 'super'" ui-sref="super.signUp">
+            <span class="btn-blue-img" data-toggle="tooltip" data-placement="right" title="注册用户"></span>
+            注册用户
+        </a>
+
+        <a ng-class="{'side-bar-link':choiceColor !='my_project', 'side-bar-select':choiceColor =='my_project'}"
+           ui-sref="admin.my_project.working" ng-show="role == 'admin' || role == 'manager'">
+            <img src="./img/icon/my_product.png" class="margin-right-15" title="我的项目">
+            我的项目
+        </a>
+
+        <a ng-class="{'side-bar-link':choiceColor !='user_list', 'side-bar-select':choiceColor =='user_list'}"
+           ng-show="role == 'manager'" ui-sref="admin.user_list">
+            <img src="./img/icon/sale_manage.png" class="margin-right-15" title="销售管理">
+            销售管理
+        </a>
+
+        <a ng-class="{'side-bar-link':choiceColor !='bank', 'side-bar-select':choiceColor =='bank'}"
+           ng-show="role == 'super'" ui-sref="super.bank">
+            <span class="btn-blue-img" data-toggle="tooltip" data-placement="right" title="合作银行"></span>
+            合作银行
+        </a>
+
+        <a ng-class="{'side-bar-link':choiceColor !='setting', 'side-bar-select':choiceColor =='setting'}"
+           ng-show="role == 'super'" ui-sref="super.setting">
+            <img src="./img/icon/setting.png" class="margin-right-15" title="系统设置">
+            系统设置
+        </a>
+
+        <a ng-class="{'side-bar-link':choiceColor !='channel', 'side-bar-select':choiceColor =='channel'}"
+           ng-show="role == 'admin' || role == 'manager'" ui-sref="admin.channel">
+            <img src="./img/icon/channel.png" class="margin-right-15" title="渠道信息">
+            渠道信息
+        </a>
+
+        <a ng-class="{'side-bar-link':choiceColor !='share', 'side-bar-select':choiceColor =='share'}"
+           ng-show="role == 'admin' || role == 'manager'" ui-sref="admin.share">
+            <img src="./img/icon/share.png" class="margin-right-15" title="分享统计">
+            分享统计
+        </a>
+
         <div class="tooltip right" role="tooltip">
             <div class="tooltip-arrow"></div>
             <div class="tooltip-inner">
@@ -56,69 +92,76 @@
     </ul>
     <p class="side-bar-class" ng-show="role == 'admin' || role == 'manager'">个人中心</p>
     <ul>
-        <a class="side-bar-link" ng-class="{'side-bar-select':choiceColor =='account'}"
-           ng-show="role == 'admin'  || role == 'manager'"
-           ui-sref="admin.account">
-            <span class="btn-blue-img img-setting" data-toggle="tooltip" data-placement="right" title="账号管理"></span>账号管理</a>
+        <a ng-class="{'side-bar-link':choiceColor !='account', 'side-bar-select':choiceColor =='account'}"
+           ng-show="role == 'admin'  || role == 'manager'" ui-sref="admin.account">
+            <img src="./img/icon/setting.png" class="margin-right-15" title="账号管理">
+            账号管理
+        </a>
     </ul>
     <ul>
-        <a class="side-bar-link" ng-class="{'side-bar-select':choiceColor =='message'}"
-           ng-show="role == 'admin'  || role == 'manager'"
-           ui-sref="admin.message.bank">
-            <span class="btn-blue-img img-message" data-toggle="tooltip" data-placement="right" title="消息中心"></span>
-            <span class="nav-list2" style="left: 25px" ng-show="count > 0">{{count}}</span>消息中心
+        <a ng-class="{'side-bar-link':choiceColor !='message', 'side-bar-select':choiceColor =='message'}"
+           ng-show="role == 'admin'  || role == 'manager'" ui-sref="admin.message.bank">
+            <img src="./img/icon/message.png" class="margin-right-15" title="消息中心">
+            <span class="nav-list2" ng-show="count > 0"></span>
+            消息中心
         </a>
     </ul>
 </div>
+
 <div class="side-menu-2 fl" ng-show="sideTwo">
     <p class="model-title-2" ng-show="choiceColor =='my_project'">我的项目</p>
-    <ul style="text-align: center" ng-show="choiceColor =='my_project'">
-        <li style="text-align: center;">
+    <ul ng-show="choiceColor =='my_project'">
+        <li style="text-indent: 40px">
             <a class="side-bar-content-2" ng-class="{'side-bar-link-2':choiceColorTwo =='working'}"
                ui-sref="admin.my_project.working">
-                <div style="display: inline-block;width: 30px;height: 40px;position: relative">
-                    <img class="btn-blue-img">
-                </div>
+                <!--<div style="display: inline-block;width: 30px;height: 40px;position: relative">-->
+                <!--<img class="btn-blue-img">-->
+                <!--</div>-->
                 进行中
             </a>
         </li>
-        <li style="text-align: center">
+        <li style="text-indent: 40px">
             <a class="side-bar-content-2" ng-class="{'side-bar-link-2':choiceColorTwo =='finished'}"
                ui-sref="admin.my_project.finished">
-                <div style="display: inline-block;width: 30px;height: 40px;position: relative">
-                    <img class="btn-blue-img">
-                </div>
-                已完成</a>
+                <!--<div style="display: inline-block;width: 30px;height: 40px;position: relative">-->
+                <!--<img class="btn-blue-img">-->
+                <!--</div>-->
+                已完成
+            </a>
         </li>
-        <li style="text-align: center">
+        <li style="text-indent: 40px">
             <a class="side-bar-content-2" ng-class="{'side-bar-link-2':choiceColorTwo =='drop'}"
                ui-sref="admin.my_project.drop">
-                <div style="display: inline-block;width: 30px;height: 40px;position: relative">
-                    <img class="btn-blue-img">
-                </div>
-                垃圾桶</a>
+                <!--<div style="display: inline-block;width: 30px;height: 40px;position: relative">-->
+                <!--<img class="btn-blue-img">-->
+                <!--</div>-->
+                垃圾桶
+            </a>
         </li>
     </ul>
     <p class="model-title-2" ng-show="choiceColor =='message'">消息中心</p>
-    <ul style="text-align: center" ng-show="choiceColor =='message'">
-        <li style="text-align: center;">
+    <ul ng-show="choiceColor =='message'">
+        <li style="text-indent: 40px">
             <a class="side-bar-content-2" ng-class="{'side-bar-link-2':choiceColorTwo =='bank'}"
                ui-sref="admin.message.bank">
-                <div style="display: inline-block;width: 30px;height: 40px;position: relative">
-                    <img class="btn-blue-img">
-                    <span class="nav-list2" ng-show="bank_message > 0">{{bank_message}}</span>
-                </div>
+                <!--<div style="display: inline-block;width: 30px;height: 40px;position: relative">-->
+                <!--&lt;!&ndash;<img class="btn-blue-img">&ndash;&gt;-->
+                <!--<span class="nav-list2" ng-show="bank_message > 0">{{bank_message}}</span>-->
+                <!--</div>-->
                 银行消息
+                <span class="nav-list-item" ng-show="bank_message > 0">{{bank_message}}</span>
             </a>
         </li>
-        <li style="text-align: center">
+        <li style="text-indent: 40px">
             <a class="side-bar-content-2" ng-class="{'side-bar-link-2':choiceColorTwo =='system'}"
                ui-sref="admin.message.system">
-                <div style="display: inline-block;width: 30px;height: 40px;position: relative">
-                    <img class="btn-blue-img">
-                    <span class="nav-list2" ng-show="system_message > 0">{{system_message}}</span>
-                </div>
-                系统消息</a>
+                <!--<div style="display: inline-block;width: 30px;height: 40px;position: relative">-->
+                <!--&lt;!&ndash;<img class="btn-blue-img">&ndash;&gt;-->
+                <!--<span class="nav-list2" ng-show="system_message > 0">{{system_message}}</span>-->
+                <!--</div>-->
+                <span class="nav-list-item" ng-show="system_message > 0">{{system_message}}</span>
+                系统消息
+            </a>
         </li>
     </ul>
 </div>

@@ -1380,7 +1380,7 @@ detailAppCtrl.controller('ChangeRegisterCtrl',
                 "userId": $rootScope.login_user.userId,
                 "token": $rootScope.login_user.token,
                 "applyId": $stateParams.id,
-                "mobile": $scope.phone,
+                "mobile": $scope.phone
             };
             $.ajax({
                 type: 'POST',
@@ -1401,7 +1401,7 @@ detailAppCtrl.controller('ChangeRegisterCtrl',
                         alert("未知错误");
                     }
                 },
-                dataType: 'json',
+                dataType: 'json'
             });
         };
     }]);
@@ -1414,7 +1414,7 @@ detailAppCtrl.controller('MessageCtrl',
             var m_params = {
                 "userId": $rootScope.login_user.userId,
                 "token": $rootScope.login_user.token,
-                "applyId": $stateParams.id,
+                "applyId": $stateParams.id
             };
             $http({
                 url: api_uri + "apply/comments/list",
@@ -1440,7 +1440,7 @@ detailAppCtrl.controller('ChoiceSaleCtrl',
             var m_params = {
                 "userId": $rootScope.login_user.userId,
                 "token": $rootScope.login_user.token,
-                "applyId": $stateParams.id,
+                "applyId": $stateParams.id
             };
             $http({
                 url: api_uri + "p/user/getSalerByApplyId",
@@ -1457,7 +1457,7 @@ detailAppCtrl.controller('ChoiceSaleCtrl',
         $scope.get_user = function () {
             var m_params = {
                 "userId": $rootScope.login_user.userId,
-                "token": $rootScope.login_user.token,
+                "token": $rootScope.login_user.token
             };
             $http({
                 url: api_uri + "zrh/group/listSalerFromGroup",
@@ -1495,7 +1495,7 @@ detailAppCtrl.controller('ChoiceSaleCtrl',
                     else {
                     }
                 },
-                dataType: 'json',
+                dataType: 'json'
             });
         };
     }]);

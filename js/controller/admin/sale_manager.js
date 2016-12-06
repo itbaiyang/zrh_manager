@@ -8,14 +8,13 @@ saleManagerCtrl.controller('SaleManagerCtrl',
     $scope.list = function () {
         var m_params = {
             "userId": $rootScope.login_user.userId,
-            "token": $rootScope.login_user.token,
+            "token": $rootScope.login_user.token
         };
         $http({
             url: api_uri + "zrh/group/listOtherFromGroup",
             method: "GET",
             params: m_params
         }).success(function (d) {
-            // console.log(d);
             if (d.returnCode == 0) {
                 $scope.user_list = d.result;
                 angular.forEach($scope.user_list, function (data) {
@@ -43,7 +42,7 @@ saleManagerCtrl.controller('SaleManagerCtrl',
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
-            "wd": $scope.wd,
+            "wd": $scope.wd
         };
         $http({
             url: api_uri + "zrh/group/listApplyInGroup",
@@ -96,7 +95,7 @@ saleManagerCtrl.controller('SaleManagerCtrl',
                     console.log(data);
                 }
             },
-            dataType: 'json',
+            dataType: 'json'
         });
 
     };

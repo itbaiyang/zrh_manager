@@ -68,7 +68,7 @@ loginCtrl.controller('LoginCtrl',
             if (d.returnCode == 0) {
                 $rootScope.putObject("role_manage", d.result);
                 if (d.result.role == 'super') {
-                    $location.path("/super");
+                    $location.path("/super/apply_list");
                 } else {
                     $location.path("/admin");
                 }

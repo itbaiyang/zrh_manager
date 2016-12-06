@@ -23,6 +23,10 @@
 .margin-left-15 {
     margin-left: 15px;
 }
+
+.margin-right-15 {
+    margin-right: 15px;
+}
 /*按钮组*/
 .btn-grey {
     height: 31px;
@@ -186,13 +190,13 @@
 
 .img-message {
     border: none;
-    background: url("../img/tips/message.png");
+    background: url("../img/icon/message.png");
     background-size: 100%;
 }
 
 .img-setting {
     border: none;
-    background: url("../img/tips/setting.png");
+    background: url("../img/icon/setting.png");
     background-size: 100%;
 }
 

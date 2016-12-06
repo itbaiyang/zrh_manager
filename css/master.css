@@ -69,8 +69,8 @@
 
 /*二级侧边栏*/
 .content-two {
-    width: calc(100% - 250px);
-    margin-left: 250px;
+    width: calc(100% - 230px);
+    margin-left: 230px;
     position: absolute;
     overflow-x: hidden;
     height: 100%;
@@ -176,7 +176,7 @@
 .model-title-2 {
     width: 100%;
     height: 80px;
-    padding-left: 10px;
+    padding-left: 20px;
     line-height: 80px;
     font-size: 14px;
     background: #eaedf1;

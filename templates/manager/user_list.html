@@ -43,7 +43,7 @@
     </li>
     <ul class="list-group list-ul list-ul-height-1" ng-show="list_show == false">
         <div class="line-roll">
-            <div class="list-out">
+            <div class="list-out" style="border-bottom: 1px solid #ddd">
                 <li class="list-group-item list-user" ng-repeat="company in company_list">
                     <span class="col-sm-3 col-md-3 col-lg-3">{{company.userName}}</span>
 
@@ -57,9 +57,10 @@
                 </li>
             </div>
         </div>
-        <li class="list-bottom">
+        <hr style="width: calc(100% - 17px); margin: 0; border-color: #ddd"/>
+        <!--<li class="list-bottom">-->
             <!--<button class="content-btn" ng-click="cancel()">删除</button>-->
-        </li>
+        <!--</li>-->
     </ul>
 </div>
 </div>
