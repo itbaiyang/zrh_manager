@@ -36,7 +36,10 @@
         </div>
         <li class="list-bottom">
             <button class="content-btn" ng-click="delete()">删除职员</button>
-            <span>共有{{page.totalCount || 0}}位职工，每页显示{{page.pageSize || 0}}位</span>
+            <div class="fr">
+                <input type="text" class="jump-page form-control" maxlength="3" ng-model="goToPage">
+                <button ng-click="changePage(goToPage)" class="btn-grey" style="margin-left: 10px">跳转</button>
+            </div>
             <ul class="pagination fr" style="margin: 0">
                 <li>
                     <a aria-label="Previous" ng-click="changePage(1)">
@@ -60,6 +63,7 @@
                     </a>
                 </li>
             </ul>
+            <p class="fr" style="padding-right: 15px">共有{{page.totalCount || 0}}位职工，每页显示{{page.pageSize || 0}}位</p>
         </li>
     </ul>
 </div>
