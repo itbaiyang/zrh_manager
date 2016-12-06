@@ -62,7 +62,7 @@ companyCtrl.controller('CompanyDetailCtrl',
                 console.log(d);
                 if (d.returnCode == 0) {
                     $scope.companyName = d.result.companyName;
-                    $scope.gongshang = d.result.gongshangInfo; //工商信息
+                    $scope.gongshangInfo = d.result.gongshangInfo; //工商信息
                     $scope.shuiwuInfo = d.result.shuiwuInfo; //税务信息
                     $scope.zibenInfo = d.result.zibenInfo; //资本信息
                     $scope.zhuyaorenyuanInfo = d.result.zhuyaorenyuanInfo; //主要人员

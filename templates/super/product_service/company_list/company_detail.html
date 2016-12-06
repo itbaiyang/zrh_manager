@@ -1,19 +1,262 @@
 <div class="detail-container">
     <div class="content-title">
-        <span>公司信息</span>
+        <!--<span>公司信息</span>-->
+        <span>{{ companyName }}</span>
         <div class="fr">
             <button class="btn btn-grey fr">
                 <a ui-sref="super.company({'page':companyParams.page, 'wd':companyParams.wd})">返回</a>
             </button>
         </div>
     </div>
-    <!--<p class="create-title">基本内容</p>-->
-    <div class="detail-style row" ng-show="basic.company_name">
-        <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">企业全称：</p>
-        <div class="col-sm-10 col-md-10 col-lg-10">{{basic.company_name}}</div>
+    <p class="create-title">工商信息</p>
+    <div class="detail-style row" ng-show="gongshangInfo.registerNum">
+        <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">注册号/统一社会信用代码：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{gongshangInfo.registerNum}}</div>
     </div>
-    <div class="detail-style row" ng-show="basic.business_type">
-        <p class="col-sm-2 col-md-2 col-lg-2 text-right">企业类型：</p>
-        <div class="col-sm-10 col-md-10 col-lg-10">{{basic.business_type}}</div>
+    <div class="detail-style row" ng-show="gongshangInfo.type">
+        <p class="col-sm-2 col-md-2 col-lg-2 text-right">公司类型：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{gongshangInfo.type}}</div>
     </div>
+    <div class="detail-style row" ng-show="gongshangInfo.address">
+        <p class="col-sm-2 col-md-2 col-lg-2 text-right">地址：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{gongshangInfo.address}}</div>
+    </div>
+    <div class="detail-style row" ng-show="gongshangInfo.faren">
+        <p class="col-sm-2 col-md-2 col-lg-2 text-right">法人：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{gongshangInfo.faren}}</div>
+    </div>
+    <div class="detail-style row" ng-show="gongshangInfo.createTime">
+        <p class="col-sm-2 col-md-2 col-lg-2 text-right">成立日期：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{gongshangInfo.createTime}}</div>
+    </div>
+    <div class="detail-style row" ng-show="gongshangInfo.yyqxZi">
+        <p class="col-sm-2 col-md-2 col-lg-2 text-right">营业期限自：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{gongshangInfo.yyqxZi}}</div>
+    </div>
+    <div class="detail-style row" ng-show="gongshangInfo.yyqxZhi">
+        <p class="col-sm-2 col-md-2 col-lg-2 text-right">营业期限至：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{gongshangInfo.yyqxZhi}}</div>
+    </div>
+    <div class="detail-style row" ng-show="gongshangInfo.jyfw">
+        <p class="col-sm-2 col-md-2 col-lg-2 text-right">经营范围：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{gongshangInfo.jyfw}}</div>
+    </div>
+    <div class="detail-style row" ng-show="gongshangInfo.djjg">
+        <p class="col-sm-2 col-md-2 col-lg-2 text-right">登记机关：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{gongshangInfo.djjg}}</div>
+    </div>
+    <div class="detail-style row" ng-show="gongshangInfo.hzrq">
+        <p class="col-sm-2 col-md-2 col-lg-2 text-right">核准日期：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{gongshangInfo.hzrq}}</div>
+    </div>
+    <div class="detail-style row" ng-show="gongshangInfo.status">
+        <p class="col-sm-2 col-md-2 col-lg-2 text-right">登记状态：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{gongshangInfo.status}}</div>
+    </div>
+    <div class="detail-style row" ng-show="gongshangInfo.zczj">
+        <p class="col-sm-2 col-md-2 col-lg-2 text-right">注册资金：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{gongshangInfo.zczj}}</div>
+    </div>
+    <div class="detail-style row" ng-show="gongshangInfo.tzrName">
+        <p class="col-sm-2 col-md-2 col-lg-2 text-right">投资人姓名：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{gongshangInfo.tzrName}}</div>
+    </div>
+    <div class="detail-style row" ng-show="gongshangInfo.dxTime">
+        <p class="col-sm-2 col-md-2 col-lg-2 text-right">吊销日期：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{gongshangInfo.dxTime}}</div>
+    </div>
+    <div class="detail-style row" ng-show="gongshangInfo.fzr">
+        <p class="col-sm-2 col-md-2 col-lg-2 text-right">负责人：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{gongshangInfo.fzr}}</div>
+    </div>
+    <div class="detail-style row" ng-show="gongshangInfo.fzTime">
+        <p class="col-sm-2 col-md-2 col-lg-2 text-right">发着日期：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{gongshangInfo.fzTime}}</div>
+    </div>
+    <div class="detail-style row" ng-show="gongshangInfo.bjgslrq">
+        <p class="col-sm-2 col-md-2 col-lg-2 text-right">本机构设立日期：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{gongshangInfo.bjgslrq}}</div>
+    </div>
+    <div class="detail-style row" ng-show="gongshangInfo.zxswhhr">
+        <p class="col-sm-2 col-md-2 col-lg-2 text-right">执行事务合伙人：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{gongshangInfo.zxswhhr}}</div>
+    </div>
+    <div class="detail-style row" ng-show="gongshangInfo.zxswhhrWpdb">
+        <p class="col-sm-2 col-md-2 col-lg-2 text-right">执行事务合伙人(委派代表)：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{gongshangInfo.zxswhhrWpdb}}</div>
+    </div>
+    <div class="detail-style row" ng-show="gongshangInfo.sxdbrxx">
+        <p class="col-sm-2 col-md-2 col-lg-2 text-right">首席代表人姓名：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{gongshangInfo.sxdbrxx}}</div>  <!--xx --- xm-->
+    </div>
+    <div class="detail-style row" ng-show="gongshangInfo.gd">
+        <p class="col-sm-2 col-md-2 col-lg-2 text-right">股东：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{gongshangInfo.gd}}</div>  <!--xx --- xm-->
+    </div>
+    <div class="detail-style row" ng-show="gongshangInfo.zcxs">
+        <p class="col-sm-2 col-md-2 col-lg-2 text-right">组成形式：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{gongshangInfo.zcxs}}</div>  <!--xx --- xm-->
+    </div>
+    <div class="detail-style row" ng-show="gongshangInfo.jjxz">
+        <p class="col-sm-2 col-md-2 col-lg-2 text-right">经济性质：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{gongshangInfo.jjxz}}</div>  <!--xx --- xm-->
+    </div>
+    <div class="detail-style row" ng-show="gongshangInfo.zzqxz">
+        <p class="col-sm-2 col-md-2 col-lg-2 text-right">驻在期限自：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{gongshangInfo.zzqxz}}</div>  <!--xx --- xm-->
+    </div>
+    <div class="detail-style row" ng-show="gongshangInfo.pcqyMc">
+        <p class="col-sm-2 col-md-2 col-lg-2 text-right">派出企业名称：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{gongshangInfo.pcqyMc}}</div>  <!--xx --- xm-->
+    </div>
+    <div class="detail-style row" ng-show="gongshangInfo.pcqyZcd">
+        <p class="col-sm-2 col-md-2 col-lg-2 text-right">派出企业注册地：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{gongshangInfo.pcqyZcd}}</div>  <!--xx --- xm-->
+    </div>
+    <div class="detail-style row" ng-show="gongshangInfo.gj">
+        <p class="col-sm-2 col-md-2 col-lg-2 text-right">国籍：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{gongshangInfo.gj}}</div>  <!--xx --- xm-->
+    </div>
+    <div class="detail-style row" ng-show="gongshangInfo.lsqy">
+        <p class="col-sm-2 col-md-2 col-lg-2 text-right">隶属企业：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{gongshangInfo.lsqy}}</div>  <!--xx --- xm-->
+    </div>
+    <div class="detail-style row" ng-show="gongshangInfo.jyfwxxbz">
+        <p class="col-sm-2 col-md-2 col-lg-2 text-right">经营范围项下标注：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{gongshangInfo.jyfwxxbz}}</div>  <!--xx --- xm-->
+    </div>
+
+
+    <p class="create-title">税务信息</p>
+    <div class="detail-style row" ng-show="shuiwuInfo.swdjzh">
+        <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">税务登记证号：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{shuiwuInfo.swdjzh}}</div>
+    </div>
+    <div class="detail-style row" ng-show="shuiwuInfo.swdjlx">
+        <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">税务登记类型：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{shuiwuInfo.swdjlx}}</div>
+    </div>
+    <div class="detail-style row" ng-show="shuiwuInfo.djsllx">
+        <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">登记受理类型：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{shuiwuInfo.djsllx}}</div>
+    </div>
+    <div class="detail-style row" ng-show="shuiwuInfo.jydz">
+        <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">经营地址：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{shuiwuInfo.jydz}}</div>
+    </div>
+    <div class="detail-style row" ng-show="shuiwuInfo.scjx">
+        <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">所处街乡：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{shuiwuInfo.scjx}}</div>
+    </div>
+    <div class="detail-style row" ng-show="shuiwuInfo.gdsgghbs">
+        <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">国地税共管户标识：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{shuiwuInfo.gdsgghbs}}</div>
+    </div>
+    <div class="detail-style row" ng-show="shuiwuInfo.lsgx">
+        <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">隶属关系：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{shuiwuInfo.lsgx}}</div>
+    </div>
+    <div class="detail-style row" ng-show="shuiwuInfo.gjbzhy">
+        <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">国家标准行业：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{shuiwuInfo.gjbzhy}}</div>
+    </div>
+    <div class="detail-style row" ng-show="shuiwuInfo.swdjrq">
+        <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">税务登记日期：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{shuiwuInfo.swdjrq}}</div>
+    </div>
+    <div class="detail-style row" ng-show="shuiwuInfo.zgswjg">
+        <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">主管税务机关：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{shuiwuInfo.zgswjg}}</div>
+    </div>
+    <div class="detail-style row" ng-show="shuiwuInfo.nsrStatus">
+        <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">纳税人状态：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{shuiwuInfo.nsrStatus}}</div>
+    </div>
+    <div class="detail-style row" ng-show="shuiwuInfo.nsrName">
+        <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">纳税人名称：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{shuiwuInfo.nsrName}}</div>
+    </div>
+    <div class="detail-style row" ng-show="shuiwuInfo.yb">
+        <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">经营地址邮编：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{shuiwuInfo.yb}}</div>
+    </div>
+    <div class="detail-style row" ng-show="shuiwuInfo.jydzPhone">
+        <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">经营地址联系电话：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{shuiwuInfo.jydzPhone}}</div>
+    </div>
+    <div class="detail-style row" ng-show="shuiwuInfo.zch">
+        <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">注册号：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{shuiwuInfo.zch}}</div>
+    </div>
+    <div class="detail-style row" ng-show="shuiwuInfo.zzjgdm">
+        <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">住址机构代码：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{shuiwuInfo.zzjgdm}}</div>
+    </div>
+    <div class="detail-style row" ng-show="shuiwuInfo.djzclx">
+        <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">登记注册类型：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{shuiwuInfo.djzclx}}</div>
+    </div>
+    <div class="detail-style row" ng-show="shuiwuInfo.qyzywz">
+        <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">企业主页网址：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{shuiwuInfo.qyzywz}}</div>
+    </div>
+    <div class="detail-style row" ng-show="shuiwuInfo.faren">
+        <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">法人名称：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{shuiwuInfo.faren}}</div>
+    </div>
+
+
+
+    <p class="create-title">资本信息</p>
+    <div class="detail-style row" ng-show="zibenInfo.zczb">
+        <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">注册资本：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{zibenInfo.zczb}}</div>
+    </div>
+    <div class="detail-style row" ng-show="zibenInfo.sszb">
+        <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">实收资本：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{zibenInfo.sszb}}</div>
+    </div>
+    <div class="detail-style row" ng-show="zibenInfo.zjczje">
+        <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">实缴出资金额：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{zibenInfo.zjczje}}</div>
+    </div>
+    <div class="detail-style row" ng-show="zibenInfo.zzsjczsj">
+        <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">最终实缴出资时间：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{zibenInfo.zzsjczsj}}</div>
+    </div>
+    <div class="detail-style row" ng-show="zibenInfo.zzrjczsj">
+        <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">最终认缴出资时间：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{zibenInfo.zzrjczsj}}</div>
+    </div>
+
+    <p class="create-title">主要人员信息</p>
+    <table class="table table-hover">
+        <tr>
+            <td>姓名</td>
+            <td>职位</td>
+            <td>性别</td>
+        </tr>
+        <tr ng-repeat="item in zhuyaorenyuanInfo">
+            <td>{{ item.name }}</td>
+            <td>{{ item.position }}</td>
+            <td>{{ item.sex }}</td>
+        </tr>
+    </table>
+
+    <p class="create-title">投资人信息</p>
+    <table class="table table-hover">
+        <tr>
+            <td>投资人名称</td>
+            <td>投资人类型</td>
+            <td>证照类型</td>
+            <td>证照号码</td>
+        </tr>
+        <tr ng-repeat="item in touzirenInfo">
+            <td>{{ item.tzrName }}</td>
+            <td>{{ item.tzrType }}</td>
+            <td>{{ item.zzType }}</td>
+            <td>{{ item.zzNum }}</td>
+        </tr>
+    </table>
+
 </div>
