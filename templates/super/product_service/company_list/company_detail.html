@@ -529,4 +529,20 @@
 
         </div>
     </div>
+
+    <div ng-show="jobInfo.length > 0">
+        <p class="create-title">招聘信息</p>
+        <table class="table table-hover">
+            <tr>
+                <td>职位名称</td>
+                <td>区域</td>
+                <td>职位描述</td>
+            </tr>
+            <tr ng-repeat="item in jobInfo">
+                <td>{{ item.position }}</td>
+                <td>{{ item.city }}</td>
+                <td>{{ item.positionIntroduce }}</td>
+            </tr>
+        </table>
+    </div>
 </div>

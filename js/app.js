@@ -309,7 +309,7 @@ app.run(['$location', '$rootScope', '$timeout', '$http', function ($location, $r
                 $rootScope.count = d.result;
             }
             else {
-                console.log(d);
+                // console.log(d);
             }
         }).error(function (d) {
         })
@@ -328,7 +328,7 @@ app.run(['$location', '$rootScope', '$timeout', '$http', function ($location, $r
                 $rootScope.bank_message = d.result;
             }
             else {
-                console.log(d);
+                // console.log(d);
             }
         }).error(function (d) {
         })
@@ -349,7 +349,7 @@ app.run(['$location', '$rootScope', '$timeout', '$http', function ($location, $r
                 $rootScope.system_message = d.result;
             }
             else {
-                console.log(d);
+                // console.log(d);
             }
         }).error(function (d) {
         })
