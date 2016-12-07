@@ -132,6 +132,20 @@
     margin-bottom: 20px;
 }
 
+.company-nb-title {
+    width: calc(100% - 15px);
+    height: 33px;
+    line-height: 28px;
+    padding: 0 10px;
+    /*border: 1px solid #cccccc;*/
+    color: #777777;
+    font-size: 14px;
+    background: #f6f6f6;
+    margin-bottom: 20px;
+    text-align: center;
+
+}
+
 .create-title > a {
     color: #ffffff;
 }
