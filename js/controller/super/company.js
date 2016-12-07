@@ -17,7 +17,6 @@ companyCtrl.controller('CompanyCtrl',
             "pageSize": pageSize,
             "wd": $scope.wd
         };
-        console.log(m_params);
         $http({
             url: api_uri + "company/query/pageCompanyName",
             method: "GET",
