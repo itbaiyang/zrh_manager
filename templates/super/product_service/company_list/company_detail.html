@@ -259,4 +259,242 @@
         </tr>
     </table>
 
+    <p class="create-title">组织机构代码信息</p>
+    <div class="detail-style row" ng-show="zzjgdmInfo.dmzbfjg">
+        <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">代码证颁发机构：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{zzjgdmInfo.dmzbfjg}}</div>
+    </div>
+    <div class="detail-style row" ng-show="zzjgdmInfo.zzjgdm">
+        <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">组织机构代码：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">{{zzjgdmInfo.zzjgdm}}</div>
+    </div>
+
+
+    <p class="create-title">再投资信息</p>
+    <table class="table table-hover">
+        <tr>
+            <td>投资设立企业或购买股权企业名称</td>
+            <td>注册号/统一社会信用代码</td>
+            <td>法人</td>
+            <td>地址</td>
+        </tr>
+        <tr ng-repeat="item in zaitouziInfo">
+            <td>{{ item.companyName }}</td>
+            <td>{{ item.registerNum }}</td>
+            <td>{{ item.faren }}</td>
+            <td>{{ item.address }}</td>
+        </tr>
+    </table>
+
+    <p class="create-title">出资历史信息</p>
+    <table class="table table-hover">
+        <tr>
+            <td>投资人姓名</td>
+            <td>投资人类型</td>
+            <td>认缴出资金额（万元）</td>
+            <td>认缴出资方式</td>
+            <td>认缴出资时间</td>
+            <td>实缴出资金额（万元）</td>
+            <td>实缴出资方式</td>
+            <td>实缴出资时间</td>
+        </tr>
+        <tr ng-repeat="item in chuzilishiInfo">
+            <td>{{ item.tzrName }}</td>
+            <td>{{ item.tzrType }}</td>
+            <td>{{ item.rjczPrice }}</td>
+            <td>{{ item.rjczType }}</td>
+            <td>{{ item.rjczTime }}</td>
+            <td>{{ item.rjczPrice }}</td>
+            <td>{{ item.rjczType }}</td>
+            <td>{{ item.rjczTime }}</td>
+        </tr>
+    </table>
+
+    <p class="create-title">企业年报</p>
+    <div ng-repeat="item in qiyenianbaoInfo">
+        <p>企业基本信息</p>
+        <div class="detail-style row" ng-show="item.companyBaseInfo.registerNum">
+            <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">注册号/同意社会信用代码：</p>
+            <div class="col-sm-10 col-md-10 col-lg-10">{{item.companyBaseInfo.registerNum}}</div>
+        </div>
+        <div class="detail-style row" ng-show="item.companyBaseInfo.companyName">
+            <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">企业名称：</p>
+            <div class="col-sm-10 col-md-10 col-lg-10">{{item.companyBaseInfo.companyName}}</div>
+        </div>
+        <div class="detail-style row" ng-show="item.companyBaseInfo.phone">
+            <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">联系电话：</p>
+            <div class="col-sm-10 col-md-10 col-lg-10">{{item.companyBaseInfo.phone}}</div>
+        </div>
+        <div class="detail-style row" ng-show="item.companyBaseInfo.zipcode">
+            <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">邮政编码：</p>
+            <div class="col-sm-10 col-md-10 col-lg-10">{{item.companyBaseInfo.zipcode}}</div>
+        </div>
+        <div class="detail-style row" ng-show="item.companyBaseInfo.address">
+            <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">企业通信地址：</p>
+            <div class="col-sm-10 col-md-10 col-lg-10">{{item.companyBaseInfo.address}}</div>
+        </div>
+        <div class="detail-style row" ng-show="item.companyBaseInfo.email">
+            <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">电子邮箱：</p>
+            <div class="col-sm-10 col-md-10 col-lg-10">{{item.companyBaseInfo.email}}</div>
+        </div>
+        <div class="detail-style row" ng-show="item.companyBaseInfo.isGqzr">
+            <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">有限公司本年度是否发生股东股权转让：</p>
+            <div class="col-sm-10 col-md-10 col-lg-10">{{item.companyBaseInfo.isGqzr}}</div>
+        </div>
+        <div class="detail-style row" ng-show="item.companyBaseInfo.status">
+            <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">企业经营状态：</p>
+            <div class="col-sm-10 col-md-10 col-lg-10">{{item.companyBaseInfo.status}}</div>
+        </div>
+        <div class="detail-style row" ng-show="item.companyBaseInfo.isHaveWebsite">
+            <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">是否有网站或网店：</p>
+            <div class="col-sm-10 col-md-10 col-lg-10">{{item.companyBaseInfo.isHaveWebsite}}</div>
+        </div>
+        <div class="detail-style row" ng-show="item.companyBaseInfo.isHaveTzxx">
+            <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">是否有投资信息或购买其他公司股权：</p>
+            <div class="col-sm-10 col-md-10 col-lg-10">{{item.companyBaseInfo.isHaveTzxx}}</div>
+        </div>
+        <div class="detail-style row" ng-show="item.companyBaseInfo.poeopleNum">
+            <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">从业人数：</p>
+            <div class="col-sm-10 col-md-10 col-lg-10">{{item.companyBaseInfo.poeopleNum}}</div>
+        </div>
+
+
+        <p>企业资产状况信息</p>
+        <div class="detail-style row" ng-show="item.qyzczkInfo.zczr">
+            <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">资产总额：</p>
+            <div class="col-sm-10 col-md-10 col-lg-10">{{item.qyzczkInfo.zczr}}</div>
+        </div>
+        <div class="detail-style row" ng-show="item.qyzczkInfo.syzqyhj">
+            <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">所有者权益合计：</p>
+            <div class="col-sm-10 col-md-10 col-lg-10">{{item.qyzczkInfo.syzqyhj}}</div>
+        </div>
+        <div class="detail-style row" ng-show="item.qyzczkInfo.zczr">
+            <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">资产总额：</p>
+            <div class="col-sm-10 col-md-10 col-lg-10">{{item.qyzczkInfo.zczr}}</div>
+        </div>
+        <div class="detail-style row" ng-show="item.qyzczkInfo.lrze">
+            <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">利润总额：</p>
+            <div class="col-sm-10 col-md-10 col-lg-10">{{item.qyzczkInfo.lrze}}</div>
+        </div>
+        <div class="detail-style row" ng-show="item.qyzczkInfo.yyzsrzzyywsr">
+            <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">营业总收入中主营业务收入：</p>
+            <div class="col-sm-10 col-md-10 col-lg-10">{{item.qyzczkInfo.yyzsrzzyywsr}}</div>
+        </div>
+        <div class="detail-style row" ng-show="item.qyzczkInfo.jlr">
+            <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">净利润：</p>
+            <div class="col-sm-10 col-md-10 col-lg-10">{{item.qyzczkInfo.jlr}}</div>
+        </div>
+        <div class="detail-style row" ng-show="item.qyzczkInfo.nsze">
+            <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">纳税总额：</p>
+            <div class="col-sm-10 col-md-10 col-lg-10">{{item.qyzczkInfo.nsze}}</div>
+        </div>
+        <div class="detail-style row" ng-show="item.qyzczkInfo.fzze">
+            <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">负债总额：</p>
+            <div class="col-sm-10 col-md-10 col-lg-10">{{item.qyzczkInfo.fzze}}</div>
+        </div>
+
+        <p>对外提供保证担保信息</p>
+        <table class="table table-hover">
+            <tr>
+                <td>债权人</td>
+                <td>债务人</td>
+                <td>主债权种类</td>
+                <td>主债权数额</td>
+                <td>履行债务的期限</td>
+                <td>保证的期间</td>
+                <td>保证的方式</td>
+                <td>保证担保的范围</td>
+            </tr>
+            <tr ng-repeat="dbxx in item.dwtgdbInfoList">
+                <td>{{ dbxx.zqr }}</td>
+                <td>{{ dbxx.zwr }}</td>
+                <td>{{ dbxx.zzqzl }}</td>
+                <td>{{ dbxx.zzqse }}</td>
+                <td>{{ dbxx.lxzwdqx }}</td>
+                <td>{{ dbxx.bzdqj }}</td>
+                <td>{{ dbxx.bzdfs }}</td>
+                <td>{{ dbxx.bzdbdfw }}</td>
+            </tr>
+        </table>
+
+        <p>对外提供保证担保信息</p>
+        <table class="table table-hover">
+            <tr>
+                <td>投资人设立企业或购买股权企业名称</td>
+                <td>注册号/统一社会信用代码</td>
+            </tr>
+            <tr ng-repeat="dwtz in item.dwtzInfoList">
+                <td>{{ dwtz.companyName }}</td>
+                <td>{{ dwtz.registerNum }}</td>
+            </tr>
+        </table>
+
+        <p>股东变更</p>
+        <table class="table table-hover">
+            <tr>
+                <td>股东</td>
+                <td>变更前股权比例</td>
+                <td>变更后股权比例</td>
+                <td>股权变更日期</td>
+            </tr>
+            <tr ng-repeat="gdbg in item.gdbgInfoList">
+                <td>{{ gdbg.gd }}</td>
+                <td>{{ gdbg.bgqbl }}</td>
+                <td>{{ gdbg.bghbl }}</td>
+                <td>{{ gdbg.bgrq }}</td>
+            </tr>
+        </table>
+
+        <p>股东及出资信息</p>
+        <table class="table table-hover">
+            <tr>
+                <td>投资人名称</td>
+                <td>认缴出资金额（万元）</td>
+                <td>认缴出资方式</td>
+                <td>认缴出资时间</td>
+                <td>实缴出资金额（万元）</td>
+                <td>实缴出资方式</td>
+                <td>实缴出资时间</td>
+            </tr>
+            <tr ng-repeat="gdcz in item.gdczInfoList">
+                <td>{{ gdcz.gdName }}</td>
+                <td>{{ gdcz.rjczPrice }}</td>
+                <td>{{ gdcz.rjczType }}</td>
+                <td>{{ gdcz.rjczTime }}</td>
+                <td>{{ sdcz.rjczPrice }}</td>
+                <td>{{ sdcz.rjczType }}</td>
+                <td>{{ sdcz.rjczTime }}</td>
+            </tr>
+        </table>
+
+        <p>网站或网店信息</p>
+        <table class="table table-hover">
+            <tr>
+                <td>类型</td>
+                <td>名称</td>
+                <td>网址</td>
+            </tr>
+            <tr ng-repeat="gdbg in item.gdbgInfoList">
+                <td>{{ gdbg.type }}</td>
+                <td>{{ gdbg.name }}</td>
+                <td>{{ gdbg.domain }}</td>
+            </tr>
+        </table>
+
+        <p>修改记录</p>
+        <table class="table table-hover">
+            <tr>
+                <td>修改事项</td>
+                <td>修改前</td>
+                <td>修改后</td>
+                <td>修改日期</td>
+            </tr>
+            <tr ng-repeat="xgjl in item.xgjlInfoList">
+                <td>{{ xgjl.xgsx }}</td>
+                <td>{{ xgjl.xgq }}</td>
+                <td>{{ xgjl.xgh }}</td>
+                <td>{{ xgjl.xgrq }}</td>
+            </tr>
+        </table>
+    </div>
 </div>

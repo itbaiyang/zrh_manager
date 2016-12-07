@@ -2,6 +2,13 @@ var companyCtrl = angular.module('companyCtrl', []);
 companyCtrl.controller('CompanyCtrl',
     ['$scope', '$state', '$rootScope', '$http', '$stateParams', function ($scope, $state, $rootScope, $http, $stateParams) {
         $scope.pageNo1 = $stateParams.page;
+        if ($stateParams.wd) {
+            $scope.search_text = decodeURI($stateParams.wd);
+            $scope.wd = decodeURI($stateParams.wd);
+        } else {
+            $scope.search_text = null;
+        }
+        // $scope.wd = decodeURI($stateParams.wd);
     $scope.list = function (pageNo, pageSize) {
         var m_params = {
             "userId": $rootScope.login_user.userId,
@@ -10,11 +17,13 @@ companyCtrl.controller('CompanyCtrl',
             "pageSize": pageSize,
             "wd": $scope.wd
         };
+        console.log(m_params);
         $http({
             url: api_uri + "company/query/pageCompanyName",
             method: "GET",
             params: m_params
         }).success(function (d) {
+            console.log(d)
             if (d.returnCode == 0) {
                 $scope.page = d.result;
                 $scope.result_list = d.result.datas;
@@ -34,11 +43,10 @@ companyCtrl.controller('CompanyCtrl',
             });
         };
 
-        $scope.search_text = null;
         $scope.search = function () {
             $scope.wd = $scope.search_text;
             $state.go('super.company', {
-                'page': $scope.pageNo1,
+                'page': 1,
                 'wd': $scope.search_text
             });
         };
@@ -71,6 +79,7 @@ companyCtrl.controller('CompanyDetailCtrl',
                     $scope.chuzilishiInfo = d.result.chuzilishiInfo; // 出资历史
                     $scope.qiyenianbaoInfo = d.result.qiyenianbaoInfo; //企业年报
                     $scope.jobInfo = d.result.jobInfo; //招聘信息
+                    $scope.zzjgdmInfo = d.result.zzjgdmInfo; //组织机构代码
                 }
                 else {
 
