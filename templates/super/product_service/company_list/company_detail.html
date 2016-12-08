@@ -545,4 +545,18 @@
             </tr>
         </table>
     </div>
+
+    <p class="create-title" ng-show="model_list">其他信息</p>
+    <div class="detail-style row" ng-repeat="template in model_list">
+        <p class="col-sm-2 col-md-2 col-lg-2 text-right">{{template.title}}:</p>
+        <div class="col-sm-10 col-md-10 col-lg-10"
+             ng-hide="template.templateType == 3">{{template.content}}
+        </div>
+        <div ng-show="template.templateType == 3" class="col-sm-10 col-md-10 col-lg-10">
+            <a href="{{list}}" target="_blank" class="apply-detail-link" ng-repeat="list in template.imgList">
+                <img class="apply-detail-img" ng-src="{{list}}">
+            </a>
+            <div>{{template.content}}</div>
+        </div>
+    </div>
 </div>

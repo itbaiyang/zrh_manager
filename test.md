@@ -10,6 +10,7 @@
     <script src="js/controller/login.js"></script>
     <script src="js/controller/top_bar.js"></script>
     <script src="js/controller/super/apply_list.js"></script>
+     <script src="js/controller/super/company.js"></script>
     <script src="js/controller/super/product.js"></script>
     <script src="js/controller/super/manage.js"></script>
     <script src="js/controller/super/team.js"></script>

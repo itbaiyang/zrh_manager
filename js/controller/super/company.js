@@ -9,7 +9,7 @@ companyCtrl.controller('CompanyCtrl',
             $scope.search_text = null;
         }
         // $scope.wd = decodeURI($stateParams.wd);
-    $scope.list = function (pageNo, pageSize) {
+        $scope.list = function (pageNo, pageSize) {
         var m_params = {
             "userId": $rootScope.login_user.userId,
             "token": $rootScope.login_user.token,
@@ -79,6 +79,7 @@ companyCtrl.controller('CompanyDetailCtrl',
                     $scope.qiyenianbaoInfo = d.result.qiyenianbaoInfo; //企业年报
                     $scope.jobInfo = d.result.jobInfo; //招聘信息
                     $scope.zzjgdmInfo = d.result.zzjgdmInfo; //组织机构代码
+                    $scope.get($scope.companyName)
                 }
                 else {
 
@@ -87,5 +88,23 @@ companyCtrl.controller('CompanyDetailCtrl',
                 console.log(d);
             })
         };
-        $scope.detail()
-}]);
+        $scope.detail();
+
+        $scope.get = function (name) {
+            var m_params = {
+                "userId": $rootScope.login_user.userId,
+                "token": $rootScope.login_user.token,
+                "companyName": name
+            };
+            $http({
+                url: api_uri + "inforTemplate/showList",
+                method: "GET",
+                params: m_params
+            }).success(function (d) {
+                // console.log(d);
+                $scope.model_list = d.result;
+            }).error(function (d) {
+                console.log(d);
+            })
+        };
+    }]);
