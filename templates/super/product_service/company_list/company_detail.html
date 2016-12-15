@@ -1,7 +1,7 @@
 <div class="detail-container">
     <div class="content-title">
         <!--<span>公司信息</span>-->
-        <span>{{ companyName }}</span>
+        <span>{{ companyName }} &nbsp;&nbsp; {{ province }} &nbsp;&nbsp; {{ city }} {{ district }}</span>
         <div class="fr">
             <button class="btn btn-grey fr">
                 <a ui-sref="super.company({'page':companyParams.page, 'wd':companyParams.wd})">返回</a>
@@ -11,7 +11,7 @@
     <div ng-show="gongshangInfo.registerNum">
         <p class="create-title">工商信息</p>
         <div class="detail-style row" ng-show="gongshangInfo.registerNum">
-            <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">注册号/统一社会信用代码：</p>
+            <p class="col-sm-2 col-md-2 col-lg-2 text-right">注册号/统一社会信用代码：</p>
             <div class="col-sm-10 col-md-10 col-lg-10">{{gongshangInfo.registerNum}}</div>
         </div>
         <div class="detail-style row" ng-show="gongshangInfo.type">
@@ -131,79 +131,79 @@
     <div ng-show="shuiwuInfo.swdjzh">
         <p class="create-title">税务信息</p>
         <div class="detail-style row" ng-show="shuiwuInfo.swdjzh">
-            <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">税务登记证号：</p>
+            <p class="col-sm-2 col-md-2 col-lg-2 text-right">税务登记证号：</p>
             <div class="col-sm-10 col-md-10 col-lg-10">{{shuiwuInfo.swdjzh}}</div>
         </div>
         <div class="detail-style row" ng-show="shuiwuInfo.swdjlx">
-            <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">税务登记类型：</p>
+            <p class="col-sm-2 col-md-2 col-lg-2 text-right">税务登记类型：</p>
             <div class="col-sm-10 col-md-10 col-lg-10">{{shuiwuInfo.swdjlx}}</div>
         </div>
         <div class="detail-style row" ng-show="shuiwuInfo.djsllx">
-            <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">登记受理类型：</p>
+            <p class="col-sm-2 col-md-2 col-lg-2 text-right">登记受理类型：</p>
             <div class="col-sm-10 col-md-10 col-lg-10">{{shuiwuInfo.djsllx}}</div>
         </div>
         <div class="detail-style row" ng-show="shuiwuInfo.jydz">
-            <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">经营地址：</p>
+            <p class="col-sm-2 col-md-2 col-lg-2 text-right">经营地址：</p>
             <div class="col-sm-10 col-md-10 col-lg-10">{{shuiwuInfo.jydz}}</div>
         </div>
         <div class="detail-style row" ng-show="shuiwuInfo.scjx">
-            <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">所处街乡：</p>
+            <p class="col-sm-2 col-md-2 col-lg-2 text-right">所处街乡：</p>
             <div class="col-sm-10 col-md-10 col-lg-10">{{shuiwuInfo.scjx}}</div>
         </div>
         <div class="detail-style row" ng-show="shuiwuInfo.gdsgghbs">
-            <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">国地税共管户标识：</p>
+            <p class="col-sm-2 col-md-2 col-lg-2 text-right">国地税共管户标识：</p>
             <div class="col-sm-10 col-md-10 col-lg-10">{{shuiwuInfo.gdsgghbs}}</div>
         </div>
         <div class="detail-style row" ng-show="shuiwuInfo.lsgx">
-            <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">隶属关系：</p>
+            <p class="col-sm-2 col-md-2 col-lg-2 text-right">隶属关系：</p>
             <div class="col-sm-10 col-md-10 col-lg-10">{{shuiwuInfo.lsgx}}</div>
         </div>
         <div class="detail-style row" ng-show="shuiwuInfo.gjbzhy">
-            <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">国家标准行业：</p>
+            <p class="col-sm-2 col-md-2 col-lg-2 text-right">国家标准行业：</p>
             <div class="col-sm-10 col-md-10 col-lg-10">{{shuiwuInfo.gjbzhy}}</div>
         </div>
         <div class="detail-style row" ng-show="shuiwuInfo.swdjrq">
-            <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">税务登记日期：</p>
+            <p class="col-sm-2 col-md-2 col-lg-2 text-right">税务登记日期：</p>
             <div class="col-sm-10 col-md-10 col-lg-10">{{shuiwuInfo.swdjrq}}</div>
         </div>
         <div class="detail-style row" ng-show="shuiwuInfo.zgswjg">
-            <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">主管税务机关：</p>
+            <p class="col-sm-2 col-md-2 col-lg-2 text-right">主管税务机关：</p>
             <div class="col-sm-10 col-md-10 col-lg-10">{{shuiwuInfo.zgswjg}}</div>
         </div>
         <div class="detail-style row" ng-show="shuiwuInfo.nsrStatus">
-            <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">纳税人状态：</p>
+            <p class="col-sm-2 col-md-2 col-lg-2 text-right">纳税人状态：</p>
             <div class="col-sm-10 col-md-10 col-lg-10">{{shuiwuInfo.nsrStatus}}</div>
         </div>
         <div class="detail-style row" ng-show="shuiwuInfo.nsrName">
-            <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">纳税人名称：</p>
+            <p class="col-sm-2 col-md-2 col-lg-2 text-right">纳税人名称：</p>
             <div class="col-sm-10 col-md-10 col-lg-10">{{shuiwuInfo.nsrName}}</div>
         </div>
         <div class="detail-style row" ng-show="shuiwuInfo.yb">
-            <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">经营地址邮编：</p>
+            <p class="col-sm-2 col-md-2 col-lg-2 text-right">经营地址邮编：</p>
             <div class="col-sm-10 col-md-10 col-lg-10">{{shuiwuInfo.yb}}</div>
         </div>
         <div class="detail-style row" ng-show="shuiwuInfo.jydzPhone">
-            <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">经营地址联系电话：</p>
+            <p class="col-sm-2 col-md-2 col-lg-2 text-right">经营地址联系电话：</p>
             <div class="col-sm-10 col-md-10 col-lg-10">{{shuiwuInfo.jydzPhone}}</div>
         </div>
         <div class="detail-style row" ng-show="shuiwuInfo.zch">
-            <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">注册号：</p>
+            <p class="col-sm-2 col-md-2 col-lg-2 text-right">注册号：</p>
             <div class="col-sm-10 col-md-10 col-lg-10">{{shuiwuInfo.zch}}</div>
         </div>
         <div class="detail-style row" ng-show="shuiwuInfo.zzjgdm">
-            <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">住址机构代码：</p>
+            <p class="col-sm-2 col-md-2 col-lg-2 text-right">住址机构代码：</p>
             <div class="col-sm-10 col-md-10 col-lg-10">{{shuiwuInfo.zzjgdm}}</div>
         </div>
         <div class="detail-style row" ng-show="shuiwuInfo.djzclx">
-            <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">登记注册类型：</p>
+            <p class="col-sm-2 col-md-2 col-lg-2 text-right">登记注册类型：</p>
             <div class="col-sm-10 col-md-10 col-lg-10">{{shuiwuInfo.djzclx}}</div>
         </div>
         <div class="detail-style row" ng-show="shuiwuInfo.qyzywz">
-            <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">企业主页网址：</p>
+            <p class="col-sm-2 col-md-2 col-lg-2 text-right">企业主页网址：</p>
             <div class="col-sm-10 col-md-10 col-lg-10">{{shuiwuInfo.qyzywz}}</div>
         </div>
         <div class="detail-style row" ng-show="shuiwuInfo.faren">
-            <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">法人名称：</p>
+            <p class="col-sm-2 col-md-2 col-lg-2 text-right">法人名称：</p>
             <div class="col-sm-10 col-md-10 col-lg-10">{{shuiwuInfo.faren}}</div>
         </div>
     </div>
@@ -211,23 +211,23 @@
     <div ng-show="zibenInfo.zczb">
         <p class="create-title">资本信息</p>
         <div class="detail-style row" ng-show="zibenInfo.zczb">
-            <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">注册资本：</p>
+            <p class="col-sm-2 col-md-2 col-lg-2 text-right">注册资本：</p>
             <div class="col-sm-10 col-md-10 col-lg-10">{{zibenInfo.zczb}}</div>
         </div>
         <div class="detail-style row" ng-show="zibenInfo.sszb">
-            <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">实收资本：</p>
+            <p class="col-sm-2 col-md-2 col-lg-2 text-right">实收资本：</p>
             <div class="col-sm-10 col-md-10 col-lg-10">{{zibenInfo.sszb}}</div>
         </div>
         <div class="detail-style row" ng-show="zibenInfo.zjczje">
-            <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">实缴出资金额：</p>
+            <p class="col-sm-2 col-md-2 col-lg-2 text-right">实缴出资金额：</p>
             <div class="col-sm-10 col-md-10 col-lg-10">{{zibenInfo.zjczje}}</div>
         </div>
         <div class="detail-style row" ng-show="zibenInfo.zzsjczsj">
-            <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">最终实缴出资时间：</p>
+            <p class="col-sm-2 col-md-2 col-lg-2 text-right">最终实缴出资时间：</p>
             <div class="col-sm-10 col-md-10 col-lg-10">{{zibenInfo.zzsjczsj}}</div>
         </div>
         <div class="detail-style row" ng-show="zibenInfo.zzrjczsj">
-            <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">最终认缴出资时间：</p>
+            <p class="col-sm-2 col-md-2 col-lg-2 text-right">最终认缴出资时间：</p>
             <div class="col-sm-10 col-md-10 col-lg-10">{{zibenInfo.zzrjczsj}}</div>
         </div>
     </div>
@@ -269,11 +269,11 @@
     <div ng-show="zzjgdmInfo.dmzbfjg">
         <p class="create-title">组织机构代码信息</p>
         <div class="detail-style row" ng-show="zzjgdmInfo.dmzbfjg">
-            <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">代码证颁发机构：</p>
+            <p class="col-sm-2 col-md-2 col-lg-2 text-right">代码证颁发机构：</p>
             <div class="col-sm-10 col-md-10 col-lg-10">{{zzjgdmInfo.dmzbfjg}}</div>
         </div>
         <div class="detail-style row" ng-show="zzjgdmInfo.zzjgdm">
-            <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">组织机构代码：</p>
+            <p class="col-sm-2 col-md-2 col-lg-2 text-right">组织机构代码：</p>
             <div class="col-sm-10 col-md-10 col-lg-10">{{zzjgdmInfo.zzjgdm}}</div>
         </div>
     </div>
@@ -330,47 +330,47 @@
             <div ng-show="item.companyBaseInfo.registerNum">
                 <p class="company-nb-title">企业基本信息</p>
                 <div class="detail-style row" ng-show="item.companyBaseInfo.registerNum">
-                    <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">注册号/同意社会信用代码：</p>
+                    <p class="col-sm-2 col-md-2 col-lg-2 text-right">注册号/同意社会信用代码：</p>
                     <div class="col-sm-10 col-md-10 col-lg-10">{{item.companyBaseInfo.registerNum}}</div>
                 </div>
                 <div class="detail-style row" ng-show="item.companyBaseInfo.companyName">
-                    <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">企业名称：</p>
+                    <p class="col-sm-2 col-md-2 col-lg-2 text-right">企业名称：</p>
                     <div class="col-sm-10 col-md-10 col-lg-10">{{item.companyBaseInfo.companyName}}</div>
                 </div>
                 <div class="detail-style row" ng-show="item.companyBaseInfo.phone">
-                    <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">联系电话：</p>
+                    <p class="col-sm-2 col-md-2 col-lg-2 text-right">联系电话：</p>
                     <div class="col-sm-10 col-md-10 col-lg-10">{{item.companyBaseInfo.phone}}</div>
                 </div>
                 <div class="detail-style row" ng-show="item.companyBaseInfo.zipcode">
-                    <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">邮政编码：</p>
+                    <p class="col-sm-2 col-md-2 col-lg-2 text-right">邮政编码：</p>
                     <div class="col-sm-10 col-md-10 col-lg-10">{{item.companyBaseInfo.zipcode}}</div>
                 </div>
                 <div class="detail-style row" ng-show="item.companyBaseInfo.address">
-                    <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">企业通信地址：</p>
+                    <p class="col-sm-2 col-md-2 col-lg-2 text-right">企业通信地址：</p>
                     <div class="col-sm-10 col-md-10 col-lg-10">{{item.companyBaseInfo.address}}</div>
                 </div>
                 <div class="detail-style row" ng-show="item.companyBaseInfo.email">
-                    <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">电子邮箱：</p>
+                    <p class="col-sm-2 col-md-2 col-lg-2 text-right">电子邮箱：</p>
                     <div class="col-sm-10 col-md-10 col-lg-10">{{item.companyBaseInfo.email}}</div>
                 </div>
                 <div class="detail-style row" ng-show="item.companyBaseInfo.isGqzr">
-                    <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">有限公司本年度是否发生股东股权转让：</p>
+                    <p class="col-sm-2 col-md-2 col-lg-2 text-right">有限公司本年度是否发生股东股权转让：</p>
                     <div class="col-sm-10 col-md-10 col-lg-10">{{item.companyBaseInfo.isGqzr}}</div>
                 </div>
                 <div class="detail-style row" ng-show="item.companyBaseInfo.status">
-                    <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">企业经营状态：</p>
+                    <p class="col-sm-2 col-md-2 col-lg-2 text-right">企业经营状态：</p>
                     <div class="col-sm-10 col-md-10 col-lg-10">{{item.companyBaseInfo.status}}</div>
                 </div>
                 <div class="detail-style row" ng-show="item.companyBaseInfo.isHaveWebsite">
-                    <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">是否有网站或网店：</p>
+                    <p class="col-sm-2 col-md-2 col-lg-2 text-right">是否有网站或网店：</p>
                     <div class="col-sm-10 col-md-10 col-lg-10">{{item.companyBaseInfo.isHaveWebsite}}</div>
                 </div>
                 <div class="detail-style row" ng-show="item.companyBaseInfo.isHaveTzxx">
-                    <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">是否有投资信息或购买其他公司股权：</p>
+                    <p class="col-sm-2 col-md-2 col-lg-2 text-right">是否有投资信息或购买其他公司股权：</p>
                     <div class="col-sm-10 col-md-10 col-lg-10">{{item.companyBaseInfo.isHaveTzxx}}</div>
                 </div>
                 <div class="detail-style row" ng-show="item.companyBaseInfo.poeopleNum">
-                    <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">从业人数：</p>
+                    <p class="col-sm-2 col-md-2 col-lg-2 text-right">从业人数：</p>
                     <div class="col-sm-10 col-md-10 col-lg-10">{{item.companyBaseInfo.poeopleNum}}</div>
                 </div>
             </div>
@@ -378,35 +378,35 @@
             <div ng-show="item.qyzczkInfo.zczr">
                 <p class="company-nb-title">企业资产状况信息</p>
                 <div class="detail-style row" ng-show="item.qyzczkInfo.zczr">
-                    <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">资产总额：</p>
+                    <p class="col-sm-2 col-md-2 col-lg-2 text-right">资产总额：</p>
                     <div class="col-sm-10 col-md-10 col-lg-10">{{item.qyzczkInfo.zczr}}</div>
                 </div>
                 <div class="detail-style row" ng-show="item.qyzczkInfo.syzqyhj">
-                    <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">所有者权益合计：</p>
+                    <p class="col-sm-2 col-md-2 col-lg-2 text-right">所有者权益合计：</p>
                     <div class="col-sm-10 col-md-10 col-lg-10">{{item.qyzczkInfo.syzqyhj}}</div>
                 </div>
                 <div class="detail-style row" ng-show="item.qyzczkInfo.zczr">
-                    <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">资产总额：</p>
+                    <p class="col-sm-2 col-md-2 col-lg-2 text-right">资产总额：</p>
                     <div class="col-sm-10 col-md-10 col-lg-10">{{item.qyzczkInfo.zczr}}</div>
                 </div>
                 <div class="detail-style row" ng-show="item.qyzczkInfo.lrze">
-                    <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">利润总额：</p>
+                    <p class="col-sm-2 col-md-2 col-lg-2 text-right">利润总额：</p>
                     <div class="col-sm-10 col-md-10 col-lg-10">{{item.qyzczkInfo.lrze}}</div>
                 </div>
                 <div class="detail-style row" ng-show="item.qyzczkInfo.yyzsrzzyywsr">
-                    <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">营业总收入中主营业务收入：</p>
+                    <p class="col-sm-2 col-md-2 col-lg-2 text-right">营业总收入中主营业务收入：</p>
                     <div class="col-sm-10 col-md-10 col-lg-10">{{item.qyzczkInfo.yyzsrzzyywsr}}</div>
                 </div>
                 <div class="detail-style row" ng-show="item.qyzczkInfo.jlr">
-                    <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">净利润：</p>
+                    <p class="col-sm-2 col-md-2 col-lg-2 text-right">净利润：</p>
                     <div class="col-sm-10 col-md-10 col-lg-10">{{item.qyzczkInfo.jlr}}</div>
                 </div>
                 <div class="detail-style row" ng-show="item.qyzczkInfo.nsze">
-                    <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">纳税总额：</p>
+                    <p class="col-sm-2 col-md-2 col-lg-2 text-right">纳税总额：</p>
                     <div class="col-sm-10 col-md-10 col-lg-10">{{item.qyzczkInfo.nsze}}</div>
                 </div>
                 <div class="detail-style row" ng-show="item.qyzczkInfo.fzze">
-                    <p class="col-sm-2 col-md-2 col-lg-6-2 text-right">负债总额：</p>
+                    <p class="col-sm-2 col-md-2 col-lg-2 text-right">负债总额：</p>
                     <div class="col-sm-10 col-md-10 col-lg-10">{{item.qyzczkInfo.fzze}}</div>
                 </div>
             </div>
@@ -546,7 +546,98 @@
         </table>
     </div>
 
-    <p class="create-title" ng-show="model_list">其他信息</p>
+    <div ng-show="extendInfo">
+        <p class="create-title">拓展信息</p>
+        <div class="detail-style row" ng-show="extendInfo.introduce.length > 0">
+            <p class="col-sm-2 col-md-2 col-lg-2 text-right">公司描述：</p>
+            <div class="col-sm-10 col-md-10 col-lg-10">
+                <table class="table table-bordered">
+                    <tr>
+                        <td>来源</td>
+                        <td>内容</td>
+                        <td>存储时间</td>
+                    </tr>
+                    <tr ng-repeat="item in extendInfo.introduce">
+                        <td>{{ item.from }}</td>
+                        <td>{{ item.content }}</td>
+                        <td>{{ item.time }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="detail-style row" ng-show="extendInfo.address.length > 0">
+            <p class="col-sm-2 col-md-2 col-lg-2 text-right">公司地址：</p>
+            <div class="col-sm-10 col-md-10 col-lg-10">
+                <table class="table table-bordered">
+                    <tr>
+                        <td>来源</td>
+                        <td>内容</td>
+                        <td>存储时间</td>
+                    </tr>
+                    <tr ng-repeat="item in extendInfo.address">
+                        <td>{{ item.from }}</td>
+                        <td>{{ item.content }}</td>
+                        <td>{{ item.time }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="detail-style row" ng-show="extendInfo.people.length > 0">
+        <p class="col-sm-2 col-md-2 col-lg-2 text-right">公司规模：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">
+            <table class="table table-bordered">
+                <tr>
+                    <td>来源</td>
+                    <td>内容</td>
+                    <td>存储时间</td>
+                </tr>
+                <tr ng-repeat="item in extendInfo.people">
+                    <td>{{ item.from }}</td>
+                    <td>{{ item.content }}</td>
+                    <td>{{ item.time }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="detail-style row" ng-show="extendInfo.website.length > 0">
+        <p class="col-sm-2 col-md-2 col-lg-2 text-right">公司网站：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">
+            <table class="table table-bordered">
+                <tr>
+                    <td>来源</td>
+                    <td>内容</td>
+                    <td>存储时间</td>
+                </tr>
+                <tr ng-repeat="item in extendInfo.website">
+                    <td>{{ item.from }}</td>
+                    <td>{{ item.content }}</td>
+                    <td>{{ item.time }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="detail-style row" ng-show="extendInfo.phone.length > 0">
+        <p class="col-sm-2 col-md-2 col-lg-2 text-right">公司网站：</p>
+        <div class="col-sm-10 col-md-10 col-lg-10">
+            <table class="table table-bordered">
+                <tr>
+                    <td>来源</td>
+                    <td>内容</td>
+                    <td>存储时间</td>
+                </tr>
+                <tr ng-repeat="item in extendInfo.phone">
+                    <td>{{ item.from }}</td>
+                    <td>{{ item.content }}</td>
+                    <td>{{ item.time }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<p class="create-title" ng-show="model_list.length > 0">其他信息</p>
     <div class="detail-style row" ng-repeat="template in model_list">
         <p class="col-sm-2 col-md-2 col-lg-2 text-right">{{template.title}}:</p>
         <div class="col-sm-10 col-md-10 col-lg-10"

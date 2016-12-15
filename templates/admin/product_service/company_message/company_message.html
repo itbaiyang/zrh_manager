@@ -14,7 +14,7 @@
     </div>
     <li class="list-title">
         <span class="col-sm-3 col-md-3 col-lg-3">企业名称或个人</span>
-        <span class="col-sm-3 col-md-3 col-lg-3">申请产品</span>
+        <span class="col-sm-2 col-md-2 col-lg-2">申请产品</span>
         <span class="col-sm-2 col-md-2 col-lg-2">申请时间</span>
         <div class="btn-group col-sm-2 col-md-2 col-lg-2 text-center">
             <div style="cursor: pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -32,6 +32,7 @@
                 <li ng-click="choice('')" class="list-select">全部</li>
             </ul>
         </div>
+        <span class="col-sm-1 col-md-1 col-lg-1 text-center">来源</span>
         <span class="col-sm-2 col-md-2 col-lg-2 text-right">操作</span>
     </li>
     <ul class="list-group list-ul list-ul-height-1">
@@ -44,15 +45,10 @@
                                    ng-click="updateSelection($event,resultObj.id)">
                             {{resultObj.companyName || resultObj.linkman}}
                         </p>
-                        <img src="img/tips/tel.png" class="img-size" ng-show="resultObj.channel =='tel'">
-                        <img src="img/tips/bankMan.png" class="img-size" ng-show="resultObj.channel =='a'">
-                        <img src="img/tips/manager.png" class="img-size" ng-show="resultObj.channel =='zrh_manager'">
-                        <img src="img/tips/channel.png" class="img-size" ng-show="resultObj.channel =='c'">
-                        <img src="img/tips/zrh.png" class="img-size" ng-show="resultObj.channel =='zrh'">
                         <img src="img/tips/delay.png" class="img-size"
                              title="到时提醒：{{resultObj.planTime | date: 'yyyy-MM-dd'}}" ng-show="resultObj.planTime">
                     </div>
-                    <div class="col-sm-3 col-md-3 col-lg-3 padding-none">{{resultObj.bankName ||'未申请'}}
+                    <div class="col-sm-2 col-md-2 col-lg-2 padding-none">{{resultObj.bankName ||'未申请'}}
                         <span ng-show="resultObj.bankName">-</span>{{resultObj.productName}}
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-2 padding-none" style="margin-top: -8px">
@@ -65,6 +61,14 @@
                           ng-show="resultObj.color == 2">{{resultObj.progressText}}</span>
                     <span class="col-xs-3 col-sm-3 col-md-3 col-lg-3 padding-none text-center" style="color: #009B27"
                           ng-show="resultObj.color == 3">{{resultObj.progressText}}</span>
+                    <span class="col-xs-1 col-sm-1 col-md-1 col-lg-1 text-center">{{resultObj.createUserName||"无"}}
+                            <img src="img/tips/tel.png" class="img-size" ng-show="resultObj.channel =='tel'">
+                            <img src="img/tips/bankMan.png" class="img-size" ng-show="resultObj.channel =='a'">
+                            <img src="img/tips/manager.png" class="img-size"
+                                 ng-show="resultObj.channel =='zrh_manager'">
+                            <img src="img/tips/channel.png" class="img-size" ng-show="resultObj.channel =='c'">
+                            <img src="img/tips/zrh.png" class="img-size" ng-show="resultObj.channel =='zrh'">
+                        </span>
                     <a class="col-sm-2 col-md-2 col-lg-2 padding-none text-right"
                        href="{{url_detail}}{{resultObj.id}}" target="_blank">查看详情</a>
                 </li>

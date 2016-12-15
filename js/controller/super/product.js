@@ -466,7 +466,7 @@ productCtrl.controller('ProductUpdateCtrl', ['$http', '$scope', '$state', '$root
             "loanlife": $scope.product.loanlife,
             "summary": $scope.product.summary,
             "feature": $scope.feature_list_new,
-            "conditions": $scope.condition_list_new,
+            "conditions": $scope.condition_list_new
         };
         $.ajax({
             type: 'POST',
@@ -482,7 +482,7 @@ productCtrl.controller('ProductUpdateCtrl', ['$http', '$scope', '$state', '$root
                     console.log(data);
                 }
             },
-            dataType: 'json',
+            dataType: 'json'
         });
 
     };

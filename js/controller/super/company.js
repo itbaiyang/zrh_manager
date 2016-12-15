@@ -69,6 +69,9 @@ companyCtrl.controller('CompanyDetailCtrl',
                 console.log(d);
                 if (d.returnCode == 0) {
                     $scope.companyName = d.result.companyName;
+                    $scope.province = d.result.province;
+                    $scope.city = d.result.city;
+                    $scope.district = d.result.district;
                     $scope.gongshangInfo = d.result.gongshangInfo; //工商信息
                     $scope.shuiwuInfo = d.result.shuiwuInfo; //税务信息
                     $scope.zibenInfo = d.result.zibenInfo; //资本信息
@@ -79,6 +82,7 @@ companyCtrl.controller('CompanyDetailCtrl',
                     $scope.qiyenianbaoInfo = d.result.qiyenianbaoInfo; //企业年报
                     $scope.jobInfo = d.result.jobInfo; //招聘信息
                     $scope.zzjgdmInfo = d.result.zzjgdmInfo; //组织机构代码
+                    $scope.extendInfo = d.result.extendInfo; //扩展信息
                     $scope.get($scope.companyName)
                 }
                 else {
