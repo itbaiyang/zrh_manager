@@ -56,7 +56,6 @@ applyListCtrl.controller('ApplyListCtrl', ['$scope', '$rootScope', '$http', '$lo
     $scope.list(1, 20);
     $scope.changePage = function (page) {
         $scope.pageNo1 = page;
-        //console.log($scope.pageNo1);
         $scope.$watch($scope.pageNo1, function () {
             $scope.list($scope.pageNo1, 20);
         });
@@ -81,7 +80,6 @@ applyListCtrl.controller('ApplyListCtrl', ['$scope', '$rootScope', '$http', '$lo
     };
 
     $scope.updateSelection = function ($event, id) {
-        //console.log("点击一下")
         var checkbox = $event.target;
         var action = (checkbox.checked ? 'add' : 'remove');
         updateSelected(action, id);
@@ -96,7 +94,7 @@ applyListCtrl.controller('ApplyListCtrl', ['$scope', '$rootScope', '$http', '$lo
         //console.log($scope.ids);
         $.ajax({
             type: 'POST',
-            url: api_uri + "loanApplicationManage/delete",
+            url: api_uri + "loanApplicationManage/deleteAll",
             data: m_params,
             traditional: true,
             success: function (data, textStatus, jqXHR) {
